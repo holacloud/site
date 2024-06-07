@@ -22,8 +22,8 @@ func IfModifiedSince() box.I {
 			ifModifiedSince := r.Header.Get(`If-Modified-Since`)
 			if ifModifiedSince != "" {
 				t, err := time.Parse(time.RFC1123, ifModifiedSince) // todo: could be time.RFC850 ??
-				fmt.Println(deployTime, t)
-				if err == nil && t.Before(deployTime) {
+				if err == nil && t.After(deployTime) {
+					fmt.Println(r.Method, r.URL.Path, "NOT MODIFIED")
 					box.GetResponse(ctx).WriteHeader(http.StatusNotModified)
 					return
 				}
