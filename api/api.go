@@ -22,7 +22,9 @@ func Build(staticsDir, version string) *box.B {
 
 	// Static files
 	b.Handle("GET", "/*", statics.ServeStatics(staticsDir)).
-		WithInterceptors(IfModifiedSince())
+		WithInterceptors(
+		// IfModifiedSince(),
+		)
 
 	return b
 }
