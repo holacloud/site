@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Managing Collections</title>
+    <meta name="description" content="inceptiondb">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/blue.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="top">
+    <a href="/" class="logo"></a>
+    <div class="languages"><a class="selected" href="/docs/inceptiondb/v2/managing-collections/index.html">en</a><a class="" href="/es/docs/inceptiondb/v2/manejando-colecciones/index.html">es</a><a class="" href="/zh/docs/inceptiondb/v2/managing-collections/index.html">zh</a></div>
+    <div class="main-menu">
+        
+        
+        <a class="link" href="/docs/index.html">Documentation</a>
+        
+        <a class="link button-console" href="https://console.hola.cloud/">Console</a>
+    </div>
+</div>
+<div class="versions"><a class="" href="/docs/inceptiondb/v1/managing-collections/index.html">v1</a><a class="selected" href="/docs/inceptiondb/v2/managing-collections/index.html">v2</a></div>
+<div class="tree">
+
+    <div class="item active"><a href="/docs/inceptiondb/index.html">InceptionDB</a></div>
+<div class="children">
+<div class="item"><a href="/docs/inceptiondb/v2/getting-started/index.html">Quick Start Guide with InceptionDB</a></div>
+<div class="item active selected"><a href="/docs/inceptiondb/v2/managing-collections/index.html">Managing Collections</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/working-with-data/index.html">Working with Data</a></div>
+</div>
+<div class="item"><a href="/docs/lambda/index.html">Lambda</a></div>
+<div class="children">
+<div class="item"><a href="/docs/lambda/v2/getting-started/index.html">Getting started</a></div>
+</div>
+<div class="item"><a href="/docs/files/index.html">Files</a></div>
+<div class="children">
+<div class="item"><a href="/docs/files/index/getting-started/index.html">Getting started</a></div>
+</div>
+<div class="item"><a href="/docs/config/index.html">Config</a></div>
+<div class="children">
+<div class="item"><a href="/docs/config/index/getting-started/index.html">Getting started</a></div>
+</div>
+<div class="item"><a href="/docs/logs/index.html">InstantLogs</a></div>
+<div class="children">
+<div class="item"><a href="/docs/logs/index/getting-started/index.html">Getting started</a></div>
+</div>
+<div class="item"><a href="/docs/logs/index.html">Tailon</a></div>
+<div class="children">
+<div class="item"><a href="/docs/queues/index/getting-started/index.html">Getting started</a></div>
+</div>
+
+
+
+</div>
+<div class="content">
+    
+    <div class="index"><div class="index-h2">
+<a href="#Creating%20a%20Collection">Creating a Collection</a>
+</div>
+<div class="index-h2">
+<a href="#Deleting%20a%20Collection">Deleting a Collection</a>
+</div>
+<div class="index-h2">
+<a href="#Creating%20a%20Collection%20Implicitly">Creating a Collection Implicitly</a>
+</div>
+<div class="index-h3">
+<a href="#When%20Inserting%20Documents">When Inserting Documents</a>
+</div>
+<div class="index-h4">
+<a href="#Insert%20One%20Document">Insert One Document</a>
+</div>
+<div class="index-h4">
+<a href="#Insert%20Multiple%20Documents">Insert Multiple Documents</a>
+</div>
+<div class="index-h3">
+<a href="#When%20Creating%20an%20Index">When Creating an Index</a>
+</div>
+</div>
+    <div class="document">
+    <h1>Managing Collections</h1>
+<hr/>
+<h2 id="Creating%20a%20Collection">Creating a Collection</h2>
+<p>To create a collection, you can use the following curl command:</p>
+<pre><code class="language-sh"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST <span style="color:#2aa198">&#34;https://example.com/v1/databases/719e9421-e6e9-42b6-b9b7-b580e532b9d5/collections&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>-H <span style="color:#2aa198">&#34;Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>-H <span style="color:#2aa198">&#34;Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span><span style="color:#cb4b16"></span>-d <span style="color:#2aa198">&#39;{
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span><span style="color:#2aa198">    &#34;name&#34;: &#34;my-collection&#34;
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span><span style="color:#2aa198">}&#39;</span>
+</span></span></code></pre></code></pre>
+<p>The HTTP request for creating a collection would look like this:</p>
+<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span><span style="color:#268bd2">POST</span> /v1/databases/719e9421-e6e9-42b6-b9b7-b580e532b9d5/collections <span style="color:#268bd2">HTTP</span><span style="color:#719e07">/</span><span style="color:#2aa198">1.1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>Host<span style="color:#719e07">:</span> example.com
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>Api-Key<span style="color:#719e07">:</span> 1abbe476-6ad6-4b97-9cca-6deb6ab2901d
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>Api-Secret<span style="color:#719e07">:</span> 4bda6d52-762b-4e5d-bed7-85614c13b8bf
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>Content-Type<span style="color:#719e07">:</span> application/json
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7">7</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8">8</a></span><span>    <span style="color:#268bd2">&#34;name&#34;</span>: <span style="color:#2aa198">&#34;my-collection&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9">9</a></span><span>}
+</span></span></code></pre></code></pre>
+<h2 id="Deleting%20a%20Collection">Deleting a Collection</h2>
+<p>To delete a collection, use the following curl command:</p>
+<pre><code class="language-sh"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST <span style="color:#2aa198">&#34;https://example.com/v1/databases/dc992d92-c146-448b-a17d-e94614aff740/collections/my-collection:dropCollection&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>-H <span style="color:#2aa198">&#34;Api-Key: 271ba1e6-87b5-4d0f-84a0-a3d1178d1356&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>-H <span style="color:#2aa198">&#34;Api-Secret: 5346a7cf-6743-49eb-921b-6e977cf11e36&#34;</span>
+</span></span></code></pre></code></pre>
+<p>The HTTP request for deleting a collection would look like this:</p>
+<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span><span style="color:#268bd2">POST</span> /v1/databases/dc992d92-c146-448b-a17d-e94614aff740/collections/my-collection:dropCollection <span style="color:#268bd2">HTTP</span><span style="color:#719e07">/</span><span style="color:#2aa198">1.1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>Host<span style="color:#719e07">:</span> example.com
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>Api-Key<span style="color:#719e07">:</span> 271ba1e6-87b5-4d0f-84a0-a3d1178d1356
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>Api-Secret<span style="color:#719e07">:</span> 5346a7cf-6743-49eb-921b-6e977cf11e36
+</span></span></code></pre></code></pre>
+<h2 id="Creating%20a%20Collection%20Implicitly">Creating a Collection Implicitly</h2>
+<h3 id="When%20Inserting%20Documents">When Inserting Documents</h3>
+<p>Collections are created implicitly when you insert documents into them. For example:</p>
+<h4 id="Insert%20One%20Document">Insert One Document</h4>
+<pre><code class="language-sh"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST <span style="color:#2aa198">&#34;https://example.com/v1/databases/436a4499-e9f0-4aaf-9f82-fe2a2e22c3f0/collections/my-collection:insert&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>-H <span style="color:#2aa198">&#34;Api-Key: ea34c657-4125-4527-8cd1-630b33f50b42&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>-H <span style="color:#2aa198">&#34;Api-Secret: a30baf65-c9be-4231-92bc-6f04442142c9&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span><span style="color:#cb4b16"></span>-d <span style="color:#2aa198">&#39;{
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span><span style="color:#2aa198">    &#34;address&#34;: &#34;Elm Street 11&#34;,
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span><span style="color:#2aa198">    &#34;id&#34;: &#34;my-id&#34;,
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7">7</a></span><span><span style="color:#2aa198">    &#34;name&#34;: &#34;Fulanez&#34;
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8">8</a></span><span><span style="color:#2aa198">}&#39;</span>
+</span></span></code></pre></code></pre>
+<p>The HTTP request would be:</p>
+<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1"> 1</a></span><span><span style="color:#268bd2">POST</span> /v1/databases/436a4499-e9f0-4aaf-9f82-fe2a2e22c3f0/collections/my-collection:insert <span style="color:#268bd2">HTTP</span><span style="color:#719e07">/</span><span style="color:#2aa198">1.1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2"> 2</a></span><span>Host<span style="color:#719e07">:</span> example.com
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3"> 3</a></span><span>Api-Key<span style="color:#719e07">:</span> ea34c657-4125-4527-8cd1-630b33f50b42
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4"> 4</a></span><span>Api-Secret<span style="color:#719e07">:</span> a30baf65-c9be-4231-92bc-6f04442142c9
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5"> 5</a></span><span>Content-Type<span style="color:#719e07">:</span> application/json
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6"> 6</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7"> 7</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8"> 8</a></span><span>    <span style="color:#268bd2">&#34;address&#34;</span>: <span style="color:#2aa198">&#34;Elm Street 11&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9"> 9</a></span><span>    <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;my-id&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L10"><a style="outline: none; text-decoration:none; color:inherit" href="#L10">10</a></span><span>    <span style="color:#268bd2">&#34;name&#34;</span>: <span style="color:#2aa198">&#34;Fulanez&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L11"><a style="outline: none; text-decoration:none; color:inherit" href="#L11">11</a></span><span>}
+</span></span></code></pre></code></pre>
+<h4 id="Insert%20Multiple%20Documents">Insert Multiple Documents</h4>
+<pre><code class="language-sh"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1"> 1</a></span><span>curl -X POST <span style="color:#2aa198">&#34;https://example.com/v1/databases/7b7d79de-d7c7-47b9-8662-e124be300d3d/collections/my-collection:insert&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2"> 2</a></span><span><span style="color:#cb4b16"></span>-H <span style="color:#2aa198">&#34;Api-Key: e609f9ce-9f15-4649-b57c-5e9709e5bcca&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3"> 3</a></span><span><span style="color:#cb4b16"></span>-H <span style="color:#2aa198">&#34;Api-Secret: 19e7a8e9-4cc6-4814-ad3e-c33af518086a&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4"> 4</a></span><span><span style="color:#cb4b16"></span>-d <span style="color:#2aa198">&#39;{
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5"> 5</a></span><span><span style="color:#2aa198">    &#34;id&#34;:&#34;1&#34;,
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6"> 6</a></span><span><span style="color:#2aa198">    &#34;name&#34;:&#34;Alfonso&#34;
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7"> 7</a></span><span><span style="color:#2aa198">}
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8"> 8</a></span><span><span style="color:#2aa198">{
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9"> 9</a></span><span><span style="color:#2aa198">    &#34;id&#34;:&#34;2&#34;,
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L10"><a style="outline: none; text-decoration:none; color:inherit" href="#L10">10</a></span><span><span style="color:#2aa198">    &#34;name&#34;:&#34;Gerardo&#34;
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L11"><a style="outline: none; text-decoration:none; color:inherit" href="#L11">11</a></span><span><span style="color:#2aa198">}
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L12"><a style="outline: none; text-decoration:none; color:inherit" href="#L12">12</a></span><span><span style="color:#2aa198">{
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L13"><a style="outline: none; text-decoration:none; color:inherit" href="#L13">13</a></span><span><span style="color:#2aa198">    &#34;id&#34;:&#34;3&#34;,
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L14"><a style="outline: none; text-decoration:none; color:inherit" href="#L14">14</a></span><span><span style="color:#2aa198">    &#34;name&#34;:&#34;Alfonso&#34;
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L15"><a style="outline: none; text-decoration:none; color:inherit" href="#L15">15</a></span><span><span style="color:#2aa198">}&#39;</span>
+</span></span></code></pre></code></pre>
+<p>The HTTP request would be:</p>
+<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1"> 1</a></span><span><span style="color:#268bd2">POST</span> /v1/databases/7b7d79de-d7c7-47b9-8662-e124be300d3d/collections/my-collection:insert <span style="color:#268bd2">HTTP</span><span style="color:#719e07">/</span><span style="color:#2aa198">1.1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2"> 2</a></span><span>Host<span style="color:#719e07">:</span> example.com
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3"> 3</a></span><span>Api-Key<span style="color:#719e07">:</span> e609f9ce-9f15-4649-b57c-5e9709e5bcca
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4"> 4</a></span><span>Api-Secret<span style="color:#719e07">:</span> 19e7a8e9-4cc6-4814-ad3e-c33af518086a
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5"> 5</a></span><span>Content-Type<span style="color:#719e07">:</span> application/json
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6"> 6</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7"> 7</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8"> 8</a></span><span>    <span style="color:#268bd2">&#34;id&#34;</span>:<span style="color:#2aa198">&#34;1&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9"> 9</a></span><span>    <span style="color:#268bd2">&#34;name&#34;</span>:<span style="color:#2aa198">&#34;Alfonso&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L10"><a style="outline: none; text-decoration:none; color:inherit" href="#L10">10</a></span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L11"><a style="outline: none; text-decoration:none; color:inherit" href="#L11">11</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L12"><a style="outline: none; text-decoration:none; color:inherit" href="#L12">12</a></span><span>    <span style="color:#268bd2">&#34;id&#34;</span>:<span style="color:#2aa198">&#34;2&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L13"><a style="outline: none; text-decoration:none; color:inherit" href="#L13">13</a></span><span>    <span style="color:#268bd2">&#34;name&#34;</span>:<span style="color:#2aa198">&#34;Gerardo&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L14"><a style="outline: none; text-decoration:none; color:inherit" href="#L14">14</a></span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L15"><a style="outline: none; text-decoration:none; color:inherit" href="#L15">15</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L16"><a style="outline: none; text-decoration:none; color:inherit" href="#L16">16</a></span><span>    <span style="color:#268bd2">&#34;id&#34;</span>:<span style="color:#2aa198">&#34;3&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L17"><a style="outline: none; text-decoration:none; color:inherit" href="#L17">17</a></span><span>    <span style="color:#268bd2">&#34;name&#34;</span>:<span style="color:#2aa198">&#34;Alfonso&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L18"><a style="outline: none; text-decoration:none; color:inherit" href="#L18">18</a></span><span>}
+</span></span></code></pre></code></pre>
+<h3 id="When%20Creating%20an%20Index">When Creating an Index</h3>
+<p>Creating an index can also implicitly create a collection. For example:</p>
+<pre><code class="language-sh"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST <span style="color:#2aa198">&#34;https://example.com/v1/databases/c4e4ac96-5001-4465-b22e-57e971ecc01f/collections/my-collection:createIndex&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>-H <span style="color:#2aa198">&#34;Api-Key: 4469ae2e-f4d2-4c58-ad03-d34b97957f3a&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>-H <span style="color:#2aa198">&#34;Api-Secret: aa7d2784-50b7-4846-be77-d7609034ab22&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span><span style="color:#cb4b16"></span>-d <span style="color:#2aa198">&#39;{
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span><span style="color:#2aa198">    &#34;field&#34;: &#34;id&#34;,
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span><span style="color:#2aa198">    &#34;name&#34;: &#34;my-index-id&#34;,
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7">7</a></span><span><span style="color:#2aa198">    &#34;sparse&#34;: true,
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8">8</a></span><span><span style="color:#2aa198">    &#34;type&#34;: &#34;map&#34;
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9">9</a></span><span><span style="color:#2aa198">}&#39;</span>
+</span></span></code></pre></code></pre>
+<p>The HTTP request would be:</p>
+<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1"> 1</a></span><span><span style="color:#268bd2">POST</span> /v1/databases/c4e4ac96-5001-4465-b22e-57e971ecc01f/collections/my-collection:createIndex <span style="color:#268bd2">HTTP</span><span style="color:#719e07">/</span><span style="color:#2aa198">1.1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2"> 2</a></span><span>Host<span style="color:#719e07">:</span> example.com
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3"> 3</a></span><span>Api-Key<span style="color:#719e07">:</span> 4469ae2e-f4d2-4c58-ad03-d34b97957f3a
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4"> 4</a></span><span>Api-Secret<span style="color:#719e07">:</span> aa7d2784-50b7-4846-be77-d7609034ab22
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5"> 5</a></span><span>Content-Type<span style="color:#719e07">:</span> application/json
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6"> 6</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7"> 7</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8"> 8</a></span><span>    <span style="color:#268bd2">&#34;field&#34;</span>: <span style="color:#2aa198">&#34;id&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9"> 9</a></span><span>    <span style="color:#268bd2">&#34;name&#34;</span>: <span style="color:#2aa198">&#34;my-index-id&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L10"><a style="outline: none; text-decoration:none; color:inherit" href="#L10">10</a></span><span>    <span style="color:#268bd2">&#34;sparse&#34;</span>: <span style="color:#cb4b16">true</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L11"><a style="outline: none; text-decoration:none; color:inherit" href="#L11">11</a></span><span>    <span style="color:#268bd2">&#34;type&#34;</span>: <span style="color:#2aa198">&#34;map&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L12"><a style="outline: none; text-decoration:none; color:inherit" href="#L12">12</a></span><span>}
+</span></span></code></pre></code></pre>
+<hr/>
+<p>This document explains how to manage collections, including creating, deleting, and the various implicit methods of creation. You can download this document in Markdown format using the link below:</p>
+<p><a href="sandbox:/mnt/data/Managing_Collections.md">Download Managing Collections Document</a></p>
+
+    </div>
+</div>
+<div class="footer">
+    HolaDoc
+</div>
+<script>
+
+    
+    function isElementInViewport (el) {
+
+        
+        
+        
+        
+
+        var rect     = el.getBoundingClientRect(),
+            vWidth   = window.innerWidth || doc.documentElement.clientWidth,
+            vHeight  = window.innerHeight || doc.documentElement.clientHeight,
+            efp      = function (x, y) { return document.elementFromPoint(x, y) };
+
+        
+        if (rect.right < 0 || rect.bottom < 0
+            || rect.left > vWidth || rect.top > vHeight)
+            return false;
+
+        
+        return (
+            el.contains(efp(rect.left,  rect.top))
+            ||  el.contains(efp(rect.right, rect.top))
+            ||  el.contains(efp(rect.right, rect.bottom))
+            ||  el.contains(efp(rect.left,  rect.bottom))
+        );
+    }
+
+    function highlightIndex() {
+        let v = false;
+        document.querySelectorAll('.index a').forEach(a => {
+            const el = document.getElementById(a.getAttribute('href').slice(1));
+
+            if (!v && isElementInViewport(el)) {
+                a.classList.add('active');
+                v = true;
+            } else {
+                a.classList.remove('active');
+            }
+        });
+    }
+
+    document.addEventListener('scroll', highlightIndex, true);
+    document.addEventListener('load', highlightIndex, true);
+</script>
+</body>
+</html>

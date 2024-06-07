@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Working with Data</title>
+    <meta name="description" content="inceptiondb">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/blue.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="top">
+    <a href="/" class="logo"></a>
+    <div class="languages"><a class="selected" href="/docs/inceptiondb/v1/working-with-data/index.html">en</a><a class="" href="/es/docs/inceptiondb/v1/trabajando-con-datos/index.html">es</a><a class="" href="/zh/docs/inceptiondb/v1/working-with-data/index.html">zh</a></div>
+    <div class="main-menu">
+        
+        
+        <a class="link" href="/docs/index.html">Documentation</a>
+        
+        <a class="link button-console" href="https://console.hola.cloud/">Console</a>
+    </div>
+</div>
+<div class="versions"><a class="selected" href="/docs/inceptiondb/v1/working-with-data/index.html">v1</a><a class="" href="/docs/inceptiondb/v2/working-with-data/index.html">v2</a></div>
+<div class="tree">
+
+    <div class="item active"><a href="/docs/inceptiondb/index.html">InceptionDB</a></div>
+<div class="children">
+<div class="item"><a href="/docs/inceptiondb/v1/getting-started/index.html">Quick Start Guide with InceptionDB</a></div>
+<div class="item"><a href="/docs/inceptiondb/v1/managing-collections/index.html">Managing Collections</a></div>
+<div class="item active selected"><a href="/docs/inceptiondb/v1/working-with-data/index.html">Working with Data</a></div>
+</div>
+<div class="item"><a href="/docs/lambda/index.html">Lambda</a></div>
+<div class="children">
+<div class="item"><a href="/docs/lambda/v1/getting-started/index.html">Getting started</a></div>
+</div>
+<div class="item"><a href="/docs/files/index.html">Files</a></div>
+<div class="children">
+<div class="item"><a href="/docs/files/index/getting-started/index.html">Getting started</a></div>
+</div>
+<div class="item"><a href="/docs/config/index.html">Config</a></div>
+<div class="children">
+<div class="item"><a href="/docs/config/index/getting-started/index.html">Getting started</a></div>
+</div>
+<div class="item"><a href="/docs/logs/index.html">InstantLogs</a></div>
+<div class="children">
+<div class="item"><a href="/docs/logs/index/getting-started/index.html">Getting started</a></div>
+</div>
+<div class="item"><a href="/docs/logs/index.html">Tailon</a></div>
+<div class="children">
+<div class="item"><a href="/docs/queues/index/getting-started/index.html">Getting started</a></div>
+</div>
+
+
+
+</div>
+<div class="content">
+    
+    <div class="index"><div class="index-h2">
+<a href="#Inserting%20Documents">Inserting Documents</a>
+</div>
+<div class="index-h3">
+<a href="#Insert%20a%20Single%20Document">Insert a Single Document</a>
+</div>
+<div class="index-h3">
+<a href="#Insert%20Multiple%20Documents">Insert Multiple Documents</a>
+</div>
+<div class="index-h2">
+<a href="#Listing%20Documents">Listing Documents</a>
+</div>
+<div class="index-h3">
+<a href="#List%20All%20Documents%20%28Full%20Scan%29">List All Documents (Full Scan)</a>
+</div>
+<div class="index-h3">
+<a href="#List%20Documents%20by%20Unique%20Index">List Documents by Unique Index</a>
+</div>
+<div class="index-h3">
+<a href="#List%20Documents%20with%20a%20Limit">List Documents with a Limit</a>
+</div>
+<div class="index-h2">
+<a href="#Modifying%20Documents">Modifying Documents</a>
+</div>
+<div class="index-h3">
+<a href="#Modify%20Documents%20by%20Full%20Scan">Modify Documents by Full Scan</a>
+</div>
+<div class="index-h3">
+<a href="#Modify%20Documents%20by%20Index">Modify Documents by Index</a>
+</div>
+<div class="index-h2">
+<a href="#Deleting%20Documents">Deleting Documents</a>
+</div>
+<div class="index-h3">
+<a href="#Delete%20Documents%20by%20Index">Delete Documents by Index</a>
+</div>
+<div class="index-h3">
+<a href="#Delete%20Documents%20by%20Full%20Scan">Delete Documents by Full Scan</a>
+</div>
+</div>
+    <div class="document">
+    <h1>Working with Data</h1>
+<p>This document explains how to insert, list, modify, and delete documents in a collection. It also includes how to filter data when listing.</p>
+<h2 id="Inserting%20Documents">Inserting Documents</h2>
+<h3 id="Insert%20a%20Single%20Document">Insert a Single Document</h3>
+<p>To insert a single document into a collection, use the following HTTP request:</p>
+<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1"> 1</a></span><span>POST /databases/{database}/collections/{collection}/documents
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2"> 2</a></span><span>Content-Type: application/json
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3"> 3</a></span><span>X-API-Key: your-api-key
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4"> 4</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5"> 5</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6"> 6</a></span><span>  &#34;document&#34;: {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7"> 7</a></span><span>    &#34;key1&#34;: &#34;value1&#34;,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8"> 8</a></span><span>    &#34;key2&#34;: &#34;value2&#34;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9"> 9</a></span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L10"><a style="outline: none; text-decoration:none; color:inherit" href="#L10">10</a></span><span>}
+</span></span></code></pre></code></pre>
+<h3 id="Insert%20Multiple%20Documents">Insert Multiple Documents</h3>
+<p>To insert multiple documents into a collection, use the following HTTP request:</p>
+<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1"> 1</a></span><span>POST /databases/{database}/collections/{collection}/documents/bulk
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2"> 2</a></span><span>Content-Type: application/json
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3"> 3</a></span><span>X-API-Key: your-api-key
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4"> 4</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5"> 5</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6"> 6</a></span><span>  &#34;documents&#34;: [
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7"> 7</a></span><span>    {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8"> 8</a></span><span>      &#34;key1&#34;: &#34;value1&#34;,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9"> 9</a></span><span>      &#34;key2&#34;: &#34;value2&#34;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L10"><a style="outline: none; text-decoration:none; color:inherit" href="#L10">10</a></span><span>    },
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L11"><a style="outline: none; text-decoration:none; color:inherit" href="#L11">11</a></span><span>    {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L12"><a style="outline: none; text-decoration:none; color:inherit" href="#L12">12</a></span><span>      &#34;key1&#34;: &#34;value3&#34;,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L13"><a style="outline: none; text-decoration:none; color:inherit" href="#L13">13</a></span><span>      &#34;key2&#34;: &#34;value4&#34;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L14"><a style="outline: none; text-decoration:none; color:inherit" href="#L14">14</a></span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L15"><a style="outline: none; text-decoration:none; color:inherit" href="#L15">15</a></span><span>  ]
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L16"><a style="outline: none; text-decoration:none; color:inherit" href="#L16">16</a></span><span>}
+</span></span></code></pre></code></pre>
+<h2 id="Listing%20Documents">Listing Documents</h2>
+<h3 id="List%20All%20Documents%20%28Full%20Scan%29">List All Documents (Full Scan)</h3>
+<p>To list all documents in a collection, use the following HTTP request:</p>
+<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>GET /databases/{database}/collections/{collection}/documents
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>X-API-Key: your-api-key
+</span></span></code></pre></code></pre>
+<h3 id="List%20Documents%20by%20Unique%20Index">List Documents by Unique Index</h3>
+<p>To list documents using a unique index, use the following HTTP request:</p>
+<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>GET /databases/{database}/collections/{collection}/documents?filter={&#34;key&#34;:&#34;value&#34;}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>X-API-Key: your-api-key
+</span></span></code></pre></code></pre>
+<h3 id="List%20Documents%20with%20a%20Limit">List Documents with a Limit</h3>
+<p>To list documents with a specific limit, use the following HTTP request:</p>
+<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>GET /databases/{database}/collections/{collection}/documents?limit=10
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>X-API-Key: your-api-key
+</span></span></code></pre></code></pre>
+<h2 id="Modifying%20Documents">Modifying Documents</h2>
+<h3 id="Modify%20Documents%20by%20Full%20Scan">Modify Documents by Full Scan</h3>
+<p>To modify documents by a full scan, use the following HTTP request:</p>
+<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>PATCH /databases/{database}/collections/{collection}/documents
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>Content-Type: application/json
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>X-API-Key: your-api-key
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>  &#34;filter&#34;: {&#34;key&#34;: &#34;value&#34;},
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7">7</a></span><span>  &#34;update&#34;: {&#34;$set&#34;: {&#34;key&#34;: &#34;new_value&#34;}}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8">8</a></span><span>}
+</span></span></code></pre></code></pre>
+<h3 id="Modify%20Documents%20by%20Index">Modify Documents by Index</h3>
+<p>To modify documents using an index, use the following HTTP request:</p>
+<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>PATCH /databases/{database}/collections/{collection}/documents?filter={&#34;key&#34;:&#34;value&#34;}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>Content-Type: application/json
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>X-API-Key: your-api-key
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>  &#34;update&#34;: {&#34;$set&#34;: {&#34;key&#34;: &#34;new_value&#34;}}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7">7</a></span><span>}
+</span></span></code></pre></code></pre>
+<h2 id="Deleting%20Documents">Deleting Documents</h2>
+<h3 id="Delete%20Documents%20by%20Index">Delete Documents by Index</h3>
+<p>To delete documents using an index, use the following HTTP request:</p>
+<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>DELETE /databases/{database}/collections/{collection}/documents?filter={&#34;key&#34;:&#34;value&#34;}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>X-API-Key: your-api-key
+</span></span></code></pre></code></pre>
+<h3 id="Delete%20Documents%20by%20Full%20Scan">Delete Documents by Full Scan</h3>
+<p>To delete documents by a full scan, use the following HTTP request:</p>
+<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>DELETE /databases/{database}/collections/{collection}/documents
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>Content-Type: application/json
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>X-API-Key: your-api-key
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>  &#34;filter&#34;: {&#34;key&#34;: &#34;value&#34;}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7">7</a></span><span>}
+</span></span></code></pre></code></pre>
+
+    </div>
+</div>
+<div class="footer">
+    HolaDoc
+</div>
+<script>
+
+    
+    function isElementInViewport (el) {
+
+        
+        
+        
+        
+
+        var rect     = el.getBoundingClientRect(),
+            vWidth   = window.innerWidth || doc.documentElement.clientWidth,
+            vHeight  = window.innerHeight || doc.documentElement.clientHeight,
+            efp      = function (x, y) { return document.elementFromPoint(x, y) };
+
+        
+        if (rect.right < 0 || rect.bottom < 0
+            || rect.left > vWidth || rect.top > vHeight)
+            return false;
+
+        
+        return (
+            el.contains(efp(rect.left,  rect.top))
+            ||  el.contains(efp(rect.right, rect.top))
+            ||  el.contains(efp(rect.right, rect.bottom))
+            ||  el.contains(efp(rect.left,  rect.bottom))
+        );
+    }
+
+    function highlightIndex() {
+        let v = false;
+        document.querySelectorAll('.index a').forEach(a => {
+            const el = document.getElementById(a.getAttribute('href').slice(1));
+
+            if (!v && isElementInViewport(el)) {
+                a.classList.add('active');
+                v = true;
+            } else {
+                a.classList.remove('active');
+            }
+        });
+    }
+
+    document.addEventListener('scroll', highlightIndex, true);
+    document.addEventListener('load', highlightIndex, true);
+</script>
+</body>
+</html>

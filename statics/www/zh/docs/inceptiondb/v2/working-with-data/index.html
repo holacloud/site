@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <title>处理数据</title>
+    <meta name="description" content="inceptiondb">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/blue.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="top">
+    <a href="/" class="logo"></a>
+    <div class="languages"><a class="" href="/docs/inceptiondb/v2/working-with-data/index.html">en</a><a class="" href="/es/docs/inceptiondb/v2/trabajando-con-datos/index.html">es</a><a class="selected" href="/zh/docs/inceptiondb/v2/working-with-data/index.html">zh</a></div>
+    <div class="main-menu">
+        
+        
+        <a class="link" href="/zh/docs/index.html">文档</a>
+        
+        <a class="link button-console" href="https://console.hola.cloud/">Console</a>
+    </div>
+</div>
+<div class="versions"><a class="" href="/zh/docs/inceptiondb/v1/working-with-data/index.html">v1</a><a class="selected" href="/zh/docs/inceptiondb/v2/working-with-data/index.html">v2</a></div>
+<div class="tree">
+
+    <div class="item active"><a href="/zh/docs/inceptiondb/index.html">InceptionDB</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/inceptiondb/v2/getting-started/index.html">InceptionDB快速入门指南</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/managing-collections/index.html">管理集合</a></div>
+<div class="item active selected"><a href="/zh/docs/inceptiondb/v2/working-with-data/index.html">处理数据</a></div>
+</div>
+<div class="item"><a href="/zh/docs/lambda/index.html">Lambda</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/lambda/v2/getting-started/index.html">Getting started</a></div>
+</div>
+<div class="item"><a href="/zh/docs/files/index.html">Files</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/files/index/getting-started/index.html">Getting started</a></div>
+</div>
+<div class="item"><a href="/zh/docs/config/index.html">Config</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/config/index/getting-started/index.html">Getting started</a></div>
+</div>
+<div class="item"><a href="/zh/docs/logs/index.html">InstantLogs</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/logs/index/getting-started/index.html">Getting started</a></div>
+</div>
+<div class="item"><a href="/zh/docs/logs/index.html">Tailon</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/queues/index/getting-started/index.html">Getting started</a></div>
+</div>
+
+
+
+</div>
+<div class="content">
+    
+    <div class="index"><div class="index-h2">
+<a href="#%E6%8F%92%E5%85%A5%E6%96%87%E6%A1%A3">插入文档</a>
+</div>
+<div class="index-h3">
+<a href="#%E6%8F%92%E5%85%A5%E5%8D%95%E4%B8%AA%E6%96%87%E6%A1%A3">插入单个文档</a>
+</div>
+<div class="index-h3">
+<a href="#%E6%8F%92%E5%85%A5%E5%A4%9A%E4%B8%AA%E6%96%87%E6%A1%A3">插入多个文档</a>
+</div>
+<div class="index-h2">
+<a href="#%E5%88%97%E5%87%BA%E6%96%87%E6%A1%A3">列出文档</a>
+</div>
+<div class="index-h3">
+<a href="#%E5%88%97%E5%87%BA%E6%89%80%E6%9C%89%E6%96%87%E6%A1%A3%EF%BC%88%E5%85%A8%E6%89%AB%E6%8F%8F%EF%BC%89">列出所有文档（全扫描）</a>
+</div>
+<div class="index-h3">
+<a href="#%E9%80%9A%E8%BF%87%E5%94%AF%E4%B8%80%E7%B4%A2%E5%BC%95%E5%88%97%E5%87%BA%E6%96%87%E6%A1%A3">通过唯一索引列出文档</a>
+</div>
+<div class="index-h3">
+<a href="#%E5%88%97%E5%87%BA%E5%85%B7%E6%9C%89%E7%89%B9%E5%AE%9A%E9%99%90%E5%88%B6%E7%9A%84%E6%96%87%E6%A1%A3">列出具有特定限制的文档</a>
+</div>
+<div class="index-h2">
+<a href="#%E4%BF%AE%E6%94%B9%E6%96%87%E6%A1%A3">修改文档</a>
+</div>
+<div class="index-h3">
+<a href="#%E9%80%9A%E8%BF%87%E5%85%A8%E6%89%AB%E6%8F%8F%E4%BF%AE%E6%94%B9%E6%96%87%E6%A1%A3">通过全扫描修改文档</a>
+</div>
+<div class="index-h3">
+<a href="#%E9%80%9A%E8%BF%87%E7%B4%A2%E5%BC%95%E4%BF%AE%E6%94%B9%E6%96%87%E6%A1%A3">通过索引修改文档</a>
+</div>
+<div class="index-h2">
+<a href="#%E5%88%A0%E9%99%A4%E6%96%87%E6%A1%A3">删除文档</a>
+</div>
+<div class="index-h3">
+<a href="#%E9%80%9A%E8%BF%87%E7%B4%A2%E5%BC%95%E5%88%A0%E9%99%A4%E6%96%87%E6%A1%A3">通过索引删除文档</a>
+</div>
+<div class="index-h3">
+<a href="#%E9%80%9A%E8%BF%87%E5%85%A8%E6%89%AB%E6%8F%8F%E5%88%A0%E9%99%A4%E6%96%87%E6%A1%A3">通过全扫描删除文档</a>
+</div>
+</div>
+    <div class="document">
+    <h1>处理数据</h1>
+<p>本文档解释了如何在集合中插入、列出、修改和删除文档。还包括如何在列出时过滤数据。</p>
+<h2 id="%E6%8F%92%E5%85%A5%E6%96%87%E6%A1%A3">插入文档</h2>
+<h3 id="%E6%8F%92%E5%85%A5%E5%8D%95%E4%B8%AA%E6%96%87%E6%A1%A3">插入单个文档</h3>
+<p>要在集合中插入单个文档，请使用以下HTTP请求：</p>
+<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1"> 1</a></span><span>POST /databases/{database}/collections/{collection}/documents
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2"> 2</a></span><span>Content-Type: application/json
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3"> 3</a></span><span>X-API-Key: your-api-key
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4"> 4</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5"> 5</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6"> 6</a></span><span>  &#34;document&#34;: {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7"> 7</a></span><span>    &#34;key1&#34;: &#34;value1&#34;,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8"> 8</a></span><span>    &#34;key2&#34;: &#34;value2&#34;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9"> 9</a></span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L10"><a style="outline: none; text-decoration:none; color:inherit" href="#L10">10</a></span><span>}
+</span></span></code></pre></code></pre>
+<h3 id="%E6%8F%92%E5%85%A5%E5%A4%9A%E4%B8%AA%E6%96%87%E6%A1%A3">插入多个文档</h3>
+<p>要在集合中插入多个文档，请使用以下HTTP请求：</p>
+<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1"> 1</a></span><span>POST /databases/{database}/collections/{collection}/documents/bulk
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2"> 2</a></span><span>Content-Type: application/json
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3"> 3</a></span><span>X-API-Key: your-api-key
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4"> 4</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5"> 5</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6"> 6</a></span><span>  &#34;documents&#34;: [
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7"> 7</a></span><span>    {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8"> 8</a></span><span>      &#34;key1&#34;: &#34;value1&#34;,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9"> 9</a></span><span>      &#34;key2&#34;: &#34;value2&#34;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L10"><a style="outline: none; text-decoration:none; color:inherit" href="#L10">10</a></span><span>    },
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L11"><a style="outline: none; text-decoration:none; color:inherit" href="#L11">11</a></span><span>    {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L12"><a style="outline: none; text-decoration:none; color:inherit" href="#L12">12</a></span><span>      &#34;key1&#34;: &#34;value3&#34;,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L13"><a style="outline: none; text-decoration:none; color:inherit" href="#L13">13</a></span><span>      &#34;key2&#34;: &#34;value4&#34;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L14"><a style="outline: none; text-decoration:none; color:inherit" href="#L14">14</a></span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L15"><a style="outline: none; text-decoration:none; color:inherit" href="#L15">15</a></span><span>  ]
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L16"><a style="outline: none; text-decoration:none; color:inherit" href="#L16">16</a></span><span>}
+</span></span></code></pre></code></pre>
+<h2 id="%E5%88%97%E5%87%BA%E6%96%87%E6%A1%A3">列出文档</h2>
+<h3 id="%E5%88%97%E5%87%BA%E6%89%80%E6%9C%89%E6%96%87%E6%A1%A3%EF%BC%88%E5%85%A8%E6%89%AB%E6%8F%8F%EF%BC%89">列出所有文档（全扫描）</h3>
+<p>要列出集合中的所有文档，请使用以下HTTP请求：</p>
+<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>GET /databases/{database}/collections/{collection}/documents
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>X-API-Key: your-api-key
+</span></span></code></pre></code></pre>
+<h3 id="%E9%80%9A%E8%BF%87%E5%94%AF%E4%B8%80%E7%B4%A2%E5%BC%95%E5%88%97%E5%87%BA%E6%96%87%E6%A1%A3">通过唯一索引列出文档</h3>
+<p>要使用唯一索引列出文档，请使用以下HTTP请求：</p>
+<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>GET /databases/{database}/collections/{collection}/documents?filter={&#34;key&#34;:&#34;value&#34;}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>X-API-Key: your-api-key
+</span></span></code></pre></code></pre>
+<h3 id="%E5%88%97%E5%87%BA%E5%85%B7%E6%9C%89%E7%89%B9%E5%AE%9A%E9%99%90%E5%88%B6%E7%9A%84%E6%96%87%E6%A1%A3">列出具有特定限制的文档</h3>
+<p>要列出具有特定限制的文档，请使用以下HTTP请求：</p>
+<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>GET /databases/{database}/collections/{collection}/documents?limit=10
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>X-API-Key: your-api-key
+</span></span></code></pre></code></pre>
+<h2 id="%E4%BF%AE%E6%94%B9%E6%96%87%E6%A1%A3">修改文档</h2>
+<h3 id="%E9%80%9A%E8%BF%87%E5%85%A8%E6%89%AB%E6%8F%8F%E4%BF%AE%E6%94%B9%E6%96%87%E6%A1%A3">通过全扫描修改文档</h3>
+<p>要通过全扫描修改文档，请使用以下HTTP请求：</p>
+<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>PATCH /databases/{database}/collections/{collection}/documents
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>Content-Type: application/json
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>X-API-Key: your-api-key
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>  &#34;filter&#34;: {&#34;key&#34;: &#34;value&#34;},
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7">7</a></span><span>  &#34;update&#34;: {&#34;$set&#34;: {&#34;key&#34;: &#34;new_value&#34;}}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8">8</a></span><span>}
+</span></span></code></pre></code></pre>
+<h3 id="%E9%80%9A%E8%BF%87%E7%B4%A2%E5%BC%95%E4%BF%AE%E6%94%B9%E6%96%87%E6%A1%A3">通过索引修改文档</h3>
+<p>要使用索引修改文档，请使用以下HTTP请求：</p>
+<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>PATCH /databases/{database}/collections/{collection}/documents?filter={&#34;key&#34;:&#34;value&#34;}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>Content-Type: application/json
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>X-API-Key: your-api-key
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>  &#34;update&#34;: {&#34;$set&#34;: {&#34;key&#34;: &#34;new_value&#34;}}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7">7</a></span><span>}
+</span></span></code></pre></code></pre>
+<h2 id="%E5%88%A0%E9%99%A4%E6%96%87%E6%A1%A3">删除文档</h2>
+<h3 id="%E9%80%9A%E8%BF%87%E7%B4%A2%E5%BC%95%E5%88%A0%E9%99%A4%E6%96%87%E6%A1%A3">通过索引删除文档</h3>
+<p>要使用索引删除文档，请使用以下HTTP请求：</p>
+<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>DELETE /databases/{database}/collections/{collection}/documents?filter={&#34;key&#34;:&#34;value&#34;}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>X-API-Key: your-api-key
+</span></span></code></pre></code></pre>
+<h3 id="%E9%80%9A%E8%BF%87%E5%85%A8%E6%89%AB%E6%8F%8F%E5%88%A0%E9%99%A4%E6%96%87%E6%A1%A3">通过全扫描删除文档</h3>
+<p>要通过全扫描删除文档，请使用以下HTTP请求：</p>
+<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>DELETE /databases/{database}/collections/{collection}/documents
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>Content-Type: application/json
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>X-API-Key: your-api-key
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>  &#34;filter&#34;: {&#34;key&#34;: &#34;value&#34;}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7">7</a></span><span>}
+</span></span></code></pre></code></pre>
+
+    </div>
+</div>
+<div class="footer">
+    HolaDoc
+</div>
+<script>
+
+    
+    function isElementInViewport (el) {
+
+        
+        
+        
+        
+
+        var rect     = el.getBoundingClientRect(),
+            vWidth   = window.innerWidth || doc.documentElement.clientWidth,
+            vHeight  = window.innerHeight || doc.documentElement.clientHeight,
+            efp      = function (x, y) { return document.elementFromPoint(x, y) };
+
+        
+        if (rect.right < 0 || rect.bottom < 0
+            || rect.left > vWidth || rect.top > vHeight)
+            return false;
+
+        
+        return (
+            el.contains(efp(rect.left,  rect.top))
+            ||  el.contains(efp(rect.right, rect.top))
+            ||  el.contains(efp(rect.right, rect.bottom))
+            ||  el.contains(efp(rect.left,  rect.bottom))
+        );
+    }
+
+    function highlightIndex() {
+        let v = false;
+        document.querySelectorAll('.index a').forEach(a => {
+            const el = document.getElementById(a.getAttribute('href').slice(1));
+
+            if (!v && isElementInViewport(el)) {
+                a.classList.add('active');
+                v = true;
+            } else {
+                a.classList.remove('active');
+            }
+        });
+    }
+
+    document.addEventListener('scroll', highlightIndex, true);
+    document.addEventListener('load', highlightIndex, true);
+</script>
+</body>
+</html>

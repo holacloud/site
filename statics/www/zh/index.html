@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <title>欢迎来到HolaCloud</title>
+    <meta name="description" content="inceptiondb">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/blue.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="top">
+    <a href="/" class="logo"></a>
+    <div class="languages"><a class="" href="/index.html">en</a><a class="" href="/es/index.html">es</a><a class="selected" href="/zh/index.html">zh</a></div>
+    <div class="main-menu">
+        
+        
+        <a class="link" href="/zh/docs/index.html">文档</a>
+        
+        <a class="link button-console" href="https://console.hola.cloud/">Console</a>
+    </div>
+</div>
+
+<div class="tree">
+
+
+</div>
+<div class="content">
+    
+    <div class="index"><div class="index-h2">
+<a href="#%E7%AB%8B%E5%8D%B3%E5%BC%80%E5%A7%8B">立即开始</a>
+</div>
+</div>
+    <div class="document">
+    <h1>欢迎来到HolaCloud</h1>
+<p><strong>使用一站式云平台简化您的开发和运营，
+该平台配置完备，随时可用。</strong></p>
+<img src="/img/services2.png" style="max-height: 250px;"/>
+<p>HolaCloud整合了最常用的云服务，以便您在<strong>最短的时间内</strong>创建<strong>可扩展的应用程序</strong>：非SQL数据库、Lambda执行、文件存储、配置、日志、队列、身份验证等。</p>
+<br/>
+<br/>
+<h2 id="%E7%AB%8B%E5%8D%B3%E5%BC%80%E5%A7%8B">立即开始</h2>
+<p>访问<a class="button-console" style="border-width: 0 !important; padding: 0 !important;" href="https://console.hola.cloud/">控制台</a>，改变您开发和运营应用程序的方式。在我们这里，无需安装任何东西，即可探索、创建和扩展！</p>
+<div style="text-align: center;">
+双击创建您的项目，将您的想法变为现实。
+<br/>
+<br/>
+<a class="link button-console" href="https://console.hola.cloud/">控制台</a>
+<p>使用您的Google或GitHub账户连接！</p>
+</div>
+<br/>
+<br/>
+<div style="text-align: center;">
+<img src="/img/console.png"/>
+</div>
+<br/>
+<br/>
+
+    </div>
+</div>
+<div class="footer">
+    HolaDoc
+</div>
+<script>
+
+    
+    function isElementInViewport (el) {
+
+        
+        
+        
+        
+
+        var rect     = el.getBoundingClientRect(),
+            vWidth   = window.innerWidth || doc.documentElement.clientWidth,
+            vHeight  = window.innerHeight || doc.documentElement.clientHeight,
+            efp      = function (x, y) { return document.elementFromPoint(x, y) };
+
+        
+        if (rect.right < 0 || rect.bottom < 0
+            || rect.left > vWidth || rect.top > vHeight)
+            return false;
+
+        
+        return (
+            el.contains(efp(rect.left,  rect.top))
+            ||  el.contains(efp(rect.right, rect.top))
+            ||  el.contains(efp(rect.right, rect.bottom))
+            ||  el.contains(efp(rect.left,  rect.bottom))
+        );
+    }
+
+    function highlightIndex() {
+        let v = false;
+        document.querySelectorAll('.index a').forEach(a => {
+            const el = document.getElementById(a.getAttribute('href').slice(1));
+
+            if (!v && isElementInViewport(el)) {
+                a.classList.add('active');
+                v = true;
+            } else {
+                a.classList.remove('active');
+            }
+        });
+    }
+
+    document.addEventListener('scroll', highlightIndex, true);
+    document.addEventListener('load', highlightIndex, true);
+</script>
+</body>
+</html>
