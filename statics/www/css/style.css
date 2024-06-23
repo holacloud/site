@@ -419,4 +419,18 @@ body[url="home"] .index {
     float: none;
     position: static;
   }
+
+  .home .minicard {
+    width: 100%;
+  }
+  .home .block1 {
+    display: none;
+  }
+  .home .block2 {
+    width: 100%;
+  }
+
+  #login-button {
+    display: none;
+  }
 }
