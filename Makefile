@@ -9,7 +9,7 @@ run:
 	STATICS=statics/www/ go run  $(FLAGS) ./cmd/site
 
 .PHONY: build
-build:
+build: site
 	CGO_ENABLED=0 go build $(FLAGS) -o bin/ ./cmd/...
 
 .PHONY: release
@@ -38,3 +38,13 @@ version:
 .PHONY: site
 site:
 	go run ./cmd/sitegen --src src/ --www statics/www/ --versions "v1,v2" --languages "en,es,zh"
+
+.PHONY: watch
+watch:
+	inotifywait -r -m src/ -e close_write --format "%T" --timefmt "%S" | uniq
+
+.PHONY: dev
+dev:
+	go build -o bin/sitegen ./cmd/sitegen
+	./watch.sh
+

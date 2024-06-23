@@ -7,21 +7,29 @@
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/blue.css" rel="stylesheet">
 </head>
-<body>
+<body url="{{ .url }}">
 <!-- inceptiondb en src/50_inceptiondb/inceptiondb_en.md  -->
-<div class="top">
-    <a href="/" class="logo"></a>
-    {{ .langMenu }}
-    <div class="main-menu">
-        {{/* link "products" */}}
-        {{/*link "pricing"*/}}
-        {{ link "docs" }}
-        {{/*  {{ link "blog" }}*/}}
-        <a class="link button-console" href="https://console.hola.cloud/">Console</a>
+<div class="top-frame">
+    <div class="top">
+        <a href="/" class="logo"></a>
+        <div class="main-menu">
+            {{/* link "products" */}}
+            {{/*link "pricing"*/}}
+            {{ link "docs" }}
+            {{/*  {{ link "blog" }}*/}}
+            <a class="link button-console" href="https://console.hola.cloud/">Console</a>
+        </div>
+        <div class="right">
+            <a class="button button-noborder" href="/auth/login">Log In</a>
+            <a class="button button-action" href="/#start-now">Start now</a>
+        </div>
     </div>
 </div>
-{{ .versionMenu }}
+<div class="languages-frame">
+    {{ .langMenu }}
+</div>
 <div class="tree">
+{{ .versionMenu }}
 {{ if isUnder "docs" }}
     {{ tree "docs" }}
 {{ end }}
@@ -37,7 +45,7 @@
     </div>
 </div>
 <div class="footer">
-    HolaDoc
+
 </div>
 <script>
 
