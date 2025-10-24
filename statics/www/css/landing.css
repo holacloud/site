@@ -47,10 +47,14 @@ a:focus {
 }
 
 .logo {
-  width: 140px;
-  height: 40px;
-  background: center / contain no-repeat url('/img/logo-short.png');
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 44px;
+  width: auto;
+  display: block;
 }
 
 .primary-nav {

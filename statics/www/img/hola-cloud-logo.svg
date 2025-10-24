@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 320" role="img" aria-labelledby="title desc">
+  <title id="title">HolaCloud logo</title>
+  <desc id="desc">Friendly blue outlined cloud with a smiling face and the text hola.cloud</desc>
+  <g fill="none" stroke="#1F6FEB" stroke-width="24" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M201 226h214c48 0 87-39 87-87s-39-87-87-87c-6 0-12 0-18 2C376 27 333 6 285 6c-61 0-112 43-123 102a76 76 0 0 0-24-4c-48 0-87 39-87 87s39 87 87 87" />
+  </g>
+  <circle cx="270" cy="144" r="10" fill="#213047" />
+  <circle cx="322" cy="144" r="10" fill="#213047" />
+  <path d="M288 174c10 12 28 12 38 0" fill="none" stroke="#213047" stroke-width="12" stroke-linecap="round" />
+  <text x="320" y="282" text-anchor="middle" font-family="'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="80" font-weight="700" fill="#213047">hola.cloud</text>
+</svg>
