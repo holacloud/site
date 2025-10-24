@@ -14,7 +14,18 @@
     <div class="top">
         <a href="/" class="logo"></a>
         <div class="main-menu">
-            {{/* link "products" */}}
+            <div class="dropdown">
+                <button class="link dropdown-toggle" type="button">
+                    Products
+                    <span class="dropdown-icon" aria-hidden="true">▾</span>
+                </button>
+                <div class="dropdown-menu" role="menu">
+                    <a class="dropdown-item" href="https://flowtest.io" target="_blank" rel="noopener">
+                        <span class="item-title">flowtest.io</span>
+                        <span class="item-description">Continuous testing platform within the hola.cloud product ecosystem.</span>
+                    </a>
+                </div>
+            </div>
             {{/*link "pricing"*/}}
             {{ link "docs" }}
             {{/*  {{ link "blog" }}*/}}
