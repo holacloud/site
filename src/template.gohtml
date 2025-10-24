@@ -1,74 +1,114 @@
 <!DOCTYPE html>
 <html lang="{{ .lang }}">
 <head>
+    <meta charset="utf-8">
     <title>{{ .title }}</title>
     <meta name="description" content="inceptiondb">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/blue.css" rel="stylesheet">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <script defer src="https://umami.hola.cloud/script.js" data-website-id="cbcb870c-e9a8-460a-8b38-ab2fa77a4cc2"></script>
 </head>
 <body url="{{ .url }}">
-<!-- inceptiondb en src/50_inceptiondb/inceptiondb_en.md  -->
-<div class="top-frame">
-    <div class="top">
-        <a href="/" class="logo"></a>
-        <div class="main-menu">
-            {{/* link "products" */}}
-            {{/*link "pricing"*/}}
+<header class="site-header">
+    <div class="container nav-bar">
+        <a href="/" class="logo" aria-label="HolaCloud"></a>
+        <nav class="main-menu" aria-label="Primary">
             {{ link "docs" }}
-            {{/*  {{ link "blog" }}*/}}
+            <a class="link" href="/pricing/">Pricing</a>
+            <a class="link" href="/blog/">Blog</a>
             <a class="link button-console" href="https://console.hola.cloud/">Console</a>
-        </div>
-        <div class="right">
-            <a id="login-button" class="button button-noborder" href="https://console.hola.cloud/">Log In</a>
+        </nav>
+        <div class="header-actions">
+            <a id="login-button" class="button button-link" href="https://console.hola.cloud/">Log in</a>
             <a class="button button-action" href="https://console.hola.cloud/">Start now</a>
         </div>
     </div>
-</div>
+</header>
 <div class="languages-frame">
-    {{ .langMenu }}
-</div>
-<div class="tree">
-{{ .versionMenu }}
-{{ if isUnder "docs" }}
-    {{ tree "docs" }}
-{{ end }}
-{{ if isUnder "inceptiondb" }}
-    {{ tree "inceptiondb" }}
-{{ end }}
-</div>
-<div class="content">
-    {{ .breadcrumb }}
-    <div class="index">{{ .index }}</div>
-    <div class="document">
-    {{ .content }}
+    <div class="container">
+        {{ .langMenu }}
     </div>
 </div>
-<div class="footer">
-
-</div>
+<main>
+    <div class="container page-layout">
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                {{ if .versionMenu }}
+                <div class="version-menu">
+                    {{ .versionMenu }}
+                </div>
+                {{ end }}
+                {{ if isUnder "docs" }}
+                    <div class="nav-tree">
+                        {{ tree "docs" }}
+                    </div>
+                {{ end }}
+                {{ if isUnder "inceptiondb" }}
+                    <div class="nav-tree">
+                        {{ tree "inceptiondb" }}
+                    </div>
+                {{ end }}
+            </div>
+        </aside>
+        <section class="main-column">
+            {{ .breadcrumb }}
+            <div class="content">
+                <nav class="index-panel">
+                    {{ .index }}
+                </nav>
+                <article class="document">
+                {{ .content }}
+                </article>
+            </div>
+        </section>
+    </div>
+</main>
+<footer class="footer">
+    <div class="container footer-content">
+        <div class="footer-branding">
+            <a href="/" class="logo footer-logo" aria-label="HolaCloud"></a>
+            <p>Reliable infrastructure, clear pricing, and responsive support to help your teams build with confidence.</p>
+        </div>
+        <div class="footer-links">
+            <div>
+                <h3>Platform</h3>
+                <a href="/docs/">Documentation</a>
+                <a href="/pricing/">Pricing</a>
+                <a href="https://console.hola.cloud/">Console</a>
+            </div>
+            <div>
+                <h3>Company</h3>
+                <a href="/blog/">Blog</a>
+                <a href="mailto:team@hola.cloud">Contact</a>
+                <a href="/robots.txt">Status</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <span>© {{ now | date "2006" }} HolaCloud. All rights reserved.</span>
+        </div>
+    </div>
+</footer>
 <script>
 
     // source: https://stackoverflow.com/questions/49958471/highlight-item-in-an-index-based-on-currently-visible-content-during-scroll
     function isElementInViewport (el) {
 
-        // //special bonus for those using jQuery
-        // if (typeof $ === "function" && el instanceof $) {
-        //     el = el[0];
-        // }
-
         var rect     = el.getBoundingClientRect(),
-            vWidth   = window.innerWidth || doc.documentElement.clientWidth,
-            vHeight  = window.innerHeight || doc.documentElement.clientHeight,
+            vWidth   = window.innerWidth || document.documentElement.clientWidth,
+            vHeight  = window.innerHeight || document.documentElement.clientHeight,
             efp      = function (x, y) { return document.elementFromPoint(x, y) };
 
-        // Return false if it's not in the viewport
         if (rect.right < 0 || rect.bottom < 0
             || rect.left > vWidth || rect.top > vHeight)
             return false;
 
-        // Return true if any of its four corners are visible
         return (
             el.contains(efp(rect.left,  rect.top))
             ||  el.contains(efp(rect.right, rect.top))
@@ -80,9 +120,13 @@
     function highlightIndex() {
         let v = false;
         document.querySelectorAll('.index a').forEach(a => {
-            const el = document.getElementById(a.getAttribute('href').slice(1));
+            const targetId = a.getAttribute('href');
+            if (!targetId) {
+                return;
+            }
+            const el = document.getElementById(targetId.slice(1));
 
-            if (!v && isElementInViewport(el)) {
+            if (el && !v && isElementInViewport(el)) {
                 a.classList.add('active');
                 v = true;
             } else {
