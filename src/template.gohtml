@@ -96,47 +96,64 @@
     </div>
 </footer>
 <script>
-
-    // source: https://stackoverflow.com/questions/49958471/highlight-item-in-an-index-based-on-currently-visible-content-during-scroll
-    function isElementInViewport (el) {
-
-        var rect     = el.getBoundingClientRect(),
-            vWidth   = window.innerWidth || document.documentElement.clientWidth,
-            vHeight  = window.innerHeight || document.documentElement.clientHeight,
-            efp      = function (x, y) { return document.elementFromPoint(x, y) };
-
-        if (rect.right < 0 || rect.bottom < 0
-            || rect.left > vWidth || rect.top > vHeight)
-            return false;
-
-        return (
-            el.contains(efp(rect.left,  rect.top))
-            ||  el.contains(efp(rect.right, rect.top))
-            ||  el.contains(efp(rect.right, rect.bottom))
-            ||  el.contains(efp(rect.left,  rect.bottom))
-        );
+(function () {
+    const indexLinks = Array.from(document.querySelectorAll('.index-panel .index a[href^="#"]'));
+    if (!indexLinks.length) {
+        return;
     }
 
-    function highlightIndex() {
-        let v = false;
-        document.querySelectorAll('.index a').forEach(a => {
-            const targetId = a.getAttribute('href');
+    const updateActiveLink = () => {
+        const topOffset = window.innerWidth <= 1080 ? 120 : 160;
+        let hasActive = false;
+
+        indexLinks.forEach((link) => {
+            const targetId = link.getAttribute('href');
             if (!targetId) {
+                link.classList.remove('active');
                 return;
             }
-            const el = document.getElementById(targetId.slice(1));
 
-            if (el && !v && isElementInViewport(el)) {
-                a.classList.add('active');
-                v = true;
+            const target = document.getElementById(targetId.slice(1));
+            if (!target) {
+                link.classList.remove('active');
+                return;
+            }
+
+            const rect = target.getBoundingClientRect();
+            const isVisible = rect.top <= topOffset && rect.bottom > topOffset;
+
+            if (!hasActive && isVisible) {
+                link.classList.add('active');
+                hasActive = true;
             } else {
-                a.classList.remove('active');
+                link.classList.remove('active');
             }
         });
-    }
 
-    document.addEventListener('scroll', highlightIndex, true);
-    document.addEventListener('load', highlightIndex, true);
+        if (!hasActive && indexLinks.length) {
+            indexLinks.forEach((link, idx) => {
+                link.classList.toggle('active', idx === indexLinks.length - 1);
+            });
+        }
+    };
+
+    let ticking = false;
+    const requestUpdate = () => {
+        if (ticking) {
+            return;
+        }
+        ticking = true;
+        window.requestAnimationFrame(() => {
+            updateActiveLink();
+            ticking = false;
+        });
+    };
+
+    document.addEventListener('scroll', requestUpdate, true);
+    window.addEventListener('resize', requestUpdate, true);
+    window.addEventListener('load', updateActiveLink);
+    document.addEventListener('DOMContentLoaded', updateActiveLink);
+})();
 </script>
 </body>
 </html>
