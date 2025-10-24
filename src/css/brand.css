@@ -1,0 +1,23 @@
+/*
+ * HolaCloud brand color palette.
+ *
+ * These CSS custom properties centralise the core colours so they can be reused
+ * consistently across the marketing site and future products.
+ *
+ *  --color-brand-primary: Main brand blue used for primary actions and
+ *                         highlights.
+ *  --color-brand-secondary: Accent teal for emphasis and interactive states.
+ *  --color-brand-dark: Default text colour for strong contrast on light
+ *                      surfaces.
+ *  --color-brand-muted: Secondary text colour for supporting copy.
+ *  --color-brand-background: Soft neutral background used for page canvas.
+ *  --color-brand-surface: Surface colour for cards, navigation and panels.
+ */
+:root {
+  --color-brand-primary: #1f5aff;
+  --color-brand-secondary: #12b5c6;
+  --color-brand-dark: #1b2533;
+  --color-brand-muted: #516173;
+  --color-brand-background: #f4f7fb;
+  --color-brand-surface: #ffffff;
+}
