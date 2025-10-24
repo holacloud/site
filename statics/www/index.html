@@ -1,131 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Welcome to HolaCloud</title>
-    <meta name="description" content="inceptiondb">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="/css/style.css" rel="stylesheet">
-    <link href="/css/blue.css" rel="stylesheet">
+    <title>HolaCloud | Enterprise Cloud Platform</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="HolaCloud unifies cloud infrastructure, platform, and observability in a ready-to-run service." />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/brand.css" />
+    <link rel="stylesheet" href="/css/landing.css" />
     <script defer src="https://umami.hola.cloud/script.js" data-website-id="cbcb870c-e9a8-460a-8b38-ab2fa77a4cc2"></script>
 </head>
-<body url="home">
-
-<div class="top-frame">
-    <div class="top">
-        <a href="/" class="logo"></a>
-        <div class="main-menu">
-            
-            
-            <a class="link" href="/docs/index.html">Documentation</a>
-            
-            <a class="link button-console" href="https://console.hola.cloud/">Console</a>
-        </div>
-        <div class="right">
-            <a id="login-button" class="button button-noborder" href="https://console.hola.cloud/">Log In</a>
-            <a class="button button-action" href="https://console.hola.cloud/">Start now</a>
+<body>
+<header class="site-header">
+    <div class="header-inner">
+        <a href="/" class="logo" aria-label="HolaCloud home"></a>
+        <nav class="primary-nav" aria-label="Primary">
+            <a href="#products">Products</a>
+            <a href="#documentation">Documentation</a>
+            <a href="#about">About HolaCloud</a>
+        </nav>
+        <div class="header-actions">
+            <a class="button button-ghost" href="/docs/">View docs</a>
+            <a class="button button-primary" href="https://console.hola.cloud/">Start now</a>
         </div>
     </div>
+</header>
+<div class="language-switcher" aria-label="Switch language">
+    <a class="selected" href="/index.html">en</a>
+    <a href="/es/index.html">es</a>
+    <a href="/zh/index.html">zh</a>
 </div>
-<div class="languages-frame">
-    <div class="languages"><a class="selected" href="/index.html">en</a><a class="" href="/es/index.html">es</a><a class="" href="/zh/index.html">zh</a></div>
-</div>
-<div class="tree">
-
-
-
-</div>
-<div class="content">
-    
-    <div class="index"></div>
-    <div class="document">
-    
-<div class="hero">
-    <h1>Welcome to HolaCloud</h1>
-    <p>Simplify your development and operations with an all-in-one cloud platform, configured and ready to use.</p>
-    <div>
-        <a class="button button-action" href="https://console.hola.cloud/">Start free trial</a>
-        <a class="button" href="/docs/">Learn more</a>
-    </div>
-</div>
-
-<div class="home" id="start-now">
-    
-    <div class="big">Create your project in two clicks and turn your ideas into reality.</div>
-
-    <div class="big2">
-        Access the <a href="https://console.hola.cloud">Console</a>, and transform the way you develop and operate your applications. Explore, create and scale with us without installing anything!
-    </div>
-
-    <div>
-        <div class="block1">
-            <img src="/img/window.png" style="width: 100%" ;=""/>
-        </div><div class="block2">
-						<div class="minicard">
-							Et has minim elitr intellegat. Mea aeterno eleifend antiopam ad, nam no suscipit quaerendum.
-						</div>
-						<div class="minicard">
-							At nam minimum ponderum. Est audiam animal molestiae te. Ex duo eripuit mentitum.
-						</div>
-						<div class="minicard">
-							Vidisse oblique ei has, eos eu atomorum erroribus cotidieque, mazim postea ne vel.
-						</div>
-						<div class="minicard">
-							Ea aperiri ponderum ullamcorper sit, verear offendit imperdiet nam eu, liber delicata tractatos ad.
-						</div>
+<main>
+    <section class="hero">
+        <div class="hero-copy">
+            <h1>Enterprise-ready cloud, delivered as a service</h1>
+            <p>HolaCloud provides a secure, opinionated environment so your teams can ship products faster without stitching together infrastructure, platform tooling, and operations.</p>
+            <div class="cta-group">
+                <a class="button button-primary" href="https://console.hola.cloud/">Start free trial</a>
+                <a class="button button-ghost" href="/docs/">Explore documentation</a>
+            </div>
         </div>
-    </div>
-</div>
+        <ul class="hero-highlights">
+            <li>Managed Kubernetes, databases, and messaging ready for production launch.</li>
+            <li>Guardrails for security, compliance, and cost built into every workspace.</li>
+            <li>Full-stack observability and automation for global operations.</li>
+        </ul>
+    </section>
 
-    </div>
-</div>
-<div class="footer">
+    <section class="section" id="products">
+        <div class="section-header">
+            <span class="section-kicker">Products</span>
+            <h2>A complete platform to build, run, and scale</h2>
+            <p>Choose the building blocks you need or embrace the full HolaCloud stack. Every service is curated, automated, and monitored by our SRE team.</p>
+        </div>
+        <div class="card-grid">
+            <article class="card">
+                <span class="pill">Platform</span>
+                <h3>Managed Kubernetes Workspaces</h3>
+                <p>Provision enterprise Kubernetes clusters with best-practice networking, policies, and CI/CD pipelines in minutes.</p>
+            </article>
+            <article class="card">
+                <span class="pill">Data</span>
+                <h3>Turn-key Data Services</h3>
+                <p>Launch PostgreSQL, Redis, and streaming services with automated scaling, backup policies, and encryption at rest and in motion.</p>
+            </article>
+            <article class="card">
+                <span class="pill">Operations</span>
+                <h3>Automation &amp; Reliability</h3>
+                <p>Gain built-in observability, runbooks, and self-healing workflows so your teams can stay focused on business outcomes.</p>
+            </article>
+        </div>
+    </section>
 
-</div>
-<script>
+    <section class="section" id="documentation">
+        <div class="section-header">
+            <span class="section-kicker">Documentation</span>
+            <h2>Guidance for every stage of adoption</h2>
+            <p>Whether you are onboarding a new team or deploying your first workload, the HolaCloud documentation center provides curated paths and automation playbooks.</p>
+        </div>
+        <div class="card-grid">
+            <article class="card">
+                <span class="pill">Start</span>
+                <h3>Quickstarts</h3>
+                <p>Spin up environments with CLI and Terraform guides that accelerate pilots across web, data, and AI workloads.</p>
+            </article>
+            <article class="card">
+                <span class="pill">Design</span>
+                <h3>Architecture patterns</h3>
+                <p>Implement proven blueprints for multi-tenant SaaS, regulated workloads, and global service roll-outs.</p>
+            </article>
+            <article class="card">
+                <span class="pill">Build</span>
+                <h3>APIs &amp; SDKs</h3>
+                <p>Integrate HolaCloud services into your release process using our REST, GraphQL, and language-specific SDKs.</p>
+            </article>
+        </div>
+    </section>
 
-    
-    function isElementInViewport (el) {
+    <section class="section" id="about">
+        <div class="section-header">
+            <span class="section-kicker">About HolaCloud</span>
+            <h2>Built for teams who demand velocity and trust</h2>
+            <p>We blend enterprise governance with developer experience, supporting customers from proof of concept to global rollout.</p>
+        </div>
+        <div class="card-grid">
+            <article class="card">
+                <span class="pill">Mission</span>
+                <h3>Accelerate meaningful software</h3>
+                <p>HolaCloud enables builders to focus on customer value by automating infrastructure and compliance.</p>
+            </article>
+            <article class="card">
+                <span class="pill">Partnership</span>
+                <h3>Trusted experts at your side</h3>
+                <p>Our customer reliability engineers provide 24/7 support, architecture reviews, and co-building sessions.</p>
+            </article>
+            <article class="card">
+                <span class="pill">Global</span>
+                <h3>Presence where you need it</h3>
+                <p>Operate across regions with data residency guarantees, enterprise SLAs, and localized success teams.</p>
+            </article>
+        </div>
+    </section>
 
-        
-        
-        
-        
-
-        var rect     = el.getBoundingClientRect(),
-            vWidth   = window.innerWidth || doc.documentElement.clientWidth,
-            vHeight  = window.innerHeight || doc.documentElement.clientHeight,
-            efp      = function (x, y) { return document.elementFromPoint(x, y) };
-
-        
-        if (rect.right < 0 || rect.bottom < 0
-            || rect.left > vWidth || rect.top > vHeight)
-            return false;
-
-        
-        return (
-            el.contains(efp(rect.left,  rect.top))
-            ||  el.contains(efp(rect.right, rect.top))
-            ||  el.contains(efp(rect.right, rect.bottom))
-            ||  el.contains(efp(rect.left,  rect.bottom))
-        );
-    }
-
-    function highlightIndex() {
-        let v = false;
-        document.querySelectorAll('.index a').forEach(a => {
-            const el = document.getElementById(a.getAttribute('href').slice(1));
-
-            if (!v && isElementInViewport(el)) {
-                a.classList.add('active');
-                v = true;
-            } else {
-                a.classList.remove('active');
-            }
-        });
-    }
-
-    document.addEventListener('scroll', highlightIndex, true);
-    document.addEventListener('load', highlightIndex, true);
-</script>
+    <section class="section" id="brand">
+        <div class="section-header">
+            <span class="section-kicker">Brand Palette</span>
+            <h2>The HolaCloud visual language</h2>
+            <p>The following palette defines the visual identity we extend to our product suite. These colors are exposed as CSS custom properties in <code>/css/brand.css</code> for consistent reuse.</p>
+        </div>
+        <div class="brand-palette">
+            <div class="brand-copy">
+                <p>Combine deep sapphire foundations with vibrant cerulean and mint highlights to express confidence and innovation. Sand acts as a warm neutral for backgrounds, while slate and ink cover typography.</p>
+            </div>
+            <div class="brand-swatches">
+                <div class="brand-swatch" style="--swatch-color: var(--hola-color-sapphire);">
+                    <strong>Sapphire</strong>
+                    <span>Hex #102347</span>
+                    <span>Variable <code>--hola-color-sapphire</code></span>
+                </div>
+                <div class="brand-swatch" style="--swatch-color: var(--hola-color-cerulean);">
+                    <strong>Cerulean</strong>
+                    <span>Hex #1F6FEB</span>
+                    <span>Variable <code>--hola-color-cerulean</code></span>
+                </div>
+                <div class="brand-swatch" style="--swatch-color: var(--hola-color-mint);">
+                    <strong>Mint</strong>
+                    <span>Hex #3DD6C2</span>
+                    <span>Variable <code>--hola-color-mint</code></span>
+                </div>
+                <div class="brand-swatch" style="--swatch-color: var(--hola-color-sand);">
+                    <strong>Sand</strong>
+                    <span>Hex #F5E7D0</span>
+                    <span>Variable <code>--hola-color-sand</code></span>
+                </div>
+                <div class="brand-swatch" style="--swatch-color: var(--hola-color-slate);">
+                    <strong>Slate</strong>
+                    <span>Hex #1F2937</span>
+                    <span>Variable <code>--hola-color-slate</code></span>
+                </div>
+                <div class="brand-swatch" style="--swatch-color: var(--hola-color-cloud);">
+                    <strong>Cloud</strong>
+                    <span>Hex #F4F7FB</span>
+                    <span>Variable <code>--hola-color-cloud</code></span>
+                </div>
+            </div>
+            <div class="brand-guidelines">
+            <code>:root {
+  --hola-color-sapphire: #102347;
+  --hola-color-cerulean: #1f6feb;
+  --hola-color-mint: #3dd6c2;
+  --hola-color-sand: #f5e7d0;
+  --hola-color-slate: #1f2937;
+  --hola-color-cloud: #f4f7fb;
+}</code>
+            </div>
+        </div>
+    </section>
+</main>
+<footer>
+    © HolaCloud. Built for teams shaping the future. <a href="mailto:hello@hola.cloud">Contact us</a> to learn more.
+</footer>
 </body>
 </html>

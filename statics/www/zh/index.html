@@ -1,131 +1,183 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-    <title>欢迎来到HolaCloud</title>
-    <meta name="description" content="inceptiondb">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="/css/style.css" rel="stylesheet">
-    <link href="/css/blue.css" rel="stylesheet">
+    <title>HolaCloud | 企业级云平台</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="HolaCloud 将基础设施、平台与运维整合为一体，开箱即用。" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/brand.css" />
+    <link rel="stylesheet" href="/css/landing.css" />
     <script defer src="https://umami.hola.cloud/script.js" data-website-id="cbcb870c-e9a8-460a-8b38-ab2fa77a4cc2"></script>
 </head>
-<body url="home">
-
-<div class="top-frame">
-    <div class="top">
-        <a href="/" class="logo"></a>
-        <div class="main-menu">
-            
-            
-            <a class="link" href="/zh/docs/index.html">文档</a>
-            
-            <a class="link button-console" href="https://console.hola.cloud/">Console</a>
-        </div>
-        <div class="right">
-            <a id="login-button" class="button button-noborder" href="https://console.hola.cloud/">Log In</a>
-            <a class="button button-action" href="https://console.hola.cloud/">Start now</a>
+<body>
+<header class="site-header">
+    <div class="header-inner">
+        <a href="/zh/index.html" class="logo" aria-label="HolaCloud 首页"></a>
+        <nav class="primary-nav" aria-label="主导航">
+            <a href="#products">产品</a>
+            <a href="#documentation">文档</a>
+            <a href="#about">关于 HolaCloud</a>
+        </nav>
+        <div class="header-actions">
+            <a class="button button-ghost" href="/zh/docs/index.html">查看文档</a>
+            <a class="button button-primary" href="https://console.hola.cloud/">立即开始</a>
         </div>
     </div>
+</header>
+<div class="language-switcher" aria-label="切换语言">
+    <a href="/index.html">en</a>
+    <a href="/es/index.html">es</a>
+    <a class="selected" href="/zh/index.html">zh</a>
 </div>
-<div class="languages-frame">
-    <div class="languages"><a class="" href="/index.html">en</a><a class="" href="/es/index.html">es</a><a class="selected" href="/zh/index.html">zh</a></div>
-</div>
-<div class="tree">
+<main>
+    <section class="hero">
+        <div class="hero-copy">
+            <h1>企业级云服务，一站式交付</h1>
+            <p>HolaCloud 提供安全且有主张的环境，让团队无需拼装基础设施、平台工具与运维能力，就能快速交付产品。</p>
+            <div class="cta-group">
+                <a class="button button-primary" href="https://console.hola.cloud/">免费试用</a>
+                <a class="button button-ghost" href="/zh/docs/index.html">浏览文档</a>
+            </div>
+        </div>
+        <ul class="hero-highlights">
+            <li>托管式 Kubernetes、数据库与消息服务，开箱即达生产级。</li>
+            <li>内建安全、合规与成本防护栏，保障每个工作空间。</li>
+            <li>全栈可观测性与自动化，助力全球化运营。</li>
+        </ul>
+    </section>
 
+    <section class="section" id="products">
+        <div class="section-header">
+            <span class="section-kicker">产品</span>
+            <h2>覆盖构建、运行与扩展的完整平台</h2>
+            <p>按需选择组件，或采用完整 HolaCloud 堆栈。所有服务均由我们的 SRE 团队精心打造、自动化并持续监控。</p>
+        </div>
+        <div class="card-grid">
+            <article class="card">
+                <span class="pill">平台</span>
+                <h3>托管 Kubernetes 工作区</h3>
+                <p>几分钟内交付企业级 Kubernetes 集群，内置最佳实践网络策略与 CI/CD 流水线。</p>
+            </article>
+            <article class="card">
+                <span class="pill">数据</span>
+                <h3>即开即用的数据服务</h3>
+                <p>一键部署 PostgreSQL、Redis 与流式服务，自动扩缩容、备份与全程加密。</p>
+            </article>
+            <article class="card">
+                <span class="pill">运维</span>
+                <h3>自动化与可靠性</h3>
+                <p>获得内建可观测性、运行手册与自愈流程，让团队专注业务成果。</p>
+            </article>
+        </div>
+    </section>
 
+    <section class="section" id="documentation">
+        <div class="section-header">
+            <span class="section-kicker">文档</span>
+            <h2>覆盖落地全过程的最佳实践</h2>
+            <p>无论是新团队入驻还是首次上线工作负载，HolaCloud 文档中心都提供精选路径与自动化手册。</p>
+        </div>
+        <div class="card-grid">
+            <article class="card">
+                <span class="pill">启程</span>
+                <h3>快速上手</h3>
+                <p>通过 CLI 与 Terraform 指南，快速启动 Web、数据与 AI 等场景的试点项目。</p>
+            </article>
+            <article class="card">
+                <span class="pill">设计</span>
+                <h3>架构范式</h3>
+                <p>复用多租户 SaaS、合规工作负载与全球部署的成熟蓝图。</p>
+            </article>
+            <article class="card">
+                <span class="pill">构建</span>
+                <h3>API 与 SDK</h3>
+                <p>通过 REST、GraphQL 及多语言 SDK，将 HolaCloud 服务接入交付流程。</p>
+            </article>
+        </div>
+    </section>
 
-</div>
-<div class="content">
-    
-    <div class="index"></div>
-    <div class="document">
-    <div class="hero">
-	<h1>欢迎来到HolaCloud</h1>
-	<p>简化您的开发和运维，使用一个配置好且即用的<em>一体化</em>云平台。</p>
-	<div>
-		<a class="button button-action" href="https://console.hola.cloud/">免费试用</a>
-		<a class="button" href="/docs/">了解更多</a>
-	</div>
-</div>
+    <section class="section" id="about">
+        <div class="section-header">
+            <span class="section-kicker">关于 HolaCloud</span>
+            <h2>为追求速度与信任的团队而生</h2>
+            <p>我们将企业级治理与开发者体验融合，从概念验证到全球上线全程陪伴客户。</p>
+        </div>
+        <div class="card-grid">
+            <article class="card">
+                <span class="pill">使命</span>
+                <h3>加速有价值的软件</h3>
+                <p>HolaCloud 通过自动化基础设施与合规，让团队专注客户价值。</p>
+            </article>
+            <article class="card">
+                <span class="pill">伙伴</span>
+                <h3>值得信赖的专家</h3>
+                <p>客户可靠性工程师提供 24/7 支持、架构评审与共创工作坊。</p>
+            </article>
+            <article class="card">
+                <span class="pill">全球</span>
+                <h3>随处可达的能力</h3>
+                <p>多区域部署，满足数据驻留、企业 SLA 与本地成功团队的要求。</p>
+            </article>
+        </div>
+    </section>
 
-<div class="home" id="start-now">
-
-	<div class="big">只需两次点击即可创建您的项目，将您的想法变为现实。</div>
-
-	<div class="big2">
-		访问<a href="https://console.hola.cloud">控制台</a>，改变您开发和运营应用程序的方式。与我们一起探索、创建和扩展，无需安装任何东西！
-	</div>
-
-	<div>
-		<div class="block1">
-			<img src="/img/window.png" style="width: 100%;"/>
-		</div>
-		<div class="block2">
-			<div class="minicard">
-				您最小的缺陷情报。我们的永恒保护反对，名称没有要求查询。
-			</div>
-			<div class="minicard">
-				名称最小衡量。是听见动物投诉你。前两次跳跃想法。
-			</div>
-			<div class="minicard">
-				看似明显，常见的错误，每天，最大时之后不。
-			</div>
-			<div class="minicard">
-				在重量平衡上，维持对付冒犯名称，释放细腻的处理。
-			</div>
-		</div>
-	</div>
-</div>
-
-    </div>
-</div>
-<div class="footer">
-
-</div>
-<script>
-
-    
-    function isElementInViewport (el) {
-
-        
-        
-        
-        
-
-        var rect     = el.getBoundingClientRect(),
-            vWidth   = window.innerWidth || doc.documentElement.clientWidth,
-            vHeight  = window.innerHeight || doc.documentElement.clientHeight,
-            efp      = function (x, y) { return document.elementFromPoint(x, y) };
-
-        
-        if (rect.right < 0 || rect.bottom < 0
-            || rect.left > vWidth || rect.top > vHeight)
-            return false;
-
-        
-        return (
-            el.contains(efp(rect.left,  rect.top))
-            ||  el.contains(efp(rect.right, rect.top))
-            ||  el.contains(efp(rect.right, rect.bottom))
-            ||  el.contains(efp(rect.left,  rect.bottom))
-        );
-    }
-
-    function highlightIndex() {
-        let v = false;
-        document.querySelectorAll('.index a').forEach(a => {
-            const el = document.getElementById(a.getAttribute('href').slice(1));
-
-            if (!v && isElementInViewport(el)) {
-                a.classList.add('active');
-                v = true;
-            } else {
-                a.classList.remove('active');
-            }
-        });
-    }
-
-    document.addEventListener('scroll', highlightIndex, true);
-    document.addEventListener('load', highlightIndex, true);
-</script>
+    <section class="section" id="brand">
+        <div class="section-header">
+            <span class="section-kicker">品牌配色</span>
+            <h2>HolaCloud 的视觉语言</h2>
+            <p>以下配色定义了我们在所有产品中的品牌形象，这些颜色作为 CSS 自定义变量发布在 <code>/css/brand.css</code> 中，便于统一使用。</p>
+        </div>
+        <div class="brand-palette">
+            <div class="brand-copy">
+                <p>以深邃的蓝宝石为基调，辅以亮丽的蔚蓝与薄荷色，传递自信与创新；沙色提供温暖背景，Slate 与 Ink 负责文字呈现。</p>
+            </div>
+            <div class="brand-swatches">
+                <div class="brand-swatch" style="--swatch-color: var(--hola-color-sapphire);">
+                    <strong>蓝宝石</strong>
+                    <span>Hex #102347</span>
+                    <span>变量 <code>--hola-color-sapphire</code></span>
+                </div>
+                <div class="brand-swatch" style="--swatch-color: var(--hola-color-cerulean);">
+                    <strong>蔚蓝</strong>
+                    <span>Hex #1F6FEB</span>
+                    <span>变量 <code>--hola-color-cerulean</code></span>
+                </div>
+                <div class="brand-swatch" style="--swatch-color: var(--hola-color-mint);">
+                    <strong>薄荷</strong>
+                    <span>Hex #3DD6C2</span>
+                    <span>变量 <code>--hola-color-mint</code></span>
+                </div>
+                <div class="brand-swatch" style="--swatch-color: var(--hola-color-sand);">
+                    <strong>沙色</strong>
+                    <span>Hex #F5E7D0</span>
+                    <span>变量 <code>--hola-color-sand</code></span>
+                </div>
+                <div class="brand-swatch" style="--swatch-color: var(--hola-color-slate);">
+                    <strong>石板</strong>
+                    <span>Hex #1F2937</span>
+                    <span>变量 <code>--hola-color-slate</code></span>
+                </div>
+                <div class="brand-swatch" style="--swatch-color: var(--hola-color-cloud);">
+                    <strong>云白</strong>
+                    <span>Hex #F4F7FB</span>
+                    <span>变量 <code>--hola-color-cloud</code></span>
+                </div>
+            </div>
+            <div class="brand-guidelines">
+            <code>:root {
+  --hola-color-sapphire: #102347;
+  --hola-color-cerulean: #1f6feb;
+  --hola-color-mint: #3dd6c2;
+  --hola-color-sand: #f5e7d0;
+  --hola-color-slate: #1f2937;
+  --hola-color-cloud: #f4f7fb;
+}</code>
+            </div>
+        </div>
+    </section>
+</main>
+<footer>
+    © HolaCloud。助力打造未来的团队。<a href="mailto:hello@hola.cloud">联系我们</a> 了解更多。
+</footer>
 </body>
 </html>

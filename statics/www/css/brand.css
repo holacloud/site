@@ -1,0 +1,15 @@
+:root {
+  --hola-color-sapphire: #102347;
+  --hola-color-cerulean: #1f6feb;
+  --hola-color-mint: #3dd6c2;
+  --hola-color-sand: #f5e7d0;
+  --hola-color-slate: #1f2937;
+  --hola-color-cloud: #f4f7fb;
+  --hola-color-ink: #0b1526;
+  --hola-shadow-soft: 0 24px 60px rgba(16, 35, 71, 0.12);
+  --hola-gradient-primary: linear-gradient(130deg, #1f6feb 0%, #3dd6c2 55%, #7f53ff 100%);
+  --hola-radius-lg: 32px;
+  --hola-radius-md: 18px;
+  --hola-radius-sm: 12px;
+  --hola-font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+}
