@@ -69,7 +69,103 @@
     </div>
 </div>
 <div class="footer">
-
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <div class="footer-logo">hola.cloud</div>
+            {{ if eq .lang "es" }}
+            <p>Software cloud empresarial para equipos regulados y de alto crecimiento.</p>
+            {{ else if eq .lang "zh" }}
+            <p>企业级云软件，服务受监管与高速增长的团队。</p>
+            {{ else }}
+            <p>Enterprise cloud software built for regulated and high-growth teams.</p>
+            {{ end }}
+        </div>
+        <div class="footer-columns">
+            <div class="footer-column">
+                {{ if eq .lang "es" }}
+                <h4>Soluciones</h4>
+                <ul>
+                    <li><a href="#start-now">Visión de la plataforma</a></li>
+                    <li><a href="#solutions">Soluciones por industria</a></li>
+                    <li><a href="#partnership">Modelo de acompañamiento</a></li>
+                </ul>
+                {{ else if eq .lang "zh" }}
+                <h4>解决方案</h4>
+                <ul>
+                    <li><a href="#start-now">平台总览</a></li>
+                    <li><a href="#solutions">行业方案</a></li>
+                    <li><a href="#partnership">合作模式</a></li>
+                </ul>
+                {{ else }}
+                <h4>Solutions</h4>
+                <ul>
+                    <li><a href="#start-now">Platform overview</a></li>
+                    <li><a href="#solutions">Industry solutions</a></li>
+                    <li><a href="#partnership">Partnership model</a></li>
+                </ul>
+                {{ end }}
+            </div>
+            <div class="footer-column">
+                {{ if eq .lang "es" }}
+                <h4>Recursos</h4>
+                <ul>
+                    <li><a href="/docs/">Documentación</a></li>
+                    <li><a href="https://console.hola.cloud/">Consola de clientes</a></li>
+                    <li><a href="mailto:contact@hola.cloud">Centro de soporte</a></li>
+                </ul>
+                {{ else if eq .lang "zh" }}
+                <h4>资源中心</h4>
+                <ul>
+                    <li><a href="/docs/">文档中心</a></li>
+                    <li><a href="https://console.hola.cloud/">客户控制台</a></li>
+                    <li><a href="mailto:contact@hola.cloud">支持服务</a></li>
+                </ul>
+                {{ else }}
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="/docs/">Documentation</a></li>
+                    <li><a href="https://console.hola.cloud/">Customer console</a></li>
+                    <li><a href="mailto:contact@hola.cloud">Support center</a></li>
+                </ul>
+                {{ end }}
+            </div>
+            <div class="footer-column">
+                {{ if eq .lang "es" }}
+                <h4>Contacto</h4>
+                <ul>
+                    <li><a href="mailto:contact@hola.cloud">contact@hola.cloud</a></li>
+                    <li><a href="tel:+34910000000">+34 910 000 000</a></li>
+                    <li><a href="https://www.linkedin.com/company/hola-cloud" target="_blank" rel="noopener">LinkedIn</a></li>
+                </ul>
+                {{ else if eq .lang "zh" }}
+                <h4>联系我们</h4>
+                <ul>
+                    <li><a href="mailto:contact@hola.cloud">contact@hola.cloud</a></li>
+                    <li><a href="tel:+34910000000">+34 910 000 000</a></li>
+                    <li><a href="https://www.linkedin.com/company/hola-cloud" target="_blank" rel="noopener">LinkedIn</a></li>
+                </ul>
+                {{ else }}
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:contact@hola.cloud">contact@hola.cloud</a></li>
+                    <li><a href="tel:+34910000000">+34 910 000 000</a></li>
+                    <li><a href="https://www.linkedin.com/company/hola-cloud" target="_blank" rel="noopener">LinkedIn</a></li>
+                </ul>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+    <div class="footer-meta">
+        <span>© 2025 hola.cloud</span>
+        <span class="footer-meta-divider" aria-hidden="true">•</span>
+        {{ if eq .lang "es" }}
+        <span>Todos los derechos reservados.</span>
+        {{ else if eq .lang "zh" }}
+        <span>保留所有权利。</span>
+        {{ else }}
+        <span>All rights reserved.</span>
+        {{ end }}
+    </div>
 </div>
 <script>
 
