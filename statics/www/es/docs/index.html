@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Documentación</title>
+    <title>Documentación de HolaCloud</title>
     <meta name="description" content="inceptiondb">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="/css/style.css" rel="stylesheet">
@@ -39,7 +39,7 @@
                 </div>
             </div>
             
-            <a class="link selected" href="/es/docs/index.html">Documentación</a>
+            <a class="link selected" href="/es/docs/index.html">Documentación de HolaCloud</a>
             
             <a class="link button-console" href="https://console.hola.cloud/">Console</a>
         </div>
@@ -61,7 +61,7 @@
 <div class="item"><a href="/es/docs/inceptiondb/v2/manejando-colecciones/index.html">Manejando colecciones</a></div>
 <div class="item"><a href="/es/docs/inceptiondb/v2/trabajando-con-datos/index.html">Trabajando con datos</a></div>
 </div>
-<div class="item"><a href="/es/docs/lambda/index.html">Lambda</a></div>
+<div class="item"><a href="/es/docs/lambda/index.html">Lambda System</a></div>
 <div class="children">
 <div class="item"><a href="/es/docs/lambda/v2/primeros-pasos/index.html">Primeros pasos</a></div>
 </div>
@@ -73,13 +73,13 @@
 <div class="children">
 <div class="item"><a href="/es/docs/config/v2/primeros-pasos/index.html">Primeros pasos</a></div>
 </div>
-<div class="item"><a href="/es/docs/logs/index.html">InstantLogs</a></div>
+<div class="item"><a href="/es/docs/instantlogs/index.html">InstantLogs</a></div>
 <div class="children">
-<div class="item"><a href="/es/docs/logs/v2/primeros-pasos/index.html">Primeros pasos</a></div>
+<div class="item"><a href="/es/docs/instantlogs/v2/primeros-pasos/index.html">Primeros pasos</a></div>
 </div>
-<div class="item"><a href="/es/docs/logs/index.html">Tailon</a></div>
+<div class="item"><a href="/es/docs/tailon/index.html">Tailon</a></div>
 <div class="children">
-<div class="item"><a href="/es/docs/logs/v2/primeros-pasos/index.html">Primeros pasos</a></div>
+<div class="item"><a href="/es/docs/tailon/v2/primeros-pasos/index.html">Primeros pasos</a></div>
 </div>
 
 
@@ -87,15 +87,145 @@
 </div>
 <div class="content">
     
-    <div class="index"></div>
+    <div class="index"><div class="index-h2">
+<a href="#Navegaci%C3%B3n%20r%C3%A1pida">Navegación rápida</a>
+</div>
+<div class="index-h2">
+<a href="#Tabla%20de%20servicios%20y%20recursos">Tabla de servicios y recursos</a>
+</div>
+<div class="index-h2">
+<a href="#Gu%C3%ADas%20generales">Guías generales</a>
+</div>
+<div class="index-h3">
+<a href="#Identidad%20y%20acceso">Identidad y acceso</a>
+</div>
+<div class="index-h3">
+<a href="#Red%20y%20dominios">Red y dominios</a>
+</div>
+<div class="index-h3">
+<a href="#Observabilidad%20y%20operaciones">Observabilidad y operaciones</a>
+</div>
+<div class="index-h3">
+<a href="#Seguridad%20y%20cumplimiento">Seguridad y cumplimiento</a>
+</div>
+<div class="index-h3">
+<a href="#Facturaci%C3%B3n%20y%20l%C3%ADmites">Facturación y límites</a>
+</div>
+<div class="index-h2">
+<a href="#Recursos%20comunes">Recursos comunes</a>
+</div>
+<div class="index-h2">
+<a href="#Novedades%20y%20cambios">Novedades y cambios</a>
+</div>
+</div>
     <div class="document">
-    <h1>Documentación</h1>
-<p>InceptionDB: Tu base de datos optimizada para rendimiento y escalabilidad. Administra y consulta tus datos con eficiencia.</p>
-<p>Lambda System: Sistema de ejecución flexible para tus aplicaciones. Escala automáticamente sin gestionar servidores.</p>
-<p>Files: Almacenamiento de objetos seguro y accesible. Guarda, recupera y organiza tus archivos con facilidad.</p>
-<p>Config: Sistema de configuración centralizado. Gestiona la configuración de tus aplicaciones en un solo lugar.</p>
-<p>InstantLogs: Sistema de logs en tiempo real. Monitoriza y analiza la actividad de tus aplicaciones instantáneamente.</p>
-<p>Tailon: Sistema de colas robusto para manejar cargas de trabajo intensivas y operaciones asíncronas.</p>
+    <h1>Documentación de HolaCloud</h1>
+<p>Bienvenido a la nueva experiencia de documentación inspirada en AWS, Google Cloud y Azure. Aquí encontrarás recorridos rápidos, guías operativas y referencia técnica para cada servicio de HolaCloud.</p>
+<h2 id="Navegaci%C3%B3n%20r%C3%A1pida">Navegación rápida</h2>
+<ul>
+<li><strong>Guías generales</strong>: <a href="#identidad-y-acceso">Identidad y acceso</a>, <a href="#red-y-dominios">Red y dominios</a>, <a href="#observabilidad-y-operaciones">Observabilidad</a>, <a href="#seguridad-y-cumplimiento">Seguridad y cumplimiento</a>, <a href="#facturacion-y-limites">Facturación y límites</a>.</li>
+<li><strong>Servicios</strong>: <a href="10_inceptiondb/inceptiondb_es.md">InceptionDB</a>, <a href="20_lambda/lambda_es.md">Lambda System</a>, <a href="30_files/files_es.md">Files</a>, <a href="40_config/config_es.md">Config</a>, <a href="50_logs/instantlogs_es.md">InstantLogs</a>, <a href="60_queues/tailon_es.md">Tailon</a>.</li>
+<li><strong>Recursos comunes</strong>: SDK/CLI, plantillas de infraestructura y ejemplos descargables en <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>statics/</span></span></code></pre></code>.</li>
+<li><strong>Novedades</strong>: notas de versión y calendario de deprecaciones (en preparación).</li>
+</ul>
+<h2 id="Tabla%20de%20servicios%20y%20recursos">Tabla de servicios y recursos</h2>
+<table>
+<thead>
+<tr>
+<th>Servicio</th>
+<th>Quickstart</th>
+<th>Guías paso a paso</th>
+<th>Referencia</th>
+<th>Operaciones</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>InceptionDB</td>
+<td><a href="10_inceptiondb/inceptiondb_es.md#inicio-rapido">Creación de clúster</a></td>
+<td>Migración, particionado, backup/restore</td>
+<td>API de administración y límites</td>
+<td>Métricas, alertas y runbooks</td>
+</tr>
+<tr>
+<td>Lambda System</td>
+<td><a href="20_lambda/lambda_es.md#inicio-rapido">Primera función</a></td>
+<td>Versiones/alias, orquestación, empaquetado</td>
+<td>Límites y códigos de error</td>
+<td>Observabilidad y control de versiones</td>
+</tr>
+<tr>
+<td>Files</td>
+<td><a href="30_files/files_es.md#inicio-rapido">Bucket y objetos</a></td>
+<td>Versionado, ciclo de vida, replicación</td>
+<td>API/CLI y URLs firmadas</td>
+<td>Costos, retención y recuperación</td>
+</tr>
+<tr>
+<td>Config</td>
+<td><a href="40_config/config_es.md#inicio-rapido">Espacio y lectura</a></td>
+<td>Feature flags, plantillas por entorno</td>
+<td>API/CLI y auditoría</td>
+<td>Rollbacks y supervisión</td>
+</tr>
+<tr>
+<td>InstantLogs</td>
+<td><a href="50_logs/instantlogs_es.md#inicio-rapido">Ingesta y consultas</a></td>
+<td>Filtrado avanzado, exportaciones</td>
+<td>API/CLI y formatos</td>
+<td>Retención y alertas</td>
+</tr>
+<tr>
+<td>Tailon</td>
+<td><a href="60_queues/tailon_es.md#inicio-rapido">Cola y consumidor</a></td>
+<td>DLQ, reintentos, fanout</td>
+<td>API/CLI y límites</td>
+<td>Idempotencia y monitoreo</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Gu%C3%ADas%20generales">Guías generales</h2>
+<h3 id="Identidad%20y%20acceso">Identidad y acceso</h3>
+<ul>
+<li>Autenticación mediante tokens de proyecto y roles definidos (Owner, Operator, Reader).</li>
+<li>Usa políticas de servicio para limitar acciones por entorno y aplica etiquetas <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>team</span></span></code></pre></code> y <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>env</span></span></code></pre></code> para segmentar permisos.</li>
+<li>Integra el SSO corporativo mediante OpenID Connect y rota credenciales cada 90 días.</li>
+</ul>
+<h3 id="Red%20y%20dominios">Red y dominios</h3>
+<ul>
+<li>Expone endpoints mediante dominios gestionados por HolaCloud con TLS automático.</li>
+<li>Usa redes privadas para tráfico entre servicios y habilita listas de control de acceso por IP para consolas administrativas.</li>
+<li>Configura reglas de egress controlado para evitar filtraciones y centraliza DNS interno.</li>
+</ul>
+<h3 id="Observabilidad%20y%20operaciones">Observabilidad y operaciones</h3>
+<ul>
+<li>Publica métricas en el colector central (<code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl metrics push</span></span></code></pre></code>) y crea dashboards base por servicio.</li>
+<li>Define alertas mínimas: disponibilidad, latencia p95 y errores 5xx; incluye runbooks vinculados.</li>
+<li>Registra auditoría de cambios y activa exportación de logs hacia InstantLogs para correlación.</li>
+</ul>
+<h3 id="Seguridad%20y%20cumplimiento">Seguridad y cumplimiento</h3>
+<ul>
+<li>Cifra datos en reposo y en tránsito; usa claves administradas y rota certificados automáticamente.</li>
+<li>Habilita registro de auditoría y revisiones mensuales de accesos privilegiados.</li>
+<li>Etiqueta versiones como Preview/GA/Deprecated y documenta compatibilidad de SDK/CLI.</li>
+</ul>
+<h3 id="Facturaci%C3%B3n%20y%20l%C3%ADmites">Facturación y límites</h3>
+<ul>
+<li>Consulta límites por servicio en la sección de referencia correspondiente.</li>
+<li>Configura alertas de presupuesto y reportes por etiqueta <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>team</span></span></code></pre></code>.</li>
+<li>Usa tablas de costos por región y por tipo de recurso (clústeres, funciones, almacenamiento, mensajes).</li>
+</ul>
+<h2 id="Recursos%20comunes">Recursos comunes</h2>
+<ul>
+<li><strong>SDK/CLI</strong>: <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl</span></span></code></pre></code> y SDKs por lenguaje con ejemplos en <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>statics/examples/</span></span></code></pre></code> (añade tu token con <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl login</span></span></code></pre></code>).</li>
+<li><strong>Plantillas de infraestructura</strong>: archivos base para desplegar entornos de desarrollo y producción.</li>
+<li><strong>Ejemplos descargables</strong>: paquetes listos para ejecutar en los quickstarts de cada servicio.</li>
+</ul>
+<h2 id="Novedades%20y%20cambios">Novedades y cambios</h2>
+<ul>
+<li>Publicaremos notas de versión trimestrales con mejoras, correcciones y cambios de límites.</li>
+<li>Incluiremos un calendario de deprecaciones y una hoja de ruta resumida por servicio.</li>
+</ul>
 
     </div>
 </div>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Tailon</title>
+    <meta name="description" content="inceptiondb">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/blue.css" rel="stylesheet">
+    <script defer src="https://umami.hola.cloud/script.js" data-website-id="cbcb870c-e9a8-460a-8b38-ab2fa77a4cc2"></script>
+</head>
+<body url="tailon">
+
+<div class="top-frame">
+    <div class="top">
+        <a href="/" class="logo"></a>
+        <div class="main-menu">
+            <div class="dropdown">
+                <button class="link dropdown-toggle" type="button">
+                    Products
+                    <span class="dropdown-icon" aria-hidden="true">▾</span>
+                </button>
+                <div class="dropdown-menu" role="menu">
+                    <a class="dropdown-item" href="https://flowtest.io" target="_blank" rel="noopener">
+                        <span class="item-title">Flowtest.io</span>
+                        <span class="item-description">Automated load testing from the hola.cloud ecosystem.</span>
+                    </a>
+                    <a class="dropdown-item" href="https://inceptiondb.hola.cloud" target="_blank" rel="noopener">
+                        <span class="item-title">InceptioDB</span>
+                        <span class="item-description">Fully managed database service within the hola.cloud ecosystem.</span>
+                    </a>
+                    <a class="dropdown-item" href="https://console.hola.cloud" target="_blank" rel="noopener">
+                        <span class="item-title">Public Cloud</span>
+                        <span class="item-description">Deploy and manage your workloads on the hola.cloud public platform.</span>
+                    </a>
+                    <a class="dropdown-item" href="https://gopress.org" target="_blank" rel="noopener">
+                        <span class="item-title">GoPress <span class="item-tag">Open Source</span></span>
+                        <span class="item-description">Open-source CMS built for the hola.cloud ecosystem.</span>
+                    </a>
+                </div>
+            </div>
+            
+            <a class="link" href="/es/docs/index.html">Documentación de HolaCloud</a>
+            
+            <a class="link button-console" href="https://console.hola.cloud/">Console</a>
+        </div>
+        <div class="right">
+            <a id="login-button" class="button button-noborder" href="https://console.hola.cloud/">Log In</a>
+            <a class="button button-action" href="https://console.hola.cloud/">Start now</a>
+        </div>
+    </div>
+</div>
+<div class="languages-frame">
+    <div class="languages"><a class="" href="/docs/tailon/index.html">en</a><a class="selected" href="/es/docs/tailon/index.html">es</a><a class="" href="/zh/docs/tailon/index.html">zh</a></div>
+</div>
+<div class="tree">
+
+
+    <div class="item"><a href="/es/docs/inceptiondb/index.html">InceptionDB</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/inceptiondb/v2/primeros-pasos/index.html">Guía de Inicio Rápido con InceptionDB</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v2/manejando-colecciones/index.html">Manejando colecciones</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v2/trabajando-con-datos/index.html">Trabajando con datos</a></div>
+</div>
+<div class="item"><a href="/es/docs/lambda/index.html">Lambda System</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/lambda/v2/primeros-pasos/index.html">Primeros pasos</a></div>
+</div>
+<div class="item"><a href="/es/docs/files/index.html">Files</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/files/v2/primeros-pasos/index.html">Primeros pasos</a></div>
+</div>
+<div class="item"><a href="/es/docs/config/index.html">Config</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/config/v2/primeros-pasos/index.html">Primeros pasos</a></div>
+</div>
+<div class="item"><a href="/es/docs/instantlogs/index.html">InstantLogs</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/instantlogs/v2/primeros-pasos/index.html">Primeros pasos</a></div>
+</div>
+<div class="item active selected"><a href="/es/docs/tailon/index.html">Tailon</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/tailon/v2/primeros-pasos/index.html">Primeros pasos</a></div>
+</div>
+
+
+
+</div>
+<div class="content">
+    <div class="breadcrumb"><a class="item" href="/es/docs/index.html">Documentación de HolaCloud</a><span class="arrow">→</span><a class="item selected" href="/es/docs/tailon/index.html">Tailon</a></div>
+    <div class="index"><div class="index-h2">
+<a href="#Descripci%C3%B3n%20y%20casos%20de%20uso">Descripción y casos de uso</a>
+</div>
+<div class="index-h2">
+<a href="#Inicio%20r%C3%A1pido">Inicio rápido</a>
+</div>
+<div class="index-h2">
+<a href="#Conceptos%20y%20arquitectura">Conceptos y arquitectura</a>
+</div>
+<div class="index-h2">
+<a href="#Gu%C3%ADas%20paso%20a%20paso">Guías paso a paso</a>
+</div>
+<div class="index-h2">
+<a href="#Operaciones%20y%20observabilidad">Operaciones y observabilidad</a>
+</div>
+<div class="index-h2">
+<a href="#Seguridad%20y%20cumplimiento">Seguridad y cumplimiento</a>
+</div>
+<div class="index-h2">
+<a href="#Referencia%20r%C3%A1pida">Referencia rápida</a>
+</div>
+<div class="index-h2">
+<a href="#Resoluci%C3%B3n%20de%20problemas">Resolución de problemas</a>
+</div>
+</div>
+    <div class="document">
+    <h1>Tailon</h1>
+<p>Sistema de colas para trabajo asíncrono con entrega garantizada y visibilidad completa.</p>
+<h2 id="Descripci%C3%B3n%20y%20casos%20de%20uso">Descripción y casos de uso</h2>
+<ul>
+<li><strong>Procesamiento de tareas</strong>: imágenes, pagos, workflows de datos.</li>
+<li><strong>Integración de servicios</strong>: desacopla productores y consumidores entre microservicios.</li>
+<li><strong>Fanout y buffering</strong>: reparte eventos a múltiples consumidores y absorbe picos.</li>
+</ul>
+<h2 id="Inicio%20r%C3%A1pido">Inicio rápido</h2>
+<ol>
+<li><strong>Prerrequisitos</strong>: <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl</span></span></code></pre></code> instalado y permisos sobre el proyecto.</li>
+<li><strong>Crear cola y productor</strong>:
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl tailon queue create <span style="color:#b58900">jobs</span> --visibility-timeout 30s --dlq jobs-dlq
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>holactl tailon message send <span style="color:#b58900">jobs</span> --body <span style="color:#2aa198">&#39;{&#34;task&#34;:&#34;resize&#34;,&#34;id&#34;:1}&#39;</span>
+</span></span></code></pre></code></pre>
+</li>
+<li><strong>Consumir mensajes</strong>:
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl tailon message receive <span style="color:#b58900">jobs</span> --max-messages <span style="color:#2aa198">5</span> --wait 10s
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>holactl tailon message delete <span style="color:#b58900">jobs</span> --receipt-handle &lt;handle&gt;
+</span></span></code></pre></code></pre>
+</li>
+<li><strong>Configurar reintentos y DLQ</strong>:
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl tailon queue policy <span style="color:#b58900">jobs</span> --max-retries <span style="color:#2aa198">5</span> --backoff exponential
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>holactl tailon queue inspect jobs-dlq
+</span></span></code></pre></code></pre>
+</li>
+</ol>
+<h2 id="Conceptos%20y%20arquitectura">Conceptos y arquitectura</h2>
+<ul>
+<li><strong>Colas</strong> con réplicas y particiones automáticas para throughput horizontal.</li>
+<li><strong>Mensajes</strong> con atributos y trazas; expiración configurable.</li>
+<li><strong>DLQ</strong> para mensajes fallidos y <strong>visibilidad</strong> para bloquear mientras se procesa.</li>
+<li><strong>Límites</strong>: tamaño recomendado de mensaje &lt; 256 KB; usa punteros a Files para cargas grandes.</li>
+</ul>
+<h2 id="Gu%C3%ADas%20paso%20a%20paso">Guías paso a paso</h2>
+<ul>
+<li><strong>Idempotencia</strong>: incluye <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>message-id</span></span></code></pre></code> único y registra progreso en InceptionDB para reintentos seguros.</li>
+<li><strong>Patrones de fanout</strong>: usa colas secundarias con <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl tailon queue subscribe</span></span></code></pre></code> o publica múltiples mensajes derivados.</li>
+<li><strong>Programación</strong>: combina con Lambda <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>schedule</span></span></code></pre></code> o usa atributos de retraso (<code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>--delay</span></span></code></pre></code>).</li>
+<li><strong>Monitoreo de DLQ</strong>: inspecciona y reprocesa con <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl tailon dlq replay</span></span></code></pre></code> tras corregir el error.</li>
+</ul>
+<h2 id="Operaciones%20y%20observabilidad">Operaciones y observabilidad</h2>
+<ul>
+<li><strong>Métricas clave</strong>: mensajes en vuelo, tasa de reintentos, edad de mensaje más antiguo, tasa de aciertos DLQ.</li>
+<li><strong>Alertas base</strong>: crecimiento acelerado de DLQ, tiempo de visibilidad excedido, latencia de entrega alta.</li>
+<li><strong>Runbooks</strong>: aumentar particiones, ajustar visibilidad, habilitar consumidores adicionales y limpiar mensajes expirados.</li>
+</ul>
+<h2 id="Seguridad%20y%20cumplimiento">Seguridad y cumplimiento</h2>
+<ul>
+<li>Control de acceso por cola y cifrado en tránsito y reposo.</li>
+<li>Auditoría de operaciones administrativas y de lectura/escritura sensibles.</li>
+<li>Integración con políticas de red privada para consumidores internos.</li>
+</ul>
+<h2 id="Referencia%20r%C3%A1pida">Referencia rápida</h2>
+<ul>
+<li><strong>CLI</strong>: <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl tailon queue|message|dlq &lt;action&gt;</span></span></code></pre></code>.</li>
+<li><strong>Errores comunes</strong>: <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>VISIBILITY_TIMEOUT</span></span></code></pre></code> (aumenta el tiempo o confirma antes), <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>UNAUTHORIZED</span></span></code></pre></code>, <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>MESSAGE_TOO_LARGE</span></span></code></pre></code>.</li>
+<li><strong>Límites</strong>: 2.000 colas por proyecto, retención máx 14 días, 20 suscripciones fanout por cola.</li>
+</ul>
+<h2 id="Resoluci%C3%B3n%20de%20problemas">Resolución de problemas</h2>
+<ul>
+<li><strong>DLQ creciendo</strong>: inspecciona causa raíz, corrige consumidor y reprocesa con backoff.</li>
+<li><strong>Duplicados</strong>: activa entrega exactamente una vez con claves idempotentes y confirma rápido.</li>
+<li><strong>Picos de latencia</strong>: escala consumidores, ajusta particiones y revisa políticas de red.</li>
+</ul>
+
+    </div>
+</div>
+<div class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <div class="footer-logo">hola.cloud</div>
+            
+            <p>Software cloud empresarial para equipos regulados y de alto crecimiento.</p>
+            
+        </div>
+        <div class="footer-columns">
+            <div class="footer-column">
+                
+                <h4>Soluciones</h4>
+                <ul>
+                    <li><a href="#start-now">Visión de la plataforma</a></li>
+                    <li><a href="#solutions">Soluciones por industria</a></li>
+                    <li><a href="#partnership">Modelo de acompañamiento</a></li>
+                </ul>
+                
+            </div>
+            <div class="footer-column">
+                
+                <h4>Recursos</h4>
+                <ul>
+                    <li><a href="/docs/">Documentación</a></li>
+                    <li><a href="https://console.hola.cloud/">Consola de clientes</a></li>
+                    <li><a href="mailto:contact@hola.cloud">Centro de soporte</a></li>
+                </ul>
+                
+            </div>
+            <div class="footer-column">
+                
+                <h4>Contacto</h4>
+                <ul>
+                    <li><a href="mailto:contact@hola.cloud">contact@hola.cloud</a></li>
+                    <li><a href="tel:+34910000000">+34 910 000 000</a></li>
+                    <li><a href="https://www.linkedin.com/company/hola-cloud" target="_blank" rel="noopener">LinkedIn</a></li>
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+    <div class="footer-meta">
+        <span>© 2025 hola.cloud</span>
+        <span class="footer-meta-divider" aria-hidden="true">•</span>
+        
+        <span>Todos los derechos reservados.</span>
+        
+    </div>
+</div>
+<script>
+
+    
+    function isElementInViewport (el) {
+
+        
+        
+        
+        
+
+        var rect     = el.getBoundingClientRect(),
+            vWidth   = window.innerWidth || doc.documentElement.clientWidth,
+            vHeight  = window.innerHeight || doc.documentElement.clientHeight,
+            efp      = function (x, y) { return document.elementFromPoint(x, y) };
+
+        
+        if (rect.right < 0 || rect.bottom < 0
+            || rect.left > vWidth || rect.top > vHeight)
+            return false;
+
+        
+        return (
+            el.contains(efp(rect.left,  rect.top))
+            ||  el.contains(efp(rect.right, rect.top))
+            ||  el.contains(efp(rect.right, rect.bottom))
+            ||  el.contains(efp(rect.left,  rect.bottom))
+        );
+    }
+
+    function highlightIndex() {
+        let v = false;
+        document.querySelectorAll('.index a').forEach(a => {
+            const el = document.getElementById(a.getAttribute('href').slice(1));
+
+            if (!v && isElementInViewport(el)) {
+                a.classList.add('active');
+                v = true;
+            } else {
+                a.classList.remove('active');
+            }
+        });
+    }
+
+    document.addEventListener('scroll', highlightIndex, true);
+    document.addEventListener('load', highlightIndex, true);
+</script>
+</body>
+</html>

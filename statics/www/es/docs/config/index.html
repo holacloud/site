@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <title>Config</title>
     <meta name="description" content="inceptiondb">
@@ -39,7 +39,7 @@
                 </div>
             </div>
             
-            <a class="link" href="/es/docs/index.html">Documentación</a>
+            <a class="link" href="/es/docs/index.html">Documentación de HolaCloud</a>
             
             <a class="link button-console" href="https://console.hola.cloud/">Console</a>
         </div>
@@ -61,7 +61,7 @@
 <div class="item"><a href="/es/docs/inceptiondb/v2/manejando-colecciones/index.html">Manejando colecciones</a></div>
 <div class="item"><a href="/es/docs/inceptiondb/v2/trabajando-con-datos/index.html">Trabajando con datos</a></div>
 </div>
-<div class="item"><a href="/es/docs/lambda/index.html">Lambda</a></div>
+<div class="item"><a href="/es/docs/lambda/index.html">Lambda System</a></div>
 <div class="children">
 <div class="item"><a href="/es/docs/lambda/v2/primeros-pasos/index.html">Primeros pasos</a></div>
 </div>
@@ -73,23 +73,111 @@
 <div class="children">
 <div class="item"><a href="/es/docs/config/v2/primeros-pasos/index.html">Primeros pasos</a></div>
 </div>
-<div class="item"><a href="/es/docs/logs/index.html">InstantLogs</a></div>
+<div class="item"><a href="/es/docs/instantlogs/index.html">InstantLogs</a></div>
 <div class="children">
-<div class="item"><a href="/es/docs/logs/v2/primeros-pasos/index.html">Primeros pasos</a></div>
+<div class="item"><a href="/es/docs/instantlogs/v2/primeros-pasos/index.html">Primeros pasos</a></div>
 </div>
-<div class="item"><a href="/es/docs/logs/index.html">Tailon</a></div>
+<div class="item"><a href="/es/docs/tailon/index.html">Tailon</a></div>
 <div class="children">
-<div class="item"><a href="/es/docs/logs/v2/primeros-pasos/index.html">Primeros pasos</a></div>
+<div class="item"><a href="/es/docs/tailon/v2/primeros-pasos/index.html">Primeros pasos</a></div>
 </div>
 
 
 
 </div>
 <div class="content">
-    <div class="breadcrumb"><a class="item" href="/es/docs/index.html">Documentación</a><span class="arrow">→</span><a class="item selected" href="/es/docs/config/index.html">Config</a></div>
-    <div class="index"></div>
+    <div class="breadcrumb"><a class="item" href="/es/docs/index.html">Documentación de HolaCloud</a><span class="arrow">→</span><a class="item selected" href="/es/docs/config/index.html">Config</a></div>
+    <div class="index"><div class="index-h2">
+<a href="#Descripci%C3%B3n%20y%20casos%20de%20uso">Descripción y casos de uso</a>
+</div>
+<div class="index-h2">
+<a href="#Inicio%20r%C3%A1pido">Inicio rápido</a>
+</div>
+<div class="index-h2">
+<a href="#Conceptos%20y%20arquitectura">Conceptos y arquitectura</a>
+</div>
+<div class="index-h2">
+<a href="#Gu%C3%ADas%20paso%20a%20paso">Guías paso a paso</a>
+</div>
+<div class="index-h2">
+<a href="#Operaciones%20y%20observabilidad">Operaciones y observabilidad</a>
+</div>
+<div class="index-h2">
+<a href="#Seguridad%20y%20cumplimiento">Seguridad y cumplimiento</a>
+</div>
+<div class="index-h2">
+<a href="#Referencia%20r%C3%A1pida">Referencia rápida</a>
+</div>
+<div class="index-h2">
+<a href="#Resoluci%C3%B3n%20de%20problemas">Resolución de problemas</a>
+</div>
+</div>
     <div class="document">
     <h1>Config</h1>
+<p>Servicio centralizado de configuración y feature flags con versionado y auditoría.</p>
+<h2 id="Descripci%C3%B3n%20y%20casos%20de%20uso">Descripción y casos de uso</h2>
+<ul>
+<li><strong>Parámetros por entorno</strong>: valores diferenciados para dev/stage/prod.</li>
+<li><strong>Feature flags</strong>: habilita o deshabilita funciones por usuario, región o porcentaje.</li>
+<li><strong>Secretos de aplicación</strong>: almacena secretos cifrados y consúmelos desde Lambda u otros servicios.</li>
+</ul>
+<h2 id="Inicio%20r%C3%A1pido">Inicio rápido</h2>
+<ol>
+<li><strong>Prerrequisitos</strong>: <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl</span></span></code></pre></code> instalado y roles adecuados.</li>
+<li><strong>Crear espacio y primer key</strong>:
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl config space create app-core --description <span style="color:#2aa198">&#34;Configuración central&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>holactl config <span style="color:#b58900">set</span> app-core <span style="color:#268bd2">DB_HOST</span><span style="color:#719e07">=</span>db.prod.local --env prod
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>holactl config <span style="color:#b58900">set</span> app-core <span style="color:#268bd2">DB_HOST</span><span style="color:#719e07">=</span>db.dev.local --env dev
+</span></span></code></pre></code></pre>
+</li>
+<li><strong>Leer desde aplicación</strong>:
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl config get app-core DB_HOST --env prod --format env
+</span></span></code></pre></code></pre>
+</li>
+<li><strong>Crear feature flag</strong>:
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl config flag create checkout-rollout --space app-core --percentage <span style="color:#2aa198">10</span> --env prod
+</span></span></code></pre></code></pre>
+</li>
+</ol>
+<h2 id="Conceptos%20y%20arquitectura">Conceptos y arquitectura</h2>
+<ul>
+<li><strong>Espacios</strong> con versionado automático y aislamiento por entorno.</li>
+<li><strong>Claves y flags</strong> con etiquetas (<code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>team</span></span></code></pre></code>, <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>service</span></span></code></pre></code>) y metadata para auditoría.</li>
+<li><strong>Controles de acceso</strong> por entorno y tipo de dato (secreto o texto plano).</li>
+<li><strong>Límites</strong>: 10.000 claves por espacio, 200 versiones retenidas por defecto.</li>
+</ul>
+<h2 id="Gu%C3%ADas%20paso%20a%20paso">Guías paso a paso</h2>
+<ul>
+<li><strong>Plantillas por entorno</strong>: exporta valores a YAML y aplica en masa con <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl config apply</span></span></code></pre></code>.</li>
+<li><strong>Rotación segura</strong>: marca claves como <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>--secret</span></span></code></pre></code>, rota con <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl config rotate</span></span></code></pre></code> y notifica a los consumidores.</li>
+<li><strong>Integración CI/CD</strong>: usa <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl config export --format env</span></span></code></pre></code> en pipelines y evita imprimir secretos.</li>
+<li><strong>Rollback</strong>: vuelve a una versión previa con <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl config rollback --version N</span></span></code></pre></code> y valida con auditoría.</li>
+</ul>
+<h2 id="Operaciones%20y%20observabilidad">Operaciones y observabilidad</h2>
+<ul>
+<li><strong>Métricas clave</strong>: tasa de lecturas/escrituras, latencia de entrega, fallos de autorización.</li>
+<li><strong>Alertas base</strong>: cambios masivos en ventanas cortas, fallos de replicación, flags sin entorno.</li>
+<li><strong>Runbooks</strong>: bloquear escrituras en incidentes, validar firmas de contenido, restaurar desde respaldo.</li>
+</ul>
+<h2 id="Seguridad%20y%20cumplimiento">Seguridad y cumplimiento</h2>
+<ul>
+<li>Cifrado de secretos en HSM administrado y control de acceso granular.</li>
+<li>Auditoría completa de lectura/escritura y exportación hacia InstantLogs.</li>
+<li>Políticas obligatorias para marcar datos sensibles y exigir rotación periódica.</li>
+</ul>
+<h2 id="Referencia%20r%C3%A1pida">Referencia rápida</h2>
+<ul>
+<li><strong>CLI</strong>: <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl config &lt;action&gt;</span></span></code></pre></code> (space, set, get, flag, apply, rollback, export).</li>
+<li><strong>Errores comunes</strong>: <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>VERSION_CONFLICT</span></span></code></pre></code> (reintenta con la última versión), <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>UNAUTHORIZED</span></span></code></pre></code>, <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>SECRET_ONLY_OVER_TLS</span></span></code></pre></code>.</li>
+<li><strong>Límites</strong>: 50 espacios por proyecto, 5 regiones replicadas máximo, tamaño de valor recomendado &lt; 16 KB.</li>
+</ul>
+<h2 id="Resoluci%C3%B3n%20de%20problemas">Resolución de problemas</h2>
+<ul>
+<li><strong>Valores desactualizados en clientes</strong>: verifica caching TTL y ejecuta <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl config invalidate-cache</span></span></code></pre></code>.</li>
+<li><strong>Flags aplicados de forma desigual</strong>: revisa segmentación y exporta auditoría para confirmar delivery.</li>
+<li><strong>Rotación fallida</strong>: restaura la versión previa y vuelve a ejecutar con sesiones activas notificadas.</li>
+</ul>
+
     </div>
 </div>
 <div class="footer">
@@ -97,33 +185,33 @@
         <div class="footer-brand">
             <div class="footer-logo">hola.cloud</div>
             
-            <p>Enterprise cloud software built for regulated and high-growth teams.</p>
+            <p>Software cloud empresarial para equipos regulados y de alto crecimiento.</p>
             
         </div>
         <div class="footer-columns">
             <div class="footer-column">
                 
-                <h4>Solutions</h4>
+                <h4>Soluciones</h4>
                 <ul>
-                    <li><a href="#start-now">Platform overview</a></li>
-                    <li><a href="#solutions">Industry solutions</a></li>
-                    <li><a href="#partnership">Partnership model</a></li>
+                    <li><a href="#start-now">Visión de la plataforma</a></li>
+                    <li><a href="#solutions">Soluciones por industria</a></li>
+                    <li><a href="#partnership">Modelo de acompañamiento</a></li>
                 </ul>
                 
             </div>
             <div class="footer-column">
                 
-                <h4>Resources</h4>
+                <h4>Recursos</h4>
                 <ul>
-                    <li><a href="/docs/">Documentation</a></li>
-                    <li><a href="https://console.hola.cloud/">Customer console</a></li>
-                    <li><a href="mailto:contact@hola.cloud">Support center</a></li>
+                    <li><a href="/docs/">Documentación</a></li>
+                    <li><a href="https://console.hola.cloud/">Consola de clientes</a></li>
+                    <li><a href="mailto:contact@hola.cloud">Centro de soporte</a></li>
                 </ul>
                 
             </div>
             <div class="footer-column">
                 
-                <h4>Contact</h4>
+                <h4>Contacto</h4>
                 <ul>
                     <li><a href="mailto:contact@hola.cloud">contact@hola.cloud</a></li>
                     <li><a href="tel:+34910000000">+34 910 000 000</a></li>
@@ -137,7 +225,7 @@
         <span>© 2025 hola.cloud</span>
         <span class="footer-meta-divider" aria-hidden="true">•</span>
         
-        <span>All rights reserved.</span>
+        <span>Todos los derechos reservados.</span>
         
     </div>
 </div>

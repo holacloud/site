@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <title>Lambda</title>
+    <title>Lambda System</title>
     <meta name="description" content="inceptiondb">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="/css/style.css" rel="stylesheet">
@@ -39,7 +39,7 @@
                 </div>
             </div>
             
-            <a class="link" href="/es/docs/index.html">Documentación</a>
+            <a class="link" href="/es/docs/index.html">Documentación de HolaCloud</a>
             
             <a class="link button-console" href="https://console.hola.cloud/">Console</a>
         </div>
@@ -61,7 +61,7 @@
 <div class="item"><a href="/es/docs/inceptiondb/v2/manejando-colecciones/index.html">Manejando colecciones</a></div>
 <div class="item"><a href="/es/docs/inceptiondb/v2/trabajando-con-datos/index.html">Trabajando con datos</a></div>
 </div>
-<div class="item active selected"><a href="/es/docs/lambda/index.html">Lambda</a></div>
+<div class="item active selected"><a href="/es/docs/lambda/index.html">Lambda System</a></div>
 <div class="children">
 <div class="item"><a href="/es/docs/lambda/v2/primeros-pasos/index.html">Primeros pasos</a></div>
 </div>
@@ -73,23 +73,112 @@
 <div class="children">
 <div class="item"><a href="/es/docs/config/v2/primeros-pasos/index.html">Primeros pasos</a></div>
 </div>
-<div class="item"><a href="/es/docs/logs/index.html">InstantLogs</a></div>
+<div class="item"><a href="/es/docs/instantlogs/index.html">InstantLogs</a></div>
 <div class="children">
-<div class="item"><a href="/es/docs/logs/v2/primeros-pasos/index.html">Primeros pasos</a></div>
+<div class="item"><a href="/es/docs/instantlogs/v2/primeros-pasos/index.html">Primeros pasos</a></div>
 </div>
-<div class="item"><a href="/es/docs/logs/index.html">Tailon</a></div>
+<div class="item"><a href="/es/docs/tailon/index.html">Tailon</a></div>
 <div class="children">
-<div class="item"><a href="/es/docs/logs/v2/primeros-pasos/index.html">Primeros pasos</a></div>
+<div class="item"><a href="/es/docs/tailon/v2/primeros-pasos/index.html">Primeros pasos</a></div>
 </div>
 
 
 
 </div>
 <div class="content">
-    <div class="breadcrumb"><a class="item" href="/es/docs/index.html">Documentación</a><span class="arrow">→</span><a class="item selected" href="/es/docs/lambda/index.html">Lambda</a></div>
-    <div class="index"></div>
+    <div class="breadcrumb"><a class="item" href="/es/docs/index.html">Documentación de HolaCloud</a><span class="arrow">→</span><a class="item selected" href="/es/docs/lambda/index.html">Lambda System</a></div>
+    <div class="index"><div class="index-h2">
+<a href="#Descripci%C3%B3n%20y%20casos%20de%20uso">Descripción y casos de uso</a>
+</div>
+<div class="index-h2">
+<a href="#Inicio%20r%C3%A1pido">Inicio rápido</a>
+</div>
+<div class="index-h2">
+<a href="#Conceptos%20y%20arquitectura">Conceptos y arquitectura</a>
+</div>
+<div class="index-h2">
+<a href="#Gu%C3%ADas%20paso%20a%20paso">Guías paso a paso</a>
+</div>
+<div class="index-h2">
+<a href="#Operaciones%20y%20observabilidad">Operaciones y observabilidad</a>
+</div>
+<div class="index-h2">
+<a href="#Seguridad%20y%20cumplimiento">Seguridad y cumplimiento</a>
+</div>
+<div class="index-h2">
+<a href="#Referencia%20r%C3%A1pida">Referencia rápida</a>
+</div>
+<div class="index-h2">
+<a href="#Resoluci%C3%B3n%20de%20problemas">Resolución de problemas</a>
+</div>
+</div>
     <div class="document">
-    <h1>Lambda</h1>
+    <h1>Lambda System</h1>
+<p>Ejecución de funciones sin servidores con escalado automático y facturación por consumo.</p>
+<h2 id="Descripci%C3%B3n%20y%20casos%20de%20uso">Descripción y casos de uso</h2>
+<ul>
+<li><strong>Eventos y colas</strong>: procesar mensajes de Tailon o webhooks externos.</li>
+<li><strong>Cron y tareas programadas</strong>: automatizar mantenimientos y pipelines ligeros.</li>
+<li><strong>APIs ligeras</strong>: exponer endpoints rápidos con autenticación integrada.</li>
+</ul>
+<h2 id="Inicio%20r%C3%A1pido">Inicio rápido</h2>
+<ol>
+<li><strong>Prerrequisitos</strong>: <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl</span></span></code></pre></code> instalado, token y runtime soportado (Node.js, Python, Go).</li>
+<li><strong>Crear la primera función</strong>:
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl lambda init hello --runtime node18 --template http
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>holactl lambda deploy hello --source ./hello
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>holactl lambda invoke hello --payload <span style="color:#2aa198">&#39;{&#34;name&#34;:&#34;Mundo&#34;}&#39;</span>
+</span></span></code></pre></code></pre>
+</li>
+<li><strong>Versiones y alias</strong>:
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl lambda publish-version hello --description <span style="color:#2aa198">&#34;Primera release&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>holactl lambda <span style="color:#b58900">alias</span> <span style="color:#b58900">set</span> hello --alias prod --version <span style="color:#2aa198">1</span>
+</span></span></code></pre></code></pre>
+</li>
+<li><strong>Programar con cron</strong>:
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl lambda schedule create nightly-backup --function hello --cron <span style="color:#2aa198">&#34;0 2 * * *&#34;</span>
+</span></span></code></pre></code></pre>
+</li>
+</ol>
+<h2 id="Conceptos%20y%20arquitectura">Conceptos y arquitectura</h2>
+<ul>
+<li><strong>Runtimes administrados</strong> con aislamiento por contenedor y warm pools para arranques rápidos.</li>
+<li><strong>Desencadenadores</strong>: colas Tailon, HTTP, cron y eventos de Files/Config.</li>
+<li><strong>Políticas de ejecución</strong>: permisos mínimos para acceder a otros servicios; cada alias hereda políticas dedicadas.</li>
+<li><strong>Límites base</strong>: 512 MB–4 GB de memoria, tiempo máx 15 min, payload síncrono 6 MB.</li>
+</ul>
+<h2 id="Gu%C3%ADas%20paso%20a%20paso">Guías paso a paso</h2>
+<ul>
+<li><strong>Variables seguras</strong>: almacena secretos en Config y márcalos como <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>--secret</span></span></code></pre></code> al vincular a la función.</li>
+<li><strong>Orquestación</strong>: usa colas y estados en InceptionDB para flujos de larga duración.</li>
+<li><strong>Testing y empaquetado</strong>: incluye dependencias locales, ejecuta <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl lambda test --local</span></span></code></pre></code> y valida tiempos de arranque.</li>
+<li><strong>Despliegues azules/verdes</strong>: crea alias <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>blue</span></span></code></pre></code> y <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>green</span></span></code></pre></code> y mueve el peso de tráfico con <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl lambda alias shift</span></span></code></pre></code>.</li>
+</ul>
+<h2 id="Operaciones%20y%20observabilidad">Operaciones y observabilidad</h2>
+<ul>
+<li><strong>Métricas clave</strong>: invocaciones, duración p95, cold starts, errores, reintentos y DLQ.</li>
+<li><strong>Alertas base</strong>: tasa de errores &gt; 1%, cold starts sostenidos, saturación de concurrencia.</li>
+<li><strong>Runbooks</strong>: incrementar concurrencia reservada, limpiar versiones antiguas, reprocesar mensajes desde DLQ.</li>
+</ul>
+<h2 id="Seguridad%20y%20cumplimiento">Seguridad y cumplimiento</h2>
+<ul>
+<li>Ejecución en entornos aislados con políticas mínimas necesarias.</li>
+<li>Soporte de firmas para webhooks y validez de tokens de identidad.</li>
+<li>Auditoría de despliegues y cambios de alias/versiones.</li>
+</ul>
+<h2 id="Referencia%20r%C3%A1pida">Referencia rápida</h2>
+<ul>
+<li><strong>CLI</strong>: <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl lambda &lt;action&gt;</span></span></code></pre></code> (deploy, invoke, publish-version, alias, schedule, logs).</li>
+<li><strong>Errores comunes</strong>: <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>TIMEOUT</span></span></code></pre></code> (aumenta tiempo o optimiza), <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>UNAUTHORIZED</span></span></code></pre></code> (revisa políticas de ejecución), <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>PAYLOAD_TOO_LARGE</span></span></code></pre></code>.</li>
+<li><strong>Límites</strong>: 1.000 funciones por proyecto, 100 versiones activas por función, DLQ retenida 14 días por defecto.</li>
+</ul>
+<h2 id="Resoluci%C3%B3n%20de%20problemas">Resolución de problemas</h2>
+<ul>
+<li><strong>Tiempos altos de arranque</strong>: usa runtimes con warm pool y revisa tamaño del paquete.</li>
+<li><strong>Mensajes en DLQ</strong>: inspecciona evento, corrige código y reprocesa con <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl lambda dlq replay</span></span></code></pre></code>.</li>
+<li><strong>Erros intermitentes 5xx</strong>: activa reintentos exponenciales y revisa dependencias externas.</li>
+</ul>
+
     </div>
 </div>
 <div class="footer">
@@ -97,33 +186,33 @@
         <div class="footer-brand">
             <div class="footer-logo">hola.cloud</div>
             
-            <p>Enterprise cloud software built for regulated and high-growth teams.</p>
+            <p>Software cloud empresarial para equipos regulados y de alto crecimiento.</p>
             
         </div>
         <div class="footer-columns">
             <div class="footer-column">
                 
-                <h4>Solutions</h4>
+                <h4>Soluciones</h4>
                 <ul>
-                    <li><a href="#start-now">Platform overview</a></li>
-                    <li><a href="#solutions">Industry solutions</a></li>
-                    <li><a href="#partnership">Partnership model</a></li>
+                    <li><a href="#start-now">Visión de la plataforma</a></li>
+                    <li><a href="#solutions">Soluciones por industria</a></li>
+                    <li><a href="#partnership">Modelo de acompañamiento</a></li>
                 </ul>
                 
             </div>
             <div class="footer-column">
                 
-                <h4>Resources</h4>
+                <h4>Recursos</h4>
                 <ul>
-                    <li><a href="/docs/">Documentation</a></li>
-                    <li><a href="https://console.hola.cloud/">Customer console</a></li>
-                    <li><a href="mailto:contact@hola.cloud">Support center</a></li>
+                    <li><a href="/docs/">Documentación</a></li>
+                    <li><a href="https://console.hola.cloud/">Consola de clientes</a></li>
+                    <li><a href="mailto:contact@hola.cloud">Centro de soporte</a></li>
                 </ul>
                 
             </div>
             <div class="footer-column">
                 
-                <h4>Contact</h4>
+                <h4>Contacto</h4>
                 <ul>
                     <li><a href="mailto:contact@hola.cloud">contact@hola.cloud</a></li>
                     <li><a href="tel:+34910000000">+34 910 000 000</a></li>
@@ -137,7 +226,7 @@
         <span>© 2025 hola.cloud</span>
         <span class="footer-meta-divider" aria-hidden="true">•</span>
         
-        <span>All rights reserved.</span>
+        <span>Todos los derechos reservados.</span>
         
     </div>
 </div>
