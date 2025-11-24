@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <title>Files</title>
     <meta name="description" content="inceptiondb">
@@ -39,7 +39,7 @@
                 </div>
             </div>
             
-            <a class="link" href="/es/docs/index.html">Documentación</a>
+            <a class="link" href="/es/docs/index.html">Documentación de HolaCloud</a>
             
             <a class="link button-console" href="https://console.hola.cloud/">Console</a>
         </div>
@@ -61,7 +61,7 @@
 <div class="item"><a href="/es/docs/inceptiondb/v2/manejando-colecciones/index.html">Manejando colecciones</a></div>
 <div class="item"><a href="/es/docs/inceptiondb/v2/trabajando-con-datos/index.html">Trabajando con datos</a></div>
 </div>
-<div class="item"><a href="/es/docs/lambda/index.html">Lambda</a></div>
+<div class="item"><a href="/es/docs/lambda/index.html">Lambda System</a></div>
 <div class="children">
 <div class="item"><a href="/es/docs/lambda/v2/primeros-pasos/index.html">Primeros pasos</a></div>
 </div>
@@ -73,23 +73,112 @@
 <div class="children">
 <div class="item"><a href="/es/docs/config/v2/primeros-pasos/index.html">Primeros pasos</a></div>
 </div>
-<div class="item"><a href="/es/docs/logs/index.html">InstantLogs</a></div>
+<div class="item"><a href="/es/docs/instantlogs/index.html">InstantLogs</a></div>
 <div class="children">
-<div class="item"><a href="/es/docs/logs/v2/primeros-pasos/index.html">Primeros pasos</a></div>
+<div class="item"><a href="/es/docs/instantlogs/v2/primeros-pasos/index.html">Primeros pasos</a></div>
 </div>
-<div class="item"><a href="/es/docs/logs/index.html">Tailon</a></div>
+<div class="item"><a href="/es/docs/tailon/index.html">Tailon</a></div>
 <div class="children">
-<div class="item"><a href="/es/docs/logs/v2/primeros-pasos/index.html">Primeros pasos</a></div>
+<div class="item"><a href="/es/docs/tailon/v2/primeros-pasos/index.html">Primeros pasos</a></div>
 </div>
 
 
 
 </div>
 <div class="content">
-    <div class="breadcrumb"><a class="item" href="/es/docs/index.html">Documentación</a><span class="arrow">→</span><a class="item selected" href="/es/docs/files/index.html">Files</a></div>
-    <div class="index"></div>
+    <div class="breadcrumb"><a class="item" href="/es/docs/index.html">Documentación de HolaCloud</a><span class="arrow">→</span><a class="item selected" href="/es/docs/files/index.html">Files</a></div>
+    <div class="index"><div class="index-h2">
+<a href="#Descripci%C3%B3n%20y%20casos%20de%20uso">Descripción y casos de uso</a>
+</div>
+<div class="index-h2">
+<a href="#Inicio%20r%C3%A1pido">Inicio rápido</a>
+</div>
+<div class="index-h2">
+<a href="#Conceptos%20y%20arquitectura">Conceptos y arquitectura</a>
+</div>
+<div class="index-h2">
+<a href="#Gu%C3%ADas%20paso%20a%20paso">Guías paso a paso</a>
+</div>
+<div class="index-h2">
+<a href="#Operaciones%20y%20observabilidad">Operaciones y observabilidad</a>
+</div>
+<div class="index-h2">
+<a href="#Seguridad%20y%20cumplimiento">Seguridad y cumplimiento</a>
+</div>
+<div class="index-h2">
+<a href="#Referencia%20r%C3%A1pida">Referencia rápida</a>
+</div>
+<div class="index-h2">
+<a href="#Resoluci%C3%B3n%20de%20problemas">Resolución de problemas</a>
+</div>
+</div>
     <div class="document">
     <h1>Files</h1>
+<p>Almacenamiento de objetos seguro con control de acceso y URLs firmadas.</p>
+<h2 id="Descripci%C3%B3n%20y%20casos%20de%20uso">Descripción y casos de uso</h2>
+<ul>
+<li><strong>Media estática</strong>: imágenes, videos y assets web con CDN opcional.</li>
+<li><strong>Backups y archivos empresariales</strong>: retención configurable y versiones.</li>
+<li><strong>Integración por eventos</strong>: dispara Lambdas o colas Tailon en cambios de objetos.</li>
+</ul>
+<h2 id="Inicio%20r%C3%A1pido">Inicio rápido</h2>
+<ol>
+<li><strong>Prerrequisitos</strong>: <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl</span></span></code></pre></code> instalado y token de proyecto.</li>
+<li><strong>Crear bucket y cargar contenido</strong>:
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl files bucket create assets --region us-east
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>holactl files object put assets hero.png --file ./img/hero.png --acl private
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>holactl files object get assets hero.png --out /tmp/hero.png
+</span></span></code></pre></code></pre>
+</li>
+<li><strong>Generar URL firmada</strong>:
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl files url sign assets hero.png --expires 15m
+</span></span></code></pre></code></pre>
+</li>
+<li><strong>Habilitar versionado y ciclo de vida</strong>:
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl files bucket versioning assets --enable
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>holactl files bucket lifecycle apply assets --file policies/lifecycle.yml
+</span></span></code></pre></code></pre>
+</li>
+</ol>
+<h2 id="Conceptos%20y%20arquitectura">Conceptos y arquitectura</h2>
+<ul>
+<li><strong>Buckets</strong> por región con almacenamiento replicado y clases de costo (estándar, archive).</li>
+<li><strong>Controles de acceso</strong>: ACL por objeto, políticas por bucket y etiquetas para gobernanza.</li>
+<li><strong>Eventos</strong>: notificaciones hacia Lambda/Tailon/InstantLogs por operaciones <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>put</span></span></code></pre></code>, <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>delete</span></span></code></pre></code> o expiración.</li>
+<li><strong>Límites</strong>: tamaño de objeto recomendado &lt; 5 GB para subidas únicas; usa multipart para mayores.</li>
+</ul>
+<h2 id="Gu%C3%ADas%20paso%20a%20paso">Guías paso a paso</h2>
+<ul>
+<li><strong>Versionado y restauración</strong>: activa versionado y recupera con <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl files object restore --version-id</span></span></code></pre></code>.</li>
+<li><strong>Ciclo de vida</strong>: mueve a clase <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>archive</span></span></code></pre></code> tras N días y elimina versiones huérfanas.</li>
+<li><strong>Replicación</strong>: configura reglas cross-region con filtros por prefijo o etiqueta.</li>
+<li><strong>Costos</strong>: habilita reportes por bucket y clase de almacenamiento; usa <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>--storage-class archive</span></span></code></pre></code> para datos fríos.</li>
+</ul>
+<h2 id="Operaciones%20y%20observabilidad">Operaciones y observabilidad</h2>
+<ul>
+<li><strong>Métricas clave</strong>: solicitudes por tipo, bytes transferidos, tasa de aciertos de caché, eventos fallidos.</li>
+<li><strong>Alertas base</strong>: errores 5xx, latencia p95 alta, fallos en replicación, expiración de URLs firmadas.</li>
+<li><strong>Runbooks</strong>: reintentar replicaciones, rotar claves de firma, limpiar objetos expirados.</li>
+</ul>
+<h2 id="Seguridad%20y%20cumplimiento">Seguridad y cumplimiento</h2>
+<ul>
+<li>Cifrado en reposo y en tránsito habilitado por defecto.</li>
+<li>Políticas de bucket con condiciones por IP, usuario y etiquetas; soporte de bloqueo WORM opcional.</li>
+<li>Auditoría para todas las operaciones de escritura/lectura sensibles.</li>
+</ul>
+<h2 id="Referencia%20r%C3%A1pida">Referencia rápida</h2>
+<ul>
+<li><strong>CLI</strong>: <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl files bucket|object|url &lt;action&gt;</span></span></code></pre></code>.</li>
+<li><strong>Errores comunes</strong>: <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>ACCESS_DENIED</span></span></code></pre></code> (revisa políticas), <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>EXPIRED_URL</span></span></code></pre></code>, <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>OBJECT_TOO_LARGE</span></span></code></pre></code> (usa multipart).</li>
+<li><strong>Límites</strong>: 1.000 buckets por proyecto, URLs firmadas con expiración máx de 7 días, 5.000 reglas de ciclo de vida.</li>
+</ul>
+<h2 id="Resoluci%C3%B3n%20de%20problemas">Resolución de problemas</h2>
+<ul>
+<li><strong>Replicación atrasada</strong>: valida conectividad y revisa <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl files replication status</span></span></code></pre></code>.</li>
+<li><strong>Accesos no autorizados</strong>: audita políticas y rota claves de firma.</li>
+<li><strong>Subidas lentas</strong>: cambia a multipart, acerca al cliente a la región y habilita aceleración.</li>
+</ul>
+
     </div>
 </div>
 <div class="footer">
@@ -97,33 +186,33 @@
         <div class="footer-brand">
             <div class="footer-logo">hola.cloud</div>
             
-            <p>Enterprise cloud software built for regulated and high-growth teams.</p>
+            <p>Software cloud empresarial para equipos regulados y de alto crecimiento.</p>
             
         </div>
         <div class="footer-columns">
             <div class="footer-column">
                 
-                <h4>Solutions</h4>
+                <h4>Soluciones</h4>
                 <ul>
-                    <li><a href="#start-now">Platform overview</a></li>
-                    <li><a href="#solutions">Industry solutions</a></li>
-                    <li><a href="#partnership">Partnership model</a></li>
+                    <li><a href="#start-now">Visión de la plataforma</a></li>
+                    <li><a href="#solutions">Soluciones por industria</a></li>
+                    <li><a href="#partnership">Modelo de acompañamiento</a></li>
                 </ul>
                 
             </div>
             <div class="footer-column">
                 
-                <h4>Resources</h4>
+                <h4>Recursos</h4>
                 <ul>
-                    <li><a href="/docs/">Documentation</a></li>
-                    <li><a href="https://console.hola.cloud/">Customer console</a></li>
-                    <li><a href="mailto:contact@hola.cloud">Support center</a></li>
+                    <li><a href="/docs/">Documentación</a></li>
+                    <li><a href="https://console.hola.cloud/">Consola de clientes</a></li>
+                    <li><a href="mailto:contact@hola.cloud">Centro de soporte</a></li>
                 </ul>
                 
             </div>
             <div class="footer-column">
                 
-                <h4>Contact</h4>
+                <h4>Contacto</h4>
                 <ul>
                     <li><a href="mailto:contact@hola.cloud">contact@hola.cloud</a></li>
                     <li><a href="tel:+34910000000">+34 910 000 000</a></li>
@@ -137,7 +226,7 @@
         <span>© 2025 hola.cloud</span>
         <span class="footer-meta-divider" aria-hidden="true">•</span>
         
-        <span>All rights reserved.</span>
+        <span>Todos los derechos reservados.</span>
         
     </div>
 </div>

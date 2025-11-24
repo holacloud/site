@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>InstantLogs</title>
+    <meta name="description" content="inceptiondb">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/blue.css" rel="stylesheet">
+    <script defer src="https://umami.hola.cloud/script.js" data-website-id="cbcb870c-e9a8-460a-8b38-ab2fa77a4cc2"></script>
+</head>
+<body url="instantlogs">
+
+<div class="top-frame">
+    <div class="top">
+        <a href="/" class="logo"></a>
+        <div class="main-menu">
+            <div class="dropdown">
+                <button class="link dropdown-toggle" type="button">
+                    Products
+                    <span class="dropdown-icon" aria-hidden="true">▾</span>
+                </button>
+                <div class="dropdown-menu" role="menu">
+                    <a class="dropdown-item" href="https://flowtest.io" target="_blank" rel="noopener">
+                        <span class="item-title">Flowtest.io</span>
+                        <span class="item-description">Automated load testing from the hola.cloud ecosystem.</span>
+                    </a>
+                    <a class="dropdown-item" href="https://inceptiondb.hola.cloud" target="_blank" rel="noopener">
+                        <span class="item-title">InceptioDB</span>
+                        <span class="item-description">Fully managed database service within the hola.cloud ecosystem.</span>
+                    </a>
+                    <a class="dropdown-item" href="https://console.hola.cloud" target="_blank" rel="noopener">
+                        <span class="item-title">Public Cloud</span>
+                        <span class="item-description">Deploy and manage your workloads on the hola.cloud public platform.</span>
+                    </a>
+                    <a class="dropdown-item" href="https://gopress.org" target="_blank" rel="noopener">
+                        <span class="item-title">GoPress <span class="item-tag">Open Source</span></span>
+                        <span class="item-description">Open-source CMS built for the hola.cloud ecosystem.</span>
+                    </a>
+                </div>
+            </div>
+            
+            <a class="link" href="/zh/docs/index.html">文档</a>
+            
+            <a class="link button-console" href="https://console.hola.cloud/">Console</a>
+        </div>
+        <div class="right">
+            <a id="login-button" class="button button-noborder" href="https://console.hola.cloud/">Log In</a>
+            <a class="button button-action" href="https://console.hola.cloud/">Start now</a>
+        </div>
+    </div>
+</div>
+<div class="languages-frame">
+    <div class="languages"><a class="" href="/docs/instantlogs/index.html">en</a><a class="" href="/es/docs/instantlogs/index.html">es</a><a class="selected" href="/zh/docs/instantlogs/index.html">zh</a></div>
+</div>
+<div class="tree">
+
+
+    <div class="item"><a href="/zh/docs/inceptiondb/index.html">InceptionDB</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/inceptiondb/v2/getting-started/index.html">InceptionDB快速入门指南</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/managing-collections/index.html">管理集合</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/working-with-data/index.html">处理数据</a></div>
+</div>
+<div class="item"><a href="/zh/docs/lambda/index.html">Lambda</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/lambda/v2/getting-started/index.html">Getting started</a></div>
+</div>
+<div class="item"><a href="/zh/docs/files/index.html">Files</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/files/index/getting-started/index.html">Getting started</a></div>
+</div>
+<div class="item"><a href="/zh/docs/config/index.html">Config</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/config/index/getting-started/index.html">Getting started</a></div>
+</div>
+<div class="item active selected"><a href="/zh/docs/instantlogs/index.html">InstantLogs</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/logs/index/getting-started/index.html">Getting started</a></div>
+</div>
+<div class="item"><a href="/zh/docs/tailon/index.html">Tailon</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/queues/index/getting-started/index.html">Getting started</a></div>
+</div>
+
+
+
+</div>
+<div class="content">
+    <div class="breadcrumb"><a class="item" href="/zh/docs/index.html">文档</a><span class="arrow">→</span><a class="item selected" href="/zh/docs/instantlogs/index.html">InstantLogs</a></div>
+    <div class="index"><div class="index-h2">
+<a href="#Descripci%C3%B3n%20y%20casos%20de%20uso">Descripción y casos de uso</a>
+</div>
+<div class="index-h2">
+<a href="#Inicio%20r%C3%A1pido">Inicio rápido</a>
+</div>
+<div class="index-h2">
+<a href="#Conceptos%20y%20arquitectura">Conceptos y arquitectura</a>
+</div>
+<div class="index-h2">
+<a href="#Gu%C3%ADas%20paso%20a%20paso">Guías paso a paso</a>
+</div>
+<div class="index-h2">
+<a href="#Operaciones%20y%20observabilidad">Operaciones y observabilidad</a>
+</div>
+<div class="index-h2">
+<a href="#Seguridad%20y%20cumplimiento">Seguridad y cumplimiento</a>
+</div>
+<div class="index-h2">
+<a href="#Referencia%20r%C3%A1pida">Referencia rápida</a>
+</div>
+<div class="index-h2">
+<a href="#Resoluci%C3%B3n%20de%20problemas">Resolución de problemas</a>
+</div>
+</div>
+    <div class="document">
+    <h1>InstantLogs</h1>
+<p>Plataforma de logs en tiempo real para ingestión, consulta y alertas basadas en eventos.</p>
+<h2 id="Descripci%C3%B3n%20y%20casos%20de%20uso">Descripción y casos de uso</h2>
+<ul>
+<li><strong>Observabilidad centralizada</strong> para aplicaciones y funciones Lambda.</li>
+<li><strong>Auditoría</strong> de cambios y accesos en servicios críticos.</li>
+<li><strong>Análisis en streaming</strong>: detección de anomalías y respuestas automatizadas.</li>
+</ul>
+<h2 id="Inicio%20r%C3%A1pido">Inicio rápido</h2>
+<ol>
+<li><strong>Prerrequisitos</strong>: <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl</span></span></code></pre></code> instalado y token de proyecto.</li>
+<li><strong>Enviar los primeros logs</strong>:
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl logs stream create app-demo --retention 7d
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>holactl logs send app-demo --file logs/sample.log --format json
+</span></span></code></pre></code></pre>
+</li>
+<li><strong>Consultar en tiempo real</strong>:
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl logs query app-demo --expr <span style="color:#2aa198">&#39;status &gt;= 500&#39;</span> --tail
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>holactl logs <span style="color:#b58900">export</span> app-demo --expr <span style="color:#2aa198">&#39;service=&#34;checkout&#34;&#39;</span> --out errors.ndjson
+</span></span></code></pre></code></pre>
+</li>
+<li><strong>Crear alerta</strong>:
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl logs alert create checkout-5xx --stream app-demo --expr <span style="color:#2aa198">&#39;status &gt;= 500&#39;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>  --threshold <span style="color:#2aa198">10</span> --window 5m --action tailon:dlq
+</span></span></code></pre></code></pre>
+</li>
+</ol>
+<h2 id="Conceptos%20y%20arquitectura">Conceptos y arquitectura</h2>
+<ul>
+<li><strong>Streams</strong> con retención configurable y almacenamiento indexado para filtros rápidos.</li>
+<li><strong>Esquema flexible</strong>: acepta JSON o texto con parseo por plantillas y extracción automática de campos comunes.</li>
+<li><strong>Enrutamiento</strong>: exportación hacia buckets de Files, colas Tailon o webhooks.</li>
+<li><strong>Límites</strong>: tasa recomendada inicial de 5k eventos/s por stream; aumenta bajo petición.</li>
+</ul>
+<h2 id="Gu%C3%ADas%20paso%20a%20paso">Guías paso a paso</h2>
+<ul>
+<li><strong>Filtrado avanzado</strong>: usa expresiones con campos estructurados (<code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>status</span></span></code></pre></code>, <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>latency_ms</span></span></code></pre></code>, <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>trace_id</span></span></code></pre></code>).</li>
+<li><strong>Exportación y archivado</strong>: programa exportaciones diarias a Files en clase <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>archive</span></span></code></pre></code>.</li>
+<li><strong>Alertas basadas en eventos</strong>: combina condiciones y acciones (Tailon DLQ, webhooks, Lambda).</li>
+<li><strong>Retención y costos</strong>: ajusta retención por stream y habilita compresión en exportaciones.</li>
+</ul>
+<h2 id="Operaciones%20y%20observabilidad">Operaciones y observabilidad</h2>
+<ul>
+<li><strong>Métricas clave</strong>: tasa de ingestión, latencia de indexación, errores de parseo, tamaño de retención.</li>
+<li><strong>Alertas base</strong>: ingestión rechazada, backlog de indexación, fallos en acciones de alerta.</li>
+<li><strong>Runbooks</strong>: aumentar particiones de ingestión, depurar plantillas de parseo, reenviar lotes fallidos.</li>
+</ul>
+<h2 id="Seguridad%20y%20cumplimiento">Seguridad y cumplimiento</h2>
+<ul>
+<li>Cifrado de datos en tránsito y reposo, con controles de acceso por stream.</li>
+<li>Redacción de campos sensibles con políticas de máscara.</li>
+<li>Auditoría completa de consultas y cambios de configuración.</li>
+</ul>
+<h2 id="Referencia%20r%C3%A1pida">Referencia rápida</h2>
+<ul>
+<li><strong>CLI</strong>: <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl logs stream|query|alert|export &lt;action&gt;</span></span></code></pre></code>.</li>
+<li><strong>Errores comunes</strong>: <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>RATE_LIMITED</span></span></code></pre></code> (reduce volumen o solicita capacidad), <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>INVALID_EXPRESSION</span></span></code></pre></code>, <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>ACTION_FAILED</span></span></code></pre></code>.</li>
+<li><strong>Límites</strong>: 500 streams por proyecto, retención máxima 365 días, tamaño de evento recomendado &lt; 256 KB.</li>
+</ul>
+<h2 id="Resoluci%C3%B3n%20de%20problemas">Resolución de problemas</h2>
+<ul>
+<li><strong>Eventos descartados</strong>: revisa <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>holactl logs dlq inspect</span></span></code></pre></code> y corrige el formato.</li>
+<li><strong>Consultas lentas</strong>: agrega índices en campos frecuentes y reduce ventanas de tiempo.</li>
+<li><strong>Alertas ruidosas</strong>: aplica umbrales por frecuencia y añade condiciones adicionales.</li>
+</ul>
+
+    </div>
+</div>
+<div class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <div class="footer-logo">hola.cloud</div>
+            
+            <p>Software cloud empresarial para equipos regulados y de alto crecimiento.</p>
+            
+        </div>
+        <div class="footer-columns">
+            <div class="footer-column">
+                
+                <h4>Soluciones</h4>
+                <ul>
+                    <li><a href="#start-now">Visión de la plataforma</a></li>
+                    <li><a href="#solutions">Soluciones por industria</a></li>
+                    <li><a href="#partnership">Modelo de acompañamiento</a></li>
+                </ul>
+                
+            </div>
+            <div class="footer-column">
+                
+                <h4>Recursos</h4>
+                <ul>
+                    <li><a href="/docs/">Documentación</a></li>
+                    <li><a href="https://console.hola.cloud/">Consola de clientes</a></li>
+                    <li><a href="mailto:contact@hola.cloud">Centro de soporte</a></li>
+                </ul>
+                
+            </div>
+            <div class="footer-column">
+                
+                <h4>Contacto</h4>
+                <ul>
+                    <li><a href="mailto:contact@hola.cloud">contact@hola.cloud</a></li>
+                    <li><a href="tel:+34910000000">+34 910 000 000</a></li>
+                    <li><a href="https://www.linkedin.com/company/hola-cloud" target="_blank" rel="noopener">LinkedIn</a></li>
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+    <div class="footer-meta">
+        <span>© 2025 hola.cloud</span>
+        <span class="footer-meta-divider" aria-hidden="true">•</span>
+        
+        <span>Todos los derechos reservados.</span>
+        
+    </div>
+</div>
+<script>
+
+    
+    function isElementInViewport (el) {
+
+        
+        
+        
+        
+
+        var rect     = el.getBoundingClientRect(),
+            vWidth   = window.innerWidth || doc.documentElement.clientWidth,
+            vHeight  = window.innerHeight || doc.documentElement.clientHeight,
+            efp      = function (x, y) { return document.elementFromPoint(x, y) };
+
+        
+        if (rect.right < 0 || rect.bottom < 0
+            || rect.left > vWidth || rect.top > vHeight)
+            return false;
+
+        
+        return (
+            el.contains(efp(rect.left,  rect.top))
+            ||  el.contains(efp(rect.right, rect.top))
+            ||  el.contains(efp(rect.right, rect.bottom))
+            ||  el.contains(efp(rect.left,  rect.bottom))
+        );
+    }
+
+    function highlightIndex() {
+        let v = false;
+        document.querySelectorAll('.index a').forEach(a => {
+            const el = document.getElementById(a.getAttribute('href').slice(1));
+
+            if (!v && isElementInViewport(el)) {
+                a.classList.add('active');
+                v = true;
+            } else {
+                a.classList.remove('active');
+            }
+        });
+    }
+
+    document.addEventListener('scroll', highlightIndex, true);
+    document.addEventListener('load', highlightIndex, true);
+</script>
+</body>
+</html>
