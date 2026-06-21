@@ -20,6 +20,7 @@ type Config struct {
 	Addr              string `usage:"address to listen on"`
 	EnableCompression bool   `json:"enable_compression"`
 	Statics           string `usage:"Define statics folder, if empty embedded files will be used"`
+	CommentsDir       string `usage:"Directory to store comments data"`
 
 	ShowBanner bool `usage:"Print banner"`
 	ShowConfig bool `usage:"Print configuration and exit"`
@@ -33,6 +34,7 @@ func main() {
 		Addr:              ":8080",
 		EnableCompression: true,
 		ShowBanner:        true,
+		CommentsDir:       "./data/comments",
 	}
 
 	// Load config
@@ -55,7 +57,7 @@ func main() {
 	}
 
 	// Build api and server
-	h := api.Build(c.Statics, VERSION)
+	h := api.BuildWithComments(c.Statics, VERSION, c.CommentsDir)
 
 	if c.EnableCompression {
 		fmt.Println("Compression enabled")

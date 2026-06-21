@@ -7,6 +7,7 @@ require (
 	github.com/fulldump/goconfig v1.6.1
 	github.com/fulldump/gootstrap v0.0.1
 	github.com/fulldump/holadoc v0.0.3
+	github.com/holacloud/store v0.3.0
 )
 
 require (

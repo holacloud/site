@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Ciclo de Vida de las Tareas</title>
+    <meta name="description" content="inceptiondb">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/blue.css" rel="stylesheet">
+    <script defer src="https://umami.hola.cloud/script.js" data-website-id="cbcb870c-e9a8-460a-8b38-ab2fa77a4cc2"></script>
+</head>
+<body url="ciclo-de-vida-tareas">
+
+<div class="top-frame">
+    <div class="top">
+        <a href="/" class="logo"></a>
+        <div class="main-menu">
+            <div class="dropdown">
+                <button class="link dropdown-toggle" type="button">
+                    Products
+                    <span class="dropdown-icon" aria-hidden="true">▾</span>
+                </button>
+                <div class="dropdown-menu" role="menu">
+                    <a class="dropdown-item" href="https://flowtest.io" target="_blank" rel="noopener">
+                        <span class="item-title">Flowtest.io</span>
+                        <span class="item-description">Automated load testing from the hola.cloud ecosystem.</span>
+                    </a>
+                    <a class="dropdown-item" href="https://inceptiondb.hola.cloud" target="_blank" rel="noopener">
+                        <span class="item-title">InceptioDB</span>
+                        <span class="item-description">Fully managed database service within the hola.cloud ecosystem.</span>
+                    </a>
+                    <a class="dropdown-item" href="https://console.hola.cloud" target="_blank" rel="noopener">
+                        <span class="item-title">Public Cloud</span>
+                        <span class="item-description">Deploy and manage your workloads on the hola.cloud public platform.</span>
+                    </a>
+                    <a class="dropdown-item" href="https://gopress.org" target="_blank" rel="noopener">
+                        <span class="item-title">GoPress <span class="item-tag">Open Source</span></span>
+                        <span class="item-description">Open-source CMS built for the hola.cloud ecosystem.</span>
+                    </a>
+                </div>
+            </div>
+            
+            <a class="link" href="/es/docs/index.html">Documentación</a>
+            
+            <a class="link button-console" href="https://console.hola.cloud/">Console</a>
+        </div>
+        <div class="right">
+            <a id="login-button" class="button button-noborder" href="https://console.hola.cloud/">Log In</a>
+            <a class="button button-action" href="https://console.hola.cloud/">Start now</a>
+        </div>
+    </div>
+</div>
+<div class="languages-frame">
+    <div class="languages"><a class="" href="/docs/scheduler/v1/task-lifecycle/index.html">en</a><a class="selected" href="/es/docs/scheduler/v1/ciclo-de-vida-tareas/index.html">es</a><a class="" href="/zh/docs/scheduler/v1/task-lifecycle/index.html">zh</a></div>
+</div>
+<div class="tree">
+<div class="versions"><a class="selected" href="/es/docs/scheduler/v1/ciclo-de-vida-tareas/index.html">v1</a><a class="" href="/es/docs/scheduler/v2/ciclo-de-vida-tareas/index.html">v2</a></div>
+
+    <div class="item"><a href="/es/docs/inceptiondb/index.html">InceptionDB</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/inceptiondb/v1/primeros-pasos/index.html">Guía de Inicio Rápido con InceptionDB</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v1/manejando-colecciones/index.html">Manejando colecciones</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v1/trabajando-con-datos/index.html">Trabajando con datos</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v1/api-reference/index.html">Referencia de la API de InceptionDB</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v1/create-collection/index.html">POST /v1/databases/{id}/collections</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v1/create-database/index.html">POST /v1/databases</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v1/document-operations/index.html">POST /v1/databases/{id}/collections/{col}</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v1/drop-database/index.html">DELETE /v1/databases/{id}</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v1/get-database/index.html">GET /v1/databases/{id}</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v1/list-collections/index.html">GET /v1/databases/{id}/collections</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v1/list-databases/index.html">GET /v1/databases</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v1/update-database/index.html">PATCH /v1/databases/{id}</a></div>
+</div>
+<div class="item"><a href="/es/docs/lambda/index.html">Lambda</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/lambda/v1/primeros-pasos/index.html">Primeros pasos con Lambda</a></div>
+<div class="item"><a href="/es/docs/lambda/v1/manejando-funciones/index.html">Gestionando Funciones Lambda</a></div>
+<div class="item"><a href="/es/docs/lambda/v1/invocando-funciones/index.html">Invocando Funciones Lambda</a></div>
+<div class="item"><a href="/es/docs/lambda/v1/api-reference/index.html">Referencia de la API de Lambda</a></div>
+<div class="item"><a href="/es/docs/lambda/v1/create-lambda/index.html">POST /api/v0/lambdas</a></div>
+<div class="item"><a href="/es/docs/lambda/v1/delete-lambda/index.html">DELETE /api/v0/lambdas/{id}</a></div>
+<div class="item"><a href="/es/docs/lambda/v1/get-lambda/index.html">GET /api/v0/lambdas/{id}</a></div>
+<div class="item"><a href="/es/docs/lambda/v1/list-lambdas/index.html">GET /api/v0/lambdas</a></div>
+<div class="item"><a href="/es/docs/lambda/v1/modify-lambda/index.html">PATCH /api/v0/lambdas/{id}</a></div>
+<div class="item"><a href="/es/docs/lambda/v1/mux-router/index.html">GET /mux/{owner}/*</a></div>
+<div class="item"><a href="/es/docs/lambda/v1/run-lambda-admin/index.html">POST /api/v0/run/{id}</a></div>
+<div class="item"><a href="/es/docs/lambda/v1/run-lambda-public/index.html">POST /run/{id}</a></div>
+</div>
+<div class="item"><a href="/es/docs/files/index.html">Files</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/files/v1/primeros-pasos/index.html">Primeros pasos con Files</a></div>
+<div class="item"><a href="/es/docs/files/v1/administrando-buckets/index.html">Administrando Buckets</a></div>
+<div class="item"><a href="/es/docs/files/v1/trabajando-con-archivos/index.html">Trabajando con Archivos</a></div>
+<div class="item"><a href="/es/docs/files/v1/api-reference/index.html">Referencia de la API de Files</a></div>
+<div class="item"><a href="/es/docs/files/v1/create-bucket/index.html">POST /v1/buckets</a></div>
+<div class="item"><a href="/es/docs/files/v1/delete-bucket/index.html">DELETE /v1/buckets/{id}</a></div>
+<div class="item"><a href="/es/docs/files/v1/delete-file/index.html">DELETE /v1/buckets/{id}/files/*</a></div>
+<div class="item"><a href="/es/docs/files/v1/download-file/index.html">GET /v1/buckets/{id}/files/*</a></div>
+<div class="item"><a href="/es/docs/files/v1/file-metadata/index.html">HEAD /v1/buckets/{id}/files/*</a></div>
+<div class="item"><a href="/es/docs/files/v1/get-bucket/index.html">GET /v1/buckets/{id}</a></div>
+<div class="item"><a href="/es/docs/files/v1/list-buckets/index.html">GET /v1/buckets</a></div>
+<div class="item"><a href="/es/docs/files/v1/list-files/index.html">GET /v1/buckets/{id}/list/*</a></div>
+<div class="item"><a href="/es/docs/files/v1/modify-bucket/index.html">PATCH /v1/buckets/{id}</a></div>
+<div class="item"><a href="/es/docs/files/v1/upload-file/index.html">PUT /v1/buckets/{id}/files/*</a></div>
+</div>
+<div class="item"><a href="/es/docs/config/index.html">Config</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/config/v1/primeros-pasos/index.html">Primeros pasos con Config</a></div>
+<div class="item"><a href="/es/docs/config/v1/administrando-configs/index.html">Administrando Configuraciones</a></div>
+<div class="item"><a href="/es/docs/config/v1/api-reference/index.html">Referencia de la API de Config</a></div>
+<div class="item"><a href="/es/docs/config/v1/create-config/index.html">POST /v0/configs</a></div>
+<div class="item"><a href="/es/docs/config/v1/delete-config/index.html">DELETE /v0/configs/{id}</a></div>
+<div class="item"><a href="/es/docs/config/v1/get-config/index.html">GET /v0/configs/{id}</a></div>
+<div class="item"><a href="/es/docs/config/v1/get-user-config/index.html">GET /v1/config</a></div>
+<div class="item"><a href="/es/docs/config/v1/list-configs/index.html">GET /v0/configs</a></div>
+<div class="item"><a href="/es/docs/config/v1/patch-config/index.html">PATCH /v0/configs/{id}</a></div>
+<div class="item"><a href="/es/docs/config/v1/update-user-config/index.html">PATCH /v1/config</a></div>
+</div>
+<div class="item"><a href="/es/docs/logs/index.html">InstantLogs</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/logs/v1/primeros-pasos/index.html">Primeros pasos con InstantLogs</a></div>
+<div class="item"><a href="/es/docs/logs/v1/enviando-logs/index.html">Enviando Logs</a></div>
+<div class="item"><a href="/es/docs/logs/v1/streaming-y-filtrado/index.html">Streaming y Filtrado de Logs</a></div>
+<div class="item"><a href="/es/docs/logs/v1/api-reference/index.html">Referencia de la API de InstantLogs</a></div>
+<div class="item"><a href="/es/docs/logs/v1/create-logger/index.html">POST /v1/loggers</a></div>
+<div class="item"><a href="/es/docs/logs/v1/create-logger-apikey/index.html">POST /v1/loggers/{id}/apiKeys</a></div>
+<div class="item"><a href="/es/docs/logs/v1/delete-logger/index.html">DELETE /v1/loggers/{id}</a></div>
+<div class="item"><a href="/es/docs/logs/v1/delete-logger-apikey/index.html">DELETE /v1/loggers/{id}/apiKeys/{key}</a></div>
+<div class="item"><a href="/es/docs/logs/v1/filter-logs/index.html">GET /v1/loggers/{id}/filter</a></div>
+<div class="item"><a href="/es/docs/logs/v1/get-logger/index.html">GET /v1/loggers/{id}</a></div>
+<div class="item"><a href="/es/docs/logs/v1/ingest-framed-events/index.html">POST /v1/ingest/events</a></div>
+<div class="item"><a href="/es/docs/logs/v1/ingest-logs/index.html">POST /v1/loggers/{id}/ingest</a></div>
+<div class="item"><a href="/es/docs/logs/v1/list-loggers/index.html">GET /v1/loggers</a></div>
+<div class="item"><a href="/es/docs/logs/v1/logger-stats/index.html">GET /v1/loggers/{id}/stats</a></div>
+<div class="item"><a href="/es/docs/logs/v1/stream-events/index.html">GET /v1/loggers/{id}/events</a></div>
+</div>
+<div class="item"><a href="/es/docs/queues/index.html">Tailon Colas</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/queues/v1/primeros-pasos/index.html">Primeros pasos con Tailon</a></div>
+<div class="item"><a href="/es/docs/queues/v1/administrando-colas/index.html">Administrando Colas</a></div>
+<div class="item"><a href="/es/docs/queues/v1/produciendo-consumiendo/index.html">Produciendo y Consumiendo Mensajes</a></div>
+<div class="item"><a href="/es/docs/queues/v1/api-reference/index.html">Referencia de la API de Tailon</a></div>
+<div class="item"><a href="/es/docs/queues/v1/create-queue/index.html">POST /v1/queues</a></div>
+<div class="item"><a href="/es/docs/queues/v1/delete-queue/index.html">DELETE /v1/queues/{id}</a></div>
+<div class="item"><a href="/es/docs/queues/v1/get-queue/index.html">GET /v1/queues/{id}</a></div>
+<div class="item"><a href="/es/docs/queues/v1/list-clients/index.html">GET /v1/clients</a></div>
+<div class="item"><a href="/es/docs/queues/v1/list-queues/index.html">GET /v1/queues</a></div>
+<div class="item"><a href="/es/docs/queues/v1/read-messages/index.html">GET /v1/queues/{id}</a></div>
+<div class="item"><a href="/es/docs/queues/v1/write-messages/index.html">POST /v1/queues/{id}</a></div>
+</div>
+<div class="item active"><a href="/es/docs/scheduler/index.html">Scheduler</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/scheduler/v1/primeros-pasos/index.html">Primeros pasos con Scheduler</a></div>
+<div class="item"><a href="/es/docs/scheduler/v1/administrando-schedulers/index.html">Administrando Schedulers</a></div>
+<div class="item active selected"><a href="/es/docs/scheduler/v1/ciclo-de-vida-tareas/index.html">Ciclo de Vida de las Tareas</a></div>
+<div class="item"><a href="/es/docs/scheduler/v1/api-reference/index.html">Referencia de la API de Scheduler</a></div>
+<div class="item"><a href="/es/docs/scheduler/v1/acknowledge-task/index.html">DELETE /schedulers/{id}/tasks/{task}</a></div>
+<div class="item"><a href="/es/docs/scheduler/v1/create-scheduler/index.html">POST /schedulers</a></div>
+<div class="item"><a href="/es/docs/scheduler/v1/delete-scheduler/index.html">DELETE /schedulers/{id}</a></div>
+<div class="item"><a href="/es/docs/scheduler/v1/enqueue-task/index.html">POST /schedulers/{id}/tasks</a></div>
+<div class="item"><a href="/es/docs/scheduler/v1/extend-lease/index.html">POST /schedulers/{id}/tasks/{task}/extend</a></div>
+<div class="item"><a href="/es/docs/scheduler/v1/get-scheduler/index.html">GET /schedulers/{id}</a></div>
+<div class="item"><a href="/es/docs/scheduler/v1/list-schedulers/index.html">GET /schedulers</a></div>
+<div class="item"><a href="/es/docs/scheduler/v1/list-tasks/index.html">GET /schedulers/{id}/tasks</a></div>
+<div class="item"><a href="/es/docs/scheduler/v1/patch-scheduler/index.html">PATCH /schedulers/{id}</a></div>
+<div class="item"><a href="/es/docs/scheduler/v1/reschedule-task/index.html">POST /schedulers/{id}/tasks/{task}/reschedule</a></div>
+<div class="item"><a href="/es/docs/scheduler/v1/reserve-task/index.html">POST /schedulers/{id}/tasks/reserve</a></div>
+<div class="item"><a href="/es/docs/scheduler/v1/scheduler-health/index.html">GET /schedulers/{id}/health</a></div>
+<div class="item"><a href="/es/docs/scheduler/v1/task-stream/index.html">GET /schedulers/{id}/tasks/stream</a></div>
+<div class="item"><a href="/es/docs/scheduler/v1/update-scheduler/index.html">PUT /schedulers/{id}</a></div>
+</div>
+<div class="item"><a href="/es/docs/kvnode/index.html">KVNode</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/kvnode/v1/primeros-pasos/index.html">Primeros pasos con KVNode</a></div>
+<div class="item"><a href="/es/docs/kvnode/v1/colecciones-y-claves/index.html">Colecciones y Claves</a></div>
+<div class="item"><a href="/es/docs/kvnode/v1/replicacion/index.html">Replicación y Alta Disponibilidad</a></div>
+<div class="item"><a href="/es/docs/kvnode/v1/referencia-sdk/index.html">Referencia Rápida de SDK</a></div>
+<div class="item"><a href="/es/docs/kvnode/v1/api-reference/index.html">Referencia de la API de KVNode</a></div>
+<div class="item"><a href="/es/docs/kvnode/v1/create-collection/index.html">POST /v1/collections</a></div>
+<div class="item"><a href="/es/docs/kvnode/v1/delete-collection/index.html">DELETE /v1/collections/{col}</a></div>
+<div class="item"><a href="/es/docs/kvnode/v1/delete-key/index.html">DELETE /v1/collections/{col}/keys/*</a></div>
+<div class="item"><a href="/es/docs/kvnode/v1/get-key/index.html">GET /v1/collections/{col}/keys/*</a></div>
+<div class="item"><a href="/es/docs/kvnode/v1/health-check/index.html">GET /healthz</a></div>
+<div class="item"><a href="/es/docs/kvnode/v1/list-collections/index.html">GET /v1/collections</a></div>
+<div class="item"><a href="/es/docs/kvnode/v1/list-keys/index.html">GET /v1/collections/{col}/keys</a></div>
+<div class="item"><a href="/es/docs/kvnode/v1/node-metrics/index.html">GET /v1/metrics</a></div>
+<div class="item"><a href="/es/docs/kvnode/v1/node-status/index.html">GET /v1/status</a></div>
+<div class="item"><a href="/es/docs/kvnode/v1/readiness-check/index.html">GET /readyz</a></div>
+<div class="item"><a href="/es/docs/kvnode/v1/set-key/index.html">POST /v1/collections/{col}/keys/*</a></div>
+</div>
+<div class="item"><a href="/es/docs/console/index.html">Consola</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/console/v1/primeros-pasos/index.html">Primeros pasos con la Consola</a></div>
+<div class="item"><a href="/es/docs/console/v1/administrando-proyectos/index.html">Administrando Proyectos y Servicios</a></div>
+<div class="item"><a href="/es/docs/console/v1/api-reference/index.html">Referencia de la API de la Consola</a></div>
+<div class="item"><a href="/es/docs/console/v1/fake-api/index.html">GET /fakeapi/*</a></div>
+<div class="item"><a href="/es/docs/console/v1/get-version/index.html">GET /version</a></div>
+</div>
+<div class="item"><a href="/es/docs/glue2/index.html">API Gateway (Glue2)</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/glue2/v1/arquitectura-y-enrutamiento/index.html">Arquitectura y Enrutamiento</a></div>
+<div class="item"><a href="/es/docs/glue2/v1/autenticacion/index.html">Autenticación</a></div>
+<div class="item"><a href="/es/docs/glue2/v1/gestionando-claves-api/index.html">Gestión de Claves API</a></div>
+<div class="item"><a href="/es/docs/glue2/v1/api-reference/index.html">Referencia de la API de Glue2</a></div>
+<div class="item"><a href="/es/docs/glue2/v1/backend-status/index.html">GET /v0/status</a></div>
+<div class="item"><a href="/es/docs/glue2/v1/get-version/index.html">GET /version</a></div>
+<div class="item"><a href="/es/docs/glue2/v1/list-virtualhosts/index.html">GET /v0/virtualhosts</a></div>
+<div class="item"><a href="/es/docs/glue2/v1/openapi-spec/index.html">GET /openapi.json</a></div>
+<div class="item"><a href="/es/docs/glue2/v1/traffic-stats/index.html">GET /v0/stats</a></div>
+</div>
+<div class="item"><a href="/es/docs/holamail/index.html">Holamail</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/holamail/v1/enviando-correos/index.html">Enviando Correos con Holamail</a></div>
+<div class="item"><a href="/es/docs/holamail/v1/api-reference/index.html">Referencia de la API de Holamail</a></div>
+<div class="item"><a href="/es/docs/holamail/v1/smtp-reference/index.html">Referencia del Protocolo SMTP</a></div>
+</div>
+<div class="item"><a href="/es/docs/run/index.html">Run</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/run/v1/primeros-pasos/index.html">Primeros pasos con Run</a></div>
+<div class="item"><a href="/es/docs/run/v1/api-reference/index.html">Referencia de la API de Run</a></div>
+<div class="item"><a href="/es/docs/run/v1/console-data/index.html">GET /api/console</a></div>
+<div class="item"><a href="/es/docs/run/v1/docker-registry/index.html">API de Docker Registry</a></div>
+<div class="item"><a href="/es/docs/run/v1/get-version/index.html">GET /version</a></div>
+<div class="item"><a href="/es/docs/run/v1/rollback-image/index.html">POST /api/console/rollback</a></div>
+<div class="item"><a href="/es/docs/run/v1/save-environment/index.html">PUT /api/console/env</a></div>
+<div class="item"><a href="/es/docs/run/v1/save-volumes/index.html">PUT /api/console/volumes</a></div>
+<div class="item"><a href="/es/docs/run/v1/start-container/index.html">POST /api/console/start</a></div>
+<div class="item"><a href="/es/docs/run/v1/stop-container/index.html">POST /api/console/stop</a></div>
+</div>
+
+
+
+</div>
+<div class="content">
+    
+    <div class="index"><div class="index-h2">
+<a href="#Estados%20de%20una%20Tarea">Estados de una Tarea</a>
+</div>
+<div class="index-h2">
+<a href="#Encolar%20una%20Tarea">Encolar una Tarea</a>
+</div>
+<div class="index-h2">
+<a href="#Listar%20Tareas%20con%20Paginaci%C3%B3n">Listar Tareas con Paginación</a>
+</div>
+<div class="index-h2">
+<a href="#Reservar%20una%20Tarea">Reservar una Tarea</a>
+</div>
+<div class="index-h2">
+<a href="#Extender%20una%20Concesi%C3%B3n">Extender una Concesión</a>
+</div>
+<div class="index-h2">
+<a href="#Confirmar%20%28Eliminar%29%20una%20Tarea">Confirmar (Eliminar) una Tarea</a>
+</div>
+<div class="index-h2">
+<a href="#Reprogramar%20una%20Tarea">Reprogramar una Tarea</a>
+</div>
+<div class="index-h2">
+<a href="#Flujo%20SSE%20para%20Actualizaciones%20en%20Tiempo%20Real">Flujo SSE para Actualizaciones en Tiempo Real</a>
+</div>
+</div>
+    <div class="document">
+    <h1>Ciclo de Vida de las Tareas</h1>
+<p>Este documento detalla el ciclo de vida completo de una tarea: encolado, listado, reserva, extensión de concesión, confirmación, reprogramación y streaming en tiempo real mediante SSE.</p>
+<h2 id="Estados%20de%20una%20Tarea">Estados de una Tarea</h2>
+<p>Una tarea pasa por los siguientes estados:</p>
+<ul>
+<li><strong>pending</strong> — Esperando su hora programada. Aún no visible para los trabajadores.</li>
+<li><strong>available</strong> — La hora programada ha llegado; lista para ser reservada.</li>
+<li><strong>reserved</strong> — En manos de un trabajador bajo una concesión.</li>
+<li><strong>completed</strong> — Confirmada y eliminada por el trabajador.</li>
+</ul>
+<p>Si una concesión expira sin confirmación, la tarea vuelve a <strong>available</strong>.</p>
+<h2 id="Encolar%20una%20Tarea">Encolar una Tarea</h2>
+<p>Crea una nueva tarea con un payload, hora futura (o retraso) y etiquetas opcionales:</p>
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1"> 1</a></span><span>curl -X POST <span style="color:#2aa198">&#34;https://api.hola.cloud/schedulers/sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890/tasks&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2"> 2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;X-API-Key: TU_API_KEY&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3"> 3</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Content-Type: application/json&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4"> 4</a></span><span><span style="color:#cb4b16"></span>  -d <span style="color:#2aa198">&#39;{
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5"> 5</a></span><span><span style="color:#2aa198">    &#34;payload&#34;: {
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6"> 6</a></span><span><span style="color:#2aa198">      &#34;accion&#34;: &#34;generar_informe&#34;,
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7"> 7</a></span><span><span style="color:#2aa198">      &#34;informe_id&#34;: &#34;rpt-5678&#34;
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8"> 8</a></span><span><span style="color:#2aa198">    },
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9"> 9</a></span><span><span style="color:#2aa198">    &#34;future&#34;: &#34;2025-06-22T00:00:00Z&#34;,
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L10"><a style="outline: none; text-decoration:none; color:inherit" href="#L10">10</a></span><span><span style="color:#2aa198">    &#34;labels&#34;: {
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L11"><a style="outline: none; text-decoration:none; color:inherit" href="#L11">11</a></span><span><span style="color:#2aa198">      &#34;equipo&#34;: &#34;analitica&#34;,
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L12"><a style="outline: none; text-decoration:none; color:inherit" href="#L12">12</a></span><span><span style="color:#2aa198">      &#34;entorno&#34;: &#34;produccion&#34;
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L13"><a style="outline: none; text-decoration:none; color:inherit" href="#L13">13</a></span><span><span style="color:#2aa198">    }
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L14"><a style="outline: none; text-decoration:none; color:inherit" href="#L14">14</a></span><span><span style="color:#2aa198">  }&#39;</span>
+</span></span></code></pre></code></pre>
+<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1"> 1</a></span><span><span style="color:#268bd2">POST</span> /schedulers/sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890/tasks <span style="color:#268bd2">HTTP</span><span style="color:#719e07">/</span><span style="color:#2aa198">1.1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2"> 2</a></span><span>Host<span style="color:#719e07">:</span> api.hola.cloud
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3"> 3</a></span><span>X-API-Key<span style="color:#719e07">:</span> TU_API_KEY
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4"> 4</a></span><span>Content-Type<span style="color:#719e07">:</span> application/json
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5"> 5</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6"> 6</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7"> 7</a></span><span>  <span style="color:#268bd2">&#34;payload&#34;</span>: {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8"> 8</a></span><span>    <span style="color:#268bd2">&#34;accion&#34;</span>: <span style="color:#2aa198">&#34;generar_informe&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9"> 9</a></span><span>    <span style="color:#268bd2">&#34;informe_id&#34;</span>: <span style="color:#2aa198">&#34;rpt-5678&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L10"><a style="outline: none; text-decoration:none; color:inherit" href="#L10">10</a></span><span>  },
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L11"><a style="outline: none; text-decoration:none; color:inherit" href="#L11">11</a></span><span>  <span style="color:#268bd2">&#34;future&#34;</span>: <span style="color:#2aa198">&#34;2025-06-22T00:00:00Z&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L12"><a style="outline: none; text-decoration:none; color:inherit" href="#L12">12</a></span><span>  <span style="color:#268bd2">&#34;labels&#34;</span>: {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L13"><a style="outline: none; text-decoration:none; color:inherit" href="#L13">13</a></span><span>    <span style="color:#268bd2">&#34;equipo&#34;</span>: <span style="color:#2aa198">&#34;analitica&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L14"><a style="outline: none; text-decoration:none; color:inherit" href="#L14">14</a></span><span>    <span style="color:#268bd2">&#34;entorno&#34;</span>: <span style="color:#2aa198">&#34;produccion&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L15"><a style="outline: none; text-decoration:none; color:inherit" href="#L15">15</a></span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L16"><a style="outline: none; text-decoration:none; color:inherit" href="#L16">16</a></span><span>}
+</span></span></code></pre></code></pre>
+<p>Alternativamente, usa <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>delay</span></span></code></pre></code> (segundos desde ahora) en lugar de <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>future</span></span></code></pre></code>:</p>
+<pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  <span style="color:#268bd2">&#34;payload&#34;</span>: { <span style="color:#268bd2">&#34;accion&#34;</span>: <span style="color:#2aa198">&#34;enviar_recordatorio&#34;</span> },
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  <span style="color:#268bd2">&#34;delay&#34;</span>: <span style="color:#2aa198">3600</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>  <span style="color:#268bd2">&#34;labels&#34;</span>: { <span style="color:#268bd2">&#34;tipo&#34;</span>: <span style="color:#2aa198">&#34;correo&#34;</span> }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>}
+</span></span></code></pre></code></pre>
+<p>Respuesta esperada:</p>
+<pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;tarea-001&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  <span style="color:#268bd2">&#34;scheduler_id&#34;</span>: <span style="color:#2aa198">&#34;sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>  <span style="color:#268bd2">&#34;payload&#34;</span>: { <span style="color:#268bd2">&#34;accion&#34;</span>: <span style="color:#2aa198">&#34;generar_informe&#34;</span>, <span style="color:#268bd2">&#34;informe_id&#34;</span>: <span style="color:#2aa198">&#34;rpt-5678&#34;</span> },
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>  <span style="color:#268bd2">&#34;state&#34;</span>: <span style="color:#2aa198">&#34;pending&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>  <span style="color:#268bd2">&#34;available_at&#34;</span>: <span style="color:#2aa198">&#34;2025-06-22T00:00:00Z&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7">7</a></span><span>  <span style="color:#268bd2">&#34;labels&#34;</span>: { <span style="color:#268bd2">&#34;equipo&#34;</span>: <span style="color:#2aa198">&#34;analitica&#34;</span>, <span style="color:#268bd2">&#34;entorno&#34;</span>: <span style="color:#2aa198">&#34;produccion&#34;</span> }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8">8</a></span><span>}
+</span></span></code></pre></code></pre>
+<h2 id="Listar%20Tareas%20con%20Paginaci%C3%B3n">Listar Tareas con Paginación</h2>
+<p>Lista tareas con paginación opcional y filtrado por etiquetas:</p>
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl <span style="color:#2aa198">&#34;https://api.hola.cloud/schedulers/sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890/tasks?offset=0&amp;limit=20&#34;</span>
+</span></span></code></pre></code></pre>
+<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span><span style="color:#268bd2">GET</span> /schedulers/sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890/tasks?offset=0&amp;limit=20 <span style="color:#268bd2">HTTP</span><span style="color:#719e07">/</span><span style="color:#2aa198">1.1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>Host<span style="color:#719e07">:</span> api.hola.cloud
+</span></span></code></pre></code></pre>
+<p>Respuesta esperada:</p>
+<pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1"> 1</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2"> 2</a></span><span>  <span style="color:#268bd2">&#34;tasks&#34;</span>: [
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3"> 3</a></span><span>    {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4"> 4</a></span><span>      <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;tarea-001&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5"> 5</a></span><span>      <span style="color:#268bd2">&#34;state&#34;</span>: <span style="color:#2aa198">&#34;pending&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6"> 6</a></span><span>      <span style="color:#268bd2">&#34;available_at&#34;</span>: <span style="color:#2aa198">&#34;2025-06-22T00:00:00Z&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7"> 7</a></span><span>      <span style="color:#268bd2">&#34;labels&#34;</span>: { <span style="color:#268bd2">&#34;equipo&#34;</span>: <span style="color:#2aa198">&#34;analitica&#34;</span> }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8"> 8</a></span><span>    },
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9"> 9</a></span><span>    {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L10"><a style="outline: none; text-decoration:none; color:inherit" href="#L10">10</a></span><span>      <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;tarea-002&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L11"><a style="outline: none; text-decoration:none; color:inherit" href="#L11">11</a></span><span>      <span style="color:#268bd2">&#34;state&#34;</span>: <span style="color:#2aa198">&#34;available&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L12"><a style="outline: none; text-decoration:none; color:inherit" href="#L12">12</a></span><span>      <span style="color:#268bd2">&#34;available_at&#34;</span>: <span style="color:#2aa198">&#34;2025-06-21T12:00:00Z&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L13"><a style="outline: none; text-decoration:none; color:inherit" href="#L13">13</a></span><span>      <span style="color:#268bd2">&#34;labels&#34;</span>: { <span style="color:#268bd2">&#34;equipo&#34;</span>: <span style="color:#2aa198">&#34;analitica&#34;</span> }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L14"><a style="outline: none; text-decoration:none; color:inherit" href="#L14">14</a></span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L15"><a style="outline: none; text-decoration:none; color:inherit" href="#L15">15</a></span><span>  ],
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L16"><a style="outline: none; text-decoration:none; color:inherit" href="#L16">16</a></span><span>  <span style="color:#268bd2">&#34;total&#34;</span>: <span style="color:#2aa198">2</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L17"><a style="outline: none; text-decoration:none; color:inherit" href="#L17">17</a></span><span>  <span style="color:#268bd2">&#34;offset&#34;</span>: <span style="color:#2aa198">0</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L18"><a style="outline: none; text-decoration:none; color:inherit" href="#L18">18</a></span><span>  <span style="color:#268bd2">&#34;limit&#34;</span>: <span style="color:#2aa198">20</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L19"><a style="outline: none; text-decoration:none; color:inherit" href="#L19">19</a></span><span>}
+</span></span></code></pre></code></pre>
+<h2 id="Reservar%20una%20Tarea">Reservar una Tarea</h2>
+<p>Un trabajador reserva una tarea disponible especificando un <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>worktime</span></span></code></pre></code> — la duración de la concesión en segundos:</p>
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST <span style="color:#2aa198">&#34;https://api.hola.cloud/schedulers/sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890/tasks/reserve&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;X-API-Key: TU_API_KEY&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Content-Type: application/json&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span><span style="color:#cb4b16"></span>  -d <span style="color:#2aa198">&#39;{
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span><span style="color:#2aa198">    &#34;worktime&#34;: 60
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span><span style="color:#2aa198">  }&#39;</span>
+</span></span></code></pre></code></pre>
+<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span><span style="color:#268bd2">POST</span> /schedulers/sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890/tasks/reserve <span style="color:#268bd2">HTTP</span><span style="color:#719e07">/</span><span style="color:#2aa198">1.1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>Host<span style="color:#719e07">:</span> api.hola.cloud
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>X-API-Key<span style="color:#719e07">:</span> TU_API_KEY
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>Content-Type<span style="color:#719e07">:</span> application/json
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7">7</a></span><span>  <span style="color:#268bd2">&#34;worktime&#34;</span>: <span style="color:#2aa198">60</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8">8</a></span><span>}
+</span></span></code></pre></code></pre>
+<p>Respuesta esperada:</p>
+<pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;tarea-002&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  <span style="color:#268bd2">&#34;payload&#34;</span>: { <span style="color:#268bd2">&#34;accion&#34;</span>: <span style="color:#2aa198">&#34;enviar_recordatorio&#34;</span> },
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>  <span style="color:#268bd2">&#34;lease_expires_at&#34;</span>: <span style="color:#2aa198">&#34;2025-06-21T12:01:00Z&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>}
+</span></span></code></pre></code></pre>
+<p>Si no hay tareas disponibles, el endpoint devuelve HTTP <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>204 No Content</span></span></code></pre></code>.</p>
+<h2 id="Extender%20una%20Concesi%C3%B3n">Extender una Concesión</h2>
+<p>Si el trabajador necesita más tiempo, extiende la concesión antes de que expire:</p>
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST <span style="color:#2aa198">&#34;https://api.hola.cloud/schedulers/sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890/tasks/tarea-002/extend&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;X-API-Key: TU_API_KEY&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Content-Type: application/json&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span><span style="color:#cb4b16"></span>  -d <span style="color:#2aa198">&#39;{
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span><span style="color:#2aa198">    &#34;worktime&#34;: 30
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span><span style="color:#2aa198">  }&#39;</span>
+</span></span></code></pre></code></pre>
+<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span><span style="color:#268bd2">POST</span> /schedulers/sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890/tasks/tarea-002/extend <span style="color:#268bd2">HTTP</span><span style="color:#719e07">/</span><span style="color:#2aa198">1.1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>Host<span style="color:#719e07">:</span> api.hola.cloud
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>X-API-Key<span style="color:#719e07">:</span> TU_API_KEY
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>Content-Type<span style="color:#719e07">:</span> application/json
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7">7</a></span><span>  <span style="color:#268bd2">&#34;worktime&#34;</span>: <span style="color:#2aa198">30</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8">8</a></span><span>}
+</span></span></code></pre></code></pre>
+<p>Respuesta esperada:</p>
+<pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;tarea-002&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  <span style="color:#268bd2">&#34;lease_expires_at&#34;</span>: <span style="color:#2aa198">&#34;2025-06-21T12:01:30Z&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>}
+</span></span></code></pre></code></pre>
+<h2 id="Confirmar%20%28Eliminar%29%20una%20Tarea">Confirmar (Eliminar) una Tarea</h2>
+<p>Después de procesar exitosamente, confirma la tarea para eliminarla:</p>
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X DELETE <span style="color:#2aa198">&#34;https://api.hola.cloud/schedulers/sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890/tasks/tarea-002&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;X-API-Key: TU_API_KEY&#34;</span>
+</span></span></code></pre></code></pre>
+<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span><span style="color:#268bd2">DELETE</span> /schedulers/sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890/tasks/tarea-002 <span style="color:#268bd2">HTTP</span><span style="color:#719e07">/</span><span style="color:#2aa198">1.1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>Host<span style="color:#719e07">:</span> api.hola.cloud
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>X-API-Key<span style="color:#719e07">:</span> TU_API_KEY
+</span></span></code></pre></code></pre>
+<p>Respuesta esperada: HTTP <code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>204 No Content</span></span></code></pre></code>.</p>
+<h2 id="Reprogramar%20una%20Tarea">Reprogramar una Tarea</h2>
+<p>Si el procesamiento falla, reprograma la tarea con un nuevo retraso u hora futura:</p>
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST <span style="color:#2aa198">&#34;https://api.hola.cloud/schedulers/sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890/tasks/tarea-002/reschedule&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;X-API-Key: TU_API_KEY&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Content-Type: application/json&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span><span style="color:#cb4b16"></span>  -d <span style="color:#2aa198">&#39;{
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span><span style="color:#2aa198">    &#34;delay&#34;: 300
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span><span style="color:#2aa198">  }&#39;</span>
+</span></span></code></pre></code></pre>
+<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span><span style="color:#268bd2">POST</span> /schedulers/sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890/tasks/tarea-002/reschedule <span style="color:#268bd2">HTTP</span><span style="color:#719e07">/</span><span style="color:#2aa198">1.1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>Host<span style="color:#719e07">:</span> api.hola.cloud
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>X-API-Key<span style="color:#719e07">:</span> TU_API_KEY
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>Content-Type<span style="color:#719e07">:</span> application/json
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7">7</a></span><span>  <span style="color:#268bd2">&#34;delay&#34;</span>: <span style="color:#2aa198">300</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8">8</a></span><span>}
+</span></span></code></pre></code></pre>
+<p>Respuesta esperada:</p>
+<pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;tarea-002&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  <span style="color:#268bd2">&#34;state&#34;</span>: <span style="color:#2aa198">&#34;pending&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>  <span style="color:#268bd2">&#34;available_at&#34;</span>: <span style="color:#2aa198">&#34;2025-06-21T12:06:00Z&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>}
+</span></span></code></pre></code></pre>
+<p>Esto es ideal para implementar lógica de reintento con retroceso exponencial.</p>
+<h2 id="Flujo%20SSE%20para%20Actualizaciones%20en%20Tiempo%20Real">Flujo SSE para Actualizaciones en Tiempo Real</h2>
+<p>Suscríbete a eventos de tareas en tiempo real mediante Server-Sent Events:</p>
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl <span style="color:#2aa198">&#34;https://api.hola.cloud/schedulers/sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890/tasks/stream&#34;</span>
+</span></span></code></pre></code></pre>
+<p>El flujo emite eventos en formato SSE:</p>
+<pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>event: task_available
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>data: {&#34;id&#34;:&#34;tarea-003&#34;,&#34;payload&#34;:{&#34;accion&#34;:&#34;procesar_imagen&#34;},&#34;labels&#34;:{}}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>event: task_completed
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>data: {&#34;id&#34;:&#34;tarea-003&#34;}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7">7</a></span><span>event: task_expired
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8">8</a></span><span>data: {&#34;id&#34;:&#34;tarea-003&#34;}
+</span></span></code></pre></code></pre>
+<table>
+<thead>
+<tr>
+<th>Evento</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>task_available</span></span></code></pre></code></td>
+<td>Una tarea está disponible para ser reservada</td>
+</tr>
+<tr>
+<td><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>task_completed</span></span></code></pre></code></td>
+<td>Una tarea fue confirmada por un trabajador</td>
+</tr>
+<tr>
+<td><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>task_expired</span></span></code></pre></code></td>
+<td>Una concesión expiró y la tarea está disponible nuevamente</td>
+</tr>
+</tbody>
+</table>
+<p>SSE es útil para construir grupos de trabajadores receptivos que reaccionan a las tareas inmediatamente sin necesidad de sondeo.</p>
+
+    </div>
+</div>
+<div id="comments-section">
+    <h2>Comentarios</h2>
+    <div id="comments-list"></div>
+    <form id="comment-form" class="comment-form">
+        <h3>Deja un comentario</h3>
+        <div class="comment-form-row">
+            <input type="text" name="author" id="comment-author" placeholder="Tu nombre" required>
+            <input type="email" name="email" id="comment-email" placeholder="Tu email (opcional)">
+        </div>
+        <textarea name="content" id="comment-content" placeholder="Escribe un comentario..." required></textarea>
+        <button type="submit" id="comment-submit">Enviar</button>
+        <p id="comment-status" class="comment-status"></p>
+    </form>
+</div>
+<style>
+#comments-section {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+}
+#comments-section h2 {
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+.comment {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: #f8fafc;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+.comment-author {
+    font-weight: 600;
+    color: #1e293b;
+}
+.comment-date {
+    font-size: 0.85em;
+    color: #64748b;
+    margin-left: 0.5rem;
+}
+.comment-content {
+    margin-top: 0.5rem;
+    line-height: 1.5;
+    color: #334155;
+}
+.comment-form {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #f1f5f9;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+.comment-form h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+.comment-form-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+.comment-form-row input {
+    flex: 1;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    font-size: 0.95rem;
+}
+#comment-content {
+    width: 100%;
+    min-height: 100px;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    box-sizing: border-box;
+    resize: vertical;
+    margin-bottom: 0.75rem;
+}
+#comment-submit {
+    padding: 0.5rem 1.5rem;
+    background: #3b82f6;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+#comment-submit:hover {
+    background: #2563eb;
+}
+#comment-submit:disabled {
+    background: #94a3b8;
+    cursor: not-allowed;
+}
+.comment-status {
+    margin: 0.5rem 0 0;
+    font-size: 0.9rem;
+}
+.comment-status.error {
+    color: #dc2626;
+}
+.comment-status.success {
+    color: #16a34a;
+}
+.comments-empty {
+    color: #64748b;
+    font-style: italic;
+}
+</style>
+<script>
+(function() {
+    function getPageID() {
+        var el = document.querySelector('[data-page-id]');
+        if (el) return el.getAttribute('data-page-id');
+        var url = document.body.getAttribute('url') || '';
+        var lang = document.documentElement.lang || 'en';
+        return url.replace(/\/$/, '') + '|' + lang;
+    }
+    var pageID = getPageID();
+    var list = document.getElementById('comments-list');
+    var form = document.getElementById('comment-form');
+    var authorInput = document.getElementById('comment-author');
+    var emailInput = document.getElementById('comment-email');
+    var contentInput = document.getElementById('comment-content');
+    var submitBtn = document.getElementById('comment-submit');
+    var statusEl = document.getElementById('comment-status');
+    function loadComments() {
+        fetch('/api/comments?page_id=' + encodeURIComponent(pageID))
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                if (!data.comments || data.comments.length === 0) {
+                    list.innerHTML = '<p class="comments-empty">' + getText('noComments') + '</p>';
+                    return;
+                }
+                var html = '';
+                data.comments.forEach(function(c) {
+                    var date = new Date(c.created_at).toLocaleDateString();
+                    html += '<div class="comment">';
+                    html += '<span class="comment-author">' + escapeHTML(c.author) + '</span>';
+                    html += '<span class="comment-date">' + date + '</span>';
+                    html += '<div class="comment-content">' + escapeHTML(c.content) + '</div>';
+                    html += '</div>';
+                });
+                list.innerHTML = html;
+            })
+            .catch(function() {
+                list.innerHTML = '<p class="comment-status error">' + getText('loadError') + '</p>';
+            });
+    }
+    function getText(key) {
+        var lang = document.documentElement.lang;
+        var texts = {
+            es: { noComments: 'No hay comentarios aún. Sé el primero en comentar.', loadError: 'Error al cargar comentarios.', sending: 'Enviando...', success: 'Comentario enviado con éxito.', error: 'Error al enviar el comentario.', submit: 'Enviar' },
+            zh: { noComments: '还没有评论。成为第一个评论者。', loadError: '加载评论时出错。', sending: '发送中...', success: '评论发送成功。', error: '发送评论时出错。', submit: '提交' },
+            en: { noComments: 'No comments yet. Be the first to comment.', loadError: 'Error loading comments.', sending: 'Sending...', success: 'Comment submitted successfully.', error: 'Error submitting comment.', submit: 'Submit' }
+        };
+        return (texts[lang] || texts['en'])[key];
+    }
+    function escapeHTML(str) {
+        var d = document.createElement('div');
+        d.textContent = str;
+        return d.innerHTML;
+    }
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        submitBtn.disabled = true;
+        submitBtn.textContent = getText('sending');
+        statusEl.textContent = '';
+        statusEl.className = 'comment-status';
+        fetch('/api/comments', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                page_id: pageID,
+                author: authorInput.value.trim(),
+                email: emailInput.value.trim(),
+                content: contentInput.value.trim()
+            })
+        })
+        .then(function(r) {
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            return r.json();
+        })
+        .then(function() {
+            statusEl.textContent = getText('success');
+            statusEl.className = 'comment-status success';
+            authorInput.value = '';
+            emailInput.value = '';
+            contentInput.value = '';
+            loadComments();
+        })
+        .catch(function() {
+            statusEl.textContent = getText('error');
+            statusEl.className = 'comment-status error';
+        })
+        .finally(function() {
+            submitBtn.disabled = false;
+            submitBtn.textContent = getText('submit');
+        });
+    });
+    loadComments();
+})();
+</script>
+<div class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <div class="footer-logo">hola.cloud</div>
+            
+            <p>Software cloud empresarial para equipos regulados y de alto crecimiento.</p>
+            
+        </div>
+        <div class="footer-columns">
+            <div class="footer-column">
+                
+                <h4>Soluciones</h4>
+                <ul>
+                    <li><a href="#start-now">Visión de la plataforma</a></li>
+                    <li><a href="#solutions">Soluciones por industria</a></li>
+                    <li><a href="#partnership">Modelo de acompañamiento</a></li>
+                </ul>
+                
+            </div>
+            <div class="footer-column">
+                
+                <h4>Recursos</h4>
+                <ul>
+                    <li><a href="/docs/">Documentación</a></li>
+                    <li><a href="https://console.hola.cloud/">Consola de clientes</a></li>
+                    <li><a href="mailto:contact@hola.cloud">Centro de soporte</a></li>
+                </ul>
+                
+            </div>
+            <div class="footer-column">
+                
+                <h4>Contacto</h4>
+                <ul>
+                    <li><a href="mailto:contact@hola.cloud">contact@hola.cloud</a></li>
+                    <li><a href="tel:+34910000000">+34 910 000 000</a></li>
+                    <li><a href="https://www.linkedin.com/company/hola-cloud" target="_blank" rel="noopener">LinkedIn</a></li>
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+    <div class="footer-meta">
+        <span>© 2025 hola.cloud</span>
+        <span class="footer-meta-divider" aria-hidden="true">•</span>
+        
+        <span>Todos los derechos reservados.</span>
+        
+    </div>
+</div>
+<script>
+
+    
+    function isElementInViewport (el) {
+
+        
+        
+        
+        
+
+        var rect     = el.getBoundingClientRect(),
+            vWidth   = window.innerWidth || doc.documentElement.clientWidth,
+            vHeight  = window.innerHeight || doc.documentElement.clientHeight,
+            efp      = function (x, y) { return document.elementFromPoint(x, y) };
+
+        
+        if (rect.right < 0 || rect.bottom < 0
+            || rect.left > vWidth || rect.top > vHeight)
+            return false;
+
+        
+        return (
+            el.contains(efp(rect.left,  rect.top))
+            ||  el.contains(efp(rect.right, rect.top))
+            ||  el.contains(efp(rect.right, rect.bottom))
+            ||  el.contains(efp(rect.left,  rect.bottom))
+        );
+    }
+
+    function highlightIndex() {
+        let v = false;
+        document.querySelectorAll('.index a').forEach(a => {
+            const el = document.getElementById(a.getAttribute('href').slice(1));
+
+            if (!v && isElementInViewport(el)) {
+                a.classList.add('active');
+                v = true;
+            } else {
+                a.classList.remove('active');
+            }
+        });
+    }
+
+    document.addEventListener('scroll', highlightIndex, true);
+    document.addEventListener('load', highlightIndex, true);
+</script>
+</body>
+</html>

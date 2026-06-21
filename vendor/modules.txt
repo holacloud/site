@@ -47,6 +47,9 @@ github.com/fulldump/gootstrap
 # github.com/fulldump/holadoc v0.0.3
 ## explicit; go 1.22.0
 github.com/fulldump/holadoc
+# github.com/holacloud/store v0.3.0
+## explicit; go 1.24.0
+github.com/holacloud/store
 # github.com/yuin/goldmark v1.7.1
 ## explicit; go 1.19
 github.com/yuin/goldmark

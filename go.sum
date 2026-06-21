@@ -6,6 +6,8 @@ github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSs
 github.com/dlclark/regexp2 v1.4.0/go.mod h1:2pZnwuY/m+8K6iRw6wQdMtk+rH5tNGR1i55kozfMjCc=
 github.com/dlclark/regexp2 v1.11.0 h1:G/nrcoOa7ZXlpoa/91N3X7mM3r8eIlMBBJZvsz/mxKI=
 github.com/dlclark/regexp2 v1.11.0/go.mod h1:DHkYz0B9wPfa6wondMfaivmHpzrQ3v9q8cnmRbL6yW8=
+github.com/fulldump/biff v1.3.0 h1:FZDqvP8lkrCMDv/oNEH+j2unpuAY+8aXZ44GIvXYOx4=
+github.com/fulldump/biff v1.3.0/go.mod h1:TnBce9eRITmnv3otdmITKeU/zmC08DxotA9s0VcJELg=
 github.com/fulldump/box v0.4.1 h1:f6PesEV4S2juJqPmUeAEBM4FLhrdmo6Qw7MPEr0jOnI=
 github.com/fulldump/box v0.4.1/go.mod h1:k1dcwIeNOar6zLlP9D8oF/4FjQeK8kAt7BtRUh/SrMg=
 github.com/fulldump/goconfig v1.6.1 h1:3Xif582G08uAWfiLIYFLgdZ/H+lUu1kCgMaZdMM44WQ=
@@ -14,6 +16,8 @@ github.com/fulldump/gootstrap v0.0.1 h1:5GkbtDUqSerxn7BRGYwh454ySLzJE7eZu04VqZFA
 github.com/fulldump/gootstrap v0.0.1/go.mod h1:PbsNiPdJwFFnzR7481RKG9sdJzCPaXr+amyIe6+gMqQ=
 github.com/fulldump/holadoc v0.0.3 h1:n2+bTKzrW7rOju/HLhOM/Kq+nLKf2rUj/DPTJ4z84ks=
 github.com/fulldump/holadoc v0.0.3/go.mod h1:7gAGtHZ+7ePO+q1BWsUt8Sa91l5NN8cWp2uwnQd6zn0=
+github.com/holacloud/store v0.3.0 h1:03CxUzdGnJbq4BEwGDrKDWwgrlV2X+067UsnW4lfMAY=
+github.com/holacloud/store v0.3.0/go.mod h1:F1ktF2qodYz1Ow6YdPbt6WFisTEKC6fGk4CUSx+GYts=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=

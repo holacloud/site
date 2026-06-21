@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Managing Projects and Services</title>
+    <meta name="description" content="inceptiondb">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/blue.css" rel="stylesheet">
+    <script defer src="https://umami.hola.cloud/script.js" data-website-id="cbcb870c-e9a8-460a-8b38-ab2fa77a4cc2"></script>
+</head>
+<body url="managing-projects">
+
+<div class="top-frame">
+    <div class="top">
+        <a href="/" class="logo"></a>
+        <div class="main-menu">
+            <div class="dropdown">
+                <button class="link dropdown-toggle" type="button">
+                    Products
+                    <span class="dropdown-icon" aria-hidden="true">▾</span>
+                </button>
+                <div class="dropdown-menu" role="menu">
+                    <a class="dropdown-item" href="https://flowtest.io" target="_blank" rel="noopener">
+                        <span class="item-title">Flowtest.io</span>
+                        <span class="item-description">Automated load testing from the hola.cloud ecosystem.</span>
+                    </a>
+                    <a class="dropdown-item" href="https://inceptiondb.hola.cloud" target="_blank" rel="noopener">
+                        <span class="item-title">InceptioDB</span>
+                        <span class="item-description">Fully managed database service within the hola.cloud ecosystem.</span>
+                    </a>
+                    <a class="dropdown-item" href="https://console.hola.cloud" target="_blank" rel="noopener">
+                        <span class="item-title">Public Cloud</span>
+                        <span class="item-description">Deploy and manage your workloads on the hola.cloud public platform.</span>
+                    </a>
+                    <a class="dropdown-item" href="https://gopress.org" target="_blank" rel="noopener">
+                        <span class="item-title">GoPress <span class="item-tag">Open Source</span></span>
+                        <span class="item-description">Open-source CMS built for the hola.cloud ecosystem.</span>
+                    </a>
+                </div>
+            </div>
+            
+            <a class="link" href="/docs/index.html">Documentation</a>
+            
+            <a class="link button-console" href="https://console.hola.cloud/">Console</a>
+        </div>
+        <div class="right">
+            <a id="login-button" class="button button-noborder" href="https://console.hola.cloud/">Log In</a>
+            <a class="button button-action" href="https://console.hola.cloud/">Start now</a>
+        </div>
+    </div>
+</div>
+<div class="languages-frame">
+    <div class="languages"><a class="selected" href="/docs/console/v2/managing-projects/index.html">en</a><a class="" href="/es/docs/console/v2/administrando-proyectos/index.html">es</a><a class="" href="/zh/docs/console/v2/managing-projects/index.html">zh</a></div>
+</div>
+<div class="tree">
+<div class="versions"><a class="" href="/docs/console/v1/managing-projects/index.html">v1</a><a class="selected" href="/docs/console/v2/managing-projects/index.html">v2</a></div>
+
+    <div class="item"><a href="/docs/inceptiondb/index.html">InceptionDB</a></div>
+<div class="children">
+<div class="item"><a href="/docs/inceptiondb/v2/getting-started/index.html">Quick Start Guide with InceptionDB</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/managing-collections/index.html">Managing Collections</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/working-with-data/index.html">Working with Data</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/api-reference/index.html">InceptionDB API Reference</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/create-collection/index.html">POST /v1/databases/{id}/collections</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/create-database/index.html">POST /v1/databases</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/document-operations/index.html">POST /v1/databases/{id}/collections/{col}</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/drop-database/index.html">DELETE /v1/databases/{id}</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/get-database/index.html">GET /v1/databases/{id}</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/list-collections/index.html">GET /v1/databases/{id}/collections</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/list-databases/index.html">GET /v1/databases</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/update-database/index.html">PATCH /v1/databases/{id}</a></div>
+</div>
+<div class="item"><a href="/docs/lambda/index.html">Lambda</a></div>
+<div class="children">
+<div class="item"><a href="/docs/lambda/v2/getting-started/index.html">Getting Started with Lambda</a></div>
+<div class="item"><a href="/docs/lambda/v2/managing-functions/index.html">Managing Lambda Functions</a></div>
+<div class="item"><a href="/docs/lambda/v2/invoking-functions/index.html">Invoking Lambda Functions</a></div>
+<div class="item"><a href="/docs/lambda/v2/api-reference/index.html">Lambda API Reference</a></div>
+<div class="item"><a href="/docs/lambda/v2/create-lambda/index.html">POST /api/v0/lambdas</a></div>
+<div class="item"><a href="/docs/lambda/v2/delete-lambda/index.html">DELETE /api/v0/lambdas/{id}</a></div>
+<div class="item"><a href="/docs/lambda/v2/get-lambda/index.html">GET /api/v0/lambdas/{id}</a></div>
+<div class="item"><a href="/docs/lambda/v2/list-lambdas/index.html">GET /api/v0/lambdas</a></div>
+<div class="item"><a href="/docs/lambda/v2/modify-lambda/index.html">PATCH /api/v0/lambdas/{id}</a></div>
+<div class="item"><a href="/docs/lambda/v2/mux-router/index.html">GET /mux/{owner}/*</a></div>
+<div class="item"><a href="/docs/lambda/v2/run-lambda-admin/index.html">POST /api/v0/run/{id}</a></div>
+<div class="item"><a href="/docs/lambda/v2/run-lambda-public/index.html">POST /run/{id}</a></div>
+</div>
+<div class="item"><a href="/docs/files/index.html">Files</a></div>
+<div class="children">
+<div class="item"><a href="/docs/files/v2/getting-started/index.html">Getting Started with Files</a></div>
+<div class="item"><a href="/docs/files/v2/managing-buckets/index.html">Managing Buckets</a></div>
+<div class="item"><a href="/docs/files/v2/working-with-files/index.html">Working with Files</a></div>
+<div class="item"><a href="/docs/files/v2/api-reference/index.html">Files API Reference</a></div>
+<div class="item"><a href="/docs/files/v2/create-bucket/index.html">POST /v1/buckets</a></div>
+<div class="item"><a href="/docs/files/v2/delete-bucket/index.html">DELETE /v1/buckets/{id}</a></div>
+<div class="item"><a href="/docs/files/v2/delete-file/index.html">DELETE /v1/buckets/{id}/files/*</a></div>
+<div class="item"><a href="/docs/files/v2/download-file/index.html">GET /v1/buckets/{id}/files/*</a></div>
+<div class="item"><a href="/docs/files/v2/file-metadata/index.html">HEAD /v1/buckets/{id}/files/*</a></div>
+<div class="item"><a href="/docs/files/v2/get-bucket/index.html">GET /v1/buckets/{id}</a></div>
+<div class="item"><a href="/docs/files/v2/list-buckets/index.html">GET /v1/buckets</a></div>
+<div class="item"><a href="/docs/files/v2/list-files/index.html">GET /v1/buckets/{id}/list/*</a></div>
+<div class="item"><a href="/docs/files/v2/modify-bucket/index.html">PATCH /v1/buckets/{id}</a></div>
+<div class="item"><a href="/docs/files/v2/upload-file/index.html">PUT /v1/buckets/{id}/files/*</a></div>
+</div>
+<div class="item"><a href="/docs/config/index.html">Config</a></div>
+<div class="children">
+<div class="item"><a href="/docs/config/v2/getting-started/index.html">Getting Started with Config</a></div>
+<div class="item"><a href="/docs/config/v2/managing-configs/index.html">Managing Configurations</a></div>
+<div class="item"><a href="/docs/config/v2/api-reference/index.html">Config API Reference</a></div>
+<div class="item"><a href="/docs/config/v2/create-config/index.html">POST /v0/configs</a></div>
+<div class="item"><a href="/docs/config/v2/delete-config/index.html">DELETE /v0/configs/{id}</a></div>
+<div class="item"><a href="/docs/config/v2/get-config/index.html">GET /v0/configs/{id}</a></div>
+<div class="item"><a href="/docs/config/v2/get-user-config/index.html">GET /v1/config</a></div>
+<div class="item"><a href="/docs/config/v2/list-configs/index.html">GET /v0/configs</a></div>
+<div class="item"><a href="/docs/config/v2/patch-config/index.html">PATCH /v0/configs/{id}</a></div>
+<div class="item"><a href="/docs/config/v2/update-user-config/index.html">PATCH /v1/config</a></div>
+</div>
+<div class="item"><a href="/docs/logs/index.html">InstantLogs</a></div>
+<div class="children">
+<div class="item"><a href="/docs/logs/v2/getting-started/index.html">Getting Started with InstantLogs</a></div>
+<div class="item"><a href="/docs/logs/v2/ingesting-logs/index.html">Ingesting Logs</a></div>
+<div class="item"><a href="/docs/logs/v2/streaming-filtering/index.html">Streaming & Filtering Logs</a></div>
+<div class="item"><a href="/docs/logs/v2/api-reference/index.html">InstantLogs API Reference</a></div>
+<div class="item"><a href="/docs/logs/v2/create-logger/index.html">POST /v1/loggers</a></div>
+<div class="item"><a href="/docs/logs/v2/create-logger-apikey/index.html">POST /v1/loggers/{id}/apiKeys</a></div>
+<div class="item"><a href="/docs/logs/v2/delete-logger/index.html">DELETE /v1/loggers/{id}</a></div>
+<div class="item"><a href="/docs/logs/v2/delete-logger-apikey/index.html">DELETE /v1/loggers/{id}/apiKeys/{key}</a></div>
+<div class="item"><a href="/docs/logs/v2/filter-logs/index.html">GET /v1/loggers/{id}/filter</a></div>
+<div class="item"><a href="/docs/logs/v2/get-logger/index.html">GET /v1/loggers/{id}</a></div>
+<div class="item"><a href="/docs/logs/v2/ingest-framed-events/index.html">POST /v1/ingest/events</a></div>
+<div class="item"><a href="/docs/logs/v2/ingest-logs/index.html">POST /v1/loggers/{id}/ingest</a></div>
+<div class="item"><a href="/docs/logs/v2/list-loggers/index.html">GET /v1/loggers</a></div>
+<div class="item"><a href="/docs/logs/v2/logger-stats/index.html">GET /v1/loggers/{id}/stats</a></div>
+<div class="item"><a href="/docs/logs/v2/stream-events/index.html">GET /v1/loggers/{id}/events</a></div>
+</div>
+<div class="item"><a href="/docs/queues/index.html">Tailon Queues</a></div>
+<div class="children">
+<div class="item"><a href="/docs/queues/v2/getting-started/index.html">Getting Started with Tailon</a></div>
+<div class="item"><a href="/docs/queues/v2/managing-queues/index.html">Managing Queues</a></div>
+<div class="item"><a href="/docs/queues/v2/producing-consuming/index.html">Producing and Consuming Messages</a></div>
+<div class="item"><a href="/docs/queues/v2/api-reference/index.html">Tailon API Reference</a></div>
+<div class="item"><a href="/docs/queues/v2/create-queue/index.html">POST /v1/queues</a></div>
+<div class="item"><a href="/docs/queues/v2/delete-queue/index.html">DELETE /v1/queues/{id}</a></div>
+<div class="item"><a href="/docs/queues/v2/get-queue/index.html">GET /v1/queues/{id}</a></div>
+<div class="item"><a href="/docs/queues/v2/list-clients/index.html">GET /v1/clients</a></div>
+<div class="item"><a href="/docs/queues/v2/list-queues/index.html">GET /v1/queues</a></div>
+<div class="item"><a href="/docs/queues/v2/read-messages/index.html">GET /v1/queues/{id}</a></div>
+<div class="item"><a href="/docs/queues/v2/write-messages/index.html">POST /v1/queues/{id}</a></div>
+</div>
+<div class="item"><a href="/docs/scheduler/index.html">Scheduler</a></div>
+<div class="children">
+<div class="item"><a href="/docs/scheduler/v2/getting-started/index.html">Getting Started with Scheduler</a></div>
+<div class="item"><a href="/docs/scheduler/v2/managing-schedulers/index.html">Managing Schedulers</a></div>
+<div class="item"><a href="/docs/scheduler/v2/task-lifecycle/index.html">Task Lifecycle</a></div>
+<div class="item"><a href="/docs/scheduler/v2/api-reference/index.html">Scheduler API Reference</a></div>
+<div class="item"><a href="/docs/scheduler/v2/acknowledge-task/index.html">DELETE /schedulers/{id}/tasks/{task}</a></div>
+<div class="item"><a href="/docs/scheduler/v2/create-scheduler/index.html">POST /schedulers</a></div>
+<div class="item"><a href="/docs/scheduler/v2/delete-scheduler/index.html">DELETE /schedulers/{id}</a></div>
+<div class="item"><a href="/docs/scheduler/v2/enqueue-task/index.html">POST /schedulers/{id}/tasks</a></div>
+<div class="item"><a href="/docs/scheduler/v2/extend-lease/index.html">POST /schedulers/{id}/tasks/{task}/extend</a></div>
+<div class="item"><a href="/docs/scheduler/v2/get-scheduler/index.html">GET /schedulers/{id}</a></div>
+<div class="item"><a href="/docs/scheduler/v2/list-schedulers/index.html">GET /schedulers</a></div>
+<div class="item"><a href="/docs/scheduler/v2/list-tasks/index.html">GET /schedulers/{id}/tasks</a></div>
+<div class="item"><a href="/docs/scheduler/v2/patch-scheduler/index.html">PATCH /schedulers/{id}</a></div>
+<div class="item"><a href="/docs/scheduler/v2/reschedule-task/index.html">POST /schedulers/{id}/tasks/{task}/reschedule</a></div>
+<div class="item"><a href="/docs/scheduler/v2/reserve-task/index.html">POST /schedulers/{id}/tasks/reserve</a></div>
+<div class="item"><a href="/docs/scheduler/v2/scheduler-health/index.html">GET /schedulers/{id}/health</a></div>
+<div class="item"><a href="/docs/scheduler/v2/task-stream/index.html">GET /schedulers/{id}/tasks/stream</a></div>
+<div class="item"><a href="/docs/scheduler/v2/update-scheduler/index.html">PUT /schedulers/{id}</a></div>
+</div>
+<div class="item"><a href="/docs/kvnode/index.html">KVNode</a></div>
+<div class="children">
+<div class="item"><a href="/docs/kvnode/v2/getting-started/index.html">Getting Started with KVNode</a></div>
+<div class="item"><a href="/docs/kvnode/v2/collections-and-keys/index.html">Collections and Keys</a></div>
+<div class="item"><a href="/docs/kvnode/v2/replication/index.html">Replication & High Availability</a></div>
+<div class="item"><a href="/docs/kvnode/v2/sdk-reference/index.html">SDK Quick Reference</a></div>
+<div class="item"><a href="/docs/kvnode/v2/api-reference/index.html">KVNode API Reference</a></div>
+<div class="item"><a href="/docs/kvnode/v2/create-collection/index.html">POST /v1/collections</a></div>
+<div class="item"><a href="/docs/kvnode/v2/delete-collection/index.html">DELETE /v1/collections/{col}</a></div>
+<div class="item"><a href="/docs/kvnode/v2/delete-key/index.html">DELETE /v1/collections/{col}/keys/*</a></div>
+<div class="item"><a href="/docs/kvnode/v2/get-key/index.html">GET /v1/collections/{col}/keys/*</a></div>
+<div class="item"><a href="/docs/kvnode/v2/health-check/index.html">GET /healthz</a></div>
+<div class="item"><a href="/docs/kvnode/v2/list-collections/index.html">GET /v1/collections</a></div>
+<div class="item"><a href="/docs/kvnode/v2/list-keys/index.html">GET /v1/collections/{col}/keys</a></div>
+<div class="item"><a href="/docs/kvnode/v2/node-metrics/index.html">GET /v1/metrics</a></div>
+<div class="item"><a href="/docs/kvnode/v2/node-status/index.html">GET /v1/status</a></div>
+<div class="item"><a href="/docs/kvnode/v2/readiness-check/index.html">GET /readyz</a></div>
+<div class="item"><a href="/docs/kvnode/v2/set-key/index.html">POST /v1/collections/{col}/keys/*</a></div>
+</div>
+<div class="item active"><a href="/docs/console/index.html">Console</a></div>
+<div class="children">
+<div class="item"><a href="/docs/console/v2/getting-started/index.html">Getting Started with the Console</a></div>
+<div class="item active selected"><a href="/docs/console/v2/managing-projects/index.html">Managing Projects and Services</a></div>
+<div class="item"><a href="/docs/console/v2/api-reference/index.html">Console API Reference</a></div>
+<div class="item"><a href="/docs/console/v2/fake-api/index.html">GET /fakeapi/*</a></div>
+<div class="item"><a href="/docs/console/v2/get-version/index.html">GET /version</a></div>
+</div>
+<div class="item"><a href="/docs/glue2/index.html">API Gateway (Glue2)</a></div>
+<div class="children">
+<div class="item"><a href="/docs/glue2/v2/architecture-routing/index.html">Architecture & Routing</a></div>
+<div class="item"><a href="/docs/glue2/v2/authentication/index.html">Authentication</a></div>
+<div class="item"><a href="/docs/glue2/v2/api-keys/index.html">Managing API Keys</a></div>
+<div class="item"><a href="/docs/glue2/v2/api-reference/index.html">Glue2 API Reference</a></div>
+<div class="item"><a href="/docs/glue2/v2/backend-status/index.html">GET /v0/status</a></div>
+<div class="item"><a href="/docs/glue2/v2/get-version/index.html">GET /version</a></div>
+<div class="item"><a href="/docs/glue2/v2/list-virtualhosts/index.html">GET /v0/virtualhosts</a></div>
+<div class="item"><a href="/docs/glue2/v2/openapi-spec/index.html">GET /openapi.json</a></div>
+<div class="item"><a href="/docs/glue2/v2/traffic-stats/index.html">GET /v0/stats</a></div>
+</div>
+<div class="item"><a href="/docs/holamail/index.html">Holamail</a></div>
+<div class="children">
+<div class="item"><a href="/docs/holamail/v2/sending-email/index.html">Sending Email with Holamail</a></div>
+<div class="item"><a href="/docs/holamail/v2/api-reference/index.html">Holamail API Reference</a></div>
+<div class="item"><a href="/docs/holamail/v2/smtp-reference/index.html">SMTP Protocol Reference</a></div>
+</div>
+<div class="item"><a href="/docs/run/index.html">Run</a></div>
+<div class="children">
+<div class="item"><a href="/docs/run/v2/getting-started/index.html">Getting Started with Run</a></div>
+<div class="item"><a href="/docs/run/v2/api-reference/index.html">Run API Reference</a></div>
+<div class="item"><a href="/docs/run/v2/console-data/index.html">GET /api/console</a></div>
+<div class="item"><a href="/docs/run/v2/docker-registry/index.html">Docker Registry API</a></div>
+<div class="item"><a href="/docs/run/v2/get-version/index.html">GET /version</a></div>
+<div class="item"><a href="/docs/run/v2/rollback-image/index.html">POST /api/console/rollback</a></div>
+<div class="item"><a href="/docs/run/v2/save-environment/index.html">PUT /api/console/env</a></div>
+<div class="item"><a href="/docs/run/v2/save-volumes/index.html">PUT /api/console/volumes</a></div>
+<div class="item"><a href="/docs/run/v2/start-container/index.html">POST /api/console/start</a></div>
+<div class="item"><a href="/docs/run/v2/stop-container/index.html">POST /api/console/stop</a></div>
+</div>
+
+
+
+</div>
+<div class="content">
+    
+    <div class="index"><div class="index-h2">
+<a href="#Creating%20and%20Switching%20Between%20Projects">Creating and Switching Between Projects</a>
+</div>
+<div class="index-h2">
+<a href="#Managing%20Service%20Instances%20per%20Project">Managing Service Instances per Project</a>
+</div>
+<div class="index-h2">
+<a href="#API%20Key%20Management%20per%20Project">API Key Management per Project</a>
+</div>
+<div class="index-h2">
+<a href="#Viewing%20Project%20Billing%20and%20Usage">Viewing Project Billing and Usage</a>
+</div>
+<div class="index-h2">
+<a href="#Team%20Member%20Management">Team Member Management</a>
+</div>
+<div class="index-h2">
+<a href="#Import%2FExport%20Configuration%20as%20JSON">Import/Export Configuration as JSON</a>
+</div>
+<div class="index-h2">
+<a href="#Summary">Summary</a>
+</div>
+</div>
+    <div class="document">
+    <h1>Managing Projects and Services</h1>
+<p>Projects are the top-level organizational unit in HolaCloud. They group together service instances, team members, API keys, and billing. This guide covers how to create and manage projects through the Console.</p>
+<h2 id="Creating%20and%20Switching%20Between%20Projects">Creating and Switching Between Projects</h2>
+<p>To create a new project, open the project selector in the sidebar and click <strong>New Project</strong>. Provide a name and optional description. Once created, the Console switches to the new project automatically.</p>
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span><span style="color:#586e75"># Create a project via the Console API</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>curl -X POST <span style="color:#2aa198">&#34;https://console.hola.cloud/api/v1/projects&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Authorization: Bearer &lt;your-token&gt;&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Content-Type: application/json&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span><span style="color:#cb4b16"></span>  -d <span style="color:#2aa198">&#39;{
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span><span style="color:#2aa198">    &#34;name&#34;: &#34;My Production App&#34;,
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7">7</a></span><span><span style="color:#2aa198">    &#34;description&#34;: &#34;Production environment for my application&#34;
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8">8</a></span><span><span style="color:#2aa198">  }&#39;</span>
+</span></span></code></pre></code></pre>
+<pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;prod-app-123&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  <span style="color:#268bd2">&#34;name&#34;</span>: <span style="color:#2aa198">&#34;My Production App&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>  <span style="color:#268bd2">&#34;description&#34;</span>: <span style="color:#2aa198">&#34;Production environment for my application&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>  <span style="color:#268bd2">&#34;createdAt&#34;</span>: <span style="color:#2aa198">&#34;2026-06-20T12:00:00Z&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>}
+</span></span></code></pre></code></pre>
+<p>To switch projects, click the current project name in the sidebar and select a different one from the dropdown.</p>
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span><span style="color:#586e75"># List all accessible projects</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>curl -X GET <span style="color:#2aa198">&#34;https://console.hola.cloud/api/v1/projects&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Authorization: Bearer &lt;your-token&gt;&#34;</span>
+</span></span></code></pre></code></pre>
+<pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  <span style="color:#268bd2">&#34;projects&#34;</span>: [
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>    { <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;default&#34;</span>, <span style="color:#268bd2">&#34;name&#34;</span>: <span style="color:#2aa198">&#34;Default&#34;</span>, <span style="color:#268bd2">&#34;role&#34;</span>: <span style="color:#2aa198">&#34;admin&#34;</span> },
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>    { <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;prod-app-123&#34;</span>, <span style="color:#268bd2">&#34;name&#34;</span>: <span style="color:#2aa198">&#34;My Production App&#34;</span>, <span style="color:#268bd2">&#34;role&#34;</span>: <span style="color:#2aa198">&#34;admin&#34;</span> }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>  ]
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>}
+</span></span></code></pre></code></pre>
+<h2 id="Managing%20Service%20Instances%20per%20Project">Managing Service Instances per Project</h2>
+<p>Each project contains its own instances of HolaCloud services. Navigate to the service section (e.g., Databases, Functions, Files, Config, Logs, Queues, Scheduler) to manage instances within the current project.</p>
+<p>For example, to list InceptionDB databases in the current project:</p>
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X GET <span style="color:#2aa198">&#34;https://console.hola.cloud/api/v1/projects/prod-app-123/databases&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Authorization: Bearer &lt;your-token&gt;&#34;</span>
+</span></span></code></pre></code></pre>
+<pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  <span style="color:#268bd2">&#34;databases&#34;</span>: [
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>    { <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;db-001&#34;</span>, <span style="color:#268bd2">&#34;name&#34;</span>: <span style="color:#2aa198">&#34;users-db&#34;</span>, <span style="color:#268bd2">&#34;engine&#34;</span>: <span style="color:#2aa198">&#34;inceptiondb&#34;</span>, <span style="color:#268bd2">&#34;status&#34;</span>: <span style="color:#2aa198">&#34;active&#34;</span> },
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>    { <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;db-002&#34;</span>, <span style="color:#268bd2">&#34;name&#34;</span>: <span style="color:#2aa198">&#34;analytics-db&#34;</span>, <span style="color:#268bd2">&#34;engine&#34;</span>: <span style="color:#2aa198">&#34;inceptiondb&#34;</span>, <span style="color:#268bd2">&#34;status&#34;</span>: <span style="color:#2aa198">&#34;active&#34;</span> }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>  ]
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>}
+</span></span></code></pre></code></pre>
+<p>The same pattern applies to Lambda functions, Files buckets, Config stores, InstantLogs streams, Queues, and Scheduler jobs.</p>
+<h2 id="API%20Key%20Management%20per%20Project">API Key Management per Project</h2>
+<p>API keys authenticate programmatic access to HolaCloud services. Manage them under <strong>Project Settings &gt; API Keys</strong>.</p>
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span><span style="color:#586e75"># Create an API key</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>curl -X POST <span style="color:#2aa198">&#34;https://console.hola.cloud/api/v1/projects/prod-app-123/api-keys&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Authorization: Bearer &lt;your-token&gt;&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Content-Type: application/json&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span><span style="color:#cb4b16"></span>  -d <span style="color:#2aa198">&#39;{
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span><span style="color:#2aa198">    &#34;name&#34;: &#34;CI/CD Key&#34;,
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7">7</a></span><span><span style="color:#2aa198">    &#34;scopes&#34;: [&#34;lambda:invoke&#34;, &#34;files:read&#34;, &#34;config:read&#34;]
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8">8</a></span><span><span style="color:#2aa198">  }&#39;</span>
+</span></span></code></pre></code></pre>
+<pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;key-abc123&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  <span style="color:#268bd2">&#34;name&#34;</span>: <span style="color:#2aa198">&#34;CI/CD Key&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>  <span style="color:#268bd2">&#34;key&#34;</span>: <span style="color:#2aa198">&#34;hc_api_abc123...&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>  <span style="color:#268bd2">&#34;scopes&#34;</span>: [<span style="color:#2aa198">&#34;lambda:invoke&#34;</span>, <span style="color:#2aa198">&#34;files:read&#34;</span>, <span style="color:#2aa198">&#34;config:read&#34;</span>],
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>  <span style="color:#268bd2">&#34;createdAt&#34;</span>: <span style="color:#2aa198">&#34;2026-06-20T14:00:00Z&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7">7</a></span><span>}
+</span></span></code></pre></code></pre>
+<p>You can revoke keys at any time from the same settings page.</p>
+<h2 id="Viewing%20Project%20Billing%20and%20Usage">Viewing Project Billing and Usage</h2>
+<p>The <strong>Billing</strong> section shows current usage metrics, invoice history, and cost breakdowns per service.</p>
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X GET <span style="color:#2aa198">&#34;https://console.hola.cloud/api/v1/projects/prod-app-123/billing&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Authorization: Bearer &lt;your-token&gt;&#34;</span>
+</span></span></code></pre></code></pre>
+<pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1"> 1</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2"> 2</a></span><span>  <span style="color:#268bd2">&#34;currentMonth&#34;</span>: {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3"> 3</a></span><span>    <span style="color:#268bd2">&#34;period&#34;</span>: <span style="color:#2aa198">&#34;2026-06&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4"> 4</a></span><span>    <span style="color:#268bd2">&#34;total&#34;</span>: <span style="color:#2aa198">125.40</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5"> 5</a></span><span>    <span style="color:#268bd2">&#34;services&#34;</span>: {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6"> 6</a></span><span>      <span style="color:#268bd2">&#34;inceptiondb&#34;</span>: <span style="color:#2aa198">45.00</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7"> 7</a></span><span>      <span style="color:#268bd2">&#34;lambda&#34;</span>: <span style="color:#2aa198">60.00</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8"> 8</a></span><span>      <span style="color:#268bd2">&#34;files&#34;</span>: <span style="color:#2aa198">15.40</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9"> 9</a></span><span>      <span style="color:#268bd2">&#34;config&#34;</span>: <span style="color:#2aa198">5.00</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L10"><a style="outline: none; text-decoration:none; color:inherit" href="#L10">10</a></span><span>    }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L11"><a style="outline: none; text-decoration:none; color:inherit" href="#L11">11</a></span><span>  },
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L12"><a style="outline: none; text-decoration:none; color:inherit" href="#L12">12</a></span><span>  <span style="color:#268bd2">&#34;invoices&#34;</span>: [
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L13"><a style="outline: none; text-decoration:none; color:inherit" href="#L13">13</a></span><span>    { <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;inv-001&#34;</span>, <span style="color:#268bd2">&#34;period&#34;</span>: <span style="color:#2aa198">&#34;2026-05&#34;</span>, <span style="color:#268bd2">&#34;total&#34;</span>: <span style="color:#2aa198">110.20</span>, <span style="color:#268bd2">&#34;status&#34;</span>: <span style="color:#2aa198">&#34;paid&#34;</span> }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L14"><a style="outline: none; text-decoration:none; color:inherit" href="#L14">14</a></span><span>  ]
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L15"><a style="outline: none; text-decoration:none; color:inherit" href="#L15">15</a></span><span>}
+</span></span></code></pre></code></pre>
+<h2 id="Team%20Member%20Management">Team Member Management</h2>
+<p>Invite team members from <strong>Project Settings &gt; Team</strong>. Assign roles: Admin, Developer, or Viewer.</p>
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST <span style="color:#2aa198">&#34;https://console.hola.cloud/api/v1/projects/prod-app-123/team&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Authorization: Bearer &lt;your-token&gt;&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Content-Type: application/json&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span><span style="color:#cb4b16"></span>  -d <span style="color:#2aa198">&#39;{
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span><span style="color:#2aa198">    &#34;email&#34;: &#34;colleague@company.com&#34;,
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span><span style="color:#2aa198">    &#34;role&#34;: &#34;developer&#34;
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7">7</a></span><span><span style="color:#2aa198">  }&#39;</span>
+</span></span></code></pre></code></pre>
+<pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;team-456&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  <span style="color:#268bd2">&#34;email&#34;</span>: <span style="color:#2aa198">&#34;colleague@company.com&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>  <span style="color:#268bd2">&#34;role&#34;</span>: <span style="color:#2aa198">&#34;developer&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>  <span style="color:#268bd2">&#34;status&#34;</span>: <span style="color:#2aa198">&#34;pending&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>}
+</span></span></code></pre></code></pre>
+<h2 id="Import%2FExport%20Configuration%20as%20JSON">Import/Export Configuration as JSON</h2>
+<p>Export your entire project configuration (service settings, API keys metadata, team roster) as a single JSON file. Navigate to <strong>Project Settings &gt; Import/Export</strong>.</p>
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span><span style="color:#586e75"># Export configuration</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>curl -X GET <span style="color:#2aa198">&#34;https://console.hola.cloud/api/v1/projects/prod-app-123/export&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Authorization: Bearer &lt;your-token&gt;&#34;</span>
+</span></span></code></pre></code></pre>
+<pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1"> 1</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2"> 2</a></span><span>  <span style="color:#268bd2">&#34;project&#34;</span>: { <span style="color:#268bd2">&#34;name&#34;</span>: <span style="color:#2aa198">&#34;My Production App&#34;</span> },
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3"> 3</a></span><span>  <span style="color:#268bd2">&#34;services&#34;</span>: {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4"> 4</a></span><span>    <span style="color:#268bd2">&#34;inceptiondb&#34;</span>: { <span style="color:#268bd2">&#34;databases&#34;</span>: [...] },
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5"> 5</a></span><span>    <span style="color:#268bd2">&#34;lambda&#34;</span>: { <span style="color:#268bd2">&#34;functions&#34;</span>: [...] },
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6"> 6</a></span><span>    <span style="color:#268bd2">&#34;files&#34;</span>: { <span style="color:#268bd2">&#34;buckets&#34;</span>: [...] },
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7"> 7</a></span><span>    <span style="color:#268bd2">&#34;config&#34;</span>: { <span style="color:#268bd2">&#34;entries&#34;</span>: [...] }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8"> 8</a></span><span>  },
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9"> 9</a></span><span>  <span style="color:#268bd2">&#34;team&#34;</span>: [...]
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L10"><a style="outline: none; text-decoration:none; color:inherit" href="#L10">10</a></span><span>}
+</span></span></code></pre></code></pre>
+<p>To import, upload a JSON file of the same format via the Console UI or API:</p>
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST <span style="color:#2aa198">&#34;https://console.hola.cloud/api/v1/projects/prod-app-123/import&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Authorization: Bearer &lt;your-token&gt;&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Content-Type: application/json&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span><span style="color:#cb4b16"></span>  -d @project-config.json
+</span></span></code></pre></code></pre>
+<pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  <span style="color:#268bd2">&#34;status&#34;</span>: <span style="color:#2aa198">&#34;imported&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  <span style="color:#268bd2">&#34;servicesUpdated&#34;</span>: [<span style="color:#2aa198">&#34;inceptiondb&#34;</span>, <span style="color:#2aa198">&#34;lambda&#34;</span>, <span style="color:#2aa198">&#34;files&#34;</span>, <span style="color:#2aa198">&#34;config&#34;</span>]
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>}
+</span></span></code></pre></code></pre>
+<h2 id="Summary">Summary</h2>
+<p>Projects in HolaCloud provide isolated environments for your applications. Through the Console you can create and switch projects, manage service instances, API keys, billing, team members, and import/export configuration — all from a single interface.</p>
+
+    </div>
+</div>
+<div id="comments-section">
+    <h2>Comments</h2>
+    <div id="comments-list"></div>
+    <form id="comment-form" class="comment-form">
+        <h3>Leave a comment</h3>
+        <div class="comment-form-row">
+            <input type="text" name="author" id="comment-author" placeholder="Your name" required>
+            <input type="email" name="email" id="comment-email" placeholder="Your email (optional)">
+        </div>
+        <textarea name="content" id="comment-content" placeholder="Write a comment..." required></textarea>
+        <button type="submit" id="comment-submit">Submit</button>
+        <p id="comment-status" class="comment-status"></p>
+    </form>
+</div>
+<style>
+#comments-section {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+}
+#comments-section h2 {
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+.comment {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: #f8fafc;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+.comment-author {
+    font-weight: 600;
+    color: #1e293b;
+}
+.comment-date {
+    font-size: 0.85em;
+    color: #64748b;
+    margin-left: 0.5rem;
+}
+.comment-content {
+    margin-top: 0.5rem;
+    line-height: 1.5;
+    color: #334155;
+}
+.comment-form {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #f1f5f9;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+.comment-form h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+.comment-form-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+.comment-form-row input {
+    flex: 1;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    font-size: 0.95rem;
+}
+#comment-content {
+    width: 100%;
+    min-height: 100px;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    box-sizing: border-box;
+    resize: vertical;
+    margin-bottom: 0.75rem;
+}
+#comment-submit {
+    padding: 0.5rem 1.5rem;
+    background: #3b82f6;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+#comment-submit:hover {
+    background: #2563eb;
+}
+#comment-submit:disabled {
+    background: #94a3b8;
+    cursor: not-allowed;
+}
+.comment-status {
+    margin: 0.5rem 0 0;
+    font-size: 0.9rem;
+}
+.comment-status.error {
+    color: #dc2626;
+}
+.comment-status.success {
+    color: #16a34a;
+}
+.comments-empty {
+    color: #64748b;
+    font-style: italic;
+}
+</style>
+<script>
+(function() {
+    function getPageID() {
+        var el = document.querySelector('[data-page-id]');
+        if (el) return el.getAttribute('data-page-id');
+        var url = document.body.getAttribute('url') || '';
+        var lang = document.documentElement.lang || 'en';
+        return url.replace(/\/$/, '') + '|' + lang;
+    }
+    var pageID = getPageID();
+    var list = document.getElementById('comments-list');
+    var form = document.getElementById('comment-form');
+    var authorInput = document.getElementById('comment-author');
+    var emailInput = document.getElementById('comment-email');
+    var contentInput = document.getElementById('comment-content');
+    var submitBtn = document.getElementById('comment-submit');
+    var statusEl = document.getElementById('comment-status');
+    function loadComments() {
+        fetch('/api/comments?page_id=' + encodeURIComponent(pageID))
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                if (!data.comments || data.comments.length === 0) {
+                    list.innerHTML = '<p class="comments-empty">' + getText('noComments') + '</p>';
+                    return;
+                }
+                var html = '';
+                data.comments.forEach(function(c) {
+                    var date = new Date(c.created_at).toLocaleDateString();
+                    html += '<div class="comment">';
+                    html += '<span class="comment-author">' + escapeHTML(c.author) + '</span>';
+                    html += '<span class="comment-date">' + date + '</span>';
+                    html += '<div class="comment-content">' + escapeHTML(c.content) + '</div>';
+                    html += '</div>';
+                });
+                list.innerHTML = html;
+            })
+            .catch(function() {
+                list.innerHTML = '<p class="comment-status error">' + getText('loadError') + '</p>';
+            });
+    }
+    function getText(key) {
+        var lang = document.documentElement.lang;
+        var texts = {
+            es: { noComments: 'No hay comentarios aún. Sé el primero en comentar.', loadError: 'Error al cargar comentarios.', sending: 'Enviando...', success: 'Comentario enviado con éxito.', error: 'Error al enviar el comentario.', submit: 'Enviar' },
+            zh: { noComments: '还没有评论。成为第一个评论者。', loadError: '加载评论时出错。', sending: '发送中...', success: '评论发送成功。', error: '发送评论时出错。', submit: '提交' },
+            en: { noComments: 'No comments yet. Be the first to comment.', loadError: 'Error loading comments.', sending: 'Sending...', success: 'Comment submitted successfully.', error: 'Error submitting comment.', submit: 'Submit' }
+        };
+        return (texts[lang] || texts['en'])[key];
+    }
+    function escapeHTML(str) {
+        var d = document.createElement('div');
+        d.textContent = str;
+        return d.innerHTML;
+    }
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        submitBtn.disabled = true;
+        submitBtn.textContent = getText('sending');
+        statusEl.textContent = '';
+        statusEl.className = 'comment-status';
+        fetch('/api/comments', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                page_id: pageID,
+                author: authorInput.value.trim(),
+                email: emailInput.value.trim(),
+                content: contentInput.value.trim()
+            })
+        })
+        .then(function(r) {
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            return r.json();
+        })
+        .then(function() {
+            statusEl.textContent = getText('success');
+            statusEl.className = 'comment-status success';
+            authorInput.value = '';
+            emailInput.value = '';
+            contentInput.value = '';
+            loadComments();
+        })
+        .catch(function() {
+            statusEl.textContent = getText('error');
+            statusEl.className = 'comment-status error';
+        })
+        .finally(function() {
+            submitBtn.disabled = false;
+            submitBtn.textContent = getText('submit');
+        });
+    });
+    loadComments();
+})();
+</script>
+<div class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <div class="footer-logo">hola.cloud</div>
+            
+            <p>Enterprise cloud software built for regulated and high-growth teams.</p>
+            
+        </div>
+        <div class="footer-columns">
+            <div class="footer-column">
+                
+                <h4>Solutions</h4>
+                <ul>
+                    <li><a href="#start-now">Platform overview</a></li>
+                    <li><a href="#solutions">Industry solutions</a></li>
+                    <li><a href="#partnership">Partnership model</a></li>
+                </ul>
+                
+            </div>
+            <div class="footer-column">
+                
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="/docs/">Documentation</a></li>
+                    <li><a href="https://console.hola.cloud/">Customer console</a></li>
+                    <li><a href="mailto:contact@hola.cloud">Support center</a></li>
+                </ul>
+                
+            </div>
+            <div class="footer-column">
+                
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:contact@hola.cloud">contact@hola.cloud</a></li>
+                    <li><a href="tel:+34910000000">+34 910 000 000</a></li>
+                    <li><a href="https://www.linkedin.com/company/hola-cloud" target="_blank" rel="noopener">LinkedIn</a></li>
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+    <div class="footer-meta">
+        <span>© 2025 hola.cloud</span>
+        <span class="footer-meta-divider" aria-hidden="true">•</span>
+        
+        <span>All rights reserved.</span>
+        
+    </div>
+</div>
+<script>
+
+    
+    function isElementInViewport (el) {
+
+        
+        
+        
+        
+
+        var rect     = el.getBoundingClientRect(),
+            vWidth   = window.innerWidth || doc.documentElement.clientWidth,
+            vHeight  = window.innerHeight || doc.documentElement.clientHeight,
+            efp      = function (x, y) { return document.elementFromPoint(x, y) };
+
+        
+        if (rect.right < 0 || rect.bottom < 0
+            || rect.left > vWidth || rect.top > vHeight)
+            return false;
+
+        
+        return (
+            el.contains(efp(rect.left,  rect.top))
+            ||  el.contains(efp(rect.right, rect.top))
+            ||  el.contains(efp(rect.right, rect.bottom))
+            ||  el.contains(efp(rect.left,  rect.bottom))
+        );
+    }
+
+    function highlightIndex() {
+        let v = false;
+        document.querySelectorAll('.index a').forEach(a => {
+            const el = document.getElementById(a.getAttribute('href').slice(1));
+
+            if (!v && isElementInViewport(el)) {
+                a.classList.add('active');
+                v = true;
+            } else {
+                a.classList.remove('active');
+            }
+        });
+    }
+
+    document.addEventListener('scroll', highlightIndex, true);
+    document.addEventListener('load', highlightIndex, true);
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+version: '3.3'
+services:
+  app:
+    image: golang:1.24.1
+    working_dir: /project
+    volumes:
+      - .:/project
+      - gocache:/root/.cache/go-build
+    #    ports:
+    #      - '8080:8080'
+    links:
+      - mongodb
+      - postgres
+      - inceptiondb
+  mongodb:
+    image: mongo:6-jammy
+    ports:
+      - '27017:27017'
+    volumes:
+      - dbdata6:/data/db
+  postgres:
+    image: postgres:16.2
+    environment:
+      POSTGRES_PASSWORD: mysecretpassword
+    ports:
+      - '5432:5432'
+    volumes:
+      - dbdata7:/var/lib/postgresql/data
+  inceptiondb:
+    image: fulldumpnet/inceptiondb:latest
+    environment:
+      HTTPADDR: ":1212"
+    ports:
+      - '1212:1212'
+volumes:
+  dbdata6:
+  gocache:
+  dbdata7:

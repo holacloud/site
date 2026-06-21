@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <title>Run API 参考</title>
+    <meta name="description" content="inceptiondb">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/blue.css" rel="stylesheet">
+    <script defer src="https://umami.hola.cloud/script.js" data-website-id="cbcb870c-e9a8-460a-8b38-ab2fa77a4cc2"></script>
+</head>
+<body url="api-reference">
+
+<div class="top-frame">
+    <div class="top">
+        <a href="/" class="logo"></a>
+        <div class="main-menu">
+            <div class="dropdown">
+                <button class="link dropdown-toggle" type="button">
+                    Products
+                    <span class="dropdown-icon" aria-hidden="true">▾</span>
+                </button>
+                <div class="dropdown-menu" role="menu">
+                    <a class="dropdown-item" href="https://flowtest.io" target="_blank" rel="noopener">
+                        <span class="item-title">Flowtest.io</span>
+                        <span class="item-description">Automated load testing from the hola.cloud ecosystem.</span>
+                    </a>
+                    <a class="dropdown-item" href="https://inceptiondb.hola.cloud" target="_blank" rel="noopener">
+                        <span class="item-title">InceptioDB</span>
+                        <span class="item-description">Fully managed database service within the hola.cloud ecosystem.</span>
+                    </a>
+                    <a class="dropdown-item" href="https://console.hola.cloud" target="_blank" rel="noopener">
+                        <span class="item-title">Public Cloud</span>
+                        <span class="item-description">Deploy and manage your workloads on the hola.cloud public platform.</span>
+                    </a>
+                    <a class="dropdown-item" href="https://gopress.org" target="_blank" rel="noopener">
+                        <span class="item-title">GoPress <span class="item-tag">Open Source</span></span>
+                        <span class="item-description">Open-source CMS built for the hola.cloud ecosystem.</span>
+                    </a>
+                </div>
+            </div>
+            
+            <a class="link" href="/zh/docs/index.html">文档</a>
+            
+            <a class="link button-console" href="https://console.hola.cloud/">Console</a>
+        </div>
+        <div class="right">
+            <a id="login-button" class="button button-noborder" href="https://console.hola.cloud/">Log In</a>
+            <a class="button button-action" href="https://console.hola.cloud/">Start now</a>
+        </div>
+    </div>
+</div>
+<div class="languages-frame">
+    <div class="languages"><a class="" href="/docs/run/v1/api-reference/index.html">en</a><a class="" href="/es/docs/run/v1/api-reference/index.html">es</a><a class="selected" href="/zh/docs/run/v1/api-reference/index.html">zh</a></div>
+</div>
+<div class="tree">
+<div class="versions"><a class="selected" href="/zh/docs/run/v1/api-reference/index.html">v1</a><a class="" href="/zh/docs/run/v2/api-reference/index.html">v2</a></div>
+
+    <div class="item"><a href="/zh/docs/inceptiondb/index.html">InceptionDB</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/inceptiondb/v1/getting-started/index.html">InceptionDB快速入门指南</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v1/managing-collections/index.html">管理集合</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v1/working-with-data/index.html">处理数据</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/index.html">InceptionDB API 参考</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v1/create-collection/index.html">POST /v1/databases/{id}/collections</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v1/create-database/index.html">POST /v1/databases</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v1/document-operations/index.html">POST /v1/databases/{id}/collections/{col}</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v1/drop-database/index.html">DELETE /v1/databases/{id}</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v1/get-database/index.html">GET /v1/databases/{id}</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v1/list-collections/index.html">GET /v1/databases/{id}/collections</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v1/list-databases/index.html">GET /v1/databases</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v1/update-database/index.html">PATCH /v1/databases/{id}</a></div>
+</div>
+<div class="item"><a href="/zh/docs/lambda/index.html">Lambda</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/lambda/v1/getting-started/index.html">Lambda快速入门</a></div>
+<div class="item"><a href="/zh/docs/lambda/v1/managing-functions/index.html">管理Lambda函数</a></div>
+<div class="item"><a href="/zh/docs/lambda/v1/invoking-functions/index.html">调用Lambda函数</a></div>
+<div class="item"><a href="/zh/docs/lambda/v1/api-reference/index.html">Lambda API 参考</a></div>
+<div class="item"><a href="/zh/docs/lambda/v1/create-lambda/index.html">POST /api/v0/lambdas</a></div>
+<div class="item"><a href="/zh/docs/lambda/v1/delete-lambda/index.html">DELETE /api/v0/lambdas/{id}</a></div>
+<div class="item"><a href="/zh/docs/lambda/v1/get-lambda/index.html">GET /api/v0/lambdas/{id}</a></div>
+<div class="item"><a href="/zh/docs/lambda/v1/list-lambdas/index.html">GET /api/v0/lambdas</a></div>
+<div class="item"><a href="/zh/docs/lambda/v1/modify-lambda/index.html">PATCH /api/v0/lambdas/{id}</a></div>
+<div class="item"><a href="/zh/docs/lambda/v1/mux-router/index.html">GET /mux/{owner}/*</a></div>
+<div class="item"><a href="/zh/docs/lambda/v1/run-lambda-admin/index.html">POST /api/v0/run/{id}</a></div>
+<div class="item"><a href="/zh/docs/lambda/v1/run-lambda-public/index.html">POST /run/{id}</a></div>
+</div>
+<div class="item"><a href="/zh/docs/files/index.html">Files</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/files/v1/getting-started/index.html">文件服务快速入门</a></div>
+<div class="item"><a href="/zh/docs/files/v1/managing-buckets/index.html">管理存储桶</a></div>
+<div class="item"><a href="/zh/docs/files/v1/working-with-files/index.html">管理文件</a></div>
+<div class="item"><a href="/zh/docs/files/v1/api-reference/index.html">Files API 参考</a></div>
+<div class="item"><a href="/zh/docs/files/v1/create-bucket/index.html">POST /v1/buckets</a></div>
+<div class="item"><a href="/zh/docs/files/v1/delete-bucket/index.html">DELETE /v1/buckets/{id}</a></div>
+<div class="item"><a href="/zh/docs/files/v1/delete-file/index.html">DELETE /v1/buckets/{id}/files/*</a></div>
+<div class="item"><a href="/zh/docs/files/v1/download-file/index.html">GET /v1/buckets/{id}/files/*</a></div>
+<div class="item"><a href="/zh/docs/files/v1/file-metadata/index.html">HEAD /v1/buckets/{id}/files/*</a></div>
+<div class="item"><a href="/zh/docs/files/v1/get-bucket/index.html">GET /v1/buckets/{id}</a></div>
+<div class="item"><a href="/zh/docs/files/v1/list-buckets/index.html">GET /v1/buckets</a></div>
+<div class="item"><a href="/zh/docs/files/v1/list-files/index.html">GET /v1/buckets/{id}/list/*</a></div>
+<div class="item"><a href="/zh/docs/files/v1/modify-bucket/index.html">PATCH /v1/buckets/{id}</a></div>
+<div class="item"><a href="/zh/docs/files/v1/upload-file/index.html">PUT /v1/buckets/{id}/files/*</a></div>
+</div>
+<div class="item"><a href="/zh/docs/config/index.html">配置</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/config/v1/getting-started/index.html">配置服务快速入门</a></div>
+<div class="item"><a href="/zh/docs/config/v1/managing-configs/index.html">管理配置</a></div>
+<div class="item"><a href="/zh/docs/config/v1/api-reference/index.html">Config API 参考</a></div>
+<div class="item"><a href="/zh/docs/config/v1/create-config/index.html">POST /v0/configs</a></div>
+<div class="item"><a href="/zh/docs/config/v1/delete-config/index.html">DELETE /v0/configs/{id}</a></div>
+<div class="item"><a href="/zh/docs/config/v1/get-config/index.html">GET /v0/configs/{id}</a></div>
+<div class="item"><a href="/zh/docs/config/v1/get-user-config/index.html">GET /v1/config</a></div>
+<div class="item"><a href="/zh/docs/config/v1/list-configs/index.html">GET /v0/configs</a></div>
+<div class="item"><a href="/zh/docs/config/v1/patch-config/index.html">PATCH /v0/configs/{id}</a></div>
+<div class="item"><a href="/zh/docs/config/v1/update-user-config/index.html">PATCH /v1/config</a></div>
+</div>
+<div class="item"><a href="/zh/docs/logs/index.html">InstantLogs</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/logs/v1/getting-started/index.html">InstantLogs快速入门</a></div>
+<div class="item"><a href="/zh/docs/logs/v1/ingesting-logs/index.html">发送日志</a></div>
+<div class="item"><a href="/zh/docs/logs/v1/streaming-filtering/index.html">流式传输与过滤日志</a></div>
+<div class="item"><a href="/zh/docs/logs/v1/api-reference/index.html">InstantLogs API 参考</a></div>
+<div class="item"><a href="/zh/docs/logs/v1/create-logger/index.html">POST /v1/loggers</a></div>
+<div class="item"><a href="/zh/docs/logs/v1/create-logger-apikey/index.html">POST /v1/loggers/{id}/apiKeys</a></div>
+<div class="item"><a href="/zh/docs/logs/v1/delete-logger/index.html">DELETE /v1/loggers/{id}</a></div>
+<div class="item"><a href="/zh/docs/logs/v1/delete-logger-apikey/index.html">DELETE /v1/loggers/{id}/apiKeys/{key}</a></div>
+<div class="item"><a href="/zh/docs/logs/v1/filter-logs/index.html">GET /v1/loggers/{id}/filter</a></div>
+<div class="item"><a href="/zh/docs/logs/v1/get-logger/index.html">GET /v1/loggers/{id}</a></div>
+<div class="item"><a href="/zh/docs/logs/v1/ingest-framed-events/index.html">POST /v1/ingest/events</a></div>
+<div class="item"><a href="/zh/docs/logs/v1/ingest-logs/index.html">POST /v1/loggers/{id}/ingest</a></div>
+<div class="item"><a href="/zh/docs/logs/v1/list-loggers/index.html">GET /v1/loggers</a></div>
+<div class="item"><a href="/zh/docs/logs/v1/logger-stats/index.html">GET /v1/loggers/{id}/stats</a></div>
+<div class="item"><a href="/zh/docs/logs/v1/stream-events/index.html">GET /v1/loggers/{id}/events</a></div>
+</div>
+<div class="item"><a href="/zh/docs/queues/index.html">Tailon队列</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/queues/v1/getting-started/index.html">Tailon快速入门</a></div>
+<div class="item"><a href="/zh/docs/queues/v1/managing-queues/index.html">管理队列</a></div>
+<div class="item"><a href="/zh/docs/queues/v1/producing-consuming/index.html">生产与消费消息</a></div>
+<div class="item"><a href="/zh/docs/queues/v1/api-reference/index.html">Tailon API 参考</a></div>
+<div class="item"><a href="/zh/docs/queues/v1/create-queue/index.html">POST /v1/queues</a></div>
+<div class="item"><a href="/zh/docs/queues/v1/delete-queue/index.html">DELETE /v1/queues/{id}</a></div>
+<div class="item"><a href="/zh/docs/queues/v1/get-queue/index.html">GET /v1/queues/{id}</a></div>
+<div class="item"><a href="/zh/docs/queues/v1/list-clients/index.html">GET /v1/clients</a></div>
+<div class="item"><a href="/zh/docs/queues/v1/list-queues/index.html">GET /v1/queues</a></div>
+<div class="item"><a href="/zh/docs/queues/v1/read-messages/index.html">GET /v1/queues/{id}</a></div>
+<div class="item"><a href="/zh/docs/queues/v1/write-messages/index.html">POST /v1/queues/{id}</a></div>
+</div>
+<div class="item"><a href="/zh/docs/scheduler/index.html">调度器</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/scheduler/v1/getting-started/index.html">调度器快速入门</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v1/managing-schedulers/index.html">管理调度器</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v1/task-lifecycle/index.html">任务生命周期</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v1/api-reference/index.html">调度器 API 参考</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v1/acknowledge-task/index.html">DELETE /schedulers/{id}/tasks/{task}</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v1/create-scheduler/index.html">POST /schedulers</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v1/delete-scheduler/index.html">DELETE /schedulers/{id}</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v1/enqueue-task/index.html">POST /schedulers/{id}/tasks</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v1/extend-lease/index.html">POST /schedulers/{id}/tasks/{task}/extend</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v1/get-scheduler/index.html">GET /schedulers/{id}</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v1/list-schedulers/index.html">GET /schedulers</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v1/list-tasks/index.html">GET /schedulers/{id}/tasks</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v1/patch-scheduler/index.html">PATCH /schedulers/{id}</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v1/reschedule-task/index.html">POST /schedulers/{id}/tasks/{task}/reschedule</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v1/reserve-task/index.html">POST /schedulers/{id}/tasks/reserve</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v1/scheduler-health/index.html">GET /schedulers/{id}/health</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v1/task-stream/index.html">GET /schedulers/{id}/tasks/stream</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v1/update-scheduler/index.html">PUT /schedulers/{id}</a></div>
+</div>
+<div class="item"><a href="/zh/docs/kvnode/index.html">KVNode</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/kvnode/v1/getting-started/index.html">KVNode快速入门</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v1/collections-and-keys/index.html">集合与键</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v1/replication/index.html">复制与高可用</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v1/sdk-reference/index.html">SDK快速参考</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v1/api-reference/index.html">KVNode API 参考</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v1/create-collection/index.html">POST /v1/collections</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v1/delete-collection/index.html">DELETE /v1/collections/{col}</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v1/delete-key/index.html">DELETE /v1/collections/{col}/keys/*</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v1/get-key/index.html">GET /v1/collections/{col}/keys/*</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v1/health-check/index.html">GET /healthz</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v1/list-collections/index.html">GET /v1/collections</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v1/list-keys/index.html">GET /v1/collections/{col}/keys</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v1/node-metrics/index.html">GET /v1/metrics</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v1/node-status/index.html">GET /v1/status</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v1/readiness-check/index.html">GET /readyz</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v1/set-key/index.html">POST /v1/collections/{col}/keys/*</a></div>
+</div>
+<div class="item"><a href="/zh/docs/console/index.html">控制台</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/console/v1/getting-started/index.html">控制台快速入门</a></div>
+<div class="item"><a href="/zh/docs/console/v1/managing-projects/index.html">管理项目和服务</a></div>
+<div class="item"><a href="/zh/docs/console/v1/api-reference/index.html">控制台 API 参考</a></div>
+<div class="item"><a href="/zh/docs/console/v1/fake-api/index.html">GET /fakeapi/*</a></div>
+<div class="item"><a href="/zh/docs/console/v1/get-version/index.html">GET /version</a></div>
+</div>
+<div class="item"><a href="/zh/docs/glue2/index.html">API网关 (Glue2)</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/glue2/v1/architecture-routing/index.html">架构与路由</a></div>
+<div class="item"><a href="/zh/docs/glue2/v1/authentication/index.html">认证</a></div>
+<div class="item"><a href="/zh/docs/glue2/v1/api-keys/index.html">管理API密钥</a></div>
+<div class="item"><a href="/zh/docs/glue2/v1/api-reference/index.html">Glue2 API 参考</a></div>
+<div class="item"><a href="/zh/docs/glue2/v1/backend-status/index.html">GET /v0/status</a></div>
+<div class="item"><a href="/zh/docs/glue2/v1/get-version/index.html">GET /version</a></div>
+<div class="item"><a href="/zh/docs/glue2/v1/list-virtualhosts/index.html">GET /v0/virtualhosts</a></div>
+<div class="item"><a href="/zh/docs/glue2/v1/openapi-spec/index.html">GET /openapi.json</a></div>
+<div class="item"><a href="/zh/docs/glue2/v1/traffic-stats/index.html">GET /v0/stats</a></div>
+</div>
+<div class="item"><a href="/zh/docs/holamail/index.html">Holamail</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/holamail/v1/sending-email/index.html">使用Holamail发送邮件</a></div>
+<div class="item"><a href="/zh/docs/holamail/v1/api-reference/index.html">Holamail API 参考</a></div>
+<div class="item"><a href="/zh/docs/holamail/v1/smtp-reference/index.html">SMTP 协议参考</a></div>
+</div>
+<div class="item active"><a href="/zh/docs/run/index.html">Run</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/run/v1/getting-started/index.html">Run快速入门</a></div>
+<div class="item active selected"><a href="/zh/docs/run/v1/api-reference/index.html">Run API 参考</a></div>
+<div class="item"><a href="/zh/docs/run/v1/console-data/index.html">GET /api/console</a></div>
+<div class="item"><a href="/zh/docs/run/v1/docker-registry/index.html">Docker Registry API</a></div>
+<div class="item"><a href="/zh/docs/run/v1/get-version/index.html">GET /version</a></div>
+<div class="item"><a href="/zh/docs/run/v1/rollback-image/index.html">POST /api/console/rollback</a></div>
+<div class="item"><a href="/zh/docs/run/v1/save-environment/index.html">PUT /api/console/env</a></div>
+<div class="item"><a href="/zh/docs/run/v1/save-volumes/index.html">PUT /api/console/volumes</a></div>
+<div class="item"><a href="/zh/docs/run/v1/start-container/index.html">POST /api/console/start</a></div>
+<div class="item"><a href="/zh/docs/run/v1/stop-container/index.html">POST /api/console/stop</a></div>
+</div>
+
+
+
+</div>
+<div class="content">
+    
+    <div class="index"><div class="index-h2">
+<a href="#%E7%AB%AF%E7%82%B9">端点</a>
+</div>
+<div class="index-h2">
+<a href="#%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81">身份验证</a>
+</div>
+</div>
+    <div class="document">
+    <h1>Run API 参考</h1>
+<p>Run 是 HolaCloud 的容器执行服务。它提供用于容器管理的 REST API 和用于镜像存储的 Docker Registry v2 兼容接口。</p>
+<h2 id="%E7%AB%AF%E7%82%B9">端点</h2>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>路径</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>GET</span></span></code></pre></code></td>
+<td><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>/version</span></span></code></pre></code></td>
+<td>返回 Run 服务版本</td>
+</tr>
+<tr>
+<td><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>GET</span></span></code></pre></code></td>
+<td><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>/api/console</span></span></code></pre></code></td>
+<td>控制台数据 — 仓库、镜像、状态</td>
+</tr>
+<tr>
+<td><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>POST</span></span></code></pre></code></td>
+<td><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>/api/console/start</span></span></code></pre></code></td>
+<td>启动容器</td>
+</tr>
+<tr>
+<td><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>POST</span></span></code></pre></code></td>
+<td><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>/api/console/stop</span></span></code></pre></code></td>
+<td>停止容器</td>
+</tr>
+<tr>
+<td><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>POST</span></span></code></pre></code></td>
+<td><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>/api/console/rollback</span></span></code></pre></code></td>
+<td>回滚到之前的镜像</td>
+</tr>
+<tr>
+<td><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>PUT</span></span></code></pre></code></td>
+<td><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>/api/console/env</span></span></code></pre></code></td>
+<td>保存环境变量</td>
+</tr>
+<tr>
+<td><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>PUT</span></span></code></pre></code></td>
+<td><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>/api/console/volumes</span></span></code></pre></code></td>
+<td>保存卷配置</td>
+</tr>
+<tr>
+<td><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>GET</span></span></code></pre></code></td>
+<td><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>/v2/</span></span></code></pre></code></td>
+<td>Docker Registry API 版本检查</td>
+</tr>
+<tr>
+<td><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>HEAD</span></span></code></pre></code></td>
+<td><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>/v2/*</span></span></code></pre></code></td>
+<td>Docker Registry blob/清单检查</td>
+</tr>
+<tr>
+<td><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>POST</span></span></code></pre></code></td>
+<td><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>/v2/*/blobs/uploads/</span></span></code></pre></code></td>
+<td>Docker Registry blob 上传</td>
+</tr>
+<tr>
+<td><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>PATCH</span></span></code></pre></code></td>
+<td><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>/v2/*/blobs/uploads/:uuid</span></span></code></pre></code></td>
+<td>Docker Registry blob 上传分块</td>
+</tr>
+<tr>
+<td><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>PUT</span></span></code></pre></code></td>
+<td><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>/v2/*/blobs/uploads/:uuid</span></span></code></pre></code></td>
+<td>Docker Registry blob 上传完成</td>
+</tr>
+<tr>
+<td><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>PUT</span></span></code></pre></code></td>
+<td><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>/v2/*/manifests/:tag</span></span></code></pre></code></td>
+<td>Docker Registry 清单推送</td>
+</tr>
+</tbody>
+</table>
+<h2 id="%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81">身份验证</h2>
+<p>控制台 API 端点（<code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>/api/console/*</span></span></code></pre></code>）为公开端点。Docker Registry 端点需要使用 DockerAuth 机制进行基本身份验证。</p>
+
+    </div>
+</div>
+<div id="comments-section">
+    <h2>评论</h2>
+    <div id="comments-list"></div>
+    <form id="comment-form" class="comment-form">
+        <h3>发表评论</h3>
+        <div class="comment-form-row">
+            <input type="text" name="author" id="comment-author" placeholder="您的姓名" required>
+            <input type="email" name="email" id="comment-email" placeholder="邮箱（选填）">
+        </div>
+        <textarea name="content" id="comment-content" placeholder="写评论..." required></textarea>
+        <button type="submit" id="comment-submit">提交</button>
+        <p id="comment-status" class="comment-status"></p>
+    </form>
+</div>
+<style>
+#comments-section {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+}
+#comments-section h2 {
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+.comment {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: #f8fafc;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+.comment-author {
+    font-weight: 600;
+    color: #1e293b;
+}
+.comment-date {
+    font-size: 0.85em;
+    color: #64748b;
+    margin-left: 0.5rem;
+}
+.comment-content {
+    margin-top: 0.5rem;
+    line-height: 1.5;
+    color: #334155;
+}
+.comment-form {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #f1f5f9;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+.comment-form h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+.comment-form-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+.comment-form-row input {
+    flex: 1;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    font-size: 0.95rem;
+}
+#comment-content {
+    width: 100%;
+    min-height: 100px;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    box-sizing: border-box;
+    resize: vertical;
+    margin-bottom: 0.75rem;
+}
+#comment-submit {
+    padding: 0.5rem 1.5rem;
+    background: #3b82f6;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+#comment-submit:hover {
+    background: #2563eb;
+}
+#comment-submit:disabled {
+    background: #94a3b8;
+    cursor: not-allowed;
+}
+.comment-status {
+    margin: 0.5rem 0 0;
+    font-size: 0.9rem;
+}
+.comment-status.error {
+    color: #dc2626;
+}
+.comment-status.success {
+    color: #16a34a;
+}
+.comments-empty {
+    color: #64748b;
+    font-style: italic;
+}
+</style>
+<script>
+(function() {
+    function getPageID() {
+        var el = document.querySelector('[data-page-id]');
+        if (el) return el.getAttribute('data-page-id');
+        var url = document.body.getAttribute('url') || '';
+        var lang = document.documentElement.lang || 'en';
+        return url.replace(/\/$/, '') + '|' + lang;
+    }
+    var pageID = getPageID();
+    var list = document.getElementById('comments-list');
+    var form = document.getElementById('comment-form');
+    var authorInput = document.getElementById('comment-author');
+    var emailInput = document.getElementById('comment-email');
+    var contentInput = document.getElementById('comment-content');
+    var submitBtn = document.getElementById('comment-submit');
+    var statusEl = document.getElementById('comment-status');
+    function loadComments() {
+        fetch('/api/comments?page_id=' + encodeURIComponent(pageID))
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                if (!data.comments || data.comments.length === 0) {
+                    list.innerHTML = '<p class="comments-empty">' + getText('noComments') + '</p>';
+                    return;
+                }
+                var html = '';
+                data.comments.forEach(function(c) {
+                    var date = new Date(c.created_at).toLocaleDateString();
+                    html += '<div class="comment">';
+                    html += '<span class="comment-author">' + escapeHTML(c.author) + '</span>';
+                    html += '<span class="comment-date">' + date + '</span>';
+                    html += '<div class="comment-content">' + escapeHTML(c.content) + '</div>';
+                    html += '</div>';
+                });
+                list.innerHTML = html;
+            })
+            .catch(function() {
+                list.innerHTML = '<p class="comment-status error">' + getText('loadError') + '</p>';
+            });
+    }
+    function getText(key) {
+        var lang = document.documentElement.lang;
+        var texts = {
+            es: { noComments: 'No hay comentarios aún. Sé el primero en comentar.', loadError: 'Error al cargar comentarios.', sending: 'Enviando...', success: 'Comentario enviado con éxito.', error: 'Error al enviar el comentario.', submit: 'Enviar' },
+            zh: { noComments: '还没有评论。成为第一个评论者。', loadError: '加载评论时出错。', sending: '发送中...', success: '评论发送成功。', error: '发送评论时出错。', submit: '提交' },
+            en: { noComments: 'No comments yet. Be the first to comment.', loadError: 'Error loading comments.', sending: 'Sending...', success: 'Comment submitted successfully.', error: 'Error submitting comment.', submit: 'Submit' }
+        };
+        return (texts[lang] || texts['en'])[key];
+    }
+    function escapeHTML(str) {
+        var d = document.createElement('div');
+        d.textContent = str;
+        return d.innerHTML;
+    }
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        submitBtn.disabled = true;
+        submitBtn.textContent = getText('sending');
+        statusEl.textContent = '';
+        statusEl.className = 'comment-status';
+        fetch('/api/comments', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                page_id: pageID,
+                author: authorInput.value.trim(),
+                email: emailInput.value.trim(),
+                content: contentInput.value.trim()
+            })
+        })
+        .then(function(r) {
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            return r.json();
+        })
+        .then(function() {
+            statusEl.textContent = getText('success');
+            statusEl.className = 'comment-status success';
+            authorInput.value = '';
+            emailInput.value = '';
+            contentInput.value = '';
+            loadComments();
+        })
+        .catch(function() {
+            statusEl.textContent = getText('error');
+            statusEl.className = 'comment-status error';
+        })
+        .finally(function() {
+            submitBtn.disabled = false;
+            submitBtn.textContent = getText('submit');
+        });
+    });
+    loadComments();
+})();
+</script>
+<div class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <div class="footer-logo">hola.cloud</div>
+            
+            <p>企业级云软件，服务受监管与高速增长的团队。</p>
+            
+        </div>
+        <div class="footer-columns">
+            <div class="footer-column">
+                
+                <h4>解决方案</h4>
+                <ul>
+                    <li><a href="#start-now">平台总览</a></li>
+                    <li><a href="#solutions">行业方案</a></li>
+                    <li><a href="#partnership">合作模式</a></li>
+                </ul>
+                
+            </div>
+            <div class="footer-column">
+                
+                <h4>资源中心</h4>
+                <ul>
+                    <li><a href="/docs/">文档中心</a></li>
+                    <li><a href="https://console.hola.cloud/">客户控制台</a></li>
+                    <li><a href="mailto:contact@hola.cloud">支持服务</a></li>
+                </ul>
+                
+            </div>
+            <div class="footer-column">
+                
+                <h4>联系我们</h4>
+                <ul>
+                    <li><a href="mailto:contact@hola.cloud">contact@hola.cloud</a></li>
+                    <li><a href="tel:+34910000000">+34 910 000 000</a></li>
+                    <li><a href="https://www.linkedin.com/company/hola-cloud" target="_blank" rel="noopener">LinkedIn</a></li>
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+    <div class="footer-meta">
+        <span>© 2025 hola.cloud</span>
+        <span class="footer-meta-divider" aria-hidden="true">•</span>
+        
+        <span>保留所有权利。</span>
+        
+    </div>
+</div>
+<script>
+
+    
+    function isElementInViewport (el) {
+
+        
+        
+        
+        
+
+        var rect     = el.getBoundingClientRect(),
+            vWidth   = window.innerWidth || doc.documentElement.clientWidth,
+            vHeight  = window.innerHeight || doc.documentElement.clientHeight,
+            efp      = function (x, y) { return document.elementFromPoint(x, y) };
+
+        
+        if (rect.right < 0 || rect.bottom < 0
+            || rect.left > vWidth || rect.top > vHeight)
+            return false;
+
+        
+        return (
+            el.contains(efp(rect.left,  rect.top))
+            ||  el.contains(efp(rect.right, rect.top))
+            ||  el.contains(efp(rect.right, rect.bottom))
+            ||  el.contains(efp(rect.left,  rect.bottom))
+        );
+    }
+
+    function highlightIndex() {
+        let v = false;
+        document.querySelectorAll('.index a').forEach(a => {
+            const el = document.getElementById(a.getAttribute('href').slice(1));
+
+            if (!v && isElementInViewport(el)) {
+                a.classList.add('active');
+                v = true;
+            } else {
+                a.classList.remove('active');
+            }
+        });
+    }
+
+    document.addEventListener('scroll', highlightIndex, true);
+    document.addEventListener('load', highlightIndex, true);
+</script>
+</body>
+</html>
