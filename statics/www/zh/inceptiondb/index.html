@@ -45,14 +45,13 @@
             <a class="link button-console" href="https://console.hola.cloud/">Console</a>
         </div>
         <div class="right">
+            <div class="languages"><a class="" href="/inceptiondb/index.html">en</a><a class="" href="/es/inceptiondb/index.html">es</a><a class="selected" href="/zh/inceptiondb/index.html">zh</a></div>
             <a id="login-button" class="button button-noborder" href="https://console.hola.cloud/">Log In</a>
             <a class="button button-action" href="https://console.hola.cloud/">Start now</a>
         </div>
     </div>
 </div>
-<div class="languages-frame">
-    <div class="languages"><a class="" href="/inceptiondb/index.html">en</a><a class="" href="/es/inceptiondb/index.html">es</a><a class="selected" href="/zh/inceptiondb/index.html">zh</a></div>
-</div>
+<div class="docs-layout">
 <div class="tree">
 
 
@@ -105,10 +104,11 @@ cualquier sistema operativo y arquitectura, podrías instalar InceptionDB en tu 
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>}
 </span></span></code></pre></code></pre>
 <p>Y esto es otro bloque de código:</p>
-<code lang="javascript"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span><span style="color:#268bd2">function</span> Hello() {
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>    <span style="color:#719e07">return</span> <span style="color:#2aa198">&#34;Hello&#34;</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>}
-</span></span></code></pre></code>
+<code lang="javascript">
+function Hello() {
+    return &#34;Hello&#34;
+}
+</code>
 <pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span><span style="color:#268bd2">GET</span> / <span style="color:#268bd2">HTTP</span><span style="color:#719e07">/</span><span style="color:#2aa198">1.1</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>Host<span style="color:#719e07">:</span> www.example.com
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>User-Agent<span style="color:#719e07">:</span> Mozilla/5.0
@@ -154,9 +154,8 @@ cualquier sistema operativo y arquitectura, podrías instalar InceptionDB en tu 
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L14"><a style="outline: none; text-decoration:none; color:inherit" href="#L14">14</a></span><span>}
 </span></span></code></pre></code></pre>
 
-    </div>
-</div>
-<div id="comments-section">
+
+    <div id="comments-section">
     <h2>Comments</h2>
     <div id="comments-list"></div>
     <form id="comment-form" class="comment-form">
@@ -175,11 +174,12 @@ cualquier sistema operativo y arquitectura, podrías instalar InceptionDB en tu 
         <p id="comment-status" class="comment-status"></p>
     </form>
 </div>
+</div>
+</div>
+</div>
 <style>
 #comments-section {
-    max-width: 800px;
-    margin: 3rem auto;
-    padding: 0 1rem;
+    margin: 3rem 0 0;
 }
 #comments-section h2 {
     border-bottom: 1px solid #e2e8f0;

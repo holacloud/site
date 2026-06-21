@@ -45,14 +45,13 @@
             <a class="link button-console" href="https://console.hola.cloud/">Console</a>
         </div>
         <div class="right">
+            {{ .langMenu }}
             <a id="login-button" class="button button-noborder" href="https://console.hola.cloud/">Log In</a>
             <a class="button button-action" href="https://console.hola.cloud/">Start now</a>
         </div>
     </div>
 </div>
-<div class="languages-frame">
-    {{ .langMenu }}
-</div>
+<div class="docs-layout">
 <div class="tree">
 {{ .versionMenu }}
 {{ if isUnder "docs" }}
@@ -67,9 +66,8 @@
     <div class="index">{{ .index }}</div>
     <div class="document">
     {{ .content }}
-    </div>
-</div>
-<div id="comments-section">
+
+    {{ if ne .url "home" }}<div id="comments-section">
     <h2>{{ if eq .lang "es" }}Comentarios{{ else if eq .lang "zh" }}评论{{ else }}Comments{{ end }}</h2>
     <div id="comments-list"></div>
     <form id="comment-form" class="comment-form">
@@ -87,12 +85,13 @@
         <button type="submit" id="comment-submit">{{ if eq .lang "es" }}Enviar{{ else if eq .lang "zh" }}提交{{ else }}Submit{{ end }}</button>
         <p id="comment-status" class="comment-status"></p>
     </form>
+</div>{{ end }}
+</div>
+</div>
 </div>
 <style>
 #comments-section {
-    max-width: 800px;
-    margin: 3rem auto;
-    padding: 0 1rem;
+    margin: 3rem 0 0;
 }
 #comments-section h2 {
     border-bottom: 1px solid #e2e8f0;

@@ -165,8 +165,12 @@ func HolaDoc(c Config) {
 										}
 									}
 								}
-								if tag == "code" {
-									code := node.FirstChild.Data
+							if tag == "code" {
+								if node.Parent == nil || node.Parent.Data != "pre" {
+									return // skip inline code
+								}
+
+								code := node.FirstChild.Data
 									code = strings.TrimPrefix(code, "\n")
 
 									lexer := lexers.Get(getAttribute(node, "lang"))

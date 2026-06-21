@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <title>GET /readyz</title>
+    <meta name="description" content="inceptiondb">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/blue.css" rel="stylesheet">
+    <script src="/js/marked.min.js"></script>
+    <script defer src="https://umami.hola.cloud/script.js" data-website-id="cbcb870c-e9a8-460a-8b38-ab2fa77a4cc2"></script>
+</head>
+<body url="readiness-check">
+
+<div class="top-frame">
+    <div class="top">
+        <a href="/" class="logo"></a>
+        <div class="main-menu">
+            <div class="dropdown">
+                <button class="link dropdown-toggle" type="button">
+                    Products
+                    <span class="dropdown-icon" aria-hidden="true">▾</span>
+                </button>
+                <div class="dropdown-menu" role="menu">
+                    <a class="dropdown-item" href="https://flowtest.io" target="_blank" rel="noopener">
+                        <span class="item-title">Flowtest.io</span>
+                        <span class="item-description">Automated load testing from the hola.cloud ecosystem.</span>
+                    </a>
+                    <a class="dropdown-item" href="https://inceptiondb.hola.cloud" target="_blank" rel="noopener">
+                        <span class="item-title">InceptioDB</span>
+                        <span class="item-description">Fully managed database service within the hola.cloud ecosystem.</span>
+                    </a>
+                    <a class="dropdown-item" href="https://console.hola.cloud" target="_blank" rel="noopener">
+                        <span class="item-title">Public Cloud</span>
+                        <span class="item-description">Deploy and manage your workloads on the hola.cloud public platform.</span>
+                    </a>
+                    <a class="dropdown-item" href="https://gopress.org" target="_blank" rel="noopener">
+                        <span class="item-title">GoPress <span class="item-tag">Open Source</span></span>
+                        <span class="item-description">Open-source CMS built for the hola.cloud ecosystem.</span>
+                    </a>
+                </div>
+            </div>
+            
+            <a class="link" href="/zh/docs/index.html">文档</a>
+            
+            <a class="link button-console" href="https://console.hola.cloud/">Console</a>
+        </div>
+        <div class="right">
+            <div class="languages"><a class="" href="/docs/kvnode/v2/api-reference/readiness-check/index.html">en</a><a class="" href="/es/docs/kvnode/v2/api-reference/readiness-check/index.html">es</a><a class="selected" href="/zh/docs/kvnode/v2/api-reference/readiness-check/index.html">zh</a></div>
+            <a id="login-button" class="button button-noborder" href="https://console.hola.cloud/">Log In</a>
+            <a class="button button-action" href="https://console.hola.cloud/">Start now</a>
+        </div>
+    </div>
+</div>
+<div class="docs-layout">
+<div class="tree">
+<div class="versions"><a class="" href="/zh/docs/kvnode/v1/api-reference/readiness-check/index.html">v1</a><a class="selected" href="/zh/docs/kvnode/v2/api-reference/readiness-check/index.html">v2</a></div>
+
+    <div class="item"><a href="/zh/docs/inceptiondb/index.html">InceptionDB</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/inceptiondb/v2/getting-started/index.html">InceptionDB快速入门指南</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/managing-collections/index.html">管理集合</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/working-with-data/index.html">处理数据</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/index.html">InceptionDB API 参考</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/create-collection/index.html">POST /v1/databases/{id}/collections</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/create-database/index.html">POST /v1/databases</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/document-operations/index.html">POST /v1/databases/{id}/collections/{col}</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/drop-database/index.html">DELETE /v1/databases/{id}</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/get-database/index.html">GET /v1/databases/{id}</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/list-collections/index.html">GET /v1/databases/{id}/collections</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/list-databases/index.html">GET /v1/databases</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/update-database/index.html">PATCH /v1/databases/{id}</a></div>
+</div>
+</div>
+<div class="item"><a href="/zh/docs/lambda/index.html">Lambda</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/lambda/v2/getting-started/index.html">Lambda快速入门</a></div>
+<div class="item"><a href="/zh/docs/lambda/v2/managing-functions/index.html">管理Lambda函数</a></div>
+<div class="item"><a href="/zh/docs/lambda/v2/invoking-functions/index.html">调用Lambda函数</a></div>
+<div class="item"><a href="/zh/docs/lambda/v2/api-reference/index.html">Lambda API 参考</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/lambda/v2/api-reference/create-lambda/index.html">POST /api/v0/lambdas</a></div>
+<div class="item"><a href="/zh/docs/lambda/v2/api-reference/delete-lambda/index.html">DELETE /api/v0/lambdas/{id}</a></div>
+<div class="item"><a href="/zh/docs/lambda/v2/api-reference/get-lambda/index.html">GET /api/v0/lambdas/{id}</a></div>
+<div class="item"><a href="/zh/docs/lambda/v2/api-reference/list-lambdas/index.html">GET /api/v0/lambdas</a></div>
+<div class="item"><a href="/zh/docs/lambda/v2/api-reference/modify-lambda/index.html">PATCH /api/v0/lambdas/{id}</a></div>
+<div class="item"><a href="/zh/docs/lambda/v2/api-reference/mux-router/index.html">GET /mux/{owner}/*</a></div>
+<div class="item"><a href="/zh/docs/lambda/v2/api-reference/run-lambda-admin/index.html">POST /api/v0/run/{id}</a></div>
+<div class="item"><a href="/zh/docs/lambda/v2/api-reference/run-lambda-public/index.html">POST /run/{id}</a></div>
+</div>
+</div>
+<div class="item"><a href="/zh/docs/files/index.html">Files</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/files/v2/getting-started/index.html">文件服务快速入门</a></div>
+<div class="item"><a href="/zh/docs/files/v2/managing-buckets/index.html">管理存储桶</a></div>
+<div class="item"><a href="/zh/docs/files/v2/working-with-files/index.html">管理文件</a></div>
+<div class="item"><a href="/zh/docs/files/v2/api-reference/index.html">Files API 参考</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/files/v2/api-reference/create-bucket/index.html">POST /v1/buckets</a></div>
+<div class="item"><a href="/zh/docs/files/v2/api-reference/delete-bucket/index.html">DELETE /v1/buckets/{id}</a></div>
+<div class="item"><a href="/zh/docs/files/v2/api-reference/delete-file/index.html">DELETE /v1/buckets/{id}/files/*</a></div>
+<div class="item"><a href="/zh/docs/files/v2/api-reference/download-file/index.html">GET /v1/buckets/{id}/files/*</a></div>
+<div class="item"><a href="/zh/docs/files/v2/api-reference/file-metadata/index.html">HEAD /v1/buckets/{id}/files/*</a></div>
+<div class="item"><a href="/zh/docs/files/v2/api-reference/get-bucket/index.html">GET /v1/buckets/{id}</a></div>
+<div class="item"><a href="/zh/docs/files/v2/api-reference/list-buckets/index.html">GET /v1/buckets</a></div>
+<div class="item"><a href="/zh/docs/files/v2/api-reference/list-files/index.html">GET /v1/buckets/{id}/list/*</a></div>
+<div class="item"><a href="/zh/docs/files/v2/api-reference/modify-bucket/index.html">PATCH /v1/buckets/{id}</a></div>
+<div class="item"><a href="/zh/docs/files/v2/api-reference/upload-file/index.html">PUT /v1/buckets/{id}/files/*</a></div>
+</div>
+</div>
+<div class="item"><a href="/zh/docs/config/index.html">配置</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/config/v2/getting-started/index.html">配置服务快速入门</a></div>
+<div class="item"><a href="/zh/docs/config/v2/managing-configs/index.html">管理配置</a></div>
+<div class="item"><a href="/zh/docs/config/v2/api-reference/index.html">Config API 参考</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/config/v2/api-reference/create-config/index.html">POST /v0/configs</a></div>
+<div class="item"><a href="/zh/docs/config/v2/api-reference/delete-config/index.html">DELETE /v0/configs/{id}</a></div>
+<div class="item"><a href="/zh/docs/config/v2/api-reference/get-config/index.html">GET /v0/configs/{id}</a></div>
+<div class="item"><a href="/zh/docs/config/v2/api-reference/get-user-config/index.html">GET /v1/config</a></div>
+<div class="item"><a href="/zh/docs/config/v2/api-reference/list-configs/index.html">GET /v0/configs</a></div>
+<div class="item"><a href="/zh/docs/config/v2/api-reference/patch-config/index.html">PATCH /v0/configs/{id}</a></div>
+<div class="item"><a href="/zh/docs/config/v2/api-reference/update-user-config/index.html">PATCH /v1/config</a></div>
+</div>
+</div>
+<div class="item"><a href="/zh/docs/logs/index.html">InstantLogs</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/logs/v2/getting-started/index.html">InstantLogs快速入门</a></div>
+<div class="item"><a href="/zh/docs/logs/v2/ingesting-logs/index.html">发送日志</a></div>
+<div class="item"><a href="/zh/docs/logs/v2/streaming-filtering/index.html">流式传输与过滤日志</a></div>
+<div class="item"><a href="/zh/docs/logs/v2/api-reference/index.html">InstantLogs API 参考</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/logs/v2/api-reference/create-logger/index.html">POST /v1/loggers</a></div>
+<div class="item"><a href="/zh/docs/logs/v2/api-reference/create-logger-apikey/index.html">POST /v1/loggers/{id}/apiKeys</a></div>
+<div class="item"><a href="/zh/docs/logs/v2/api-reference/delete-logger/index.html">DELETE /v1/loggers/{id}</a></div>
+<div class="item"><a href="/zh/docs/logs/v2/api-reference/delete-logger-apikey/index.html">DELETE /v1/loggers/{id}/apiKeys/{key}</a></div>
+<div class="item"><a href="/zh/docs/logs/v2/api-reference/filter-logs/index.html">GET /v1/loggers/{id}/filter</a></div>
+<div class="item"><a href="/zh/docs/logs/v2/api-reference/get-logger/index.html">GET /v1/loggers/{id}</a></div>
+<div class="item"><a href="/zh/docs/logs/v2/api-reference/ingest-framed-events/index.html">POST /v1/ingest/events</a></div>
+<div class="item"><a href="/zh/docs/logs/v2/api-reference/ingest-logs/index.html">POST /v1/loggers/{id}/ingest</a></div>
+<div class="item"><a href="/zh/docs/logs/v2/api-reference/list-loggers/index.html">GET /v1/loggers</a></div>
+<div class="item"><a href="/zh/docs/logs/v2/api-reference/logger-stats/index.html">GET /v1/loggers/{id}/stats</a></div>
+<div class="item"><a href="/zh/docs/logs/v2/api-reference/stream-events/index.html">GET /v1/loggers/{id}/events</a></div>
+</div>
+</div>
+<div class="item"><a href="/zh/docs/queues/index.html">Tailon队列</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/queues/v2/getting-started/index.html">Tailon快速入门</a></div>
+<div class="item"><a href="/zh/docs/queues/v2/managing-queues/index.html">管理队列</a></div>
+<div class="item"><a href="/zh/docs/queues/v2/producing-consuming/index.html">生产与消费消息</a></div>
+<div class="item"><a href="/zh/docs/queues/v2/api-reference/index.html">Tailon API 参考</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/queues/v2/api-reference/create-queue/index.html">POST /v1/queues</a></div>
+<div class="item"><a href="/zh/docs/queues/v2/api-reference/delete-queue/index.html">DELETE /v1/queues/{id}</a></div>
+<div class="item"><a href="/zh/docs/queues/v2/api-reference/get-queue/index.html">GET /v1/queues/{id}</a></div>
+<div class="item"><a href="/zh/docs/queues/v2/api-reference/list-clients/index.html">GET /v1/clients</a></div>
+<div class="item"><a href="/zh/docs/queues/v2/api-reference/list-queues/index.html">GET /v1/queues</a></div>
+<div class="item"><a href="/zh/docs/queues/v2/api-reference/read-messages/index.html">GET /v1/queues/{id}</a></div>
+<div class="item"><a href="/zh/docs/queues/v2/api-reference/write-messages/index.html">POST /v1/queues/{id}</a></div>
+</div>
+</div>
+<div class="item"><a href="/zh/docs/scheduler/index.html">调度器</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/scheduler/v2/getting-started/index.html">调度器快速入门</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v2/managing-schedulers/index.html">管理调度器</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v2/task-lifecycle/index.html">任务生命周期</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v2/api-reference/index.html">调度器 API 参考</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/scheduler/v2/api-reference/acknowledge-task/index.html">DELETE /schedulers/{id}/tasks/{task}</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v2/api-reference/create-scheduler/index.html">POST /schedulers</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v2/api-reference/delete-scheduler/index.html">DELETE /schedulers/{id}</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v2/api-reference/enqueue-task/index.html">POST /schedulers/{id}/tasks</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v2/api-reference/extend-lease/index.html">POST /schedulers/{id}/tasks/{task}/extend</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v2/api-reference/get-scheduler/index.html">GET /schedulers/{id}</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v2/api-reference/list-schedulers/index.html">GET /schedulers</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v2/api-reference/list-tasks/index.html">GET /schedulers/{id}/tasks</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v2/api-reference/patch-scheduler/index.html">PATCH /schedulers/{id}</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v2/api-reference/reschedule-task/index.html">POST /schedulers/{id}/tasks/{task}/reschedule</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v2/api-reference/reserve-task/index.html">POST /schedulers/{id}/tasks/reserve</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v2/api-reference/scheduler-health/index.html">GET /schedulers/{id}/health</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v2/api-reference/task-stream/index.html">GET /schedulers/{id}/tasks/stream</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v2/api-reference/update-scheduler/index.html">PUT /schedulers/{id}</a></div>
+</div>
+</div>
+<div class="item active"><a href="/zh/docs/kvnode/index.html">KVNode</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/kvnode/v2/getting-started/index.html">KVNode快速入门</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v2/collections-and-keys/index.html">集合与键</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v2/replication/index.html">复制与高可用</a></div>
+<div class="item active"><a href="/zh/docs/kvnode/v2/api-reference/index.html">KVNode API 参考</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/kvnode/v2/api-reference/create-collection/index.html">POST /v1/collections</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v2/api-reference/delete-collection/index.html">DELETE /v1/collections/{col}</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v2/api-reference/delete-key/index.html">DELETE /v1/collections/{col}/keys/*</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v2/api-reference/get-key/index.html">GET /v1/collections/{col}/keys/*</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v2/api-reference/health-check/index.html">GET /healthz</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v2/api-reference/list-collections/index.html">GET /v1/collections</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v2/api-reference/list-keys/index.html">GET /v1/collections/{col}/keys</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v2/api-reference/node-metrics/index.html">GET /v1/metrics</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v2/api-reference/node-status/index.html">GET /v1/status</a></div>
+<div class="item active selected"><a href="/zh/docs/kvnode/v2/api-reference/readiness-check/index.html">GET /readyz</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v2/api-reference/set-key/index.html">POST /v1/collections/{col}/keys/*</a></div>
+</div>
+<div class="item"><a href="/zh/docs/kvnode/v2/sdk-reference/index.html">SDK快速参考</a></div>
+</div>
+<div class="item"><a href="/zh/docs/console/index.html">控制台</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/console/v2/getting-started/index.html">控制台快速入门</a></div>
+<div class="item"><a href="/zh/docs/console/v2/managing-projects/index.html">管理项目和服务</a></div>
+<div class="item"><a href="/zh/docs/console/v2/api-reference/index.html">控制台 API 参考</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/console/v2/api-reference/fake-api/index.html">GET /fakeapi/*</a></div>
+<div class="item"><a href="/zh/docs/console/v2/api-reference/get-version/index.html">GET /version</a></div>
+</div>
+</div>
+<div class="item"><a href="/zh/docs/glue2/index.html">API网关 (Glue2)</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/glue2/v2/architecture-routing/index.html">架构与路由</a></div>
+<div class="item"><a href="/zh/docs/glue2/v2/authentication/index.html">认证</a></div>
+<div class="item"><a href="/zh/docs/glue2/v2/api-keys/index.html">管理API密钥</a></div>
+<div class="item"><a href="/zh/docs/glue2/v2/api-reference/index.html">Glue2 API 参考</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/glue2/v2/api-reference/backend-status/index.html">GET /v0/status</a></div>
+<div class="item"><a href="/zh/docs/glue2/v2/api-reference/get-version/index.html">GET /version</a></div>
+<div class="item"><a href="/zh/docs/glue2/v2/api-reference/list-virtualhosts/index.html">GET /v0/virtualhosts</a></div>
+<div class="item"><a href="/zh/docs/glue2/v2/api-reference/openapi-spec/index.html">GET /openapi.json</a></div>
+<div class="item"><a href="/zh/docs/glue2/v2/api-reference/traffic-stats/index.html">GET /v0/stats</a></div>
+</div>
+</div>
+<div class="item"><a href="/zh/docs/holamail/index.html">Holamail</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/holamail/v2/sending-email/index.html">使用Holamail发送邮件</a></div>
+<div class="item"><a href="/zh/docs/holamail/v2/api-reference/index.html">Holamail API 参考</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/holamail/v2/api-reference/smtp-reference/index.html">SMTP 协议参考</a></div>
+</div>
+</div>
+<div class="item"><a href="/zh/docs/run/index.html">Run</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/run/v2/getting-started/index.html">Run快速入门</a></div>
+<div class="item"><a href="/zh/docs/run/v2/api-reference/index.html">Run API 参考</a></div>
+<div class="children">
+<div class="item"><a href="/zh/docs/run/v2/api-reference/console-data/index.html">GET /api/console</a></div>
+<div class="item"><a href="/zh/docs/run/v2/api-reference/docker-registry/index.html">Docker Registry API</a></div>
+<div class="item"><a href="/zh/docs/run/v2/api-reference/get-version/index.html">GET /version</a></div>
+<div class="item"><a href="/zh/docs/run/v2/api-reference/rollback-image/index.html">POST /api/console/rollback</a></div>
+<div class="item"><a href="/zh/docs/run/v2/api-reference/save-environment/index.html">PUT /api/console/env</a></div>
+<div class="item"><a href="/zh/docs/run/v2/api-reference/save-volumes/index.html">PUT /api/console/volumes</a></div>
+<div class="item"><a href="/zh/docs/run/v2/api-reference/start-container/index.html">POST /api/console/start</a></div>
+<div class="item"><a href="/zh/docs/run/v2/api-reference/stop-container/index.html">POST /api/console/stop</a></div>
+</div>
+</div>
+
+
+
+</div>
+<div class="content">
+    <div class="breadcrumb"><a class="item" href="/zh/docs/kvnode/v2/api-reference/index.html">KVNode API 参考</a><span class="arrow">→</span><a class="item selected" href="/zh/docs/kvnode/v2/api-reference/readiness-check/index.html">GET /readyz</a></div>
+    <div class="index"><div class="index-h2">
+<a href="#%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81">身份验证</a>
+</div>
+<div class="index-h2">
+<a href="#%E8%AF%B7%E6%B1%82%E7%A4%BA%E4%BE%8B">请求示例</a>
+</div>
+<div class="index-h2">
+<a href="#%E5%93%8D%E5%BA%94%E7%A4%BA%E4%BE%8B">响应示例</a>
+</div>
+<div class="index-h2">
+<a href="#%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81">错误代码</a>
+</div>
+</div>
+    <div class="document">
+    <h1>GET /readyz</h1>
+<p>返回 KVNode 的就绪状态，包括其父连接的运行状况。</p>
+<h2 id="%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81">身份验证</h2>
+<p>此端点为公开，无需身份验证。</p>
+<h2 id="%E8%AF%B7%E6%B1%82%E7%A4%BA%E4%BE%8B">请求示例</h2>
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl <span style="color:#2aa198">&#34;https://api.hola.cloud/readyz&#34;</span>
+</span></span></code></pre></code></pre>
+<h2 id="%E5%93%8D%E5%BA%94%E7%A4%BA%E4%BE%8B">响应示例</h2>
+<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span><span style="color:#268bd2">HTTP</span><span style="color:#719e07">/</span><span style="color:#2aa198">1.1</span> <span style="color:#2aa198">200</span> <span style="color:#cb4b16">OK</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>Content-Type<span style="color:#719e07">:</span> application/json
+</span></span></code></pre></code></pre>
+<pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  <span style="color:#268bd2">&#34;status&#34;</span>: <span style="color:#2aa198">&#34;ok&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  <span style="color:#268bd2">&#34;parent_connected&#34;</span>: <span style="color:#cb4b16">true</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>}
+</span></span></code></pre></code></pre>
+<h2 id="%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81">错误代码</h2>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>代码</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>503</td>
+<td>unavailable</td>
+<td>节点未就绪</td>
+</tr>
+</tbody>
+</table>
+
+
+    <div id="comments-section">
+    <h2>评论</h2>
+    <div id="comments-list"></div>
+    <form id="comment-form" class="comment-form">
+        <div id="reply-info" class="reply-info" style="display:none">
+            <span id="reply-label">回复给</span>
+            <span id="reply-author" class="reply-author"></span>
+            <button type="button" id="cancel-reply" class="cancel-reply">取消</button>
+        </div>
+        <h3 id="form-title">发表评论</h3>
+        <div class="comment-form-row">
+            <input type="text" name="author" id="comment-author" placeholder="您的姓名" required>
+            <input type="email" name="email" id="comment-email" placeholder="邮箱（选填）">
+        </div>
+        <textarea name="content" id="comment-content" placeholder="写评论（支持 Markdown）..." required></textarea>
+        <button type="submit" id="comment-submit">提交</button>
+        <p id="comment-status" class="comment-status"></p>
+    </form>
+</div>
+</div>
+</div>
+</div>
+<style>
+#comments-section {
+    margin: 3rem 0 0;
+}
+#comments-section h2 {
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+.comment {
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    background: #f8fafc;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+.comment-header {
+    margin-bottom: 0.25rem;
+}
+.comment-author {
+    font-weight: 600;
+    color: #1e293b;
+}
+.comment-date {
+    font-size: 0.85em;
+    color: #64748b;
+    margin-left: 0.5rem;
+}
+.comment-content {
+    margin-top: 0.5rem;
+    line-height: 1.6;
+    color: #334155;
+}
+.comment-content p {
+    margin: 0 0 0.5rem;
+}
+.comment-content p:last-child {
+    margin-bottom: 0;
+}
+.comment-content pre {
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 0.75rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-size: 0.85rem;
+    margin: 0.5rem 0;
+}
+.comment-content code {
+    background: #e2e8f0;
+    padding: 0.15rem 0.35rem;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+.comment-content pre code {
+    background: none;
+    padding: 0;
+    border-radius: 0;
+}
+.comment-reply {
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.85rem;
+    color: #3b82f6;
+    background: none;
+    border: 1px solid #3b82f6;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.comment-reply:hover {
+    background: #3b82f6;
+    color: #fff;
+}
+.comment-form {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #f1f5f9;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+.comment-form h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+.comment-form-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+.comment-form-row input {
+    flex: 1;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    font-size: 0.95rem;
+}
+#comment-content {
+    width: 100%;
+    min-height: 100px;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    box-sizing: border-box;
+    resize: vertical;
+    margin-bottom: 0.75rem;
+}
+#comment-submit {
+    padding: 0.5rem 1.5rem;
+    background: #3b82f6;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+#comment-submit:hover {
+    background: #2563eb;
+}
+#comment-submit:disabled {
+    background: #94a3b8;
+    cursor: not-allowed;
+}
+.comment-status {
+    margin: 0.5rem 0 0;
+    font-size: 0.9rem;
+}
+.comment-status.error {
+    color: #dc2626;
+}
+.comment-status.success {
+    color: #16a34a;
+}
+.comments-empty {
+    color: #64748b;
+    font-style: italic;
+}
+.reply-info {
+    background: #e0f2fe;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.reply-author {
+    font-weight: 600;
+}
+.cancel-reply {
+    margin-left: auto;
+    padding: 0.15rem 0.5rem;
+    font-size: 0.85rem;
+    color: #64748b;
+    background: none;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.cancel-reply:hover {
+    background: #e2e8f0;
+}
+</style>
+<script>
+(function() {
+    function getPageID() {
+        var el = document.querySelector('[data-page-id]');
+        if (el) return el.getAttribute('data-page-id');
+        var url = window.location.pathname || '/';
+        var lang = document.documentElement.lang || 'en';
+        return url.replace(/\/$/, '') + '|' + lang;
+    }
+    var pageID = getPageID();
+    var list = document.getElementById('comments-list');
+    var form = document.getElementById('comment-form');
+    var authorInput = document.getElementById('comment-author');
+    var emailInput = document.getElementById('comment-email');
+    var contentInput = document.getElementById('comment-content');
+    var submitBtn = document.getElementById('comment-submit');
+    var statusEl = document.getElementById('comment-status');
+    var cancelReplyBtn = document.getElementById('cancel-reply');
+    var replyInfo = document.getElementById('reply-info');
+    var replyAuthor = document.getElementById('reply-author');
+    var formTitle = document.getElementById('form-title');
+    var currentParentID = '';
+
+    marked.setOptions({
+        gfm: true,
+        breaks: true,
+        pedantic: false
+    });
+    var renderer = new marked.Renderer();
+    renderer.link = function(t) {
+        var href = t.href;
+        if (href && href.toLowerCase().startsWith('javascript:')) href = '#';
+        return '<a href="' + href + '" rel="nofollow">' + t.text + '</a>';
+    };
+    marked.setOptions({ renderer: renderer });
+
+    function renderMarkdown(text) {
+        return marked.parse(text);
+    }
+
+    function buildTree(comments) {
+        var map = {};
+        var roots = [];
+        comments.forEach(function(c) { map[c.id] = c; c.children = []; });
+        comments.forEach(function(c) {
+            if (c.parent_id && map[c.parent_id]) {
+                map[c.parent_id].children.push(c);
+            } else {
+                roots.push(c);
+            }
+        });
+        return roots;
+    }
+
+    function renderComment(c, depth) {
+        var margin = Math.min(depth * 24, 96);
+        var date = new Date(c.created_at).toLocaleDateString();
+        var content = renderMarkdown(c.content);
+        var html = '<div class="comment" style="margin-left:' + margin + 'px">';
+        html += '<div class="comment-header">';
+        html += '<span class="comment-author">' + escapeHTML(c.author) + '</span>';
+        html += '<span class="comment-date">' + date + '</span>';
+        html += '</div>';
+        html += '<div class="comment-content">' + content + '</div>';
+        html += '<button class="comment-reply" data-id="' + escapeHTML(c.id) + '" data-author="' + escapeHTML(c.author) + '">' + getText('reply') + '</button>';
+        html += '</div>';
+        if (c.children) {
+            c.children.forEach(function(child) { html += renderComment(child, depth + 1); });
+        }
+        return html;
+    }
+
+    function loadComments() {
+        fetch('/api/comments?page_id=' + encodeURIComponent(pageID))
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                if (!data.comments || data.comments.length === 0) {
+                    list.innerHTML = '<p class="comments-empty">' + getText('noComments') + '</p>';
+                    return;
+                }
+                var roots = buildTree(data.comments);
+                var html = '';
+                roots.forEach(function(c) { html += renderComment(c, 0); });
+                list.innerHTML = html;
+                attachReplyHandlers();
+            })
+            .catch(function() {
+                list.innerHTML = '<p class="comment-status error">' + getText('loadError') + '</p>';
+            });
+    }
+
+    function attachReplyHandlers() {
+        document.querySelectorAll('.comment-reply').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                currentParentID = btn.getAttribute('data-id');
+                var author = btn.getAttribute('data-author');
+                replyAuthor.textContent = author;
+                replyInfo.style.display = 'flex';
+                formTitle.textContent = getText('replyTitle');
+                contentInput.focus();
+                contentInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            });
+        });
+    }
+
+    function getText(key) {
+        var lang = document.documentElement.lang;
+        var texts = {
+            es: { noComments: 'No hay comentarios aún. Sé el primero en comentar.', loadError: 'Error al cargar comentarios.', sending: 'Enviando...', success: 'Comentario enviado con éxito.', error: 'Error al enviar el comentario.', submit: 'Enviar', reply: 'Responder', replyTitle: 'Responder', cancel: 'Cancelar' },
+            zh: { noComments: '还没有评论。成为第一个评论者。', loadError: '加载评论时出错。', sending: '发送中...', success: '评论发送成功。', error: '发送评论时出错。', submit: '提交', reply: '回复', replyTitle: '回复', cancel: '取消' },
+            en: { noComments: 'No comments yet. Be the first to comment.', loadError: 'Error loading comments.', sending: 'Sending...', success: 'Comment submitted successfully.', error: 'Error submitting comment.', submit: 'Submit', reply: 'Reply', replyTitle: 'Reply', cancel: 'Cancel' }
+        };
+        return (texts[lang] || texts['en'])[key];
+    }
+
+    function escapeHTML(str) {
+        var d = document.createElement('div');
+        d.textContent = str;
+        return d.innerHTML;
+    }
+
+    cancelReplyBtn.addEventListener('click', function() {
+        currentParentID = '';
+        replyInfo.style.display = 'none';
+        formTitle.textContent = getText('submit');
+    });
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        submitBtn.disabled = true;
+        submitBtn.textContent = getText('sending');
+        statusEl.textContent = '';
+        statusEl.className = 'comment-status';
+        var body = {
+            page_id: pageID,
+            author: authorInput.value.trim(),
+            email: emailInput.value.trim(),
+            content: contentInput.value.trim()
+        };
+        if (currentParentID) {
+            body.parent_id = currentParentID;
+        }
+        fetch('/api/comments', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+        })
+        .then(function(r) {
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            return r.json();
+        })
+        .then(function() {
+            statusEl.textContent = getText('success');
+            statusEl.className = 'comment-status success';
+            authorInput.value = '';
+            emailInput.value = '';
+            contentInput.value = '';
+            currentParentID = '';
+            replyInfo.style.display = 'none';
+            formTitle.textContent = getText('submit');
+            loadComments();
+        })
+        .catch(function() {
+            statusEl.textContent = getText('error');
+            statusEl.className = 'comment-status error';
+        })
+        .finally(function() {
+            submitBtn.disabled = false;
+            submitBtn.textContent = getText('submit');
+        });
+    });
+    loadComments();
+})();
+</script>
+<div class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <div class="footer-logo">hola.cloud</div>
+            
+            <p>企业级云软件，服务受监管与高速增长的团队。</p>
+            
+        </div>
+        <div class="footer-columns">
+            <div class="footer-column">
+                
+                <h4>解决方案</h4>
+                <ul>
+                    <li><a href="#start-now">平台总览</a></li>
+                    <li><a href="#solutions">行业方案</a></li>
+                    <li><a href="#partnership">合作模式</a></li>
+                </ul>
+                
+            </div>
+            <div class="footer-column">
+                
+                <h4>资源中心</h4>
+                <ul>
+                    <li><a href="/docs/">文档中心</a></li>
+                    <li><a href="https://console.hola.cloud/">客户控制台</a></li>
+                    <li><a href="mailto:contact@hola.cloud">支持服务</a></li>
+                </ul>
+                
+            </div>
+            <div class="footer-column">
+                
+                <h4>联系我们</h4>
+                <ul>
+                    <li><a href="mailto:contact@hola.cloud">contact@hola.cloud</a></li>
+                    <li><a href="tel:+34910000000">+34 910 000 000</a></li>
+                    <li><a href="https://www.linkedin.com/company/hola-cloud" target="_blank" rel="noopener">LinkedIn</a></li>
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+    <div class="footer-meta">
+        <span>© 2025 hola.cloud</span>
+        <span class="footer-meta-divider" aria-hidden="true">•</span>
+        
+        <span>保留所有权利。</span>
+        
+    </div>
+</div>
+<script>
+
+    
+    function isElementInViewport (el) {
+
+        
+        
+        
+        
+
+        var rect     = el.getBoundingClientRect(),
+            vWidth   = window.innerWidth || doc.documentElement.clientWidth,
+            vHeight  = window.innerHeight || doc.documentElement.clientHeight,
+            efp      = function (x, y) { return document.elementFromPoint(x, y) };
+
+        
+        if (rect.right < 0 || rect.bottom < 0
+            || rect.left > vWidth || rect.top > vHeight)
+            return false;
+
+        
+        return (
+            el.contains(efp(rect.left,  rect.top))
+            ||  el.contains(efp(rect.right, rect.top))
+            ||  el.contains(efp(rect.right, rect.bottom))
+            ||  el.contains(efp(rect.left,  rect.bottom))
+        );
+    }
+
+    function highlightIndex() {
+        let v = false;
+        document.querySelectorAll('.index a').forEach(a => {
+            const el = document.getElementById(a.getAttribute('href').slice(1));
+
+            if (!v && isElementInViewport(el)) {
+                a.classList.add('active');
+                v = true;
+            } else {
+                a.classList.remove('active');
+            }
+        });
+    }
+
+    document.addEventListener('scroll', highlightIndex, true);
+    document.addEventListener('load', highlightIndex, true);
+</script>
+</body>
+</html>
