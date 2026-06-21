@@ -431,7 +431,7 @@
     function getPageID() {
         var el = document.querySelector('[data-page-id]');
         if (el) return el.getAttribute('data-page-id');
-        var url = document.body.getAttribute('url') || '';
+        var url = window.location.pathname || '/';
         var lang = document.documentElement.lang || 'en';
         return url.replace(/\/$/, '') + '|' + lang;
     }
