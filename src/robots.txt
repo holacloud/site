@@ -1,1 +1,3 @@
-# Robots File
+Sitemap: https://holacloud.com/sitemap.xml
+User-agent: *
+Disallow:

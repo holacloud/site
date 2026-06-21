@@ -13,6 +13,7 @@ import (
 	"sort"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/alecthomas/chroma"
 	html2 "github.com/alecthomas/chroma/formatters/html"
@@ -31,6 +32,7 @@ type Config struct {
 	Versions  string `json:"versions" usage:"default version is the first one"`
 	Languages string `json:"languages" usage:"default language is the first one"`
 	Serve     string `json:"serve" usage:"Address to serve files locally, example ':8080'"`
+	BaseURL   string `json:"baseurl" usage:"Base URL for sitemap generation, e.g. https://holacloud.com"`
 	Version   bool   `json:"version" usage:"Display version and exit"`
 }
 
@@ -54,6 +56,8 @@ func HolaDoc(c Config) {
 
 	readNodes(root, c.Src, c.Www)
 	root.PrettyPrint(0)
+
+	urls := []string{}
 
 	traverseNodes(root, func(node *Node) {
 
@@ -243,7 +247,10 @@ func HolaDoc(c Config) {
 					"content":     template.HTML(content),
 				}
 
-				newFilename := path.Join(c.Www, getOutputPath(node, variation, language, version))
+				outputPath := getOutputPath(node, variation, language, version)
+				urls = append(urls, outputPath)
+
+				newFilename := path.Join(c.Www, outputPath)
 				os.MkdirAll(path.Dir(newFilename), 0777) // todo: handle err
 
 				f, err := os.Create(newFilename)
@@ -309,6 +316,45 @@ func HolaDoc(c Config) {
 
 	})
 
+	if c.BaseURL != "" {
+		generateSitemap(c.Www, c.BaseURL, urls)
+	}
+
+}
+
+func generateSitemap(www, baseURL string, paths []string) {
+	if len(paths) == 0 {
+		return
+	}
+
+	now := time.Now().Format("2006-01-02")
+
+	var b bytes.Buffer
+	b.WriteString(`<?xml version="1.0" encoding="UTF-8"?>` + "\n")
+	b.WriteString(`<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">` + "\n")
+
+	seen := map[string]bool{}
+	for _, p := range paths {
+		// clean path: strip index.html, ensure leading /
+		u := "/" + strings.TrimSuffix(p, "index.html")
+		if seen[u] {
+			continue
+		}
+		seen[u] = true
+
+		loc := strings.TrimRight(baseURL, "/") + u
+		b.WriteString("  <url>\n")
+		b.WriteString(fmt.Sprintf("    <loc>%s</loc>\n", loc))
+		b.WriteString(fmt.Sprintf("    <lastmod>%s</lastmod>\n", now))
+		b.WriteString("  </url>\n")
+	}
+
+	b.WriteString("</urlset>\n")
+
+	err := os.WriteFile(path.Join(www, "sitemap.xml"), b.Bytes(), 0644)
+	if err != nil {
+		fmt.Println("WARNING: failed to write sitemap.xml:", err)
+	}
 }
 
 func getTemplate(node *Node, funcs template.FuncMap) *template.Template {

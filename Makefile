@@ -37,7 +37,7 @@ version:
 
 .PHONY: site
 site:
-	go run ./cmd/sitegen --src src/ --www statics/www/ --versions "v1,v2" --languages "en,es,zh"
+	go run ./cmd/sitegen --src src/ --www statics/www/ --versions "v1,v2" --languages "en,es,zh" --baseurl "https://holacloud.com"
 
 .PHONY: watch
 watch:
