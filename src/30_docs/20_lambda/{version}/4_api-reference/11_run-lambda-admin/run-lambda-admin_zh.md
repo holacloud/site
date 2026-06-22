@@ -1,29 +1,27 @@
+# 运行 Lambda（管理）
 
-# Run Lambda (Admin)
+通过经过认证的管理路由调用 lambda。该端点接受任何 HTTP 方法。
 
-使用管理员凭证调用 Lambda 函数。需要身份验证。
+## 认证
 
-## 身份验证
+需要 `X-Glue-Authentication`。
 
-需要 `Api-Key` 和 `Api-Secret` 请求头。
-
-## 路径参数
+## Path 参数
 
 | 参数 | 类型 | 描述 |
-|-----------|------|------|
-| id | uuid | 要运行的 Lambda 函数的唯一标识符 |
+|------|------|------|
+| `lambda_id` | string | Lambda 标识符 |
 
 ## 请求体
 
-您想要传递给 Lambda 函数的任何 JSON 负载。Lambda 函数将其作为 `req` 参数接收。
+发送任何希望 lambda 作为 `req.body` 接收的 payload。
 
 ## HTTP 请求
 
 ```http
 POST /api/v0/run/f1a2b3c4-d5e6-7890-abcd-ef0123456789 HTTP/1.1
 Host: api.hola.cloud
-Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d
-Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf
+X-Glue-Authentication: YOUR_TOKEN
 Content-Type: application/json
 
 {
@@ -35,8 +33,7 @@ Content-Type: application/json
 
 ```bash
 curl -X POST "https://api.hola.cloud/api/v0/run/f1a2b3c4-d5e6-7890-abcd-ef0123456789" \
-  -H "Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d" \
-  -H "Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf" \
+  -H "X-Glue-Authentication: YOUR_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Alice"
@@ -45,20 +42,21 @@ curl -X POST "https://api.hola.cloud/api/v0/run/f1a2b3c4-d5e6-7890-abcd-ef012345
 
 ## 响应
 
+响应就是 lambda 处理器返回的内容。
+
 ```json
 {
-  "status": 200,
   "body": {
-    "message": "你好，Alice！"
+    "message": "Hello, Alice!"
   }
 }
 ```
 
 ## 错误码
 
-| 状态码 | 描述 |
-|--------|------|
-| 400 | 无效的请求体 |
-| 401 | 缺少或无效的身份验证标头 |
-| 404 | 未找到 Lambda 函数或函数未激活 |
+| 代码 | 描述 |
+|------|------|
+| 400 | 请求体无效 |
+| 401 | 认证缺失或无效 |
+| 404 | Lambda 未找到 |
 | 500 | Lambda 执行错误 |

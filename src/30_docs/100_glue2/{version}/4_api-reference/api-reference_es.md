@@ -10,4 +10,5 @@ Glue2 es la puerta de enlace central de API para HolaCloud. La mayoría de los e
 | `GET` | `/v0/virtualhosts` | Lista la tabla de enrutamiento |
 | `GET` | `/v0/stats` | Obtiene estadísticas de tráfico |
 | `GET` | `/v0/status` | Verifica el estado de los servicios backend |
+| `GET` | `/v0/secret` | Endpoint protegido de prueba |
 | `GET` | `/openapi.json` | Especificación OpenAPI |

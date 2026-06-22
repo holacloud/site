@@ -107,7 +107,7 @@
     <div class="hero-inner">
         <div class="hero-eyebrow">🗄️ InceptionDB</div>
         <h1>托管 NoSQL 文档数据库</h1>
-        <p>InceptionDB is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <p>InceptionDB 通过 HTTP API 在数据库和集合中存储 JSON 文档。</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">开始使用</a>
             <a class="button button-secondary" href="/docs/inceptiondb/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">文档中心</a>
@@ -120,18 +120,18 @@
         <div class="section-header">
             <div class="section-kicker">InceptionDB</div>
             <h2 id="%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD">核心功能</h2>
-            <p>Everything you need to build, deploy, and scale with InceptionDB on HolaCloud.</p>
+            <p>创建数据库、管理集合，并使用基于 action 的 endpoint 处理 JSON 文档。</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
             <h3 id="%E7%81%B5%E6%B4%BB%E7%9A%84%E6%96%87%E6%A1%A3%E6%A8%A1%E5%9E%8B">灵活的文档模型</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">使用动态模式存储和查询 JSON 文档。开箱即用的集合、索引和聚合功能。</p>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">在集合中存储动态结构的 JSON 文档，并使用过滤器和索引查询。</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="%E9%AB%98%E5%8F%AF%E7%94%A8%E6%80%A7">高可用性</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">跨可用区自动复制，毫秒级故障转移，强一致性。</p>
+            <h3 id="%E9%9B%86%E5%90%88%E6%93%8D%E4%BD%9C">集合操作</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">使用 <code>:insert</code>、<code>:find</code>、<code>:patch</code> 和 <code>:remove</code> 等集合 action。</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="%E5%86%85%E7%BD%AE%E5%AE%89%E5%85%A8">内置安全</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">传输中和静态加密，基于角色的访问控制，以及合规审计日志。</p>
+            <h3 id="%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BF%E9%97%AE%E5%AF%86%E9%92%A5">数据库访问密钥</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">通过 owner 认证或数据库 API key 访问数据库。</p>
           </div>
         </div>
     </section>
@@ -140,20 +140,20 @@
         <div class="section-header">
             <div class="section-kicker">Quick start</div>
             <h2 id="%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B">快速开始</h2>
-            <p>Get started with InceptionDB in seconds using the API.</p>
+            <p>使用 API 在几秒内开始使用 InceptionDB。</p>
         </div>
-        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1"> 1</a></span><span>curl -X POST https://api.hola.cloud/v1/databases \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2"> 2</a></span><span>  -H &#34;Authorization: Bearer $TOKEN&#34; \
+        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1"> 1</a></span><span>curl -X POST https://inceptiondb.hola.cloud/v1/databases \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2"> 2</a></span><span>  -H &#39;X-Glue-Authentication: {&#34;user&#34;:{&#34;id&#34;:&#34;user-123&#34;}}&#39; \
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3"> 3</a></span><span>  -d &#39;{&#34;name&#34;: &#34;mydb&#34;}&#39;
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4"> 4</a></span><span>
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5"> 5</a></span><span># 创建集合
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6"> 6</a></span><span>curl -X POST https://api.hola.cloud/v1/databases/mydb/collections \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7"> 7</a></span><span>  -H &#34;Authorization: Bearer $TOKEN&#34; \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6"> 6</a></span><span>curl -X POST https://inceptiondb.hola.cloud/v1/databases/database-123/collections \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7"> 7</a></span><span>  -H &#39;Api-Key: $API_KEY&#39; -H &#39;Api-Secret: $API_SECRET&#39; \
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8"> 8</a></span><span>  -d &#39;{&#34;name&#34;: &#34;users&#34;}&#39;
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9"> 9</a></span><span>
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L10"><a style="outline: none; text-decoration:none; color:inherit" href="#L10">10</a></span><span># 插入文档
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L11"><a style="outline: none; text-decoration:none; color:inherit" href="#L11">11</a></span><span>curl -X POST https://api.hola.cloud/v1/databases/mydb/collections/users \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L12"><a style="outline: none; text-decoration:none; color:inherit" href="#L12">12</a></span><span>  -H &#34;Authorization: Bearer $TOKEN&#34; \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L11"><a style="outline: none; text-decoration:none; color:inherit" href="#L11">11</a></span><span>curl -X POST https://inceptiondb.hola.cloud/v1/databases/database-123/collections/users:insert \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L12"><a style="outline: none; text-decoration:none; color:inherit" href="#L12">12</a></span><span>  -H &#39;Api-Key: $API_KEY&#39; -H &#39;Api-Secret: $API_SECRET&#39; \
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L13"><a style="outline: none; text-decoration:none; color:inherit" href="#L13">13</a></span><span>  -d &#39;{&#34;name&#34;: &#34;Alice&#34;, &#34;email&#34;: &#34;alice@example.com&#34;}&#39;</span></span></code></pre></code></pre>
     </section>
 
@@ -191,6 +191,7 @@
     </section>
 </div>
 
+
     <div id="comments-section">
     <h2>评论</h2>
     <div id="comments-list"></div>
@@ -218,10 +219,10 @@
 <a href="#%E7%81%B5%E6%B4%BB%E7%9A%84%E6%96%87%E6%A1%A3%E6%A8%A1%E5%9E%8B">灵活的文档模型</a>
 </div>
 <div class="index-h3">
-<a href="#%E9%AB%98%E5%8F%AF%E7%94%A8%E6%80%A7">高可用性</a>
+<a href="#%E9%9B%86%E5%90%88%E6%93%8D%E4%BD%9C">集合操作</a>
 </div>
 <div class="index-h3">
-<a href="#%E5%86%85%E7%BD%AE%E5%AE%89%E5%85%A8">内置安全</a>
+<a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BF%E9%97%AE%E5%AF%86%E9%92%A5">数据库访问密钥</a>
 </div>
 <div class="index-h2">
 <a href="#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B">快速开始</a>

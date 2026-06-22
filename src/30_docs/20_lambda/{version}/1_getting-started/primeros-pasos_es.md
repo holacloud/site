@@ -1,29 +1,26 @@
-<h1>Primeros pasos con Lambda</h1>
+<h1>Primeros Pasos con Lambda</h1>
 
-Esta guía te explica cómo crear tu primera función Lambda, invocarla e inspeccionar el resultado.
+Esta guía muestra cómo crear una lambda JavaScript, listarla e invocarla mediante rutas administrativas y públicas.
 
-## Prerrequisitos
+## Requisitos Previos
 
-- Una cuenta de HolaCloud con credenciales API (Api-Key y Api-Secret).
+- Una cuenta de HolaCloud con un token `X-Glue-Authentication`.
 - [curl](https://curl.se/) instalado en tu máquina.
 
-## Paso 1: Obtén tus Credenciales API
+## Paso 1: Crear una Lambda
 
-Ingresa al panel de control de HolaCloud y dirígete a la sección de claves API. Genera un nuevo par de claves — recibirás un **Api-Key** y un **Api-Secret**. Guarda estos valores de forma segura, ya que se usan para autenticar todas las solicitudes administrativas.
-
-## Paso 2: Crea una Función Lambda
-
-Crea una función simple "hola-mundo" escrita en JavaScript:
+Crea una lambda simple `hello-world`:
 
 ```bash
 curl -X POST "https://api.hola.cloud/api/v0/lambdas" \
-  -H "Api-Key: TU_API_KEY" \
-  -H "Api-Secret: TU_API_SECRET" \
+  -H "X-Glue-Authentication: TU_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
-    "name": "hola-mundo",
-    "runtime": "js",
-    "code": "export default (req) => { return { body: \"¡Hola, Mundo!\" } }"
+    "name": "hello-world",
+    "language": "javascript",
+    "method": "GET",
+    "path": "/hello-world",
+    "code": "export default (req) => ({ body: { message: \"Hello, World!\", method: req.method, path: req.path } })"
   }'
 ```
 
@@ -32,57 +29,58 @@ Respuesta esperada:
 ```json
 {
   "id": "f3b2c1a0-1234-5678-9abc-def012345678",
-  "name": "hola-mundo",
-  "runtime": "js",
-  "status": "active",
-  "created_at": "2025-06-21T12:00:00Z"
+  "created_timestamp": 1750507200,
+  "owner": "user_123",
+  "project_id": "project_456",
+  "name": "hello-world",
+  "language": "javascript",
+  "code": "export default (req) => ({ body: { message: \"Hello, World!\", method: req.method, path: req.path } })",
+  "method": "GET",
+  "path": "/hello-world"
 }
 ```
 
-Guarda el `id` devuelto — lo necesitarás para invocar y administrar tu función.
+Guarda el `id` devuelto; es el `lambda_id` usado por los endpoints de ejecución, consulta, actualización y eliminación.
 
-## Paso 3: Lista tus Lambdas
+## Paso 2: Listar Lambdas
 
-Verifica que la función se haya creado listando todas las lambdas de tu cuenta:
+Verifica que la lambda fue creada:
 
 ```bash
 curl "https://api.hola.cloud/api/v0/lambdas" \
-  -H "Api-Key: TU_API_KEY" \
-  -H "Api-Secret: TU_API_SECRET"
+  -H "X-Glue-Authentication: TU_TOKEN"
 ```
 
-## Paso 4: Ejecuta la Función
+## Paso 3: Ejecutar la Lambda
 
-Invoca la función de forma síncrona usando el endpoint administrativo:
+Invócala mediante la ruta administrativa autenticada:
 
 ```bash
-curl -X POST "https://api.hola.cloud/api/v0/run/ID_DE_TU_FUNCION" \
-  -H "Api-Key: TU_API_KEY" \
-  -H "Api-Secret: TU_API_SECRET" \
-  -H "Content-Type: application/json" \
-  -d '{}'
+curl -X GET "https://api.hola.cloud/api/v0/run/TU_LAMBDA_ID" \
+  -H "X-Glue-Authentication: TU_TOKEN"
 ```
 
 Respuesta esperada:
 
 ```json
 {
-  "body": "¡Hola, Mundo!",
-  "status_code": 200
+  "body": {
+    "message": "Hello, World!",
+    "method": "GET",
+    "path": "/hello-world"
+  }
 }
 ```
 
-También puedes invocar la función desde un endpoint público (sin autenticación):
+También puedes invocar la lambda mediante su ruta pública:
 
 ```bash
-curl -X POST "https://api.hola.cloud/run/ID_DE_TU_FUNCION" \
-  -H "Content-Type: application/json" \
-  -d '{}'
+curl -X GET "https://api.hola.cloud/run/TU_LAMBDA_ID"
 ```
 
-## Paso 5: Consulta Invocaciones Activas
+## Paso 4: Revisar Invocaciones en Curso
 
-Lista las invocaciones en ejecución usando el endpoint público:
+Lista las invocaciones que se están ejecutando:
 
 ```bash
 curl "https://api.hola.cloud/ongoing"
@@ -90,5 +88,5 @@ curl "https://api.hola.cloud/ongoing"
 
 ## Siguientes Pasos
 
-- Aprende a actualizar el código de tu función y configurar variables de entorno en [Gestionando Funciones Lambda](../2_managing-functions/manejando-funciones_es.md).
-- Explora los patrones de invocación, incluyendo webhooks y el enrutador mux, en [Invocando Funciones Lambda](../3_invoking-functions/invocando-funciones_es.md).
+- Aprende a actualizar código y campos de ruta en [Manejando Funciones Lambda](../2_managing-functions/manejando-funciones_es.md).
+- Explora rutas públicas de ejecución, mux, `/me` y `/openapi` en [Invocando Funciones Lambda](../3_invoking-functions/invocando-funciones_es.md).

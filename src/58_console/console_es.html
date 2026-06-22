@@ -4,7 +4,7 @@
     <div class="hero-inner">
         <div class="hero-eyebrow">🖥️ Console</div>
         <h1>Consola de gestión web</h1>
-        <p>Console is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <p>Console es la superficie web de HolaCloud e incluye APIs mock usadas por el frontend actual.</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">Comenzar</a>
             <a class="button button-secondary" href="/docs/console/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">Documentación</a>
@@ -39,12 +39,11 @@
             <h2>Inicio rápido</h2>
             <p>Get started with Console in seconds using the API.</p>
         </div>
-        <pre><code># Tu espacio de trabajo está listo en:
-# https://console.hola.cloud/
+        <pre><code># Abre la consola:
+https://console.hola.cloud/
 
-# Los tokens API se gestionan via:
-curl https://api.hola.cloud/v1/tokens \
-  -H "Authorization: Bearer $ADMIN_TOKEN"</code></pre>
+# Comprueba la versión del servicio console:
+curl https://console.hola.cloud/version</code></pre>
     </section>
 
     <section class="section">

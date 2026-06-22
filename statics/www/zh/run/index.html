@@ -107,7 +107,7 @@
     <div class="hero-inner">
         <div class="hero-eyebrow">🚀 Run</div>
         <h1>容器执行服务，内置 Docker 注册表</h1>
-        <p>Run is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <p>Run 将面向 push 的 Docker Registry v2 子集与 console endpoints 结合，用于启动、停止、回滚和配置 repository。</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">开始使用</a>
             <a class="button button-secondary" href="/docs/run/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">文档中心</a>
@@ -120,18 +120,18 @@
         <div class="section-header">
             <div class="section-kicker">Run</div>
             <h2 id="%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD">核心功能</h2>
-            <p>Everything you need to build, deploy, and scale with Run on HolaCloud.</p>
+            <p>将容器镜像推送到内置 registry，并通过 console API 管理 repository runtime 状态。</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="%E5%8D%B3%E6%97%B6%E5%AE%B9%E5%99%A8">即时容器</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">从任何公共或私有注册表在数秒内启动容器。</p>
+            <h3 id="Repository%20Runtime">Repository Runtime</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">启动、停止和回滚与 repository 关联的 runtime。</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="%E8%87%AA%E5%8A%A8%E4%BC%B8%E7%BC%A9">自动伸缩</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">基于 CPU、内存或请求量自动扩展。</p>
+            <h3 id="%E7%8E%AF%E5%A2%83%E5%92%8C%E5%8D%B7">环境和卷</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">通过 console API 保存环境变量和卷定义。</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="%E7%A7%81%E6%9C%89%E6%B3%A8%E5%86%8C%E8%A1%A8">私有注册表</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">从集成的 Docker 注册表推送和拉取镜像。</p>
+            <h3 id="%E9%9D%A2%E5%90%91%20Push%20%E7%9A%84%20Registry">面向 Push 的 Registry</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">使用已实现的 Docker Registry v2 上传 endpoints 推送镜像层和 manifests。</p>
           </div>
         </div>
     </section>
@@ -142,16 +142,12 @@
             <h2 id="%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B">快速开始</h2>
             <p>Get started with Run in seconds using the API.</p>
         </div>
-        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1"> 1</a></span><span># 推送镜像
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2"> 2</a></span><span>curl -X POST https://api.hola.cloud/v1/run/push \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3"> 3</a></span><span>  -H &#34;Authorization: Bearer $TOKEN&#34; \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4"> 4</a></span><span>  -F &#34;image=@myapp.tar.gz&#34; \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5"> 5</a></span><span>  -F &#34;name=myapp:latest&#34;
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6"> 6</a></span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7"> 7</a></span><span># 运行容器
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8"> 8</a></span><span>curl -X POST https://api.hola.cloud/v1/run/exec \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9"> 9</a></span><span>  -H &#34;Authorization: Bearer $TOKEN&#34; \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L10"><a style="outline: none; text-decoration:none; color:inherit" href="#L10">10</a></span><span>  -d &#39;{&#34;image&#34;: &#34;myapp:latest&#34;, &#34;port&#34;: 8080, &#34;scale&#34;: 2}&#39;</span></span></code></pre></code></pre>
+        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span># 查看 repository console data
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>curl &#39;https://run.hola.cloud/api/console?repository=my-project/my-app&#39;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span># 启动 repository runtime
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>curl -X POST https://run.hola.cloud/api/console/start \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>  -d &#39;{&#34;repository&#34;:&#34;my-project/my-app&#34;,&#34;reference&#34;:&#34;latest&#34;}&#39;</span></span></code></pre></code></pre>
     </section>
 
     <section class="section">
@@ -188,6 +184,7 @@
     </section>
 </div>
 
+
     <div id="comments-section">
     <h2>评论</h2>
     <div id="comments-list"></div>
@@ -212,13 +209,13 @@
 <a href="#%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD">核心功能</a>
 </div>
 <div class="index-h3">
-<a href="#%E5%8D%B3%E6%97%B6%E5%AE%B9%E5%99%A8">即时容器</a>
+<a href="#Repository%20Runtime">Repository Runtime</a>
 </div>
 <div class="index-h3">
-<a href="#%E8%87%AA%E5%8A%A8%E4%BC%B8%E7%BC%A9">自动伸缩</a>
+<a href="#%E7%8E%AF%E5%A2%83%E5%92%8C%E5%8D%B7">环境和卷</a>
 </div>
 <div class="index-h3">
-<a href="#%E7%A7%81%E6%9C%89%E6%B3%A8%E5%86%8C%E8%A1%A8">私有注册表</a>
+<a href="#%E9%9D%A2%E5%90%91%20Push%20%E7%9A%84%20Registry">面向 Push 的 Registry</a>
 </div>
 <div class="index-h2">
 <a href="#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B">快速开始</a>

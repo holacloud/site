@@ -36,5 +36,5 @@ Content-Type: application/json
 
 | Status | Code | Description |
 |--------|------|-------------|
-| 401 | unauthorized | Missing or invalid authentication |
+| 403 | forbidden | Missing authentication headers |
 | 500 | internal_error | Internal server error |

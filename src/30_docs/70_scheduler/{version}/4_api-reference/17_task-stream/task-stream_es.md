@@ -28,17 +28,8 @@ Connection: keep-alive
 ```
 
 ```
-event: task_available
-data: {"id":"tarea-x1y2z3","state":"pending","available_at":"2025-06-21T12:01:01Z"}
-
-event: task_reserved
-data: {"id":"tarea-x1y2z3","state":"inflight","lease_expires_at":"2025-06-21T12:02:01Z"}
-
-event: task_completed
-data: {"id":"tarea-x1y2z3","state":"completed"}
-
-event: lease_expired
-data: {"id":"tarea-x1y2z3","state":"pending"}
+event: snapshot
+data: {"scheduler_id":"sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890","generated_at":"2025-06-21T12:00:01Z","scheduled":[{"id":"task-x1y2z3","future":"2025-06-21T12:01:01Z","labels":["priority:high"]}],"inflight":[],"scheduled_meta":{"page":1,"per_page":25,"total":1,"total_pages":1},"inflight_meta":{"page":1,"per_page":25,"total":0,"total_pages":0},"health":{"status":"ok","ready":true,"scheduled":1,"inflight":0,"scheduler_id":"sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890"}}
 ```
 
 ## Códigos de Error

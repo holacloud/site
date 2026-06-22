@@ -4,7 +4,7 @@ Returns the current virtual host routing table.
 
 ## Description
 
-This endpoint lists all configured virtual hosts and their corresponding backend service targets. It is used by the HolaCloud Console to display the routing configuration.
+This endpoint lists the configured virtual host names.
 
 ## Authentication
 
@@ -23,22 +23,7 @@ curl -X GET "https://api.hola.cloud/v0/virtualhosts"
 ## Response
 
 ```json
-{
-  "virtualhosts": [
-    {
-      "host": "my-project.hola.cloud",
-      "target": "inceptiondb",
-      "port": 8080,
-      "tls": true
-    },
-    {
-      "host": "api.my-project.hola.cloud",
-      "target": "lambda",
-      "port": 8081,
-      "tls": true
-    }
-  ]
-}
+["my-project.hola.cloud", "api.my-project.hola.cloud"]
 ```
 
 ## Error Codes

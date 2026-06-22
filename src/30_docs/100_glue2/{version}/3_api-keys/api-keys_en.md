@@ -9,22 +9,26 @@ API keys are the primary method for machine-to-machine authentication with HolaC
 1. Log in to [https://console.hola.cloud](https://console.hola.cloud).
 2. Navigate to **Settings > API Keys**.
 3. Click **Create API Key**.
-4. Optionally set key scopes (project, host, path, method).
+4. Optionally set key scopes (projects and host rules).
 5. Click **Create**.
 6. Copy the Api-Key and Api-Secret immediately — the secret is shown only once.
 
 ### Through the Serviceprojects API
 
-API keys belong to projects. First, create a project (if you don't have one):
+API keys are managed by the serviceprojects API. Project creation is outside the current Glue2 API key documentation.
 
 ```bash
-curl -X POST "https://api.hola.cloud/api/v0/projects" \
-  -H "Api-Key: YOUR_ADMIN_API_KEY" \
-  -H "Api-Secret: YOUR_ADMIN_API_SECRET" \
+curl -X POST "https://api.hola.cloud/v0/apikeys" \
+  -H "X-Glue-Authentication: {\"user\":{\"id\":\"user-1234\"}}" \
   -H "Content-Type: application/json" \
   -d '{
-    "name": "My Project",
-    "slug": "my-project"
+    "name": "CI/CD Key",
+    "scopes": [
+      {
+        "projects": ["project-123"],
+        "host_rules": {"my-project.hola.cloud": "{}"}
+      }
+    ]
   }'
 ```
 
@@ -32,42 +36,15 @@ Expected response:
 
 ```json
 {
-  "id": "p3b2c1a0-1234-5678-9abc-def012345678",
-  "name": "My Project",
-  "slug": "my-project",
-  "created_at": "2025-06-21T12:00:00Z"
-}
-```
-
-Then generate an API key for the project:
-
-```bash
-curl -X POST "https://api.hola.cloud/api/v0/projects/p3b2c1a0-1234-5678-9abc-def012345678/apikeys" \
-  -H "Api-Key: YOUR_ADMIN_API_KEY" \
-  -H "Api-Secret: YOUR_ADMIN_API_SECRET" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "scopes": {
-      "hosts": ["my-project.hola.cloud"],
-      "paths": ["/api/v0/lambdas/*"],
-      "methods": ["GET", "POST"]
+  "key": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "secret": "f0e1d2c3-b4a5-6789-0fed-cba987654321",
+  "name": "CI/CD Key",
+  "scopes": [
+    {
+      "projects": ["project-123"],
+      "host_rules": {"my-project.hola.cloud": "{}"}
     }
-  }'
-```
-
-Expected response:
-
-```json
-{
-  "api_key": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-  "api_secret": "f0e1d2c3-b4a5-6789-0fed-cba987654321",
-  "project_id": "p3b2c1a0-1234-5678-9abc-def012345678",
-  "scopes": {
-    "hosts": ["my-project.hola.cloud"],
-    "paths": ["/api/v0/lambdas/*"],
-    "methods": ["GET", "POST"]
-  },
-  "created_at": "2025-06-21T12:00:00Z"
+  ]
 }
 ```
 
@@ -82,12 +59,10 @@ API keys can be restricted to:
 
 | Scope | Field | Example |
 |-------|-------|---------|
-| Project | `project_id` | `p3b2c1a0-...` |
-| Host | `hosts` | `["my-project.hola.cloud"]` |
-| Path | `paths` | `["/api/v0/lambdas/*"]` |
-| Method | `methods` | `["GET", "POST"]` |
+| Projects | `projects` | `["project-123"]` |
+| Host rules | `host_rules` | `{"my-project.hola.cloud": "{}"}` |
 
-When multiple scopes are set, **all** must match for the request to be accepted. Path patterns support glob-style wildcards (`*` matches any sequence).
+Path and HTTP method scopes are not part of the current API key model.
 
 ## Using an API Key
 
@@ -102,20 +77,17 @@ curl "https://my-project.hola.cloud/api/v0/lambdas" \
 ## Listing API Keys
 
 ```bash
-curl "https://api.hola.cloud/api/v0/projects/p3b2c1a0-1234-5678-9abc-def012345678/apikeys" \
-  -H "Api-Key: YOUR_ADMIN_API_KEY" \
-  -H "Api-Secret: YOUR_ADMIN_API_SECRET"
+curl "https://api.hola.cloud/v0/apikeys" \
+  -H "X-Glue-Authentication: {\"user\":{\"id\":\"user-1234\"}}"
 ```
 
 ```json
 {
   "api_keys": [
     {
-      "api_key": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-      "project_id": "p3b2c1a0-1234-5678-9abc-def012345678",
-      "scopes": { "hosts": ["my-project.hola.cloud"] },
-      "created_at": "2025-06-21T12:00:00Z",
-      "last_used_at": "2025-06-21T14:30:00Z"
+      "key": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "name": "CI/CD Key",
+      "scopes": [{ "projects": ["project-123"], "host_rules": {"my-project.hola.cloud": "{}"} }]
     }
   ]
 }
@@ -126,9 +98,8 @@ Note: The `api_secret` is never returned in listing responses — it is only sho
 ## Revoking an API Key
 
 ```bash
-curl -X DELETE "https://api.hola.cloud/api/v0/projects/p3b2c1a0-1234-5678-9abc-def012345678/apikeys/a1b2c3d4-e5f6-7890-abcd-ef1234567890" \
-  -H "Api-Key: YOUR_ADMIN_API_KEY" \
-  -H "Api-Secret: YOUR_ADMIN_API_SECRET"
+curl -X DELETE "https://api.hola.cloud/v0/apikeys/a1b2c3d4-e5f6-7890-abcd-ef1234567890" \
+  -H "X-Glue-Authentication: {\"user\":{\"id\":\"user-1234\"}}"
 ```
 
 A successful revocation returns `200 OK`. The key is immediately invalidated. Any subsequent requests using it will receive `401 Unauthorized`.
@@ -139,18 +110,16 @@ To rotate a key, create a new key pair with the same scopes, update your applica
 
 ```bash
 # Step 1: Create a new key
-curl -X POST "https://api.hola.cloud/api/v0/projects/YOUR_PROJECT_ID/apikeys" \
-  -H "Api-Key: YOUR_ADMIN_API_KEY" \
-  -H "Api-Secret: YOUR_ADMIN_API_SECRET" \
+curl -X POST "https://api.hola.cloud/v0/apikeys" \
+  -H "X-Glue-Authentication: {\"user\":{\"id\":\"user-1234\"}}" \
   -H "Content-Type: application/json" \
-  -d '{"scopes": {"hosts": ["my-project.hola.cloud"]}}'
+  -d '{"name":"Rotated key","scopes":[{"projects":["project-123"],"host_rules":{"my-project.hola.cloud":"{}"}}]}'
 
 # Step 2: Update your application with the new Api-Key and Api-Secret
 
 # Step 3: Delete the old key
-curl -X DELETE "https://api.hola.cloud/api/v0/projects/YOUR_PROJECT_ID/apikeys/OLD_API_KEY" \
-  -H "Api-Key: YOUR_ADMIN_API_KEY" \
-  -H "Api-Secret: YOUR_ADMIN_API_SECRET"
+curl -X DELETE "https://api.hola.cloud/v0/apikeys/OLD_API_KEY" \
+  -H "X-Glue-Authentication: {\"user\":{\"id\":\"user-1234\"}}"
 ```
 
 ## How Services Validate Keys
@@ -160,8 +129,8 @@ Backend services do not validate API keys directly. Instead, Glue2 performs vali
 1. Glue2 extracts the `Api-Key` and `Api-Secret` headers from the request.
 2. It looks up the key record by the Api-Key UUID in InceptionDB.
 3. It compares the provided Api-Secret against the stored bcrypt hash.
-4. It verifies that the request matches the key's scopes (host, path, method).
-5. If valid, it injects the `X-Glue-Authentication` JWT header and forwards the request.
+4. It verifies that the request matches the key's project and host rules.
+5. If valid, it injects the JSON `X-Glue-Authentication` header and forwards the request.
 6. If invalid, it returns `401 Unauthorized` with an error message.
 
 The backend service trusts the `X-Glue-Authentication` header and uses it for authorization decisions. It never needs to validate the original API key itself.

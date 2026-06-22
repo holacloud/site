@@ -28,7 +28,7 @@ curl -X POST "https://api.hola.cloud/schedulers" \
 ## Ejemplo de Respuesta
 
 ```http
-HTTP/1.1 201 Created
+HTTP/1.1 202 Accepted
 Content-Type: application/json
 ```
 
@@ -36,8 +36,9 @@ Content-Type: application/json
 {
   "id": "sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890",
   "display_name": "mi-scheduler",
-  "task_count": 0,
-  "status": "active",
+  "ready": true,
+  "scheduled": 0,
+  "inflight": 0,
   "created_at": "2025-06-21T10:00:00Z"
 }
 ```
@@ -46,6 +47,6 @@ Content-Type: application/json
 
 | Estado | Código | Descripción |
 |--------|--------|-------------|
-| 400 | invalid_request | display_name faltante o inválido |
+| 400 | validation_error | display_name faltante o inválido |
 | 401 | unauthorized | Clave API faltante o inválida |
 | 500 | internal_error | Error interno del servidor |

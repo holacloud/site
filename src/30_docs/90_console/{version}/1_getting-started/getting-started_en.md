@@ -11,18 +11,16 @@ Navigate to [https://console.hola.cloud](https://console.hola.cloud) and sign in
 
 ```bash
 # Example: check login session via the mock API
-curl -X GET "https://console.hola.cloud/api/v1/session" \
-  -H "Authorization: Bearer <your-token>"
+curl -X GET "https://console.hola.cloud/fakeapi/authapi/auth/me"
 ```
 
 Expected response:
 
 ```json
 {
-  "user": "demo@holacloud.com",
-  "project": "default",
-  "role": "admin",
-  "authenticated": true
+  "email": "fulanez@gmail.com",
+  "id": "user-1234",
+  "nick": "fulanez"
 }
 ```
 
@@ -36,44 +34,23 @@ After logging in, the main dashboard displays:
 
 Use the left sidebar to jump between sections: Dashboard, Databases, Functions, Files, Config, Logs, Queues, Scheduler, and Project Settings.
 
-## Viewing Service Status and Recent Activity
+## Viewing Service Status
 
-Each service card on the dashboard shows its current status (operational, degraded, or down). Click a card to drill into the detailed view of that service. The recent activity feed is filterable by service type and time range.
-
-```bash
-# Fetch project activity via the mock API
-curl -X GET "https://console.hola.cloud/api/v1/projects/default/activity" \
-  -H "Authorization: Bearer <your-token>"
-
-```
-
-```json
-{
-  "activities": [
-    { "type": "database.create", "service": "inceptiondb", "timestamp": "2026-06-20T10:30:00Z" },
-    { "type": "function.invoke",  "service": "lambda",      "timestamp": "2026-06-20T10:28:00Z" },
-    { "type": "file.upload",      "service": "files",       "timestamp": "2026-06-20T10:25:00Z" }
-  ]
-}
-```
+Each service card on the dashboard shows the data returned by the configured service APIs. Project activity APIs are not exposed by the current Console fake API.
 
 ## Switching Between Projects
 
-If you belong to multiple projects, use the project selector at the top of the sidebar. The entire UI switches context to the selected project, including services, billing, and team members.
+If you belong to multiple projects, use the project selector at the top of the sidebar. The entire UI switches context to the selected project and its services.
 
 ```bash
 # List available projects
-curl -X GET "https://console.hola.cloud/api/v1/projects" \
-  -H "Authorization: Bearer <your-token>"
+curl -X GET "https://console.hola.cloud/fakeapi/projectsapi/v0/projects"
 ```
 
 ```json
-{
-  "projects": [
-    { "id": "default", "name": "Default Project", "role": "admin" },
-    { "id": "staging", "name": "Staging Environment", "role": "developer" }
-  ]
-}
+[
+  { "id": "project-00000000-0000-0000-0000-000000000001", "name": "Hello" }
+]
 ```
 
 ## Accessing Documentation and Support

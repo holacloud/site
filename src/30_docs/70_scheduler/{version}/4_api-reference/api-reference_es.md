@@ -32,7 +32,7 @@ Los endpoints de solo lectura (GET) son públicos y no requieren autenticación.
 
 | Estado | Código | Descripción |
 |--------|--------|-------------|
-| 400 | invalid_request | Cuerpo o parámetros de solicitud inválidos |
+| 400 | validation_error | Cuerpo o parámetros de solicitud inválidos |
 | 401 | unauthorized | Clave API faltante o inválida |
 | 404 | not_found | Scheduler o tarea no encontrados |
 | 409 | conflict | Tarea ya reservada o conflicto de concesión |

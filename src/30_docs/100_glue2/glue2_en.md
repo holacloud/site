@@ -36,15 +36,11 @@ When Glue2 forwards a request to a backend service, it injects the following hea
 
 | Header | Description |
 |--------|-------------|
-| `X-Glue-Authentication` | Base64-encoded authentication context (user ID, session info, roles) |
+| `X-Glue-Authentication` | Plain JSON authentication context |
 | `X-Holacloud-Project-Id` | The project ID extracted from the virtual host |
 | `X-Forwarded-For` | The original client IP address |
 
 Backend services use these headers for authorization and tenant isolation.
-
-## Rate Limiting
-
-Glue2 applies rate limiting per project and per endpoint. Limits are configurable in the project settings and can be set based on requests per second, concurrent connections, or daily quotas. When a limit is exceeded, Glue2 returns a `429 Too Many Requests` response.
 
 ## Access Logs
 

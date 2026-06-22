@@ -1,58 +1,49 @@
 # Holamail
 
-Holamail is a simple SMTP email service for sending transactional emails. It listens for raw SMTP connections on port 2525 and delivers messages to their recipients.
+Holamail is a small SMTP listener for development and test workflows. It accepts a basic SMTP conversation, logs the received message, and does not deliver mail to external recipients.
+
+## What It Implements
+
+Holamail accepts raw SMTP connections and supports these commands:
+
+- `HELO` / `EHLO`
+- `MAIL FROM`
+- `RCPT TO`
+- `DATA`
+- `QUIT`
+
+It does not provide an HTTP API, external delivery, STARTTLS, AUTH, rate limiting, templates, analytics, or tracking.
 
 ## How It Works
 
-Holamail accepts connections via the **SMTP protocol** on port 2525. Clients connect using standard SMTP — any language or framework with an SMTP client library can send email through Holamail without additional SDKs.
+Applications connect with a plain SMTP client. Holamail records the envelope and message data in its logs for inspection.
 
 ```
-┌──────────────┐    SMTP :2525    ┌───────────┐
-│  Application │────────────────▶│  Holamail  │────▶  Recipient
-└──────────────┘                  └───────────┘
+┌──────────────┐    SMTP    ┌───────────┐
+│  Application │───────────▶│ Holamail  │──▶ logs message
+└──────────────┘            └───────────┘
 ```
-
-## Use Cases
-
-- **Transactional Emails**: Order confirmations, account verification, password resets.
-- **Notifications**: Alerts, reminders, status updates triggered by application events.
-- **Password Resets**: Securely deliver password reset links to users.
-- **System Alerts**: Send automated alerts from monitoring or CI/CD pipelines.
-
-## Integration with Other Services
-
-Holamail works alongside other HolaCloud services:
-
-- **Lambda** — trigger email sends from serverless functions.
-- **Console** — manage email templates and view delivery logs.
-- **InceptionDB** — store email templates and delivery history.
 
 ## Getting Started
 
-Connect to Holamail on port 2525 using any SMTP client:
+Use the public test host or a local instance:
 
 ```bash
-# Using swaks (Swiss Army Knife for SMTP)
 swaks --to user@example.com \
-      --from noreply@holacloud.app \
-      --server smtp.hola.cloud \
-      --port 2525 \
-      --header "Subject: Welcome to HolaCloud" \
-      --body "Hello! Thanks for signing up."
+      --from noreply@example.com \
+      --server smtp.testmail.hola.cloud \
+      --port 25 \
+      --header "Subject: Holamail test" \
+      --body "Hello from Holamail."
 ```
 
-Or using Python's `smtplib`:
+For a local listener:
 
-```python
-import smtplib
-from email.message import EmailMessage
-
-msg = EmailMessage()
-msg.set_content("Hello! Thanks for signing up.")
-msg["Subject"] = "Welcome to HolaCloud"
-msg["From"] = "noreply@holacloud.app"
-msg["To"] = "user@example.com"
-
-with smtplib.SMTP("smtp.hola.cloud", 2525) as s:
-    s.send_message(msg)
+```bash
+swaks --to user@example.com \
+      --from noreply@example.com \
+      --server localhost \
+      --port 2525 \
+      --header "Subject: Local Holamail test" \
+      --body "Hello from a local Holamail listener."
 ```

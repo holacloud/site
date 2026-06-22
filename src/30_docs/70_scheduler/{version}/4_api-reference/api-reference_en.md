@@ -32,8 +32,12 @@ Read endpoints (GET) are public and do not require authentication.
 
 | Status | Code | Description |
 |--------|------|-------------|
-| 400 | invalid_request | Invalid request body or parameters |
+| 400 | invalid_json | Invalid JSON payload |
+| 400 | validation_error | Invalid request body or parameters |
 | 401 | unauthorized | Missing or invalid API key |
 | 404 | not_found | Scheduler or task not found |
-| 409 | conflict | Task already reserved or lease conflict |
+| 404 | task_not_found | Task not found |
+| 409 | conflict | Scheduler already exists |
+| 409 | task_already_exists | Task already exists |
+| 409 | task_in_flight | Task is currently leased |
 | 500 | internal_error | Internal server error |

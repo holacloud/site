@@ -1,79 +1,73 @@
-# Primeros Pasos
+# Guía rápida de InceptionDB
 
-Esta guía te ayudará a empezar con InceptionDB mediante la creación de una colección, la inserción de tres elementos y
-la consulta de elementos filtrados.
+Esta guía crea una colección, inserta tres documentos JSON y consulta documentos filtrados.
 
-## Paso 1: Crear una Colección
+Los endpoints de acceso a la base de datos aceptan `Api-Key` y `Api-Secret`. También se puede usar un token Glue de owner cuando el propietario de la base de datos está permitido.
 
-Para crear una colección en InceptionDB, necesitas definir el nombre de la colección. Aquí hay un ejemplo de cómo hacerlo usando curl en bash:
+## Paso 1: Crear una colección
 
 ```bash
-curl -X POST "https://example.com/v1/databases/tu-id-de-base-de-datos/collections" \
--H "Api-Key: tu-api-key" \
--H "Api-Secret: tu-api-secret" \
--d '{
-"name": "mi-colección"
-}'
+curl -X POST "https://api.hola.cloud/v1/databases/tu-id-de-base-de-datos/collections" \
+  -H "Api-Key: tu-api-key" \
+  -H "Api-Secret: tu-api-secret" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "mi-coleccion"
+  }'
 ```
 
-Respuesta Esperada
+Respuesta esperada:
 
 ```json
 {
-	"defaults": {
-		"id": "uuid()"
-	},
-	"indexes": 0,
-	"name": "mi-colección",
-	"total": 0
+  "name": "mi-coleccion",
+  "total": 0,
+  "indexes": 0,
+  "defaults": {
+    "id": "uuid()"
+  }
 }
 ```
 
-## Paso 2: Insertar Elementos
+## Paso 2: Insertar documentos
 
-Una vez que hayas creado la colección, puedes insertar elementos en ella. A continuación se muestra cómo insertar tres elementos en la colección recién creada:
+Usa el endpoint de acción de colección y envía JSONL: un documento JSON por línea.
 
 ```bash
-curl -X POST "https://example.com/v1/databases/tu-id-de-base-de-datos/collections/mi-colección/documents" \
--H "Api-Key: tu-api-key" \
--H "Api-Secret: tu-api-secret" \
--d '{"nombre": "Elemento 1", "valor": 100}
-{"nombre": "Elemento 2", "valor": 200}
-{"nombre": "Elemento 3", "valor": 300}
-'
+curl -X POST "https://api.hola.cloud/v1/databases/tu-id-de-base-de-datos/collections/mi-coleccion:insert" \
+  -H "Api-Key: tu-api-key" \
+  -H "Api-Secret: tu-api-secret" \
+  -H "Content-Type: application/jsonl" \
+  --data-binary '{"name":"Elemento 1","value":100}
+{"name":"Elemento 2","value":200}
+{"name":"Elemento 3","value":300}'
 ```
 
-## Paso 3: Listar Elementos con Filtro
+Respuesta esperada:
 
-Para listar elementos en la colección con un filtro específico, puedes usar el siguiente ejemplo de solicitud con curl:
+```jsonl
+{"id":"document-id-1","name":"Elemento 1","value":100}
+{"id":"document-id-2","name":"Elemento 2","value":200}
+{"id":"document-id-3","name":"Elemento 3","value":300}
+```
+
+## Paso 3: Buscar documentos filtrados
 
 ```bash
-curl -X POST "https://example.com/v1/databases/tu-id-de-base-de-datos/collections/mi-colección/find" \
--H "Api-Key: tu-api-key" \
--H "Api-Secret: tu-api-secret" \
--d '{
-      "filter": {
-        "valor": { "$gte": 200 }
-      }
-    }'
+curl -X POST "https://api.hola.cloud/v1/databases/tu-id-de-base-de-datos/collections/mi-coleccion:find" \
+  -H "Api-Key: tu-api-key" \
+  -H "Api-Secret: tu-api-secret" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "filter": {
+      "value": { "$gte": 200 }
+    }
+  }'
 ```
 
-Respuesta Esperada
+Respuesta esperada:
 
-
-```json
-{
-		"id": "id-del-documento-2",
-		"nombre": "Elemento 2",
-		"valor": 200
-}
-{
-		"id": "id-del-documento-3",
-		"nombre": "Elemento 3",
-		"valor": 300
-}
+```jsonl
+{"id":"document-id-2","name":"Elemento 2","value":200}
+{"id":"document-id-3","name":"Elemento 3","value":300}
 ```
-
-## Resumen
-
-Siguiendo estos pasos, has creado una colección en InceptionDB, insertado tres elementos y consultado elementos con un filtro. Esto te proporciona una base sólida para empezar a trabajar con InceptionDB y aprovechar sus capacidades para gestionar tus datos de manera eficiente.

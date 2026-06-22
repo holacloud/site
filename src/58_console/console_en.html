@@ -4,7 +4,7 @@
     <div class="hero-inner">
         <div class="hero-eyebrow">🖥️ Console</div>
         <h1>Web-based management console</h1>
-        <p>Console is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <p>Console is the web UI surface for HolaCloud services and includes mock service APIs used by the current console frontend.</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">Get started</a>
             <a class="button button-secondary" href="/docs/console/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">Documentation</a>
@@ -17,18 +17,18 @@
         <div class="section-header">
             <div class="section-kicker">Console</div>
             <h2>Key features</h2>
-            <p>Everything you need to build, deploy, and scale with Console on HolaCloud.</p>
+            <p>Use the console to inspect the current HolaCloud UI and its service demo endpoints.</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
             <h3>Unified dashboard</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Monitor all your services from a single pane of glass.</p>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Access the web interface at <code>console.hola.cloud</code>.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>Team management</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Invite team members with role-based access control.</p>
+            <h3>Fake API surface</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">The current console backend exposes fake auth, projects, database, lambda, and files endpoints for the UI.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>Usage analytics</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Track resource usage, costs, and API call volumes.</p>
+            <h3>Version endpoint</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Check the deployed console version with the plain-text <code>/version</code> endpoint.</p>
           </div>
         </div>
     </section>
@@ -39,12 +39,11 @@
             <h2>Quick start</h2>
             <p>Get started with Console in seconds using the API.</p>
         </div>
-        <pre><code># Your workspace is ready at:
-# https://console.hola.cloud/
+        <pre><code># Open the console:
+https://console.hola.cloud/
 
-# API tokens can be managed via:
-curl https://api.hola.cloud/v1/tokens \
-  -H "Authorization: Bearer $ADMIN_TOKEN"</code></pre>
+# Check the console service version:
+curl https://console.hola.cloud/version</code></pre>
     </section>
 
     <section class="section">

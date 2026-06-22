@@ -140,7 +140,7 @@
 <div class="item"><a href="/docs/files/v2/api-reference/delete-bucket/index.html">Delete Bucket</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/delete-file/index.html">Delete File</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/download-file/index.html">Download File</a></div>
-<div class="item"><a href="/docs/files/v2/api-reference/file-metadata/index.html">File Metadata</a></div>
+<div class="item"><a href="/docs/files/v2/api-reference/file-metadata/index.html">File Headers</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/get-bucket/index.html">Get Bucket</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/list-buckets/index.html">List Buckets</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/list-files/index.html">List Files</a></div>
@@ -163,11 +163,11 @@
 <div class="item"><a href="/docs/config/v2/api-reference/update-user-config/index.html">Update User Config</a></div>
 </div>
 </div>
-<div class="item"><a href="/docs/logs/index.html">Logs</a></div>
+<div class="item"><a href="/docs/logs/index.html">InstantLogs</a></div>
 <div class="children">
 <div class="item"><a href="/docs/logs/v2/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/logs/v2/ingesting-logs/index.html">Ingesting Logs</a></div>
-<div class="item"><a href="/docs/logs/v2/streaming-filtering/index.html">Streaming Filtering</a></div>
+<div class="item"><a href="/docs/logs/v2/streaming-filtering/index.html">Streaming and Filtering</a></div>
 <div class="item"><a href="/docs/logs/v2/api-reference/index.html">InstantLogs API Reference</a></div>
 <div class="children">
 <div class="item"><a href="/docs/logs/v2/api-reference/create-logger/index.html">Create Logger</a></div>
@@ -183,11 +183,11 @@
 <div class="item"><a href="/docs/logs/v2/api-reference/stream-events/index.html">Stream Events</a></div>
 </div>
 </div>
-<div class="item"><a href="/docs/queues/index.html">Queues</a></div>
+<div class="item"><a href="/docs/queues/index.html">Tailon Queues</a></div>
 <div class="children">
 <div class="item"><a href="/docs/queues/v2/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/queues/v2/managing-queues/index.html">Managing Queues</a></div>
-<div class="item"><a href="/docs/queues/v2/producing-consuming/index.html">Producing Consuming</a></div>
+<div class="item"><a href="/docs/queues/v2/producing-consuming/index.html">Producing and Consuming</a></div>
 <div class="item"><a href="/docs/queues/v2/api-reference/index.html">Tailon API Reference</a></div>
 <div class="children">
 <div class="item"><a href="/docs/queues/v2/api-reference/create-queue/index.html">Create Queue</a></div>
@@ -241,7 +241,7 @@
 <div class="item"><a href="/docs/kvnode/v2/api-reference/readiness-check/index.html">Readiness Check</a></div>
 <div class="item"><a href="/docs/kvnode/v2/api-reference/set-key/index.html">Set Key</a></div>
 </div>
-<div class="item"><a href="/docs/kvnode/v2/sdk-reference/index.html">Sdk Reference</a></div>
+<div class="item"><a href="/docs/kvnode/v2/sdk-reference/index.html">SDK Reference</a></div>
 </div>
 <div class="item"><a href="/docs/console/index.html">Console</a></div>
 <div class="children">
@@ -249,7 +249,7 @@
 <div class="item"><a href="/docs/console/v2/managing-projects/index.html">Managing Projects and Services</a></div>
 <div class="item"><a href="/docs/console/v2/api-reference/index.html">Console API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/console/v2/api-reference/fake-api/index.html">Fake Api</a></div>
+<div class="item"><a href="/docs/console/v2/api-reference/fake-api/index.html">Fake API</a></div>
 <div class="item"><a href="/docs/console/v2/api-reference/get-version/index.html">Get Version</a></div>
 </div>
 </div>
@@ -272,7 +272,7 @@
 <div class="item"><a href="/docs/holamail/v2/sending-email/index.html">Sending Email</a></div>
 <div class="item"><a href="/docs/holamail/v2/api-reference/index.html">Holamail API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/holamail/v2/api-reference/smtp-reference/index.html">Smtp Reference</a></div>
+<div class="item"><a href="/docs/holamail/v2/api-reference/smtp-reference/index.html">SMTP Reference</a></div>
 </div>
 </div>
 <div class="item"><a href="/docs/run/index.html">Run</a></div>
@@ -286,8 +286,8 @@
 <div class="item"><a href="/docs/run/v2/api-reference/rollback-image/index.html">Rollback Image</a></div>
 <div class="item"><a href="/docs/run/v2/api-reference/save-environment/index.html">Save Environment</a></div>
 <div class="item"><a href="/docs/run/v2/api-reference/save-volumes/index.html">Save Volumes</a></div>
-<div class="item"><a href="/docs/run/v2/api-reference/start-container/index.html">Start Container</a></div>
-<div class="item"><a href="/docs/run/v2/api-reference/stop-container/index.html">Stop Container</a></div>
+<div class="item"><a href="/docs/run/v2/api-reference/start-container/index.html">Start Repository</a></div>
+<div class="item"><a href="/docs/run/v2/api-reference/stop-container/index.html">Stop Repository</a></div>
 </div>
 </div>
 
@@ -297,49 +297,39 @@
     <div class="breadcrumb"><a class="item" href="/docs/index.html">Documentation</a><span class="arrow">→</span><a class="item selected" href="/docs/holamail/index.html">Holamail</a></div>
     <div class="document">
     <h1>Holamail</h1>
-<p>Holamail is a simple SMTP email service for sending transactional emails. It listens for raw SMTP connections on port 2525 and delivers messages to their recipients.</p>
+<p>Holamail is a small SMTP listener for development and test workflows. It accepts a basic SMTP conversation, logs the received message, and does not deliver mail to external recipients.</p>
+<h2 id="What%20It%20Implements">What It Implements</h2>
+<p>Holamail accepts raw SMTP connections and supports these commands:</p>
+<ul>
+<li><code>HELO</code> / <code>EHLO</code></li>
+<li><code>MAIL FROM</code></li>
+<li><code>RCPT TO</code></li>
+<li><code>DATA</code></li>
+<li><code>QUIT</code></li>
+</ul>
+<p>It does not provide an HTTP API, external delivery, STARTTLS, AUTH, rate limiting, templates, analytics, or tracking.</p>
 <h2 id="How%20It%20Works">How It Works</h2>
-<p>Holamail accepts connections via the <strong>SMTP protocol</strong> on port 2525. Clients connect using standard SMTP — any language or framework with an SMTP client library can send email through Holamail without additional SDKs.</p>
-<pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>┌──────────────┐    SMTP :2525    ┌───────────┐
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>│  Application │────────────────▶│  Holamail  │────▶  Recipient
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>└──────────────┘                  └───────────┘
+<p>Applications connect with a plain SMTP client. Holamail records the envelope and message data in its logs for inspection.</p>
+<pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>┌──────────────┐    SMTP    ┌───────────┐
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>│  Application │───────────▶│ Holamail  │──▶ logs message
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>└──────────────┘            └───────────┘
 </span></span></code></pre></code></pre>
-<h2 id="Use%20Cases">Use Cases</h2>
-<ul>
-<li><strong>Transactional Emails</strong>: Order confirmations, account verification, password resets.</li>
-<li><strong>Notifications</strong>: Alerts, reminders, status updates triggered by application events.</li>
-<li><strong>Password Resets</strong>: Securely deliver password reset links to users.</li>
-<li><strong>System Alerts</strong>: Send automated alerts from monitoring or CI/CD pipelines.</li>
-</ul>
-<h2 id="Integration%20with%20Other%20Services">Integration with Other Services</h2>
-<p>Holamail works alongside other HolaCloud services:</p>
-<ul>
-<li><strong>Lambda</strong> — trigger email sends from serverless functions.</li>
-<li><strong>Console</strong> — manage email templates and view delivery logs.</li>
-<li><strong>InceptionDB</strong> — store email templates and delivery history.</li>
-</ul>
 <h2 id="Getting%20Started">Getting Started</h2>
-<p>Connect to Holamail on port 2525 using any SMTP client:</p>
-<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span><span style="color:#586e75"># Using swaks (Swiss Army Knife for SMTP)</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>swaks --to user@example.com <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>      --from noreply@holacloud.app <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span><span style="color:#cb4b16"></span>      --server smtp.hola.cloud <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span><span style="color:#cb4b16"></span>      --port <span style="color:#2aa198">2525</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span><span style="color:#cb4b16"></span>      --header <span style="color:#2aa198">&#34;Subject: Welcome to HolaCloud&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7">7</a></span><span><span style="color:#cb4b16"></span>      --body <span style="color:#2aa198">&#34;Hello! Thanks for signing up.&#34;</span>
+<p>Use the public test host or a local instance:</p>
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>swaks --to user@example.com <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>      --from noreply@example.com <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>      --server smtp.testmail.hola.cloud <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span><span style="color:#cb4b16"></span>      --port <span style="color:#2aa198">25</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span><span style="color:#cb4b16"></span>      --header <span style="color:#2aa198">&#34;Subject: Holamail test&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span><span style="color:#cb4b16"></span>      --body <span style="color:#2aa198">&#34;Hello from Holamail.&#34;</span>
 </span></span></code></pre></code></pre>
-<p>Or using Python&#39;s <code>smtplib</code>:</p>
-<pre><code class="language-python"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1"> 1</a></span><span><span style="color:#719e07">import</span> smtplib
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2"> 2</a></span><span><span style="color:#719e07">from</span> email.message <span style="color:#719e07">import</span> EmailMessage
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3"> 3</a></span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4"> 4</a></span><span>msg <span style="color:#719e07">=</span> EmailMessage()
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5"> 5</a></span><span>msg<span style="color:#719e07">.</span>set_content(<span style="color:#2aa198">&#34;Hello! Thanks for signing up.&#34;</span>)
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6"> 6</a></span><span>msg[<span style="color:#2aa198">&#34;Subject&#34;</span>] <span style="color:#719e07">=</span> <span style="color:#2aa198">&#34;Welcome to HolaCloud&#34;</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7"> 7</a></span><span>msg[<span style="color:#2aa198">&#34;From&#34;</span>] <span style="color:#719e07">=</span> <span style="color:#2aa198">&#34;noreply@holacloud.app&#34;</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8"> 8</a></span><span>msg[<span style="color:#2aa198">&#34;To&#34;</span>] <span style="color:#719e07">=</span> <span style="color:#2aa198">&#34;user@example.com&#34;</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9"> 9</a></span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L10"><a style="outline: none; text-decoration:none; color:inherit" href="#L10">10</a></span><span><span style="color:#719e07">with</span> smtplib<span style="color:#719e07">.</span>SMTP(<span style="color:#2aa198">&#34;smtp.hola.cloud&#34;</span>, <span style="color:#2aa198">2525</span>) <span style="color:#719e07">as</span> s:
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L11"><a style="outline: none; text-decoration:none; color:inherit" href="#L11">11</a></span><span>    s<span style="color:#719e07">.</span>send_message(msg)
+<p>For a local listener:</p>
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>swaks --to user@example.com <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>      --from noreply@example.com <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>      --server localhost <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span><span style="color:#cb4b16"></span>      --port <span style="color:#2aa198">2525</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span><span style="color:#cb4b16"></span>      --header <span style="color:#2aa198">&#34;Subject: Local Holamail test&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span><span style="color:#cb4b16"></span>      --body <span style="color:#2aa198">&#34;Hello from a local Holamail listener.&#34;</span>
 </span></span></code></pre></code></pre>
 
 
@@ -364,13 +354,10 @@
 </div>
 </div>
 <div class="index"><div class="index-h2">
+<a href="#What%20It%20Implements">What It Implements</a>
+</div>
+<div class="index-h2">
 <a href="#How%20It%20Works">How It Works</a>
-</div>
-<div class="index-h2">
-<a href="#Use%20Cases">Use Cases</a>
-</div>
-<div class="index-h2">
-<a href="#Integration%20with%20Other%20Services">Integration with Other Services</a>
 </div>
 <div class="index-h2">
 <a href="#Getting%20Started">Getting Started</a>

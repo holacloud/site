@@ -1,146 +1,73 @@
-# Enviando Correos
+# Enviando correos
 
-Holamail es un servidor SMTP ligero para enviar correos electrónicos transaccionales. Implementa el protocolo SMTP estándar (HELO/EHLO, MAIL FROM, RCPT TO, DATA, QUIT) y escucha en el puerto TCP 2525. No requiere TLS.
+Holamail es un listener SMTP ligero. Acepta los comandos básicos `HELO`/`EHLO`, `MAIL FROM`, `RCPT TO`, `DATA` y `QUIT`, y luego registra el mensaje. No entrega correo a destinatarios externos.
 
-## Detalles de Conexión
+## Detalles de conexión
 
-| Parámetro | Valor |
-|-----------|-------|
-| Host | `smtp.hola.cloud` |
-| Puerto | `2525` |
-| Cifrado | Ninguno (SMTP simple) |
+| Parámetro | Host público de pruebas | Instancia local |
+|-----------|--------------------------|-----------------|
+| Host | `smtp.testmail.hola.cloud` | `localhost` |
+| Puerto | `25` | `2525` |
+| Cifrado | Ninguno | Ninguno |
+| Autenticación | Ninguna | Ninguna |
 
-## Flujo del Protocolo SMTP
+Holamail no soporta STARTTLS ni SMTP AUTH.
 
-La conversación SMTP cruda sigue esta secuencia:
+## Flujo SMTP
 
-```
-HELO cliente.ejemplo.com
-MAIL FROM:<noreply@holacloud.app>
-RCPT TO:<usuario@ejemplo.com>
+```text
+HELO client.example.com
+MAIL FROM:<noreply@example.com>
+RCPT TO:<user@example.com>
 DATA
 Subject: Hola desde Holamail
 
-Este es el cuerpo del correo.
+Este mensaje será registrado por Holamail.
 .
 QUIT
 ```
 
 ## Ejemplos
 
-### Usando curl
-
-curl soporta SMTP de forma nativa:
+### Con curl
 
 ```bash
-curl --mail-from noreply@holacloud.app \
-     --mail-rcpt usuario@ejemplo.com \
-     --upload-file correo.txt \
-     smtp://smtp.hola.cloud:2525
+curl --url smtp://smtp.testmail.hola.cloud:25 \
+     --mail-from noreply@example.com \
+     --mail-rcpt user@example.com \
+     --upload-file email.txt
 ```
 
-Donde `correo.txt` contiene:
+Donde `email.txt` contiene:
 
-```
+```text
 Subject: Hola desde Holamail
 
-Este es el cuerpo del correo.
+Este mensaje será registrado por Holamail.
 ```
 
-### Usando openssl s_client
-
-Habla SMTP manualmente sobre una conexión TCP simple:
+### Sesión TCP simple
 
 ```bash
-exec 3<>/dev/tcp/smtp.hola.cloud/2525
-echo "HELO cliente.ejemplo.com" >&3
-echo "MAIL FROM:<noreply@holacloud.app>" >&3
-echo "RCPT TO:<usuario@ejemplo.com>" >&3
-echo "DATA" >&3
-echo "Subject: Hola" >&3
-echo "" >&3
-echo "¡Hola desde Holamail!" >&3
-echo "." >&3
-echo "QUIT" >&3
-cat <&3
+telnet localhost 2525
 ```
 
-### Usando net/smtp de Go
+Luego ingresa:
 
-```go
-package main
+```text
+HELO client.example.com
+MAIL FROM:<noreply@example.com>
+RCPT TO:<user@example.com>
+DATA
+Subject: Prueba local de Holamail
 
-import (
-    "log"
-    "net/smtp"
-)
-
-func main() {
-    para := []string{"usuario@ejemplo.com"}
-    msg := []byte("To: usuario@ejemplo.com\r\n" +
-        "Subject: Hola desde Holamail\r\n" +
-        "\r\n" +
-        "Este es el cuerpo del correo.\r\n")
-
-    err := smtp.SendMail("smtp.hola.cloud:2525", nil,
-        "noreply@holacloud.app", para, msg)
-    if err != nil {
-        log.Fatal(err)
-    }
-}
+Hola desde un listener local de Holamail.
+.
+QUIT
 ```
 
-### Usando smtplib de Python
+## Comportamiento esperado
 
-```python
-import smtplib
-from email.message import EmailMessage
+Holamail acepta entrada SMTP sintácticamente válida y registra el mensaje. Es útil para confirmar que una aplicación puede hablar SMTP sin enviar correo real.
 
-msg = EmailMessage()
-msg.set_content("Este es el cuerpo del correo.")
-msg["Subject"] = "Hola desde Holamail"
-msg["From"] = "noreply@holacloud.app"
-msg["To"] = "usuario@ejemplo.com"
-
-with smtplib.SMTP("smtp.hola.cloud", 2525) as servidor:
-    servidor.send_message(msg)
-```
-
-## Casos de Uso
-
-- **Restablecimiento de contraseñas** — entrega enlaces seguros de restablecimiento bajo demanda.
-- **Notificaciones** — envía alertas, recordatorios y actualizaciones de estado.
-- **Alertas del sistema** — activa correos desde sistemas de monitoreo (Nagios, Prometheus, Grafana).
-- **Integración con Lambda** — invoca Holamail desde una función Lambda para enviar correos programáticamente:
-
-```python
-import smtplib
-from email.message import EmailMessage
-
-def handler(event, context):
-    msg = EmailMessage()
-    msg.set_content(event.get("body", ""))
-    msg["Subject"] = event.get("subject", "Notificación")
-    msg["From"] = "noreply@holacloud.app"
-    msg["To"] = event["to"]
-
-    with smtplib.SMTP("smtp.hola.cloud", 2525) as servidor:
-        servidor.send_message(msg)
-
-    return {"statusCode": 200, "body": "Correo enviado"}
-```
-
-## Manejo de Errores
-
-Holamail devuelve códigos de estado SMTP estándar:
-
-| Código | Significado |
-|--------|-------------|
-| 250 | Solicitud completada |
-| 550 | Buzón no disponible (destinatario inválido) |
-| 551 | Destinatario rechazado |
-| 552 | Almacenamiento excedido |
-| 553 | Dirección inválida |
-| 554 | Transacción fallida |
-
-Cuando una dirección de destinatario no es válida, el servidor responde con `550`. Maneja los errores de conexión (timeout, rechazo) en el código de tu aplicación — generalmente indican problemas de red o que el servicio está temporalmente no disponible.
+No soporta entrega externa, APIs HTTP, STARTTLS, AUTH, rate limiting, plantillas, analíticas ni tracking.

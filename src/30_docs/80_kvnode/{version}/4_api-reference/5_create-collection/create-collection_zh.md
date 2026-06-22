@@ -28,15 +28,14 @@ curl -X POST "https://api.hola.cloud/v1/collections" \
 ## 响应示例
 
 ```http
-HTTP/1.1 201 Created
+HTTP/1.1 200 OK
 Content-Type: application/json
 ```
 
 ```json
-{
-  "name": "users",
-  "key_count": 0,
-  "created_at": "2025-06-21T10:00:00Z"
+ {
+  "ok": true,
+  "collection": "users"
 }
 ```
 
@@ -44,7 +43,7 @@ Content-Type: application/json
 
 | 状态 | 代码 | 描述 |
 |------|------|------|
-| 400 | invalid_request | 缺少或无效的集合名称 |
-| 401 | unauthorized | 缺少或无效的身份验证 |
+| 400 | invalid_json | 缺少或无效的集合名称 |
+| 403 | forbidden | Missing authentication headers |
 | 409 | conflict | 集合已存在 |
 | 500 | internal_error | 服务器内部错误 |

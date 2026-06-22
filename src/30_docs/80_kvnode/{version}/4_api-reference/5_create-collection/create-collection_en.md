@@ -28,15 +28,14 @@ curl -X POST "https://api.hola.cloud/v1/collections" \
 ## Example Response
 
 ```http
-HTTP/1.1 201 Created
+HTTP/1.1 200 OK
 Content-Type: application/json
 ```
 
 ```json
 {
-  "name": "users",
-  "key_count": 0,
-  "created_at": "2025-06-21T10:00:00Z"
+  "ok": true,
+  "collection": "users"
 }
 ```
 
@@ -44,7 +43,7 @@ Content-Type: application/json
 
 | Status | Code | Description |
 |--------|------|-------------|
-| 400 | invalid_request | Missing or invalid collection name |
-| 401 | unauthorized | Missing or invalid authentication |
-| 409 | conflict | Collection already exists |
+| 400 | invalid_json | Invalid JSON payload |
+| 400 | missing_collection | Collection is required |
+| 403 | forbidden | Missing authentication headers |
 | 500 | internal_error | Internal server error |

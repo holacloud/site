@@ -20,6 +20,7 @@ curl -X POST "https://api.hola.cloud/schedulers" \
   -H "X-API-Key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
+    "id": "sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890",
     "display_name": "my-scheduler"
   }'
 ```
@@ -28,14 +29,17 @@ Expected response:
 
 ```json
 {
-  "id": "sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-  "display_name": "my-scheduler",
-  "task_count": 0,
-  "status": "active"
+  "scheduler": {
+    "id": "sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "ready": true,
+    "scheduled": 0,
+    "inflight": 0,
+    "display_name": "my-scheduler"
+  }
 }
 ```
 
-Save the returned `id` — you will use it in subsequent requests.
+Use the scheduler `id` in subsequent requests.
 
 ## Step 2: Enqueue a Task with Delay
 
@@ -46,38 +50,18 @@ curl -X POST "https://api.hola.cloud/schedulers/sched-a1b2c3d4-e5f6-7890-abcd-ef
   -H "X-API-Key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
+    "id": "task-001",
     "payload": {
       "type": "send_email",
       "to": "user@example.com",
       "template": "welcome"
     },
-    "delay": 60,
-    "labels": {
-      "project": "onboarding",
-      "priority": "high"
-    }
+    "delay": "60s",
+    "labels": ["project:onboarding", "priority:high"]
   }'
 ```
 
-Expected response:
-
-```json
-{
-  "id": "task-001",
-  "scheduler_id": "sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-  "payload": {
-    "type": "send_email",
-    "to": "user@example.com",
-    "template": "welcome"
-  },
-  "state": "pending",
-  "available_at": "2025-06-21T12:01:01Z",
-  "labels": {
-    "project": "onboarding",
-    "priority": "high"
-  }
-}
-```
+Expected response: HTTP `202 Accepted` with an empty body.
 
 ## Step 3: List Tasks
 
@@ -91,15 +75,16 @@ Expected response:
 
 ```json
 {
-  "tasks": [
+  "scheduled": [
     {
       "id": "task-001",
-      "state": "pending",
-      "available_at": "2025-06-21T12:01:01Z",
-      "labels": { "project": "onboarding", "priority": "high" }
+      "future": "2025-06-21T12:01:01Z",
+      "labels": ["project:onboarding", "priority:high"]
     }
   ],
-  "total": 1
+  "inflight": [],
+  "scheduled_meta": { "page": 1, "per_page": 25, "total": 1, "total_pages": 1 },
+  "inflight_meta": { "page": 1, "per_page": 25, "total": 0, "total_pages": 0 }
 }
 ```
 
@@ -112,7 +97,7 @@ curl -X POST "https://api.hola.cloud/schedulers/sched-a1b2c3d4-e5f6-7890-abcd-ef
   -H "X-API-Key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "worktime": 30
+    "worktime": "30s"
   }'
 ```
 
@@ -122,7 +107,8 @@ Expected response:
 {
   "id": "task-001",
   "payload": { "type": "send_email", "to": "user@example.com", "template": "welcome" },
-  "lease_expires_at": "2025-06-21T12:02:01Z"
+  "lease_expires_at": "2025-06-21T12:02:01Z",
+  "labels": ["project:onboarding", "priority:high"]
 }
 ```
 
@@ -148,7 +134,10 @@ Expected response:
 ```json
 {
   "status": "ok",
-  "uptime_seconds": 12345
+  "ready": true,
+  "scheduled": 0,
+  "inflight": 0,
+  "scheduler_id": "sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890"
 }
 ```
 

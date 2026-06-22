@@ -1,90 +1,73 @@
+# InceptionDB 快速开始
 
-# InceptionDB快速入门指南
+本指南创建一个集合，插入三个 JSON 文档，并查询过滤后的文档。
 
-本指南将帮助您通过创建集合、插入三个元素和查询过滤的元素来开始使用InceptionDB。
+数据库访问端点使用 `Api-Key` 和 `Api-Secret`。当数据库 owner 被允许时，也可以使用 Glue owner token。
 
-## 第一步：创建集合
-
-要在InceptionDB中创建集合，您需要定义集合的名称。以下是使用curl在bash中执行此操作的示例：
+## 步骤 1：创建集合
 
 ```bash
-curl -X POST "https://example.com/v1/databases/你的数据库ID/collections" \
--H "Api-Key: 你的API密钥" \
--H "Api-Secret: 你的API秘密" \
--d '{
-      "name": "我的集合"
-    }'
+curl -X POST "https://api.hola.cloud/v1/databases/your-database-id/collections" \
+  -H "Api-Key: your-api-key" \
+  -H "Api-Secret: your-api-secret" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "my-collection"
+  }'
 ```
 
-预期响应
+预期响应：
 
 ```json
 {
-    "defaults": {
-        "id": "uuid()"
-    },
-    "indexes": 0,
-    "name": "我的集合",
-    "total": 0
+  "name": "my-collection",
+  "total": 0,
+  "indexes": 0,
+  "defaults": {
+    "id": "uuid()"
+  }
 }
 ```
 
-## 第二步：插入元素
+## 步骤 2：插入文档
 
-创建集合后，您可以向其中插入元素。以下是在新创建的集合中插入三个元素的方法：
-
-```bash
-curl -X POST "https://example.com/v1/databases/你的数据库ID/collections/我的集合/documents" \
--H "Api-Key: 你的API密钥" \
--H "Api-Secret: 你的API秘密" \
--d '{
-      "name": "元素1",
-      "value": 100
-    }
-    {
-      "name": "元素2",
-      "value": 200
-    }
-    {
-      "name": "元素3",
-      "value": 300
-    }'
-```
-
-## 第三步：列出过滤的元素
-
-要在集合中按特定过滤条件列出元素，可以使用以下curl请求：
+使用集合 action 端点并发送 JSONL：每行一个 JSON 文档。
 
 ```bash
-curl -X POST "https://example.com/v1/databases/你的数据库ID/collections/我的集合/find" \
--H "Api-Key: 你的API密钥" \
--H "Api-Secret: 你的API秘密" \
--d '{
-      "filter": {
-        "value": { "$gte": 200 }
-      }
-    }'
+curl -X POST "https://api.hola.cloud/v1/databases/your-database-id/collections/my-collection:insert" \
+  -H "Api-Key: your-api-key" \
+  -H "Api-Secret: your-api-secret" \
+  -H "Content-Type: application/jsonl" \
+  --data-binary '{"name":"Element 1","value":100}
+{"name":"Element 2","value":200}
+{"name":"Element 3","value":300}'
 ```
 
-预期响应
+预期响应：
 
-```json
-{
-    "documents": [
-        {
-            "id": "文档ID-2",
-            "name": "元素2",
-            "value": 200
-        },
-        {
-            "id": "文档ID-3",
-            "name": "元素3",
-            "value": 300
-        }
-    ]
-}
+```jsonl
+{"id":"document-id-1","name":"Element 1","value":100}
+{"id":"document-id-2","name":"Element 2","value":200}
+{"id":"document-id-3","name":"Element 3","value":300}
 ```
 
-## 总结
+## 步骤 3：查询过滤文档
 
-通过按照这些步骤操作，您已经在InceptionDB中创建了一个集合，插入了三个元素，并通过过滤条件查询了元素。这为您开始使用InceptionDB并利用其高效管理数据的能力奠定了坚实的基础。
+```bash
+curl -X POST "https://api.hola.cloud/v1/databases/your-database-id/collections/my-collection:find" \
+  -H "Api-Key: your-api-key" \
+  -H "Api-Secret: your-api-secret" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "filter": {
+      "value": { "$gte": 200 }
+    }
+  }'
+```
+
+预期响应：
+
+```jsonl
+{"id":"document-id-2","name":"Element 2","value":200}
+{"id":"document-id-3","name":"Element 3","value":300}
+```

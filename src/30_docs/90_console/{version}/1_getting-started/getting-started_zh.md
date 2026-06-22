@@ -11,18 +11,16 @@
 
 ```bash
 # 示例：通过模拟 API 检查登录会话
-curl -X GET "https://console.hola.cloud/api/v1/session" \
-  -H "Authorization: Bearer <您的令牌>"
+curl -X GET "https://console.hola.cloud/fakeapi/authapi/auth/me"
 ```
 
 预期响应：
 
 ```json
 {
-  "user": "demo@holacloud.com",
-  "project": "default",
-  "role": "admin",
-  "authenticated": true
+  "email": "fulanez@gmail.com",
+  "id": "user-1234",
+  "nick": "fulanez"
 }
 ```
 
@@ -42,37 +40,28 @@ curl -X GET "https://console.hola.cloud/api/v1/session" \
 
 ```bash
 # 通过模拟 API 获取项目活动
-curl -X GET "https://console.hola.cloud/api/v1/projects/default/activity" \
-  -H "Authorization: Bearer <您的令牌>"
+curl -X GET "https://console.hola.cloud/fakeapi/projectsapi/v0/projects"
 ```
 
 ```json
-{
-  "activities": [
-    { "type": "database.create", "service": "inceptiondb", "timestamp": "2026-06-20T10:30:00Z" },
-    { "type": "function.invoke",  "service": "lambda",      "timestamp": "2026-06-20T10:28:00Z" },
-    { "type": "file.upload",      "service": "files",       "timestamp": "2026-06-20T10:25:00Z" }
-  ]
-}
+[
+  { "id": "project-00000000-0000-0000-0000-000000000001", "name": "Hello" }
+]
 ```
 
 ## 切换项目
 
-如果您属于多个项目，请使用侧边栏顶部的项目选择器。整个界面将切换到所选项目的上下文，包括服务、账单和团队成员。
+如果您属于多个项目，请使用侧边栏顶部的项目选择器。整个界面将切换到所选项目及其服务的上下文。
 
 ```bash
 # 列出可用项目
-curl -X GET "https://console.hola.cloud/api/v1/projects" \
-  -H "Authorization: Bearer <您的令牌>"
+curl -X GET "https://console.hola.cloud/fakeapi/projectsapi/v0/projects"
 ```
 
 ```json
-{
-  "projects": [
-    { "id": "default", "name": "Default Project", "role": "admin" },
-    { "id": "staging", "name": "Staging Environment", "role": "developer" }
-  ]
-}
+[
+  { "id": "project-00000000-0000-0000-0000-000000000001", "name": "Hello" }
+]
 ```
 
 ## 访问文档和支持

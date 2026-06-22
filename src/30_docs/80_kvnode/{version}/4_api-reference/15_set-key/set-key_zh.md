@@ -51,10 +51,10 @@ Content-Type: application/json
 ```
 
 ```json
-{
-  "key": "user:1001",
-  "collection": "users",
-  "created_at": "2025-06-21T10:00:00Z"
+ {
+  "ok": true,
+  "seq": 1,
+  "version": 1
 }
 ```
 
@@ -62,7 +62,7 @@ Content-Type: application/json
 
 | 状态 | 代码 | 描述 |
 |------|------|------|
-| 400 | invalid_request | 缺少或无效的值 |
-| 401 | unauthorized | 缺少或无效的身份验证 |
+| 400 | invalid_json | 缺少或无效的值 |
+| 403 | forbidden | Missing authentication headers |
 | 404 | not_found | 未找到集合 |
 | 500 | internal_error | 服务器内部错误 |

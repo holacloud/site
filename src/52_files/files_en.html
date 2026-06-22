@@ -4,7 +4,7 @@
     <div class="hero-inner">
         <div class="hero-eyebrow">📁 Files</div>
         <h1>Secure object storage service</h1>
-        <p>Files is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <p>Files provides a REST API for buckets and file upload, download, listing, metadata, and deletion.</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">Get started</a>
             <a class="button button-secondary" href="/docs/files/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">Documentation</a>
@@ -17,18 +17,18 @@
         <div class="section-header">
             <div class="section-kicker">Files</div>
             <h2>Key features</h2>
-            <p>Everything you need to build, deploy, and scale with Files on HolaCloud.</p>
+            <p>Use buckets to organize files and access them through simple HTTP endpoints.</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>Scalable storage</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Store and retrieve any amount of data with low-latency access from anywhere.</p>
+            <h3>Bucket API</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Create, list, retrieve, and delete buckets with names and descriptions.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>Fine-grained permissions</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Per-bucket and per-object access control with API key authentication.</p>
+            <h3>File operations</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Upload, download, list, inspect, and delete files inside buckets.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>Versioning & retention</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Keep file history and set automated retention policies for compliance.</p>
+            <h3>Stored metadata</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Files track size, MIME type, timestamps, and content hashes returned by the API.</p>
           </div>
         </div>
     </section>
@@ -39,9 +39,9 @@
             <h2>Quick start</h2>
             <p>Get started with Files in seconds using the API.</p>
         </div>
-        <pre><code>curl -X POST https://api.hola.cloud/v1/buckets \
-  -H "Authorization: Bearer $TOKEN" \
-  -d '{"name": "my-bucket", "region": "us-east-1"}'</code></pre>
+        <pre><code>curl -X POST https://files.hola.cloud/v1/buckets \
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}' \
+  -d '{"name":"my-bucket","description":"Uploads for my app"}'</code></pre>
     </section>
 
     <section class="section">

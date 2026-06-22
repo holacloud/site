@@ -140,7 +140,7 @@
 <div class="item"><a href="/docs/files/v2/api-reference/delete-bucket/index.html">Delete Bucket</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/delete-file/index.html">Delete File</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/download-file/index.html">Download File</a></div>
-<div class="item"><a href="/docs/files/v2/api-reference/file-metadata/index.html">File Metadata</a></div>
+<div class="item"><a href="/docs/files/v2/api-reference/file-metadata/index.html">File Headers</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/get-bucket/index.html">Get Bucket</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/list-buckets/index.html">List Buckets</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/list-files/index.html">List Files</a></div>
@@ -163,11 +163,11 @@
 <div class="item"><a href="/docs/config/v2/api-reference/update-user-config/index.html">Update User Config</a></div>
 </div>
 </div>
-<div class="item"><a href="/docs/logs/index.html">Logs</a></div>
+<div class="item"><a href="/docs/logs/index.html">InstantLogs</a></div>
 <div class="children">
 <div class="item"><a href="/docs/logs/v2/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/logs/v2/ingesting-logs/index.html">Ingesting Logs</a></div>
-<div class="item"><a href="/docs/logs/v2/streaming-filtering/index.html">Streaming Filtering</a></div>
+<div class="item"><a href="/docs/logs/v2/streaming-filtering/index.html">Streaming and Filtering</a></div>
 <div class="item"><a href="/docs/logs/v2/api-reference/index.html">InstantLogs API Reference</a></div>
 <div class="children">
 <div class="item"><a href="/docs/logs/v2/api-reference/create-logger/index.html">Create Logger</a></div>
@@ -183,11 +183,11 @@
 <div class="item"><a href="/docs/logs/v2/api-reference/stream-events/index.html">Stream Events</a></div>
 </div>
 </div>
-<div class="item"><a href="/docs/queues/index.html">Queues</a></div>
+<div class="item"><a href="/docs/queues/index.html">Tailon Queues</a></div>
 <div class="children">
 <div class="item"><a href="/docs/queues/v2/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/queues/v2/managing-queues/index.html">Managing Queues</a></div>
-<div class="item"><a href="/docs/queues/v2/producing-consuming/index.html">Producing Consuming</a></div>
+<div class="item"><a href="/docs/queues/v2/producing-consuming/index.html">Producing and Consuming</a></div>
 <div class="item"><a href="/docs/queues/v2/api-reference/index.html">Tailon API Reference</a></div>
 <div class="children">
 <div class="item"><a href="/docs/queues/v2/api-reference/create-queue/index.html">Create Queue</a></div>
@@ -241,7 +241,7 @@
 <div class="item"><a href="/docs/kvnode/v2/api-reference/readiness-check/index.html">Readiness Check</a></div>
 <div class="item"><a href="/docs/kvnode/v2/api-reference/set-key/index.html">Set Key</a></div>
 </div>
-<div class="item"><a href="/docs/kvnode/v2/sdk-reference/index.html">Sdk Reference</a></div>
+<div class="item"><a href="/docs/kvnode/v2/sdk-reference/index.html">SDK Reference</a></div>
 </div>
 <div class="item"><a href="/docs/console/index.html">Console</a></div>
 <div class="children">
@@ -249,7 +249,7 @@
 <div class="item"><a href="/docs/console/v2/managing-projects/index.html">Managing Projects and Services</a></div>
 <div class="item"><a href="/docs/console/v2/api-reference/index.html">Console API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/console/v2/api-reference/fake-api/index.html">Fake Api</a></div>
+<div class="item"><a href="/docs/console/v2/api-reference/fake-api/index.html">Fake API</a></div>
 <div class="item"><a href="/docs/console/v2/api-reference/get-version/index.html">Get Version</a></div>
 </div>
 </div>
@@ -272,7 +272,7 @@
 <div class="item"><a href="/docs/holamail/v2/sending-email/index.html">Sending Email</a></div>
 <div class="item"><a href="/docs/holamail/v2/api-reference/index.html">Holamail API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/holamail/v2/api-reference/smtp-reference/index.html">Smtp Reference</a></div>
+<div class="item"><a href="/docs/holamail/v2/api-reference/smtp-reference/index.html">SMTP Reference</a></div>
 </div>
 </div>
 <div class="item"><a href="/docs/run/index.html">Run</a></div>
@@ -286,8 +286,8 @@
 <div class="item"><a href="/docs/run/v2/api-reference/rollback-image/index.html">Rollback Image</a></div>
 <div class="item"><a href="/docs/run/v2/api-reference/save-environment/index.html">Save Environment</a></div>
 <div class="item"><a href="/docs/run/v2/api-reference/save-volumes/index.html">Save Volumes</a></div>
-<div class="item"><a href="/docs/run/v2/api-reference/start-container/index.html">Start Container</a></div>
-<div class="item"><a href="/docs/run/v2/api-reference/stop-container/index.html">Stop Container</a></div>
+<div class="item"><a href="/docs/run/v2/api-reference/start-container/index.html">Start Repository</a></div>
+<div class="item"><a href="/docs/run/v2/api-reference/stop-container/index.html">Stop Repository</a></div>
 </div>
 </div>
 
@@ -367,7 +367,7 @@
 <tbody>
 <tr>
 <td><code>X-Glue-Authentication</code></td>
-<td>Base64-encoded JWT containing user ID, session info, roles, and auth method</td>
+<td>Plain JSON authentication context</td>
 </tr>
 <tr>
 <td><code>X-Holacloud-Project-Id</code></td>
@@ -387,46 +387,30 @@
 </tr>
 </tbody>
 </table>
-<p>Backend services use these headers to identify the caller and enforce authorization. The <code>X-Glue-Authentication</code> JWT is signed with a shared secret known only to Glue2 and trusted backends.</p>
+<p>Backend services use these headers to identify the caller and enforce authorization. <code>X-Glue-Authentication</code> is plain JSON.</p>
 <h2 id="V0%20Admin%20Endpoints">V0 Admin Endpoints</h2>
 <p>Glue2 exposes a set of admin endpoints under <code>/v0/</code>:</p>
 <h3 id="List%20Virtual%20Hosts">List Virtual Hosts</h3>
 <pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl <span style="color:#2aa198">&#34;https://api.hola.cloud/v0/virtualhosts&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Api-Key: YOUR_API_KEY&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Api-Secret: YOUR_API_SECRET&#34;</span>
-</span></span></code></pre></code></pre>
-<pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  <span style="color:#268bd2">&#34;virtual_hosts&#34;</span>: [
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>    {
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>      <span style="color:#268bd2">&#34;host&#34;</span>: <span style="color:#2aa198">&#34;my-project.hola.cloud&#34;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>      <span style="color:#268bd2">&#34;project_id&#34;</span>: <span style="color:#2aa198">&#34;p3b2c1a0-1234-5678-9abc-def012345678&#34;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>      <span style="color:#268bd2">&#34;backend&#34;</span>: <span style="color:#2aa198">&#34;svc-1&#34;</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7">7</a></span><span>    }
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8">8</a></span><span>  ]
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9">9</a></span><span>}
+</span></span></span></code></pre></code></pre>
+<pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>[<span style="color:#2aa198">&#34;my-project.hola.cloud&#34;</span>, <span style="color:#2aa198">&#34;api.my-project.hola.cloud&#34;</span>]
 </span></span></code></pre></code></pre>
 <h3 id="Traffic%20Stats">Traffic Stats</h3>
 <pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl <span style="color:#2aa198">&#34;https://api.hola.cloud/v0/stats&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Api-Key: YOUR_API_KEY&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Api-Secret: YOUR_API_SECRET&#34;</span>
-</span></span></code></pre></code></pre>
+</span></span></span></code></pre></code></pre>
 <h3 id="Backend%20Health%20Status">Backend Health Status</h3>
 <pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl <span style="color:#2aa198">&#34;https://api.hola.cloud/v0/status&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Api-Key: YOUR_API_KEY&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Api-Secret: YOUR_API_SECRET&#34;</span>
+</span></span></span></code></pre></code></pre>
+<pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>[
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>    <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;project-123&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>    <span style="color:#268bd2">&#34;name&#34;</span>: <span style="color:#2aa198">&#34;My Project&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>    <span style="color:#268bd2">&#34;host&#34;</span>: <span style="color:#2aa198">&#34;my-project.hola.cloud&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>    <span style="color:#268bd2">&#34;status&#34;</span>: <span style="color:#2aa198">200</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7">7</a></span><span>    <span style="color:#268bd2">&#34;statusText&#34;</span>: <span style="color:#2aa198">&#34;200 OK&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8">8</a></span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9">9</a></span><span>]
 </span></span></code></pre></code></pre>
-<pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  <span style="color:#268bd2">&#34;backends&#34;</span>: [
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>    {
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>      <span style="color:#268bd2">&#34;name&#34;</span>: <span style="color:#2aa198">&#34;inceptiondb&#34;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>      <span style="color:#268bd2">&#34;status&#34;</span>: <span style="color:#2aa198">&#34;healthy&#34;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>      <span style="color:#268bd2">&#34;latency_ms&#34;</span>: <span style="color:#2aa198">12</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7">7</a></span><span>    }
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8">8</a></span><span>  ]
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9">9</a></span><span>}
-</span></span></code></pre></code></pre>
-<h2 id="Load%20Balancing%20&amp;%20Failover">Load Balancing &amp; Failover</h2>
-<p>Glue2 distributes traffic across multiple backend instances for each service. If an instance is unhealthy (fails health checks or returns errors), Glue2 removes it from the rotation and retries on a healthy instance. Health checks run every 10 seconds. You can monitor backend health via the <code>/v0/status</code> endpoint.</p>
 <h2 id="Next%20Steps">Next Steps</h2>
 <ul>
 <li>Learn about authentication mechanisms in <a href="../2_authentication/authentication_en.md">Authentication</a>.</li>
@@ -477,9 +461,6 @@
 </div>
 <div class="index-h3">
 <a href="#Backend%20Health%20Status">Backend Health Status</a>
-</div>
-<div class="index-h2">
-<a href="#Load%20Balancing%20&%20Failover">Load Balancing & Failover</a>
 </div>
 <div class="index-h2">
 <a href="#Next%20Steps">Next Steps</a>

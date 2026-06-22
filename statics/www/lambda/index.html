@@ -107,7 +107,7 @@
     <div class="hero-inner">
         <div class="hero-eyebrow">⚡ Lambda</div>
         <h1>Serverless function execution platform</h1>
-        <p>Lambda is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <p>Lambda runs JavaScript functions and static assets behind HTTP endpoints on HolaCloud.</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">Get started</a>
             <a class="button button-secondary" href="/docs/lambda/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">Documentation</a>
@@ -120,18 +120,18 @@
         <div class="section-header">
             <div class="section-kicker">Lambda</div>
             <h2 id="Key%20features">Key features</h2>
-            <p>Everything you need to build, deploy, and scale with Lambda on HolaCloud.</p>
+            <p>Create, update, list, delete, and invoke HTTP functions through the Lambda API.</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="Run%20code%20in%20any%20language">Run code in any language</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Deploy Go, Python, Node.js, and more with automatic scaling. No servers to manage.</p>
+            <h3 id="JavaScript%20functions">JavaScript functions</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Run JavaScript with the built-in runtime helpers such as <code>write</code>, <code>body</code>, <code>query</code>, and <code>headers</code>.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="Event-driven%20execution">Event-driven execution</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Trigger functions from HTTP requests, queue messages, timers, or webhooks.</p>
+            <h3 id="HTTP%20invocation">HTTP invocation</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Invoke functions through public run URLs, authenticated admin run URLs, or owner/project mux routing.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="Built-in%20observability">Built-in observability</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Real-time logs, metrics, and tracing for every function invocation.</p>
+            <h3 id="Static%20responses">Static responses</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Serve static HTML, CSS, and JavaScript snippets with the same Lambda model.</p>
           </div>
         </div>
     </section>
@@ -142,9 +142,9 @@
             <h2 id="Quick%20start">Quick start</h2>
             <p>Get started with Lambda in seconds using the API.</p>
         </div>
-        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST https://api.hola.cloud/v1/lambdas \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  -H &#34;Authorization: Bearer $TOKEN&#34; \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  -d &#39;{&#34;name&#34;: &#34;hello&#34;, &#34;runtime&#34;: &#34;python3.11&#34;, &#34;code&#34;: &#34;def handler():\n    return {\&#34;status\&#34;: \&#34;ok\&#34;}&#34;}&#39;</span></span></code></pre></code></pre>
+        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST https://api.hola.cloud/api/v0/lambdas \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  -H &#39;X-Glue-Authentication: {&#34;user&#34;:{&#34;id&#34;:&#34;user-123&#34;}}&#39; \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  -d &#39;{&#34;name&#34;:&#34;hello&#34;,&#34;language&#34;:&#34;javascript&#34;,&#34;method&#34;:&#34;GET&#34;,&#34;path&#34;:&#34;/hello&#34;,&#34;code&#34;:&#34;write(\&#34;Hello from Lambda\&#34;)&#34;}&#39;</span></span></code></pre></code></pre>
     </section>
 
     <section class="section">
@@ -181,6 +181,7 @@
     </section>
 </div>
 
+
     <div id="comments-section">
     <h2>Comments</h2>
     <div id="comments-list"></div>
@@ -205,13 +206,13 @@
 <a href="#Key%20features">Key features</a>
 </div>
 <div class="index-h3">
-<a href="#Run%20code%20in%20any%20language">Run code in any language</a>
+<a href="#JavaScript%20functions">JavaScript functions</a>
 </div>
 <div class="index-h3">
-<a href="#Event-driven%20execution">Event-driven execution</a>
+<a href="#HTTP%20invocation">HTTP invocation</a>
 </div>
 <div class="index-h3">
-<a href="#Built-in%20observability">Built-in observability</a>
+<a href="#Static%20responses">Static responses</a>
 </div>
 <div class="index-h2">
 <a href="#Quick%20start">Quick start</a>

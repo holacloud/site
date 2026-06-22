@@ -1,67 +1,50 @@
 # List Files
 
-List files in a bucket. The wildcard (`*`) can be replaced with an optional prefix path to filter results.
+List files in a bucket. The path after `/list/` is used as a prefix filter.
 
 ## Authentication
 
-Requires `Api-Key` and `Api-Secret` headers.
+Requires `X-Glue-Authentication`.
 
 ## Path Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `id` | string | The bucket ID (e.g., `bkt_abc123`) |
-
-## Query Parameters
-
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `prefix` | string | "" | Filter files starting with this prefix |
-| `delimiter` | string | "" | Group results by this delimiter (e.g., `/`) |
-| `maxKeys` | integer | 1000 | Maximum number of files to return |
+| `bucket_id` | string | The bucket ID |
+| `*` | string | Prefix filter |
 
 ## Request
 
 ```bash
-curl "https://api.hola.cloud/v1/buckets/bkt_abc123/list/*?prefix=images/&maxKeys=50" \
-  -H "Api-Key: YOUR_API_KEY" \
-  -H "Api-Secret: YOUR_API_SECRET"
+curl "https://api.hola.cloud/v1/buckets/bucket-550e8400-e29b-41d4-a716-446655440000/list/images/" \
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}'
 ```
 
 ## Response
 
-```http
-HTTP/1.1 200 OK
-Content-Type: application/json
-```
+The response is a JSON array.
 
 ```json
-{
-  "files": [
-    {
-      "path": "images/logo.png",
-      "size": 24576,
-      "contentType": "image/png",
-      "modifiedAt": "2026-06-21T11:00:00Z",
-      "etag": "\"abc123def456\""
-    },
-    {
-      "path": "images/banner.jpg",
-      "size": 102400,
-      "contentType": "image/jpeg",
-      "modifiedAt": "2026-06-21T10:30:00Z",
-      "etag": "\"789012ghi345\""
-    }
-  ],
-  "prefix": "images/",
-  "total": 2
-}
+[
+  {
+    "id": "file-9f0b7b3c-1d2e-4a5f-8b9c-0123456789ab",
+    "name": "images/logo.png",
+    "bucket": "bucket-550e8400-e29b-41d4-a716-446655440000",
+    "created_timestamp": 1782045660000000000,
+    "updated_timestamp": 1782045660000000000,
+    "size": 24576,
+    "mime_type": "image/png",
+    "hash_md5": "example-md5",
+    "hash_sha256": "example-sha256",
+    "status": "available",
+    "owners": ["user-123"]
+  }
+]
 ```
 
 ## Error Codes
 
-| Status | Code | Description |
-|--------|------|-------------|
-| 401 | Unauthorized | Missing or invalid API credentials |
-| 404 | Not Found | The specified bucket does not exist |
-| 500 | Internal Server Error | An unexpected error occurred |
+| Status | Description |
+|--------|-------------|
+| 401 | Missing or invalid `X-Glue-Authentication` |
+| 500 | Persistence error |

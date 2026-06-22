@@ -11,18 +11,16 @@ Navegue a [https://console.hola.cloud](https://console.hola.cloud) e inicie sesi
 
 ```bash
 # Ejemplo: verificar sesión mediante la API mock
-curl -X GET "https://console.hola.cloud/api/v1/session" \
-  -H "Authorization: Bearer <su-token>"
+curl -X GET "https://console.hola.cloud/fakeapi/authapi/auth/me"
 ```
 
 Respuesta esperada:
 
 ```json
 {
-  "user": "demo@holacloud.com",
-  "project": "default",
-  "role": "admin",
-  "authenticated": true
+  "email": "fulanez@gmail.com",
+  "id": "user-1234",
+  "nick": "fulanez"
 }
 ```
 
@@ -42,37 +40,28 @@ Cada tarjeta de servicio en el panel muestra su estado actual (operativo, degrad
 
 ```bash
 # Obtener actividad del proyecto mediante la API mock
-curl -X GET "https://console.hola.cloud/api/v1/projects/default/activity" \
-  -H "Authorization: Bearer <su-token>"
+curl -X GET "https://console.hola.cloud/fakeapi/projectsapi/v0/projects"
 ```
 
 ```json
-{
-  "activities": [
-    { "type": "database.create", "service": "inceptiondb", "timestamp": "2026-06-20T10:30:00Z" },
-    { "type": "function.invoke",  "service": "lambda",      "timestamp": "2026-06-20T10:28:00Z" },
-    { "type": "file.upload",      "service": "files",       "timestamp": "2026-06-20T10:25:00Z" }
-  ]
-}
+[
+  { "id": "project-00000000-0000-0000-0000-000000000001", "name": "Hello" }
+]
 ```
 
 ## Cambiar entre proyectos
 
-Si pertenece a varios proyectos, use el selector de proyectos en la parte superior de la barra lateral. Toda la interfaz cambia al contexto del proyecto seleccionado, incluyendo servicios, facturación y miembros del equipo.
+Si pertenece a varios proyectos, use el selector de proyectos en la parte superior de la barra lateral. Toda la interfaz cambia al contexto del proyecto seleccionado y sus servicios.
 
 ```bash
 # Listar proyectos disponibles
-curl -X GET "https://console.hola.cloud/api/v1/projects" \
-  -H "Authorization: Bearer <su-token>"
+curl -X GET "https://console.hola.cloud/fakeapi/projectsapi/v0/projects"
 ```
 
 ```json
-{
-  "projects": [
-    { "id": "default", "name": "Default Project", "role": "admin" },
-    { "id": "staging", "name": "Staging Environment", "role": "developer" }
-  ]
-}
+[
+  { "id": "project-00000000-0000-0000-0000-000000000001", "name": "Hello" }
+]
 ```
 
 ## Acceder a documentación y soporte

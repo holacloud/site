@@ -4,7 +4,7 @@
     <div class="hero-inner">
         <div class="hero-eyebrow">🔑 KVNode</div>
         <h1>Almacén clave-valor replicado de alto rendimiento</h1>
-        <p>KVNode is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <p>KVNode expone colecciones y claves por HTTP, con sincronización root/replica mediante su protocolo WAL.</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">Comenzar</a>
             <a class="button button-secondary" href="/docs/kvnode/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">Documentación</a>
@@ -17,18 +17,18 @@
         <div class="section-header">
             <div class="section-kicker">KVNode</div>
             <h2>Funcionalidades</h2>
-            <p>Everything you need to build, deploy, and scale with KVNode on HolaCloud.</p>
+            <p>Guarda valores por colección y clave, lista claves y replica cambios entre nodos.</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>Latencia de submilisegundo</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Operaciones en memoria con opciones de persistencia configurables.</p>
+            <h3>Colecciones y claves</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Crea colecciones y establece, obtiene, lista o elimina claves con la API HTTP v1.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>Consenso Raft</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Consistencia fuerte con elección automática de líder y replicación.</p>
+            <h3>Modelo root/replica</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Las réplicas siguen a un nodo root usando los comandos de protocolo implementados por KVNode.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>TTL y expiración</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Establece tiempo de vida en claves para expulsión automática de caché.</p>
+            <h3>Escrituras versionadas</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Las operaciones de escritura devuelven información de secuencia y versión para sincronización.</p>
           </div>
         </div>
     </section>
@@ -37,11 +37,14 @@
         <div class="section-header">
             <div class="section-kicker">Quick start</div>
             <h2>Inicio rápido</h2>
-            <p>Get started with KVNode in seconds using the API.</p>
+            <p>Empieza con KVNode en segundos usando la API.</p>
         </div>
-        <pre><code>curl -X POST https://api.hola.cloud/v1/kv \
-  -H "Authorization: Bearer $TOKEN" \
-  -d '{"key": "user:123", "value": "{\"name\": \"Alice\"}", "ttl": 3600}'</code></pre>
+        <pre><code>curl -X POST https://kvnode.hola.cloud/v1/collections \
+  -H 'Api-Key: $API_KEY' -H 'Api-Secret: $API_SECRET' \
+  -d '{"collection":"users"}' \
+  && curl -X POST https://kvnode.hola.cloud/v1/collections/users/keys/123 \
+  -H 'Api-Key: $API_KEY' -H 'Api-Secret: $API_SECRET' \
+  -d '{"value":{"name":"Alice"}}'</code></pre>
     </section>
 
     <section class="section">

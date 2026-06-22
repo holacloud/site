@@ -4,7 +4,7 @@
     <div class="hero-inner">
         <div class="hero-eyebrow">🔑 KVNode</div>
         <h1>高性能复制型键值存储</h1>
-        <p>KVNode is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <p>KVNode 通过 HTTP 暴露 collections 和 keys，并使用 WAL 协议进行 root/replica 同步。</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">开始使用</a>
             <a class="button button-secondary" href="/docs/kvnode/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">文档中心</a>
@@ -17,18 +17,18 @@
         <div class="section-header">
             <div class="section-kicker">KVNode</div>
             <h2>核心功能</h2>
-            <p>Everything you need to build, deploy, and scale with KVNode on HolaCloud.</p>
+            <p>按 collection 和 key 存储值，列出 keys，并在节点之间复制变更。</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>亚毫秒延迟</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">内存级操作，支持可配置的持久化选项。</p>
+            <h3>Collections 与 Keys</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">通过 v1 HTTP API 创建 collection，并设置、获取、列出或删除 key。</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>Raft 共识</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">强一致性，自动领导者选举和复制。</p>
+            <h3>Root/Replica 模型</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Replica 使用 KVNode 实现的协议命令跟随 root 节点。</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>TTL 与过期</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">为键设置生存时间，自动缓存淘汰。</p>
+            <h3>带版本的写入</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">写入操作返回 sequence 和 version 信息，用于同步。</p>
           </div>
         </div>
     </section>
@@ -37,11 +37,14 @@
         <div class="section-header">
             <div class="section-kicker">Quick start</div>
             <h2>快速开始</h2>
-            <p>Get started with KVNode in seconds using the API.</p>
+            <p>使用 API 在几秒内开始使用 KVNode。</p>
         </div>
-        <pre><code>curl -X POST https://api.hola.cloud/v1/kv \
-  -H "Authorization: Bearer $TOKEN" \
-  -d '{"key": "user:123", "value": "{\"name\": \"Alice\"}", "ttl": 3600}'</code></pre>
+        <pre><code>curl -X POST https://kvnode.hola.cloud/v1/collections \
+  -H 'Api-Key: $API_KEY' -H 'Api-Secret: $API_SECRET' \
+  -d '{"collection":"users"}' \
+  && curl -X POST https://kvnode.hola.cloud/v1/collections/users/keys/123 \
+  -H 'Api-Key: $API_KEY' -H 'Api-Secret: $API_SECRET' \
+  -d '{"value":{"name":"Alice"}}'</code></pre>
     </section>
 
     <section class="section">

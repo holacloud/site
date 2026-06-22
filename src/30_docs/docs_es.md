@@ -1,54 +1,54 @@
 # Documentación
 
-Bienvenido a la documentación de HolaCloud. Aquí encontrarás guías, referencias de API y manuales operativos para todos los servicios de la plataforma.
+Bienvenido a la documentación de HolaCloud. Aquí encontrarás guías y referencias de API para los servicios de la plataforma.
 
 ## Primeros pasos
 
-Si eres nuevo en HolaCloud, el mejor lugar para empezar es la [Consola](/es/docs/console/) — la interfaz de gestión web donde puedes aprovisionar recursos, administrar proyectos y monitorizar tus servicios.
+Si eres nuevo en HolaCloud, empieza por la [Consola](/es/docs/console/) y las guías de cada servicio. Algunos servicios siguen evolucionando, por lo que conviene leer la referencia API junto con las notas respaldadas por la implementación actual.
 
-Cada servicio incluye su propia guía de inicio, documentación conceptual y una referencia completa de API con detalles de cada endpoint, ejemplos de solicitud y códigos de error.
+Cada servicio incluye su propia guía de inicio, documentación conceptual y una referencia API con detalles de endpoints, ejemplos de solicitud y códigos de error.
 
 ## Servicios
 
 ### [InceptionDB](/es/docs/inceptiondb/)
-Base de datos NoSQL gestionada. Almacena y consulta documentos JSON con esquema dinámico, indexación y ejecución de JavaScript. Ideal para aplicaciones que necesitan modelos de datos flexibles.
+Base de datos NoSQL documental. Almacena y consulta documentos JSON con esquema dinámico, colecciones e índices.
 
 ### [Lambda](/es/docs/lambda/)
-Plataforma de ejecución serverless. Despliega código que se ejecuta bajo demanda, escala automáticamente y se integra con el ecosistema HolaCloud. Sin servidores que gestionar.
+Plataforma de ejecución de funciones. Despliega funciones JavaScript y activos estáticos detrás de endpoints HTTP.
 
 ### [Files](/es/docs/files/)
-Almacenamiento de objetos seguro. Sube, descarga y organiza archivos con políticas de bucket configurables. Adecuado para almacenamiento multimedia, copias de seguridad y distribución de contenido.
+API de archivos. Sube, descarga, lista, inspecciona y elimina archivos organizados en buckets.
 
 ### [Config](/es/docs/config/)
-Gestión centralizada de configuración. Almacena, versiona y distribuye la configuración de tus aplicaciones en todos los entornos. Soporta parches JSON y sobrescrituras por usuario.
+API de configuración. Almacena y actualiza entradas de configuración JSON por usuario.
 
 ### [InstantLogs](/es/docs/logs/)
-Ingesta y streaming de logs en tiempo real. Recoge datos estructurados y no estructurados de cualquier fuente, filtra en tiempo real e intégralos con tus pipelines de monitorización.
+Ingesta y streaming de logs en tiempo real. Recoge logs raw o framed, filtra con expresiones regulares y transmite eventos.
 
 ### [Tailon](/es/docs/queues/)
-Sistema de colas de mensajes y workloads asíncronos. Entrega fiable de mensajes con consumidores long-poll, seguimiento de clientes y soporte para procesamiento asíncrono de alto rendimiento.
+API de colas de mensajes. Crea colas, escribe mensajes JSON y lee JSON delimitado por saltos de línea desde colas con nombre.
 
 ### [Scheduler](/es/docs/scheduler/)
-Servicio distribuido de programación de tareas. Programa tareas únicas y recurrentes, gestiona leases de tareas y transmite eventos. Construido para workloads temporizados y en segundo plano.
+Cola de tareas diferidas. Encola tareas diferidas puntuales, resérvalas con leases y transmite snapshots del scheduler.
 
 ### [KVNode](/es/docs/kvnode/)
-Almacén clave-valor replicado con backends de persistencia configurables. Lecturas y escrituras de baja latencia, comprobaciones de salud y métricas por nodo.
+API clave-valor con colecciones, claves, estado de nodo, métricas y sincronización root/replica.
 
 ### [Consola](/es/docs/console/)
-Consola de gestión web para todos los servicios de HolaCloud. Provisiona proyectos, gestiona recursos y monitoriza el estado de los servicios desde una única interfaz.
+Superficie web de consola para servicios HolaCloud, incluidas las APIs fake actuales usadas por la UI.
 
 ### [Glue2](/es/docs/glue2/)
-API Gateway y capa de autenticación. Enrutamiento central, autenticación y gestión de tráfico para la malla de servicios de HolaCloud. Soporta autenticación mediante API key y bearer token.
+Gateway por host y capa de unión de servicios con virtual hosts, inyección de contexto de autenticación, estado y estadísticas de tráfico.
 
 ### [Holamail](/es/docs/holamail/)
-Servicio SMTP de correo transaccional. Envía correos mediante relay SMTP con seguimiento de entrega fiable. Adecuado para notificaciones, restablecimientos de contraseña y mensajería transaccional.
+Servidor SMTP básico de pruebas. Acepta y registra mensajes SMTP para pruebas y desarrollo.
 
 ### [Run](/es/docs/run/)
-Servicio de ejecución de contenedores con registro Docker integrado. Inicia, detiene y revierte contenedores. Gestiona variables de entorno, volúmenes y ciclos de vida de despliegues.
+Controles de runtime de contenedores con un subconjunto Docker Registry orientado a push. Inicia, detiene y revierte runtimes de repositorio.
 
 ## Referencia de API
 
-Cada servicio incluye una sección completa de referencia de API con:
+Cada servicio incluye una sección de referencia API con:
 
 - Descripción de endpoints y métodos HTTP
 - Requisitos de autenticación

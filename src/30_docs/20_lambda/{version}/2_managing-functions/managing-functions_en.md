@@ -1,109 +1,40 @@
 <h1>Managing Lambda Functions</h1>
 
-Once you have created a Lambda function, you can update its code, configure environment variables, inspect its status, or delete it through the API.
+After creating a lambda, use the management API to inspect it, update its supported fields, list all lambdas in the account, or delete it.
 
 ## Function Structure
 
-Every Lambda function must export a default handler that receives a request object and returns a response. The handler signature varies slightly by runtime:
-
-### JavaScript (Node.js)
+JavaScript lambdas export a default handler. The handler receives a request object and returns the response body you want HolaCloud to send back.
 
 ```javascript
 export default (req) => {
-  // req.body      - parsed request payload
-  // req.headers   - object with request headers
-  // req.query     - parsed query string parameters
-  // req.method    - HTTP method string
-
   return {
-    body: "response body",
-    status_code: 200,
-    headers: { "X-Custom": "value" }
+    body: {
+      method: req.method,
+      path: req.path,
+      headers: req.headers,
+      data: req.body
+    }
   };
 };
 ```
 
-### Go
+Static lambdas use one of the static language modes: `static-html`, `static-css`, or `static-js`. In those modes, `code` is the content served for the matching lambda.
 
-```go
-package main
+## Updating a Lambda
 
-import "encoding/json"
-
-type Request struct {
-    Body    interface{} `json:"body"`
-    Headers map[string]string `json:"headers"`
-    Method  string `json:"method"`
-}
-
-type Response struct {
-    Body    interface{} `json:"body"`
-    StatusCode int `json:"status_code"`
-}
-
-func Handler(req Request) (Response, error) {
-    return Response{
-        Body:       "Hello from Go",
-        StatusCode: 200,
-    }, nil
-}
-```
-
-### Python
-
-```python
-def handler(req):
-    # req["body"]      - request payload
-    # req["headers"]   - dict of headers
-    # req["method"]    - HTTP method
-    return {
-        "body": "Hello from Python",
-        "status_code": 200
-    }
-```
-
-## Updating Function Code
-
-Use `PATCH /api/v0/lambdas/{id}` to modify an existing function. You can update the `name`, `runtime`, `code`, and `environment` fields.
+Use `PATCH /api/v0/lambdas/{lambda_id}` to update `name`, `language`, `code`, `method`, or `path`.
 
 ```bash
-curl -X PATCH "https://api.hola.cloud/api/v0/lambdas/YOUR_FUNCTION_ID" \
-  -H "Api-Key: YOUR_API_KEY" \
-  -H "Api-Secret: YOUR_API_SECRET" \
+curl -X PATCH "https://api.hola.cloud/api/v0/lambdas/YOUR_LAMBDA_ID" \
+  -H "X-Glue-Authentication: YOUR_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
-    "code": "export default (req) => { return { body: \"Updated!\" } }",
-    "environment": {
-      "DB_URL": "https://db.example.com",
-      "LOG_LEVEL": "debug"
-    }
+    "name": "hello-updated",
+    "method": "POST",
+    "path": "/hello-updated",
+    "code": "export default (req) => ({ body: { message: \"Updated lambda\", data: req.body } })"
   }'
-```
-
-## Setting Environment Variables
-
-Environment variables are passed as a key-value object in the `environment` field when creating or updating a function. They are injected into the function's process at runtime and accessible via the standard language mechanisms (`process.env` in Node.js, `os.Getenv` in Go, `os.environ` in Python).
-
-```bash
-curl -X PATCH "https://api.hola.cloud/api/v0/lambdas/YOUR_FUNCTION_ID" \
-  -H "Api-Key: YOUR_API_KEY" \
-  -H "Api-Secret: YOUR_API_SECRET" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "environment": {
-      "MY_VAR": "my-value"
-    }
-  }'
-```
-
-## Viewing Function Details and Status
-
-Retrieve a single function's full details:
-
-```bash
-curl "https://api.hola.cloud/api/v0/lambdas/YOUR_FUNCTION_ID" \
-  -H "Api-Key: YOUR_API_KEY" \
-  -H "Api-Secret: YOUR_API_SECRET"
 ```
 
 Expected response:
@@ -111,35 +42,40 @@ Expected response:
 ```json
 {
   "id": "f3b2c1a0-1234-5678-9abc-def012345678",
-  "name": "hello-world",
-  "runtime": "js",
-  "status": "active",
-  "environment": {
-    "LOG_LEVEL": "debug"
-  },
-  "created_at": "2025-06-21T12:00:00Z",
-  "updated_at": "2025-06-21T14:30:00Z"
+  "created_timestamp": 1750507200,
+  "owner": "user_123",
+  "project_id": "project_456",
+  "name": "hello-updated",
+  "language": "javascript",
+  "code": "export default (req) => ({ body: { message: \"Updated lambda\", data: req.body } })",
+  "method": "POST",
+  "path": "/hello-updated"
 }
 ```
 
-The `status` field can be `active`, `inactive`, or `error`.
+## Viewing Lambda Details
 
-## Listing All Functions
+Retrieve one lambda by ID:
+
+```bash
+curl "https://api.hola.cloud/api/v0/lambdas/YOUR_LAMBDA_ID" \
+  -H "X-Glue-Authentication: YOUR_TOKEN"
+```
+
+## Listing All Lambdas
 
 ```bash
 curl "https://api.hola.cloud/api/v0/lambdas" \
-  -H "Api-Key: YOUR_API_KEY" \
-  -H "Api-Secret: YOUR_API_SECRET"
+  -H "X-Glue-Authentication: YOUR_TOKEN"
 ```
 
-## Deleting a Function
+## Deleting a Lambda
 
-Permanently remove a function and all its associated data:
+Permanently remove a lambda:
 
 ```bash
-curl -X DELETE "https://api.hola.cloud/api/v0/lambdas/YOUR_FUNCTION_ID" \
-  -H "Api-Key: YOUR_API_KEY" \
-  -H "Api-Secret: YOUR_API_SECRET"
+curl -X DELETE "https://api.hola.cloud/api/v0/lambdas/YOUR_LAMBDA_ID" \
+  -H "X-Glue-Authentication: YOUR_TOKEN"
 ```
 
-A successful deletion returns a `200 OK` with no body.
+A successful deletion returns the API response for the deleted lambda or a confirmation payload, depending on the deployed API version.

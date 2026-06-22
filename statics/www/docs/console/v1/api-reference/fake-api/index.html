@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Fake Api</title>
+    <title>Fake API</title>
     <meta name="description" content="inceptiondb">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="/css/style.css" rel="stylesheet">
@@ -140,7 +140,7 @@
 <div class="item"><a href="/docs/files/v1/api-reference/delete-bucket/index.html">Delete Bucket</a></div>
 <div class="item"><a href="/docs/files/v1/api-reference/delete-file/index.html">Delete File</a></div>
 <div class="item"><a href="/docs/files/v1/api-reference/download-file/index.html">Download File</a></div>
-<div class="item"><a href="/docs/files/v1/api-reference/file-metadata/index.html">File Metadata</a></div>
+<div class="item"><a href="/docs/files/v1/api-reference/file-metadata/index.html">File Headers</a></div>
 <div class="item"><a href="/docs/files/v1/api-reference/get-bucket/index.html">Get Bucket</a></div>
 <div class="item"><a href="/docs/files/v1/api-reference/list-buckets/index.html">List Buckets</a></div>
 <div class="item"><a href="/docs/files/v1/api-reference/list-files/index.html">List Files</a></div>
@@ -163,11 +163,11 @@
 <div class="item"><a href="/docs/config/v1/api-reference/update-user-config/index.html">Update User Config</a></div>
 </div>
 </div>
-<div class="item"><a href="/docs/logs/index.html">Logs</a></div>
+<div class="item"><a href="/docs/logs/index.html">InstantLogs</a></div>
 <div class="children">
 <div class="item"><a href="/docs/logs/v1/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/logs/v1/ingesting-logs/index.html">Ingesting Logs</a></div>
-<div class="item"><a href="/docs/logs/v1/streaming-filtering/index.html">Streaming Filtering</a></div>
+<div class="item"><a href="/docs/logs/v1/streaming-filtering/index.html">Streaming and Filtering</a></div>
 <div class="item"><a href="/docs/logs/v1/api-reference/index.html">InstantLogs API Reference</a></div>
 <div class="children">
 <div class="item"><a href="/docs/logs/v1/api-reference/create-logger/index.html">Create Logger</a></div>
@@ -183,11 +183,11 @@
 <div class="item"><a href="/docs/logs/v1/api-reference/stream-events/index.html">Stream Events</a></div>
 </div>
 </div>
-<div class="item"><a href="/docs/queues/index.html">Queues</a></div>
+<div class="item"><a href="/docs/queues/index.html">Tailon Queues</a></div>
 <div class="children">
 <div class="item"><a href="/docs/queues/v1/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/queues/v1/managing-queues/index.html">Managing Queues</a></div>
-<div class="item"><a href="/docs/queues/v1/producing-consuming/index.html">Producing Consuming</a></div>
+<div class="item"><a href="/docs/queues/v1/producing-consuming/index.html">Producing and Consuming</a></div>
 <div class="item"><a href="/docs/queues/v1/api-reference/index.html">Tailon API Reference</a></div>
 <div class="children">
 <div class="item"><a href="/docs/queues/v1/api-reference/create-queue/index.html">Create Queue</a></div>
@@ -241,7 +241,7 @@
 <div class="item"><a href="/docs/kvnode/v1/api-reference/readiness-check/index.html">Readiness Check</a></div>
 <div class="item"><a href="/docs/kvnode/v1/api-reference/set-key/index.html">Set Key</a></div>
 </div>
-<div class="item"><a href="/docs/kvnode/v1/sdk-reference/index.html">Sdk Reference</a></div>
+<div class="item"><a href="/docs/kvnode/v1/sdk-reference/index.html">SDK Reference</a></div>
 </div>
 <div class="item active"><a href="/docs/console/index.html">Console</a></div>
 <div class="children">
@@ -249,7 +249,7 @@
 <div class="item"><a href="/docs/console/v1/managing-projects/index.html">Managing Projects and Services</a></div>
 <div class="item active"><a href="/docs/console/v1/api-reference/index.html">Console API Reference</a></div>
 <div class="children">
-<div class="item active selected"><a href="/docs/console/v1/api-reference/fake-api/index.html">Fake Api</a></div>
+<div class="item active selected"><a href="/docs/console/v1/api-reference/fake-api/index.html">Fake API</a></div>
 <div class="item"><a href="/docs/console/v1/api-reference/get-version/index.html">Get Version</a></div>
 </div>
 </div>
@@ -272,7 +272,7 @@
 <div class="item"><a href="/docs/holamail/v1/sending-email/index.html">Sending Email</a></div>
 <div class="item"><a href="/docs/holamail/v1/api-reference/index.html">Holamail API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/holamail/v1/api-reference/smtp-reference/index.html">Smtp Reference</a></div>
+<div class="item"><a href="/docs/holamail/v1/api-reference/smtp-reference/index.html">SMTP Reference</a></div>
 </div>
 </div>
 <div class="item"><a href="/docs/run/index.html">Run</a></div>
@@ -286,89 +286,100 @@
 <div class="item"><a href="/docs/run/v1/api-reference/rollback-image/index.html">Rollback Image</a></div>
 <div class="item"><a href="/docs/run/v1/api-reference/save-environment/index.html">Save Environment</a></div>
 <div class="item"><a href="/docs/run/v1/api-reference/save-volumes/index.html">Save Volumes</a></div>
-<div class="item"><a href="/docs/run/v1/api-reference/start-container/index.html">Start Container</a></div>
-<div class="item"><a href="/docs/run/v1/api-reference/stop-container/index.html">Stop Container</a></div>
+<div class="item"><a href="/docs/run/v1/api-reference/start-container/index.html">Start Repository</a></div>
+<div class="item"><a href="/docs/run/v1/api-reference/stop-container/index.html">Stop Repository</a></div>
 </div>
 </div>
 
 
 </div>
 <div class="content">
-    <div class="breadcrumb"><a class="item" href="/docs/console/v1/api-reference/index.html">Console API Reference</a><span class="arrow">→</span><a class="item selected" href="/docs/console/v1/api-reference/fake-api/index.html">Fake Api</a></div>
+    <div class="breadcrumb"><a class="item" href="/docs/console/v1/api-reference/index.html">Console API Reference</a><span class="arrow">→</span><a class="item selected" href="/docs/console/v1/api-reference/fake-api/index.html">Fake API</a></div>
     <div class="document">
-    <h1>Fake Api</h1>
-<p>Wildcard endpoint that serves mock data for all Console backend services during development and demo mode.</p>
+    <h1>Fake API</h1>
+<p>Fixed mock endpoints that serve Console development and demo data.</p>
 <h2 id="Description">Description</h2>
-<p>The <code>/fakeapi/*</code> route matches any path under <code>/fakeapi/</code> and returns simulated responses. This allows the Console UI to function without a real backend. The path structure mirrors the real API layout so the UI code remains identical between development and production.</p>
+<p>The Console service exposes only the fake API routes listed below. These endpoints allow the UI to run without the real backend services. Paths not listed here are not part of the Console fake API.</p>
 <h2 id="Sub-routes">Sub-routes</h2>
 <table>
 <thead>
 <tr>
-<th>Sub-path</th>
+<th>Method</th>
+<th>Path</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>/fakeapi/auth/me</code></td>
-<td>Returns the current mock user session</td>
+<td><code>GET</code></td>
+<td><code>/fakeapi/authapi/auth/me</code></td>
+<td>Returns the current mock user</td>
 </tr>
 <tr>
-<td><code>/fakeapi/inceptionapi</code></td>
-<td>Simulates InceptionDB API responses</td>
+<td><code>GET</code></td>
+<td><code>/fakeapi/inceptionapi/v1/databases</code></td>
+<td>Lists mock databases</td>
 </tr>
 <tr>
-<td><code>/fakeapi/lambdasapi</code></td>
-<td>Simulates Lambda function management</td>
+<td><code>GET</code></td>
+<td><code>/fakeapi/inceptionapi/v1/databases/{databaseid}/collections</code></td>
+<td>Lists mock collections for a database</td>
 </tr>
 <tr>
-<td><code>/fakeapi/projectsapi</code></td>
-<td>Simulates project settings and listing</td>
+<td><code>GET</code></td>
+<td><code>/fakeapi/lambdasapi/api/v0/lambdas</code></td>
+<td>Lists mock lambdas</td>
 </tr>
 <tr>
-<td><code>/fakeapi/filesapi</code></td>
-<td>Simulates file storage operations</td>
+<td><code>GET</code></td>
+<td><code>/fakeapi/projectsapi/v0/projects</code></td>
+<td>Lists mock projects</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/fakeapi/projectsapi/v0/projects/{projectid}</code></td>
+<td>Returns one mock project</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/fakeapi/filesapi/v1/buckets</code></td>
+<td>Lists mock buckets</td>
 </tr>
 </tbody>
 </table>
 <h2 id="Authentication">Authentication</h2>
 <p>None. These mock endpoints are unauthenticated.</p>
 <h2 id="Example">Example</h2>
-<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X GET <span style="color:#2aa198">&#34;https://api.hola.cloud/fakeapi/auth/me&#34;</span>
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X GET <span style="color:#2aa198">&#34;https://api.hola.cloud/fakeapi/authapi/auth/me&#34;</span>
 </span></span></code></pre></code></pre>
 <pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  <span style="color:#268bd2">&#34;user&#34;</span>: <span style="color:#2aa198">&#34;demo@holacloud.com&#34;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  <span style="color:#268bd2">&#34;name&#34;</span>: <span style="color:#2aa198">&#34;Demo User&#34;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>  <span style="color:#268bd2">&#34;project&#34;</span>: <span style="color:#2aa198">&#34;default&#34;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>  <span style="color:#268bd2">&#34;role&#34;</span>: <span style="color:#2aa198">&#34;admin&#34;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>  <span style="color:#268bd2">&#34;authenticated&#34;</span>: <span style="color:#cb4b16">true</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7">7</a></span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  <span style="color:#268bd2">&#34;email&#34;</span>: <span style="color:#2aa198">&#34;fulanez@gmail.com&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;user-1234&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>  <span style="color:#268bd2">&#34;nick&#34;</span>: <span style="color:#2aa198">&#34;fulanez&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>  <span style="color:#268bd2">&#34;picture&#34;</span>: <span style="color:#2aa198">&#34;https://lh3.googleusercontent.com/a-/ACNPEu8h8e8wfcL1Hsk4JbFsROFXIBNIllOFLLPnWEDWV2s=s96-c&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>}
 </span></span></code></pre></code></pre>
-<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X GET <span style="color:#2aa198">&#34;https://api.hola.cloud/fakeapi/projectsapi&#34;</span>
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X GET <span style="color:#2aa198">&#34;https://api.hola.cloud/fakeapi/projectsapi/v0/projects&#34;</span>
 </span></span></code></pre></code></pre>
-<pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1"> 1</a></span><span>{
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2"> 2</a></span><span>  <span style="color:#268bd2">&#34;projects&#34;</span>: [
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3"> 3</a></span><span>    {
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4"> 4</a></span><span>      <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;default&#34;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5"> 5</a></span><span>      <span style="color:#268bd2">&#34;name&#34;</span>: <span style="color:#2aa198">&#34;Default Project&#34;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6"> 6</a></span><span>      <span style="color:#268bd2">&#34;plan&#34;</span>: <span style="color:#2aa198">&#34;free&#34;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7"> 7</a></span><span>      <span style="color:#268bd2">&#34;region&#34;</span>: <span style="color:#2aa198">&#34;us-east&#34;</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8"> 8</a></span><span>    }
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9"> 9</a></span><span>  ]
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L10"><a style="outline: none; text-decoration:none; color:inherit" href="#L10">10</a></span><span>}
+<pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>[
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>    <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;project-00000000-0000-0000-0000-000000000001&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>    <span style="color:#268bd2">&#34;name&#34;</span>: <span style="color:#2aa198">&#34;Hello&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>    <span style="color:#268bd2">&#34;host&#34;</span>: <span style="color:#2aa198">&#34;red-pepper.holacloud.app&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>    <span style="color:#268bd2">&#34;owners&#34;</span>: [<span style="color:#2aa198">&#34;user1&#34;</span>]
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7">7</a></span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8">8</a></span><span>]
 </span></span></code></pre></code></pre>
-<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X GET <span style="color:#2aa198">&#34;https://api.hola.cloud/fakeapi/lambdasapi&#34;</span>
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X GET <span style="color:#2aa198">&#34;https://api.hola.cloud/fakeapi/lambdasapi/api/v0/lambdas&#34;</span>
 </span></span></code></pre></code></pre>
-<pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1"> 1</a></span><span>{
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2"> 2</a></span><span>  <span style="color:#268bd2">&#34;functions&#34;</span>: [
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3"> 3</a></span><span>    {
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4"> 4</a></span><span>      <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;fn-001&#34;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5"> 5</a></span><span>      <span style="color:#268bd2">&#34;name&#34;</span>: <span style="color:#2aa198">&#34;hello-world&#34;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6"> 6</a></span><span>      <span style="color:#268bd2">&#34;runtime&#34;</span>: <span style="color:#2aa198">&#34;nodejs18&#34;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7"> 7</a></span><span>      <span style="color:#268bd2">&#34;status&#34;</span>: <span style="color:#2aa198">&#34;active&#34;</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8"> 8</a></span><span>    }
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9"> 9</a></span><span>  ]
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L10"><a style="outline: none; text-decoration:none; color:inherit" href="#L10">10</a></span><span>}
+<pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>[
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>    <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;a663e1f1-e5cb-4fc2-b846-53f2cc7574c9&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>    <span style="color:#268bd2">&#34;method&#34;</span>: <span style="color:#2aa198">&#34;GET&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>    <span style="color:#268bd2">&#34;name&#34;</span>: <span style="color:#2aa198">&#34;Index&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>    <span style="color:#268bd2">&#34;path&#34;</span>: <span style="color:#2aa198">&#34;/&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7">7</a></span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8">8</a></span><span>]
 </span></span></code></pre></code></pre>
 <h2 id="Error%20Codes">Error Codes</h2>
 <table>

@@ -23,12 +23,17 @@ Health check endpoints are public. All other endpoints require authentication vi
 - `X-Glue-Authentication` header
 - `apikey` and `secret` headers
 
+KVNode only checks that one of these header forms is present. Missing headers return `403 forbidden`.
+
 ## Error Codes
 
 | Status | Code | Description |
 |--------|------|-------------|
-| 400 | invalid_request | Invalid request body or parameters |
-| 401 | unauthorized | Missing or invalid authentication |
+| 400 | invalid_json | Invalid JSON payload |
+| 400 | missing_collection | Collection is required |
+| 400 | invalid_project | Project id contains invalid characters |
+| 403 | forbidden | Missing authentication headers |
 | 404 | not_found | Collection or key not found |
-| 409 | conflict | Collection already exists |
+| 404 | missing_collection | Collection does not exist |
+| 502 | parent_unavailable | Parent node is not reachable |
 | 500 | internal_error | Internal server error |

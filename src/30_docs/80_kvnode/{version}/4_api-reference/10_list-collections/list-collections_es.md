@@ -22,18 +22,7 @@ Content-Type: application/json
 
 ```json
 {
-  "collections": [
-    {
-      "name": "usuarios",
-      "key_count": 1200,
-      "created_at": "2025-06-01T10:00:00Z"
-    },
-    {
-      "name": "sesiones",
-      "key_count": 450,
-      "created_at": "2025-06-10T14:30:00Z"
-    }
-  ]
+  "collections": ["usuarios", "sesiones"]
 }
 ```
 
@@ -41,5 +30,5 @@ Content-Type: application/json
 
 | Estado | Código | Descripción |
 |--------|--------|-------------|
-| 401 | unauthorized | Autenticación faltante o inválida |
+| 403 | forbidden | Missing authentication headers |
 | 500 | internal_error | Error interno del servidor |

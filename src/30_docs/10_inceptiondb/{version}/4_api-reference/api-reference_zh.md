@@ -1,38 +1,37 @@
-
 # InceptionDB API 参考
 
-基础 URL：`https://api.hola.cloud`
+Base URL: `https://api.hola.cloud`
 
-## 身份验证
+## 认证
 
-InceptionDB 管理端点需要通过两个请求头进行身份验证：
+`GET /v1/databases` 和 `POST /v1/databases` management 端点使用 `X-Glue-Authentication`。
 
-- `Api-Key` — 您的 API 密钥（UUID）
-- `Api-Secret` — 您的 API 密钥密码（UUID）
-- `X-Project` — 将请求限定到特定项目
-
-所有请求必须通过 HTTPS 发送。
+数据库访问端点使用 `Api-Key` 和 `Api-Secret`。当数据库 owner 被允许时，也可以使用 Glue owner token。
 
 ## 端点
 
 | 方法 | 路径 | 描述 |
-|--------|------|------|
-| GET | `/v1/databases` | 列出所有数据库 |
-| POST | `/v1/databases` | 创建新数据库 |
-| GET | `/v1/databases/{id}` | 根据 ID 获取数据库 |
-| DELETE | `/v1/databases/{id}` | 删除数据库 |
-| PATCH | `/v1/databases/{id}` | 更新数据库 |
-| GET | `/v1/databases/{id}/collections` | 列出数据库中的集合 |
-| POST | `/v1/databases/{id}/collections` | 创建集合 |
-| POST | `/v1/databases/{id}/collections/{col}` | 文档操作（插入、查找、删除、更新） |
+|------|------|------|
+| GET | `/v1/databases` | 列出数据库 |
+| POST | `/v1/databases` | 创建数据库 |
+| GET | `/v1/databases/{databaseId}` | 根据 ID 获取数据库 |
+| DELETE | `/v1/databases/{databaseId}` | 删除数据库 |
+| PATCH | `/v1/databases/{databaseId}` | 更新数据库 |
+| GET | `/v1/databases/{databaseId}/collections` | 列出数据库中的集合 |
+| POST | `/v1/databases/{databaseId}/collections` | 创建集合 |
+| POST | `/v1/databases/{databaseId}/collections/{collection}:insert` | 插入文档 |
+| POST | `/v1/databases/{databaseId}/collections/{collection}:find` | 查询文档 |
+| POST | `/v1/databases/{databaseId}/collections/{collection}:patch` | 修改文档 |
+| POST | `/v1/databases/{databaseId}/collections/{collection}:remove` | 删除文档 |
+| GET | `/v1/databases/{databaseId}/collections/{collection}/documents/{documentId}` | 根据 ID 获取文档 |
 
 ## 常见错误码
 
-| 状态码 | 描述 |
-|--------|------|
-| 400 | 错误请求 — 语法错误或参数无效 |
-| 401 | 未授权 — 缺少或无效的 API 凭证 |
-| 403 | 禁止访问 — 凭证无权限访问该资源 |
-| 404 | 未找到 — 请求的资源不存在 |
-| 409 | 冲突 — 资源已存在 |
+| 代码 | 描述 |
+|------|------|
+| 400 | 请求错误：语法或参数无效 |
+| 401 | 未授权：缺少或无效凭据 |
+| 403 | 禁止访问：凭据无权访问资源 |
+| 404 | 未找到：请求的资源不存在 |
+| 409 | 冲突：资源已存在 |
 | 500 | 服务器内部错误 |

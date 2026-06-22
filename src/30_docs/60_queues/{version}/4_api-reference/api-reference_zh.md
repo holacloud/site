@@ -1,29 +1,15 @@
-
 # Tailon API 参考
 
 基础 URL：`https://api.hola.cloud`
 
-## 认证
-
-Tailon 端点默认是**公开的**。大多数操作不需要认证请求头。
-
-## 端点
+Tailon 是一个简单的内存队列服务。
 
 | 方法 | 路径 | 描述 |
-|--------|------|------|
-| GET | `/v1/queues` | 列出所有队列 |
-| POST | `/v1/queues` | 创建新队列 |
-| GET | `/v1/queues/{id}` | 获取队列详情 |
-| DELETE | `/v1/queues/{id}` | 删除队列 |
-| POST | `/v1/queues/{id}` | 向队列写入消息 |
-| GET | `/v1/queues/{id}` | 从队列读取消息（长轮询） |
-| GET | `/v1/clients` | 列出活跃的流式客户端 |
+|--------|------|-------------|
+| POST | `/v1/queues` | 创建队列；`201` 且响应体为空 |
+| GET | `/v1/queues` | 以 `[]string` 列出队列 ID |
+| GET | `/v1/queues/{queue_id}` | 返回 `name`、`len`、`reads`、`writes` |
+| POST | `/v1/queues/{queue_id}:write` | 写入消息 |
+| GET | `/v1/queues/{queue_id}:read` | 以 NDJSON 读取消息 |
 
-## 常见错误代码
-
-| 代码 | 描述 |
-|------|------|
-| 400 | 错误请求 — JSON 格式错误或参数无效 |
-| 404 | 未找到 — 请求的队列不存在 |
-| 409 | 冲突 — 队列操作冲突 |
-| 500 | 服务器内部错误 |
+delete handler 未实现。

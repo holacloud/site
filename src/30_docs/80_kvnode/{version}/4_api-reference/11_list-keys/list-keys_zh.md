@@ -35,19 +35,21 @@ Content-Type: application/json
 
 ```json
 {
-  "keys": [
+  "items": [
     {
       "key": "user:1001",
-      "created_at": "2025-06-15T10:00:00Z",
-      "updated_at": "2025-06-20T15:30:00Z"
+      "value": { "name": "Alice" },
+      "version": 1,
+      "updatedAt": "2025-06-20T15:30:00Z"
     },
     {
       "key": "user:1002",
-      "created_at": "2025-06-16T09:00:00Z",
-      "updated_at": "2025-06-21T08:00:00Z"
+      "value": { "name": "Bob" },
+      "version": 1,
+      "updatedAt": "2025-06-21T08:00:00Z"
     }
   ],
-  "total": 2
+  "next": "user:1002"
 }
 ```
 
@@ -55,6 +57,6 @@ Content-Type: application/json
 
 | 状态 | 代码 | 描述 |
 |------|------|------|
-| 401 | unauthorized | 缺少或无效的身份验证 |
+| 403 | forbidden | Missing authentication headers |
 | 404 | not_found | 未找到集合 |
 | 500 | internal_error | 服务器内部错误 |

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Logs</title>
+    <title>InstantLogs</title>
     <meta name="description" content="inceptiondb">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="/css/style.css" rel="stylesheet">
@@ -140,7 +140,7 @@
 <div class="item"><a href="/docs/files/v2/api-reference/delete-bucket/index.html">Delete Bucket</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/delete-file/index.html">Delete File</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/download-file/index.html">Download File</a></div>
-<div class="item"><a href="/docs/files/v2/api-reference/file-metadata/index.html">File Metadata</a></div>
+<div class="item"><a href="/docs/files/v2/api-reference/file-metadata/index.html">File Headers</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/get-bucket/index.html">Get Bucket</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/list-buckets/index.html">List Buckets</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/list-files/index.html">List Files</a></div>
@@ -163,11 +163,11 @@
 <div class="item"><a href="/docs/config/v2/api-reference/update-user-config/index.html">Update User Config</a></div>
 </div>
 </div>
-<div class="item active selected"><a href="/docs/logs/index.html">Logs</a></div>
+<div class="item active selected"><a href="/docs/logs/index.html">InstantLogs</a></div>
 <div class="children">
 <div class="item"><a href="/docs/logs/v2/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/logs/v2/ingesting-logs/index.html">Ingesting Logs</a></div>
-<div class="item"><a href="/docs/logs/v2/streaming-filtering/index.html">Streaming Filtering</a></div>
+<div class="item"><a href="/docs/logs/v2/streaming-filtering/index.html">Streaming and Filtering</a></div>
 <div class="item"><a href="/docs/logs/v2/api-reference/index.html">InstantLogs API Reference</a></div>
 <div class="children">
 <div class="item"><a href="/docs/logs/v2/api-reference/create-logger/index.html">Create Logger</a></div>
@@ -183,11 +183,11 @@
 <div class="item"><a href="/docs/logs/v2/api-reference/stream-events/index.html">Stream Events</a></div>
 </div>
 </div>
-<div class="item"><a href="/docs/queues/index.html">Queues</a></div>
+<div class="item"><a href="/docs/queues/index.html">Tailon Queues</a></div>
 <div class="children">
 <div class="item"><a href="/docs/queues/v2/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/queues/v2/managing-queues/index.html">Managing Queues</a></div>
-<div class="item"><a href="/docs/queues/v2/producing-consuming/index.html">Producing Consuming</a></div>
+<div class="item"><a href="/docs/queues/v2/producing-consuming/index.html">Producing and Consuming</a></div>
 <div class="item"><a href="/docs/queues/v2/api-reference/index.html">Tailon API Reference</a></div>
 <div class="children">
 <div class="item"><a href="/docs/queues/v2/api-reference/create-queue/index.html">Create Queue</a></div>
@@ -241,7 +241,7 @@
 <div class="item"><a href="/docs/kvnode/v2/api-reference/readiness-check/index.html">Readiness Check</a></div>
 <div class="item"><a href="/docs/kvnode/v2/api-reference/set-key/index.html">Set Key</a></div>
 </div>
-<div class="item"><a href="/docs/kvnode/v2/sdk-reference/index.html">Sdk Reference</a></div>
+<div class="item"><a href="/docs/kvnode/v2/sdk-reference/index.html">SDK Reference</a></div>
 </div>
 <div class="item"><a href="/docs/console/index.html">Console</a></div>
 <div class="children">
@@ -249,7 +249,7 @@
 <div class="item"><a href="/docs/console/v2/managing-projects/index.html">Managing Projects and Services</a></div>
 <div class="item"><a href="/docs/console/v2/api-reference/index.html">Console API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/console/v2/api-reference/fake-api/index.html">Fake Api</a></div>
+<div class="item"><a href="/docs/console/v2/api-reference/fake-api/index.html">Fake API</a></div>
 <div class="item"><a href="/docs/console/v2/api-reference/get-version/index.html">Get Version</a></div>
 </div>
 </div>
@@ -272,7 +272,7 @@
 <div class="item"><a href="/docs/holamail/v2/sending-email/index.html">Sending Email</a></div>
 <div class="item"><a href="/docs/holamail/v2/api-reference/index.html">Holamail API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/holamail/v2/api-reference/smtp-reference/index.html">Smtp Reference</a></div>
+<div class="item"><a href="/docs/holamail/v2/api-reference/smtp-reference/index.html">SMTP Reference</a></div>
 </div>
 </div>
 <div class="item"><a href="/docs/run/index.html">Run</a></div>
@@ -286,33 +286,21 @@
 <div class="item"><a href="/docs/run/v2/api-reference/rollback-image/index.html">Rollback Image</a></div>
 <div class="item"><a href="/docs/run/v2/api-reference/save-environment/index.html">Save Environment</a></div>
 <div class="item"><a href="/docs/run/v2/api-reference/save-volumes/index.html">Save Volumes</a></div>
-<div class="item"><a href="/docs/run/v2/api-reference/start-container/index.html">Start Container</a></div>
-<div class="item"><a href="/docs/run/v2/api-reference/stop-container/index.html">Stop Container</a></div>
+<div class="item"><a href="/docs/run/v2/api-reference/start-container/index.html">Start Repository</a></div>
+<div class="item"><a href="/docs/run/v2/api-reference/stop-container/index.html">Stop Repository</a></div>
 </div>
 </div>
 
 
 </div>
 <div class="content">
-    <div class="breadcrumb"><a class="item" href="/docs/index.html">Documentation</a><span class="arrow">→</span><a class="item selected" href="/docs/logs/index.html">Logs</a></div>
+    <div class="breadcrumb"><a class="item" href="/docs/index.html">Documentation</a><span class="arrow">→</span><a class="item selected" href="/docs/logs/index.html">InstantLogs</a></div>
     <div class="document">
-    <h1>Logs</h1>
-<p>InstantLogs is a real-time log aggregation and streaming service within the Hola.Cloud ecosystem. It provides multi-tenant log ingestion, regex-based filtering, live streaming, NDJSON export, and persistent storage — all with low latency.</p>
-<h2 id="Key%20Benefits">Key Benefits</h2>
-<h3 id="Real-Time%20Log%20Aggregation">Real-Time Log Aggregation</h3>
-<p>Ingest logs from multiple sources in real time. InstantLogs collects, processes, and stores log entries as they arrive, giving you immediate visibility into your systems.</p>
-<h3 id="Multi-Tenant%20Architecture">Multi-Tenant Architecture</h3>
-<p>Organize logs into isolated loggers. Each logger has its own credentials, retention policy, and access controls, making InstantLogs suitable for teams, clients, or microservices operating in the same account.</p>
-<h3 id="Regex%20Filtering">Regex Filtering</h3>
-<p>Filter log streams using regular expressions. Narrow down to entries matching a pattern, exclude noise, and focus on what matters without leaving the streaming endpoint.</p>
-<h3 id="Live%20Streaming">Live Streaming</h3>
-<p>Stream logs as they are ingested via long-lived HTTP connections. Choose between NDJSON and plain-text formats. Events appear in near real-time with minimal overhead.</p>
-<h3 id="Persistent%20Storage">Persistent Storage</h3>
-<p>All ingested logs are durably stored and available for replay. You can re-stream historical data or export it for offline analysis.</p>
-<h3 id="Dual%20Authentication%20Model">Dual Authentication Model</h3>
-<p>InstantLogs uses two authentication modes. Management operations (create, list, delete loggers, manage API keys) require an API key (<code>Api-Key</code> + <code>Api-Secret</code> headers). Data operations (ingest, stream, filter, stats) use a Logger Secret (<code>X-Instantlogs-Event-Secret</code> header or <code>Authorization: Bearer</code>).</p>
+    <h1>InstantLogs</h1>
+<p>InstantLogs provides HTTP loggers for raw byte ingestion and streaming/filtering.</p>
+<h2 id="Authentication">Authentication</h2>
+<p>Logger management uses Glue authentication with <code>X-Glue-Authentication</code>. Logger-specific endpoints can be accessed by a Glue owner of the logger or by a logger API key using <code>Api-Key</code> and <code>Api-Secret</code>.</p>
 <h2 id="API%20Overview">API Overview</h2>
-<h3 id="Management%20Endpoints%20%28API%20Key%20Auth%29">Management Endpoints (API Key Auth)</h3>
 <table>
 <thead>
 <tr>
@@ -325,17 +313,17 @@
 <tr>
 <td>GET</td>
 <td><code>/v1/loggers</code></td>
-<td>List all loggers</td>
+<td>List loggers visible to the Glue user</td>
 </tr>
 <tr>
 <td>POST</td>
 <td><code>/v1/loggers</code></td>
-<td>Create a new logger</td>
+<td>Create a logger for the Glue user</td>
 </tr>
 <tr>
 <td>GET</td>
 <td><code>/v1/loggers/{id}</code></td>
-<td>Get logger details</td>
+<td>Get logger details, including owners and API keys</td>
 </tr>
 <tr>
 <td>DELETE</td>
@@ -344,75 +332,41 @@
 </tr>
 <tr>
 <td>POST</td>
-<td><code>/v1/loggers/{id}/apiKeys</code></td>
-<td>Create a new API key for a logger</td>
-</tr>
-<tr>
-<td>DELETE</td>
-<td><code>/v1/loggers/{id}/apiKeys/{key}</code></td>
-<td>Delete an API key from a logger</td>
-</tr>
-</tbody>
-</table>
-<h3 id="Data%20Endpoints%20%28Logger%20Secret%20Auth%29">Data Endpoints (Logger Secret Auth)</h3>
-<table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Path</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>POST</td>
 <td><code>/v1/loggers/{id}/ingest</code></td>
-<td>Ingest log entries</td>
+<td>Ingest raw request bytes, returns <code>{ &#34;n&#34;: bytes }</code></td>
 </tr>
 <tr>
 <td>GET</td>
-<td><code>/v1/loggers/{id}/filter</code></td>
-<td>Stream and filter logs</td>
+<td><code>/v1/loggers/{id}/filter?regex=...</code></td>
+<td>Stream entries matching a regex</td>
 </tr>
 <tr>
 <td>GET</td>
 <td><code>/v1/loggers/{id}/events</code></td>
-<td>Stream events (NDJSON or text)</td>
+<td>Stream events; <code>follow</code> is enabled by flag presence</td>
 </tr>
 <tr>
 <td>GET</td>
 <td><code>/v1/loggers/{id}/stats</code></td>
-<td>Get logger statistics</td>
+<td>Get runtime stats</td>
 </tr>
-</tbody>
-</table>
-<h3 id="Framed%20Events%20%28Event%20Secret%20Auth%29">Framed Events (Event Secret Auth)</h3>
-<table>
-<thead>
 <tr>
-<th>Method</th>
-<th>Path</th>
-<th>Description</th>
+<td>POST</td>
+<td><code>/v1/loggers/{id}/apiKeys</code></td>
+<td>Create a logger API key</td>
 </tr>
-</thead>
-<tbody>
+<tr>
+<td>DELETE</td>
+<td><code>/v1/loggers/{id}/apiKeys/{apiKey}</code></td>
+<td>Delete a logger API key</td>
+</tr>
 <tr>
 <td>POST</td>
 <td><code>/v1/ingest/events</code></td>
-<td>Ingest framed events</td>
+<td>Ingest logframe events with <code>project_id</code>, returns <code>events</code> and <code>bytes</code></td>
 </tr>
 </tbody>
 </table>
-<p>Base URL: <code>https://api.hola.cloud</code></p>
-<h2 id="Best%20Use%20Cases">Best Use Cases</h2>
-<h3 id="Centralized%20Logging">Centralized Logging</h3>
-<p>Aggregate logs from all your services, containers, and servers into a single stream. Debug production issues faster with unified search and filtering.</p>
-<h3 id="Real-Time%20Monitoring">Real-Time Monitoring</h3>
-<p>Stream application and infrastructure logs live. Detect anomalies as they happen and trigger alerts based on log patterns.</p>
-<h3 id="Audit%20Trails">Audit Trails</h3>
-<p>Store immutable log records for compliance and auditing. Replay historical streams on demand.</p>
-<h3 id="Multi-Tenant%20SaaS">Multi-Tenant SaaS</h3>
-<p>Isolate logs per customer or team using separate loggers. Each tenant gets its own credentials and retention policies.</p>
 
 
     <div id="comments-section">
@@ -436,52 +390,10 @@
 </div>
 </div>
 <div class="index"><div class="index-h2">
-<a href="#Key%20Benefits">Key Benefits</a>
-</div>
-<div class="index-h3">
-<a href="#Real-Time%20Log%20Aggregation">Real-Time Log Aggregation</a>
-</div>
-<div class="index-h3">
-<a href="#Multi-Tenant%20Architecture">Multi-Tenant Architecture</a>
-</div>
-<div class="index-h3">
-<a href="#Regex%20Filtering">Regex Filtering</a>
-</div>
-<div class="index-h3">
-<a href="#Live%20Streaming">Live Streaming</a>
-</div>
-<div class="index-h3">
-<a href="#Persistent%20Storage">Persistent Storage</a>
-</div>
-<div class="index-h3">
-<a href="#Dual%20Authentication%20Model">Dual Authentication Model</a>
+<a href="#Authentication">Authentication</a>
 </div>
 <div class="index-h2">
 <a href="#API%20Overview">API Overview</a>
-</div>
-<div class="index-h3">
-<a href="#Management%20Endpoints%20%28API%20Key%20Auth%29">Management Endpoints (API Key Auth)</a>
-</div>
-<div class="index-h3">
-<a href="#Data%20Endpoints%20%28Logger%20Secret%20Auth%29">Data Endpoints (Logger Secret Auth)</a>
-</div>
-<div class="index-h3">
-<a href="#Framed%20Events%20%28Event%20Secret%20Auth%29">Framed Events (Event Secret Auth)</a>
-</div>
-<div class="index-h2">
-<a href="#Best%20Use%20Cases">Best Use Cases</a>
-</div>
-<div class="index-h3">
-<a href="#Centralized%20Logging">Centralized Logging</a>
-</div>
-<div class="index-h3">
-<a href="#Real-Time%20Monitoring">Real-Time Monitoring</a>
-</div>
-<div class="index-h3">
-<a href="#Audit%20Trails">Audit Trails</a>
-</div>
-<div class="index-h3">
-<a href="#Multi-Tenant%20SaaS">Multi-Tenant SaaS</a>
 </div>
 </div>
 </div>

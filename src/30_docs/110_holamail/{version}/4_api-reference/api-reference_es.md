@@ -1,22 +1,30 @@
-# Referencia de la API de Holamail
+# Referencia de API de Holamail
 
-Holamail es un servicio de correo electrónico basado en **SMTP** — no expone una API HTTP. Los clientes se conectan usando el protocolo SMTP estándar en el puerto 2525.
+Holamail no expone una API HTTP. Es un listener SMTP simple que acepta una conversación SMTP básica y registra el mensaje.
 
 ## Referencia SMTP
 
-Para una guía completa de comandos SMTP, ejemplos de conexión y mejores prácticas, consulte la [Referencia del Protocolo SMTP](./smtp-reference).
+Para ejemplos de comandos, consulta la [Referencia del protocolo SMTP](./smtp-reference).
 
-## Detalles de Conexión
+## Detalles de conexión
 
-| Configuración | Valor |
-|---------------|-------|
-| Host | `smtp.hola.cloud` |
-| Puerto | `2525` |
-| Protocolo | SMTP (sin TLS requerido) |
-| Autenticación | Ninguna (relé abierto para proyectos autenticados) |
+| Opción | Host público de pruebas | Instancia local |
+|--------|--------------------------|-----------------|
+| Host | `smtp.testmail.hola.cloud` | `localhost` |
+| Puerto | `25` | `2525` |
+| Protocolo | SMTP sin cifrado | SMTP sin cifrado |
+| Auth | Ninguna | Ninguna |
 
-## Endpoints
+## Comandos soportados
 
-| Método | Ruta | Descripción |
-|--------|------|-------------|
-| SMTP | `2525` | Conexión SMTP para enviar correo electrónico |
+| Comando | Descripción |
+|---------|-------------|
+| `HELO` / `EHLO` | Inicia la sesión SMTP |
+| `MAIL FROM` | Define el remitente del sobre |
+| `RCPT TO` | Define el destinatario del sobre |
+| `DATA` | Envía cabeceras y cuerpo, terminando con `.` |
+| `QUIT` | Cierra la sesión |
+
+## No soportado
+
+Holamail no ofrece entrega externa, API HTTP, STARTTLS, AUTH, rate limiting, plantillas, analíticas ni tracking.

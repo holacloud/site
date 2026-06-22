@@ -1,10 +1,10 @@
 # Replication
 
-KVNode achieves high availability through a **leader-follower replication** model. Changes written to a primary (leader) node are streamed in real time to replica (follower) nodes via an NDJSON-based replication protocol.
+KVNode streams changes from a parent node to child nodes via an NDJSON-based replication protocol.
 
 ## How Replication Works
 
-1. A client writes a key-value pair to any node in the cluster.
+1. A client writes a key-value pair to a node.
 2. The receiving node persists the write in its WAL and applies it to the in-memory store.
 3. If the node has a **parent** configured, it forwards the write upstream via the `/v1/replicate` endpoint.
 4. If the node has **children**, it broadcasts the write to all connected replicas over the replication stream.
@@ -16,20 +16,20 @@ The replication endpoint (`POST /v1/replicate`) uses **NDJSON** (Newline-Delimit
 
 | Command | Description |
 |---------|-------------|
-| `set` | A key was created or updated |
-| `delete` | A key was removed |
-| `baseline_begin` | Start of a full collection snapshot |
-| `baseline_end` | End of a full collection snapshot |
-| `ping` | Keep-alive heartbeat |
+| `SET` | A key was created or updated |
+| `DELETE` | A key was removed |
+| `BASELINE_BEGIN` | Start of a full collection snapshot |
+| `BASELINE_END` | End of a full collection snapshot |
+| `PING` | Keep-alive heartbeat |
 
 ### Example: Replication Stream
 
 ```
-{"type":"baseline_begin","collection":"my-collection","seq":0}
-{"type":"set","collection":"my-collection","key":"user:alice","value":{"role":"admin"},"version":1,"timestamp":1700000000}
-{"type":"baseline_end","collection":"my-collection","seq":1}
-{"type":"set","collection":"my-collection","key":"user:bob","value":{"role":"user"},"version":1,"timestamp":1700000001}
-{"type":"ping","timestamp":1700000010}
+{"type":"BASELINE_BEGIN","collection":"my-collection","snapshotSeq":1}
+{"type":"SET","collection":"my-collection","seq":1,"key":"user:alice","value":{"role":"admin"},"version":1,"timestamp":1700000000}
+{"type":"BASELINE_END","collection":"my-collection","snapshotSeq":1}
+{"type":"SET","collection":"my-collection","seq":2,"key":"user:bob","value":{"role":"user"},"version":1,"timestamp":1700000001}
+{"type":"PING","timestamp":1700000010}
 ```
 
 ## Node Status

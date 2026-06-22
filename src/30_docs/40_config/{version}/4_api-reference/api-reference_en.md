@@ -2,29 +2,41 @@
 
 Base URL: `https://api.hola.cloud`
 
-The Config service exposes two API surfaces:
+## Authentication
 
-- **Admin API** (`/v0/configs`) — publicly accessible for managing configurations
-- **User API** (`/v1/config`) — requires `Api-Key` and `Api-Secret` headers for runtime configuration access
+`/v1/config` requires `X-Glue-Authentication`. `/v0/configs` manages config Things directly.
 
 ## Endpoints
 
 | Method | Path | Description | Auth |
 |--------|------|-------------|------|
-| GET | `/v0/configs` | List all configs (admin) | Public |
-| POST | `/v0/configs` | Create a new config (admin) | Public |
-| GET | `/v0/configs/{id}` | Get a config by ID (admin) | Public |
-| DELETE | `/v0/configs/{id}` | Delete a config (admin) | Public |
-| PATCH | `/v0/configs/{id}` | Partial update of a config (admin) | Public |
-| GET | `/v1/config` | Retrieve the current user config | API Key |
-| PATCH | `/v1/config` | Update the current user config | API Key |
+| GET | `/v0/configs` | List config Things | Public |
+| POST | `/v0/configs` | Create a config Thing with `entries` | Public |
+| GET | `/v0/configs/{id}` | Get a config Thing by ID | Public |
+| DELETE | `/v0/configs/{id}` | Delete a config Thing | Public |
+| PATCH | `/v0/configs/{id}` | Patch a config Thing's `entries` | Public |
+| GET | `/v1/config` | Get the authenticated user's config `entries` map | Glue auth |
+| PATCH | `/v1/config` | Update the authenticated user's config `entries` map | Glue auth |
 
-## Common Errors
+## Shapes
 
-| Status | Code | Description |
-|--------|------|-------------|
-| 400 | Bad Request | Invalid request body or parameters |
-| 401 | Unauthorized | Missing or invalid API credentials |
-| 404 | Not Found | The specified resource does not exist |
-| 409 | Conflict | Resource already exists or operation conflicts |
-| 500 | Internal Server Error | An unexpected error occurred |
+v0 config Thing:
+
+```json
+{
+  "id": "cfg_abc123",
+  "entries": {
+    "feature.newCheckout": true
+  }
+}
+```
+
+v1 user config:
+
+```json
+{
+  "entries": {
+    "feature.newCheckout": true
+  }
+}
+```

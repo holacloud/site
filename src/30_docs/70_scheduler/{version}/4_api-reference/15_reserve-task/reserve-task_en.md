@@ -16,11 +16,11 @@ Requires authentication. Pass your API key via `X-API-Key` or `Authorization: Be
 
 | Field | Type | Description |
 |-------|------|-------------|
-| worktime | integer | Lease duration in seconds |
+| worktime | string | Lease duration as a Go duration string, such as `30s` or `2m` |
 
 ```json
 {
-  "worktime": 30
+  "worktime": "30s"
 }
 ```
 
@@ -31,7 +31,7 @@ curl -X POST "https://api.hola.cloud/schedulers/sched-a1b2c3d4-e5f6-7890-abcd-ef
   -H "X-API-Key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "worktime": 30
+    "worktime": "30s"
   }'
 ```
 
@@ -50,15 +50,18 @@ Content-Type: application/json
     "to": "user@example.com",
     "template": "welcome"
   },
-  "lease_expires_at": "2025-06-21T12:02:01Z"
+  "lease_expires_at": "2025-06-21T12:02:01Z",
+  "labels": ["project:onboarding", "priority:high"]
 }
 ```
+
+If no task is available before the work window ends, the endpoint returns `204 No Content` with an empty body.
 
 ## Error Codes
 
 | Status | Code | Description |
 |--------|------|-------------|
+| 400 | invalid_json | Invalid JSON payload |
+| 400 | validation_error | Missing, invalid, or non-positive worktime |
 | 401 | unauthorized | Missing or invalid API key |
-| 404 | not_found | Scheduler not found |
-| 409 | conflict | No tasks available for reservation |
 | 500 | internal_error | Internal server error |

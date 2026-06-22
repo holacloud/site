@@ -7,7 +7,7 @@ La Consola es la interfaz de administración web de HolaCloud. Proporciona un en
 ## Funcionalidades
 
 ### Panel Principal
-Monitorea la salud general de tu proyecto de un vistazo. El panel muestra el estado de los servicios, la actividad reciente y las métricas clave de cada servicio activo.
+Monitorea la salud general de tu proyecto de un vistazo. El panel muestra el estado de los servicios y las métricas clave de cada servicio activo.
 
 ### Administración de Bases de Datos
 Explora, consulta y administra bases de datos InceptionDB directamente desde el navegador. Crea colecciones, inspecciona documentos y ejecuta consultas ad-hoc sin salir de la Consola.
@@ -25,7 +25,7 @@ Administra la configuración de la aplicación mediante un editor estructurado. 
 Transmite y busca registros de InstantLogs en tiempo real. Filtra por severidad, servicio o rango de tiempo para identificar rápidamente problemas.
 
 ### Configuración del Proyecto
-Configura parámetros generales del proyecto, incluyendo miembros del equipo, proveedores de autenticación, claves API e información de facturación.
+Configura los parámetros generales del proyecto expuestos por la interfaz actual de la Consola.
 
 ## Disponibilidad
 

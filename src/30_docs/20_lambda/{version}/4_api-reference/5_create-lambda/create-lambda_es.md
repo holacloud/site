@@ -1,35 +1,35 @@
+# Crear Lambda
 
-# Create Lambda
-
-Crea una nueva función lambda con el código y la configuración de ejecución especificados.
+Crea una lambda con código fuente o contenido estático y metadatos de ruta.
 
 ## Autenticación
 
-Requiere las cabeceras `Api-Key` y `Api-Secret`.
+Requiere `X-Glue-Authentication`.
 
 ## Cuerpo de la Solicitud
 
 | Campo | Tipo | Descripción |
 |-------|------|-------------|
-| name | string | Un nombre legible para la lambda |
-| runtime | string | Entorno de ejecución: `javascript`, `python` o `go` |
-| code | string | El código fuente de la función |
-| active | boolean | Si la lambda está activa (opcional, por defecto `true`) |
+| `name` | string | Nombre legible de la lambda |
+| `language` | string | `javascript`, `static-html`, `static-css` o `static-js` |
+| `code` | string | Código fuente o contenido estático |
+| `method` | string | Método HTTP para la ruta de la lambda |
+| `path` | string | Path HTTP para la ruta de la lambda |
 
 ## Solicitud HTTP
 
 ```http
 POST /api/v0/lambdas HTTP/1.1
 Host: api.hola.cloud
-Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d
-Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf
+X-Glue-Authentication: TU_TOKEN
 Content-Type: application/json
 
 {
   "name": "hello-world",
-  "runtime": "javascript",
-  "active": true,
-  "code": "export default async (req) => { return { status: 200, body: { message: 'Hello, World!' } }; }"
+  "language": "javascript",
+  "method": "GET",
+  "path": "/hello-world",
+  "code": "export default (req) => ({ body: { message: 'Hello, World!' } })"
 }
 ```
 
@@ -37,14 +37,14 @@ Content-Type: application/json
 
 ```bash
 curl -X POST "https://api.hola.cloud/api/v0/lambdas" \
-  -H "Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d" \
-  -H "Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf" \
+  -H "X-Glue-Authentication: TU_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "name": "hello-world",
-    "runtime": "javascript",
-    "active": true,
-    "code": "export default async (req) => { return { status: 200, body: { message: \"Hello, World!\" } }; }"
+    "language": "javascript",
+    "method": "GET",
+    "path": "/hello-world",
+    "code": "export default (req) => ({ body: { message: \"Hello, World!\" } })"
   }'
 ```
 
@@ -53,10 +53,14 @@ curl -X POST "https://api.hola.cloud/api/v0/lambdas" \
 ```json
 {
   "id": "f1a2b3c4-d5e6-7890-abcd-ef0123456789",
+  "created_timestamp": 1751378400,
+  "owner": "user_123",
+  "project_id": "project_456",
   "name": "hello-world",
-  "runtime": "javascript",
-  "active": true,
-  "created_at": "2025-07-01T14:00:00Z"
+  "language": "javascript",
+  "code": "export default (req) => ({ body: { message: \"Hello, World!\" } })",
+  "method": "GET",
+  "path": "/hello-world"
 }
 ```
 
@@ -64,6 +68,6 @@ curl -X POST "https://api.hola.cloud/api/v0/lambdas" \
 
 | Código | Descripción |
 |--------|-------------|
-| 400 | Campos obligatorios faltantes o inválidos |
-| 401 | Cabeceras de autenticación faltantes o inválidas |
+| 400 | Campos requeridos faltantes o inválidos |
+| 401 | Autenticación faltante o inválida |
 | 409 | Ya existe una lambda con el mismo nombre |

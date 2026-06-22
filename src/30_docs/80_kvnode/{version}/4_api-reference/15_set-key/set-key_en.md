@@ -52,9 +52,9 @@ Content-Type: application/json
 
 ```json
 {
-  "key": "user:1001",
-  "collection": "users",
-  "created_at": "2025-06-21T10:00:00Z"
+  "ok": true,
+  "seq": 1,
+  "version": 1
 }
 ```
 
@@ -62,7 +62,8 @@ Content-Type: application/json
 
 | Status | Code | Description |
 |--------|------|-------------|
-| 400 | invalid_request | Missing or invalid value |
-| 401 | unauthorized | Missing or invalid authentication |
-| 404 | not_found | Collection not found |
+| 400 | invalid_json | Missing or invalid value |
+| 403 | forbidden | Missing authentication headers |
+| 404 | missing_collection | Collection does not exist |
+| 502 | parent_unavailable | Parent node is not reachable |
 | 500 | internal_error | Internal server error |

@@ -107,7 +107,7 @@
     <div class="hero-inner">
         <div class="hero-eyebrow">📊 InstantLogs</div>
         <h1>Ingesta y streaming de logs en tiempo real</h1>
-        <p>InstantLogs is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <p>InstantLogs ingiere streams de logs raw y expone filtrado, streaming, claves API y estadísticas de loggers por HTTP.</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">Comenzar</a>
             <a class="button button-secondary" href="/docs/logs/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">Documentación</a>
@@ -142,12 +142,12 @@
             <h2 id="Inicio%20r%C3%A1pido">Inicio rápido</h2>
             <p>Get started with InstantLogs in seconds using the API.</p>
         </div>
-        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST https://api.hola.cloud/v1/loggers \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  -H &#34;Authorization: Bearer $TOKEN&#34; \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  -d &#39;{&#34;name&#34;: &#34;app-logger&#34;, &#34;retention_days&#34;: 30}&#39; \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>  &amp;&amp; curl https://api.hola.cloud/v1/loggers/my-logger/ingest \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>  -H &#34;Authorization: Bearer $TOKEN&#34; \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>  -d &#39;{&#34;level&#34;:&#34;info&#34;,&#34;message&#34;:&#34;Hello world&#34;}&#39;</span></span></code></pre></code></pre>
+        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST https://logs.hola.cloud/v1/loggers \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  -H &#39;X-Glue-Authentication: {&#34;user&#34;:{&#34;id&#34;:&#34;user-123&#34;}}&#39; \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  -d &#39;{&#34;name&#34;:&#34;app-logger&#34;}&#39; \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>  &amp;&amp; printf &#39;info Hello world\n&#39; | curl https://logs.hola.cloud/v1/loggers/logger-123/ingest \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>  -H &#39;Api-Key: $LOGGER_KEY&#39; -H &#39;Api-Secret: $LOGGER_SECRET&#39; \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>  --data-binary @-</span></span></code></pre></code></pre>
     </section>
 
     <section class="section">
@@ -183,6 +183,7 @@
         </div>
     </section>
 </div>
+
 
     <div id="comments-section">
     <h2>Comentarios</h2>

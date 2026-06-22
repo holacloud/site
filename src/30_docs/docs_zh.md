@@ -1,54 +1,54 @@
 # 文档
 
-欢迎使用 HolaCloud 文档。在这里，你可以找到平台中所有服务的指南、API 参考和运维手册。
+欢迎使用 HolaCloud 文档。在这里，你可以找到平台服务的指南和 API 参考。
 
 ## 快速入门
 
-如果你刚接触 HolaCloud，建议从[控制台](/zh/docs/console/)开始——这是基于 Web 的管理界面，可以在此配置资源、管理项目并监控各项服务。
+如果你刚接触 HolaCloud，建议从[控制台](/zh/docs/console/)和各服务指南开始。部分服务仍在演进，因此 API 参考应结合当前实现说明一起阅读。
 
-每项服务都包含入门指南、概念文档以及完整的 API 参考，涵盖端点详情、请求示例和错误码。
+每项服务都包含入门指南、概念文档和 API 参考，涵盖 endpoint 详情、请求示例和错误码。
 
 ## 服务
 
 ### [InceptionDB](/zh/docs/inceptiondb/)
-托管式 NoSQL 文档数据库。使用动态模式、索引和 JavaScript 执行来存储和查询 JSON 文档。适合需要灵活数据模型的应用程序。
+NoSQL 文档数据库。使用动态结构、集合和索引存储并查询 JSON 文档。
 
 ### [Lambda](/zh/docs/lambda/)
-无服务器函数执行平台。部署的代码按需运行、自动扩缩，并与 HolaCloud 生态系统集成。无需管理服务器。
+函数执行平台。将 JavaScript 函数和静态资源部署到 HTTP endpoint 后面。
 
 ### [Files](/zh/docs/files/)
-安全的对象存储服务。通过可配置的存储桶策略上传、下载和组织文件。适用于媒体存储、备份和内容分发。
+文件 API。按 bucket 组织文件，并支持上传、下载、列表、查看和删除。
 
 ### [Config](/zh/docs/config/)
-集中式配置管理。跨环境存储、版本管理和分发应用程序配置。支持 JSON 补丁和用户级覆盖。
+配置 API。存储和更新用户级 JSON 配置条目。
 
 ### [InstantLogs](/zh/docs/logs/)
-实时日志采集与流式传输。从任何来源收集结构化和非结构化日志数据，实时过滤，并与监控管道集成。
+实时日志采集与流式传输。接收 raw 或 framed logs，使用正则过滤并流式读取事件。
 
 ### [Tailon](/zh/docs/queues/)
-消息队列与异步工作负载系统。可靠的消���投递，支持长轮询消费、客户端跟踪和高吞吐量异步处理。
+消息队列 API。创建队列，写入 JSON 消息，并从命名队列读取换行分隔的 JSON。
 
 ### [Scheduler](/zh/docs/scheduler/)
-分布式任务调度服务。调度一次性或周期性任务，管理任务租约，并流式传输任务事件。专为定时和后台工作负载打造。
+延迟任务队列。入队一次性延迟任务，使用 lease 预留任务，并流式读取 scheduler snapshots。
 
 ### [KVNode](/zh/docs/kvnode/)
-复制式键值存储，具有可配置的持久化后端。低延迟读写、健康检查和节点级指标。
+键值 API，包含 collections、keys、节点状态、指标和 root/replica 同步。
 
 ### [控制台](/zh/docs/console/)
-HolaCloud 所有服务的 Web 管理控制台。从单一界面配置项目、管理资源并监控服务运行状况。
+HolaCloud 服务的 Web console surface，包括当前 UI 使用的 fake API endpoints。
 
 ### [Glue2](/zh/docs/glue2/)
-API 网关与认证层。HolaCloud 服务网格的中央路由、认证和流量管理。支持 API 密钥和 Bearer Token 认证。
+基于 host 的 gateway 和服务 glue 层，提供 virtual hosts、认证上下文注入、状态和流量统计。
 
 ### [Holamail](/zh/docs/holamail/)
-SMTP 事务邮件服务。通过 SMTP 中继发送邮件，具备可靠的投递跟踪。适用于通知、密码重置和事务性消息。
+基础 SMTP 测试服务器。接收并记录 SMTP 消息，用于测试和开发。
 
 ### [Run](/zh/docs/run/)
-容器执行服务，内置 Docker 镜像仓库。启动、停止和回滚容器。管理环境变量、存储卷和部署生命周期。
+容器 runtime 控制，包含面向 push 的 Docker Registry 子集。启动、停止和回滚 repository runtimes。
 
 ## API 参考
 
-每项服务都包含完整的 API 参考章节：
+每项服务都包含 API 参考章节：
 
 - 端点描述与 HTTP 方法
 - 认证要求

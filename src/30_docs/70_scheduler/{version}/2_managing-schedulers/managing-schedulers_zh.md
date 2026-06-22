@@ -32,8 +32,9 @@ Content-Type: application/json
 {
   "id": "sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890",
   "display_name": "email-scheduler",
-  "task_count": 0,
-  "status": "active"
+  "ready": true,
+  "scheduled": 0,
+  "inflight": 0
 }
 ```
 
@@ -57,14 +58,16 @@ Host: api.hola.cloud
   {
     "id": "sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890",
     "display_name": "email-scheduler",
-    "task_count": 5,
-    "status": "active"
+    "ready": true,
+    "scheduled": 5,
+    "inflight": 0
   },
   {
     "id": "sched-b2c3d4e5-f6a7-8901-bcde-f12345678901",
     "display_name": "report-generator",
-    "task_count": 0,
-    "status": "active"
+    "ready": true,
+    "scheduled": 0,
+    "inflight": 0
   }
 ]
 ```
@@ -88,8 +91,9 @@ Host: api.hola.cloud
 {
   "id": "sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890",
   "display_name": "email-scheduler",
-  "task_count": 5,
-  "status": "active"
+  "ready": true,
+  "scheduled": 5,
+  "inflight": 0
 }
 ```
 
@@ -123,8 +127,9 @@ Content-Type: application/json
 {
   "id": "sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890",
   "display_name": "email-scheduler-v2",
-  "task_count": 5,
-  "status": "active"
+  "ready": true,
+  "scheduled": 5,
+  "inflight": 0
 }
 ```
 
@@ -148,7 +153,10 @@ Host: api.hola.cloud
 ```json
 {
   "status": "ok",
-  "uptime_seconds": 123456
+  "ready": true,
+  "scheduled": 0,
+  "inflight": 0,
+  "scheduler_id": "sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890"6
 }
 ```
 

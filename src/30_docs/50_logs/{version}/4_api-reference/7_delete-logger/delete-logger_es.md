@@ -20,15 +20,15 @@ Requiere credenciales de gestión:
 
 ```bash
 curl -X DELETE "https://api.hola.cloud/v1/loggers/logger_xyz789" \
-  -H "Api-Key: tu-api-key" \
-  -H "Api-Secret: tu-api-secret"
+  -H "Api-Key: LOGGER_API_KEY" \
+  -H "Api-Secret: LOGGER_API_SECRET"
 ```
 
 ```http
 DELETE /v1/loggers/logger_xyz789 HTTP/1.1
 Host: api.hola.cloud
-Api-Key: tu-api-key
-Api-Secret: tu-api-secret
+Api-Key: LOGGER_API_KEY
+Api-Secret: LOGGER_API_SECRET
 ```
 
 ## Respuesta

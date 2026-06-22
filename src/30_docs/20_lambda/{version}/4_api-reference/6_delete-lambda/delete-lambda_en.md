@@ -1,40 +1,36 @@
-
 # Delete Lambda
 
-Permanently deletes a lambda function. This action cannot be undone.
+Permanently deletes a lambda.
 
 ## Authentication
 
-Requires `Api-Key` and `Api-Secret` headers.
+Requires `X-Glue-Authentication`.
 
 ## Path Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| id | uuid | The unique identifier of the lambda to delete |
+| `lambda_id` | string | Lambda identifier |
 
 ## HTTP Request
 
 ```http
 DELETE /api/v0/lambdas/f1a2b3c4-d5e6-7890-abcd-ef0123456789 HTTP/1.1
 Host: api.hola.cloud
-Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d
-Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf
+X-Glue-Authentication: YOUR_TOKEN
 ```
 
 ## Example
 
 ```bash
 curl -X DELETE "https://api.hola.cloud/api/v0/lambdas/f1a2b3c4-d5e6-7890-abcd-ef0123456789" \
-  -H "Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d" \
-  -H "Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf"
+  -H "X-Glue-Authentication: YOUR_TOKEN"
 ```
 
 ## Response
 
 ```json
 {
-  "message": "Lambda deleted successfully",
   "id": "f1a2b3c4-d5e6-7890-abcd-ef0123456789"
 }
 ```
@@ -43,5 +39,5 @@ curl -X DELETE "https://api.hola.cloud/api/v0/lambdas/f1a2b3c4-d5e6-7890-abcd-ef
 
 | Code | Description |
 |------|-------------|
-| 401 | Missing or invalid authentication headers |
+| 401 | Missing or invalid authentication |
 | 404 | Lambda not found |

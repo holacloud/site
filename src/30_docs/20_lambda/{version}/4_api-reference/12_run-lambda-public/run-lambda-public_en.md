@@ -1,19 +1,18 @@
-
 # Run Lambda (Public)
 
-Invokes a lambda function publicly. No authentication required.
+Invokes a lambda publicly. No authentication is required. The endpoint accepts any HTTP method.
 
-This endpoint is designed for webhooks and public API endpoints. The lambda ID can be obtained from the lambda management pages.
+Use this route for webhooks and public API calls. The lambda ID comes from the lambda management endpoints.
 
 ## Path Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| id | uuid | The unique identifier of the lambda to run |
+| `lambda_id` | string | Lambda identifier |
 
 ## Request Body
 
-Any JSON payload you want to pass to the lambda function.
+Send any payload you want the lambda to receive as `req.body`.
 
 ## HTTP Request
 
@@ -43,9 +42,10 @@ curl -X POST "https://api.hola.cloud/run/f1a2b3c4-d5e6-7890-abcd-ef0123456789" \
 
 ## Response
 
+The response is whatever the lambda handler returns.
+
 ```json
 {
-  "status": 200,
   "body": {
     "processed": true,
     "event": "payment_received"
@@ -58,5 +58,5 @@ curl -X POST "https://api.hola.cloud/run/f1a2b3c4-d5e6-7890-abcd-ef0123456789" \
 | Code | Description |
 |------|-------------|
 | 400 | Invalid request body |
-| 404 | Lambda not found or inactive |
+| 404 | Lambda not found |
 | 500 | Lambda execution error |

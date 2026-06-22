@@ -1,20 +1,22 @@
 # 模拟Api
 
-通配符端点，在开发和演示模式下为所有控制台后端服务提供模拟数据。
+固定端点，在开发和演示模式下为控制台提供模拟数据。
 
 ## 描述
 
-`/fakeapi/*` 路由匹配 `/fakeapi/` 下的任何路径，并返回模拟响应。这使得控制台 UI 无需真实后端即可运行。路径结构镜像了真实 API 的布局，因此 UI 代码在开发和生产环境之间保持一致。
+控制台只公开下面列出的 fake API 路由。未列出的路径不属于当前控制台 fake API。
 
 ## 子路由
 
-| 子路径 | 描述 |
-|--------|------|
-| `/fakeapi/auth/me` | 返回当前模拟用户会话 |
-| `/fakeapi/inceptionapi` | 模拟 InceptionDB API 响应 |
-| `/fakeapi/lambdasapi` | 模拟 Lambda 函数管理 |
-| `/fakeapi/projectsapi` | 模拟项目设置和列表 |
-| `/fakeapi/filesapi` | 模拟文件存储操作 |
+| 方法 | 路径 | 描述 |
+|------|------|------|
+| `GET` | `/fakeapi/authapi/auth/me` | 返回当前模拟用户 |
+| `GET` | `/fakeapi/inceptionapi/v1/databases` | 列出模拟数据库 |
+| `GET` | `/fakeapi/inceptionapi/v1/databases/{databaseid}/collections` | 列出模拟集合 |
+| `GET` | `/fakeapi/lambdasapi/api/v0/lambdas` | 列出模拟 lambdas |
+| `GET` | `/fakeapi/projectsapi/v0/projects` | 列出模拟项目 |
+| `GET` | `/fakeapi/projectsapi/v0/projects/{projectid}` | 返回一个模拟项目 |
+| `GET` | `/fakeapi/filesapi/v1/buckets` | 列出模拟 buckets |
 
 ## 身份验证
 
@@ -23,51 +25,35 @@
 ## 示例
 
 ```bash
-curl -X GET "https://api.hola.cloud/fakeapi/auth/me"
+curl -X GET "https://api.hola.cloud/fakeapi/authapi/auth/me"
 ```
 
 ```json
 {
-  "user": "demo@holacloud.com",
-  "name": "演示用户",
-  "project": "default",
-  "role": "admin",
-  "authenticated": true
+  "email": "fulanez@gmail.com",
+  "id": "user-1234",
+  "nick": "fulanez"
 }
 ```
 
 ```bash
-curl -X GET "https://api.hola.cloud/fakeapi/projectsapi"
+curl -X GET "https://api.hola.cloud/fakeapi/projectsapi/v0/projects"
 ```
 
 ```json
-{
-  "projects": [
-    {
-      "id": "default",
-      "name": "默认项目",
-      "plan": "free",
-      "region": "us-east"
-    }
-  ]
-}
+[
+  { "id": "project-00000000-0000-0000-0000-000000000001", "name": "Hello" }
+]
 ```
 
 ```bash
-curl -X GET "https://api.hola.cloud/fakeapi/lambdasapi"
+curl -X GET "https://api.hola.cloud/fakeapi/lambdasapi/api/v0/lambdas"
 ```
 
 ```json
-{
-  "functions": [
-    {
-      "id": "fn-001",
-      "name": "hello-world",
-      "runtime": "nodejs18",
-      "status": "active"
-    }
-  ]
-}
+[
+  { "id": "a663e1f1-e5cb-4fc2-b846-53f2cc7574c9", "method": "GET", "name": "Index", "path": "/" }
+]
 ```
 
 ## 错误码

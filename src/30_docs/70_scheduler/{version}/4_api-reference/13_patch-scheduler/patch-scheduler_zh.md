@@ -42,8 +42,9 @@ Content-Type: application/json
 {
   "id": "sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890",
   "display_name": "updated-scheduler-name",
-  "task_count": 5,
-  "status": "active",
+  "ready": true,
+  "scheduled": 5,
+  "inflight": 0,
   "created_at": "2025-06-20T10:00:00Z",
   "updated_at": "2025-06-21T09:15:00Z"
 }
@@ -53,7 +54,7 @@ Content-Type: application/json
 
 | 状态 | 代码 | 描述 |
 |------|------|------|
-| 400 | invalid_request | 请求体无效 |
+| 400 | validation_error | 请求体无效 |
 | 401 | unauthorized | 缺少或无效的 API 密钥 |
 | 404 | not_found | 未找到调度器 |
 | 500 | internal_error | 服务器内部错误 |

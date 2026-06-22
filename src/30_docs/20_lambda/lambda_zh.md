@@ -1,34 +1,25 @@
 <h1>Lambda</h1>
 
-HolaCloud Lambda 是一项无服务器计算服务，让您无需配置或管理服务器即可运行代码以响应事件。上传 JavaScript、Go 或 Python 编写的函数，HolaCloud 将负责从自动扩展到高可用性的一切事宜。
+HolaCloud Lambda 用于发布在 HolaCloud 内运行的小型 HTTP 处理器。一个 lambda 会保存源码、路由元数据、所有者和项目关联，并通过 Lambda API 或公开运行路由返回响应。
 
-## 主要特性
+## 主要功能
 
-### 多语言支持
-使用您偏好的语言编写函数。HolaCloud Lambda 原生支持 JavaScript（Node.js）、Go 和 Python 运行时，并为所有语言提供一致的调用接口。
+### 支持的语言
+Lambda 接受这些 `language` 值：`javascript`、`static-html`、`static-css` 和 `static-js`。
 
-### 自动扩展
-Lambda 函数根据传入请求量自动扩展。无论每天处理一个请求还是每秒数千个请求，HolaCloud 都能即时调整容量——您只需为实际使用量付费。
+### HTTP 路由
+每个 lambda 可以保存 `method` 和 `path`。这些字段用于描述 lambda 如何通过 mux router 或应用路由层访问。
 
-### Webhook 支持
-每个 Lambda 函数均可通过公共 URL 自动访问。可将其用作 Stripe、GitHub 或 Slack 等外部服务的 Webhook 端点，也可与您自己的应用程序集成。
-
-### 按量计费
-无闲置成本。您只需为代码执行期间消耗的计算时间付费，按最接近的毫秒数向上取整。
+### 公开和管理调用
+使用经过认证的管理端点创建、查看、更新、删除和运行 lambdas。当 lambda 需要被 webhook、浏览器或其他外部客户端调用时，使用公开运行路由和 mux 路由。
 
 ## 使用场景
 
-- **API 后端**：构建轻量级 REST 或 GraphQL 后端，无需管理基础设施。
-- **Webhook 处理**：通过专用公共端点接收和处理来自第三方服务的事件。
-- **后台任务**：将邮件发送、图片处理或报表生成等任务卸载到 Lambda。
-- **数据处理**：实时转换、过滤或丰富数据流。
+- **HTTP API**：构建由 HolaCloud 服务支持的小型请求处理器。
+- **Webhooks**：通过公开的 `/run/{lambda_id}` URL 接收第三方事件。
+- **静态响应**：使用静态语言模式提供 HTML、CSS 或客户端 JavaScript 片段。
+- **Mux 路由**：通过 `/mux/{owner_id}/*` 按所有者路由 path。
 
-## 在 HolaCloud 生态系统中的定位
+## Lambda 字段
 
-Lambda 与其他 HolaCloud 服务协同工作，支持全栈无服务器应用：
-
-- **InceptionDB** — 从函数中存储和查询持久化数据。
-- **HolaAuth** — 验证用户身份并保护端点安全。
-- **Mux 路由** — 将自定义域名映射到特定的 Lambda 函数和所有者。
-
-所有服务共享统一的 API 网关、认证模型和 CLI 工具，使组合构建完整应用变得简单直接。
+Lambda 记录使用这些字段：`id`、`created_timestamp`、`owner`、`project_id`、`name`、`language`、`code`、`method` 和 `path`。

@@ -1,107 +1,40 @@
-<h1>Gestionando Funciones Lambda</h1>
+<h1>Manejando Funciones Lambda</h1>
 
-Una vez creada una función Lambda, puedes actualizar su código, configurar variables de entorno, consultar su estado o eliminarla a través de la API.
+Después de crear una lambda, usa la API de administración para inspeccionarla, actualizar sus campos soportados, listar todas las lambdas de la cuenta o eliminarla.
 
 ## Estructura de la Función
 
-Cada función Lambda debe exportar un manejador por defecto que recibe un objeto de solicitud y devuelve una respuesta. La firma del manejador varía ligeramente según el runtime:
-
-### JavaScript (Node.js)
+Las lambdas JavaScript exportan un manejador por defecto. El manejador recibe un objeto de solicitud y devuelve el cuerpo de respuesta que HolaCloud debe enviar.
 
 ```javascript
 export default (req) => {
-  // req.body      - payload de la solicitud
-  // req.headers   - objeto con los encabezados
-  // req.query     - parámetros de consulta
-  // req.method    - método HTTP
-
   return {
-    body: "cuerpo de la respuesta",
-    status_code: 200,
-    headers: { "X-Custom": "valor" }
+    body: {
+      method: req.method,
+      path: req.path,
+      headers: req.headers,
+      data: req.body
+    }
   };
 };
 ```
 
-### Go
+Las lambdas estáticas usan uno de los modos de lenguaje estático: `static-html`, `static-css` o `static-js`. En esos modos, `code` es el contenido servido para la lambda correspondiente.
 
-```go
-package main
+## Actualizar una Lambda
 
-type Request struct {
-    Body    interface{} `json:"body"`
-    Headers map[string]string `json:"headers"`
-    Method  string `json:"method"`
-}
-
-type Response struct {
-    Body    interface{} `json:"body"`
-    StatusCode int `json:"status_code"`
-}
-
-func Handler(req Request) (Response, error) {
-    return Response{
-        Body:       "Hola desde Go",
-        StatusCode: 200,
-    }, nil
-}
-```
-
-### Python
-
-```python
-def handler(req):
-    # req["body"]      - payload
-    # req["headers"]   - dict de encabezados
-    # req["method"]    - método HTTP
-    return {
-        "body": "Hola desde Python",
-        "status_code": 200
-    }
-```
-
-## Actualizar el Código de la Función
-
-Usa `PATCH /api/v0/lambdas/{id}` para modificar una función existente. Puedes actualizar los campos `name`, `runtime`, `code` y `environment`.
+Usa `PATCH /api/v0/lambdas/{lambda_id}` para actualizar `name`, `language`, `code`, `method` o `path`.
 
 ```bash
-curl -X PATCH "https://api.hola.cloud/api/v0/lambdas/ID_DE_TU_FUNCION" \
-  -H "Api-Key: TU_API_KEY" \
-  -H "Api-Secret: TU_API_SECRET" \
+curl -X PATCH "https://api.hola.cloud/api/v0/lambdas/TU_LAMBDA_ID" \
+  -H "X-Glue-Authentication: TU_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
-    "code": "export default (req) => { return { body: \"¡Actualizado!\" } }",
-    "environment": {
-      "DB_URL": "https://db.example.com",
-      "LOG_LEVEL": "debug"
-    }
+    "name": "hello-updated",
+    "method": "POST",
+    "path": "/hello-updated",
+    "code": "export default (req) => ({ body: { message: \"Updated lambda\", data: req.body } })"
   }'
-```
-
-## Configurar Variables de Entorno
-
-Las variables de entorno se definen como un objeto clave-valor en el campo `environment` al crear o actualizar una función. Se inyectan en el proceso de la función en tiempo de ejecución y son accesibles mediante los mecanismos estándar de cada lenguaje (`process.env` en Node.js, `os.Getenv` en Go, `os.environ` en Python).
-
-```bash
-curl -X PATCH "https://api.hola.cloud/api/v0/lambdas/ID_DE_TU_FUNCION" \
-  -H "Api-Key: TU_API_KEY" \
-  -H "Api-Secret: TU_API_SECRET" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "environment": {
-      "MY_VAR": "mi-valor"
-    }
-  }'
-```
-
-## Consultar Detalles y Estado
-
-Obtén los detalles completos de una función:
-
-```bash
-curl "https://api.hola.cloud/api/v0/lambdas/ID_DE_TU_FUNCION" \
-  -H "Api-Key: TU_API_KEY" \
-  -H "Api-Secret: TU_API_SECRET"
 ```
 
 Respuesta esperada:
@@ -109,35 +42,40 @@ Respuesta esperada:
 ```json
 {
   "id": "f3b2c1a0-1234-5678-9abc-def012345678",
-  "name": "hello-world",
-  "runtime": "js",
-  "status": "active",
-  "environment": {
-    "LOG_LEVEL": "debug"
-  },
-  "created_at": "2025-06-21T12:00:00Z",
-  "updated_at": "2025-06-21T14:30:00Z"
+  "created_timestamp": 1750507200,
+  "owner": "user_123",
+  "project_id": "project_456",
+  "name": "hello-updated",
+  "language": "javascript",
+  "code": "export default (req) => ({ body: { message: \"Updated lambda\", data: req.body } })",
+  "method": "POST",
+  "path": "/hello-updated"
 }
 ```
 
-El campo `status` puede ser `active`, `inactive` o `error`.
+## Ver Detalles de una Lambda
 
-## Listar Todas las Funciones
+Obtén una lambda por ID:
+
+```bash
+curl "https://api.hola.cloud/api/v0/lambdas/TU_LAMBDA_ID" \
+  -H "X-Glue-Authentication: TU_TOKEN"
+```
+
+## Listar Todas las Lambdas
 
 ```bash
 curl "https://api.hola.cloud/api/v0/lambdas" \
-  -H "Api-Key: TU_API_KEY" \
-  -H "Api-Secret: TU_API_SECRET"
+  -H "X-Glue-Authentication: TU_TOKEN"
 ```
 
-## Eliminar una Función
+## Eliminar una Lambda
 
-Elimina permanentemente una función y todos sus datos asociados:
+Elimina una lambda permanentemente:
 
 ```bash
-curl -X DELETE "https://api.hola.cloud/api/v0/lambdas/ID_DE_TU_FUNCION" \
-  -H "Api-Key: TU_API_KEY" \
-  -H "Api-Secret: TU_API_SECRET"
+curl -X DELETE "https://api.hola.cloud/api/v0/lambdas/TU_LAMBDA_ID" \
+  -H "X-Glue-Authentication: TU_TOKEN"
 ```
 
-Una eliminación exitosa devuelve un `200 OK` sin cuerpo.
+Una eliminación correcta devuelve la respuesta de la API para la lambda eliminada o una carga de confirmación, según la versión desplegada de la API.

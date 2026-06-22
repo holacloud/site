@@ -4,7 +4,7 @@
     <div class="hero-inner">
         <div class="hero-eyebrow">🗄️ InceptionDB</div>
         <h1>Base de datos NoSQL administrada</h1>
-        <p>InceptionDB is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <p>InceptionDB almacena documentos JSON en bases de datos y colecciones expuestas mediante una API HTTP.</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">Comenzar</a>
             <a class="button button-secondary" href="/docs/inceptiondb/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">Documentación</a>
@@ -17,18 +17,18 @@
         <div class="section-header">
             <div class="section-kicker">InceptionDB</div>
             <h2>Funcionalidades</h2>
-            <p>Everything you need to build, deploy, and scale with InceptionDB on HolaCloud.</p>
+            <p>Crea bases de datos, gestiona colecciones y trabaja con documentos JSON usando endpoints basados en acciones.</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
             <h3>Modelo de documentos flexible</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Almacena y consulta documentos JSON con esquemas dinámicos. Colecciones, índices y agregaciones listos para usar.</p>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Guarda documentos JSON con esquemas dinámicos en colecciones y consúltalos con filtros e índices.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>Alta disponibilidad</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Replicación automática entre zonas de disponibilidad con failover en milisegundos y consistencia fuerte.</p>
+            <h3>Operaciones de colección</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Usa acciones de colección como <code>:insert</code>, <code>:find</code>, <code>:patch</code> y <code>:remove</code>.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>Seguridad integrada</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Cifrado en reposo y en tránsito, control de acceso basado en roles y registro de auditoría.</p>
+            <h3>Claves de base de datos</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Accede a bases de datos mediante autenticación de owner o claves API de base de datos.</p>
           </div>
         </div>
     </section>
@@ -37,20 +37,20 @@
         <div class="section-header">
             <div class="section-kicker">Quick start</div>
             <h2>Inicio rápido</h2>
-            <p>Get started with InceptionDB in seconds using the API.</p>
+            <p>Empieza con InceptionDB en segundos usando la API.</p>
         </div>
-        <pre><code>curl -X POST https://api.hola.cloud/v1/databases \
-  -H "Authorization: Bearer $TOKEN" \
+        <pre><code>curl -X POST https://inceptiondb.hola.cloud/v1/databases \
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}' \
   -d '{"name": "mydb"}'
 
 # Crea una colección
-curl -X POST https://api.hola.cloud/v1/databases/mydb/collections \
-  -H "Authorization: Bearer $TOKEN" \
+curl -X POST https://inceptiondb.hola.cloud/v1/databases/database-123/collections \
+  -H 'Api-Key: $API_KEY' -H 'Api-Secret: $API_SECRET' \
   -d '{"name": "users"}'
 
 # Inserta un documento
-curl -X POST https://api.hola.cloud/v1/databases/mydb/collections/users \
-  -H "Authorization: Bearer $TOKEN" \
+curl -X POST https://inceptiondb.hola.cloud/v1/databases/database-123/collections/users:insert \
+  -H 'Api-Key: $API_KEY' -H 'Api-Secret: $API_SECRET' \
   -d '{"name": "Alice", "email": "alice@example.com"}'</code></pre>
     </section>
 

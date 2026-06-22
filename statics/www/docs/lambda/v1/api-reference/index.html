@@ -140,7 +140,7 @@
 <div class="item"><a href="/docs/files/v1/api-reference/delete-bucket/index.html">Delete Bucket</a></div>
 <div class="item"><a href="/docs/files/v1/api-reference/delete-file/index.html">Delete File</a></div>
 <div class="item"><a href="/docs/files/v1/api-reference/download-file/index.html">Download File</a></div>
-<div class="item"><a href="/docs/files/v1/api-reference/file-metadata/index.html">File Metadata</a></div>
+<div class="item"><a href="/docs/files/v1/api-reference/file-metadata/index.html">File Headers</a></div>
 <div class="item"><a href="/docs/files/v1/api-reference/get-bucket/index.html">Get Bucket</a></div>
 <div class="item"><a href="/docs/files/v1/api-reference/list-buckets/index.html">List Buckets</a></div>
 <div class="item"><a href="/docs/files/v1/api-reference/list-files/index.html">List Files</a></div>
@@ -163,11 +163,11 @@
 <div class="item"><a href="/docs/config/v1/api-reference/update-user-config/index.html">Update User Config</a></div>
 </div>
 </div>
-<div class="item"><a href="/docs/logs/index.html">Logs</a></div>
+<div class="item"><a href="/docs/logs/index.html">InstantLogs</a></div>
 <div class="children">
 <div class="item"><a href="/docs/logs/v1/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/logs/v1/ingesting-logs/index.html">Ingesting Logs</a></div>
-<div class="item"><a href="/docs/logs/v1/streaming-filtering/index.html">Streaming Filtering</a></div>
+<div class="item"><a href="/docs/logs/v1/streaming-filtering/index.html">Streaming and Filtering</a></div>
 <div class="item"><a href="/docs/logs/v1/api-reference/index.html">InstantLogs API Reference</a></div>
 <div class="children">
 <div class="item"><a href="/docs/logs/v1/api-reference/create-logger/index.html">Create Logger</a></div>
@@ -183,11 +183,11 @@
 <div class="item"><a href="/docs/logs/v1/api-reference/stream-events/index.html">Stream Events</a></div>
 </div>
 </div>
-<div class="item"><a href="/docs/queues/index.html">Queues</a></div>
+<div class="item"><a href="/docs/queues/index.html">Tailon Queues</a></div>
 <div class="children">
 <div class="item"><a href="/docs/queues/v1/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/queues/v1/managing-queues/index.html">Managing Queues</a></div>
-<div class="item"><a href="/docs/queues/v1/producing-consuming/index.html">Producing Consuming</a></div>
+<div class="item"><a href="/docs/queues/v1/producing-consuming/index.html">Producing and Consuming</a></div>
 <div class="item"><a href="/docs/queues/v1/api-reference/index.html">Tailon API Reference</a></div>
 <div class="children">
 <div class="item"><a href="/docs/queues/v1/api-reference/create-queue/index.html">Create Queue</a></div>
@@ -241,7 +241,7 @@
 <div class="item"><a href="/docs/kvnode/v1/api-reference/readiness-check/index.html">Readiness Check</a></div>
 <div class="item"><a href="/docs/kvnode/v1/api-reference/set-key/index.html">Set Key</a></div>
 </div>
-<div class="item"><a href="/docs/kvnode/v1/sdk-reference/index.html">Sdk Reference</a></div>
+<div class="item"><a href="/docs/kvnode/v1/sdk-reference/index.html">SDK Reference</a></div>
 </div>
 <div class="item"><a href="/docs/console/index.html">Console</a></div>
 <div class="children">
@@ -249,7 +249,7 @@
 <div class="item"><a href="/docs/console/v1/managing-projects/index.html">Managing Projects and Services</a></div>
 <div class="item"><a href="/docs/console/v1/api-reference/index.html">Console API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/console/v1/api-reference/fake-api/index.html">Fake Api</a></div>
+<div class="item"><a href="/docs/console/v1/api-reference/fake-api/index.html">Fake API</a></div>
 <div class="item"><a href="/docs/console/v1/api-reference/get-version/index.html">Get Version</a></div>
 </div>
 </div>
@@ -272,7 +272,7 @@
 <div class="item"><a href="/docs/holamail/v1/sending-email/index.html">Sending Email</a></div>
 <div class="item"><a href="/docs/holamail/v1/api-reference/index.html">Holamail API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/holamail/v1/api-reference/smtp-reference/index.html">Smtp Reference</a></div>
+<div class="item"><a href="/docs/holamail/v1/api-reference/smtp-reference/index.html">SMTP Reference</a></div>
 </div>
 </div>
 <div class="item"><a href="/docs/run/index.html">Run</a></div>
@@ -286,8 +286,8 @@
 <div class="item"><a href="/docs/run/v1/api-reference/rollback-image/index.html">Rollback Image</a></div>
 <div class="item"><a href="/docs/run/v1/api-reference/save-environment/index.html">Save Environment</a></div>
 <div class="item"><a href="/docs/run/v1/api-reference/save-volumes/index.html">Save Volumes</a></div>
-<div class="item"><a href="/docs/run/v1/api-reference/start-container/index.html">Start Container</a></div>
-<div class="item"><a href="/docs/run/v1/api-reference/stop-container/index.html">Stop Container</a></div>
+<div class="item"><a href="/docs/run/v1/api-reference/start-container/index.html">Start Repository</a></div>
+<div class="item"><a href="/docs/run/v1/api-reference/stop-container/index.html">Stop Repository</a></div>
 </div>
 </div>
 
@@ -299,8 +299,65 @@
     <h1>Lambda API Reference</h1>
 <p>Base URL: <code>https://api.hola.cloud</code></p>
 <h2 id="Authentication">Authentication</h2>
-<p>Management endpoints require <code>Api-Key</code> and <code>Api-Secret</code> headers. Public invocation endpoints (<code>/run/{id}</code> and <code>/mux/{owner}/*</code>) do not require authentication.</p>
+<p>Management endpoints require the <code>X-Glue-Authentication</code> header. Public invocation endpoints (<code>/run/{lambda_id}</code> and <code>/mux/{owner_id}/*</code>) do not require authentication.</p>
 <p>All requests must be sent over HTTPS.</p>
+<h2 id="Lambda%20Object">Lambda Object</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>string</td>
+<td>Lambda identifier</td>
+</tr>
+<tr>
+<td><code>created_timestamp</code></td>
+<td>number</td>
+<td>Creation time as a Unix timestamp</td>
+</tr>
+<tr>
+<td><code>owner</code></td>
+<td>string</td>
+<td>Owner identifier</td>
+</tr>
+<tr>
+<td><code>project_id</code></td>
+<td>string</td>
+<td>Project identifier</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>Lambda name</td>
+</tr>
+<tr>
+<td><code>language</code></td>
+<td>string</td>
+<td>One of <code>javascript</code>, <code>static-html</code>, <code>static-css</code>, or <code>static-js</code></td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td>string</td>
+<td>Source code or static content</td>
+</tr>
+<tr>
+<td><code>method</code></td>
+<td>string</td>
+<td>HTTP method associated with the lambda</td>
+</tr>
+<tr>
+<td><code>path</code></td>
+<td>string</td>
+<td>HTTP path associated with the lambda</td>
+</tr>
+</tbody>
+</table>
 <h2 id="Endpoints">Endpoints</h2>
 <table>
 <thead>
@@ -312,44 +369,59 @@
 </thead>
 <tbody>
 <tr>
-<td>GET</td>
-<td><code>/api/v0/lambdas</code></td>
-<td>List all lambdas</td>
-</tr>
-<tr>
 <td>POST</td>
 <td><code>/api/v0/lambdas</code></td>
-<td>Create a new lambda</td>
+<td>Create a lambda</td>
 </tr>
 <tr>
 <td>GET</td>
-<td><code>/api/v0/lambdas/{id}</code></td>
+<td><code>/api/v0/lambdas</code></td>
+<td>List lambdas</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/v0/lambdas/{lambda_id}</code></td>
 <td>Get a lambda by ID</td>
 </tr>
 <tr>
 <td>PATCH</td>
-<td><code>/api/v0/lambdas/{id}</code></td>
+<td><code>/api/v0/lambdas/{lambda_id}</code></td>
 <td>Modify a lambda</td>
 </tr>
 <tr>
 <td>DELETE</td>
-<td><code>/api/v0/lambdas/{id}</code></td>
+<td><code>/api/v0/lambdas/{lambda_id}</code></td>
 <td>Delete a lambda</td>
 </tr>
 <tr>
-<td>POST</td>
-<td><code>/api/v0/run/{id}</code></td>
-<td>Run a lambda (admin)</td>
+<td>ANY</td>
+<td><code>/api/v0/run/{lambda_id}</code></td>
+<td>Run a lambda with authentication</td>
 </tr>
 <tr>
-<td>POST</td>
-<td><code>/run/{id}</code></td>
-<td>Run a lambda (public)</td>
+<td>ANY</td>
+<td><code>/run/{lambda_id}</code></td>
+<td>Run a lambda publicly</td>
+</tr>
+<tr>
+<td>ANY</td>
+<td><code>/mux/{owner_id}/*</code></td>
+<td>Route a request through an owner scope</td>
 </tr>
 <tr>
 <td>GET</td>
-<td><code>/mux/{owner}/*</code></td>
-<td>Route to owner&#39;s lambdas</td>
+<td><code>/ongoing</code></td>
+<td>List currently running invocations</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/me</code></td>
+<td>Return the authenticated user</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/openapi</code></td>
+<td>Return the OpenAPI document</td>
 </tr>
 </tbody>
 </table>
@@ -364,23 +436,19 @@
 <tbody>
 <tr>
 <td>400</td>
-<td>Bad request — malformed syntax or invalid parameters</td>
+<td>Bad request</td>
 </tr>
 <tr>
 <td>401</td>
-<td>Unauthorized — missing or invalid API credentials</td>
+<td>Missing or invalid authentication</td>
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden — credentials do not have access to the resource</td>
+<td>Forbidden</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not found — the requested resource does not exist</td>
-</tr>
-<tr>
-<td>409</td>
-<td>Conflict — resource already exists</td>
+<td>Resource not found</td>
 </tr>
 <tr>
 <td>500</td>
@@ -412,6 +480,9 @@
 </div>
 <div class="index"><div class="index-h2">
 <a href="#Authentication">Authentication</a>
+</div>
+<div class="index-h2">
+<a href="#Lambda%20Object">Lambda Object</a>
 </div>
 <div class="index-h2">
 <a href="#Endpoints">Endpoints</a>

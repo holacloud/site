@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-    <title>SMTP 事务邮件服务</title>
+    <title>基础 SMTP 测试服务器</title>
     <meta name="description" content="inceptiondb">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="/css/style.css" rel="stylesheet">
@@ -106,8 +106,8 @@
     #0f172a;">
     <div class="hero-inner">
         <div class="hero-eyebrow">✉️ Holamail</div>
-        <h1>SMTP 事务邮件服务</h1>
-        <p>Holamail is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <h1>基础 SMTP 测试服务器</h1>
+        <p>Holamail 当前接收基础 SMTP 消息，并记录收到的邮件，适合测试和开发。</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">开始使用</a>
             <a class="button button-secondary" href="/docs/holamail/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">文档中心</a>
@@ -120,18 +120,18 @@
         <div class="section-header">
             <div class="section-kicker">Holamail</div>
             <h2 id="%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD">核心功能</h2>
-            <p>Everything you need to build, deploy, and scale with Holamail on HolaCloud.</p>
+            <p>在生产邮件产品继续演进时，可将 Holamail 用作轻量级 SMTP endpoint。</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="%E9%AB%98%E9%80%81%E8%BE%BE%E7%8E%87">高送达率</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">专用 IP 池，自动预热和声誉监控。</p>
+            <h3 id="SMTP%20Listener">SMTP Listener</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">支持 HELO/EHLO、MAIL FROM、RCPT TO、DATA 和 QUIT 等基础 SMTP 命令。</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E">模板引擎</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">创建和管理带动态变量的邮件模板。</p>
+            <h3 id="%E6%B6%88%E6%81%AF%E6%8D%95%E8%8E%B7">消息捕获</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">接收 message data 并记录到日志，而不是投递到外部收件人。</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="%E6%8A%95%E9%80%92%E5%88%86%E6%9E%90">投递分析</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">开启、点击和退回跟踪，实时仪表盘。</p>
+            <h3 id="%E5%BC%80%E5%8F%91%E5%8F%8B%E5%A5%BD">开发友好</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">适合需要简单 SMTP 兼容 endpoint 的本地和集成测试。</p>
           </div>
         </div>
     </section>
@@ -140,11 +140,13 @@
         <div class="section-header">
             <div class="section-kicker">Quick start</div>
             <h2 id="%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B">快速开始</h2>
-            <p>Get started with Holamail in seconds using the API.</p>
+            <p>使用任意 SMTP 客户端发送测试消息。</p>
         </div>
-        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST https://api.hola.cloud/v1/holamail/send \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  -H &#34;Authorization: Bearer $TOKEN&#34; \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  -d &#39;{&#34;to&#34;: &#34;user@example.com&#34;, &#34;subject&#34;: &#34;欢迎！&#34;, &#34;template&#34;: &#34;welcome&#34;, &#34;data&#34;: {&#34;name&#34;: &#34;Alice&#34;}}&#39;</span></span></code></pre></code></pre>
+        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>swaks --server smtp.testmail.hola.cloud:25 \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  --from sender@example.com \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  --to user@example.com \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>  --header &#39;Subject: Hello from Holamail&#39; \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>  --body &#39;This is a test message.&#39;</span></span></code></pre></code></pre>
     </section>
 
     <section class="section">
@@ -181,6 +183,7 @@
     </section>
 </div>
 
+
     <div id="comments-section">
     <h2>评论</h2>
     <div id="comments-list"></div>
@@ -205,13 +208,13 @@
 <a href="#%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD">核心功能</a>
 </div>
 <div class="index-h3">
-<a href="#%E9%AB%98%E9%80%81%E8%BE%BE%E7%8E%87">高送达率</a>
+<a href="#SMTP%20Listener">SMTP Listener</a>
 </div>
 <div class="index-h3">
-<a href="#%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E">模板引擎</a>
+<a href="#%E6%B6%88%E6%81%AF%E6%8D%95%E8%8E%B7">消息捕获</a>
 </div>
 <div class="index-h3">
-<a href="#%E6%8A%95%E9%80%92%E5%88%86%E6%9E%90">投递分析</a>
+<a href="#%E5%BC%80%E5%8F%91%E5%8F%8B%E5%A5%BD">开发友好</a>
 </div>
 <div class="index-h2">
 <a href="#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B">快速开始</a>

@@ -1,39 +1,38 @@
-
 # Mux Router
 
-Enruta las solicitudes entrantes a las funciones lambda del propietario especificado según la sub-ruta. Este es un endpoint público, no requiere autenticación.
+Enruta solicitudes públicas mediante un path con alcance de propietario. No requiere autenticación.
 
-El Mux Router permite mapear dominios personalizados o rutas a propietarios de lambda específicos. La ruta restante después de `/mux/{owner}/` se reenvía a la lógica de enrutamiento del propietario.
+La ruta mux es `/mux/{owner_id}/*`. El resto del path se reenvía a la lógica de rutas de las lambdas del propietario.
 
-## Parámetros de Ruta
+## Parámetros de Path
 
 | Parámetro | Tipo | Descripción |
 |-----------|------|-------------|
-| owner | string | Identificador del propietario (nombre de usuario o proyecto) |
-| `*` | ruta | El resto de la ruta reenviada a las lambdas del propietario |
+| `owner_id` | string | Identificador del propietario |
+| `*` | path | Resto del path reenviado al alcance del propietario |
 
 ## Solicitud HTTP
 
 ```http
-GET /mux/acme-webapp/hello-world HTTP/1.1
+GET /mux/user_123/hello-world HTTP/1.1
 Host: api.hola.cloud
 ```
 
 ## Ejemplo
 
 ```bash
-curl -X GET "https://api.hola.cloud/mux/acme-webapp/hello-world"
+curl -X GET "https://api.hola.cloud/mux/user_123/hello-world"
 ```
 
 ## Respuesta
 
-La respuesta depende completamente de la función lambda que maneja la solicitud enrutada.
+La respuesta la produce la lambda seleccionada por la ruta del propietario.
 
 ```json
 {
-  "status": 200,
   "body": {
-    "message": "¡Hola desde la lambda de acme-webapp!"
+    "message": "Hello from mux",
+    "path": "/hello-world"
   }
 }
 ```
@@ -42,5 +41,5 @@ La respuesta depende completamente de la función lambda que maneja la solicitud
 
 | Código | Descripción |
 |--------|-------------|
-| 404 | Propietario o ruta lambda no encontrada |
-| 500 | Error de ejecución de la lambda |
+| 404 | Propietario o ruta de lambda no encontrada |
+| 500 | Error de ejecución de Lambda |

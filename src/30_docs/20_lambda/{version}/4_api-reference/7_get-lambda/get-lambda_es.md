@@ -1,33 +1,30 @@
+# Obtener Lambda
 
-# Get Lambda
-
-Obtiene los detalles de una función lambda específica por su ID.
+Obtiene una lambda específica por ID.
 
 ## Autenticación
 
-Requiere las cabeceras `Api-Key` y `Api-Secret`.
+Requiere `X-Glue-Authentication`.
 
-## Parámetros de Ruta
+## Parámetros de Path
 
 | Parámetro | Tipo | Descripción |
 |-----------|------|-------------|
-| id | uuid | Identificador único de la lambda |
+| `lambda_id` | string | Identificador de la lambda |
 
 ## Solicitud HTTP
 
 ```http
 GET /api/v0/lambdas/f1a2b3c4-d5e6-7890-abcd-ef0123456789 HTTP/1.1
 Host: api.hola.cloud
-Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d
-Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf
+X-Glue-Authentication: TU_TOKEN
 ```
 
 ## Ejemplo
 
 ```bash
 curl -X GET "https://api.hola.cloud/api/v0/lambdas/f1a2b3c4-d5e6-7890-abcd-ef0123456789" \
-  -H "Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d" \
-  -H "Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf"
+  -H "X-Glue-Authentication: TU_TOKEN"
 ```
 
 ## Respuesta
@@ -35,12 +32,14 @@ curl -X GET "https://api.hola.cloud/api/v0/lambdas/f1a2b3c4-d5e6-7890-abcd-ef012
 ```json
 {
   "id": "f1a2b3c4-d5e6-7890-abcd-ef0123456789",
+  "created_timestamp": 1751378400,
+  "owner": "user_123",
+  "project_id": "project_456",
   "name": "hello-world",
-  "runtime": "javascript",
-  "active": true,
-  "code": "export default async (req) => { return { status: 200, body: { message: 'Hello, World!' } }; }",
-  "created_at": "2025-07-01T14:00:00Z",
-  "updated_at": "2025-07-01T14:00:00Z"
+  "language": "javascript",
+  "code": "export default (req) => ({ body: { message: \"Hello, World!\" } })",
+  "method": "GET",
+  "path": "/hello-world"
 }
 ```
 
@@ -48,5 +47,5 @@ curl -X GET "https://api.hola.cloud/api/v0/lambdas/f1a2b3c4-d5e6-7890-abcd-ef012
 
 | Código | Descripción |
 |--------|-------------|
-| 401 | Cabeceras de autenticación faltantes o inválidas |
+| 401 | Autenticación faltante o inválida |
 | 404 | Lambda no encontrada |

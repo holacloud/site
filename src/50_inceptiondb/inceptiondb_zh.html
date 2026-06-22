@@ -4,7 +4,7 @@
     <div class="hero-inner">
         <div class="hero-eyebrow">🗄️ InceptionDB</div>
         <h1>托管 NoSQL 文档数据库</h1>
-        <p>InceptionDB is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <p>InceptionDB 通过 HTTP API 在数据库和集合中存储 JSON 文档。</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">开始使用</a>
             <a class="button button-secondary" href="/docs/inceptiondb/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">文档中心</a>
@@ -17,18 +17,18 @@
         <div class="section-header">
             <div class="section-kicker">InceptionDB</div>
             <h2>核心功能</h2>
-            <p>Everything you need to build, deploy, and scale with InceptionDB on HolaCloud.</p>
+            <p>创建数据库、管理集合，并使用基于 action 的 endpoint 处理 JSON 文档。</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
             <h3>灵活的文档模型</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">使用动态模式存储和查询 JSON 文档。开箱即用的集合、索引和聚合功能。</p>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">在集合中存储动态结构的 JSON 文档，并使用过滤器和索引查询。</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>高可用性</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">跨可用区自动复制，毫秒级故障转移，强一致性。</p>
+            <h3>集合操作</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">使用 <code>:insert</code>、<code>:find</code>、<code>:patch</code> 和 <code>:remove</code> 等集合 action。</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>内置安全</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">传输中和静态加密，基于角色的访问控制，以及合规审计日志。</p>
+            <h3>数据库访问密钥</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">通过 owner 认证或数据库 API key 访问数据库。</p>
           </div>
         </div>
     </section>
@@ -37,20 +37,20 @@
         <div class="section-header">
             <div class="section-kicker">Quick start</div>
             <h2>快速开始</h2>
-            <p>Get started with InceptionDB in seconds using the API.</p>
+            <p>使用 API 在几秒内开始使用 InceptionDB。</p>
         </div>
-        <pre><code>curl -X POST https://api.hola.cloud/v1/databases \
-  -H "Authorization: Bearer $TOKEN" \
+        <pre><code>curl -X POST https://inceptiondb.hola.cloud/v1/databases \
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}' \
   -d '{"name": "mydb"}'
 
 # 创建集合
-curl -X POST https://api.hola.cloud/v1/databases/mydb/collections \
-  -H "Authorization: Bearer $TOKEN" \
+curl -X POST https://inceptiondb.hola.cloud/v1/databases/database-123/collections \
+  -H 'Api-Key: $API_KEY' -H 'Api-Secret: $API_SECRET' \
   -d '{"name": "users"}'
 
 # 插入文档
-curl -X POST https://api.hola.cloud/v1/databases/mydb/collections/users \
-  -H "Authorization: Bearer $TOKEN" \
+curl -X POST https://inceptiondb.hola.cloud/v1/databases/database-123/collections/users:insert \
+  -H 'Api-Key: $API_KEY' -H 'Api-Secret: $API_SECRET' \
   -d '{"name": "Alice", "email": "alice@example.com"}'</code></pre>
     </section>
 

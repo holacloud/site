@@ -18,18 +18,18 @@ El endpoint de replicación (`POST /v1/replicate`) usa **NDJSON** (JSON Delimita
 |---------|-------------|
 | `set` | Una clave fue creada o actualizada |
 | `delete` | Una clave fue eliminada |
-| `baseline_begin` | Inicio de una instantánea completa de colección |
-| `baseline_end` | Fin de una instantánea completa de colección |
+| `BASELINE_BEGIN` | Inicio de una instantánea completa de colección |
+| `BASELINE_END` | Fin de una instantánea completa de colección |
 | `ping` | Heartbeat de mantenimiento |
 
 ### Ejemplo: Flujo de Replicación
 
 ```
-{"type":"baseline_begin","collection":"my-collection","seq":0}
-{"type":"set","collection":"my-collection","key":"usuario:alice","value":{"rol":"admin"},"version":1,"timestamp":1700000000}
-{"type":"baseline_end","collection":"my-collection","seq":1}
-{"type":"set","collection":"my-collection","key":"usuario:bob","value":{"rol":"usuario"},"version":1,"timestamp":1700000001}
-{"type":"ping","timestamp":1700000010}
+{"type":"BASELINE_BEGIN","collection":"my-collection","snapshotSeq":1}
+{"type":"SET","collection":"my-collection","key":"usuario:alice","value":{"rol":"admin"},"version":1,"timestamp":1700000000}
+{"type":"BASELINE_END","collection":"my-collection","seq":1}
+{"type":"SET","collection":"my-collection","key":"usuario:bob","value":{"rol":"usuario"},"version":1,"timestamp":1700000001}
+{"type":"PING","timestamp":1700000010}
 ```
 
 ## Estado del Nodo

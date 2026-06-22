@@ -1,47 +1,18 @@
-# 获取存储桶
+# 获取 Bucket
 
-获取指定存储桶的详细信息。
+为认证用户按 ID 获取 bucket。
 
-## 身份验证
+## 认证
 
-需要 `Api-Key` 和 `Api-Secret` 标头。
-
-## 路径参数
-
-| 参数 | 类型 | 描述 |
-|-----------|------|-------------|
-| `id` | string | 存储桶 ID（例如 `bkt_abc123`） |
+需要 `X-Glue-Authentication`。
 
 ## 请求
 
 ```bash
-curl "https://api.hola.cloud/v1/buckets/bkt_abc123" \
-  -H "Api-Key: 您的API密钥" \
-  -H "Api-Secret: 您的API密钥密码"
+curl "https://api.hola.cloud/v1/buckets/bucket-550e8400-e29b-41d4-a716-446655440000" \
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}'
 ```
 
 ## 响应
 
-```http
-HTTP/1.1 200 OK
-Content-Type: application/json
-```
-
-```json
-{
-  "id": "bkt_abc123",
-  "name": "my-first-bucket",
-  "createdAt": "2026-06-21T10:00:00Z",
-  "size": 1048576,
-  "fileCount": 5,
-  "public": false
-}
-```
-
-## 错误代码
-
-| 状态 | 代码 | 描述 |
-|--------|------|-------------|
-| 401 | Unauthorized | 缺少或无效的 API 凭证 |
-| 404 | Not Found | 指定的存储桶不存在 |
-| 500 | Internal Server Error | 发生意外错误 |
+响应是 bucket 对象，字段为 `id`, `project_id`, `created_timestamp`, `owners`, `name`, `description`。

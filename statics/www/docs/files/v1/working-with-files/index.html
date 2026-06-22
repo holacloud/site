@@ -140,7 +140,7 @@
 <div class="item"><a href="/docs/files/v1/api-reference/delete-bucket/index.html">Delete Bucket</a></div>
 <div class="item"><a href="/docs/files/v1/api-reference/delete-file/index.html">Delete File</a></div>
 <div class="item"><a href="/docs/files/v1/api-reference/download-file/index.html">Download File</a></div>
-<div class="item"><a href="/docs/files/v1/api-reference/file-metadata/index.html">File Metadata</a></div>
+<div class="item"><a href="/docs/files/v1/api-reference/file-metadata/index.html">File Headers</a></div>
 <div class="item"><a href="/docs/files/v1/api-reference/get-bucket/index.html">Get Bucket</a></div>
 <div class="item"><a href="/docs/files/v1/api-reference/list-buckets/index.html">List Buckets</a></div>
 <div class="item"><a href="/docs/files/v1/api-reference/list-files/index.html">List Files</a></div>
@@ -163,11 +163,11 @@
 <div class="item"><a href="/docs/config/v1/api-reference/update-user-config/index.html">Update User Config</a></div>
 </div>
 </div>
-<div class="item"><a href="/docs/logs/index.html">Logs</a></div>
+<div class="item"><a href="/docs/logs/index.html">InstantLogs</a></div>
 <div class="children">
 <div class="item"><a href="/docs/logs/v1/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/logs/v1/ingesting-logs/index.html">Ingesting Logs</a></div>
-<div class="item"><a href="/docs/logs/v1/streaming-filtering/index.html">Streaming Filtering</a></div>
+<div class="item"><a href="/docs/logs/v1/streaming-filtering/index.html">Streaming and Filtering</a></div>
 <div class="item"><a href="/docs/logs/v1/api-reference/index.html">InstantLogs API Reference</a></div>
 <div class="children">
 <div class="item"><a href="/docs/logs/v1/api-reference/create-logger/index.html">Create Logger</a></div>
@@ -183,11 +183,11 @@
 <div class="item"><a href="/docs/logs/v1/api-reference/stream-events/index.html">Stream Events</a></div>
 </div>
 </div>
-<div class="item"><a href="/docs/queues/index.html">Queues</a></div>
+<div class="item"><a href="/docs/queues/index.html">Tailon Queues</a></div>
 <div class="children">
 <div class="item"><a href="/docs/queues/v1/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/queues/v1/managing-queues/index.html">Managing Queues</a></div>
-<div class="item"><a href="/docs/queues/v1/producing-consuming/index.html">Producing Consuming</a></div>
+<div class="item"><a href="/docs/queues/v1/producing-consuming/index.html">Producing and Consuming</a></div>
 <div class="item"><a href="/docs/queues/v1/api-reference/index.html">Tailon API Reference</a></div>
 <div class="children">
 <div class="item"><a href="/docs/queues/v1/api-reference/create-queue/index.html">Create Queue</a></div>
@@ -241,7 +241,7 @@
 <div class="item"><a href="/docs/kvnode/v1/api-reference/readiness-check/index.html">Readiness Check</a></div>
 <div class="item"><a href="/docs/kvnode/v1/api-reference/set-key/index.html">Set Key</a></div>
 </div>
-<div class="item"><a href="/docs/kvnode/v1/sdk-reference/index.html">Sdk Reference</a></div>
+<div class="item"><a href="/docs/kvnode/v1/sdk-reference/index.html">SDK Reference</a></div>
 </div>
 <div class="item"><a href="/docs/console/index.html">Console</a></div>
 <div class="children">
@@ -249,7 +249,7 @@
 <div class="item"><a href="/docs/console/v1/managing-projects/index.html">Managing Projects and Services</a></div>
 <div class="item"><a href="/docs/console/v1/api-reference/index.html">Console API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/console/v1/api-reference/fake-api/index.html">Fake Api</a></div>
+<div class="item"><a href="/docs/console/v1/api-reference/fake-api/index.html">Fake API</a></div>
 <div class="item"><a href="/docs/console/v1/api-reference/get-version/index.html">Get Version</a></div>
 </div>
 </div>
@@ -272,7 +272,7 @@
 <div class="item"><a href="/docs/holamail/v1/sending-email/index.html">Sending Email</a></div>
 <div class="item"><a href="/docs/holamail/v1/api-reference/index.html">Holamail API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/holamail/v1/api-reference/smtp-reference/index.html">Smtp Reference</a></div>
+<div class="item"><a href="/docs/holamail/v1/api-reference/smtp-reference/index.html">SMTP Reference</a></div>
 </div>
 </div>
 <div class="item"><a href="/docs/run/index.html">Run</a></div>
@@ -286,8 +286,8 @@
 <div class="item"><a href="/docs/run/v1/api-reference/rollback-image/index.html">Rollback Image</a></div>
 <div class="item"><a href="/docs/run/v1/api-reference/save-environment/index.html">Save Environment</a></div>
 <div class="item"><a href="/docs/run/v1/api-reference/save-volumes/index.html">Save Volumes</a></div>
-<div class="item"><a href="/docs/run/v1/api-reference/start-container/index.html">Start Container</a></div>
-<div class="item"><a href="/docs/run/v1/api-reference/stop-container/index.html">Stop Container</a></div>
+<div class="item"><a href="/docs/run/v1/api-reference/start-container/index.html">Start Repository</a></div>
+<div class="item"><a href="/docs/run/v1/api-reference/stop-container/index.html">Stop Repository</a></div>
 </div>
 </div>
 
@@ -297,244 +297,70 @@
     
     <div class="document">
     <h1>Working With Files</h1>
-<p>This guide covers file operations in HolaCloud Files: uploading, downloading, listing, retrieving metadata, and deleting files.</p>
-<h2 id="File%20Paths">File Paths</h2>
-<p>File paths are specified in the URL after <code>/files/</code> or <code>/list/</code>. Paths can include directories using forward slashes:</p>
-<pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>/v1/buckets/{id}/files/images/logo.png
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>/v1/buckets/{id}/files/backups/db-2026-06-21.sql.gz
-</span></span></code></pre></code></pre>
-<p>There is no need to pre-create directories -- the file path is treated as a flat key with slashes.</p>
-<h2 id="Uploading%20a%20File">Uploading a File</h2>
-<p>Use PUT to upload a file. Set the <code>Content-Type</code> header to the appropriate MIME type.</p>
-<h3 id="Upload%20a%20Text%20File">Upload a Text File</h3>
-<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X PUT <span style="color:#2aa198">&#34;https://api.hola.cloud/v1/buckets/bkt_abc123/files/notes/readme.txt&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Api-Key: YOUR_API_KEY&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Api-Secret: YOUR_API_SECRET&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Content-Type: text/plain&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span><span style="color:#cb4b16"></span>  --data-binary @readme.txt
-</span></span></code></pre></code></pre>
-<h3 id="Upload%20a%20Binary%20File%20%28Image%29">Upload a Binary File (Image)</h3>
-<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X PUT <span style="color:#2aa198">&#34;https://api.hola.cloud/v1/buckets/bkt_abc123/files/images/photo.jpg&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Api-Key: YOUR_API_KEY&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Api-Secret: YOUR_API_SECRET&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Content-Type: image/jpeg&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span><span style="color:#cb4b16"></span>  --data-binary @photo.jpg
-</span></span></code></pre></code></pre>
-<h3 id="Upload%20with%20Metadata">Upload with Metadata</h3>
-<p>You can attach custom metadata to files using the <code>File-Metadata</code> header:</p>
-<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X PUT <span style="color:#2aa198">&#34;https://api.hola.cloud/v1/buckets/bkt_abc123/files/report.pdf&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Api-Key: YOUR_API_KEY&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Api-Secret: YOUR_API_SECRET&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Content-Type: application/pdf&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;File-Metadata: {\&#34;author\&#34;: \&#34;Jane Doe\&#34;, \&#34;department\&#34;: \&#34;engineering\&#34;}&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span><span style="color:#cb4b16"></span>  --data-binary @report.pdf
-</span></span></code></pre></code></pre>
-<p>Expected response:</p>
-<pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1"> 1</a></span><span>{
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2"> 2</a></span><span>  <span style="color:#268bd2">&#34;path&#34;</span>: <span style="color:#2aa198">&#34;report.pdf&#34;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3"> 3</a></span><span>  <span style="color:#268bd2">&#34;size&#34;</span>: <span style="color:#2aa198">245760</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4"> 4</a></span><span>  <span style="color:#268bd2">&#34;contentType&#34;</span>: <span style="color:#2aa198">&#34;application/pdf&#34;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5"> 5</a></span><span>  <span style="color:#268bd2">&#34;uploadedAt&#34;</span>: <span style="color:#2aa198">&#34;2026-06-21T12:00:00Z&#34;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6"> 6</a></span><span>  <span style="color:#268bd2">&#34;etag&#34;</span>: <span style="color:#2aa198">&#34;\&#34;abc123def456\&#34;&#34;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7"> 7</a></span><span>  <span style="color:#268bd2">&#34;metadata&#34;</span>: {
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8"> 8</a></span><span>    <span style="color:#268bd2">&#34;author&#34;</span>: <span style="color:#2aa198">&#34;Jane Doe&#34;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9"> 9</a></span><span>    <span style="color:#268bd2">&#34;department&#34;</span>: <span style="color:#2aa198">&#34;engineering&#34;</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L10"><a style="outline: none; text-decoration:none; color:inherit" href="#L10">10</a></span><span>  }
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L11"><a style="outline: none; text-decoration:none; color:inherit" href="#L11">11</a></span><span>}
-</span></span></code></pre></code></pre>
-<h2 id="Downloading%20a%20File">Downloading a File</h2>
-<p>Use GET to download a file by its path:</p>
-<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl <span style="color:#2aa198">&#34;https://api.hola.cloud/v1/buckets/bkt_abc123/files/images/photo.jpg&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Api-Key: YOUR_API_KEY&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Api-Secret: YOUR_API_SECRET&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span><span style="color:#cb4b16"></span>  -o photo.jpg
-</span></span></code></pre></code></pre>
-<p>HTTP request:</p>
-<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span><span style="color:#268bd2">GET</span> /v1/buckets/bkt_abc123/files/images/photo.jpg <span style="color:#268bd2">HTTP</span><span style="color:#719e07">/</span><span style="color:#2aa198">1.1</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>Host<span style="color:#719e07">:</span> api.hola.cloud
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>Api-Key<span style="color:#719e07">:</span> YOUR_API_KEY
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>Api-Secret<span style="color:#719e07">:</span> YOUR_API_SECRET
-</span></span></code></pre></code></pre>
-<p>The response includes the file content with appropriate <code>Content-Type</code> and <code>Content-Length</code> headers.</p>
-<h3 id="Partial%20Downloads%20%28Range%20Requests%29">Partial Downloads (Range Requests)</h3>
-<p>Files supports HTTP range requests for partial downloads:</p>
-<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl <span style="color:#2aa198">&#34;https://api.hola.cloud/v1/buckets/bkt_abc123/files/video.mp4&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Api-Key: YOUR_API_KEY&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Api-Secret: YOUR_API_SECRET&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Range: bytes=0-1023&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span><span style="color:#cb4b16"></span>  -o video_chunk.mp4
-</span></span></code></pre></code></pre>
-<h2 id="Listing%20Files">Listing Files</h2>
-<p>List files in a bucket with an optional prefix filter. The <code>*</code> after <code>/list/</code> is required and indicates all files. Use a specific path to filter by prefix.</p>
-<h3 id="List%20All%20Files">List All Files</h3>
-<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl <span style="color:#2aa198">&#34;https://api.hola.cloud/v1/buckets/bkt_abc123/list/*&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Api-Key: YOUR_API_KEY&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Api-Secret: YOUR_API_SECRET&#34;</span>
-</span></span></code></pre></code></pre>
-<h3 id="List%20Files%20in%20a%20Directory">List Files in a Directory</h3>
-<p>List files under the <code>images/</code> prefix:</p>
-<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl <span style="color:#2aa198">&#34;https://api.hola.cloud/v1/buckets/bkt_abc123/list/images/*&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Api-Key: YOUR_API_KEY&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Api-Secret: YOUR_API_SECRET&#34;</span>
+<p>Files are addressed by the path after <code>/files/</code>. Listing uses the path after <code>/list/</code> as a prefix filter.</p>
+<h2 id="Upload%20a%20File">Upload a File</h2>
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X PUT <span style="color:#2aa198">&#34;https://api.hola.cloud/v1/buckets/bucket-550e8400-e29b-41d4-a716-446655440000/files/notes/readme.txt&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#39;X-Glue-Authentication: {&#34;user&#34;:{&#34;id&#34;:&#34;user-123&#34;}}&#39;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Content-Type: text/plain&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span><span style="color:#cb4b16"></span>  --data-binary @readme.txt
 </span></span></code></pre></code></pre>
 <p>Response:</p>
 <pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1"> 1</a></span><span>{
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2"> 2</a></span><span>  <span style="color:#268bd2">&#34;files&#34;</span>: [
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3"> 3</a></span><span>    {
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4"> 4</a></span><span>      <span style="color:#268bd2">&#34;path&#34;</span>: <span style="color:#2aa198">&#34;images/photo.jpg&#34;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5"> 5</a></span><span>      <span style="color:#268bd2">&#34;size&#34;</span>: <span style="color:#2aa198">245760</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6"> 6</a></span><span>      <span style="color:#268bd2">&#34;contentType&#34;</span>: <span style="color:#2aa198">&#34;image/jpeg&#34;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7"> 7</a></span><span>      <span style="color:#268bd2">&#34;modifiedAt&#34;</span>: <span style="color:#2aa198">&#34;2026-06-21T12:00:00Z&#34;</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8"> 8</a></span><span>    },
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9"> 9</a></span><span>    {
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L10"><a style="outline: none; text-decoration:none; color:inherit" href="#L10">10</a></span><span>      <span style="color:#268bd2">&#34;path&#34;</span>: <span style="color:#2aa198">&#34;images/banner.png&#34;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L11"><a style="outline: none; text-decoration:none; color:inherit" href="#L11">11</a></span><span>      <span style="color:#268bd2">&#34;size&#34;</span>: <span style="color:#2aa198">512000</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L12"><a style="outline: none; text-decoration:none; color:inherit" href="#L12">12</a></span><span>      <span style="color:#268bd2">&#34;contentType&#34;</span>: <span style="color:#2aa198">&#34;image/png&#34;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L13"><a style="outline: none; text-decoration:none; color:inherit" href="#L13">13</a></span><span>      <span style="color:#268bd2">&#34;modifiedAt&#34;</span>: <span style="color:#2aa198">&#34;2026-06-21T11:30:00Z&#34;</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L14"><a style="outline: none; text-decoration:none; color:inherit" href="#L14">14</a></span><span>    }
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L15"><a style="outline: none; text-decoration:none; color:inherit" href="#L15">15</a></span><span>  ],
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L16"><a style="outline: none; text-decoration:none; color:inherit" href="#L16">16</a></span><span>  <span style="color:#268bd2">&#34;prefix&#34;</span>: <span style="color:#2aa198">&#34;images/&#34;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L17"><a style="outline: none; text-decoration:none; color:inherit" href="#L17">17</a></span><span>  <span style="color:#268bd2">&#34;total&#34;</span>: <span style="color:#2aa198">2</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L18"><a style="outline: none; text-decoration:none; color:inherit" href="#L18">18</a></span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2"> 2</a></span><span>  <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;file-9f0b7b3c-1d2e-4a5f-8b9c-0123456789ab&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3"> 3</a></span><span>  <span style="color:#268bd2">&#34;uuid&#34;</span>: <span style="color:#2aa198">&#34;9f0b7b3c-1d2e-4a5f-8b9c-0123456789ab&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4"> 4</a></span><span>  <span style="color:#268bd2">&#34;created_timestamp&#34;</span>: <span style="color:#2aa198">1782045660000000000</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5"> 5</a></span><span>  <span style="color:#268bd2">&#34;updated_timestamp&#34;</span>: <span style="color:#2aa198">1782045660000000000</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6"> 6</a></span><span>  <span style="color:#268bd2">&#34;owners&#34;</span>: [<span style="color:#2aa198">&#34;user-123&#34;</span>],
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7"> 7</a></span><span>  <span style="color:#268bd2">&#34;status&#34;</span>: <span style="color:#2aa198">&#34;available&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8"> 8</a></span><span>  <span style="color:#268bd2">&#34;size&#34;</span>: <span style="color:#2aa198">24576</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9"> 9</a></span><span>  <span style="color:#268bd2">&#34;name&#34;</span>: <span style="color:#2aa198">&#34;notes/readme.txt&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L10"><a style="outline: none; text-decoration:none; color:inherit" href="#L10">10</a></span><span>  <span style="color:#268bd2">&#34;bucket&#34;</span>: <span style="color:#2aa198">&#34;bucket-550e8400-e29b-41d4-a716-446655440000&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L11"><a style="outline: none; text-decoration:none; color:inherit" href="#L11">11</a></span><span>  <span style="color:#268bd2">&#34;hash_md5&#34;</span>: <span style="color:#2aa198">&#34;example-md5&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L12"><a style="outline: none; text-decoration:none; color:inherit" href="#L12">12</a></span><span>  <span style="color:#268bd2">&#34;hash_sha256&#34;</span>: <span style="color:#2aa198">&#34;example-sha256&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L13"><a style="outline: none; text-decoration:none; color:inherit" href="#L13">13</a></span><span>  <span style="color:#268bd2">&#34;mime_type&#34;</span>: <span style="color:#2aa198">&#34;text/plain; charset=utf-8&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L14"><a style="outline: none; text-decoration:none; color:inherit" href="#L14">14</a></span><span>}
 </span></span></code></pre></code></pre>
-<h3 id="List%20with%20Pagination">List with Pagination</h3>
-<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl <span style="color:#2aa198">&#34;https://api.hola.cloud/v1/buckets/bkt_abc123/list/*?limit=10&amp;offset=0&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Api-Key: YOUR_API_KEY&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Api-Secret: YOUR_API_SECRET&#34;</span>
+<h2 id="Download%20a%20File">Download a File</h2>
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl <span style="color:#2aa198">&#34;https://api.hola.cloud/v1/buckets/bucket-550e8400-e29b-41d4-a716-446655440000/files/notes/readme.txt&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#39;X-Glue-Authentication: {&#34;user&#34;:{&#34;id&#34;:&#34;user-123&#34;}}&#39;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>  -o readme.txt
 </span></span></code></pre></code></pre>
-<h2 id="Getting%20File%20Metadata">Getting File Metadata</h2>
-<p>Use HEAD to retrieve file metadata without downloading the content:</p>
-<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -I <span style="color:#2aa198">&#34;https://api.hola.cloud/v1/buckets/bkt_abc123/files/report.pdf&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Api-Key: YOUR_API_KEY&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Api-Secret: YOUR_API_SECRET&#34;</span>
+<p>The response body is the stored file content. <code>Content-Type</code> is set from the stored <code>mime_type</code>.</p>
+<h2 id="Get%20File%20JSON%20Metadata">Get File JSON Metadata</h2>
+<p>Use <code>?metadata</code> on the download endpoint to return the file object as JSON.</p>
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl <span style="color:#2aa198">&#34;https://api.hola.cloud/v1/buckets/bucket-550e8400-e29b-41d4-a716-446655440000/files/notes/readme.txt?metadata&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#39;X-Glue-Authentication: {&#34;user&#34;:{&#34;id&#34;:&#34;user-123&#34;}}&#39;</span>
 </span></span></code></pre></code></pre>
-<p>Response headers:</p>
-<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span><span style="color:#268bd2">HTTP</span><span style="color:#719e07">/</span><span style="color:#2aa198">1.1</span> <span style="color:#2aa198">200</span> <span style="color:#cb4b16">OK</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>Content-Type<span style="color:#719e07">:</span> application/pdf
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>Content-Length<span style="color:#719e07">:</span> 245760
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>ETag<span style="color:#719e07">:</span> &#34;abc123def456&#34;
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>Last-Modified<span style="color:#719e07">:</span> Sun, 21 Jun 2026 12:00:00 GMT
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>File-Metadata<span style="color:#719e07">:</span> {&#34;author&#34;: &#34;Jane Doe&#34;, &#34;department&#34;: &#34;engineering&#34;}
+<h2 id="List%20Files">List Files</h2>
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl <span style="color:#2aa198">&#34;https://api.hola.cloud/v1/buckets/bucket-550e8400-e29b-41d4-a716-446655440000/list/notes/&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#39;X-Glue-Authentication: {&#34;user&#34;:{&#34;id&#34;:&#34;user-123&#34;}}&#39;</span>
 </span></span></code></pre></code></pre>
-<h2 id="Deleting%20a%20File">Deleting a File</h2>
-<p>Delete a file by its path:</p>
-<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X DELETE <span style="color:#2aa198">&#34;https://api.hola.cloud/v1/buckets/bkt_abc123/files/notes/readme.txt&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Api-Key: YOUR_API_KEY&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Api-Secret: YOUR_API_SECRET&#34;</span>
+<p>Response:</p>
+<pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1"> 1</a></span><span>[
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2"> 2</a></span><span>  {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3"> 3</a></span><span>    <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;file-9f0b7b3c-1d2e-4a5f-8b9c-0123456789ab&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4"> 4</a></span><span>    <span style="color:#268bd2">&#34;name&#34;</span>: <span style="color:#2aa198">&#34;notes/readme.txt&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5"> 5</a></span><span>    <span style="color:#268bd2">&#34;bucket&#34;</span>: <span style="color:#2aa198">&#34;bucket-550e8400-e29b-41d4-a716-446655440000&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6"> 6</a></span><span>    <span style="color:#268bd2">&#34;created_timestamp&#34;</span>: <span style="color:#2aa198">1782045660000000000</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7"> 7</a></span><span>    <span style="color:#268bd2">&#34;updated_timestamp&#34;</span>: <span style="color:#2aa198">1782045660000000000</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8"> 8</a></span><span>    <span style="color:#268bd2">&#34;size&#34;</span>: <span style="color:#2aa198">24576</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9"> 9</a></span><span>    <span style="color:#268bd2">&#34;mime_type&#34;</span>: <span style="color:#2aa198">&#34;text/plain; charset=utf-8&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L10"><a style="outline: none; text-decoration:none; color:inherit" href="#L10">10</a></span><span>    <span style="color:#268bd2">&#34;hash_md5&#34;</span>: <span style="color:#2aa198">&#34;example-md5&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L11"><a style="outline: none; text-decoration:none; color:inherit" href="#L11">11</a></span><span>    <span style="color:#268bd2">&#34;hash_sha256&#34;</span>: <span style="color:#2aa198">&#34;example-sha256&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L12"><a style="outline: none; text-decoration:none; color:inherit" href="#L12">12</a></span><span>    <span style="color:#268bd2">&#34;status&#34;</span>: <span style="color:#2aa198">&#34;available&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L13"><a style="outline: none; text-decoration:none; color:inherit" href="#L13">13</a></span><span>    <span style="color:#268bd2">&#34;owners&#34;</span>: [<span style="color:#2aa198">&#34;user-123&#34;</span>]
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L14"><a style="outline: none; text-decoration:none; color:inherit" href="#L14">14</a></span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L15"><a style="outline: none; text-decoration:none; color:inherit" href="#L15">15</a></span><span>]
 </span></span></code></pre></code></pre>
-<p>Expected response: HTTP 204 No Content.</p>
-<h3 id="Error:%20File%20Not%20Found">Error: File Not Found</h3>
-<pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  <span style="color:#268bd2">&#34;error&#34;</span>: {
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>    <span style="color:#268bd2">&#34;code&#34;</span>: <span style="color:#2aa198">&#34;FILE_NOT_FOUND&#34;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>    <span style="color:#268bd2">&#34;message&#34;</span>: <span style="color:#2aa198">&#34;File &#39;notes/readme.txt&#39; not found in bucket &#39;bkt_abc123&#39;.&#34;</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>  }
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>}
+<h2 id="HEAD%20File">HEAD File</h2>
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -I <span style="color:#2aa198">&#34;https://api.hola.cloud/v1/buckets/bucket-550e8400-e29b-41d4-a716-446655440000/files/notes/readme.txt&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#39;X-Glue-Authentication: {&#34;user&#34;:{&#34;id&#34;:&#34;user-123&#34;}}&#39;</span>
 </span></span></code></pre></code></pre>
-<h2 id="Content-Type%20Handling">Content-Type Handling</h2>
-<p>When uploading a file, you should set the <code>Content-Type</code> header to the correct MIME type for your file. If omitted, the service defaults to <code>application/octet-stream</code>.</p>
-<p>Common MIME types:</p>
-<table>
-<thead>
-<tr>
-<th>Extension</th>
-<th>Content-Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>.txt</td>
-<td>text/plain</td>
-</tr>
-<tr>
-<td>.html</td>
-<td>text/html</td>
-</tr>
-<tr>
-<td>.css</td>
-<td>text/css</td>
-</tr>
-<tr>
-<td>.js</td>
-<td>application/javascript</td>
-</tr>
-<tr>
-<td>.json</td>
-<td>application/json</td>
-</tr>
-<tr>
-<td>.jpg / .jpeg</td>
-<td>image/jpeg</td>
-</tr>
-<tr>
-<td>.png</td>
-<td>image/png</td>
-</tr>
-<tr>
-<td>.gif</td>
-<td>image/gif</td>
-</tr>
-<tr>
-<td>.pdf</td>
-<td>application/pdf</td>
-</tr>
-<tr>
-<td>.zip</td>
-<td>application/zip</td>
-</tr>
-<tr>
-<td>.gz</td>
-<td>application/gzip</td>
-</tr>
-<tr>
-<td>.mp4</td>
-<td>video/mp4</td>
-</tr>
-</tbody>
-</table>
-<h2 id="File%20Path%20Conventions">File Path Conventions</h2>
-<ul>
-<li>File paths are case-sensitive</li>
-<li>Leading slashes are not allowed: <code>notes/readme.txt</code> (correct), <code>/notes/readme.txt</code> (incorrect)</li>
-<li>Paths can be up to 1024 characters</li>
-<li>Use forward slashes (<code>/</code>) as directory separators</li>
-<li>Special characters in path segments should be URL-encoded</li>
-</ul>
-<h2 id="HTTP%20Status%20Code%20Summary">HTTP Status Code Summary</h2>
-<table>
-<thead>
-<tr>
-<th>Code</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>200</td>
-<td>Success (GET, HEAD, PUT)</td>
-</tr>
-<tr>
-<td>204</td>
-<td>No Content (DELETE)</td>
-</tr>
-<tr>
-<td>400</td>
-<td>Bad Request</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found -- file or bucket does not exist</td>
-</tr>
-<tr>
-<td>416</td>
-<td>Range Not Satisfiable</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error</td>
-</tr>
-</tbody>
-</table>
+<p>The handler sets <code>Last-Modified</code> and <code>Content-Length</code>.</p>
+<h2 id="Delete%20a%20File">Delete a File</h2>
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X DELETE <span style="color:#2aa198">&#34;https://api.hola.cloud/v1/buckets/bucket-550e8400-e29b-41d4-a716-446655440000/files/notes/readme.txt&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#39;X-Glue-Authentication: {&#34;user&#34;:{&#34;id&#34;:&#34;user-123&#34;}}&#39;</span>
+</span></span></code></pre></code></pre>
 
 
     <div id="comments-section">
@@ -558,55 +384,22 @@
 </div>
 </div>
 <div class="index"><div class="index-h2">
-<a href="#File%20Paths">File Paths</a>
+<a href="#Upload%20a%20File">Upload a File</a>
 </div>
 <div class="index-h2">
-<a href="#Uploading%20a%20File">Uploading a File</a>
-</div>
-<div class="index-h3">
-<a href="#Upload%20a%20Text%20File">Upload a Text File</a>
-</div>
-<div class="index-h3">
-<a href="#Upload%20a%20Binary%20File%20%28Image%29">Upload a Binary File (Image)</a>
-</div>
-<div class="index-h3">
-<a href="#Upload%20with%20Metadata">Upload with Metadata</a>
+<a href="#Download%20a%20File">Download a File</a>
 </div>
 <div class="index-h2">
-<a href="#Downloading%20a%20File">Downloading a File</a>
-</div>
-<div class="index-h3">
-<a href="#Partial%20Downloads%20%28Range%20Requests%29">Partial Downloads (Range Requests)</a>
+<a href="#Get%20File%20JSON%20Metadata">Get File JSON Metadata</a>
 </div>
 <div class="index-h2">
-<a href="#Listing%20Files">Listing Files</a>
-</div>
-<div class="index-h3">
-<a href="#List%20All%20Files">List All Files</a>
-</div>
-<div class="index-h3">
-<a href="#List%20Files%20in%20a%20Directory">List Files in a Directory</a>
-</div>
-<div class="index-h3">
-<a href="#List%20with%20Pagination">List with Pagination</a>
+<a href="#List%20Files">List Files</a>
 </div>
 <div class="index-h2">
-<a href="#Getting%20File%20Metadata">Getting File Metadata</a>
+<a href="#HEAD%20File">HEAD File</a>
 </div>
 <div class="index-h2">
-<a href="#Deleting%20a%20File">Deleting a File</a>
-</div>
-<div class="index-h3">
-<a href="#Error:%20File%20Not%20Found">Error: File Not Found</a>
-</div>
-<div class="index-h2">
-<a href="#Content-Type%20Handling">Content-Type Handling</a>
-</div>
-<div class="index-h2">
-<a href="#File%20Path%20Conventions">File Path Conventions</a>
-</div>
-<div class="index-h2">
-<a href="#HTTP%20Status%20Code%20Summary">HTTP Status Code Summary</a>
+<a href="#Delete%20a%20File">Delete a File</a>
 </div>
 </div>
 </div>

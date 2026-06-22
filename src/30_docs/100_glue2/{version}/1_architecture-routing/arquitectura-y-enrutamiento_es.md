@@ -52,13 +52,13 @@ Al reenviar a un backend, Glue2 inyecta:
 
 | Encabezado | Descripción |
 |------------|-------------|
-| `X-Glue-Authentication` | JWT codificado en Base64 con ID de usuario, sesión, roles y método de auth |
+| `X-Glue-Authentication` | Contexto de autenticación en JSON plano |
 | `X-Holacloud-Project-Id` | El UUID del proyecto derivado del host virtual |
 | `X-Holacloud-Tenant-Project-Id` | ID de proyecto con alcance de inquilino para aislamiento multiinquilino |
 | `X-Forwarded-For` | Dirección IP original del cliente |
 | `X-Forwarded-Proto` | Protocolo original (`http` o `https`) |
 
-Los servicios backend usan estos encabezados para identificar al cliente y aplicar autorización. El JWT de `X-Glue-Authentication` está firmado con un secreto compartido conocido solo por Glue2 y los backends de confianza.
+Los servicios backend usan estos encabezados para identificar al cliente y aplicar autorización. `X-Glue-Authentication` es JSON plano.
 
 ## Endpoints de Administración V0
 
@@ -73,15 +73,7 @@ curl "https://api.hola.cloud/v0/virtualhosts" \
 ```
 
 ```json
-{
-  "virtual_hosts": [
-    {
-      "host": "mi-proyecto.hola.cloud",
-      "project_id": "p3b2c1a0-1234-5678-9abc-def012345678",
-      "backend": "svc-1"
-    }
-  ]
-}
+["mi-proyecto.hola.cloud", "api.mi-proyecto.hola.cloud"]
 ```
 
 ### Estadísticas de Tráfico
@@ -111,10 +103,6 @@ curl "https://api.hola.cloud/v0/status" \
   ]
 }
 ```
-
-## Balanceo de Carga y Failover
-
-Glue2 distribuye el tráfico entre múltiples instancias backend para cada servicio. Si una instancia no está saludable (falla las comprobaciones de salud o devuelve errores), Glue2 la elimina de la rotación y reintenta en una instancia saludable. Las comprobaciones de salud se ejecutan cada 10 segundos. Puedes monitorear la salud del backend a través del endpoint `/v0/status`.
 
 ## Siguientes Pasos
 

@@ -1,42 +1,18 @@
-# Archivo Metadata
+# Headers de Archivo
 
-Obtener los metadatos de un archivo sin descargar su contenido. La ruta del archivo se especifica después de `/files/` en la URL.
+Devuelve headers para un archivo con `HEAD /v1/buckets/{bucket_id}/files/*`.
 
 ## Autenticación
 
-Requiere los encabezados `Api-Key` y `Api-Secret`.
-
-## Parámetros de Ruta
-
-| Parámetro | Tipo | Descripción |
-|-----------|------|-------------|
-| `id` | string | El ID del bucket (ej. `bkt_abc123`) |
+Requiere `X-Glue-Authentication`.
 
 ## Solicitud
 
 ```bash
-curl -I "https://api.hola.cloud/v1/buckets/bkt_abc123/files/images/logo.png" \
-  -H "Api-Key: SU_API_KEY" \
-  -H "Api-Secret: SU_API_SECRET"
+curl -I "https://api.hola.cloud/v1/buckets/bucket-550e8400-e29b-41d4-a716-446655440000/files/images/logo.png" \
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}'
 ```
 
 ## Respuesta
 
-```http
-HTTP/1.1 200 OK
-Content-Type: image/png
-Content-Length: 24576
-Last-Modified: Sun, 21 Jun 2026 12:00:00 GMT
-ETag: "abc123def456"
-Accept-Ranges: bytes
-```
-
-La respuesta contiene solo encabezados; no se devuelve ningún cuerpo.
-
-## Códigos de Error
-
-| Estado | Código | Descripción |
-|--------|--------|-------------|
-| 401 | Unauthorized | Credenciales API faltantes o inválidas |
-| 404 | Not Found | El bucket o archivo especificado no existe |
-| 500 | Internal Server Error | Ocurrió un error inesperado |
+El handler define `Last-Modified` y `Content-Length`.

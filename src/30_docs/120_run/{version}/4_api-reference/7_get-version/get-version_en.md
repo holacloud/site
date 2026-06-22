@@ -1,38 +1,21 @@
 # Get Version
 
-Returns the current version of the Run service.
-
-## Description
-
-Provides version and build information about the running Run service instance.
-
-## Authentication
-
-None. This endpoint is public.
+Returns the current Run service version as plain text.
 
 ## Request
 
-No request body required.
+```http
+GET /version
+```
 
 ## Example
 
 ```bash
-curl -X GET "https://api.hola.cloud/version"
+curl "https://api.hola.cloud/version"
 ```
 
 ## Response
 
-```json
-{
-  "service": "run",
-  "version": "1.5.2",
-  "commit": "e5f6g7h8",
-  "build_time": "2026-06-20T12:00:00Z"
-}
+```text
+1.5.2
 ```
-
-## Error Codes
-
-| Code | Description |
-|------|-------------|
-| 200 | Version information returned successfully |

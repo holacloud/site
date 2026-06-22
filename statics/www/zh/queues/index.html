@@ -107,7 +107,7 @@
     <div class="hero-inner">
         <div class="hero-eyebrow">📨 Tailon</div>
         <h1>消息队列与异步工作负载系统</h1>
-        <p>Tailon is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <p>Tailon 是轻量级 JSON 消息队列 API，支持创建队列、写入、读取和查看简单统计。</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">开始使用</a>
             <a class="button button-secondary" href="/docs/queues/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">文档中心</a>
@@ -120,18 +120,18 @@
         <div class="section-header">
             <div class="section-kicker">Tailon</div>
             <h2 id="%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD">核心功能</h2>
-            <p>Everything you need to build, deploy, and scale with Tailon on HolaCloud.</p>
+            <p>当你需要简单的 HTTP JSON 消息队列时，可以使用 Tailon。</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="%E5%8F%AF%E9%9D%A0%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92">可靠消息传递</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">至少一次投递保证，支持自动重试和死信队列。</p>
+            <h3 id="%E5%91%BD%E5%90%8D%E9%98%9F%E5%88%97">命名队列</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">按名称创建队列，并查看当前长度、读取次数和写入次数。</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="%E5%8F%91%E5%B8%83%2F%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F">发布/订阅模式</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">为事件驱动架构创建扇出拓扑。</p>
+            <h3 id="JSON%20%E5%86%99%E5%85%A5">JSON 写入</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">通过 <code>:write</code> endpoint 将 JSON payload 直接写入队列。</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="%E6%B6%88%E8%B4%B9%E8%80%85%E7%BB%84">消费者组</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">在多个消费者之间分配工作负载，自动再平衡。</p>
+            <h3 id="%E9%98%BB%E5%A1%9E%E8%AF%BB%E5%8F%96">阻塞读取</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">从 <code>:read</code> endpoint 读取换行分隔的 JSON 消息。</p>
           </div>
         </div>
     </section>
@@ -140,14 +140,12 @@
         <div class="section-header">
             <div class="section-kicker">Quick start</div>
             <h2 id="%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B">快速开始</h2>
-            <p>Get started with Tailon in seconds using the API.</p>
+            <p>使用 API 在几秒内开始使用 Tailon。</p>
         </div>
-        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST https://api.hola.cloud/v1/queues \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  -H &#34;Authorization: Bearer $TOKEN&#34; \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  -d &#39;{&#34;name&#34;: &#34;orders&#34;, &#34;type&#34;: &#34;fifo&#34;}&#39; \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>  &amp;&amp; curl -X POST https://api.hola.cloud/v1/queues/orders \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>  -H &#34;Authorization: Bearer $TOKEN&#34; \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>  -d &#39;{&#34;message&#34;: &#34;order-12345&#34;}&#39;</span></span></code></pre></code></pre>
+        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST https://queues.hola.cloud/v1/queues \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  -d &#39;{&#34;name&#34;:&#34;orders&#34;}&#39; \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  &amp;&amp; curl -X POST https://queues.hola.cloud/v1/queues/orders:write \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>  -d &#39;{&#34;message&#34;:&#34;order-12345&#34;}&#39;</span></span></code></pre></code></pre>
     </section>
 
     <section class="section">
@@ -184,6 +182,7 @@
     </section>
 </div>
 
+
     <div id="comments-section">
     <h2>评论</h2>
     <div id="comments-list"></div>
@@ -208,13 +207,13 @@
 <a href="#%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD">核心功能</a>
 </div>
 <div class="index-h3">
-<a href="#%E5%8F%AF%E9%9D%A0%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92">可靠消息传递</a>
+<a href="#%E5%91%BD%E5%90%8D%E9%98%9F%E5%88%97">命名队列</a>
 </div>
 <div class="index-h3">
-<a href="#%E5%8F%91%E5%B8%83%2F%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F">发布/订阅模式</a>
+<a href="#JSON%20%E5%86%99%E5%85%A5">JSON 写入</a>
 </div>
 <div class="index-h3">
-<a href="#%E6%B6%88%E8%B4%B9%E8%80%85%E7%BB%84">消费者组</a>
+<a href="#%E9%98%BB%E5%A1%9E%E8%AF%BB%E5%8F%96">阻塞读取</a>
 </div>
 <div class="index-h2">
 <a href="#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B">快速开始</a>

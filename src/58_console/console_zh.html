@@ -4,7 +4,7 @@
     <div class="hero-inner">
         <div class="hero-eyebrow">🖥️ Console</div>
         <h1>基于 Web 的管理控制台</h1>
-        <p>Console is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <p>Console 是 HolaCloud 的 Web UI，并包含当前前端使用的 mock service APIs。</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">开始使用</a>
             <a class="button button-secondary" href="/docs/console/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">文档中心</a>
@@ -39,12 +39,11 @@
             <h2>快速开始</h2>
             <p>Get started with Console in seconds using the API.</p>
         </div>
-        <pre><code># 您的工作区已准备就绪：
-# https://console.hola.cloud/
+        <pre><code># 打开控制台：
+https://console.hola.cloud/
 
-# API 令牌可通过以下方式管理：
-curl https://api.hola.cloud/v1/tokens \
-  -H "Authorization: Bearer $ADMIN_TOKEN"</code></pre>
+# 检查 console 服务版本：
+curl https://console.hola.cloud/version</code></pre>
     </section>
 
     <section class="section">

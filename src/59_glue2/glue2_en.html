@@ -4,7 +4,7 @@
     <div class="hero-inner">
         <div class="hero-eyebrow">🔗 Glue2</div>
         <h1>API Gateway and authentication layer</h1>
-        <p>Glue2 is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <p>Glue2 is HolaCloud's host-based reverse proxy and service glue layer.</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">Get started</a>
             <a class="button button-secondary" href="/docs/glue2/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">Documentation</a>
@@ -17,18 +17,18 @@
         <div class="section-header">
             <div class="section-kicker">Glue2</div>
             <h2>Key features</h2>
-            <p>Everything you need to build, deploy, and scale with Glue2 on HolaCloud.</p>
+            <p>Route virtual hosts, inject HolaCloud authentication headers, and inspect gateway status and traffic stats.</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>Rate limiting</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Protect your APIs with configurable rate limits per client.</p>
+            <h3>Virtual hosts</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">List the virtual hosts currently known by the gateway.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>JWT validation</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Automatic token validation and user context injection.</p>
+            <h3>Authentication context</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Inject JSON authentication context through <code>X-Glue-Authentication</code> when a project requires it.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>API composition</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Combine multiple backend services into a single API endpoint.</p>
+            <h3>Gateway diagnostics</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Expose version, virtual hosts, project host status, OpenAPI, and traffic statistics endpoints.</p>
           </div>
         </div>
     </section>
@@ -39,9 +39,9 @@
             <h2>Quick start</h2>
             <p>Get started with Glue2 in seconds using the API.</p>
         </div>
-        <pre><code>curl -X POST https://api.hola.cloud/v1/routes \
-  -H "Authorization: Bearer $TOKEN" \
-  -d '{"path": "/api/v1/users", "upstream": "https://users.internal:8080", "methods": ["GET"]}'</code></pre>
+        <pre><code>curl https://glue2.hola.cloud/version
+curl https://glue2.hola.cloud/v0/virtualhosts
+curl https://glue2.hola.cloud/v0/stats</code></pre>
     </section>
 
     <section class="section">

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>SMTP transactional email service</title>
+    <title>Basic SMTP test server</title>
     <meta name="description" content="inceptiondb">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="/css/style.css" rel="stylesheet">
@@ -106,8 +106,8 @@
     #0f172a;">
     <div class="hero-inner">
         <div class="hero-eyebrow">✉️ Holamail</div>
-        <h1>SMTP transactional email service</h1>
-        <p>Holamail is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <h1>Basic SMTP test server</h1>
+        <p>Holamail currently accepts basic SMTP messages and logs received mail for testing and development.</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">Get started</a>
             <a class="button button-secondary" href="/docs/holamail/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">Documentation</a>
@@ -120,18 +120,18 @@
         <div class="section-header">
             <div class="section-kicker">Holamail</div>
             <h2 id="Key%20features">Key features</h2>
-            <p>Everything you need to build, deploy, and scale with Holamail on HolaCloud.</p>
+            <p>Use Holamail as a lightweight SMTP endpoint while the production mail product evolves.</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="High%20deliverability">High deliverability</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Dedicated IP pools with automatic warm-up and reputation monitoring.</p>
+            <h3 id="SMTP%20listener">SMTP listener</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Accepts basic SMTP commands such as HELO/EHLO, MAIL FROM, RCPT TO, DATA, and QUIT.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="Template%20engine">Template engine</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Create and manage email templates with dynamic variables.</p>
+            <h3 id="Message%20capture">Message capture</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Receives message data and logs it instead of delivering mail to external recipients.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="Delivery%20analytics">Delivery analytics</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Open, click, and bounce tracking with real-time dashboards.</p>
+            <h3 id="Development%20friendly">Development friendly</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Useful for local and integration tests that need a simple SMTP-compatible endpoint.</p>
           </div>
         </div>
     </section>
@@ -140,11 +140,13 @@
         <div class="section-header">
             <div class="section-kicker">Quick start</div>
             <h2 id="Quick%20start">Quick start</h2>
-            <p>Get started with Holamail in seconds using the API.</p>
+            <p>Send a test message with any SMTP client.</p>
         </div>
-        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST https://api.hola.cloud/v1/holamail/send \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  -H &#34;Authorization: Bearer $TOKEN&#34; \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  -d &#39;{&#34;to&#34;: &#34;user@example.com&#34;, &#34;subject&#34;: &#34;Welcome!&#34;, &#34;template&#34;: &#34;welcome&#34;, &#34;data&#34;: {&#34;name&#34;: &#34;Alice&#34;}}&#39;</span></span></code></pre></code></pre>
+        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>swaks --server smtp.testmail.hola.cloud:25 \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  --from sender@example.com \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  --to user@example.com \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>  --header &#39;Subject: Hello from Holamail&#39; \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>  --body &#39;This is a test message.&#39;</span></span></code></pre></code></pre>
     </section>
 
     <section class="section">
@@ -181,6 +183,7 @@
     </section>
 </div>
 
+
     <div id="comments-section">
     <h2>Comments</h2>
     <div id="comments-list"></div>
@@ -205,13 +208,13 @@
 <a href="#Key%20features">Key features</a>
 </div>
 <div class="index-h3">
-<a href="#High%20deliverability">High deliverability</a>
+<a href="#SMTP%20listener">SMTP listener</a>
 </div>
 <div class="index-h3">
-<a href="#Template%20engine">Template engine</a>
+<a href="#Message%20capture">Message capture</a>
 </div>
 <div class="index-h3">
-<a href="#Delivery%20analytics">Delivery analytics</a>
+<a href="#Development%20friendly">Development friendly</a>
 </div>
 <div class="index-h2">
 <a href="#Quick%20start">Quick start</a>

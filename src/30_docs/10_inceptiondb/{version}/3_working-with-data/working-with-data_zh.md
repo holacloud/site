@@ -1,131 +1,105 @@
-
 # 处理数据
 
-本文档解释了如何在集合中插入、列出、修改和删除文档。还包括如何在列出时过滤数据。
+文档操作是集合 action。数据库访问使用 `Api-Key` 和 `Api-Secret`，当数据库 owner 被允许时也可以使用 Glue owner token。
 
 ## 插入文档
 
-### 插入单个文档
+```http
+POST /v1/databases/{databaseId}/collections/{collection}:insert
+Content-Type: application/jsonl
+Api-Key: your-api-key
+Api-Secret: your-api-secret
 
-要在集合中插入单个文档，请使用以下HTTP请求：
+{"id":"1","name":"Alice"}
+{"id":"2","name":"Bob"}
+```
+
+响应为插入后的 JSONL 文档。
+
+```jsonl
+{"id":"1","name":"Alice"}
+{"id":"2","name":"Bob"}
+```
+
+## 查询文档
 
 ```http
-POST /databases/{database}/collections/{collection}/documents
+POST /v1/databases/{databaseId}/collections/{collection}:find
 Content-Type: application/json
-X-API-Key: your-api-key
+Api-Key: your-api-key
+Api-Secret: your-api-secret
 
 {
-  "document": {
-    "key1": "value1",
-    "key2": "value2"
+  "filter": {
+    "name": "Alice"
   }
 }
 ```
 
-### 插入多个文档
+响应为匹配的 JSONL 文档。
 
-要在集合中插入多个文档，请使用以下HTTP请求：
+```jsonl
+{"id":"1","name":"Alice"}
+```
+
+## 根据 ID 获取文档
 
 ```http
-POST /databases/{database}/collections/{collection}/documents/bulk
-Content-Type: application/json
-X-API-Key: your-api-key
+GET /v1/databases/{databaseId}/collections/{collection}/documents/{documentId}
+Api-Key: your-api-key
+Api-Secret: your-api-secret
+```
 
+响应为文档 JSON。
+
+```json
 {
-  "documents": [
-    {
-      "key1": "value1",
-      "key2": "value2"
-    },
-    {
-      "key1": "value3",
-      "key2": "value4"
-    }
-  ]
+  "id": "1",
+  "name": "Alice"
 }
-```
-
-## 列出文档
-
-### 列出所有文档（全扫描）
-
-要列出集合中的所有文档，请使用以下HTTP请求：
-
-```http
-GET /databases/{database}/collections/{collection}/documents
-X-API-Key: your-api-key
-```
-
-### 通过唯一索引列出文档
-
-要使用唯一索引列出文档，请使用以下HTTP请求：
-
-```http
-GET /databases/{database}/collections/{collection}/documents?filter={"key":"value"}
-X-API-Key: your-api-key
-```
-
-### 列出具有特定限制的文档
-
-要列出具有特定限制的文档，请使用以下HTTP请求：
-
-```http
-GET /databases/{database}/collections/{collection}/documents?limit=10
-X-API-Key: your-api-key
 ```
 
 ## 修改文档
 
-### 通过全扫描修改文档
-
-要通过全扫描修改文档，请使用以下HTTP请求：
-
 ```http
-PATCH /databases/{database}/collections/{collection}/documents
+POST /v1/databases/{databaseId}/collections/{collection}:patch
 Content-Type: application/json
-X-API-Key: your-api-key
+Api-Key: your-api-key
+Api-Secret: your-api-secret
 
 {
-  "filter": {"key": "value"},
-  "update": {"$set": {"key": "new_value"}}
+  "filter": {
+    "id": "1"
+  },
+  "patch": {
+    "name": "Alice Updated"
+  }
 }
 ```
 
-### 通过索引修改文档
+响应为修改后的 JSONL 文档。
 
-要使用索引修改文档，请使用以下HTTP请求：
-
-```http
-PATCH /databases/{database}/collections/{collection}/documents?filter={"key":"value"}
-Content-Type: application/json
-X-API-Key: your-api-key
-
-{
-  "update": {"$set": {"key": "new_value"}}
-}
+```jsonl
+{"id":"1","name":"Alice Updated"}
 ```
 
 ## 删除文档
 
-### 通过索引删除文档
-
-要使用索引删除文档，请使用以下HTTP请求：
-
 ```http
-DELETE /databases/{database}/collections/{collection}/documents?filter={"key":"value"}
-X-API-Key: your-api-key
-```
-
-### 通过全扫描删除文档
-
-要通过全扫描删除文档，请使用以下HTTP请求：
-
-```http
-DELETE /databases/{database}/collections/{collection}/documents
+POST /v1/databases/{databaseId}/collections/{collection}:remove
 Content-Type: application/json
-X-API-Key: your-api-key
+Api-Key: your-api-key
+Api-Secret: your-api-secret
 
 {
-  "filter": {"key": "value"}
+  "filter": {
+    "id": "1"
+  }
 }
+```
+
+响应为删除的 JSONL 文档。
+
+```jsonl
+{"id":"1","name":"Alice Updated"}
 ```

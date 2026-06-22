@@ -1,81 +1,16 @@
+# Ingerir Logs
 
-# Ingest Logs
+`POST /v1/loggers/{id}/ingest` ingiere los bytes crudos del cuerpo del request.
 
-Ingresa entradas de log en un logger.
-
-## Autenticación
-
-Requiere credenciales de datos:
-
-- `X-Instantlogs-Event-Secret: <secret>` o `Authorization: Bearer <secret>`
-
-## Parámetros de Ruta
-
-| Parámetro | Descripción |
-|-----------|-------------|
-| `id` | El identificador único del logger |
-
-## Cuerpo de la Solicitud
-
-Entrada de log individual:
-
-| Campo | Tipo | Requerido | Descripción |
-|-------|------|-----------|-------------|
-| `message` | string | sí | El contenido del mensaje de log |
-| `level` | string | no | Nivel de log (ej., `info`, `warn`, `error`) |
-| `service` | string | no | Nombre del servicio de origen |
-| `timestamp` | string | no | Marca de tiempo ISO 8601 (por defecto la del servidor) |
-
-```json
-{
-  "message": "Inicio de sesión exitoso",
-  "level": "info",
-  "service": "web",
-  "timestamp": "2025-06-20T14:22:30Z"
-}
-```
-
-## Solicitud
+El acceso al logger requiere un owner vía `X-Glue-Authentication` o una API key del logger con `Api-Key` y `Api-Secret`.
 
 ```bash
 curl -X POST "https://api.hola.cloud/v1/loggers/logger_xyz789/ingest" \
-  -H "X-Instantlogs-Event-Secret: lgs_abc123def456" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "message": "Inicio de sesión exitoso",
-    "level": "info",
-    "service": "web",
-    "timestamp": "2025-06-20T14:22:30Z"
-  }'
+  -H "Api-Key: LOGGER_API_KEY" \
+  -H "Api-Secret: LOGGER_API_SECRET" \
+  --data-binary $'line one\nline two\n'
 ```
-
-```http
-POST /v1/loggers/logger_xyz789/ingest HTTP/1.1
-Host: api.hola.cloud
-X-Instantlogs-Event-Secret: lgs_abc123def456
-Content-Type: application/json
-
-{
-  "message": "Inicio de sesión exitoso",
-  "level": "info",
-  "service": "web",
-  "timestamp": "2025-06-20T14:22:30Z"
-}
-```
-
-## Respuesta
 
 ```json
-{
-  "ingested": 1
-}
+{ "n": 18 }
 ```
-
-## Códigos de Error
-
-| Código | Descripción |
-|--------|-------------|
-| 400 | Cuerpo de solicitud faltante o inválido |
-| 401 | Secreto de evento faltante o inválido |
-| 404 | Logger no encontrado |
-| 413 | Carga útil demasiado grande |

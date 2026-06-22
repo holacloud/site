@@ -1,22 +1,30 @@
 # Holamail API Reference
 
-Holamail is an **SMTP-based email service** — it does not expose an HTTP API. Clients connect using the standard SMTP protocol on port 2525.
+Holamail does not expose an HTTP API. It is a plain SMTP listener that accepts a basic SMTP conversation and logs the message.
 
 ## SMTP Reference
 
-For a complete guide to SMTP commands, connection examples, and best practices, see the [SMTP Protocol Reference](./smtp-reference).
+For command examples, see the [SMTP Protocol Reference](./smtp-reference).
 
 ## Connection Details
 
-| Setting | Value |
-|---------|-------|
-| Host | `smtp.hola.cloud` |
-| Port | `2525` |
-| Protocol | SMTP (no TLS required) |
-| Auth | None (open relay for authenticated projects) |
+| Setting | Public test host | Local instance |
+|---------|------------------|----------------|
+| Host | `smtp.testmail.hola.cloud` | `localhost` |
+| Port | `25` | `2525` |
+| Protocol | Plain SMTP | Plain SMTP |
+| Auth | None | None |
 
-## Endpoints
+## Supported Commands
 
-| Method | Path | Description |
-|--------|------|-------------|
-| SMTP | `2525` | Raw SMTP connection for sending email |
+| Command | Description |
+|---------|-------------|
+| `HELO` / `EHLO` | Start the SMTP session |
+| `MAIL FROM` | Set the sender envelope address |
+| `RCPT TO` | Set the recipient envelope address |
+| `DATA` | Send message headers and body, ending with `.` |
+| `QUIT` | Close the session |
+
+## Not Supported
+
+Holamail does not provide external delivery, an HTTP API, STARTTLS, AUTH, rate limiting, templates, analytics, or tracking.

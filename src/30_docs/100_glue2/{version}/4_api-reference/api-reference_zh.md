@@ -10,4 +10,5 @@ Glue2 是 HolaCloud 的中央 API 网关。大多数端点是公开的，但 `/v
 | `GET` | `/v0/virtualhosts` | 列出路由表 |
 | `GET` | `/v0/stats` | 获取流量统计 |
 | `GET` | `/v0/status` | 检查后端服务健康状态 |
+| `GET` | `/v0/secret` | 受保护的测试端点 |
 | `GET` | `/openapi.json` | OpenAPI 规范 |

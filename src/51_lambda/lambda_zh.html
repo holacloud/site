@@ -4,7 +4,7 @@
     <div class="hero-inner">
         <div class="hero-eyebrow">⚡ Lambda</div>
         <h1>无服务器函数执行平台</h1>
-        <p>Lambda is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <p>Lambda 在 HolaCloud 上通过 HTTP endpoint 运行 JavaScript 函数和静态资源。</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">开始使用</a>
             <a class="button button-secondary" href="/docs/lambda/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">文档中心</a>
@@ -17,18 +17,18 @@
         <div class="section-header">
             <div class="section-kicker">Lambda</div>
             <h2>核心功能</h2>
-            <p>Everything you need to build, deploy, and scale with Lambda on HolaCloud.</p>
+            <p>通过 Lambda API 创建、更新、列出、删除并调用 HTTP 函数。</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>支持任意语言运行代码</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">部署 Go、Python、Node.js 等语言，自动伸缩，无需管理服务器。</p>
+            <h3>JavaScript 函数</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">使用内置运行时 helper，例如 <code>write</code>、<code>body</code>、<code>query</code> 和 <code>headers</code>。</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>事件驱动执行</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">通过 HTTP 请求、队列消息、定时器或 Webhook 触发函数。</p>
+            <h3>HTTP 调用</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">通过公共运行 URL、认证的管理运行 URL，或按 owner/project 的 mux 路由调用函数。</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>内置可观测性</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">每次函数调用的实时日志、指标和链路追踪。</p>
+            <h3>静态响应</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">用同一套 Lambda 模型提供静态 HTML、CSS 和 JavaScript 片段。</p>
           </div>
         </div>
     </section>
@@ -37,11 +37,11 @@
         <div class="section-header">
             <div class="section-kicker">Quick start</div>
             <h2>快速开始</h2>
-            <p>Get started with Lambda in seconds using the API.</p>
+            <p>使用 API 在几秒内开始使用 Lambda。</p>
         </div>
-        <pre><code>curl -X POST https://api.hola.cloud/v1/lambdas \
-  -H "Authorization: Bearer $TOKEN" \
-  -d '{"name": "hello", "runtime": "python3.11", "code": "def handler():\n    return {\"status\": \"ok\"}"}'</code></pre>
+        <pre><code>curl -X POST https://api.hola.cloud/api/v0/lambdas \
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}' \
+  -d '{"name":"hello","language":"javascript","method":"GET","path":"/hello","code":"write(\"Hello from Lambda\")"}'</code></pre>
     </section>
 
     <section class="section">

@@ -4,7 +4,7 @@
     <div class="hero-inner">
         <div class="hero-eyebrow">⚡ Lambda</div>
         <h1>Serverless function execution platform</h1>
-        <p>Lambda is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <p>Lambda runs JavaScript functions and static assets behind HTTP endpoints on HolaCloud.</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">Get started</a>
             <a class="button button-secondary" href="/docs/lambda/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">Documentation</a>
@@ -17,18 +17,18 @@
         <div class="section-header">
             <div class="section-kicker">Lambda</div>
             <h2>Key features</h2>
-            <p>Everything you need to build, deploy, and scale with Lambda on HolaCloud.</p>
+            <p>Create, update, list, delete, and invoke HTTP functions through the Lambda API.</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>Run code in any language</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Deploy Go, Python, Node.js, and more with automatic scaling. No servers to manage.</p>
+            <h3>JavaScript functions</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Run JavaScript with the built-in runtime helpers such as <code>write</code>, <code>body</code>, <code>query</code>, and <code>headers</code>.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>Event-driven execution</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Trigger functions from HTTP requests, queue messages, timers, or webhooks.</p>
+            <h3>HTTP invocation</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Invoke functions through public run URLs, authenticated admin run URLs, or owner/project mux routing.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>Built-in observability</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Real-time logs, metrics, and tracing for every function invocation.</p>
+            <h3>Static responses</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Serve static HTML, CSS, and JavaScript snippets with the same Lambda model.</p>
           </div>
         </div>
     </section>
@@ -39,9 +39,9 @@
             <h2>Quick start</h2>
             <p>Get started with Lambda in seconds using the API.</p>
         </div>
-        <pre><code>curl -X POST https://api.hola.cloud/v1/lambdas \
-  -H "Authorization: Bearer $TOKEN" \
-  -d '{"name": "hello", "runtime": "python3.11", "code": "def handler():\n    return {\"status\": \"ok\"}"}'</code></pre>
+        <pre><code>curl -X POST https://api.hola.cloud/api/v0/lambdas \
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}' \
+  -d '{"name":"hello","language":"javascript","method":"GET","path":"/hello","code":"write(\"Hello from Lambda\")"}'</code></pre>
     </section>
 
     <section class="section">

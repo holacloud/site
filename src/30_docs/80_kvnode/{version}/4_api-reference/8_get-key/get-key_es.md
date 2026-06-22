@@ -44,6 +44,6 @@ Content-Type: application/json
 
 | Estado | Código | Descripción |
 |--------|--------|-------------|
-| 401 | unauthorized | Autenticación faltante o inválida |
+| 403 | forbidden | Missing authentication headers |
 | 404 | not_found | Colección o clave no encontrada |
 | 500 | internal_error | Error interno del servidor |

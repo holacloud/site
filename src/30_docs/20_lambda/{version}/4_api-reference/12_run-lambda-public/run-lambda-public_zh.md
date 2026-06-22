@@ -1,19 +1,18 @@
+# 运行 Lambda（公开）
 
-# Run Lambda (Public)
+公开调用 lambda。不需要认证。该端点接受任何 HTTP 方法。
 
-公开调用 Lambda 函数，无需身份验证。
+此路由适用于 webhook 和公开 API 调用。lambda ID 来自 lambda 管理端点。
 
-此端点专为 Webhook 和公共 API 端点设计。Lambda ID 可从 Lambda 管理页面获取。
-
-## 路径参数
+## Path 参数
 
 | 参数 | 类型 | 描述 |
-|-----------|------|------|
-| id | uuid | 要运行的 Lambda 函数的唯一标识符 |
+|------|------|------|
+| `lambda_id` | string | Lambda 标识符 |
 
 ## 请求体
 
-您想要传递给 Lambda 函数的任何 JSON 负载。
+发送任何希望 lambda 作为 `req.body` 接收的 payload。
 
 ## HTTP 请求
 
@@ -43,9 +42,10 @@ curl -X POST "https://api.hola.cloud/run/f1a2b3c4-d5e6-7890-abcd-ef0123456789" \
 
 ## 响应
 
+响应就是 lambda 处理器返回的内容。
+
 ```json
 {
-  "status": 200,
   "body": {
     "processed": true,
     "event": "payment_received"
@@ -55,8 +55,8 @@ curl -X POST "https://api.hola.cloud/run/f1a2b3c4-d5e6-7890-abcd-ef0123456789" \
 
 ## 错误码
 
-| 状态码 | 描述 |
-|--------|------|
-| 400 | 无效的请求体 |
-| 404 | 未找到 Lambda 函数或函数未激活 |
+| 代码 | 描述 |
+|------|------|
+| 400 | 请求体无效 |
+| 404 | Lambda 未找到 |
 | 500 | Lambda 执行错误 |

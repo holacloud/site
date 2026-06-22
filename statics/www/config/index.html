@@ -107,7 +107,7 @@
     <div class="hero-inner">
         <div class="hero-eyebrow">⚙️ Config</div>
         <h1>Centralized configuration management</h1>
-        <p>Config is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <p>Config stores user-scoped JSON configuration entries and exposes v0 and v1 HTTP APIs.</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">Get started</a>
             <a class="button button-secondary" href="/docs/config/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">Documentation</a>
@@ -120,18 +120,18 @@
         <div class="section-header">
             <div class="section-kicker">Config</div>
             <h2 id="Key%20features">Key features</h2>
-            <p>Everything you need to build, deploy, and scale with Config on HolaCloud.</p>
+            <p>Read and update configuration maps without adding a custom configuration service to your app.</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="Real-time%20updates">Real-time updates</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Push configuration changes instantly without redeploying your applications.</p>
+            <h3 id="User%20config">User config</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Use <code>GET /v1/config</code> and <code>PATCH /v1/config</code> for authenticated user configuration.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="Environment%20separation">Environment separation</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Manage dev, staging, and production configs from a single control plane.</p>
+            <h3 id="Entries%20map">Entries map</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Store configuration as JSON entries, including strings, numbers, booleans, and nested objects.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="Audit%20trail">Audit trail</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Track every change with full version history and role-based access.</p>
+            <h3 id="Legacy%20v0%20configs">Legacy v0 configs</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Manage v0 config documents with <code>id</code> and <code>entries</code> fields when needed.</p>
           </div>
         </div>
     </section>
@@ -142,9 +142,9 @@
             <h2 id="Quick%20start">Quick start</h2>
             <p>Get started with Config in seconds using the API.</p>
         </div>
-        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST https://api.hola.cloud/v1/configs \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  -H &#34;Authorization: Bearer $TOKEN&#34; \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  -d &#39;{&#34;key&#34;: &#34;database.url&#34;, &#34;value&#34;: &#34;postgres://prod:5432/db&#34;, &#34;env&#34;: &#34;production&#34;}&#39;</span></span></code></pre></code></pre>
+        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X PATCH https://config.hola.cloud/v1/config \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  -H &#39;X-Glue-Authentication: {&#34;user&#34;:{&#34;id&#34;:&#34;user-123&#34;}}&#39; \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  -d &#39;{&#34;database.url&#34;:&#34;postgres://prod:5432/db&#34;,&#34;feature.enabled&#34;:true}&#39;</span></span></code></pre></code></pre>
     </section>
 
     <section class="section">
@@ -181,6 +181,7 @@
     </section>
 </div>
 
+
     <div id="comments-section">
     <h2>Comments</h2>
     <div id="comments-list"></div>
@@ -205,13 +206,13 @@
 <a href="#Key%20features">Key features</a>
 </div>
 <div class="index-h3">
-<a href="#Real-time%20updates">Real-time updates</a>
+<a href="#User%20config">User config</a>
 </div>
 <div class="index-h3">
-<a href="#Environment%20separation">Environment separation</a>
+<a href="#Entries%20map">Entries map</a>
 </div>
 <div class="index-h3">
-<a href="#Audit%20trail">Audit trail</a>
+<a href="#Legacy%20v0%20configs">Legacy v0 configs</a>
 </div>
 <div class="index-h2">
 <a href="#Quick%20start">Quick start</a>

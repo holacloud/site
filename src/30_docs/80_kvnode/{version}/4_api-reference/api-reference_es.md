@@ -27,8 +27,8 @@ Los endpoints de verificación de salud son públicos. Todos los demás endpoint
 
 | Estado | Código | Descripción |
 |--------|--------|-------------|
-| 400 | invalid_request | Cuerpo o parámetros de solicitud inválidos |
-| 401 | unauthorized | Autenticación faltante o inválida |
+| 400 | invalid_json | Cuerpo o parámetros de solicitud inválidos |
+| 403 | forbidden | Missing authentication headers |
 | 404 | not_found | Colección o clave no encontrada |
 | 409 | conflict | La colección ya existe |
 | 500 | internal_error | Error interno del servidor |

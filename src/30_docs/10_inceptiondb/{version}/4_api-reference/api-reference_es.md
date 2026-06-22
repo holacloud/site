@@ -1,38 +1,37 @@
-
 # Referencia de la API de InceptionDB
 
-URL Base: `https://api.hola.cloud`
+URL base: `https://api.hola.cloud`
 
 ## Autenticación
 
-Los endpoints de administración de InceptionDB requieren autenticación mediante dos cabeceras:
+Los endpoints de management `GET /v1/databases` y `POST /v1/databases` usan `X-Glue-Authentication`.
 
-- `Api-Key` — Su clave de API (UUID)
-- `Api-Secret` — Su secreto de API (UUID)
-- `X-Project` — Limita la solicitud a un proyecto específico
-
-Todas las solicitudes deben enviarse a través de HTTPS.
+Los endpoints de acceso a la base de datos usan `Api-Key` y `Api-Secret`. También se puede usar un token Glue de owner cuando el propietario de la base de datos está permitido.
 
 ## Endpoints
 
 | Método | Ruta | Descripción |
 |--------|------|-------------|
-| GET | `/v1/databases` | Listar todas las bases de datos |
-| POST | `/v1/databases` | Crear una nueva base de datos |
-| GET | `/v1/databases/{id}` | Obtener una base de datos por ID |
-| DELETE | `/v1/databases/{id}` | Eliminar una base de datos |
-| PATCH | `/v1/databases/{id}` | Actualizar una base de datos |
-| GET | `/v1/databases/{id}/collections` | Listar colecciones en una base de datos |
-| POST | `/v1/databases/{id}/collections` | Crear una colección |
-| POST | `/v1/databases/{id}/collections/{col}` | Operaciones con documentos (insertar, buscar, eliminar, modificar) |
+| GET | `/v1/databases` | Listar bases de datos |
+| POST | `/v1/databases` | Crear una base de datos |
+| GET | `/v1/databases/{databaseId}` | Obtener una base de datos por ID |
+| DELETE | `/v1/databases/{databaseId}` | Eliminar una base de datos |
+| PATCH | `/v1/databases/{databaseId}` | Actualizar una base de datos |
+| GET | `/v1/databases/{databaseId}/collections` | Listar colecciones de una base de datos |
+| POST | `/v1/databases/{databaseId}/collections` | Crear una colección |
+| POST | `/v1/databases/{databaseId}/collections/{collection}:insert` | Insertar documentos |
+| POST | `/v1/databases/{databaseId}/collections/{collection}:find` | Buscar documentos |
+| POST | `/v1/databases/{databaseId}/collections/{collection}:patch` | Modificar documentos |
+| POST | `/v1/databases/{databaseId}/collections/{collection}:remove` | Eliminar documentos |
+| GET | `/v1/databases/{databaseId}/collections/{collection}/documents/{documentId}` | Obtener un documento por ID |
 
-## Códigos de Error Comunes
+## Códigos de error comunes
 
 | Código | Descripción |
 |--------|-------------|
-| 400 | Solicitud incorrecta — sintaxis mal formada o parámetros inválidos |
-| 401 | No autorizado — credenciales de API faltantes o inválidas |
-| 403 | Prohibido — las credenciales no tienen acceso al recurso |
-| 404 | No encontrado — el recurso solicitado no existe |
-| 409 | Conflicto — el recurso ya existe |
+| 400 | Solicitud incorrecta: sintaxis o parámetros inválidos |
+| 401 | No autorizado: credenciales faltantes o inválidas |
+| 403 | Prohibido: las credenciales no tienen acceso al recurso |
+| 404 | No encontrado: el recurso solicitado no existe |
+| 409 | Conflicto: el recurso ya existe |
 | 500 | Error interno del servidor |

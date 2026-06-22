@@ -32,7 +32,7 @@
 
 | 状态 | 代码 | 描述 |
 |------|------|------|
-| 400 | invalid_request | 请求体或参数无效 |
+| 400 | validation_error | 请求体或参数无效 |
 | 401 | unauthorized | 缺少或无效的 API 密钥 |
 | 404 | not_found | 未找到调度器或任务 |
 | 409 | conflict | 任务已被预留或租约冲突 |

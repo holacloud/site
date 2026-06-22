@@ -1,35 +1,33 @@
 # Delete File
 
-Delete a file from a bucket. The file path is specified after `/files/` in the URL.
+Delete a file from a bucket. The file path is specified after `/files/`.
 
 ## Authentication
 
-Requires `Api-Key` and `Api-Secret` headers.
+Requires `X-Glue-Authentication`.
 
 ## Path Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `id` | string | The bucket ID (e.g., `bkt_abc123`) |
+| `bucket_id` | string | The bucket ID |
+| `*` | string | File path |
 
 ## Request
 
 ```bash
-curl -X DELETE "https://api.hola.cloud/v1/buckets/bkt_abc123/files/images/logo.png" \
-  -H "Api-Key: YOUR_API_KEY" \
-  -H "Api-Secret: YOUR_API_SECRET"
+curl -X DELETE "https://api.hola.cloud/v1/buckets/bucket-550e8400-e29b-41d4-a716-446655440000/files/images/logo.png" \
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}'
 ```
 
 ## Response
 
-```http
-HTTP/1.1 204 No Content
-```
+Returns an empty successful response when the file is removed.
 
 ## Error Codes
 
-| Status | Code | Description |
-|--------|------|-------------|
-| 401 | Unauthorized | Missing or invalid API credentials |
-| 404 | Not Found | The specified bucket or file does not exist |
-| 500 | Internal Server Error | An unexpected error occurred |
+| Status | Description |
+|--------|-------------|
+| 401 | Missing or invalid `X-Glue-Authentication` |
+| 404 | File not found |
+| 500 | Persistence or filesystem error |

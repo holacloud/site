@@ -140,7 +140,7 @@
 <div class="item"><a href="/docs/files/v2/api-reference/delete-bucket/index.html">Delete Bucket</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/delete-file/index.html">Delete File</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/download-file/index.html">Download File</a></div>
-<div class="item"><a href="/docs/files/v2/api-reference/file-metadata/index.html">File Metadata</a></div>
+<div class="item"><a href="/docs/files/v2/api-reference/file-metadata/index.html">File Headers</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/get-bucket/index.html">Get Bucket</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/list-buckets/index.html">List Buckets</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/list-files/index.html">List Files</a></div>
@@ -163,11 +163,11 @@
 <div class="item"><a href="/docs/config/v2/api-reference/update-user-config/index.html">Update User Config</a></div>
 </div>
 </div>
-<div class="item"><a href="/docs/logs/index.html">Logs</a></div>
+<div class="item"><a href="/docs/logs/index.html">InstantLogs</a></div>
 <div class="children">
 <div class="item"><a href="/docs/logs/v2/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/logs/v2/ingesting-logs/index.html">Ingesting Logs</a></div>
-<div class="item"><a href="/docs/logs/v2/streaming-filtering/index.html">Streaming Filtering</a></div>
+<div class="item"><a href="/docs/logs/v2/streaming-filtering/index.html">Streaming and Filtering</a></div>
 <div class="item"><a href="/docs/logs/v2/api-reference/index.html">InstantLogs API Reference</a></div>
 <div class="children">
 <div class="item"><a href="/docs/logs/v2/api-reference/create-logger/index.html">Create Logger</a></div>
@@ -183,11 +183,11 @@
 <div class="item"><a href="/docs/logs/v2/api-reference/stream-events/index.html">Stream Events</a></div>
 </div>
 </div>
-<div class="item"><a href="/docs/queues/index.html">Queues</a></div>
+<div class="item"><a href="/docs/queues/index.html">Tailon Queues</a></div>
 <div class="children">
 <div class="item"><a href="/docs/queues/v2/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/queues/v2/managing-queues/index.html">Managing Queues</a></div>
-<div class="item"><a href="/docs/queues/v2/producing-consuming/index.html">Producing Consuming</a></div>
+<div class="item"><a href="/docs/queues/v2/producing-consuming/index.html">Producing and Consuming</a></div>
 <div class="item"><a href="/docs/queues/v2/api-reference/index.html">Tailon API Reference</a></div>
 <div class="children">
 <div class="item"><a href="/docs/queues/v2/api-reference/create-queue/index.html">Create Queue</a></div>
@@ -241,7 +241,7 @@
 <div class="item"><a href="/docs/kvnode/v2/api-reference/readiness-check/index.html">Readiness Check</a></div>
 <div class="item"><a href="/docs/kvnode/v2/api-reference/set-key/index.html">Set Key</a></div>
 </div>
-<div class="item"><a href="/docs/kvnode/v2/sdk-reference/index.html">Sdk Reference</a></div>
+<div class="item"><a href="/docs/kvnode/v2/sdk-reference/index.html">SDK Reference</a></div>
 </div>
 <div class="item active"><a href="/docs/console/index.html">Console</a></div>
 <div class="children">
@@ -249,7 +249,7 @@
 <div class="item"><a href="/docs/console/v2/managing-projects/index.html">Managing Projects and Services</a></div>
 <div class="item"><a href="/docs/console/v2/api-reference/index.html">Console API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/console/v2/api-reference/fake-api/index.html">Fake Api</a></div>
+<div class="item"><a href="/docs/console/v2/api-reference/fake-api/index.html">Fake API</a></div>
 <div class="item"><a href="/docs/console/v2/api-reference/get-version/index.html">Get Version</a></div>
 </div>
 </div>
@@ -272,7 +272,7 @@
 <div class="item"><a href="/docs/holamail/v2/sending-email/index.html">Sending Email</a></div>
 <div class="item"><a href="/docs/holamail/v2/api-reference/index.html">Holamail API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/holamail/v2/api-reference/smtp-reference/index.html">Smtp Reference</a></div>
+<div class="item"><a href="/docs/holamail/v2/api-reference/smtp-reference/index.html">SMTP Reference</a></div>
 </div>
 </div>
 <div class="item"><a href="/docs/run/index.html">Run</a></div>
@@ -286,8 +286,8 @@
 <div class="item"><a href="/docs/run/v2/api-reference/rollback-image/index.html">Rollback Image</a></div>
 <div class="item"><a href="/docs/run/v2/api-reference/save-environment/index.html">Save Environment</a></div>
 <div class="item"><a href="/docs/run/v2/api-reference/save-volumes/index.html">Save Volumes</a></div>
-<div class="item"><a href="/docs/run/v2/api-reference/start-container/index.html">Start Container</a></div>
-<div class="item"><a href="/docs/run/v2/api-reference/stop-container/index.html">Stop Container</a></div>
+<div class="item"><a href="/docs/run/v2/api-reference/start-container/index.html">Start Repository</a></div>
+<div class="item"><a href="/docs/run/v2/api-reference/stop-container/index.html">Stop Repository</a></div>
 </div>
 </div>
 
@@ -302,16 +302,14 @@
 <h2 id="Logging%20In">Logging In</h2>
 <p>Navigate to <a href="https://console.hola.cloud">https://console.hola.cloud</a> and sign in with your HolaCloud account credentials. If you are using demo or development mode, mock API endpoints are active, allowing you to explore all features without a real backend.</p>
 <pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span><span style="color:#586e75"># Example: check login session via the mock API</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>curl -X GET <span style="color:#2aa198">&#34;https://console.hola.cloud/api/v1/session&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Authorization: Bearer &lt;your-token&gt;&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>curl -X GET <span style="color:#2aa198">&#34;https://console.hola.cloud/fakeapi/authapi/auth/me&#34;</span>
 </span></span></code></pre></code></pre>
 <p>Expected response:</p>
 <pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  <span style="color:#268bd2">&#34;user&#34;</span>: <span style="color:#2aa198">&#34;demo@holacloud.com&#34;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  <span style="color:#268bd2">&#34;project&#34;</span>: <span style="color:#2aa198">&#34;default&#34;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>  <span style="color:#268bd2">&#34;role&#34;</span>: <span style="color:#2aa198">&#34;admin&#34;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>  <span style="color:#268bd2">&#34;authenticated&#34;</span>: <span style="color:#cb4b16">true</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  <span style="color:#268bd2">&#34;email&#34;</span>: <span style="color:#2aa198">&#34;fulanez@gmail.com&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;user-1234&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>  <span style="color:#268bd2">&#34;nick&#34;</span>: <span style="color:#2aa198">&#34;fulanez&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>}
 </span></span></code></pre></code></pre>
 <h2 id="Navigating%20the%20Dashboard">Navigating the Dashboard</h2>
 <p>After logging in, the main dashboard displays:</p>
@@ -321,33 +319,16 @@
 <li><strong>Key Metrics</strong> — usage summaries such as request counts, storage size, and function invocations.</li>
 </ul>
 <p>Use the left sidebar to jump between sections: Dashboard, Databases, Functions, Files, Config, Logs, Queues, Scheduler, and Project Settings.</p>
-<h2 id="Viewing%20Service%20Status%20and%20Recent%20Activity">Viewing Service Status and Recent Activity</h2>
-<p>Each service card on the dashboard shows its current status (operational, degraded, or down). Click a card to drill into the detailed view of that service. The recent activity feed is filterable by service type and time range.</p>
-<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span><span style="color:#586e75"># Fetch project activity via the mock API</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>curl -X GET <span style="color:#2aa198">&#34;https://console.hola.cloud/api/v1/projects/default/activity&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Authorization: Bearer &lt;your-token&gt;&#34;</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>
-</span></span></code></pre></code></pre>
-<pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  <span style="color:#268bd2">&#34;activities&#34;</span>: [
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>    { <span style="color:#268bd2">&#34;type&#34;</span>: <span style="color:#2aa198">&#34;database.create&#34;</span>, <span style="color:#268bd2">&#34;service&#34;</span>: <span style="color:#2aa198">&#34;inceptiondb&#34;</span>, <span style="color:#268bd2">&#34;timestamp&#34;</span>: <span style="color:#2aa198">&#34;2026-06-20T10:30:00Z&#34;</span> },
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>    { <span style="color:#268bd2">&#34;type&#34;</span>: <span style="color:#2aa198">&#34;function.invoke&#34;</span>,  <span style="color:#268bd2">&#34;service&#34;</span>: <span style="color:#2aa198">&#34;lambda&#34;</span>,      <span style="color:#268bd2">&#34;timestamp&#34;</span>: <span style="color:#2aa198">&#34;2026-06-20T10:28:00Z&#34;</span> },
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>    { <span style="color:#268bd2">&#34;type&#34;</span>: <span style="color:#2aa198">&#34;file.upload&#34;</span>,      <span style="color:#268bd2">&#34;service&#34;</span>: <span style="color:#2aa198">&#34;files&#34;</span>,       <span style="color:#268bd2">&#34;timestamp&#34;</span>: <span style="color:#2aa198">&#34;2026-06-20T10:25:00Z&#34;</span> }
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>  ]
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7">7</a></span><span>}
-</span></span></code></pre></code></pre>
+<h2 id="Viewing%20Service%20Status">Viewing Service Status</h2>
+<p>Each service card on the dashboard shows the data returned by the configured service APIs. Project activity APIs are not exposed by the current Console fake API.</p>
 <h2 id="Switching%20Between%20Projects">Switching Between Projects</h2>
-<p>If you belong to multiple projects, use the project selector at the top of the sidebar. The entire UI switches context to the selected project, including services, billing, and team members.</p>
+<p>If you belong to multiple projects, use the project selector at the top of the sidebar. The entire UI switches context to the selected project and its services.</p>
 <pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span><span style="color:#586e75"># List available projects</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>curl -X GET <span style="color:#2aa198">&#34;https://console.hola.cloud/api/v1/projects&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Authorization: Bearer &lt;your-token&gt;&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>curl -X GET <span style="color:#2aa198">&#34;https://console.hola.cloud/fakeapi/projectsapi/v0/projects&#34;</span>
 </span></span></code></pre></code></pre>
-<pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  <span style="color:#268bd2">&#34;projects&#34;</span>: [
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>    { <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;default&#34;</span>, <span style="color:#268bd2">&#34;name&#34;</span>: <span style="color:#2aa198">&#34;Default Project&#34;</span>, <span style="color:#268bd2">&#34;role&#34;</span>: <span style="color:#2aa198">&#34;admin&#34;</span> },
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>    { <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;staging&#34;</span>, <span style="color:#268bd2">&#34;name&#34;</span>: <span style="color:#2aa198">&#34;Staging Environment&#34;</span>, <span style="color:#268bd2">&#34;role&#34;</span>: <span style="color:#2aa198">&#34;developer&#34;</span> }
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>  ]
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>}
+<pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>[
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  { <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;project-00000000-0000-0000-0000-000000000001&#34;</span>, <span style="color:#268bd2">&#34;name&#34;</span>: <span style="color:#2aa198">&#34;Hello&#34;</span> }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>]
 </span></span></code></pre></code></pre>
 <h2 id="Accessing%20Documentation%20and%20Support">Accessing Documentation and Support</h2>
 <p>The Console includes a built-in help menu (question-mark icon in the top bar) with links to:</p>
@@ -389,7 +370,7 @@
 <a href="#Navigating%20the%20Dashboard">Navigating the Dashboard</a>
 </div>
 <div class="index-h2">
-<a href="#Viewing%20Service%20Status%20and%20Recent%20Activity">Viewing Service Status and Recent Activity</a>
+<a href="#Viewing%20Service%20Status">Viewing Service Status</a>
 </div>
 <div class="index-h2">
 <a href="#Switching%20Between%20Projects">Switching Between Projects</a>

@@ -1,131 +1,105 @@
-
 # Working with Data
 
-This document explains how to insert, list, modify, and delete documents in a collection. It also includes how to filter data when listing.
+Document operations are collection actions. Use `Api-Key` and `Api-Secret` headers for database access, or a Glue owner token where the database owner is allowed.
 
-## Inserting Documents
-
-### Insert a Single Document
-
-To insert a single document into a collection, use the following HTTP request:
+## Insert Documents
 
 ```http
-POST /databases/{database}/collections/{collection}/documents
+POST /v1/databases/{databaseId}/collections/{collection}:insert
+Content-Type: application/jsonl
+Api-Key: your-api-key
+Api-Secret: your-api-secret
+
+{"id":"1","name":"Alice"}
+{"id":"2","name":"Bob"}
+```
+
+The response is the inserted documents as JSONL.
+
+```jsonl
+{"id":"1","name":"Alice"}
+{"id":"2","name":"Bob"}
+```
+
+## Find Documents
+
+```http
+POST /v1/databases/{databaseId}/collections/{collection}:find
 Content-Type: application/json
-X-API-Key: your-api-key
+Api-Key: your-api-key
+Api-Secret: your-api-secret
 
 {
-  "document": {
-    "key1": "value1",
-    "key2": "value2"
+  "filter": {
+    "name": "Alice"
   }
 }
 ```
 
-### Insert Multiple Documents
+The response is matching documents as JSONL.
 
-To insert multiple documents into a collection, use the following HTTP request:
+```jsonl
+{"id":"1","name":"Alice"}
+```
+
+## Get a Document by ID
 
 ```http
-POST /databases/{database}/collections/{collection}/documents/bulk
-Content-Type: application/json
-X-API-Key: your-api-key
+GET /v1/databases/{databaseId}/collections/{collection}/documents/{documentId}
+Api-Key: your-api-key
+Api-Secret: your-api-secret
+```
 
+The response is the document JSON.
+
+```json
 {
-  "documents": [
-    {
-      "key1": "value1",
-      "key2": "value2"
-    },
-    {
-      "key1": "value3",
-      "key2": "value4"
-    }
-  ]
+  "id": "1",
+  "name": "Alice"
 }
 ```
 
-## Listing Documents
-
-### List All Documents (Full Scan)
-
-To list all documents in a collection, use the following HTTP request:
+## Patch Documents
 
 ```http
-GET /databases/{database}/collections/{collection}/documents
-X-API-Key: your-api-key
-```
-
-### List Documents by Unique Index
-
-To list documents using a unique index, use the following HTTP request:
-
-```http
-GET /databases/{database}/collections/{collection}/documents?filter={"key":"value"}
-X-API-Key: your-api-key
-```
-
-### List Documents with a Limit
-
-To list documents with a specific limit, use the following HTTP request:
-
-```http
-GET /databases/{database}/collections/{collection}/documents?limit=10
-X-API-Key: your-api-key
-```
-
-## Modifying Documents
-
-### Modify Documents by Full Scan
-
-To modify documents by a full scan, use the following HTTP request:
-
-```http
-PATCH /databases/{database}/collections/{collection}/documents
+POST /v1/databases/{databaseId}/collections/{collection}:patch
 Content-Type: application/json
-X-API-Key: your-api-key
+Api-Key: your-api-key
+Api-Secret: your-api-secret
 
 {
-  "filter": {"key": "value"},
-  "update": {"$set": {"key": "new_value"}}
+  "filter": {
+    "id": "1"
+  },
+  "patch": {
+    "name": "Alice Updated"
+  }
 }
 ```
 
-### Modify Documents by Index
+The response is patched documents as JSONL.
 
-To modify documents using an index, use the following HTTP request:
+```jsonl
+{"id":"1","name":"Alice Updated"}
+```
+
+## Remove Documents
 
 ```http
-PATCH /databases/{database}/collections/{collection}/documents?filter={"key":"value"}
+POST /v1/databases/{databaseId}/collections/{collection}:remove
 Content-Type: application/json
-X-API-Key: your-api-key
+Api-Key: your-api-key
+Api-Secret: your-api-secret
 
 {
-  "update": {"$set": {"key": "new_value"}}
+  "filter": {
+    "id": "1"
+  }
 }
 ```
 
-## Deleting Documents
+The response is removed documents as JSONL.
 
-### Delete Documents by Index
-
-To delete documents using an index, use the following HTTP request:
-
-```http
-DELETE /databases/{database}/collections/{collection}/documents?filter={"key":"value"}
-X-API-Key: your-api-key
-```
-
-### Delete Documents by Full Scan
-
-To delete documents by a full scan, use the following HTTP request:
-
-```http
-DELETE /databases/{database}/collections/{collection}/documents
-Content-Type: application/json
-X-API-Key: your-api-key
-
-{
-  "filter": {"key": "value"}
-}
+```jsonl
+{"id":"1","name":"Alice Updated"}
 ```

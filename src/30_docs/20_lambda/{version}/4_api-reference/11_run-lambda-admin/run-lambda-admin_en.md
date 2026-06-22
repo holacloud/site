@@ -1,29 +1,27 @@
-
 # Run Lambda (Admin)
 
-Invokes a lambda function using admin credentials. Requires authentication.
+Invokes a lambda through the authenticated admin route. The endpoint accepts any HTTP method.
 
 ## Authentication
 
-Requires `Api-Key` and `Api-Secret` headers.
+Requires `X-Glue-Authentication`.
 
 ## Path Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| id | uuid | The unique identifier of the lambda to run |
+| `lambda_id` | string | Lambda identifier |
 
 ## Request Body
 
-Any JSON payload you want to pass to the lambda function. The lambda receives it as the `req` parameter.
+Send any payload you want the lambda to receive as `req.body`.
 
 ## HTTP Request
 
 ```http
 POST /api/v0/run/f1a2b3c4-d5e6-7890-abcd-ef0123456789 HTTP/1.1
 Host: api.hola.cloud
-Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d
-Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf
+X-Glue-Authentication: YOUR_TOKEN
 Content-Type: application/json
 
 {
@@ -35,8 +33,7 @@ Content-Type: application/json
 
 ```bash
 curl -X POST "https://api.hola.cloud/api/v0/run/f1a2b3c4-d5e6-7890-abcd-ef0123456789" \
-  -H "Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d" \
-  -H "Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf" \
+  -H "X-Glue-Authentication: YOUR_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Alice"
@@ -45,9 +42,10 @@ curl -X POST "https://api.hola.cloud/api/v0/run/f1a2b3c4-d5e6-7890-abcd-ef012345
 
 ## Response
 
+The response is whatever the lambda handler returns.
+
 ```json
 {
-  "status": 200,
   "body": {
     "message": "Hello, Alice!"
   }
@@ -59,6 +57,6 @@ curl -X POST "https://api.hola.cloud/api/v0/run/f1a2b3c4-d5e6-7890-abcd-ef012345
 | Code | Description |
 |------|-------------|
 | 400 | Invalid request body |
-| 401 | Missing or invalid authentication headers |
-| 404 | Lambda not found or inactive |
+| 401 | Missing or invalid authentication |
+| 404 | Lambda not found |
 | 500 | Lambda execution error |

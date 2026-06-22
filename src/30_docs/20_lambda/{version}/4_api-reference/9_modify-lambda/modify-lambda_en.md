@@ -1,39 +1,40 @@
-
 # Modify Lambda
 
-Updates the code, runtime, or active status of an existing lambda function.
+Updates supported fields on an existing lambda.
 
 ## Authentication
 
-Requires `Api-Key` and `Api-Secret` headers.
+Requires `X-Glue-Authentication`.
 
 ## Path Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| id | uuid | The unique identifier of the lambda |
+| `lambda_id` | string | Lambda identifier |
 
 ## Request Body
 
 | Field | Type | Description |
 |-------|------|-------------|
-| name | string | New name (optional) |
-| runtime | string | New runtime (optional) |
-| code | string | New source code (optional) |
-| active | boolean | Whether the lambda is active (optional) |
+| `name` | string | New lambda name |
+| `language` | string | `javascript`, `static-html`, `static-css`, or `static-js` |
+| `code` | string | New source code or static content |
+| `method` | string | New HTTP method |
+| `path` | string | New HTTP path |
 
 ## HTTP Request
 
 ```http
 PATCH /api/v0/lambdas/f1a2b3c4-d5e6-7890-abcd-ef0123456789 HTTP/1.1
 Host: api.hola.cloud
-Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d
-Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf
+X-Glue-Authentication: YOUR_TOKEN
 Content-Type: application/json
 
 {
-  "code": "export default async (req) => { return { status: 200, body: { message: 'Updated lambda' } }; }",
-  "active": false
+  "name": "hello-updated",
+  "method": "POST",
+  "path": "/hello-updated",
+  "code": "export default (req) => ({ body: { message: 'Updated lambda', data: req.body } })"
 }
 ```
 
@@ -41,12 +42,13 @@ Content-Type: application/json
 
 ```bash
 curl -X PATCH "https://api.hola.cloud/api/v0/lambdas/f1a2b3c4-d5e6-7890-abcd-ef0123456789" \
-  -H "Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d" \
-  -H "Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf" \
+  -H "X-Glue-Authentication: YOUR_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
-    "code": "export default async (req) => { return { status: 200, body: { message: \"Updated lambda\" } }; }",
-    "active": false
+    "name": "hello-updated",
+    "method": "POST",
+    "path": "/hello-updated",
+    "code": "export default (req) => ({ body: { message: \"Updated lambda\", data: req.body } })"
   }'
 ```
 
@@ -55,10 +57,14 @@ curl -X PATCH "https://api.hola.cloud/api/v0/lambdas/f1a2b3c4-d5e6-7890-abcd-ef0
 ```json
 {
   "id": "f1a2b3c4-d5e6-7890-abcd-ef0123456789",
-  "name": "hello-world",
-  "runtime": "javascript",
-  "active": false,
-  "updated_at": "2025-07-02T09:15:00Z"
+  "created_timestamp": 1751378400,
+  "owner": "user_123",
+  "project_id": "project_456",
+  "name": "hello-updated",
+  "language": "javascript",
+  "code": "export default (req) => ({ body: { message: \"Updated lambda\", data: req.body } })",
+  "method": "POST",
+  "path": "/hello-updated"
 }
 ```
 
@@ -67,5 +73,5 @@ curl -X PATCH "https://api.hola.cloud/api/v0/lambdas/f1a2b3c4-d5e6-7890-abcd-ef0
 | Code | Description |
 |------|-------------|
 | 400 | Invalid request body |
-| 401 | Missing or invalid authentication headers |
+| 401 | Missing or invalid authentication |
 | 404 | Lambda not found |

@@ -140,7 +140,7 @@
 <div class="item"><a href="/docs/files/v2/api-reference/delete-bucket/index.html">Delete Bucket</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/delete-file/index.html">Delete File</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/download-file/index.html">Download File</a></div>
-<div class="item"><a href="/docs/files/v2/api-reference/file-metadata/index.html">File Metadata</a></div>
+<div class="item"><a href="/docs/files/v2/api-reference/file-metadata/index.html">File Headers</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/get-bucket/index.html">Get Bucket</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/list-buckets/index.html">List Buckets</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/list-files/index.html">List Files</a></div>
@@ -163,11 +163,11 @@
 <div class="item"><a href="/docs/config/v2/api-reference/update-user-config/index.html">Update User Config</a></div>
 </div>
 </div>
-<div class="item"><a href="/docs/logs/index.html">Logs</a></div>
+<div class="item"><a href="/docs/logs/index.html">InstantLogs</a></div>
 <div class="children">
 <div class="item"><a href="/docs/logs/v2/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/logs/v2/ingesting-logs/index.html">Ingesting Logs</a></div>
-<div class="item"><a href="/docs/logs/v2/streaming-filtering/index.html">Streaming Filtering</a></div>
+<div class="item"><a href="/docs/logs/v2/streaming-filtering/index.html">Streaming and Filtering</a></div>
 <div class="item"><a href="/docs/logs/v2/api-reference/index.html">InstantLogs API Reference</a></div>
 <div class="children">
 <div class="item"><a href="/docs/logs/v2/api-reference/create-logger/index.html">Create Logger</a></div>
@@ -183,11 +183,11 @@
 <div class="item"><a href="/docs/logs/v2/api-reference/stream-events/index.html">Stream Events</a></div>
 </div>
 </div>
-<div class="item"><a href="/docs/queues/index.html">Queues</a></div>
+<div class="item"><a href="/docs/queues/index.html">Tailon Queues</a></div>
 <div class="children">
 <div class="item"><a href="/docs/queues/v2/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/queues/v2/managing-queues/index.html">Managing Queues</a></div>
-<div class="item"><a href="/docs/queues/v2/producing-consuming/index.html">Producing Consuming</a></div>
+<div class="item"><a href="/docs/queues/v2/producing-consuming/index.html">Producing and Consuming</a></div>
 <div class="item"><a href="/docs/queues/v2/api-reference/index.html">Tailon API Reference</a></div>
 <div class="children">
 <div class="item"><a href="/docs/queues/v2/api-reference/create-queue/index.html">Create Queue</a></div>
@@ -241,7 +241,7 @@
 <div class="item"><a href="/docs/kvnode/v2/api-reference/readiness-check/index.html">Readiness Check</a></div>
 <div class="item"><a href="/docs/kvnode/v2/api-reference/set-key/index.html">Set Key</a></div>
 </div>
-<div class="item"><a href="/docs/kvnode/v2/sdk-reference/index.html">Sdk Reference</a></div>
+<div class="item"><a href="/docs/kvnode/v2/sdk-reference/index.html">SDK Reference</a></div>
 </div>
 <div class="item"><a href="/docs/console/index.html">Console</a></div>
 <div class="children">
@@ -249,7 +249,7 @@
 <div class="item"><a href="/docs/console/v2/managing-projects/index.html">Managing Projects and Services</a></div>
 <div class="item"><a href="/docs/console/v2/api-reference/index.html">Console API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/console/v2/api-reference/fake-api/index.html">Fake Api</a></div>
+<div class="item"><a href="/docs/console/v2/api-reference/fake-api/index.html">Fake API</a></div>
 <div class="item"><a href="/docs/console/v2/api-reference/get-version/index.html">Get Version</a></div>
 </div>
 </div>
@@ -272,7 +272,7 @@
 <div class="item"><a href="/docs/holamail/v2/sending-email/index.html">Sending Email</a></div>
 <div class="item"><a href="/docs/holamail/v2/api-reference/index.html">Holamail API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/holamail/v2/api-reference/smtp-reference/index.html">Smtp Reference</a></div>
+<div class="item"><a href="/docs/holamail/v2/api-reference/smtp-reference/index.html">SMTP Reference</a></div>
 </div>
 </div>
 <div class="item"><a href="/docs/run/index.html">Run</a></div>
@@ -286,8 +286,8 @@
 <div class="item"><a href="/docs/run/v2/api-reference/rollback-image/index.html">Rollback Image</a></div>
 <div class="item"><a href="/docs/run/v2/api-reference/save-environment/index.html">Save Environment</a></div>
 <div class="item"><a href="/docs/run/v2/api-reference/save-volumes/index.html">Save Volumes</a></div>
-<div class="item"><a href="/docs/run/v2/api-reference/start-container/index.html">Start Container</a></div>
-<div class="item"><a href="/docs/run/v2/api-reference/stop-container/index.html">Stop Container</a></div>
+<div class="item"><a href="/docs/run/v2/api-reference/start-container/index.html">Start Repository</a></div>
+<div class="item"><a href="/docs/run/v2/api-reference/stop-container/index.html">Stop Repository</a></div>
 </div>
 </div>
 
@@ -297,10 +297,10 @@
     
     <div class="document">
     <h1>Replication</h1>
-<p>KVNode achieves high availability through a <strong>leader-follower replication</strong> model. Changes written to a primary (leader) node are streamed in real time to replica (follower) nodes via an NDJSON-based replication protocol.</p>
+<p>KVNode streams changes from a parent node to child nodes via an NDJSON-based replication protocol.</p>
 <h2 id="How%20Replication%20Works">How Replication Works</h2>
 <ol>
-<li>A client writes a key-value pair to any node in the cluster.</li>
+<li>A client writes a key-value pair to a node.</li>
 <li>The receiving node persists the write in its WAL and applies it to the in-memory store.</li>
 <li>If the node has a <strong>parent</strong> configured, it forwards the write upstream via the <code>/v1/replicate</code> endpoint.</li>
 <li>If the node has <strong>children</strong>, it broadcasts the write to all connected replicas over the replication stream.</li>
@@ -317,33 +317,33 @@
 </thead>
 <tbody>
 <tr>
-<td><code>set</code></td>
+<td><code>SET</code></td>
 <td>A key was created or updated</td>
 </tr>
 <tr>
-<td><code>delete</code></td>
+<td><code>DELETE</code></td>
 <td>A key was removed</td>
 </tr>
 <tr>
-<td><code>baseline_begin</code></td>
+<td><code>BASELINE_BEGIN</code></td>
 <td>Start of a full collection snapshot</td>
 </tr>
 <tr>
-<td><code>baseline_end</code></td>
+<td><code>BASELINE_END</code></td>
 <td>End of a full collection snapshot</td>
 </tr>
 <tr>
-<td><code>ping</code></td>
+<td><code>PING</code></td>
 <td>Keep-alive heartbeat</td>
 </tr>
 </tbody>
 </table>
 <h3 id="Example:%20Replication%20Stream">Example: Replication Stream</h3>
-<pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{&#34;type&#34;:&#34;baseline_begin&#34;,&#34;collection&#34;:&#34;my-collection&#34;,&#34;seq&#34;:0}
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>{&#34;type&#34;:&#34;set&#34;,&#34;collection&#34;:&#34;my-collection&#34;,&#34;key&#34;:&#34;user:alice&#34;,&#34;value&#34;:{&#34;role&#34;:&#34;admin&#34;},&#34;version&#34;:1,&#34;timestamp&#34;:1700000000}
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>{&#34;type&#34;:&#34;baseline_end&#34;,&#34;collection&#34;:&#34;my-collection&#34;,&#34;seq&#34;:1}
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>{&#34;type&#34;:&#34;set&#34;,&#34;collection&#34;:&#34;my-collection&#34;,&#34;key&#34;:&#34;user:bob&#34;,&#34;value&#34;:{&#34;role&#34;:&#34;user&#34;},&#34;version&#34;:1,&#34;timestamp&#34;:1700000001}
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>{&#34;type&#34;:&#34;ping&#34;,&#34;timestamp&#34;:1700000010}
+<pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{&#34;type&#34;:&#34;BASELINE_BEGIN&#34;,&#34;collection&#34;:&#34;my-collection&#34;,&#34;snapshotSeq&#34;:1}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>{&#34;type&#34;:&#34;SET&#34;,&#34;collection&#34;:&#34;my-collection&#34;,&#34;seq&#34;:1,&#34;key&#34;:&#34;user:alice&#34;,&#34;value&#34;:{&#34;role&#34;:&#34;admin&#34;},&#34;version&#34;:1,&#34;timestamp&#34;:1700000000}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>{&#34;type&#34;:&#34;BASELINE_END&#34;,&#34;collection&#34;:&#34;my-collection&#34;,&#34;snapshotSeq&#34;:1}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>{&#34;type&#34;:&#34;SET&#34;,&#34;collection&#34;:&#34;my-collection&#34;,&#34;seq&#34;:2,&#34;key&#34;:&#34;user:bob&#34;,&#34;value&#34;:{&#34;role&#34;:&#34;user&#34;},&#34;version&#34;:1,&#34;timestamp&#34;:1700000001}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>{&#34;type&#34;:&#34;PING&#34;,&#34;timestamp&#34;:1700000010}
 </span></span></code></pre></code></pre>
 <h2 id="Node%20Status">Node Status</h2>
 <p>The <code>/v1/status</code> endpoint exposes the replication topology:</p>

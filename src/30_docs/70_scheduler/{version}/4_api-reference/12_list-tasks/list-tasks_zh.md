@@ -38,25 +38,15 @@ Content-Type: application/json
 
 ```json
 {
-  "scheduled": {
-    "tasks": [
+  "scheduled": [
       {
-        "id": "task-x1y2z3",
-        "state": "pending",
-        "available_at": "2025-06-21T12:01:01Z",
-        "labels": { "project": "onboarding", "priority": "high" }
+        "id": "task-x1y2z3",      "future": "2025-06-21T12:01:01Z",
+        "labels": ["project:onboarding", "priority:high"]
       }
-    ],
-    "total": 1,
-    "page": 1,
-    "per_page": 20
-  },
-  "inflight": {
-    "tasks": [],
-    "total": 0,
-    "page": 1,
-    "per_page": 20
-  }
+  ],
+  "inflight": [],
+  "scheduled_meta": { "total": 1, "page": 1, "per_page": 25, "total_pages": 1 },
+  "inflight_meta": { "total": 0, "page": 1, "per_page": 25, "total_pages": 0 }
 }
 ```
 

@@ -4,7 +4,7 @@
 
 ## 描述
 
-控制台 UI 使用此端点在应用程序页脚和诊断页面中显示版本信息。无需身份验证。
+此端点以纯文本返回配置的控制台版本。无需身份验证。
 
 ## 身份验证
 
@@ -22,12 +22,8 @@ curl -X GET "https://api.hola.cloud/version"
 
 ## 响应
 
-```json
-{
-  "version": "1.0.0",
-  "build": "20260601-abcdef",
-  "mode": "development"
-}
+```text
+1.0.0
 ```
 
 ## 错误码

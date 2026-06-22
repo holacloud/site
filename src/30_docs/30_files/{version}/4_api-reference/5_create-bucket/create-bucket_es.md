@@ -1,61 +1,40 @@
 # Crear Bucket
 
-Crear un nuevo bucket. El nombre del bucket debe ser único globalmente en todas las cuentas.
+Crea un bucket para el usuario autenticado.
 
 ## Autenticación
 
-Requiere los encabezados `Api-Key` y `Api-Secret`.
+Requiere `X-Glue-Authentication`.
 
-## Cuerpo de la Solicitud
+## Cuerpo de Solicitud
 
 ```json
 {
-  "name": "mi-nuevo-bucket",
-  "public": false
+  "name": "mi-bucket",
+  "description": "Descripción opcional"
 }
 ```
 
-| Campo | Tipo | Requerido | Descripción |
-|-------|------|-----------|-------------|
-| `name` | string | sí | Nombre único global (3-63 caracteres, minúsculas, números y guiones) |
-| `public` | boolean | no | Si los archivos pueden accederse sin autenticación (por defecto: `false`) |
+Campos: `name` y `description`.
 
 ## Solicitud
 
 ```bash
 curl -X POST "https://api.hola.cloud/v1/buckets" \
-  -H "Api-Key: SU_API_KEY" \
-  -H "Api-Secret: SU_API_SECRET" \
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}' \
   -H "Content-Type: application/json" \
-  -d '{
-    "name": "mi-nuevo-bucket",
-    "public": false
-  }'
+  -d '{"name":"mi-bucket","description":"Descripción opcional"}'
 ```
 
 ## Respuesta
 
-```http
-HTTP/1.1 201 Created
-Content-Type: application/json
-```
-
 ```json
 {
-  "id": "bkt_xyz789",
-  "name": "mi-nuevo-bucket",
-  "createdAt": "2026-06-21T12:00:00Z",
-  "size": 0,
-  "fileCount": 0,
-  "public": false
+  "id": "bucket-550e8400-e29b-41d4-a716-446655440000",
+  "project_id": "",
+  "created_timestamp": 1782045600000000000,
+  "owners": ["user-123"],
+  "name": "mi-bucket",
+  "description": "Descripción opcional"
 }
 ```
-
-## Códigos de Error
-
-| Estado | Código | Descripción |
-|--------|--------|-------------|
-| 400 | Bad Request | Nombre de bucket inválido o campos requeridos faltantes |
-| 401 | Unauthorized | Credenciales API faltantes o inválidas |
-| 409 | Conflict | Ya existe un bucket con este nombre |
-| 500 | Internal Server Error | Ocurrió un error inesperado |

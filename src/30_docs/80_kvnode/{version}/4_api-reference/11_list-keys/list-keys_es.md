@@ -35,19 +35,21 @@ Content-Type: application/json
 
 ```json
 {
-  "keys": [
+  "items": [
     {
       "key": "usuario:1001",
-      "created_at": "2025-06-15T10:00:00Z",
-      "updated_at": "2025-06-20T15:30:00Z"
+      "value": { "name": "Alice" },
+      "version": 1,
+      "updatedAt": "2025-06-20T15:30:00Z"
     },
     {
       "key": "usuario:1002",
-      "created_at": "2025-06-16T09:00:00Z",
-      "updated_at": "2025-06-21T08:00:00Z"
+      "value": { "name": "Bob" },
+      "version": 1,
+      "updatedAt": "2025-06-21T08:00:00Z"
     }
   ],
-  "total": 2
+  "next": "user:1002"
 }
 ```
 
@@ -55,6 +57,6 @@ Content-Type: application/json
 
 | Estado | Código | Descripción |
 |--------|--------|-------------|
-| 401 | unauthorized | Autenticación faltante o inválida |
+| 403 | forbidden | Missing authentication headers |
 | 404 | not_found | Colección no encontrada |
 | 500 | internal_error | Error interno del servidor |

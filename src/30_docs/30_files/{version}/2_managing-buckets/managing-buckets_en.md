@@ -1,228 +1,88 @@
 # Managing Buckets
 
-Buckets are the fundamental containers in HolaCloud Files. This guide covers all bucket operations: creating, listing, inspecting, modifying, and deleting.
+Buckets are containers for files. The implemented bucket operations are create, list, get, and delete.
 
-## Bucket Naming Rules
+## Bucket Input
 
-When creating a bucket, the name must follow these rules:
+`POST /v1/buckets` accepts `name` and `description`.
 
-- Must be between 3 and 63 characters long
-- Can only contain lowercase letters, numbers, and hyphens (-)
-- Must start and end with a letter or number
-- Must not be formatted like an IP address
-- Must be globally unique across all HolaCloud customers
+- `name` is trimmed, may be empty, and can contain letters, digits, `_`, and `-` up to 64 characters.
+- `description` can be up to 4096 characters.
+- If `name` is empty, the generated bucket ID is used as the name.
 
-## Creating a Bucket
-
-Create a new bucket with a POST request:
+## Create a Bucket
 
 ```bash
 curl -X POST "https://api.hola.cloud/v1/buckets" \
-  -H "Api-Key: YOUR_API_KEY" \
-  -H "Api-Secret: YOUR_API_SECRET" \
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}' \
   -H "Content-Type: application/json" \
-  -d '{
-    "name": "my-assets-bucket",
-    "metadata": {
-      "environment": "production",
-      "project": "my-app"
-    }
-  }'
+  -d '{"name":"assets","description":"Application assets"}'
 ```
 
-HTTP request equivalent:
-
-```http
-POST /v1/buckets HTTP/1.1
-Host: api.hola.cloud
-Api-Key: YOUR_API_KEY
-Api-Secret: YOUR_API_SECRET
-Content-Type: application/json
-
-{
-  "name": "my-assets-bucket",
-  "metadata": {
-    "environment": "production",
-    "project": "my-app"
-  }
-}
-```
-
-Expected response (HTTP 201):
+Response:
 
 ```json
 {
-  "id": "bkt_xyz789",
-  "name": "my-assets-bucket",
-  "metadata": {
-    "environment": "production",
-    "project": "my-app"
-  },
-  "createdAt": "2026-06-21T10:00:00Z",
-  "size": 0,
-  "fileCount": 0
+  "id": "bucket-550e8400-e29b-41d4-a716-446655440000",
+  "project_id": "",
+  "created_timestamp": 1782045600000000000,
+  "owners": ["user-123"],
+  "name": "assets",
+  "description": "Application assets"
 }
 ```
 
-## Listing Buckets
-
-List all buckets in your account:
+## List Buckets
 
 ```bash
 curl "https://api.hola.cloud/v1/buckets" \
-  -H "Api-Key: YOUR_API_KEY" \
-  -H "Api-Secret: YOUR_API_SECRET"
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}'
 ```
 
-Expected response:
+Response:
 
 ```json
 [
   {
-    "id": "bkt_abc123",
-    "name": "my-first-bucket",
-    "createdAt": "2026-06-21T09:00:00Z",
-    "size": 1024,
-    "fileCount": 3
-  },
-  {
-    "id": "bkt_xyz789",
-    "name": "my-assets-bucket",
-    "createdAt": "2026-06-21T10:00:00Z",
-    "size": 0,
-    "fileCount": 0
+    "id": "bucket-550e8400-e29b-41d4-a716-446655440000",
+    "name": "assets",
+    "description": "Application assets",
+    "created_timestamp": 1782045600000000000,
+    "created_h": "2026-06-21T10:00:00Z",
+    "owners": ["user-123"]
   }
 ]
 ```
 
-## Getting Bucket Details
-
-Retrieve detailed information about a specific bucket by its ID:
+## Get Bucket Details
 
 ```bash
-curl "https://api.hola.cloud/v1/buckets/bkt_xyz789" \
-  -H "Api-Key: YOUR_API_KEY" \
-  -H "Api-Secret: YOUR_API_SECRET"
+curl "https://api.hola.cloud/v1/buckets/bucket-550e8400-e29b-41d4-a716-446655440000" \
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}'
 ```
 
-Expected response:
+Response:
 
 ```json
 {
-  "id": "bkt_xyz789",
-  "name": "my-assets-bucket",
-  "metadata": {
-    "environment": "production",
-    "project": "my-app"
-  },
-  "createdAt": "2026-06-21T10:00:00Z",
-  "modifiedAt": "2026-06-21T10:00:00Z",
-  "size": 0,
-  "fileCount": 0
+  "id": "bucket-550e8400-e29b-41d4-a716-446655440000",
+  "project_id": "",
+  "created_timestamp": 1782045600000000000,
+  "owners": ["user-123"],
+  "name": "assets",
+  "description": "Application assets"
 }
 ```
 
-## Modifying a Bucket
+## Modify Bucket
 
-Update bucket metadata using PATCH:
+`PATCH /v1/buckets/{bucket_id}` is registered but not implemented.
+
+## Delete Bucket
 
 ```bash
-curl -X PATCH "https://api.hola.cloud/v1/buckets/bkt_xyz789" \
-  -H "Api-Key: YOUR_API_KEY" \
-  -H "Api-Secret: YOUR_API_SECRET" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "metadata": {
-      "environment": "staging"
-    }
-  }'
+curl -X DELETE "https://api.hola.cloud/v1/buckets/bucket-550e8400-e29b-41d4-a716-446655440000" \
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}'
 ```
 
-Expected response:
-
-```json
-{
-  "id": "bkt_xyz789",
-  "name": "my-assets-bucket",
-  "metadata": {
-    "environment": "staging",
-    "project": "my-app"
-  },
-  "createdAt": "2026-06-21T10:00:00Z",
-  "modifiedAt": "2026-06-21T11:00:00Z",
-  "size": 0,
-  "fileCount": 0
-}
-```
-
-## Deleting a Bucket
-
-A bucket must be **empty** (contain no files) before it can be deleted.
-
-```bash
-curl -X DELETE "https://api.hola.cloud/v1/buckets/bkt_xyz789" \
-  -H "Api-Key: YOUR_API_KEY" \
-  -H "Api-Secret: YOUR_API_SECRET"
-```
-
-Expected response: HTTP 204 No Content.
-
-### Error: Bucket Not Empty
-
-If you attempt to delete a bucket that still contains files, you will receive:
-
-```json
-{
-  "error": {
-    "code": "BUCKET_NOT_EMPTY",
-    "message": "Cannot delete bucket 'my-assets-bucket': the bucket contains 3 file(s). Please delete all files before deleting the bucket."
-  }
-}
-```
-
-## Error Handling
-
-### Duplicate Bucket Name
-
-```json
-{
-  "error": {
-    "code": "BUCKET_ALREADY_EXISTS",
-    "message": "A bucket with the name 'my-assets-bucket' already exists."
-  }
-}
-```
-
-### Invalid Bucket Name
-
-```json
-{
-  "error": {
-    "code": "INVALID_BUCKET_NAME",
-    "message": "Bucket name must be between 3 and 63 characters, contain only lowercase letters, numbers, and hyphens, and start/end with a letter or number."
-  }
-}
-```
-
-### Bucket Not Found
-
-```json
-{
-  "error": {
-    "code": "BUCKET_NOT_FOUND",
-    "message": "Bucket 'bkt_nonexistent' not found."
-  }
-}
-```
-
-## HTTP Status Code Summary
-
-| Code | Description |
-|------|-------------|
-| 200 | Success (GET, PATCH) |
-| 201 | Created (POST) |
-| 204 | No Content (DELETE) |
-| 400 | Bad Request -- invalid input |
-| 404 | Not Found -- bucket does not exist |
-| 409 | Conflict -- bucket already exists or not empty |
-| 500 | Internal Server Error |
+The response body is the deleted bucket object.

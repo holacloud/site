@@ -38,24 +38,25 @@ Content-Type: application/json
 
 ```json
 {
-  "scheduled": {
-    "tasks": [
-      {
-        "id": "task-x1y2z3",
-        "state": "pending",
-        "available_at": "2025-06-21T12:01:01Z",
-        "labels": { "project": "onboarding", "priority": "high" }
-      }
-    ],
+  "scheduled": [
+    {
+      "id": "task-x1y2z3",
+      "future": "2025-06-21T12:01:01Z",
+      "labels": ["project:onboarding", "priority:high"]
+    }
+  ],
+  "inflight": [],
+  "scheduled_meta": {
     "total": 1,
     "page": 1,
-    "per_page": 20
+    "per_page": 25,
+    "total_pages": 1
   },
-  "inflight": {
-    "tasks": [],
+  "inflight_meta": {
     "total": 0,
     "page": 1,
-    "per_page": 20
+    "per_page": 25,
+    "total_pages": 0
   }
 }
 ```
@@ -64,5 +65,6 @@ Content-Type: application/json
 
 | Status | Code | Description |
 |--------|------|-------------|
+| 400 | validation_error | Invalid pagination or filters |
 | 404 | not_found | Scheduler not found |
 | 500 | internal_error | Internal server error |

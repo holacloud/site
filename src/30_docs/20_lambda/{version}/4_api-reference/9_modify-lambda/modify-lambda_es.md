@@ -1,39 +1,40 @@
+# Modificar Lambda
 
-# Modify Lambda
-
-Actualiza el código, el entorno de ejecución o el estado activo de una función lambda existente.
+Actualiza campos soportados de una lambda existente.
 
 ## Autenticación
 
-Requiere las cabeceras `Api-Key` y `Api-Secret`.
+Requiere `X-Glue-Authentication`.
 
-## Parámetros de Ruta
+## Parámetros de Path
 
 | Parámetro | Tipo | Descripción |
 |-----------|------|-------------|
-| id | uuid | Identificador único de la lambda |
+| `lambda_id` | string | Identificador de la lambda |
 
 ## Cuerpo de la Solicitud
 
 | Campo | Tipo | Descripción |
 |-------|------|-------------|
-| name | string | Nuevo nombre (opcional) |
-| runtime | string | Nuevo entorno de ejecución (opcional) |
-| code | string | Nuevo código fuente (opcional) |
-| active | boolean | Si la lambda está activa (opcional) |
+| `name` | string | Nuevo nombre de la lambda |
+| `language` | string | `javascript`, `static-html`, `static-css` o `static-js` |
+| `code` | string | Nuevo código fuente o contenido estático |
+| `method` | string | Nuevo método HTTP |
+| `path` | string | Nuevo path HTTP |
 
 ## Solicitud HTTP
 
 ```http
 PATCH /api/v0/lambdas/f1a2b3c4-d5e6-7890-abcd-ef0123456789 HTTP/1.1
 Host: api.hola.cloud
-Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d
-Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf
+X-Glue-Authentication: TU_TOKEN
 Content-Type: application/json
 
 {
-  "code": "export default async (req) => { return { status: 200, body: { message: 'Updated lambda' } }; }",
-  "active": false
+  "name": "hello-updated",
+  "method": "POST",
+  "path": "/hello-updated",
+  "code": "export default (req) => ({ body: { message: 'Updated lambda', data: req.body } })"
 }
 ```
 
@@ -41,12 +42,13 @@ Content-Type: application/json
 
 ```bash
 curl -X PATCH "https://api.hola.cloud/api/v0/lambdas/f1a2b3c4-d5e6-7890-abcd-ef0123456789" \
-  -H "Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d" \
-  -H "Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf" \
+  -H "X-Glue-Authentication: TU_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
-    "code": "export default async (req) => { return { status: 200, body: { message: \"Updated lambda\" } }; }",
-    "active": false
+    "name": "hello-updated",
+    "method": "POST",
+    "path": "/hello-updated",
+    "code": "export default (req) => ({ body: { message: \"Updated lambda\", data: req.body } })"
   }'
 ```
 
@@ -55,10 +57,14 @@ curl -X PATCH "https://api.hola.cloud/api/v0/lambdas/f1a2b3c4-d5e6-7890-abcd-ef0
 ```json
 {
   "id": "f1a2b3c4-d5e6-7890-abcd-ef0123456789",
-  "name": "hello-world",
-  "runtime": "javascript",
-  "active": false,
-  "updated_at": "2025-07-02T09:15:00Z"
+  "created_timestamp": 1751378400,
+  "owner": "user_123",
+  "project_id": "project_456",
+  "name": "hello-updated",
+  "language": "javascript",
+  "code": "export default (req) => ({ body: { message: \"Updated lambda\", data: req.body } })",
+  "method": "POST",
+  "path": "/hello-updated"
 }
 ```
 
@@ -67,5 +73,5 @@ curl -X PATCH "https://api.hola.cloud/api/v0/lambdas/f1a2b3c4-d5e6-7890-abcd-ef0
 | Código | Descripción |
 |--------|-------------|
 | 400 | Cuerpo de solicitud inválido |
-| 401 | Cabeceras de autenticación faltantes o inválidas |
+| 401 | Autenticación faltante o inválida |
 | 404 | Lambda no encontrada |

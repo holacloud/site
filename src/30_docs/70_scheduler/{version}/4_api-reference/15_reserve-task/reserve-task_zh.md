@@ -20,7 +20,7 @@
 
 ```json
 {
-  "worktime": 30
+  "worktime": "30s"
 }
 ```
 
@@ -31,7 +31,7 @@ curl -X POST "https://api.hola.cloud/schedulers/sched-a1b2c3d4-e5f6-7890-abcd-ef
   -H "X-API-Key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "worktime": 30
+    "worktime": "30s"
   }'
 ```
 

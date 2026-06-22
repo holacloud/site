@@ -3,8 +3,8 @@
     #0f172a;">
     <div class="hero-inner">
         <div class="hero-eyebrow">✉️ Holamail</div>
-        <h1>SMTP 事务邮件服务</h1>
-        <p>Holamail is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <h1>基础 SMTP 测试服务器</h1>
+        <p>Holamail 当前接收基础 SMTP 消息，并记录收到的邮件，适合测试和开发。</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">开始使用</a>
             <a class="button button-secondary" href="/docs/holamail/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">文档中心</a>
@@ -17,18 +17,18 @@
         <div class="section-header">
             <div class="section-kicker">Holamail</div>
             <h2>核心功能</h2>
-            <p>Everything you need to build, deploy, and scale with Holamail on HolaCloud.</p>
+            <p>在生产邮件产品继续演进时，可将 Holamail 用作轻量级 SMTP endpoint。</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>高送达率</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">专用 IP 池，自动预热和声誉监控。</p>
+            <h3>SMTP Listener</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">支持 HELO/EHLO、MAIL FROM、RCPT TO、DATA 和 QUIT 等基础 SMTP 命令。</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>模板引擎</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">创建和管理带动态变量的邮件模板。</p>
+            <h3>消息捕获</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">接收 message data 并记录到日志，而不是投递到外部收件人。</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>投递分析</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">开启、点击和退回跟踪，实时仪表盘。</p>
+            <h3>开发友好</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">适合需要简单 SMTP 兼容 endpoint 的本地和集成测试。</p>
           </div>
         </div>
     </section>
@@ -37,11 +37,13 @@
         <div class="section-header">
             <div class="section-kicker">Quick start</div>
             <h2>快速开始</h2>
-            <p>Get started with Holamail in seconds using the API.</p>
+            <p>使用任意 SMTP 客户端发送测试消息。</p>
         </div>
-        <pre><code>curl -X POST https://api.hola.cloud/v1/holamail/send \
-  -H "Authorization: Bearer $TOKEN" \
-  -d '{"to": "user@example.com", "subject": "欢迎！", "template": "welcome", "data": {"name": "Alice"}}'</code></pre>
+        <pre><code>swaks --server smtp.testmail.hola.cloud:25 \
+  --from sender@example.com \
+  --to user@example.com \
+  --header 'Subject: Hello from Holamail' \
+  --body 'This is a test message.'</code></pre>
     </section>
 
     <section class="section">

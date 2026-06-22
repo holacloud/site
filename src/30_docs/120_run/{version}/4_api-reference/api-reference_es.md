@@ -1,25 +1,30 @@
-# Referencia de la API de Run
+# Referencia de API de Run
 
-Run es el servicio de ejecución de contenedores de HolaCloud. Expone una API REST para la gestión de contenedores y una interfaz compatible con Docker Registry v2 para el almacenamiento de imágenes.
+Run expone una API pequeña de Console y un subconjunto Docker Registry v2 orientado a push bajo `/v2`.
 
-## Endpoints
+## Endpoints de Console
 
 | Método | Ruta | Descripción |
 |--------|------|-------------|
-| `GET` | `/version` | Devuelve la versión del servicio Run |
-| `GET` | `/api/console` | Datos de la consola — repositorios, imágenes, estado |
-| `POST` | `/api/console/start` | Iniciar un contenedor |
-| `POST` | `/api/console/stop` | Detener un contenedor |
-| `POST` | `/api/console/rollback` | Revertir a una imagen anterior |
-| `PUT` | `/api/console/env` | Guardar variables de entorno |
-| `PUT` | `/api/console/volumes` | Guardar configuración de volúmenes |
-| `GET` | `/v2/` | Verificación de versión del Docker Registry |
-| `HEAD` | `/v2/*` | Verificación de blob/manifiesto del Registry |
-| `POST` | `/v2/*/blobs/uploads/` | Subida de blob al Registry |
-| `PATCH` | `/v2/*/blobs/uploads/:uuid` | Fragmento de subida de blob |
-| `PUT` | `/v2/*/blobs/uploads/:uuid` | Finalizar subida de blob |
-| `PUT` | `/v2/*/manifests/:tag` | Subida de manifiesto al Registry |
+| `GET` | `/version` | Devuelve la versión como texto plano |
+| `GET` | `/api/console?repository=` | Devuelve datos de Console para un repositorio |
+| `POST` | `/api/console/start` | Inicia un repositorio con una referencia o digest |
+| `POST` | `/api/console/stop` | Detiene un repositorio |
+| `POST` | `/api/console/rollback` | Revierte un repositorio a una referencia o digest |
+| `PUT` | `/api/console/env` | Guarda variables de entorno del repositorio |
+| `PUT` | `/api/console/volumes` | Guarda configuración de volúmenes del repositorio |
 
-## Autenticación
+La API no usa `container_id` y no expone `/v1/run/deploy`, `/v1/run/push`, `/v1/run/exec`, `/api/console/run` ni endpoints similares de run/exec.
 
-Los endpoints de la API de Consola (`/api/console/*`) son públicos. Los endpoints del Docker Registry requieren Autenticación Básica mediante el mecanismo DockerAuth.
+## Endpoints de Registry
+
+| Método | Ruta | Descripción |
+|--------|------|-------------|
+| `GET` | `/v2/` | Verificación de API Registry |
+| `HEAD` | `/v2/*` | Verificación de blob o manifiesto durante push |
+| `POST` | `/v2/*/blobs/uploads/` | Inicia subida de blob |
+| `PATCH` | `/v2/*/blobs/uploads/:uuid` | Sube datos del blob |
+| `PUT` | `/v2/*/blobs/uploads/:uuid` | Finaliza subida con digest |
+| `PUT` | `/v2/*/manifests/:reference` | Sube manifiesto |
+
+Es un subconjunto orientado a push, no una API registry completa para pull.

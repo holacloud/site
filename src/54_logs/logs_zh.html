@@ -4,7 +4,7 @@
     <div class="hero-inner">
         <div class="hero-eyebrow">📊 InstantLogs</div>
         <h1>实时日志采集与流式处理</h1>
-        <p>InstantLogs is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <p>InstantLogs 通过 HTTP 接收 raw log stream，并提供过滤、流式读取、API key 和 logger 统计。</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">开始使用</a>
             <a class="button button-secondary" href="/docs/logs/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">文档中心</a>
@@ -39,12 +39,12 @@
             <h2>快速开始</h2>
             <p>Get started with InstantLogs in seconds using the API.</p>
         </div>
-        <pre><code>curl -X POST https://api.hola.cloud/v1/loggers \
-  -H "Authorization: Bearer $TOKEN" \
-  -d '{"name": "app-logger", "retention_days": 30}' \
-  && curl https://api.hola.cloud/v1/loggers/my-logger/ingest \
-  -H "Authorization: Bearer $TOKEN" \
-  -d '{"level":"info","message":"Hello world"}'</code></pre>
+        <pre><code>curl -X POST https://logs.hola.cloud/v1/loggers \
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}' \
+  -d '{"name":"app-logger"}' \
+  && printf 'info Hello world\n' | curl https://logs.hola.cloud/v1/loggers/logger-123/ingest \
+  -H 'Api-Key: $LOGGER_KEY' -H 'Api-Secret: $LOGGER_SECRET' \
+  --data-binary @-</code></pre>
     </section>
 
     <section class="section">

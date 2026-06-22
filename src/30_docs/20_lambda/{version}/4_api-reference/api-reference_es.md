@@ -1,34 +1,49 @@
+# Referencia de la API Lambda
 
-# Referencia de la API de Lambda
-
-URL Base: `https://api.hola.cloud`
+URL base: `https://api.hola.cloud`
 
 ## Autenticación
 
-Los endpoints de administración requieren las cabeceras `Api-Key` y `Api-Secret`. Los endpoints de invocación pública (`/run/{id}` y `/mux/{owner}/*`) no requieren autenticación.
+Los endpoints de administración requieren la cabecera `X-Glue-Authentication`. Los endpoints públicos de invocación (`/run/{lambda_id}` y `/mux/{owner_id}/*`) no requieren autenticación.
 
-Todas las solicitudes deben enviarse a través de HTTPS.
+Todas las solicitudes deben enviarse por HTTPS.
+
+## Objeto Lambda
+
+| Campo | Tipo | Descripción |
+|-------|------|-------------|
+| `id` | string | Identificador de la lambda |
+| `created_timestamp` | number | Fecha de creación como timestamp Unix |
+| `owner` | string | Identificador del propietario |
+| `project_id` | string | Identificador del proyecto |
+| `name` | string | Nombre de la lambda |
+| `language` | string | Uno de `javascript`, `static-html`, `static-css` o `static-js` |
+| `code` | string | Código fuente o contenido estático |
+| `method` | string | Método HTTP asociado a la lambda |
+| `path` | string | Path HTTP asociado a la lambda |
 
 ## Endpoints
 
-| Método | Ruta | Descripción |
+| Método | Path | Descripción |
 |--------|------|-------------|
-| GET | `/api/v0/lambdas` | Listar todas las lambdas |
-| POST | `/api/v0/lambdas` | Crear una nueva lambda |
-| GET | `/api/v0/lambdas/{id}` | Obtener una lambda por ID |
-| PATCH | `/api/v0/lambdas/{id}` | Modificar una lambda |
-| DELETE | `/api/v0/lambdas/{id}` | Eliminar una lambda |
-| POST | `/api/v0/run/{id}` | Ejecutar una lambda (admin) |
-| POST | `/run/{id}` | Ejecutar una lambda (público) |
-| GET | `/mux/{owner}/*` | Enrutar a las lambdas del propietario |
+| POST | `/api/v0/lambdas` | Crear una lambda |
+| GET | `/api/v0/lambdas` | Listar lambdas |
+| GET | `/api/v0/lambdas/{lambda_id}` | Obtener una lambda por ID |
+| PATCH | `/api/v0/lambdas/{lambda_id}` | Modificar una lambda |
+| DELETE | `/api/v0/lambdas/{lambda_id}` | Eliminar una lambda |
+| ANY | `/api/v0/run/{lambda_id}` | Ejecutar una lambda con autenticación |
+| ANY | `/run/{lambda_id}` | Ejecutar una lambda públicamente |
+| ANY | `/mux/{owner_id}/*` | Enrutar una solicitud dentro del alcance de un propietario |
+| GET | `/ongoing` | Listar invocaciones en curso |
+| GET | `/me` | Devolver el usuario autenticado |
+| GET | `/openapi` | Devolver el documento OpenAPI |
 
 ## Códigos de Error Comunes
 
 | Código | Descripción |
 |--------|-------------|
-| 400 | Solicitud incorrecta — sintaxis mal formada o parámetros inválidos |
-| 401 | No autorizado — credenciales de API faltantes o inválidas |
-| 403 | Prohibido — las credenciales no tienen acceso al recurso |
-| 404 | No encontrado — el recurso solicitado no existe |
-| 409 | Conflicto — el recurso ya existe |
+| 400 | Solicitud inválida |
+| 401 | Autenticación faltante o inválida |
+| 403 | Prohibido |
+| 404 | Recurso no encontrado |
 | 500 | Error interno del servidor |

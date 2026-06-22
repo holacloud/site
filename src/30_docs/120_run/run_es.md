@@ -1,68 +1,40 @@
-# Ejecutar
+# Run
 
-Run es el servicio de ejecución de contenedores de HolaCloud. Gestiona contenedores Docker a través de una interfaz compatible con Docker Registry v2, permitiéndote desplegar y ejecutar aplicaciones en entornos aislados.
+Run es el servicio de imágenes de contenedor y control de Console de HolaCloud. Expone un subconjunto orientado a push de Docker Registry v2 y una API pequeña de Console para inspeccionar repositorios y cambiar configuración de ejecución.
 
-## Características
+## Funcionalidades
 
-### Compatible con Docker Registry v2
-Run es un registro Docker Registry v2 completamente compatible. Sube y baja imágenes usando comandos Docker estándar — sin necesidad de herramientas personalizadas.
+### Subconjunto Registry v2 orientado a push
+
+Run soporta los endpoints necesarios para subir blobs y manifiestos bajo `/v2`. No es una implementación completa de Docker Registry ni debe documentarse como registry general de pull.
 
 ```bash
 docker login run.hola.cloud
-docker build -t run.hola.cloud/mi-proyecto/mi-app:latest .
-docker push run.hola.cloud/mi-proyecto/mi-app:latest
+docker build -t run.hola.cloud/my-project/my-app:latest .
+docker push run.hola.cloud/my-project/my-app:latest
 ```
 
-### Administración desde la Consola
-Gestiona contenedores, imágenes y despliegues a través de la Consola de HolaCloud. Inicia, detén y reinicia contenedores, visualiza registros y monitorea el uso de recursos — todo desde una interfaz web.
+### API de Console
 
-### Variables de Entorno
-Configura tus contenedores con variables de entorno. Establécelas en el momento del despliegue a través de la Consola o la API para despliegues flexibles basados en configuración.
+La API de Console trabaja con repositorios y referencias o digests de imagen:
+
+- `GET /version`
+- `GET /api/console?repository=`
+- `POST /api/console/start`
+- `POST /api/console/stop`
+- `POST /api/console/rollback`
+- `PUT /api/console/env`
+- `PUT /api/console/volumes`
+
+No existe `/v1/run/deploy`, `/api/console/run`, API de push/exec ni flujo con `container_id`.
+
+## Primeros pasos
 
 ```bash
-curl -X POST "https://api.hola.cloud/v1/run/deploy" \
-  -H "Authorization: Bearer tu-token" \
-  -d '{
-    "image": "run.hola.cloud/mi-proyecto/mi-app:latest",
-    "env": {
-      "DATABASE_URL": "postgres://...",
-      "LOG_LEVEL": "debug"
-    }
-  }'
+docker login run.hola.cloud
+docker build -t run.hola.cloud/my-project/my-app:latest .
+docker push run.hola.cloud/my-project/my-app:latest
+curl -X POST "https://api.hola.cloud/api/console/start" \
+  -H "Content-Type: application/json" \
+  -d '{"repository": "my-project/my-app", "reference": "latest"}'
 ```
-
-### Volúmenes
-Adjunta volúmenes persistentes a tus contenedores para cargas de trabajo con estado. Los volúmenes están respaldados por el almacenamiento distribuido de HolaCloud y sobreviven a reinicios del contenedor.
-
-## Casos de Uso
-
-### Despliegue Completo de Aplicaciones
-Despliega aplicaciones web, APIs y microservicios como contenedores Docker. Run gestiona el enrutamiento de red, las verificaciones de salud y los reinicios automáticos.
-
-### Entornos de Desarrollo
-Crea entornos de desarrollo aislados para cada rama o desarrollador. Usa Run para crear contenedores efímeros que coincidan con tu configuración de producción.
-
-### Pipelines CI/CD
-Integra Run en tu flujo de trabajo CI/CD. Sube imágenes al registro como parte del proceso de compilación, luego despliégalas automáticamente en entornos de staging o producción.
-
-## Primeros Pasos
-
-1. **Autentícate** en el registro:
-   ```bash
-   docker login run.hola.cloud
-   ```
-
-2. **Compila y sube** tu imagen:
-   ```bash
-   docker build -t run.hola.cloud/mi-proyecto/mi-app:latest .
-   docker push run.hola.cloud/mi-proyecto/mi-app:latest
-   ```
-
-3. **Despliega** a través de la Consola o la API:
-   ```bash
-   curl -X POST "https://api.hola.cloud/v1/run/deploy" \
-     -H "Authorization: Bearer tu-token" \
-     -d '{"image": "run.hola.cloud/mi-proyecto/mi-app:latest"}'
-   ```
-
-Tu contenedor se iniciará y estará disponible en el endpoint asignado.

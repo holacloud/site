@@ -1,125 +1,87 @@
-<h1>调用Lambda函数</h1>
+<h1>调用 Lambda 函数</h1>
 
-HolaCloud Lambda 支持多种调用方式，以适应不同的使用场景——从直接的同步调用到 Webhook 集成和自定义域名路由。
+HolaCloud Lambda 支持直接管理调用、公开调用、按所有者划分的 mux 路由，以及少量服务检查端点。
 
-## 同步调用
+## 管理调用
 
-所有调用均为同步：HolaCloud 执行您的函数并在执行完成后返回响应。
-
-### 管理端调用（需认证）
-
-使用管理端点进行内部调用（您控制客户端）：
+当客户端可以发送 `X-Glue-Authentication` 时，使用 `/api/v0/run/{lambda_id}`。该端点接受任何 HTTP 方法。
 
 ```bash
-curl -X POST "https://api.hola.cloud/api/v0/run/您的函数ID" \
-  -H "Api-Key: 您的_API_KEY" \
-  -H "Api-Secret: 您的_API_SECRET" \
+curl -X POST "https://api.hola.cloud/api/v0/run/YOUR_LAMBDA_ID" \
+  -H "X-Glue-Authentication: YOUR_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "key": "value"
   }'
 ```
 
-### 公共调用（无需认证）
+## 公开调用
 
-使用公共端点供第三方服务或客户端应用调用：
+对 webhook、浏览器调用和不应发送管理凭据的其他客户端，使用 `/run/{lambda_id}`。该端点接受任何 HTTP 方法。
 
 ```bash
-curl -X POST "https://api.hola.cloud/run/您的函数ID" \
+curl -X POST "https://api.hola.cloud/run/YOUR_LAMBDA_ID" \
   -H "Content-Type: application/json" \
   -d '{
     "key": "value"
   }'
 ```
 
-公共端点无需认证，非常适合 Webhook 和公共 API。
+lambda 通过 `req` 接收请求数据，包括方法、path、headers、query 值和 body。
 
-## Webhook 使用
+## Webhook 用法
 
-任何 Lambda 函数都可以作为 Webhook 端点。将外部服务（Stripe、GitHub、SendGrid 等）配置为向以下地址发送事件：
+将外部服务配置为向以下地址发送事件：
 
+```text
+https://api.hola.cloud/run/YOUR_LAMBDA_ID
 ```
-https://api.hola.cloud/run/您的函数ID
-```
 
-函数将 Webhook 负载作为请求体接收，并可返回外部服务能够识别的响应。
-
-示例：记录推送事件的 GitHub Webhook：
+Webhook 处理器示例：
 
 ```javascript
 export default (req) => {
-  const event = req.headers["x-github-event"];
-  const payload = req.body;
-
-  console.log(`从GitHub收到 ${event} 事件`);
-
   return {
-    status_code: 200,
-    body: { received: true }
+    body: {
+      received: true,
+      event: req.headers["x-github-event"],
+      payload: req.body
+    }
   };
 };
 ```
 
-## Mux 路由器
+## Mux Router
 
-Mux 路由器根据所有者将自定义域名或子域名映射到特定的 Lambda 函数。路由模式为：
-
-```
-GET /mux/{owner_id}/*
-```
-
-当请求到达 Mux 时，HolaCloud 将其路由到该用户拥有的匹配 Lambda 函数。这支持以下场景：
-
-- 多租户 SaaS 平台，每个租户拥有一个子域名
-- 用户部署函数的自定义域名映射
-- 同一所有者下基于路径路由到不同函数
+Mux router 通过 `/mux/{owner_id}/*` 转发按所有者划分的路由。它接受任何 HTTP 方法。
 
 ```bash
-curl "https://api.hola.cloud/mux/所有者ID/任意/路径" \
-  -H "Content-Type: application/json"
+curl -X GET "https://api.hola.cloud/mux/OWNER_ID/any/path/here"
 ```
 
-`owner_id` 是 HolaCloud 账户标识符。路径的其余部分将转发给函数，函数在 `req` 中接收。
+`owner_id` 标识 HolaCloud 所有者。剩余 path 会转发给 lambda 路由逻辑。
 
-## 监控正在执行的调用
+## 进行中的调用
 
-使用公共 `ongoing` 端点查看当前正在运行的函数：
+查看当前正在运行的调用：
 
 ```bash
 curl "https://api.hola.cloud/ongoing"
 ```
 
-预期响应：
+## 当前用户
 
-```json
-[
-  {
-    "function_id": "f3b2c1a0-1234-5678-9abc-def012345678",
-    "function_name": "hello-world",
-    "started_at": "2025-06-21T12:00:00Z",
-    "duration_ms": 234
-  }
-]
-```
-
-此端点适用于运行监控和长时间运行函数的调试。
-
-## 获取当前用户信息
-
-`/me` 端点返回当前认证用户的信息：
+`/me` 端点返回已认证用户的信息：
 
 ```bash
 curl "https://api.hola.cloud/me" \
-  -H "Api-Key: 您的_API_KEY" \
-  -H "Api-Secret: 您的_API_SECRET"
+  -H "X-Glue-Authentication: YOUR_TOKEN"
 ```
 
 ## OpenAPI 规范
 
-HolaCloud 在以下地址提供机器可读的 OpenAPI 规范：
+HolaCloud 在以下地址公开 Lambda OpenAPI 文档：
 
-```
+```text
 GET https://api.hola.cloud/openapi
 ```
-
-可用于 Swagger UI、Postman 或代码生成器等工具，以编程方式探索和交互 Lambda API。

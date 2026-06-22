@@ -107,7 +107,7 @@
     <div class="hero-inner">
         <div class="hero-eyebrow">🖥️ Console</div>
         <h1>Web-based management console</h1>
-        <p>Console is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <p>Console is the web UI surface for HolaCloud services and includes mock service APIs used by the current console frontend.</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">Get started</a>
             <a class="button button-secondary" href="/docs/console/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">Documentation</a>
@@ -120,18 +120,18 @@
         <div class="section-header">
             <div class="section-kicker">Console</div>
             <h2 id="Key%20features">Key features</h2>
-            <p>Everything you need to build, deploy, and scale with Console on HolaCloud.</p>
+            <p>Use the console to inspect the current HolaCloud UI and its service demo endpoints.</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
             <h3 id="Unified%20dashboard">Unified dashboard</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Monitor all your services from a single pane of glass.</p>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Access the web interface at <code>console.hola.cloud</code>.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="Team%20management">Team management</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Invite team members with role-based access control.</p>
+            <h3 id="Fake%20API%20surface">Fake API surface</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">The current console backend exposes fake auth, projects, database, lambda, and files endpoints for the UI.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="Usage%20analytics">Usage analytics</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Track resource usage, costs, and API call volumes.</p>
+            <h3 id="Version%20endpoint">Version endpoint</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Check the deployed console version with the plain-text <code>/version</code> endpoint.</p>
           </div>
         </div>
     </section>
@@ -142,12 +142,11 @@
             <h2 id="Quick%20start">Quick start</h2>
             <p>Get started with Console in seconds using the API.</p>
         </div>
-        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span># Your workspace is ready at:
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span># https://console.hola.cloud/
+        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span># Open the console:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>https://console.hola.cloud/
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span># API tokens can be managed via:
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>curl https://api.hola.cloud/v1/tokens \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>  -H &#34;Authorization: Bearer $ADMIN_TOKEN&#34;</span></span></code></pre></code></pre>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span># Check the console service version:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>curl https://console.hola.cloud/version</span></span></code></pre></code></pre>
     </section>
 
     <section class="section">
@@ -184,6 +183,7 @@
     </section>
 </div>
 
+
     <div id="comments-section">
     <h2>Comments</h2>
     <div id="comments-list"></div>
@@ -211,10 +211,10 @@
 <a href="#Unified%20dashboard">Unified dashboard</a>
 </div>
 <div class="index-h3">
-<a href="#Team%20management">Team management</a>
+<a href="#Fake%20API%20surface">Fake API surface</a>
 </div>
 <div class="index-h3">
-<a href="#Usage%20analytics">Usage analytics</a>
+<a href="#Version%20endpoint">Version endpoint</a>
 </div>
 <div class="index-h2">
 <a href="#Quick%20start">Quick start</a>

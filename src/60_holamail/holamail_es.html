@@ -3,8 +3,8 @@
     #0f172a;">
     <div class="hero-inner">
         <div class="hero-eyebrow">✉️ Holamail</div>
-        <h1>Servicio de correo transaccional SMTP</h1>
-        <p>Holamail is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <h1>Servidor SMTP básico de pruebas</h1>
+        <p>Holamail actualmente acepta mensajes SMTP básicos y registra el correo recibido para pruebas y desarrollo.</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">Comenzar</a>
             <a class="button button-secondary" href="/docs/holamail/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">Documentación</a>
@@ -17,18 +17,18 @@
         <div class="section-header">
             <div class="section-kicker">Holamail</div>
             <h2>Funcionalidades</h2>
-            <p>Everything you need to build, deploy, and scale with Holamail on HolaCloud.</p>
+            <p>Usa Holamail como endpoint SMTP ligero mientras evoluciona el producto de correo de producción.</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>Alta entregabilidad</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Pools de IP dedicados con calentamiento automático y monitoreo de reputación.</p>
+            <h3>Listener SMTP</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Acepta comandos SMTP básicos como HELO/EHLO, MAIL FROM, RCPT TO, DATA y QUIT.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>Motor de plantillas</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Crea y gestiona plantillas de correo con variables dinámicas.</p>
+            <h3>Captura de mensajes</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Recibe datos de mensaje y los registra en logs en lugar de entregar correo a destinatarios externos.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>Analíticas de entrega</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Seguimiento de aperturas, clics y rebotes con paneles en tiempo real.</p>
+            <h3>Útil para desarrollo</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Útil para pruebas locales e integraciones que necesitan un endpoint compatible con SMTP.</p>
           </div>
         </div>
     </section>
@@ -37,11 +37,13 @@
         <div class="section-header">
             <div class="section-kicker">Quick start</div>
             <h2>Inicio rápido</h2>
-            <p>Get started with Holamail in seconds using the API.</p>
+            <p>Envía un mensaje de prueba con cualquier cliente SMTP.</p>
         </div>
-        <pre><code>curl -X POST https://api.hola.cloud/v1/holamail/send \
-  -H "Authorization: Bearer $TOKEN" \
-  -d '{"to": "user@example.com", "subject": "¡Bienvenido!", "template": "welcome", "data": {"name": "Alice"}}'</code></pre>
+        <pre><code>swaks --server smtp.testmail.hola.cloud:25 \
+  --from sender@example.com \
+  --to user@example.com \
+  --header 'Subject: Hello from Holamail' \
+  --body 'This is a test message.'</code></pre>
     </section>
 
     <section class="section">

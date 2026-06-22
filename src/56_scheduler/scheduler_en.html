@@ -3,8 +3,8 @@
     #0f172a;">
     <div class="hero-inner">
         <div class="hero-eyebrow">⏰ Scheduler</div>
-        <h1>Distributed task scheduling service</h1>
-        <p>Scheduler is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <h1>Delayed task queue with leases</h1>
+        <p>Scheduler manages delayed tasks, lease-based reservation, task acknowledgement, and task snapshots over HTTP.</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">Get started</a>
             <a class="button button-secondary" href="/docs/scheduler/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">Documentation</a>
@@ -17,18 +17,18 @@
         <div class="section-header">
             <div class="section-kicker">Scheduler</div>
             <h2>Key features</h2>
-            <p>Everything you need to build, deploy, and scale with Scheduler on HolaCloud.</p>
+            <p>Create scheduler namespaces, enqueue delayed tasks, reserve work, extend leases, and acknowledge completion.</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>Cron & one-shot tasks</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Schedule recurring cron jobs or one-time delayed executions.</p>
+            <h3>Delayed tasks</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Enqueue JSON payloads with explicit task IDs and Go-style durations such as <code>30s</code> or <code>5m</code>.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>Retry & alerting</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Automatic retry on failure with configurable escalation policies.</p>
+            <h3>Lease-based workers</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Reserve tasks for a work window, extend leases, then acknowledge or reschedule tasks.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>Distributed execution</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Tasks run across a cluster for high availability and fault tolerance.</p>
+            <h3>Snapshot stream</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Observe scheduled and in-flight tasks through snapshot responses and SSE snapshots.</p>
           </div>
         </div>
     </section>
@@ -39,9 +39,10 @@
             <h2>Quick start</h2>
             <p>Get started with Scheduler in seconds using the API.</p>
         </div>
-        <pre><code>curl -X POST https://api.hola.cloud/v1/schedulers \
-  -H "Authorization: Bearer $TOKEN" \
-  -d '{"name": "nightly-backup", "schedule": "0 2 * * *", "action": {"type": "webhook", "url": "https://myapp.com/backup"}}'</code></pre>
+        <pre><code>curl -X POST https://scheduler.hola.cloud/schedulers \
+  -d '{"id":"jobs","display_name":"Background jobs"}' \
+  && curl -X POST https://scheduler.hola.cloud/schedulers/jobs/tasks \
+  -d '{"id":"task-001","delay":"60s","payload":{"job":"backup"},"labels":["kind:backup"]}'</code></pre>
     </section>
 
     <section class="section">

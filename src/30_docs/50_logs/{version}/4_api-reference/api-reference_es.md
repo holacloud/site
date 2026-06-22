@@ -1,54 +1,25 @@
-
-# Referencia de la API de InstantLogs
+# Referencia API de InstantLogs
 
 URL base: `https://api.hola.cloud`
 
 ## Autenticación
 
-InstantLogs utiliza dos modos de autenticación según el tipo de endpoint.
-
-### Autenticación de Gestión
-
-Los endpoints de gestión (CRUD de loggers, administración de claves API) requieren dos encabezados:
-
-| Encabezado | Descripción |
-|------------|-------------|
-| `Api-Key` | Identificador de tu clave API |
-| `Api-Secret` | Tu clave secreta de API |
-
-### Autenticación de Datos
-
-Los endpoints de datos (ingesta, filtrado, eventos, estadísticas) se autentican usando el secreto del logger. Provéelo como:
-
-| Encabezado | Descripción |
-|------------|-------------|
-| `X-Instantlogs-Event-Secret` | El valor secreto del logger |
-| `Authorization: Bearer <secret>` | Token Bearer con el secreto del logger |
+Los endpoints de gestión usan `X-Glue-Authentication`. Los endpoints de logger aceptan un owner Glue del logger o una API key del logger con `Api-Key` y `Api-Secret`.
 
 ## Endpoints
 
-| Método | Ruta | Descripción | Autenticación |
-|--------|------|-------------|---------------|
-| GET | `/v1/loggers` | Listar todos los loggers | Gestión |
-| POST | `/v1/loggers` | Crear un nuevo logger | Gestión |
-| GET | `/v1/loggers/{id}` | Obtener detalles de un logger | Gestión |
-| DELETE | `/v1/loggers/{id}` | Eliminar un logger | Gestión |
-| POST | `/v1/loggers/{id}/ingest` | Ingresar entradas de log | Datos |
-| GET | `/v1/loggers/{id}/filter` | Transmitir y filtrar logs | Datos |
-| GET | `/v1/loggers/{id}/events` | Transmitir eventos | Datos |
-| GET | `/v1/loggers/{id}/stats` | Obtener estadísticas del logger | Datos |
-| POST | `/v1/loggers/{id}/apiKeys` | Crear una clave API | Gestión |
-| DELETE | `/v1/loggers/{id}/apiKeys/{key}` | Eliminar una clave API | Gestión |
-| POST | `/v1/ingest/events` | Ingresar eventos enmarcados | Datos |
-
-## Códigos de Error Comunes
-
-| Código | Descripción |
-|--------|-------------|
-| 400 | Solicitud incorrecta — JSON malformado o parámetros inválidos |
-| 401 | No autorizado — credenciales faltantes o inválidas |
-| 403 | Prohibido — las credenciales no tienen acceso |
-| 404 | No encontrado — el recurso solicitado no existe |
-| 409 | Conflicto — el recurso ya existe |
-| 429 | Demasiadas solicitudes — límite de tasa excedido |
-| 500 | Error interno del servidor |
+| Método | Ruta | Descripción |
+|--------|------|-------------|
+| GET | `/v1/loggers` | Listar loggers propios |
+| POST | `/v1/loggers` | Crear logger |
+| GET | `/v1/loggers/{id}` | Obtener logger con owners/API keys |
+| DELETE | `/v1/loggers/{id}` | Eliminar logger |
+| POST | `/v1/loggers/{id}/ingest` | Ingerir bytes crudos, devuelve `{ "n": number }` |
+| GET | `/v1/loggers/{id}/filter?regex=...` | Transmitir logs filtrados |
+| GET | `/v1/loggers/{id}/events` | Transmitir eventos; `follow` es un flag de presencia |
+| GET | `/v1/loggers/{id}/stats` | Estadísticas de ejecución |
+| POST | `/v1/loggers/{id}/apiKeys` | Crear API key del logger |
+| DELETE | `/v1/loggers/{id}/apiKeys/{apiKey}` | Eliminar API key del logger |
+| POST | `/v1/loggers/{id}/owners` | Agregar owner del logger |
+| DELETE | `/v1/loggers/{id}/owners/{ownerId}` | Eliminar owner del logger |
+| POST | `/v1/ingest/events` | Ingerir eventos logframe con `project_id`, devuelve `events` y `bytes` |

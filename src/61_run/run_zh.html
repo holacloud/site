@@ -4,7 +4,7 @@
     <div class="hero-inner">
         <div class="hero-eyebrow">🚀 Run</div>
         <h1>容器执行服务，内置 Docker 注册表</h1>
-        <p>Run is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <p>Run 将面向 push 的 Docker Registry v2 子集与 console endpoints 结合，用于启动、停止、回滚和配置 repository。</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">开始使用</a>
             <a class="button button-secondary" href="/docs/run/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">文档中心</a>
@@ -17,18 +17,18 @@
         <div class="section-header">
             <div class="section-kicker">Run</div>
             <h2>核心功能</h2>
-            <p>Everything you need to build, deploy, and scale with Run on HolaCloud.</p>
+            <p>将容器镜像推送到内置 registry，并通过 console API 管理 repository runtime 状态。</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>即时容器</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">从任何公共或私有注册表在数秒内启动容器。</p>
+            <h3>Repository Runtime</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">启动、停止和回滚与 repository 关联的 runtime。</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>自动伸缩</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">基于 CPU、内存或请求量自动扩展。</p>
+            <h3>环境和卷</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">通过 console API 保存环境变量和卷定义。</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>私有注册表</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">从集成的 Docker 注册表推送和拉取镜像。</p>
+            <h3>面向 Push 的 Registry</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">使用已实现的 Docker Registry v2 上传 endpoints 推送镜像层和 manifests。</p>
           </div>
         </div>
     </section>
@@ -39,16 +39,12 @@
             <h2>快速开始</h2>
             <p>Get started with Run in seconds using the API.</p>
         </div>
-        <pre><code># 推送镜像
-curl -X POST https://api.hola.cloud/v1/run/push \
-  -H "Authorization: Bearer $TOKEN" \
-  -F "image=@myapp.tar.gz" \
-  -F "name=myapp:latest"
+        <pre><code># 查看 repository console data
+curl 'https://run.hola.cloud/api/console?repository=my-project/my-app'
 
-# 运行容器
-curl -X POST https://api.hola.cloud/v1/run/exec \
-  -H "Authorization: Bearer $TOKEN" \
-  -d '{"image": "myapp:latest", "port": 8080, "scale": 2}'</code></pre>
+# 启动 repository runtime
+curl -X POST https://run.hola.cloud/api/console/start \
+  -d '{"repository":"my-project/my-app","reference":"latest"}'</code></pre>
     </section>
 
     <section class="section">

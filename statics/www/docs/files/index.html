@@ -140,7 +140,7 @@
 <div class="item"><a href="/docs/files/v2/api-reference/delete-bucket/index.html">Delete Bucket</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/delete-file/index.html">Delete File</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/download-file/index.html">Download File</a></div>
-<div class="item"><a href="/docs/files/v2/api-reference/file-metadata/index.html">File Metadata</a></div>
+<div class="item"><a href="/docs/files/v2/api-reference/file-metadata/index.html">File Headers</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/get-bucket/index.html">Get Bucket</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/list-buckets/index.html">List Buckets</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/list-files/index.html">List Files</a></div>
@@ -163,11 +163,11 @@
 <div class="item"><a href="/docs/config/v2/api-reference/update-user-config/index.html">Update User Config</a></div>
 </div>
 </div>
-<div class="item"><a href="/docs/logs/index.html">Logs</a></div>
+<div class="item"><a href="/docs/logs/index.html">InstantLogs</a></div>
 <div class="children">
 <div class="item"><a href="/docs/logs/v2/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/logs/v2/ingesting-logs/index.html">Ingesting Logs</a></div>
-<div class="item"><a href="/docs/logs/v2/streaming-filtering/index.html">Streaming Filtering</a></div>
+<div class="item"><a href="/docs/logs/v2/streaming-filtering/index.html">Streaming and Filtering</a></div>
 <div class="item"><a href="/docs/logs/v2/api-reference/index.html">InstantLogs API Reference</a></div>
 <div class="children">
 <div class="item"><a href="/docs/logs/v2/api-reference/create-logger/index.html">Create Logger</a></div>
@@ -183,11 +183,11 @@
 <div class="item"><a href="/docs/logs/v2/api-reference/stream-events/index.html">Stream Events</a></div>
 </div>
 </div>
-<div class="item"><a href="/docs/queues/index.html">Queues</a></div>
+<div class="item"><a href="/docs/queues/index.html">Tailon Queues</a></div>
 <div class="children">
 <div class="item"><a href="/docs/queues/v2/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/queues/v2/managing-queues/index.html">Managing Queues</a></div>
-<div class="item"><a href="/docs/queues/v2/producing-consuming/index.html">Producing Consuming</a></div>
+<div class="item"><a href="/docs/queues/v2/producing-consuming/index.html">Producing and Consuming</a></div>
 <div class="item"><a href="/docs/queues/v2/api-reference/index.html">Tailon API Reference</a></div>
 <div class="children">
 <div class="item"><a href="/docs/queues/v2/api-reference/create-queue/index.html">Create Queue</a></div>
@@ -241,7 +241,7 @@
 <div class="item"><a href="/docs/kvnode/v2/api-reference/readiness-check/index.html">Readiness Check</a></div>
 <div class="item"><a href="/docs/kvnode/v2/api-reference/set-key/index.html">Set Key</a></div>
 </div>
-<div class="item"><a href="/docs/kvnode/v2/sdk-reference/index.html">Sdk Reference</a></div>
+<div class="item"><a href="/docs/kvnode/v2/sdk-reference/index.html">SDK Reference</a></div>
 </div>
 <div class="item"><a href="/docs/console/index.html">Console</a></div>
 <div class="children">
@@ -249,7 +249,7 @@
 <div class="item"><a href="/docs/console/v2/managing-projects/index.html">Managing Projects and Services</a></div>
 <div class="item"><a href="/docs/console/v2/api-reference/index.html">Console API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/console/v2/api-reference/fake-api/index.html">Fake Api</a></div>
+<div class="item"><a href="/docs/console/v2/api-reference/fake-api/index.html">Fake API</a></div>
 <div class="item"><a href="/docs/console/v2/api-reference/get-version/index.html">Get Version</a></div>
 </div>
 </div>
@@ -272,7 +272,7 @@
 <div class="item"><a href="/docs/holamail/v2/sending-email/index.html">Sending Email</a></div>
 <div class="item"><a href="/docs/holamail/v2/api-reference/index.html">Holamail API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/holamail/v2/api-reference/smtp-reference/index.html">Smtp Reference</a></div>
+<div class="item"><a href="/docs/holamail/v2/api-reference/smtp-reference/index.html">SMTP Reference</a></div>
 </div>
 </div>
 <div class="item"><a href="/docs/run/index.html">Run</a></div>
@@ -286,8 +286,8 @@
 <div class="item"><a href="/docs/run/v2/api-reference/rollback-image/index.html">Rollback Image</a></div>
 <div class="item"><a href="/docs/run/v2/api-reference/save-environment/index.html">Save Environment</a></div>
 <div class="item"><a href="/docs/run/v2/api-reference/save-volumes/index.html">Save Volumes</a></div>
-<div class="item"><a href="/docs/run/v2/api-reference/start-container/index.html">Start Container</a></div>
-<div class="item"><a href="/docs/run/v2/api-reference/stop-container/index.html">Stop Container</a></div>
+<div class="item"><a href="/docs/run/v2/api-reference/start-container/index.html">Start Repository</a></div>
+<div class="item"><a href="/docs/run/v2/api-reference/stop-container/index.html">Stop Repository</a></div>
 </div>
 </div>
 
@@ -297,39 +297,16 @@
     <div class="breadcrumb"><a class="item" href="/docs/index.html">Documentation</a><span class="arrow">→</span><a class="item selected" href="/docs/files/index.html">Files</a></div>
     <div class="document">
     <h1>Files</h1>
-<p>HolaCloud Files is an S3-compatible object storage service designed for storing and retrieving any amount of data at any time. It provides a simple RESTful API for managing buckets and files, with built-in scalability, durability, and security.</p>
-<h2 id="Key%20Features">Key Features</h2>
-<h3 id="S3-Compatible%20API">S3-Compatible API</h3>
-<p>HolaCloud Files exposes a familiar S3-compatible API, making it easy to migrate existing applications or integrate with tools that speak the S3 protocol.</p>
-<h3 id="Scalability">Scalability</h3>
-<p>Files scales automatically to handle any amount of data, from a few gigabytes to petabytes, without any manual provisioning or capacity planning.</p>
-<h3 id="Durability%20and%20Availability">Durability and Availability</h3>
-<p>Data is stored redundantly across multiple availability zones, ensuring 99.999999999% durability and 99.99% availability.</p>
-<h3 id="Security">Security</h3>
-<p>All data is encrypted at rest using AES-256 and in transit using TLS 1.3. Access is controlled via API keys with fine-grained permissions.</p>
-<h3 id="Versioning-Ready">Versioning-Ready</h3>
-<p>The service is designed with versioning support, allowing you to preserve, retrieve, and restore every version of every file in your buckets.</p>
-<h2 id="Use%20Cases">Use Cases</h2>
-<h3 id="Backups%20and%20Disaster%20Recovery">Backups and Disaster Recovery</h3>
-<p>Files provides a reliable destination for database backups, system snapshots, and disaster recovery archives. Its durability guarantees ensure your data survives hardware failures and regional outages.</p>
-<h3 id="Static%20Assets%20for%20Web%20Applications">Static Assets for Web Applications</h3>
-<p>Host images, CSS, JavaScript, and other static assets with low latency and high throughput. Files integrates seamlessly with HolaCloud CDN for global content delivery.</p>
-<h3 id="User-Generated%20Content">User-Generated Content</h3>
-<p>Handle file uploads from your users -- profile pictures, documents, videos, and more -- with a scalable, secure storage layer.</p>
-<h3 id="Data%20Lakes%20and%20Analytics">Data Lakes and Analytics</h3>
-<p>Store structured and unstructured data at petabyte scale for analytics workloads. Files integrates with HolaCloud Compute and HolaCloud Analytics for data processing pipelines.</p>
-<h3 id="Media%20Storage%20and%20Streaming">Media Storage and Streaming</h3>
-<p>Store audio, video, and image files for media applications. Files supports range requests for efficient partial content delivery.</p>
-<h2 id="Integration%20with%20HolaCloud">Integration with HolaCloud</h2>
-<p>HolaCloud Files works seamlessly with other HolaCloud services:</p>
-<ul>
-<li><strong>HolaCloud Compute</strong> -- Attach Files volumes to your compute instances for persistent storage.</li>
-<li><strong>HolaCloud CDN</strong> -- Deliver file content globally through edge caching.</li>
-<li><strong>HolaCloud Logs</strong> -- Archive access logs directly to Files buckets.</li>
-<li><strong>HolaCloud InceptionDB</strong> -- Store database backup snapshots in Files.</li>
-</ul>
+<p>HolaCloud Files provides a REST API for storing files in buckets. Buckets group files, and each file is addressed by its path after <code>/files/</code> or filtered by prefix after <code>/list/</code>.</p>
+<h2 id="Authentication">Authentication</h2>
+<p>All <code>/v1</code> endpoints require the <code>X-Glue-Authentication</code> header. The header value is a JSON object with the authenticated user data:</p>
+<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>X-Glue-Authentication: {&#34;user&#34;:{&#34;id&#34;:&#34;user-123&#34;}}
+</span></span></code></pre></code></pre>
+<h2 id="Data%20Model">Data Model</h2>
+<p>Bucket objects use these fields: <code>id</code>, <code>project_id</code>, <code>created_timestamp</code>, <code>owners</code>, <code>name</code>, and <code>description</code>.</p>
+<p>File objects use these fields: <code>id</code>, <code>uuid</code>, <code>created_timestamp</code>, <code>updated_timestamp</code>, <code>owners</code>, <code>status</code>, <code>size</code>, <code>name</code>, <code>bucket</code>, <code>hash_md5</code>, <code>hash_sha256</code>, and <code>mime_type</code>.</p>
 <h2 id="API%20Reference">API Reference</h2>
-<p>All endpoints are under the base URL <code>https://api.hola.cloud</code> and require authentication via <code>Api-Key</code> and <code>Api-Secret</code> headers.</p>
+<p>All endpoints are under the base URL <code>https://api.hola.cloud</code>.</p>
 <table>
 <thead>
 <tr>
@@ -341,53 +318,53 @@
 <tbody>
 <tr>
 <td>GET</td>
-<td>/v1/buckets</td>
-<td>List all buckets</td>
+<td><code>/v1/buckets</code></td>
+<td>List buckets owned by the authenticated user</td>
 </tr>
 <tr>
 <td>POST</td>
-<td>/v1/buckets</td>
-<td>Create a new bucket</td>
+<td><code>/v1/buckets</code></td>
+<td>Create a bucket</td>
 </tr>
 <tr>
 <td>GET</td>
-<td>/v1/buckets/{id}</td>
+<td><code>/v1/buckets/{bucket_id}</code></td>
 <td>Get bucket details</td>
 </tr>
 <tr>
 <td>PATCH</td>
-<td>/v1/buckets/{id}</td>
-<td>Modify bucket metadata</td>
+<td><code>/v1/buckets/{bucket_id}</code></td>
+<td>Not implemented</td>
 </tr>
 <tr>
 <td>DELETE</td>
-<td>/v1/buckets/{id}</td>
+<td><code>/v1/buckets/{bucket_id}</code></td>
 <td>Delete a bucket</td>
 </tr>
 <tr>
 <td>GET</td>
-<td>/v1/buckets/{id}/list/*</td>
-<td>List files in a bucket</td>
+<td><code>/v1/buckets/{bucket_id}/list/*</code></td>
+<td>List files in a bucket, optionally filtering by prefix</td>
 </tr>
 <tr>
 <td>PUT</td>
-<td>/v1/buckets/{id}/files/*</td>
+<td><code>/v1/buckets/{bucket_id}/files/*</code></td>
 <td>Upload a file</td>
 </tr>
 <tr>
 <td>GET</td>
-<td>/v1/buckets/{id}/files/*</td>
-<td>Download a file</td>
+<td><code>/v1/buckets/{bucket_id}/files/*</code></td>
+<td>Download a file, or return JSON metadata with <code>?metadata</code></td>
 </tr>
 <tr>
 <td>DELETE</td>
-<td>/v1/buckets/{id}/files/*</td>
+<td><code>/v1/buckets/{bucket_id}/files/*</code></td>
 <td>Delete a file</td>
 </tr>
 <tr>
 <td>HEAD</td>
-<td>/v1/buckets/{id}/files/*</td>
-<td>Get file metadata</td>
+<td><code>/v1/buckets/{bucket_id}/files/*</code></td>
+<td>Return file headers</td>
 </tr>
 </tbody>
 </table>
@@ -414,43 +391,10 @@
 </div>
 </div>
 <div class="index"><div class="index-h2">
-<a href="#Key%20Features">Key Features</a>
-</div>
-<div class="index-h3">
-<a href="#S3-Compatible%20API">S3-Compatible API</a>
-</div>
-<div class="index-h3">
-<a href="#Scalability">Scalability</a>
-</div>
-<div class="index-h3">
-<a href="#Durability%20and%20Availability">Durability and Availability</a>
-</div>
-<div class="index-h3">
-<a href="#Security">Security</a>
-</div>
-<div class="index-h3">
-<a href="#Versioning-Ready">Versioning-Ready</a>
+<a href="#Authentication">Authentication</a>
 </div>
 <div class="index-h2">
-<a href="#Use%20Cases">Use Cases</a>
-</div>
-<div class="index-h3">
-<a href="#Backups%20and%20Disaster%20Recovery">Backups and Disaster Recovery</a>
-</div>
-<div class="index-h3">
-<a href="#Static%20Assets%20for%20Web%20Applications">Static Assets for Web Applications</a>
-</div>
-<div class="index-h3">
-<a href="#User-Generated%20Content">User-Generated Content</a>
-</div>
-<div class="index-h3">
-<a href="#Data%20Lakes%20and%20Analytics">Data Lakes and Analytics</a>
-</div>
-<div class="index-h3">
-<a href="#Media%20Storage%20and%20Streaming">Media Storage and Streaming</a>
-</div>
-<div class="index-h2">
-<a href="#Integration%20with%20HolaCloud">Integration with HolaCloud</a>
+<a href="#Data%20Model">Data Model</a>
 </div>
 <div class="index-h2">
 <a href="#API%20Reference">API Reference</a>

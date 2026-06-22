@@ -1,67 +1,23 @@
-# Logs
+# InstantLogs
 
-InstantLogs 是 Hola.Cloud 生态系统中的实时日志聚合和流式传输服务。它提供多租户日志接收、基于正则表达式的过滤、实时流式传输、NDJSON 导出和持久化存储，所有功能都具有低延迟特性。
+InstantLogs 提供用于原始字节摄入以及流式传输/过滤的 HTTP logger。
 
-## 关键优势
+## 认证
 
-### 实时日志聚合
-从多个来源实时接收日志。InstantLogs 在日志条目到达时立即收集、处理和存储，让您即时了解系统状况。
-
-### 多租户架构
-将日志组织到隔离的日志记录器（logger）中。每个日志记录器拥有自己的凭据、保留策略和访问控制，使 InstantLogs 适用于在同一账户中运行的团队、客户或微服务。
-
-### 正则表达式过滤
-使用正则表达式过滤日志流。筛选匹配模式的条目，排除干扰信息，无需离开流式传输端点即可专注于重要内容。
-
-### 实时流式传输
-通过长时间保持的 HTTP 连接流式传输接收到的日志。可选择 NDJSON 或纯文本格式。事件以近乎实时的方式呈现，开销极低。
-
-### 持久化存储
-所有接收的日志都会持久存储并可重放。您可以重新流式传输历史数据或导出以供离线分析。
-
-### 双重认证模型
-InstantLogs 使用两种认证模式。管理操作（创建、列出、删除日志记录器，管理 API 密钥）需要 API 密钥（`Api-Key` + `Api-Secret` 请求头）。数据操作（接收、流式传输、过滤、统计）使用日志记录器密钥（`X-Instantlogs-Event-Secret` 请求头或 `Authorization: Bearer`）。
+Logger 管理使用 Glue 认证 `X-Glue-Authentication`。Logger 专用端点可以由该 logger 的 Glue owner 访问，也可以使用 logger API key 的 `Api-Key` 和 `Api-Secret` 访问。
 
 ## API 概览
 
-### 管理端点（API 密钥认证）
-
 | 方法 | 路径 | 描述 |
 |--------|------|-------------|
-| GET | `/v1/loggers` | 列出所有日志记录器 |
-| POST | `/v1/loggers` | 创建新的日志记录器 |
-| GET | `/v1/loggers/{id}` | 获取日志记录器详情 |
-| DELETE | `/v1/loggers/{id}` | 删除日志记录器 |
-| POST | `/v1/loggers/{id}/apiKeys` | 为日志记录器创建 API 密钥 |
-| DELETE | `/v1/loggers/{id}/apiKeys/{key}` | 从日志记录器删除 API 密钥 |
-
-### 数据端点（日志记录器密钥认证）
-
-| 方法 | 路径 | 描述 |
-|--------|------|-------------|
-| POST | `/v1/loggers/{id}/ingest` | 接收日志条目 |
-| GET | `/v1/loggers/{id}/filter` | 流式传输和过滤日志 |
-| GET | `/v1/loggers/{id}/events` | 流式传输事件（NDJSON 或文本） |
-| GET | `/v1/loggers/{id}/stats` | 获取日志记录器统计信息 |
-
-### 帧事件（事件密钥认证）
-
-| 方法 | 路径 | 描述 |
-|--------|------|-------------|
-| POST | `/v1/ingest/events` | 接收帧事件 |
-
-基础 URL：`https://api.hola.cloud`
-
-## 最佳使用场景
-
-### 集中式日志记录
-将所有服务、容器和服务器的日志聚合到单一数据流中。通过统一的搜索和过滤功能更快地调试生产问题。
-
-### 实时监控
-实时流式传输应用程序和基础设施日志。在异常发生时进行检测，并根据日志模式触发告警。
-
-### 审计跟踪
-存储不可变的日志记录，用于合规和审计。按需重放历史数据流。
-
-### 多租户 SaaS
-使用独立的日志记录器隔离每个客户或团队的日志。每个租户拥有自己的凭据和保留策略。
+| GET | `/v1/loggers` | 列出 Glue 用户可见的 logger |
+| POST | `/v1/loggers` | 为 Glue 用户创建 logger |
+| GET | `/v1/loggers/{id}` | 获取 logger 详情，包括 owners 和 API keys |
+| DELETE | `/v1/loggers/{id}` | 删除 logger |
+| POST | `/v1/loggers/{id}/ingest` | 摄入请求原始字节，返回 `{ "n": bytes }` |
+| GET | `/v1/loggers/{id}/filter?regex=...` | 流式传输匹配 regex 的条目 |
+| GET | `/v1/loggers/{id}/events` | 流式传输事件；`follow` 由 flag 是否存在启用 |
+| GET | `/v1/loggers/{id}/stats` | 获取运行时统计 |
+| POST | `/v1/loggers/{id}/apiKeys` | 创建 logger API key |
+| DELETE | `/v1/loggers/{id}/apiKeys/{apiKey}` | 删除 logger API key |
+| POST | `/v1/ingest/events` | 摄入带 `project_id` 的 logframe 事件，返回 `events` 和 `bytes` |

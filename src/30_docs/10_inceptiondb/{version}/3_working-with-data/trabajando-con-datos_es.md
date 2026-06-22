@@ -1,131 +1,105 @@
-
 # Trabajando con datos
 
-Este documento explica cómo se insertan, listan, modifican y eliminan documentos en una colección. También se incluye cómo se pueden filtrar los datos al listar.
+Las operaciones de documentos son acciones sobre una colección. Usa `Api-Key` y `Api-Secret` para acceso a la base de datos, o un token Glue de owner cuando el propietario de la base de datos está permitido.
 
-## Insertar Documentos
-
-### Insertar un documento
-
-Para insertar un solo documento en una colección, se utiliza la siguiente petición HTTP:
+## Insertar documentos
 
 ```http
-POST /databases/{database}/collections/{collection}/documents
+POST /v1/databases/{databaseId}/collections/{collection}:insert
+Content-Type: application/jsonl
+Api-Key: tu-api-key
+Api-Secret: tu-api-secret
+
+{"id":"1","name":"Alice"}
+{"id":"2","name":"Bob"}
+```
+
+La respuesta son los documentos insertados en JSONL.
+
+```jsonl
+{"id":"1","name":"Alice"}
+{"id":"2","name":"Bob"}
+```
+
+## Buscar documentos
+
+```http
+POST /v1/databases/{databaseId}/collections/{collection}:find
 Content-Type: application/json
-X-API-Key: your-api-key
+Api-Key: tu-api-key
+Api-Secret: tu-api-secret
 
 {
-  "document": {
-    "key1": "value1",
-    "key2": "value2"
+  "filter": {
+    "name": "Alice"
   }
 }
 ```
 
-### Insertar múltiples documentos
+La respuesta son los documentos encontrados en JSONL.
 
-Para insertar múltiples documentos en una colección, se utiliza la siguiente petición HTTP:
+```jsonl
+{"id":"1","name":"Alice"}
+```
+
+## Obtener un documento por ID
 
 ```http
-POST /databases/{database}/collections/{collection}/documents/bulk
-Content-Type: application/json
-X-API-Key: your-api-key
+GET /v1/databases/{databaseId}/collections/{collection}/documents/{documentId}
+Api-Key: tu-api-key
+Api-Secret: tu-api-secret
+```
 
+La respuesta es el documento JSON.
+
+```json
 {
-  "documents": [
-    {
-      "key1": "value1",
-      "key2": "value2"
-    },
-    {
-      "key1": "value3",
-      "key2": "value4"
-    }
-  ]
+  "id": "1",
+  "name": "Alice"
 }
 ```
 
-## Listar Documentos
-
-### Listar todos los documentos (Full Scan)
-
-Para listar todos los documentos en una colección, se utiliza la siguiente petición HTTP:
+## Modificar documentos
 
 ```http
-GET /databases/{database}/collections/{collection}/documents
-X-API-Key: your-api-key
-```
-
-### Listar documentos con un índice único
-
-Para listar documentos utilizando un índice único, se utiliza la siguiente petición HTTP:
-
-```http
-GET /databases/{database}/collections/{collection}/documents?filter={"key":"value"}
-X-API-Key: your-api-key
-```
-
-### Listar documentos con un límite
-
-Para listar documentos con un límite específico, se utiliza la siguiente petición HTTP:
-
-```http
-GET /databases/{database}/collections/{collection}/documents?limit=10
-X-API-Key: your-api-key
-```
-
-## Modificar Documentos
-
-### Modificar documentos por un escaneo completo
-
-Para modificar documentos mediante un escaneo completo, se utiliza la siguiente petición HTTP:
-
-```http
-PATCH /databases/{database}/collections/{collection}/documents
+POST /v1/databases/{databaseId}/collections/{collection}:patch
 Content-Type: application/json
-X-API-Key: your-api-key
+Api-Key: tu-api-key
+Api-Secret: tu-api-secret
 
 {
-  "filter": {"key": "value"},
-  "update": {"$set": {"key": "new_value"}}
+  "filter": {
+    "id": "1"
+  },
+  "patch": {
+    "name": "Alice Updated"
+  }
 }
 ```
 
-### Modificar documentos por índice
+La respuesta son los documentos modificados en JSONL.
 
-Para modificar documentos utilizando un índice, se utiliza la siguiente petición HTTP:
+```jsonl
+{"id":"1","name":"Alice Updated"}
+```
+
+## Eliminar documentos
 
 ```http
-PATCH /databases/{database}/collections/{collection}/documents?filter={"key":"value"}
+POST /v1/databases/{databaseId}/collections/{collection}:remove
 Content-Type: application/json
-X-API-Key: your-api-key
+Api-Key: tu-api-key
+Api-Secret: tu-api-secret
 
 {
-  "update": {"$set": {"key": "new_value"}}
+  "filter": {
+    "id": "1"
+  }
 }
 ```
 
-## Eliminar Documentos
+La respuesta son los documentos eliminados en JSONL.
 
-### Eliminar documentos por índice
-
-Para eliminar documentos utilizando un índice, se utiliza la siguiente petición HTTP:
-
-```http
-DELETE /databases/{database}/collections/{collection}/documents?filter={"key":"value"}
-X-API-Key: your-api-key
-```
-
-### Eliminar documentos por escaneo completo
-
-Para eliminar documentos mediante un escaneo completo, se utiliza la siguiente petición HTTP:
-
-```http
-DELETE /databases/{database}/collections/{collection}/documents
-Content-Type: application/json
-X-API-Key: your-api-key
-
-{
-  "filter": {"key": "value"}
-}
+```jsonl
+{"id":"1","name":"Alice Updated"}
 ```

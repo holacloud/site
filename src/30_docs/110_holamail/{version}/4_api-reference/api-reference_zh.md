@@ -1,22 +1,30 @@
 # Holamail API 参考
 
-Holamail 是一个基于 **SMTP 的电子邮件服务** — 它不提供 HTTP API。客户端使用标准 SMTP 协议通过端口 2525 连接。
+Holamail 不暴露 HTTP API。它是一个明文 SMTP listener，接受基础 SMTP 会话并记录消息。
 
 ## SMTP 参考
 
-有关 SMTP 命令、连接示例和最佳实践的完整指南，请参阅 [SMTP 协议参考](./smtp-reference)。
+命令示例请参见 [SMTP 协议参考](./smtp-reference)。
 
-## 连接详情
+## 连接信息
 
-| 设置 | 值 |
-|---------|-------|
-| 主机 | `smtp.hola.cloud` |
-| 端口 | `2525` |
-| 协议 | SMTP（无需 TLS） |
-| 认证 | 无（为已验证项目开放中继） |
+| 设置 | 公共测试主机 | 本地实例 |
+|------|--------------|----------|
+| Host | `smtp.testmail.hola.cloud` | `localhost` |
+| Port | `25` | `2525` |
+| Protocol | Plain SMTP | Plain SMTP |
+| Auth | None | None |
 
-## 端点
+## 支持的命令
 
-| 方法 | 路径 | 描述 |
-|--------|------|-------------|
-| SMTP | `2525` | 用于发送电子邮件的原始 SMTP 连接 |
+| 命令 | 描述 |
+|------|------|
+| `HELO` / `EHLO` | 开始 SMTP 会话 |
+| `MAIL FROM` | 设置 envelope 发件人 |
+| `RCPT TO` | 设置 envelope 收件人 |
+| `DATA` | 发送消息头和正文，以 `.` 结束 |
+| `QUIT` | 关闭会话 |
+
+## 不支持
+
+Holamail 不提供外部投递、HTTP API、STARTTLS、AUTH、限速、模板、分析或追踪。

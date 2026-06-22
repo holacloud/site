@@ -1,38 +1,15 @@
-# Obtener Versión
+# Obtener versión
 
-Devuelve la versión actual del servicio Run.
+Devuelve la versión actual de Run como texto plano.
 
-## Descripción
-
-Proporciona información de versión y compilación sobre la instancia del servicio Run en ejecución.
-
-## Autenticación
-
-Ninguna. Este endpoint es público.
-
-## Solicitud
-
-No se requiere cuerpo en la solicitud.
-
-## Ejemplo
+```http
+GET /version
+```
 
 ```bash
-curl -X GET "https://api.hola.cloud/version"
+curl "https://api.hola.cloud/version"
 ```
 
-## Respuesta
-
-```json
-{
-  "service": "run",
-  "version": "1.5.2",
-  "commit": "e5f6g7h8",
-  "build_time": "2026-06-20T12:00:00Z"
-}
+```text
+1.5.2
 ```
-
-## Códigos de Error
-
-| Código | Descripción |
-|--------|-------------|
-| 200 | Información de versión devuelta correctamente |

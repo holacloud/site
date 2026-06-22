@@ -107,7 +107,7 @@
     <div class="hero-inner">
         <div class="hero-eyebrow">🔑 KVNode</div>
         <h1>High-performance replicated key-value store</h1>
-        <p>KVNode is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <p>KVNode exposes collections and keys over HTTP, with root/replica synchronization through its WAL protocol.</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">Get started</a>
             <a class="button button-secondary" href="/docs/kvnode/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">Documentation</a>
@@ -120,18 +120,18 @@
         <div class="section-header">
             <div class="section-kicker">KVNode</div>
             <h2 id="Key%20features">Key features</h2>
-            <p>Everything you need to build, deploy, and scale with KVNode on HolaCloud.</p>
+            <p>Store values by collection and key, list keys, and replicate changes between nodes.</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="Sub-millisecond%20latency">Sub-millisecond latency</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">In-memory operations with configurable persistence options.</p>
+            <h3 id="Collections%20and%20keys">Collections and keys</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Create collections and set, get, list, or delete keys through the v1 HTTP API.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="Raft%20consensus">Raft consensus</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Strong consistency with automatic leader election and replication.</p>
+            <h3 id="Root%2Freplica%20model">Root/replica model</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Replicas follow a root node using the protocol commands implemented by KVNode.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="TTL%20&amp;%20expiration">TTL &amp; expiration</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Set time-to-live on keys for automatic cache eviction.</p>
+            <h3 id="Versioned%20writes">Versioned writes</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Write operations return sequence and version information for synchronization.</p>
           </div>
         </div>
     </section>
@@ -142,9 +142,12 @@
             <h2 id="Quick%20start">Quick start</h2>
             <p>Get started with KVNode in seconds using the API.</p>
         </div>
-        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST https://api.hola.cloud/v1/kv \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  -H &#34;Authorization: Bearer $TOKEN&#34; \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  -d &#39;{&#34;key&#34;: &#34;user:123&#34;, &#34;value&#34;: &#34;{\&#34;name\&#34;: \&#34;Alice\&#34;}&#34;, &#34;ttl&#34;: 3600}&#39;</span></span></code></pre></code></pre>
+        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST https://kvnode.hola.cloud/v1/collections \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  -H &#39;Api-Key: $API_KEY&#39; -H &#39;Api-Secret: $API_SECRET&#39; \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  -d &#39;{&#34;collection&#34;:&#34;users&#34;}&#39; \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>  &amp;&amp; curl -X POST https://kvnode.hola.cloud/v1/collections/users/keys/123 \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>  -H &#39;Api-Key: $API_KEY&#39; -H &#39;Api-Secret: $API_SECRET&#39; \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>  -d &#39;{&#34;value&#34;:{&#34;name&#34;:&#34;Alice&#34;}}&#39;</span></span></code></pre></code></pre>
     </section>
 
     <section class="section">
@@ -181,6 +184,7 @@
     </section>
 </div>
 
+
     <div id="comments-section">
     <h2>Comments</h2>
     <div id="comments-list"></div>
@@ -205,13 +209,13 @@
 <a href="#Key%20features">Key features</a>
 </div>
 <div class="index-h3">
-<a href="#Sub-millisecond%20latency">Sub-millisecond latency</a>
+<a href="#Collections%20and%20keys">Collections and keys</a>
 </div>
 <div class="index-h3">
-<a href="#Raft%20consensus">Raft consensus</a>
+<a href="#Root%2Freplica%20model">Root/replica model</a>
 </div>
 <div class="index-h3">
-<a href="#TTL%20&%20expiration">TTL & expiration</a>
+<a href="#Versioned%20writes">Versioned writes</a>
 </div>
 <div class="index-h2">
 <a href="#Quick%20start">Quick start</a>

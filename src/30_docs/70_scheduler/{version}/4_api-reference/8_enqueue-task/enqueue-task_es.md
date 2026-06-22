@@ -16,11 +16,11 @@ Requiere autenticación. Pasa tu clave API mediante el encabezado `X-API-Key` o 
 
 | Campo | Tipo | Descripción |
 |-------|------|-------------|
-| id | string | ID de tarea proporcionado por el cliente (opcional) |
+| id | string | ID de tarea requerido |
 | future | string | Marca de tiempo ISO 8601 para la disponibilidad |
-| delay | integer | Retraso en segundos desde ahora (alternativa a future) |
+| delay | string | Duración Go desde ahora, como `60s` o `5m` (alternativa a future) |
 | payload | object | Carga útil JSON arbitraria para el trabajador |
-| labels | object | Pares clave-valor opcionales para filtrado |
+| labels | array de strings | Etiquetas opcionales para filtrado |
 
 ```json
 {
@@ -29,11 +29,8 @@ Requiere autenticación. Pasa tu clave API mediante el encabezado `X-API-Key` o 
     "to": "usuario@example.com",
     "template": "bienvenida"
   },
-  "delay": 60,
-  "labels": {
-    "proyecto": "incorporacion",
-    "prioridad": "alta"
-  }
+  "delay": "60s",
+  "labels": ["proyecto:incorporacion", "prioridad:alta"]
 }
 ```
 
@@ -49,44 +46,25 @@ curl -X POST "https://api.hola.cloud/schedulers/sched-a1b2c3d4-e5f6-7890-abcd-ef
       "to": "usuario@example.com",
       "template": "bienvenida"
     },
-    "delay": 60,
-    "labels": {
-      "proyecto": "incorporacion",
-      "prioridad": "alta"
-    }
+    "delay": "60s",
+    "labels": ["proyecto:incorporacion", "prioridad:alta"]
   }'
 ```
 
 ## Ejemplo de Respuesta
 
 ```http
-HTTP/1.1 201 Created
-Content-Type: application/json
+HTTP/1.1 202 Accepted
 ```
 
-```json
-{
-  "id": "tarea-x1y2z3",
-  "scheduler_id": "sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-  "payload": {
-    "type": "enviar_correo",
-    "to": "usuario@example.com",
-    "template": "bienvenida"
-  },
-  "state": "pending",
-  "available_at": "2025-06-21T12:01:01Z",
-  "labels": {
-    "proyecto": "incorporacion",
-    "prioridad": "alta"
-  }
-}
-```
+El cuerpo de la respuesta está vacío.
 
 ## Códigos de Error
 
 | Estado | Código | Descripción |
 |--------|--------|-------------|
-| 400 | invalid_request | Cuerpo de solicitud faltante o inválido |
+| 400 | invalid_json | JSON inválido |
+| 400 | validation_error | Falta id, future/delay inválido o labels inválidas |
 | 401 | unauthorized | Clave API faltante o inválida |
-| 404 | not_found | Scheduler no encontrado |
+| 409 | task_already_exists | La tarea ya existe |
 | 500 | internal_error | Error interno del servidor |

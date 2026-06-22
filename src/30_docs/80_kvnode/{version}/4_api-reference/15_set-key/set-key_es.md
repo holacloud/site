@@ -52,9 +52,9 @@ Content-Type: application/json
 
 ```json
 {
-  "key": "usuario:1001",
-  "collection": "usuarios",
-  "created_at": "2025-06-21T10:00:00Z"
+  "ok": true,
+  "seq": 1,
+  "version": 1
 }
 ```
 
@@ -62,7 +62,7 @@ Content-Type: application/json
 
 | Estado | Código | Descripción |
 |--------|--------|-------------|
-| 400 | invalid_request | Valor faltante o inválido |
-| 401 | unauthorized | Autenticación faltante o inválida |
+| 400 | invalid_json | Valor faltante o inválido |
+| 403 | forbidden | Missing authentication headers |
 | 404 | not_found | Colección no encontrada |
 | 500 | internal_error | Error interno del servidor |

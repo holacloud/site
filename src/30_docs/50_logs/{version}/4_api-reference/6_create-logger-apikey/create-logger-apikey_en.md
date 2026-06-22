@@ -32,8 +32,8 @@ Requires management credentials:
 
 ```bash
 curl -X POST "https://api.hola.cloud/v1/loggers/logger_xyz789/apiKeys" \
-  -H "Api-Key: your-api-key" \
-  -H "Api-Secret: your-api-secret" \
+  -H "Api-Key: LOGGER_API_KEY" \
+  -H "Api-Secret: LOGGER_API_SECRET" \
   -H "Content-Type: application/json" \
   -d '{
     "name": "ci-cd-key"
@@ -43,8 +43,8 @@ curl -X POST "https://api.hola.cloud/v1/loggers/logger_xyz789/apiKeys" \
 ```http
 POST /v1/loggers/logger_xyz789/apiKeys HTTP/1.1
 Host: api.hola.cloud
-Api-Key: your-api-key
-Api-Secret: your-api-secret
+Api-Key: LOGGER_API_KEY
+Api-Secret: LOGGER_API_SECRET
 Content-Type: application/json
 
 {

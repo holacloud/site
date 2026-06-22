@@ -1,62 +1,64 @@
 # Download File
 
-Download a file from a bucket. The file path is specified after `/files/` in the URL.
+Download a file from a bucket. The file path is specified after `/files/`.
 
 ## Authentication
 
-Requires `Api-Key` and `Api-Secret` headers.
+Requires `X-Glue-Authentication`.
 
 ## Path Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `id` | string | The bucket ID (e.g., `bkt_abc123`) |
+| `bucket_id` | string | The bucket ID |
+| `*` | string | File path |
 
 ## Query Parameters
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `metadata` | boolean | false | Set to `true` to return file metadata as JSON instead of the file body |
+| Parameter | Description |
+|-----------|-------------|
+| `metadata` | If present, returns the file object as JSON instead of the file body. |
 
 ## Request
 
 ```bash
-curl "https://api.hola.cloud/v1/buckets/bkt_abc123/files/images/logo.png" \
-  -H "Api-Key: YOUR_API_KEY" \
-  -H "Api-Secret: YOUR_API_SECRET" \
+curl "https://api.hola.cloud/v1/buckets/bucket-550e8400-e29b-41d4-a716-446655440000/files/images/logo.png" \
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}' \
   -o logo.png
 ```
 
 ## Response
 
-```http
-HTTP/1.1 200 OK
-Content-Type: image/png
-Content-Length: 24576
-Last-Modified: Sun, 21 Jun 2026 12:00:00 GMT
-ETag: "abc123def456"
-```
-
-The response body is the raw file content.
+The response body is the raw file content. `Content-Type` is set from the stored `mime_type`.
 
 ### Metadata Response
 
-When `?metadata=true` is specified, the response returns JSON instead of the file body:
+```bash
+curl "https://api.hola.cloud/v1/buckets/bucket-550e8400-e29b-41d4-a716-446655440000/files/images/logo.png?metadata" \
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}'
+```
 
 ```json
 {
-  "path": "images/logo.png",
+  "id": "file-9f0b7b3c-1d2e-4a5f-8b9c-0123456789ab",
+  "uuid": "9f0b7b3c-1d2e-4a5f-8b9c-0123456789ab",
+  "created_timestamp": 1782045660000000000,
+  "updated_timestamp": 1782045660000000000,
+  "owners": ["user-123"],
+  "status": "available",
   "size": 24576,
-  "contentType": "image/png",
-  "modifiedAt": "2026-06-21T12:00:00Z",
-  "etag": "\"abc123def456\""
+  "name": "images/logo.png",
+  "bucket": "bucket-550e8400-e29b-41d4-a716-446655440000",
+  "hash_md5": "example-md5",
+  "hash_sha256": "example-sha256",
+  "mime_type": "image/png"
 }
 ```
 
 ## Error Codes
 
-| Status | Code | Description |
-|--------|------|-------------|
-| 401 | Unauthorized | Missing or invalid API credentials |
-| 404 | Not Found | The specified bucket or file does not exist |
-| 500 | Internal Server Error | An unexpected error occurred |
+| Status | Description |
+|--------|-------------|
+| 401 | Missing or invalid `X-Glue-Authentication` |
+| 404 | File not found |
+| 500 | Persistence or filesystem error |

@@ -1,145 +1,77 @@
 # Primeros Pasos
 
-Esta guía le muestra las operaciones básicas de HolaCloud Files: crear un bucket, subir un archivo, listar contenidos, descargar y eliminar.
+Esta guía muestra cómo crear un bucket, subir un archivo, listar archivos, descargar y eliminar.
 
-## Prerrequisitos
+## Requisitos
 
-Antes de comenzar, necesita:
+- `curl` instalado localmente
+- Un header `X-Glue-Authentication` válido para el usuario autenticado
 
-- Una cuenta de HolaCloud con una clave API y un secreto API
-- `curl` instalado en su máquina
-
-Sus credenciales API se pasan como encabezados en cada solicitud:
-
-```
-Api-Key: su-api-key
-Api-Secret: su-api-secret
+```http
+X-Glue-Authentication: {"user":{"id":"user-123"}}
 ```
 
-Todas las solicitudes utilizan la URL base `https://api.hola.cloud`.
+Todas las solicitudes usan `https://api.hola.cloud`.
 
 ## Paso 1: Crear un Bucket
 
-Los buckets son contenedores para sus archivos. Cada bucket debe tener un nombre único a nivel global.
-
 ```bash
 curl -X POST "https://api.hola.cloud/v1/buckets" \
-  -H "Api-Key: SU_API_KEY" \
-  -H "Api-Secret: SU_API_SECRET" \
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}' \
   -H "Content-Type: application/json" \
-  -d '{
-    "name": "mi-primer-bucket"
-  }'
+  -d '{"name":"mi-primer-bucket","description":"Primer bucket de prueba"}'
 ```
 
 Respuesta esperada:
 
 ```json
 {
-  "id": "bkt_abc123",
+  "id": "bucket-550e8400-e29b-41d4-a716-446655440000",
+  "project_id": "",
+  "created_timestamp": 1782045600000000000,
+  "owners": ["user-123"],
   "name": "mi-primer-bucket",
-  "createdAt": "2026-06-21T10:00:00Z",
-  "size": 0,
-  "fileCount": 0
+  "description": "Primer bucket de prueba"
 }
 ```
 
 ## Paso 2: Subir un Archivo
 
-Sube un archivo de texto al bucket usando PUT. La ruta del archivo se especifica en la URL después de `/files/`.
-
 ```bash
-echo "¡Hola, HolaCloud Files!" > hola.txt
-
-curl -X PUT "https://api.hola.cloud/v1/buckets/bkt_abc123/files/hola.txt" \
-  -H "Api-Key: SU_API_KEY" \
-  -H "Api-Secret: SU_API_SECRET" \
+curl -X PUT "https://api.hola.cloud/v1/buckets/bucket-550e8400-e29b-41d4-a716-446655440000/files/hola.txt" \
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}' \
   -H "Content-Type: text/plain" \
-  --data-binary @hola.txt
+  --data-binary "Hola, HolaCloud Files!"
 ```
 
-Respuesta esperada:
+Respuesta esperada: un objeto file con `id`, `uuid`, `created_timestamp`, `updated_timestamp`, `owners`, `status`, `size`, `name`, `bucket`, `hash_md5`, `hash_sha256` y `mime_type`.
 
-```json
-{
-  "path": "hola.txt",
-  "size": 24,
-  "contentType": "text/plain",
-  "uploadedAt": "2026-06-21T10:01:00Z",
-  "etag": "\"d41d8cd98f00b204e9800998ecf8427e\""
-}
-```
-
-## Paso 3: Listar Contenidos del Bucket
-
-Lista todos los archivos en el bucket con un filtro de prefijo opcional:
+## Paso 3: Listar Archivos
 
 ```bash
-curl "https://api.hola.cloud/v1/buckets/bkt_abc123/list/*" \
-  -H "Api-Key: SU_API_KEY" \
-  -H "Api-Secret: SU_API_SECRET"
+curl "https://api.hola.cloud/v1/buckets/bucket-550e8400-e29b-41d4-a716-446655440000/list/*" \
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}'
 ```
 
-Respuesta esperada:
-
-```json
-{
-  "files": [
-    {
-      "path": "hola.txt",
-      "size": 24,
-      "contentType": "text/plain",
-      "modifiedAt": "2026-06-21T10:01:00Z"
-    }
-  ],
-  "prefix": "",
-  "total": 1
-}
-```
+La respuesta es un array JSON de objetos file.
 
 ## Paso 4: Descargar el Archivo
 
-Descarga el archivo usando GET:
-
 ```bash
-curl "https://api.hola.cloud/v1/buckets/bkt_abc123/files/hola.txt" \
-  -H "Api-Key: SU_API_KEY" \
-  -H "Api-Secret: SU_API_SECRET" \
-  -o hola_descargado.txt
-
-cat hola_descargado.txt
-```
-
-Salida:
-
-```
-¡Hola, HolaCloud Files!
+curl "https://api.hola.cloud/v1/buckets/bucket-550e8400-e29b-41d4-a716-446655440000/files/hola.txt" \
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}'
 ```
 
 ## Paso 5: Eliminar el Archivo
 
-Elimina el archivo usando DELETE:
-
 ```bash
-curl -X DELETE "https://api.hola.cloud/v1/buckets/bkt_abc123/files/hola.txt" \
-  -H "Api-Key: SU_API_KEY" \
-  -H "Api-Secret: SU_API_SECRET"
+curl -X DELETE "https://api.hola.cloud/v1/buckets/bucket-550e8400-e29b-41d4-a716-446655440000/files/hola.txt" \
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}'
 ```
-
-Respuesta esperada: HTTP 204 Sin Contenido.
 
 ## Paso 6: Eliminar el Bucket
 
-El bucket debe estar vacío antes de poder eliminarlo. Como eliminamos el archivo, esto tendrá éxito:
-
 ```bash
-curl -X DELETE "https://api.hola.cloud/v1/buckets/bkt_abc123" \
-  -H "Api-Key: SU_API_KEY" \
-  -H "Api-Secret: SU_API_SECRET"
+curl -X DELETE "https://api.hola.cloud/v1/buckets/bucket-550e8400-e29b-41d4-a716-446655440000" \
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}'
 ```
-
-Respuesta esperada: HTTP 204 Sin Contenido.
-
-## Resumen
-
-Ha creado exitosamente un bucket, subido un archivo, listado los contenidos del bucket, descargado el archivo y limpiado los recursos. Ahora está listo para integrar HolaCloud Files en sus aplicaciones.

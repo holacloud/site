@@ -1,23 +1,23 @@
 # Config
 
-Config es un servicio centralizado de gestión de configuraciones dentro del ecosistema Hola.Cloud. Permite almacenar, recuperar y administrar configuraciones de aplicaciones de forma jerárquica, versionada y segura.
+Config expone una API JSON pequeña para configuración dentro del ecosistema Hola.Cloud. Almacena entradas de configuración y permite que usuarios autenticados lean o actualicen su configuración de ejecución.
 
 ## Beneficios Clave
 
-### Configuración Jerárquica
-Config soporta una estructura jerárquica de niveles: proyecto, entorno y servicio. Esto permite definir configuraciones base y sobrescribir valores específicos por entorno (desarrollo, staging, producción) o por servicio, reduciendo la duplicación y simplificando la administración.
+### Configuración por Entradas
+La API v0 almacena una configuración como un Thing con `id` y `entries`. La API de usuario v1 devuelve la configuración del usuario actual como un mapa `entries`.
 
 ### Basado en JSON
 Todas las configuraciones se almacenan como documentos JSON, lo que facilita su lectura, escritura e integración con cualquier lenguaje de programación o herramienta. Los esquemas son flexibles, permitiendo almacenar cualquier estructura JSON válida.
 
-### Versionado
-Cada actualización de configuración crea una nueva versión. Puedes rastrear cambios a lo largo del tiempo, comparar revisiones y revertir a una versión anterior si es necesario.
+### Actualizaciones Simples
+Las actualizaciones reemplazan o parchean los datos de entrada aceptados por la API.
 
 ### Fácil Integración
 Config se integra sin problemas con otros servicios de Hola.Cloud como InceptionDB, Lambda e InstantLogs. Centralizar las configuraciones entre servicios reduce el trabajo repetitivo y mantiene tu infraestructura consistente.
 
 ### Acceso Seguro
-El servicio expone dos superficies API. La API de administración (`/v0/configs`) es de acceso público para operaciones de gestión. La API de usuario (`/v1/config`) requiere una clave API, asegurando que solo clientes autorizados lean o modifiquen la configuración en tiempo de ejecución.
+El servicio expone dos superficies API. La API v0 (`/v0/configs`) gestiona Things de configuración. La API de usuario v1 (`/v1/config`) requiere `X-Glue-Authentication` y lee o actualiza la configuración de ejecución del usuario autenticado.
 
 ## Resumen de la API
 
@@ -28,18 +28,15 @@ El servicio expone dos superficies API. La API de administración (`/v0/configs`
 | GET | `/v0/configs/{id}` | Obtener una configuración por ID (admin) | Pública |
 | DELETE | `/v0/configs/{id}` | Eliminar una configuración (admin) | Pública |
 | PATCH | `/v0/configs/{id}` | Actualización parcial de una configuración (admin) | Pública |
-| GET | `/v1/config` | Obtener la configuración de usuario actual | API Key |
-| PATCH | `/v1/config` | Actualizar la configuración de usuario actual | API Key |
+| GET | `/v1/config` | Obtener el mapa `entries` de configuración del usuario actual | Auth Glue |
+| PATCH | `/v1/config` | Actualizar el mapa `entries` de configuración del usuario actual | Auth Glue |
 
 URL base: `https://api.hola.cloud`
 
 ## Mejores Casos de Uso
 
-### Configuración de Microservicios
-Centraliza y versiona la configuración de todos tus microservicios. Cada servicio obtiene su propia configuración al iniciar y recibe actualizaciones sin necesidad de redespliegue.
-
-### Despliegues Multi-Entorno
-Administra configuraciones separadas para desarrollo, staging y producción desde un único panel de control. Sobrescribe solo los valores que difieren entre entornos.
+### Configuración de Ejecución
+Obtén la configuración del usuario autenticado desde `/v1/config` al iniciar o durante la ejecución.
 
 ### Feature Flags
-Almacena banderas de funcionalidad como entradas de configuración y actualízalas en tiempo de ejecución sin cambios de código. El endpoint PATCH soporta actualizaciones parciales, facilitando la activación o desactivación de banderas individuales.
+Almacena banderas de funcionalidad como entradas de configuración y actualízalas en tiempo de ejecución sin cambios de código.

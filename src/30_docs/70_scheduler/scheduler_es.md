@@ -1,6 +1,6 @@
 # Scheduler
 
-El Scheduler es un servicio distribuido de programación de tareas que forma parte del ecosistema HolaCloud. Proporciona encolado de tareas basado en tiempo, reserva por concesión para la seguridad de los trabajadores y monitoreo en tiempo real a través de Server-Sent Events (SSE). Diseñado como una alternativa ligera a los sistemas cron tradicionales, el Scheduler se integra perfectamente con el resto de tus servicios de HolaCloud.
+El Scheduler es una cola de tareas retrasadas en memoria que forma parte del ecosistema HolaCloud. Proporciona encolado por tiempo, reservas con lease para trabajadores y monitoreo por snapshots mediante Server-Sent Events (SSE). Está diseñado para trabajo retrasado de corta vida, sin programacion recurrente, reentrega automatica ni persistencia compartida.
 
 ## Características Clave
 
@@ -22,13 +22,13 @@ Las tareas pueden anotarse con `labels` arbitrarios (pares clave-valor) al encol
 ## Casos de Uso
 
 ### Reemplazo de Cron
-Programa trabajos recurrentes o únicos sin gestionar archivos crontab. Cada llamada programada crea una tarea que estará disponible en el momento especificado.
+Programa trabajo retrasado de una sola ejecución. Cada llamada de encolado crea una tarea que estará disponible en el momento especificado.
 
 ### Procesamiento de Trabajos Retrasados
 Encola trabajos con un retraso — por ejemplo, enviar un correo de recordatorio 24 horas después de que un usuario se registre. El Scheduler retiene la tarea hasta que llegue su momento.
 
 ### Trabajadores Distribuidos
-Múltiples trabajadores pueden reservar y procesar tareas del mismo scheduler. El mecanismo de concesión asegura que una tarea se procese exactamente una vez en condiciones normales, y se reintente automáticamente si un trabajador falla.
+Múltiples trabajadores pueden reservar y procesar tareas del mismo scheduler. El lease evita el procesamiento concurrente mientras está activo; si expira, la tarea vuelve a estar disponible.
 
 ### Colas de Reintento
 Cuando una tarea falla, se puede reprogramar con un retraso mayor. El endpoint de `reschedule` del Scheduler facilita la implementación de retroceso exponencial.

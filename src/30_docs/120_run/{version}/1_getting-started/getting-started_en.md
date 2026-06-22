@@ -1,18 +1,14 @@
 # Getting Started
 
-Run is a container execution service with a built-in Docker Registry v2 compatible API. It allows you to deploy, run, and manage container images with environment variables and volumes.
+Run exposes a push-oriented Docker Registry v2 subset and a Console API for repository state, starts, stops, rollbacks, environment variables, and volumes.
 
 ## Authentication
 
-Run uses **DockerAuth** with Basic Auth for registry authentication. Use your HolaCloud API key and secret as the username and password.
-
-### Logging into the Registry
+Registry endpoints use Docker Basic Auth credentials configured by `docker login`.
 
 ```bash
-docker login https://registry.hola.cloud
+docker login run.hola.cloud
 ```
-
-You will be prompted for your HolaCloud API key (username) and API secret (password).
 
 ## Building and Pushing an Image
 
@@ -28,174 +24,101 @@ CMD ["/app.sh"]
 Build and tag the image:
 
 ```bash
-docker build -t registry.hola.cloud/my-project/my-app:v1 .
+docker build -t run.hola.cloud/my-project/my-app:v1 .
 ```
 
-Push to the registry:
+Push to Run:
 
 ```bash
-docker push registry.hola.cloud/my-project/my-app:v1
+docker push run.hola.cloud/my-project/my-app:v1
 ```
 
-## Starting a Container
+## Reading Console Data
 
-Start a container from a pushed image via the Console API:
+Query the current Console data for a repository:
 
 ```bash
-curl -X POST "https://api.hola.cloud/api/console/run" \
-  -H "Api-Key: YOUR_API_KEY" \
-  -H "Api-Secret: YOUR_API_SECRET" \
+curl "https://api.hola.cloud/api/console?repository=my-project/my-app"
+```
+
+## Starting a Repository
+
+Start a repository from a pushed tag or digest:
+
+```bash
+curl -X POST "https://api.hola.cloud/api/console/start" \
   -H "Content-Type: application/json" \
   -d '{
-    "image": "registry.hola.cloud/my-project/my-app:v1",
-    "env": {
-      "LOG_LEVEL": "info",
-      "DATABASE_URL": "postgres://..."
-    },
-    "volumes": [
-      {
-        "container_path": "/data",
-        "volume_name": "my-data"
-      }
-    ]
+    "repository": "my-project/my-app",
+    "reference": "v1"
   }'
 ```
 
-Expected response:
+You can also use a digest:
 
 ```json
 {
-  "id": "c8a9f3b2-1234-5678-9abc-def012345678",
-  "image": "registry.hola.cloud/my-project/my-app:v1",
-  "status": "running",
-  "created_at": "2025-06-21T12:00:00Z"
+  "repository": "my-project/my-app",
+  "digest": "sha256:a1b2c3d4..."
 }
 ```
 
-## Stopping a Running Container
-
-Stop a container by its ID:
+## Stopping a Repository
 
 ```bash
-curl -X DELETE "https://api.hola.cloud/api/console/run/c8a9f3b2-1234-5678-9abc-def012345678" \
-  -H "Api-Key: YOUR_API_KEY" \
-  -H "Api-Secret: YOUR_API_SECRET"
+curl -X POST "https://api.hola.cloud/api/console/stop" \
+  -H "Content-Type: application/json" \
+  -d '{"repository": "my-project/my-app"}'
 ```
 
-## Rolling Back to a Previous Image Version
+## Rolling Back
 
-Deploy a previous image version by specifying a different tag:
+Rollback uses the same repository plus `reference` or `digest` shape:
 
 ```bash
-curl -X PUT "https://api.hola.cloud/api/console/run/c8a9f3b2-1234-5678-9abc-def012345678" \
-  -H "Api-Key: YOUR_API_KEY" \
-  -H "Api-Secret: YOUR_API_SECRET" \
+curl -X POST "https://api.hola.cloud/api/console/rollback" \
   -H "Content-Type: application/json" \
   -d '{
-    "image": "registry.hola.cloud/my-project/my-app:v0"
+    "repository": "my-project/my-app",
+    "reference": "v0"
   }'
 ```
 
 ## Managing Environment Variables
 
-Update environment variables for a running container:
-
 ```bash
 curl -X PUT "https://api.hola.cloud/api/console/env" \
-  -H "Api-Key: YOUR_API_KEY" \
-  -H "Api-Secret: YOUR_API_SECRET" \
   -H "Content-Type: application/json" \
   -d '{
-    "env": {
-      "LOG_LEVEL": "debug",
-      "DATABASE_URL": "postgres://..."
-    }
+    "repository": "my-project/my-app",
+    "env": [
+      {"key": "LOG_LEVEL", "desired_value": "debug"},
+      {"key": "DATABASE_URL", "desired_value": "postgres://..."}
+    ]
   }'
 ```
 
 ## Managing Volumes
 
-Attach volumes to a container:
-
 ```bash
 curl -X PUT "https://api.hola.cloud/api/console/volumes" \
-  -H "Api-Key: YOUR_API_KEY" \
-  -H "Api-Secret: YOUR_API_SECRET" \
   -H "Content-Type: application/json" \
   -d '{
+    "repository": "my-project/my-app",
     "volumes": [
-      {
-        "container_path": "/data",
-        "volume_name": "my-data",
-        "read_only": false
-      }
+      {"name": "my-data", "target": "/data", "mode": "rw"}
     ]
   }'
 ```
 
-## Checking Running State
-
-Query the current state of all containers:
-
-```bash
-curl "https://api.hola.cloud/api/console/run" \
-  -H "Api-Key: YOUR_API_KEY" \
-  -H "Api-Secret: YOUR_API_SECRET"
-```
-
-Expected response:
-
-```json
-[
-  {
-    "id": "c8a9f3b2-1234-5678-9abc-def012345678",
-    "image": "registry.hola.cloud/my-project/my-app:v1",
-    "status": "running",
-    "env": { "LOG_LEVEL": "info" },
-    "volumes": [{ "container_path": "/data", "volume_name": "my-data" }],
-    "created_at": "2025-06-21T12:00:00Z"
-  }
-]
-```
-
 ## Complete Workflow Example
 
-A full end-to-end workflow:
-
-1. **Login** to the registry:
-   ```bash
-   docker login https://registry.hola.cloud
-   ```
-
-2. **Build** your image:
-   ```bash
-   docker build -t registry.hola.cloud/my-project/my-app:v1 .
-   ```
-
-3. **Push** the image:
-   ```bash
-   docker push registry.hola.cloud/my-project/my-app:v1
-   ```
-
-4. **Start** a container:
-   ```bash
-   curl -X POST "https://api.hola.cloud/api/console/run" \
-     -H "Api-Key: YOUR_API_KEY" \
-     -H "Api-Secret: YOUR_API_SECRET" \
-     -H "Content-Type: application/json" \
-     -d '{"image": "registry.hola.cloud/my-project/my-app:v1"}'
-   ```
-
-5. **Verify** it is running:
-   ```bash
-   curl "https://api.hola.cloud/api/console/run" \
-     -H "Api-Key: YOUR_API_KEY" \
-     -H "Api-Secret: YOUR_API_SECRET"
-   ```
-
-6. **Stop** the container when done:
-   ```bash
-   curl -X DELETE "https://api.hola.cloud/api/console/run/CONTAINER_ID" \
-     -H "Api-Key: YOUR_API_KEY" \
-     -H "Api-Secret: YOUR_API_SECRET"
-   ```
+```bash
+docker login run.hola.cloud
+docker build -t run.hola.cloud/my-project/my-app:v1 .
+docker push run.hola.cloud/my-project/my-app:v1
+curl -X POST "https://api.hola.cloud/api/console/start" \
+  -H "Content-Type: application/json" \
+  -d '{"repository": "my-project/my-app", "reference": "v1"}'
+curl "https://api.hola.cloud/api/console?repository=my-project/my-app"
+```

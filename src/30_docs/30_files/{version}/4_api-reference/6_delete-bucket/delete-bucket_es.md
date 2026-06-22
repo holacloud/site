@@ -1,36 +1,18 @@
 # Eliminar Bucket
 
-Eliminar un bucket vacío. El bucket no debe contener ningún archivo.
+Elimina un bucket por ID.
 
 ## Autenticación
 
-Requiere los encabezados `Api-Key` y `Api-Secret`.
-
-## Parámetros de Ruta
-
-| Parámetro | Tipo | Descripción |
-|-----------|------|-------------|
-| `id` | string | El ID del bucket (ej. `bkt_abc123`) |
+Requiere `X-Glue-Authentication`.
 
 ## Solicitud
 
 ```bash
-curl -X DELETE "https://api.hola.cloud/v1/buckets/bkt_abc123" \
-  -H "Api-Key: SU_API_KEY" \
-  -H "Api-Secret: SU_API_SECRET"
+curl -X DELETE "https://api.hola.cloud/v1/buckets/bucket-550e8400-e29b-41d4-a716-446655440000" \
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}'
 ```
 
 ## Respuesta
 
-```http
-HTTP/1.1 204 No Content
-```
-
-## Códigos de Error
-
-| Estado | Código | Descripción |
-|--------|--------|-------------|
-| 401 | Unauthorized | Credenciales API faltantes o inválidas |
-| 404 | Not Found | El bucket especificado no existe |
-| 409 | Conflict | El bucket no está vacío; elimine todos los archivos primero |
-| 500 | Internal Server Error | Ocurrió un error inesperado |
+El cuerpo de respuesta es el objeto bucket eliminado con `id`, `project_id`, `created_timestamp`, `owners`, `name` y `description`.

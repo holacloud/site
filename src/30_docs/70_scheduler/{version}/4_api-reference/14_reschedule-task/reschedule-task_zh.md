@@ -22,7 +22,7 @@
 
 ```json
 {
-  "delay": 120
+  "delay": "120s"
 }
 ```
 
@@ -33,7 +33,7 @@ curl -X POST "https://api.hola.cloud/schedulers/sched-a1b2c3d4-e5f6-7890-abcd-ef
   -H "X-API-Key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "delay": 120
+    "delay": "120s"
   }'
 ```
 
@@ -46,9 +46,7 @@ Content-Type: application/json
 
 ```json
 {
-  "id": "task-x1y2z3",
-  "state": "pending",
-  "available_at": "2025-06-21T12:03:01Z"
+  "id": "task-x1y2z3",      "future": "2025-06-21T12:03:01Z"
 }
 ```
 
@@ -56,7 +54,7 @@ Content-Type: application/json
 
 | 状态 | 代码 | 描述 |
 |------|------|------|
-| 400 | invalid_request | 缺少或无效的 future/delay |
+| 400 | validation_error | 缺少或无效的 future/delay |
 | 401 | unauthorized | 缺少或无效的 API 密钥 |
 | 404 | not_found | 未找到调度器或任务 |
 | 500 | internal_error | 服务器内部错误 |

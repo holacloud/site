@@ -1,11 +1,12 @@
 # Run
 
-Run is HolaCloud's container execution service. It manages Docker containers through a Docker Registry v2 compatible interface, allowing you to deploy and run applications in isolated environments.
+Run is HolaCloud's container image and console-control service. It exposes a push-oriented subset of the Docker Registry v2 API and a small Console API for inspecting repositories and changing runtime configuration.
 
 ## Features
 
-### Docker Registry v2 Compatible
-Run is a fully compliant Docker Registry v2. Push and pull images using standard Docker commands — no custom tooling required.
+### Push-Oriented Registry v2 Subset
+
+Run supports the registry endpoints needed to push image blobs and manifests under `/v2`. It is not a full Docker Registry implementation and should not be documented as a general pull registry.
 
 ```bash
 docker login run.hola.cloud
@@ -13,56 +14,57 @@ docker build -t run.hola.cloud/my-project/my-app:latest .
 docker push run.hola.cloud/my-project/my-app:latest
 ```
 
-### Console Management
-Manage containers, images, and deployments through the HolaCloud Console. Start, stop, and restart containers, view logs, and monitor resource usage — all from a web interface.
+### Console Management API
 
-### Environment Variables
-Configure your containers with environment variables. Set them at deployment time through the Console or API for flexible, configuration-driven deployments.
+The Console API works with repositories and image references or digests:
+
+- `GET /version`
+- `GET /api/console?repository=`
+- `POST /api/console/start`
+- `POST /api/console/stop`
+- `POST /api/console/rollback`
+- `PUT /api/console/env`
+- `PUT /api/console/volumes`
+
+There is no `/v1/run/deploy`, `/api/console/run`, push/exec API, or `container_id` workflow.
+
+### Environment Variables and Volumes
+
+Environment and volume configuration is saved by repository:
 
 ```bash
-curl -X POST "https://api.hola.cloud/v1/run/deploy" \
-  -H "Authorization: Bearer your-token" \
+curl -X PUT "https://api.hola.cloud/api/console/env" \
+  -H "Content-Type: application/json" \
   -d '{
-    "image": "run.hola.cloud/my-project/my-app:latest",
-    "env": {
-      "DATABASE_URL": "postgres://...",
-      "LOG_LEVEL": "debug"
-    }
+    "repository": "my-project/my-app",
+    "env": [
+      {"key": "LOG_LEVEL", "desired_value": "debug"}
+    ]
   }'
 ```
 
-### Volumes
-Attach persistent volumes to your containers for stateful workloads. Volumes are backed by HolaCloud's distributed storage and survive container restarts.
-
-## Use Cases
-
-### Full Application Deployment
-Deploy web applications, APIs, and microservices as Docker containers. Run handles networking, health checks, and automatic restarts.
-
-### Development Environments
-Spin up isolated development environments for each branch or developer. Use Run to create ephemeral containers that match your production setup.
-
-### CI/CD Pipelines
-Integrate Run into your CI/CD workflow. Push images to the registry as part of your build process, then deploy them automatically to staging or production environments.
-
 ## Getting Started
 
-1. **Authenticate** with the registry:
-   ```bash
-   docker login run.hola.cloud
-   ```
+1. Authenticate with the registry:
 
-2. **Build and push** your image:
-   ```bash
-   docker build -t run.hola.cloud/my-project/my-app:latest .
-   docker push run.hola.cloud/my-project/my-app:latest
-   ```
+```bash
+docker login run.hola.cloud
+```
 
-3. **Deploy** through the Console or API:
-   ```bash
-   curl -X POST "https://api.hola.cloud/v1/run/deploy" \
-     -H "Authorization: Bearer your-token" \
-     -d '{"image": "run.hola.cloud/my-project/my-app:latest"}'
-   ```
+2. Build and push your image:
 
-Your container will start and be available at the assigned endpoint.
+```bash
+docker build -t run.hola.cloud/my-project/my-app:latest .
+docker push run.hola.cloud/my-project/my-app:latest
+```
+
+3. Start the repository at a pushed reference:
+
+```bash
+curl -X POST "https://api.hola.cloud/api/console/start" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "repository": "my-project/my-app",
+    "reference": "latest"
+  }'
+```

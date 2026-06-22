@@ -18,18 +18,18 @@ KVNode 通过**主从复制**模型实现高可用性。写入主（领导者）
 |---------|------|
 | `set` | 键被创建或更新 |
 | `delete` | 键被删除 |
-| `baseline_begin` | 完整集合快照开始 |
-| `baseline_end` | 完整集合快照结束 |
+| `BASELINE_BEGIN` | 完整集合快照开始 |
+| `BASELINE_END` | 完整集合快照结束 |
 | `ping` | 心跳保持连接 |
 
 ### 示例：复制流
 
 ```
-{"type":"baseline_begin","collection":"my-collection","seq":0}
-{"type":"set","collection":"my-collection","key":"user:alice","value":{"role":"admin"},"version":1,"timestamp":1700000000}
-{"type":"baseline_end","collection":"my-collection","seq":1}
-{"type":"set","collection":"my-collection","key":"user:bob","value":{"role":"user"},"version":1,"timestamp":1700000001}
-{"type":"ping","timestamp":1700000010}
+{"type":"BASELINE_BEGIN","collection":"my-collection","snapshotSeq":1}
+{"type":"SET","collection":"my-collection","key":"user:alice","value":{"role":"admin"},"version":1,"timestamp":1700000000}
+{"type":"BASELINE_END","collection":"my-collection","seq":1}
+{"type":"SET","collection":"my-collection","key":"user:bob","value":{"role":"user"},"version":1,"timestamp":1700000001}
+{"type":"PING","timestamp":1700000010}
 ```
 
 ## 节点状态

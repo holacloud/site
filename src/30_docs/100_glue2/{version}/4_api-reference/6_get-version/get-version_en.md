@@ -4,7 +4,7 @@ Returns the current version of the Glue2 gateway.
 
 ## Description
 
-The version endpoint provides build and release information about the running gateway instance.
+The version endpoint returns the configured Glue2 version as plain text.
 
 ## Authentication
 
@@ -22,13 +22,8 @@ curl -X GET "https://api.hola.cloud/version"
 
 ## Response
 
-```json
-{
-  "service": "glue2",
-  "version": "2.3.1",
-  "commit": "a1b2c3d4",
-  "build_time": "2026-06-20T12:00:00Z"
-}
+```text
+2.3.1
 ```
 
 ## Error Codes

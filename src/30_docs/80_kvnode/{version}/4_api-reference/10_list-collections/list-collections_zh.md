@@ -22,18 +22,7 @@ Content-Type: application/json
 
 ```json
 {
-  "collections": [
-    {
-      "name": "users",
-      "key_count": 1200,
-      "created_at": "2025-06-01T10:00:00Z"
-    },
-    {
-      "name": "sessions",
-      "key_count": 450,
-      "created_at": "2025-06-10T14:30:00Z"
-    }
-  ]
+  "collections": ["users", "sessions"]
 }
 ```
 
@@ -41,5 +30,5 @@ Content-Type: application/json
 
 | 状态 | 代码 | 描述 |
 |------|------|------|
-| 401 | unauthorized | 缺少或无效的身份验证 |
+| 403 | forbidden | Missing authentication headers |
 | 500 | internal_error | 服务器内部错误 |

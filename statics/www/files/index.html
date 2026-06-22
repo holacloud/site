@@ -107,7 +107,7 @@
     <div class="hero-inner">
         <div class="hero-eyebrow">📁 Files</div>
         <h1>Secure object storage service</h1>
-        <p>Files is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <p>Files provides a REST API for buckets and file upload, download, listing, metadata, and deletion.</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">Get started</a>
             <a class="button button-secondary" href="/docs/files/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">Documentation</a>
@@ -120,18 +120,18 @@
         <div class="section-header">
             <div class="section-kicker">Files</div>
             <h2 id="Key%20features">Key features</h2>
-            <p>Everything you need to build, deploy, and scale with Files on HolaCloud.</p>
+            <p>Use buckets to organize files and access them through simple HTTP endpoints.</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="Scalable%20storage">Scalable storage</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Store and retrieve any amount of data with low-latency access from anywhere.</p>
+            <h3 id="Bucket%20API">Bucket API</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Create, list, retrieve, and delete buckets with names and descriptions.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="Fine-grained%20permissions">Fine-grained permissions</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Per-bucket and per-object access control with API key authentication.</p>
+            <h3 id="File%20operations">File operations</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Upload, download, list, inspect, and delete files inside buckets.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="Versioning%20&amp;%20retention">Versioning &amp; retention</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Keep file history and set automated retention policies for compliance.</p>
+            <h3 id="Stored%20metadata">Stored metadata</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Files track size, MIME type, timestamps, and content hashes returned by the API.</p>
           </div>
         </div>
     </section>
@@ -142,9 +142,9 @@
             <h2 id="Quick%20start">Quick start</h2>
             <p>Get started with Files in seconds using the API.</p>
         </div>
-        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST https://api.hola.cloud/v1/buckets \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  -H &#34;Authorization: Bearer $TOKEN&#34; \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  -d &#39;{&#34;name&#34;: &#34;my-bucket&#34;, &#34;region&#34;: &#34;us-east-1&#34;}&#39;</span></span></code></pre></code></pre>
+        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST https://files.hola.cloud/v1/buckets \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  -H &#39;X-Glue-Authentication: {&#34;user&#34;:{&#34;id&#34;:&#34;user-123&#34;}}&#39; \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  -d &#39;{&#34;name&#34;:&#34;my-bucket&#34;,&#34;description&#34;:&#34;Uploads for my app&#34;}&#39;</span></span></code></pre></code></pre>
     </section>
 
     <section class="section">
@@ -181,6 +181,7 @@
     </section>
 </div>
 
+
     <div id="comments-section">
     <h2>Comments</h2>
     <div id="comments-list"></div>
@@ -205,13 +206,13 @@
 <a href="#Key%20features">Key features</a>
 </div>
 <div class="index-h3">
-<a href="#Scalable%20storage">Scalable storage</a>
+<a href="#Bucket%20API">Bucket API</a>
 </div>
 <div class="index-h3">
-<a href="#Fine-grained%20permissions">Fine-grained permissions</a>
+<a href="#File%20operations">File operations</a>
 </div>
 <div class="index-h3">
-<a href="#Versioning%20&%20retention">Versioning & retention</a>
+<a href="#Stored%20metadata">Stored metadata</a>
 </div>
 <div class="index-h2">
 <a href="#Quick%20start">Quick start</a>

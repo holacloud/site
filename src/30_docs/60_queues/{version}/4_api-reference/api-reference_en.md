@@ -1,29 +1,15 @@
-
 # Tailon API Reference
 
 Base URL: `https://api.hola.cloud`
 
-## Authentication
-
-Tailon endpoints are **public** by default. No authentication headers are required for most operations.
-
-## Endpoints
+Tailon is a simple in-memory queue service.
 
 | Method | Path | Description |
 |--------|------|-------------|
-| GET | `/v1/queues` | List all queues |
-| POST | `/v1/queues` | Create a new queue |
-| GET | `/v1/queues/{id}` | Get queue details |
-| DELETE | `/v1/queues/{id}` | Delete a queue |
-| POST | `/v1/queues/{id}` | Write messages to a queue |
-| GET | `/v1/queues/{id}` | Read messages from a queue (long-poll) |
-| GET | `/v1/clients` | List active streaming clients |
+| POST | `/v1/queues` | Create queue; `201` empty body |
+| GET | `/v1/queues` | List queue IDs as `[]string` |
+| GET | `/v1/queues/{queue_id}` | Retrieve `name`, `len`, `reads`, `writes` |
+| POST | `/v1/queues/{queue_id}:write` | Write messages |
+| GET | `/v1/queues/{queue_id}:read` | Read messages as NDJSON |
 
-## Common Error Codes
-
-| Code | Description |
-|------|-------------|
-| 400 | Bad request — malformed JSON or invalid parameters |
-| 404 | Not found — the requested queue does not exist |
-| 409 | Conflict — queue operation conflict |
-| 500 | Internal server error |
+The delete handler is not implemented.

@@ -140,7 +140,7 @@
 <div class="item"><a href="/docs/files/v2/api-reference/delete-bucket/index.html">Delete Bucket</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/delete-file/index.html">Delete File</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/download-file/index.html">Download File</a></div>
-<div class="item"><a href="/docs/files/v2/api-reference/file-metadata/index.html">File Metadata</a></div>
+<div class="item"><a href="/docs/files/v2/api-reference/file-metadata/index.html">File Headers</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/get-bucket/index.html">Get Bucket</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/list-buckets/index.html">List Buckets</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/list-files/index.html">List Files</a></div>
@@ -163,11 +163,11 @@
 <div class="item"><a href="/docs/config/v2/api-reference/update-user-config/index.html">Update User Config</a></div>
 </div>
 </div>
-<div class="item"><a href="/docs/logs/index.html">Logs</a></div>
+<div class="item"><a href="/docs/logs/index.html">InstantLogs</a></div>
 <div class="children">
 <div class="item"><a href="/docs/logs/v2/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/logs/v2/ingesting-logs/index.html">Ingesting Logs</a></div>
-<div class="item"><a href="/docs/logs/v2/streaming-filtering/index.html">Streaming Filtering</a></div>
+<div class="item"><a href="/docs/logs/v2/streaming-filtering/index.html">Streaming and Filtering</a></div>
 <div class="item"><a href="/docs/logs/v2/api-reference/index.html">InstantLogs API Reference</a></div>
 <div class="children">
 <div class="item"><a href="/docs/logs/v2/api-reference/create-logger/index.html">Create Logger</a></div>
@@ -183,11 +183,11 @@
 <div class="item"><a href="/docs/logs/v2/api-reference/stream-events/index.html">Stream Events</a></div>
 </div>
 </div>
-<div class="item"><a href="/docs/queues/index.html">Queues</a></div>
+<div class="item"><a href="/docs/queues/index.html">Tailon Queues</a></div>
 <div class="children">
 <div class="item"><a href="/docs/queues/v2/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/queues/v2/managing-queues/index.html">Managing Queues</a></div>
-<div class="item"><a href="/docs/queues/v2/producing-consuming/index.html">Producing Consuming</a></div>
+<div class="item"><a href="/docs/queues/v2/producing-consuming/index.html">Producing and Consuming</a></div>
 <div class="item"><a href="/docs/queues/v2/api-reference/index.html">Tailon API Reference</a></div>
 <div class="children">
 <div class="item"><a href="/docs/queues/v2/api-reference/create-queue/index.html">Create Queue</a></div>
@@ -241,7 +241,7 @@
 <div class="item"><a href="/docs/kvnode/v2/api-reference/readiness-check/index.html">Readiness Check</a></div>
 <div class="item"><a href="/docs/kvnode/v2/api-reference/set-key/index.html">Set Key</a></div>
 </div>
-<div class="item"><a href="/docs/kvnode/v2/sdk-reference/index.html">Sdk Reference</a></div>
+<div class="item"><a href="/docs/kvnode/v2/sdk-reference/index.html">SDK Reference</a></div>
 </div>
 <div class="item"><a href="/docs/console/index.html">Console</a></div>
 <div class="children">
@@ -249,7 +249,7 @@
 <div class="item"><a href="/docs/console/v2/managing-projects/index.html">Managing Projects and Services</a></div>
 <div class="item"><a href="/docs/console/v2/api-reference/index.html">Console API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/console/v2/api-reference/fake-api/index.html">Fake Api</a></div>
+<div class="item"><a href="/docs/console/v2/api-reference/fake-api/index.html">Fake API</a></div>
 <div class="item"><a href="/docs/console/v2/api-reference/get-version/index.html">Get Version</a></div>
 </div>
 </div>
@@ -272,7 +272,7 @@
 <div class="item"><a href="/docs/holamail/v2/sending-email/index.html">Sending Email</a></div>
 <div class="item"><a href="/docs/holamail/v2/api-reference/index.html">Holamail API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/holamail/v2/api-reference/smtp-reference/index.html">Smtp Reference</a></div>
+<div class="item"><a href="/docs/holamail/v2/api-reference/smtp-reference/index.html">SMTP Reference</a></div>
 </div>
 </div>
 <div class="item"><a href="/docs/run/index.html">Run</a></div>
@@ -286,8 +286,8 @@
 <div class="item"><a href="/docs/run/v2/api-reference/rollback-image/index.html">Rollback Image</a></div>
 <div class="item"><a href="/docs/run/v2/api-reference/save-environment/index.html">Save Environment</a></div>
 <div class="item"><a href="/docs/run/v2/api-reference/save-volumes/index.html">Save Volumes</a></div>
-<div class="item"><a href="/docs/run/v2/api-reference/start-container/index.html">Start Container</a></div>
-<div class="item"><a href="/docs/run/v2/api-reference/stop-container/index.html">Stop Container</a></div>
+<div class="item"><a href="/docs/run/v2/api-reference/start-container/index.html">Start Repository</a></div>
+<div class="item"><a href="/docs/run/v2/api-reference/stop-container/index.html">Stop Repository</a></div>
 </div>
 </div>
 
@@ -297,18 +297,18 @@
     <div class="breadcrumb"><a class="item" href="/docs/index.html">Documentation</a><span class="arrow">→</span><a class="item selected" href="/docs/config/index.html">Config</a></div>
     <div class="document">
     <h1>Config</h1>
-<p>Config is a centralized configuration management service within the Hola.Cloud ecosystem. It enables you to store, retrieve, and manage application configurations in a hierarchical, versioned, and secure manner.</p>
+<p>Config exposes a small JSON configuration API in the Hola.Cloud ecosystem. It stores configuration entries and lets authenticated users read or update their runtime configuration.</p>
 <h2 id="Key%20Benefits">Key Benefits</h2>
-<h3 id="Hierarchical%20Configuration">Hierarchical Configuration</h3>
-<p>Config supports a structured hierarchy of project, environment, and service levels. This allows you to define base configurations and override specific values per environment (development, staging, production) or per service, reducing duplication and simplifying management.</p>
+<h3 id="Entry-Based%20Configuration">Entry-Based Configuration</h3>
+<p>The v0 API stores a config as a Thing with an <code>id</code> and <code>entries</code>. The v1 user API returns the current user&#39;s configuration as an <code>entries</code> map.</p>
 <h3 id="JSON-Based">JSON-Based</h3>
 <p>All configurations are stored as JSON documents, making them easy to read, write, and integrate with any programming language or toolchain. Schemas are flexible, so you can store any valid JSON structure.</p>
-<h3 id="Versioned">Versioned</h3>
-<p>Every configuration update creates a new version. You can track changes over time, compare revisions, and roll back to a previous version if needed.</p>
+<h3 id="Simple%20Updates">Simple Updates</h3>
+<p>Updates replace or patch the entry data accepted by the API.</p>
 <h3 id="Easy%20Integration">Easy Integration</h3>
 <p>Config integrates seamlessly with other Hola.Cloud services such as InceptionDB, Lambda, and InstantLogs. Centralizing configuration across services reduces boilerplate and keeps your infrastructure consistent.</p>
 <h3 id="Secure%20Access">Secure Access</h3>
-<p>The service exposes two API surfaces. The admin API (<code>/v0/configs</code>) is publicly accessible for management operations. The user API (<code>/v1/config</code>) requires an API key, ensuring that only authorized clients read or modify runtime configuration.</p>
+<p>The service exposes two API surfaces. The v0 API (<code>/v0/configs</code>) manages config Things. The v1 user API (<code>/v1/config</code>) requires <code>X-Glue-Authentication</code> and reads or updates the authenticated user&#39;s runtime configuration.</p>
 <h2 id="API%20Overview">API Overview</h2>
 <table>
 <thead>
@@ -353,25 +353,23 @@
 <tr>
 <td>GET</td>
 <td><code>/v1/config</code></td>
-<td>Retrieve the current user config</td>
-<td>API Key</td>
+<td>Retrieve the current user config entries map</td>
+<td>Glue auth</td>
 </tr>
 <tr>
 <td>PATCH</td>
 <td><code>/v1/config</code></td>
-<td>Update the current user config</td>
-<td>API Key</td>
+<td>Update the current user config entries map</td>
+<td>Glue auth</td>
 </tr>
 </tbody>
 </table>
 <p>Base URL: <code>https://api.hola.cloud</code></p>
 <h2 id="Best%20Use%20Cases">Best Use Cases</h2>
-<h3 id="Microservice%20Configuration">Microservice Configuration</h3>
-<p>Centralize and version-control configuration for all your microservices. Each service fetches its own config at startup and receives updates without redeployment.</p>
-<h3 id="Multi-Environment%20Deployments">Multi-Environment Deployments</h3>
-<p>Manage separate configurations for development, staging, and production from a single control plane. Override only the values that differ between environments.</p>
+<h3 id="Runtime%20Configuration">Runtime Configuration</h3>
+<p>Fetch the authenticated user&#39;s configuration from <code>/v1/config</code> at startup or during runtime.</p>
 <h3 id="Feature%20Flags">Feature Flags</h3>
-<p>Store feature-toggle flags as configuration entries and update them at runtime without code changes. The PATCH endpoint supports partial updates, making toggling individual flags efficient.</p>
+<p>Store feature-toggle flags as configuration entries and update them at runtime without code changes.</p>
 
 
     <div id="comments-section">
@@ -398,13 +396,13 @@
 <a href="#Key%20Benefits">Key Benefits</a>
 </div>
 <div class="index-h3">
-<a href="#Hierarchical%20Configuration">Hierarchical Configuration</a>
+<a href="#Entry-Based%20Configuration">Entry-Based Configuration</a>
 </div>
 <div class="index-h3">
 <a href="#JSON-Based">JSON-Based</a>
 </div>
 <div class="index-h3">
-<a href="#Versioned">Versioned</a>
+<a href="#Simple%20Updates">Simple Updates</a>
 </div>
 <div class="index-h3">
 <a href="#Easy%20Integration">Easy Integration</a>
@@ -419,10 +417,7 @@
 <a href="#Best%20Use%20Cases">Best Use Cases</a>
 </div>
 <div class="index-h3">
-<a href="#Microservice%20Configuration">Microservice Configuration</a>
-</div>
-<div class="index-h3">
-<a href="#Multi-Environment%20Deployments">Multi-Environment Deployments</a>
+<a href="#Runtime%20Configuration">Runtime Configuration</a>
 </div>
 <div class="index-h3">
 <a href="#Feature%20Flags">Feature Flags</a>

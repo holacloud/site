@@ -4,13 +4,14 @@ This document covers the scheduler lifecycle: creation with metadata, listing wi
 
 ## Creating a Scheduler
 
-Create a new scheduler with a display name:
+Create a new scheduler with an id and display name:
 
 ```bash
 curl -X POST "https://api.hola.cloud/schedulers" \
   -H "X-API-Key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
+    "id": "sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890",
     "display_name": "email-scheduler"
   }'
 ```
@@ -22,6 +23,7 @@ X-API-Key: YOUR_API_KEY
 Content-Type: application/json
 
 {
+  "id": "sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890",
   "display_name": "email-scheduler"
 }
 ```
@@ -30,10 +32,13 @@ Expected response:
 
 ```json
 {
-  "id": "sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-  "display_name": "email-scheduler",
-  "task_count": 0,
-  "status": "active"
+  "scheduler": {
+    "id": "sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "ready": true,
+    "scheduled": 0,
+    "inflight": 0,
+    "display_name": "email-scheduler"
+  }
 }
 ```
 
@@ -53,20 +58,18 @@ Host: api.hola.cloud
 Expected response:
 
 ```json
-[
-  {
-    "id": "sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-    "display_name": "email-scheduler",
-    "task_count": 5,
-    "status": "active"
-  },
-  {
-    "id": "sched-b2c3d4e5-f6a7-8901-bcde-f12345678901",
-    "display_name": "report-generator",
-    "task_count": 0,
-    "status": "active"
-  }
-]
+{
+  "default_scheduler_id": "default",
+  "schedulers": [
+    {
+      "id": "sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "ready": true,
+      "scheduled": 5,
+      "inflight": 0,
+      "display_name": "email-scheduler"
+    }
+  ]
+}
 ```
 
 ## Getting Scheduler Details
@@ -86,10 +89,13 @@ Expected response:
 
 ```json
 {
-  "id": "sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-  "display_name": "email-scheduler",
-  "task_count": 5,
-  "status": "active"
+  "scheduler": {
+    "id": "sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "ready": true,
+    "scheduled": 5,
+    "inflight": 0,
+    "display_name": "email-scheduler"
+  }
 }
 ```
 
@@ -121,10 +127,13 @@ Expected response:
 
 ```json
 {
-  "id": "sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-  "display_name": "email-scheduler-v2",
-  "task_count": 5,
-  "status": "active"
+  "scheduler": {
+    "id": "sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "ready": true,
+    "scheduled": 5,
+    "inflight": 0,
+    "display_name": "email-scheduler-v2"
+  }
 }
 ```
 
@@ -148,11 +157,14 @@ Expected response:
 ```json
 {
   "status": "ok",
-  "uptime_seconds": 123456
+  "ready": true,
+  "scheduled": 5,
+  "inflight": 0,
+  "scheduler_id": "sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890"
 }
 ```
 
-A non-`ok` status indicates the scheduler is unavailable or in a degraded state.
+The health response reports the scheduler readiness and current scheduled/inflight counts.
 
 ## Deleting a Scheduler
 

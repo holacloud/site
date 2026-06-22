@@ -140,7 +140,7 @@
 <div class="item"><a href="/docs/files/v1/api-reference/delete-bucket/index.html">Delete Bucket</a></div>
 <div class="item"><a href="/docs/files/v1/api-reference/delete-file/index.html">Delete File</a></div>
 <div class="item"><a href="/docs/files/v1/api-reference/download-file/index.html">Download File</a></div>
-<div class="item"><a href="/docs/files/v1/api-reference/file-metadata/index.html">File Metadata</a></div>
+<div class="item"><a href="/docs/files/v1/api-reference/file-metadata/index.html">File Headers</a></div>
 <div class="item"><a href="/docs/files/v1/api-reference/get-bucket/index.html">Get Bucket</a></div>
 <div class="item"><a href="/docs/files/v1/api-reference/list-buckets/index.html">List Buckets</a></div>
 <div class="item"><a href="/docs/files/v1/api-reference/list-files/index.html">List Files</a></div>
@@ -163,11 +163,11 @@
 <div class="item"><a href="/docs/config/v1/api-reference/update-user-config/index.html">Update User Config</a></div>
 </div>
 </div>
-<div class="item"><a href="/docs/logs/index.html">Logs</a></div>
+<div class="item"><a href="/docs/logs/index.html">InstantLogs</a></div>
 <div class="children">
 <div class="item"><a href="/docs/logs/v1/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/logs/v1/ingesting-logs/index.html">Ingesting Logs</a></div>
-<div class="item"><a href="/docs/logs/v1/streaming-filtering/index.html">Streaming Filtering</a></div>
+<div class="item"><a href="/docs/logs/v1/streaming-filtering/index.html">Streaming and Filtering</a></div>
 <div class="item"><a href="/docs/logs/v1/api-reference/index.html">InstantLogs API Reference</a></div>
 <div class="children">
 <div class="item"><a href="/docs/logs/v1/api-reference/create-logger/index.html">Create Logger</a></div>
@@ -183,11 +183,11 @@
 <div class="item"><a href="/docs/logs/v1/api-reference/stream-events/index.html">Stream Events</a></div>
 </div>
 </div>
-<div class="item"><a href="/docs/queues/index.html">Queues</a></div>
+<div class="item"><a href="/docs/queues/index.html">Tailon Queues</a></div>
 <div class="children">
 <div class="item"><a href="/docs/queues/v1/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/queues/v1/managing-queues/index.html">Managing Queues</a></div>
-<div class="item"><a href="/docs/queues/v1/producing-consuming/index.html">Producing Consuming</a></div>
+<div class="item"><a href="/docs/queues/v1/producing-consuming/index.html">Producing and Consuming</a></div>
 <div class="item"><a href="/docs/queues/v1/api-reference/index.html">Tailon API Reference</a></div>
 <div class="children">
 <div class="item"><a href="/docs/queues/v1/api-reference/create-queue/index.html">Create Queue</a></div>
@@ -241,7 +241,7 @@
 <div class="item"><a href="/docs/kvnode/v1/api-reference/readiness-check/index.html">Readiness Check</a></div>
 <div class="item"><a href="/docs/kvnode/v1/api-reference/set-key/index.html">Set Key</a></div>
 </div>
-<div class="item"><a href="/docs/kvnode/v1/sdk-reference/index.html">Sdk Reference</a></div>
+<div class="item"><a href="/docs/kvnode/v1/sdk-reference/index.html">SDK Reference</a></div>
 </div>
 <div class="item"><a href="/docs/console/index.html">Console</a></div>
 <div class="children">
@@ -249,7 +249,7 @@
 <div class="item"><a href="/docs/console/v1/managing-projects/index.html">Managing Projects and Services</a></div>
 <div class="item"><a href="/docs/console/v1/api-reference/index.html">Console API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/console/v1/api-reference/fake-api/index.html">Fake Api</a></div>
+<div class="item"><a href="/docs/console/v1/api-reference/fake-api/index.html">Fake API</a></div>
 <div class="item"><a href="/docs/console/v1/api-reference/get-version/index.html">Get Version</a></div>
 </div>
 </div>
@@ -272,7 +272,7 @@
 <div class="item"><a href="/docs/holamail/v1/sending-email/index.html">Sending Email</a></div>
 <div class="item active selected"><a href="/docs/holamail/v1/api-reference/index.html">Holamail API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/holamail/v1/api-reference/smtp-reference/index.html">Smtp Reference</a></div>
+<div class="item"><a href="/docs/holamail/v1/api-reference/smtp-reference/index.html">SMTP Reference</a></div>
 </div>
 </div>
 <div class="item"><a href="/docs/run/index.html">Run</a></div>
@@ -286,8 +286,8 @@
 <div class="item"><a href="/docs/run/v1/api-reference/rollback-image/index.html">Rollback Image</a></div>
 <div class="item"><a href="/docs/run/v1/api-reference/save-environment/index.html">Save Environment</a></div>
 <div class="item"><a href="/docs/run/v1/api-reference/save-volumes/index.html">Save Volumes</a></div>
-<div class="item"><a href="/docs/run/v1/api-reference/start-container/index.html">Start Container</a></div>
-<div class="item"><a href="/docs/run/v1/api-reference/stop-container/index.html">Stop Container</a></div>
+<div class="item"><a href="/docs/run/v1/api-reference/start-container/index.html">Start Repository</a></div>
+<div class="item"><a href="/docs/run/v1/api-reference/stop-container/index.html">Stop Repository</a></div>
 </div>
 </div>
 
@@ -297,53 +297,74 @@
     
     <div class="document">
     <h1>Holamail API Reference</h1>
-<p>Holamail is an <strong>SMTP-based email service</strong> — it does not expose an HTTP API. Clients connect using the standard SMTP protocol on port 2525.</p>
+<p>Holamail does not expose an HTTP API. It is a plain SMTP listener that accepts a basic SMTP conversation and logs the message.</p>
 <h2 id="SMTP%20Reference">SMTP Reference</h2>
-<p>For a complete guide to SMTP commands, connection examples, and best practices, see the <a href="./smtp-reference">SMTP Protocol Reference</a>.</p>
+<p>For command examples, see the <a href="./smtp-reference">SMTP Protocol Reference</a>.</p>
 <h2 id="Connection%20Details">Connection Details</h2>
 <table>
 <thead>
 <tr>
 <th>Setting</th>
-<th>Value</th>
+<th>Public test host</th>
+<th>Local instance</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Host</td>
-<td><code>smtp.hola.cloud</code></td>
+<td><code>smtp.testmail.hola.cloud</code></td>
+<td><code>localhost</code></td>
 </tr>
 <tr>
 <td>Port</td>
+<td><code>25</code></td>
 <td><code>2525</code></td>
 </tr>
 <tr>
 <td>Protocol</td>
-<td>SMTP (no TLS required)</td>
+<td>Plain SMTP</td>
+<td>Plain SMTP</td>
 </tr>
 <tr>
 <td>Auth</td>
-<td>None (open relay for authenticated projects)</td>
+<td>None</td>
+<td>None</td>
 </tr>
 </tbody>
 </table>
-<h2 id="Endpoints">Endpoints</h2>
+<h2 id="Supported%20Commands">Supported Commands</h2>
 <table>
 <thead>
 <tr>
-<th>Method</th>
-<th>Path</th>
+<th>Command</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>SMTP</td>
-<td><code>2525</code></td>
-<td>Raw SMTP connection for sending email</td>
+<td><code>HELO</code> / <code>EHLO</code></td>
+<td>Start the SMTP session</td>
+</tr>
+<tr>
+<td><code>MAIL FROM</code></td>
+<td>Set the sender envelope address</td>
+</tr>
+<tr>
+<td><code>RCPT TO</code></td>
+<td>Set the recipient envelope address</td>
+</tr>
+<tr>
+<td><code>DATA</code></td>
+<td>Send message headers and body, ending with <code>.</code></td>
+</tr>
+<tr>
+<td><code>QUIT</code></td>
+<td>Close the session</td>
 </tr>
 </tbody>
 </table>
+<h2 id="Not%20Supported">Not Supported</h2>
+<p>Holamail does not provide external delivery, an HTTP API, STARTTLS, AUTH, rate limiting, templates, analytics, or tracking.</p>
 
 
     <div id="comments-section">
@@ -373,7 +394,10 @@
 <a href="#Connection%20Details">Connection Details</a>
 </div>
 <div class="index-h2">
-<a href="#Endpoints">Endpoints</a>
+<a href="#Supported%20Commands">Supported Commands</a>
+</div>
+<div class="index-h2">
+<a href="#Not%20Supported">Not Supported</a>
 </div>
 </div>
 </div>

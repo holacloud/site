@@ -21,7 +21,7 @@
 
 ```json
 {
-  "extension": 30
+  "extension": "30s"
 }
 ```
 
@@ -32,7 +32,7 @@ curl -X POST "https://api.hola.cloud/schedulers/sched-a1b2c3d4-e5f6-7890-abcd-ef
   -H "X-API-Key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "extension": 30
+    "extension": "30s"
   }'
 ```
 
@@ -54,7 +54,7 @@ Content-Type: application/json
 
 | 状态 | 代码 | 描述 |
 |------|------|------|
-| 400 | invalid_request | 缺少或无效的 extension 值 |
+| 400 | validation_error | 缺少或无效的 extension 值 |
 | 401 | unauthorized | 缺少或无效的 API 密钥 |
 | 404 | not_found | 未找到调度器或任务 |
 | 409 | conflict | 任务当前未被预留或租约已过期 |

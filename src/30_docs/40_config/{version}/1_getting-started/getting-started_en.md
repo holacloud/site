@@ -1,89 +1,46 @@
 # Getting Started
 
-This guide walks you through retrieving and updating your configuration using the Config API. Before you begin, you will need an API key with the appropriate permissions.
+This guide shows the current Config API shape. The v1 user endpoint requires Glue authentication.
 
-## Step 1: Retrieve Your Configuration
-
-Use the `GET /v1/config` endpoint to fetch your current configuration:
+## Read User Config
 
 ```bash
 curl "https://api.hola.cloud/v1/config" \
-  -H "Api-Key: your-api-key" \
-  -H "Api-Secret: your-api-secret"
+  -H "X-Glue-Authentication: YOUR_GLUE_TOKEN"
 ```
 
-Expected response:
+Response:
 
 ```json
 {
-  "project": "my-app",
-  "environment": "production",
-  "services": {
-    "database": {
-      "host": "db.example.com",
-      "port": 5432
-    },
-    "cache": {
-      "host": "redis.example.com",
-      "port": 6379
-    }
-  },
-  "features": {
-    "new-checkout": false
+  "entries": {
+    "feature.newCheckout": true,
+    "database.host": "db.example.com"
   }
 }
 ```
 
-## Step 2: Update a Specific Value
-
-Use `PATCH /v1/config` with a partial JSON payload to update only the fields you need. For example, to enable the new checkout feature:
+## Update User Config
 
 ```bash
 curl -X PATCH "https://api.hola.cloud/v1/config" \
-  -H "Api-Key: your-api-key" \
-  -H "Api-Secret: your-api-secret" \
+  -H "X-Glue-Authentication: YOUR_GLUE_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
-    "features": {
-      "new-checkout": true
+    "entries": {
+      "feature.newCheckout": false
     }
   }'
 ```
 
-Expected response:
+Response:
 
 ```json
 {
-  "project": "my-app",
-  "environment": "production",
-  "services": {
-    "database": {
-      "host": "db.example.com",
-      "port": 5432
-    },
-    "cache": {
-      "host": "redis.example.com",
-      "port": 6379
-    }
-  },
-  "features": {
-    "new-checkout": true
+  "entries": {
+    "feature.newCheckout": false
   }
 }
 ```
 
-## Step 3: Verify the Update
-
-Call `GET /v1/config` again to confirm your changes were applied:
-
-```bash
-curl "https://api.hola.cloud/v1/config" \
-  -H "Api-Key: your-api-key" \
-  -H "Api-Secret: your-api-secret"
-```
-
-The response should now show `"new-checkout": true`.
-
-## Summary
-
-In just a few steps you retrieved a configuration, applied a partial update, and verified the change. The Config API makes it easy to manage runtime settings without redeploying your application.
+The v0 API manages config Things directly. Each Thing has an `id` and `entries`.

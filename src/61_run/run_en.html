@@ -4,7 +4,7 @@
     <div class="hero-inner">
         <div class="hero-eyebrow">🚀 Run</div>
         <h1>Container execution with built-in Docker registry</h1>
-        <p>Run is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <p>Run combines a push-oriented Docker Registry v2 subset with console endpoints to start, stop, roll back, and configure repositories.</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">Get started</a>
             <a class="button button-secondary" href="/docs/run/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">Documentation</a>
@@ -17,18 +17,18 @@
         <div class="section-header">
             <div class="section-kicker">Run</div>
             <h2>Key features</h2>
-            <p>Everything you need to build, deploy, and scale with Run on HolaCloud.</p>
+            <p>Push container images to the built-in registry and manage repository runtime state through the console API.</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>Instant containers</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Launch containers from any public or private registry in seconds.</p>
+            <h3>Repository runtime</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Start, stop, and roll back the runtime associated with a repository.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>Auto-scaling</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Scale up and down based on CPU, memory, or request volume.</p>
+            <h3>Environment and volumes</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Save environment variables and volume definitions through the console API.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>Private registry</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Push and pull images from the integrated Docker registry.</p>
+            <h3>Push-oriented registry</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Use the implemented Docker Registry v2 upload endpoints to push image layers and manifests.</p>
           </div>
         </div>
     </section>
@@ -39,16 +39,12 @@
             <h2>Quick start</h2>
             <p>Get started with Run in seconds using the API.</p>
         </div>
-        <pre><code># Push an image
-curl -X POST https://api.hola.cloud/v1/run/push \
-  -H "Authorization: Bearer $TOKEN" \
-  -F "image=@myapp.tar.gz" \
-  -F "name=myapp:latest"
+        <pre><code># Inspect repository console data
+curl 'https://run.hola.cloud/api/console?repository=my-project/my-app'
 
-# Run a container
-curl -X POST https://api.hola.cloud/v1/run/exec \
-  -H "Authorization: Bearer $TOKEN" \
-  -d '{"image": "myapp:latest", "port": 8080, "scale": 2}'</code></pre>
+# Start the repository runtime
+curl -X POST https://run.hola.cloud/api/console/start \
+  -d '{"repository":"my-project/my-app","reference":"latest"}'</code></pre>
     </section>
 
     <section class="section">

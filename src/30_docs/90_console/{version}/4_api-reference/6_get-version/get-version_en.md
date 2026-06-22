@@ -4,7 +4,7 @@ Returns the current version of the Console service.
 
 ## Description
 
-This endpoint is used by the Console UI to display the version information in the application footer and diagnostics pages. It requires no authentication.
+This endpoint returns the configured Console version as plain text. It requires no authentication.
 
 ## Authentication
 
@@ -22,12 +22,8 @@ curl -X GET "https://api.hola.cloud/version"
 
 ## Response
 
-```json
-{
-  "version": "1.0.0",
-  "build": "20260601-abcdef",
-  "mode": "development"
-}
+```text
+1.0.0
 ```
 
 ## Error Codes

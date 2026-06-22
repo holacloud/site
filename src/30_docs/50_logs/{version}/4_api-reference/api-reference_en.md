@@ -1,54 +1,25 @@
-
 # InstantLogs API Reference
 
 Base URL: `https://api.hola.cloud`
 
 ## Authentication
 
-InstantLogs uses two authentication modes depending on the endpoint type.
-
-### Management Authentication
-
-Management endpoints (logger CRUD, API key management) require two headers:
-
-| Header | Description |
-|--------|-------------|
-| `Api-Key` | Your API key identifier |
-| `Api-Secret` | Your API secret key |
-
-### Data Authentication
-
-Data endpoints (ingest, filter, events, stats) authenticate using the logger secret. Provide it as either:
-
-| Header | Description |
-|--------|-------------|
-| `X-Instantlogs-Event-Secret` | The logger secret value |
-| `Authorization: Bearer <secret>` | Bearer token with the logger secret |
+Management endpoints use `X-Glue-Authentication`. Logger endpoints accept either a Glue owner of the logger or a logger API key with `Api-Key` and `Api-Secret`.
 
 ## Endpoints
 
-| Method | Path | Description | Auth |
-|--------|------|-------------|------|
-| GET | `/v1/loggers` | List all loggers | Management |
-| POST | `/v1/loggers` | Create a new logger | Management |
-| GET | `/v1/loggers/{id}` | Get logger details | Management |
-| DELETE | `/v1/loggers/{id}` | Delete a logger | Management |
-| POST | `/v1/loggers/{id}/ingest` | Ingest log entries | Data |
-| GET | `/v1/loggers/{id}/filter` | Stream and filter logs | Data |
-| GET | `/v1/loggers/{id}/events` | Stream events | Data |
-| GET | `/v1/loggers/{id}/stats` | Get logger statistics | Data |
-| POST | `/v1/loggers/{id}/apiKeys` | Create an API key | Management |
-| DELETE | `/v1/loggers/{id}/apiKeys/{key}` | Delete an API key | Management |
-| POST | `/v1/ingest/events` | Ingest framed events | Data |
-
-## Common Error Codes
-
-| Code | Description |
-|------|-------------|
-| 400 | Bad request — malformed JSON or invalid parameters |
-| 401 | Unauthorized — missing or invalid credentials |
-| 403 | Forbidden — credentials do not have access |
-| 404 | Not found — the requested resource does not exist |
-| 409 | Conflict — resource already exists |
-| 429 | Too many requests — rate limit exceeded |
-| 500 | Internal server error |
+| Method | Path | Description |
+|--------|------|-------------|
+| GET | `/v1/loggers` | List owned loggers |
+| POST | `/v1/loggers` | Create logger |
+| GET | `/v1/loggers/{id}` | Get logger with owners/API keys |
+| DELETE | `/v1/loggers/{id}` | Delete logger |
+| POST | `/v1/loggers/{id}/ingest` | Ingest raw bytes, returns `{ "n": number }` |
+| GET | `/v1/loggers/{id}/filter?regex=...` | Stream filtered logs |
+| GET | `/v1/loggers/{id}/events` | Stream events; `follow` is a presence flag |
+| GET | `/v1/loggers/{id}/stats` | Runtime stats |
+| POST | `/v1/loggers/{id}/apiKeys` | Create logger API key |
+| DELETE | `/v1/loggers/{id}/apiKeys/{apiKey}` | Delete logger API key |
+| POST | `/v1/loggers/{id}/owners` | Add logger owner |
+| DELETE | `/v1/loggers/{id}/owners/{ownerId}` | Delete logger owner |
+| POST | `/v1/ingest/events` | Ingest logframe events with `project_id`, returns `events` and `bytes` |

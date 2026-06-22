@@ -4,7 +4,7 @@
     <div class="hero-inner">
         <div class="hero-eyebrow">📁 Files</div>
         <h1>安全对象存储服务</h1>
-        <p>Files is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <p>Files 提供用于 bucket 以及文件上传、下载、列表、元数据和删除的 REST API。</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">开始使用</a>
             <a class="button button-secondary" href="/docs/files/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">文档中心</a>
@@ -17,18 +17,18 @@
         <div class="section-header">
             <div class="section-kicker">Files</div>
             <h2>核心功能</h2>
-            <p>Everything you need to build, deploy, and scale with Files on HolaCloud.</p>
+            <p>使用 bucket 组织文件，并通过简单的 HTTP endpoint 访问它们。</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>可扩展存储</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">存储和检索任意量级数据，全球低延迟访问。</p>
+            <h3>Bucket API</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">创建、列出、读取和删除带名称与描述的 bucket。</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>细粒度权限</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">基于存储桶和对象的访问控制，支持 API 密钥认证。</p>
+            <h3>文件操作</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">在 bucket 中上传、下载、列出、查看和删除文件。</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>版本与保留</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">保留文件历史记录，设置自动保留策略以满足合规要求。</p>
+            <h3>存储的元数据</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">API 会返回大小、MIME 类型、时间戳和内容哈希。</p>
           </div>
         </div>
     </section>
@@ -37,11 +37,11 @@
         <div class="section-header">
             <div class="section-kicker">Quick start</div>
             <h2>快速开始</h2>
-            <p>Get started with Files in seconds using the API.</p>
+            <p>使用 API 在几秒内开始使用 Files。</p>
         </div>
-        <pre><code>curl -X POST https://api.hola.cloud/v1/buckets \
-  -H "Authorization: Bearer $TOKEN" \
-  -d '{"name": "my-bucket", "region": "us-east-1"}'</code></pre>
+        <pre><code>curl -X POST https://files.hola.cloud/v1/buckets \
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}' \
+  -d '{"name":"my-bucket","description":"Uploads for my app"}'</code></pre>
     </section>
 
     <section class="section">

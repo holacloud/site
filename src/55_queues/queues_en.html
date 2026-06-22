@@ -4,7 +4,7 @@
     <div class="hero-inner">
         <div class="hero-eyebrow">📨 Tailon</div>
         <h1>Message queue and async workload system</h1>
-        <p>Tailon is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <p>Tailon is a lightweight JSON message queue API with simple queue creation, writes, reads, and queue stats.</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">Get started</a>
             <a class="button button-secondary" href="/docs/queues/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">Documentation</a>
@@ -17,18 +17,18 @@
         <div class="section-header">
             <div class="section-kicker">Tailon</div>
             <h2>Key features</h2>
-            <p>Everything you need to build, deploy, and scale with Tailon on HolaCloud.</p>
+            <p>Use Tailon when you need a straightforward HTTP queue for JSON messages.</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>Reliable messaging</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">At-least-once delivery guarantees with automatic retries and dead-letter queues.</p>
+            <h3>Named queues</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Create queues by name and inspect their current length, reads, and writes.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>Pub/Sub patterns</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Create fan-out topologies for event-driven architectures.</p>
+            <h3>JSON writes</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Write JSON payloads directly to a queue through the <code>:write</code> endpoint.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>Consumer groups</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Distribute workload across multiple consumers with automatic rebalancing.</p>
+            <h3>Blocking reads</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Read messages from the <code>:read</code> endpoint as newline-delimited JSON.</p>
           </div>
         </div>
     </section>
@@ -39,12 +39,10 @@
             <h2>Quick start</h2>
             <p>Get started with Tailon in seconds using the API.</p>
         </div>
-        <pre><code>curl -X POST https://api.hola.cloud/v1/queues \
-  -H "Authorization: Bearer $TOKEN" \
-  -d '{"name": "orders", "type": "fifo"}' \
-  && curl -X POST https://api.hola.cloud/v1/queues/orders \
-  -H "Authorization: Bearer $TOKEN" \
-  -d '{"message": "order-12345"}'</code></pre>
+        <pre><code>curl -X POST https://queues.hola.cloud/v1/queues \
+  -d '{"name":"orders"}' \
+  && curl -X POST https://queues.hola.cloud/v1/queues/orders:write \
+  -d '{"message":"order-12345"}'</code></pre>
     </section>
 
     <section class="section">

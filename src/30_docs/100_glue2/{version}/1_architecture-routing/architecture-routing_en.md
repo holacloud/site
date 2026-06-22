@@ -52,13 +52,13 @@ When forwarding to a backend, Glue2 injects:
 
 | Header | Description |
 |--------|-------------|
-| `X-Glue-Authentication` | Base64-encoded JWT containing user ID, session info, roles, and auth method |
+| `X-Glue-Authentication` | Plain JSON authentication context |
 | `X-Holacloud-Project-Id` | The UUID of the project derived from the virtual host |
 | `X-Holacloud-Tenant-Project-Id` | Tenant-scoped project ID for multi-tenant isolation |
 | `X-Forwarded-For` | Original client IP address |
 | `X-Forwarded-Proto` | Original protocol (`http` or `https`) |
 
-Backend services use these headers to identify the caller and enforce authorization. The `X-Glue-Authentication` JWT is signed with a shared secret known only to Glue2 and trusted backends.
+Backend services use these headers to identify the caller and enforce authorization. `X-Glue-Authentication` is plain JSON.
 
 ## V0 Admin Endpoints
 
@@ -68,53 +68,35 @@ Glue2 exposes a set of admin endpoints under `/v0/`:
 
 ```bash
 curl "https://api.hola.cloud/v0/virtualhosts" \
-  -H "Api-Key: YOUR_API_KEY" \
-  -H "Api-Secret: YOUR_API_SECRET"
 ```
 
 ```json
-{
-  "virtual_hosts": [
-    {
-      "host": "my-project.hola.cloud",
-      "project_id": "p3b2c1a0-1234-5678-9abc-def012345678",
-      "backend": "svc-1"
-    }
-  ]
-}
+["my-project.hola.cloud", "api.my-project.hola.cloud"]
 ```
 
 ### Traffic Stats
 
 ```bash
 curl "https://api.hola.cloud/v0/stats" \
-  -H "Api-Key: YOUR_API_KEY" \
-  -H "Api-Secret: YOUR_API_SECRET"
 ```
 
 ### Backend Health Status
 
 ```bash
 curl "https://api.hola.cloud/v0/status" \
-  -H "Api-Key: YOUR_API_KEY" \
-  -H "Api-Secret: YOUR_API_SECRET"
 ```
 
 ```json
-{
-  "backends": [
-    {
-      "name": "inceptiondb",
-      "status": "healthy",
-      "latency_ms": 12
-    }
-  ]
-}
+[
+  {
+    "id": "project-123",
+    "name": "My Project",
+    "host": "my-project.hola.cloud",
+    "status": 200,
+    "statusText": "200 OK"
+  }
+]
 ```
-
-## Load Balancing & Failover
-
-Glue2 distributes traffic across multiple backend instances for each service. If an instance is unhealthy (fails health checks or returns errors), Glue2 removes it from the rotation and retries on a healthy instance. Health checks run every 10 seconds. You can monitor backend health via the `/v0/status` endpoint.
 
 ## Next Steps
 

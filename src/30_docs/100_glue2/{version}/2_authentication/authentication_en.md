@@ -14,21 +14,19 @@ curl -X POST "https://api.hola.cloud/api/v0/lambdas" \
   -d '{"name": "my-function", "runtime": "js", "code": "..."}'
 ```
 
-API keys can be scoped to specific:
+API keys can be scoped to specific projects and host rules:
 
-- **Project**: Key is only valid for requests to the owning project.
-- **Host**: Restrict to a specific virtual host.
-- **Path**: Restrict to a path prefix pattern (e.g., `/api/v0/lambdas/*`).
-- **Method**: Restrict to specific HTTP methods (`GET`, `POST`, etc.).
+- **Projects**: Key is valid only for the configured project scope.
+- **Host rules**: Restrict to configured virtual hosts and optional host metadata.
 
-If any scope is set, all conditions must match. An unscoped key has full access.
+Path and HTTP method scopes are not part of the current API key model.
 
 ### Optional vs Required Auth
 
 - **Require**: The endpoint rejects unauthenticated requests with `401`.
 - **Optional**: The endpoint accepts both authenticated and anonymous requests. Authenticated requests receive injected headers; anonymous requests pass through without them.
 
-When a valid API key is provided, Glue2 injects the `X-Glue-Authentication` header into the proxied request, allowing the backend to identify the caller.
+When a valid API key is provided, Glue2 injects the `X-Glue-Authentication` header into the proxied request as JSON, allowing the backend to identify the caller.
 
 ## Sessions
 
@@ -51,7 +49,7 @@ Console users can authenticate via Google OAuth 2.0. The flow works as follows:
 4. The Console exchanges the code for an access token and ID token.
 5. The ID token is sent to Glue2, which validates it and creates a session.
 
-OAuth tokens can also be used directly for API calls:
+OAuth bearer tokens can be used directly for API calls:
 
 ```bash
 curl "https://api.hola.cloud/api/v0/lambdas" \
@@ -63,7 +61,7 @@ curl "https://api.hola.cloud/api/v0/lambdas" \
 ```
 Method       Credentials              Typical Use        Scope
 ────────────────────────────────────────────────────────────────
-API Key     Api-Key + Api-Secret     Machine-to-machine  Project/Host/Path/Method
+API Key     Api-Key + Api-Secret     Machine-to-machine  Project/Host rules
 Session     Cookie (http-only)       Browser users       User identity
 OAuth 2.0   Bearer token             Console / SSO       Google identity
 ```
@@ -80,7 +78,7 @@ API keys are managed in the HolaCloud Console under **Settings > API Keys**. Fro
 ## Security Best Practices
 
 - **Rotate keys regularly**: Generate new keys and update your applications periodically.
-- **Least privilege**: Scope each key to the minimum set of hosts, paths, and methods required.
+- **Least privilege**: Scope each key to the minimum set of projects and host rules required.
 - **HTTPS only**: Always use `https://` — never send credentials over plain HTTP.
 - **Store secrets securely**: Use environment variables or a secrets manager. Never hardcode secrets in source code.
 - **Revoke compromised keys immediately**: Use the Console or API to revoke keys if they are exposed.

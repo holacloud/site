@@ -1,19 +1,18 @@
+# Ejecutar Lambda (Pública)
 
-# Run Lambda (Public)
+Invoca una lambda públicamente. No requiere autenticación. El endpoint acepta cualquier método HTTP.
 
-Invoca una función lambda de forma pública. No requiere autenticación.
+Usa esta ruta para webhooks y llamadas de API públicas. El ID de la lambda proviene de los endpoints de administración.
 
-Este endpoint está diseñado para webhooks y endpoints de API públicos. El ID de la lambda se puede obtener desde las páginas de administración de lambdas.
-
-## Parámetros de Ruta
+## Parámetros de Path
 
 | Parámetro | Tipo | Descripción |
 |-----------|------|-------------|
-| id | uuid | Identificador único de la lambda a ejecutar |
+| `lambda_id` | string | Identificador de la lambda |
 
 ## Cuerpo de la Solicitud
 
-Cualquier carga útil JSON que desee pasar a la función lambda.
+Envía cualquier carga que quieras que la lambda reciba como `req.body`.
 
 ## Solicitud HTTP
 
@@ -43,9 +42,10 @@ curl -X POST "https://api.hola.cloud/run/f1a2b3c4-d5e6-7890-abcd-ef0123456789" \
 
 ## Respuesta
 
+La respuesta es lo que devuelva el manejador de la lambda.
+
 ```json
 {
-  "status": 200,
   "body": {
     "processed": true,
     "event": "payment_received"
@@ -58,5 +58,5 @@ curl -X POST "https://api.hola.cloud/run/f1a2b3c4-d5e6-7890-abcd-ef0123456789" \
 | Código | Descripción |
 |--------|-------------|
 | 400 | Cuerpo de solicitud inválido |
-| 404 | Lambda no encontrada o inactiva |
-| 500 | Error de ejecución de la lambda |
+| 404 | Lambda no encontrada |
+| 500 | Error de ejecución de Lambda |

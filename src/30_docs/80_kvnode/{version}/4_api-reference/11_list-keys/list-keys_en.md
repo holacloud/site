@@ -35,19 +35,21 @@ Content-Type: application/json
 
 ```json
 {
-  "keys": [
+  "items": [
     {
       "key": "user:1001",
-      "created_at": "2025-06-15T10:00:00Z",
-      "updated_at": "2025-06-20T15:30:00Z"
+      "value": { "name": "Alice" },
+      "version": 1,
+      "updatedAt": "2025-06-20T15:30:00Z"
     },
     {
       "key": "user:1002",
-      "created_at": "2025-06-16T09:00:00Z",
-      "updated_at": "2025-06-21T08:00:00Z"
+      "value": { "name": "Bob" },
+      "version": 1,
+      "updatedAt": "2025-06-21T08:00:00Z"
     }
   ],
-  "total": 2
+  "next": "user:1002"
 }
 ```
 
@@ -55,6 +57,5 @@ Content-Type: application/json
 
 | Status | Code | Description |
 |--------|------|-------------|
-| 401 | unauthorized | Missing or invalid authentication |
-| 404 | not_found | Collection not found |
+| 403 | forbidden | Missing authentication headers |
 | 500 | internal_error | Internal server error |

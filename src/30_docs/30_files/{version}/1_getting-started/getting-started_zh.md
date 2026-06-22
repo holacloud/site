@@ -1,145 +1,66 @@
-# GettingStarted
+# 入门
 
-本指南将引导您完成 HolaCloud Files 的基本操作：创建存储桶、上传文件、列出内容、下载和删除。
+本指南演示创建 bucket、上传文件、列出文件、下载和删除。
 
 ## 前提条件
 
-在开始之前，您需要：
+- 本地安装 `curl`
+- 有效的 `X-Glue-Authentication` header
 
-- 一个拥有 API 密钥和 API 密钥密码的 HolaCloud 账户
-- 在您的机器上安装 `curl`
-
-您的 API 凭证作为标头在每个请求中传递：
-
-```
-Api-Key: your-api-key
-Api-Secret: your-api-secret
+```http
+X-Glue-Authentication: {"user":{"id":"user-123"}}
 ```
 
-所有请求使用基础 URL `https://api.hola.cloud`。
+所有请求使用 `https://api.hola.cloud`。
 
-## 第一步：创建存储桶
-
-存储桶是文件的容器。每个存储桶必须具有全局唯一的名称。
+## 第 1 步：创建 Bucket
 
 ```bash
 curl -X POST "https://api.hola.cloud/v1/buckets" \
-  -H "Api-Key: 您的API密钥" \
-  -H "Api-Secret: 您的API密钥密码" \
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}' \
   -H "Content-Type: application/json" \
-  -d '{
-    "name": "我的第一个存储桶"
-  }'
+  -d '{"name":"my-first-bucket","description":"First test bucket"}'
 ```
 
-预期响应：
+响应是 bucket 对象，字段为 `id`, `project_id`, `created_timestamp`, `owners`, `name`, `description`。
 
-```json
-{
-  "id": "bkt_abc123",
-  "name": "我的第一个存储桶",
-  "createdAt": "2026-06-21T10:00:00Z",
-  "size": 0,
-  "fileCount": 0
-}
-```
-
-## 第二步：上传文件
-
-使用 PUT 将文本文件上传到存储桶。文件路径在 URL 中 `/files/` 之后指定。
+## 第 2 步：上传文件
 
 ```bash
-echo "你好，HolaCloud Files！" > hello.txt
-
-curl -X PUT "https://api.hola.cloud/v1/buckets/bkt_abc123/files/hello.txt" \
-  -H "Api-Key: 您的API密钥" \
-  -H "Api-Secret: 您的API密钥密码" \
+curl -X PUT "https://api.hola.cloud/v1/buckets/bucket-550e8400-e29b-41d4-a716-446655440000/files/hello.txt" \
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}' \
   -H "Content-Type: text/plain" \
-  --data-binary @hello.txt
+  --data-binary "Hello, HolaCloud Files!"
 ```
 
-预期响应：
+响应是 file 对象，字段为 `id`, `uuid`, `created_timestamp`, `updated_timestamp`, `owners`, `status`, `size`, `name`, `bucket`, `hash_md5`, `hash_sha256`, `mime_type`。
 
-```json
-{
-  "path": "hello.txt",
-  "size": 24,
-  "contentType": "text/plain",
-  "uploadedAt": "2026-06-21T10:01:00Z",
-  "etag": "\"d41d8cd98f00b204e9800998ecf8427e\""
-}
-```
-
-## 第三步：列出存储桶内容
-
-列出存储桶中的所有文件，可使用可选的前缀过滤器：
+## 第 3 步：列出文件
 
 ```bash
-curl "https://api.hola.cloud/v1/buckets/bkt_abc123/list/*" \
-  -H "Api-Key: 您的API密钥" \
-  -H "Api-Secret: 您的API密钥密码"
+curl "https://api.hola.cloud/v1/buckets/bucket-550e8400-e29b-41d4-a716-446655440000/list/*" \
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}'
 ```
 
-预期响应：
+响应是 file 对象的 JSON array。
 
-```json
-{
-  "files": [
-    {
-      "path": "hello.txt",
-      "size": 24,
-      "contentType": "text/plain",
-      "modifiedAt": "2026-06-21T10:01:00Z"
-    }
-  ],
-  "prefix": "",
-  "total": 1
-}
-```
-
-## 第四步：下载文件
-
-使用 GET 下载文件：
+## 第 4 步：下载文件
 
 ```bash
-curl "https://api.hola.cloud/v1/buckets/bkt_abc123/files/hello.txt" \
-  -H "Api-Key: 您的API密钥" \
-  -H "Api-Secret: 您的API密钥密码" \
-  -o downloaded_hello.txt
-
-cat downloaded_hello.txt
+curl "https://api.hola.cloud/v1/buckets/bucket-550e8400-e29b-41d4-a716-446655440000/files/hello.txt" \
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}'
 ```
 
-输出：
-
-```
-你好，HolaCloud Files！
-```
-
-## 第五步：删除文件
-
-使用 DELETE 删除文件：
+## 第 5 步：删除文件
 
 ```bash
-curl -X DELETE "https://api.hola.cloud/v1/buckets/bkt_abc123/files/hello.txt" \
-  -H "Api-Key: 您的API密钥" \
-  -H "Api-Secret: 您的API密钥密码"
+curl -X DELETE "https://api.hola.cloud/v1/buckets/bucket-550e8400-e29b-41d4-a716-446655440000/files/hello.txt" \
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}'
 ```
 
-预期响应：HTTP 204 无内容。
-
-## 第六步：删除存储桶
-
-存储桶必须为空才能删除。由于我们已删除文件，此操作将成功：
+## 第 6 步：删除 Bucket
 
 ```bash
-curl -X DELETE "https://api.hola.cloud/v1/buckets/bkt_abc123" \
-  -H "Api-Key: 您的API密钥" \
-  -H "Api-Secret: 您的API密钥密码"
+curl -X DELETE "https://api.hola.cloud/v1/buckets/bucket-550e8400-e29b-41d4-a716-446655440000" \
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}'
 ```
-
-预期响应：HTTP 204 无内容。
-
-## 总结
-
-您已成功创建存储桶、上传文件、列出存储桶内容、下载文件并清理资源。现在您可以开始将 HolaCloud Files 集成到您的应用程序中。

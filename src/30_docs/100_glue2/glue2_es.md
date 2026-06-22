@@ -36,15 +36,11 @@ Cuando Glue2 reenvía una solicitud a un servicio backend, inyecta los siguiente
 
 | Encabezado | Descripción |
 |------------|-------------|
-| `X-Glue-Authentication` | Contexto de autenticación codificado en Base64 (ID de usuario, sesión, roles) |
+| `X-Glue-Authentication` | Contexto de autenticación en JSON plano |
 | `X-Holacloud-Project-Id` | El ID del proyecto extraído del host virtual |
 | `X-Forwarded-For` | La dirección IP original del cliente |
 
 Los servicios backend utilizan estos encabezados para autorización y aislamiento de inquilinos.
-
-## Límite de Velocidad
-
-Glue2 aplica límites de velocidad por proyecto y por endpoint. Los límites son configurables en la configuración del proyecto y pueden basarse en solicitudes por segundo, conexiones simultáneas o cuotas diarias. Cuando se excede un límite, Glue2 devuelve una respuesta `429 Too Many Requests`.
 
 ## Registros de Acceso
 

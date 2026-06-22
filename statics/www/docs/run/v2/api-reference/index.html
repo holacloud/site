@@ -140,7 +140,7 @@
 <div class="item"><a href="/docs/files/v2/api-reference/delete-bucket/index.html">Delete Bucket</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/delete-file/index.html">Delete File</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/download-file/index.html">Download File</a></div>
-<div class="item"><a href="/docs/files/v2/api-reference/file-metadata/index.html">File Metadata</a></div>
+<div class="item"><a href="/docs/files/v2/api-reference/file-metadata/index.html">File Headers</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/get-bucket/index.html">Get Bucket</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/list-buckets/index.html">List Buckets</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/list-files/index.html">List Files</a></div>
@@ -163,11 +163,11 @@
 <div class="item"><a href="/docs/config/v2/api-reference/update-user-config/index.html">Update User Config</a></div>
 </div>
 </div>
-<div class="item"><a href="/docs/logs/index.html">Logs</a></div>
+<div class="item"><a href="/docs/logs/index.html">InstantLogs</a></div>
 <div class="children">
 <div class="item"><a href="/docs/logs/v2/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/logs/v2/ingesting-logs/index.html">Ingesting Logs</a></div>
-<div class="item"><a href="/docs/logs/v2/streaming-filtering/index.html">Streaming Filtering</a></div>
+<div class="item"><a href="/docs/logs/v2/streaming-filtering/index.html">Streaming and Filtering</a></div>
 <div class="item"><a href="/docs/logs/v2/api-reference/index.html">InstantLogs API Reference</a></div>
 <div class="children">
 <div class="item"><a href="/docs/logs/v2/api-reference/create-logger/index.html">Create Logger</a></div>
@@ -183,11 +183,11 @@
 <div class="item"><a href="/docs/logs/v2/api-reference/stream-events/index.html">Stream Events</a></div>
 </div>
 </div>
-<div class="item"><a href="/docs/queues/index.html">Queues</a></div>
+<div class="item"><a href="/docs/queues/index.html">Tailon Queues</a></div>
 <div class="children">
 <div class="item"><a href="/docs/queues/v2/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/queues/v2/managing-queues/index.html">Managing Queues</a></div>
-<div class="item"><a href="/docs/queues/v2/producing-consuming/index.html">Producing Consuming</a></div>
+<div class="item"><a href="/docs/queues/v2/producing-consuming/index.html">Producing and Consuming</a></div>
 <div class="item"><a href="/docs/queues/v2/api-reference/index.html">Tailon API Reference</a></div>
 <div class="children">
 <div class="item"><a href="/docs/queues/v2/api-reference/create-queue/index.html">Create Queue</a></div>
@@ -241,7 +241,7 @@
 <div class="item"><a href="/docs/kvnode/v2/api-reference/readiness-check/index.html">Readiness Check</a></div>
 <div class="item"><a href="/docs/kvnode/v2/api-reference/set-key/index.html">Set Key</a></div>
 </div>
-<div class="item"><a href="/docs/kvnode/v2/sdk-reference/index.html">Sdk Reference</a></div>
+<div class="item"><a href="/docs/kvnode/v2/sdk-reference/index.html">SDK Reference</a></div>
 </div>
 <div class="item"><a href="/docs/console/index.html">Console</a></div>
 <div class="children">
@@ -249,7 +249,7 @@
 <div class="item"><a href="/docs/console/v2/managing-projects/index.html">Managing Projects and Services</a></div>
 <div class="item"><a href="/docs/console/v2/api-reference/index.html">Console API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/console/v2/api-reference/fake-api/index.html">Fake Api</a></div>
+<div class="item"><a href="/docs/console/v2/api-reference/fake-api/index.html">Fake API</a></div>
 <div class="item"><a href="/docs/console/v2/api-reference/get-version/index.html">Get Version</a></div>
 </div>
 </div>
@@ -272,7 +272,7 @@
 <div class="item"><a href="/docs/holamail/v2/sending-email/index.html">Sending Email</a></div>
 <div class="item"><a href="/docs/holamail/v2/api-reference/index.html">Holamail API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/holamail/v2/api-reference/smtp-reference/index.html">Smtp Reference</a></div>
+<div class="item"><a href="/docs/holamail/v2/api-reference/smtp-reference/index.html">SMTP Reference</a></div>
 </div>
 </div>
 <div class="item active"><a href="/docs/run/index.html">Run</a></div>
@@ -286,8 +286,8 @@
 <div class="item"><a href="/docs/run/v2/api-reference/rollback-image/index.html">Rollback Image</a></div>
 <div class="item"><a href="/docs/run/v2/api-reference/save-environment/index.html">Save Environment</a></div>
 <div class="item"><a href="/docs/run/v2/api-reference/save-volumes/index.html">Save Volumes</a></div>
-<div class="item"><a href="/docs/run/v2/api-reference/start-container/index.html">Start Container</a></div>
-<div class="item"><a href="/docs/run/v2/api-reference/stop-container/index.html">Stop Container</a></div>
+<div class="item"><a href="/docs/run/v2/api-reference/start-container/index.html">Start Repository</a></div>
+<div class="item"><a href="/docs/run/v2/api-reference/stop-container/index.html">Stop Repository</a></div>
 </div>
 </div>
 
@@ -297,8 +297,8 @@
     
     <div class="document">
     <h1>Run API Reference</h1>
-<p>Run is HolaCloud&#39;s container execution service. It exposes a REST API for container management and a Docker Registry v2 compatible interface for image storage.</p>
-<h2 id="Endpoints">Endpoints</h2>
+<p>Run exposes a small Console API and a push-oriented subset of Docker Registry v2 under <code>/v2</code>.</p>
+<h2 id="Console%20API%20Endpoints">Console API Endpoints</h2>
 <table>
 <thead>
 <tr>
@@ -311,72 +311,84 @@
 <tr>
 <td><code>GET</code></td>
 <td><code>/version</code></td>
-<td>Return the Run service version</td>
+<td>Return the service version as plain text</td>
 </tr>
 <tr>
 <td><code>GET</code></td>
-<td><code>/api/console</code></td>
-<td>Console data — repositories, images, state</td>
+<td><code>/api/console?repository=</code></td>
+<td>Return Console data for a repository</td>
 </tr>
 <tr>
 <td><code>POST</code></td>
 <td><code>/api/console/start</code></td>
-<td>Start a container</td>
+<td>Start a repository at a reference or digest</td>
 </tr>
 <tr>
 <td><code>POST</code></td>
 <td><code>/api/console/stop</code></td>
-<td>Stop a container</td>
+<td>Stop a repository</td>
 </tr>
 <tr>
 <td><code>POST</code></td>
 <td><code>/api/console/rollback</code></td>
-<td>Rollback to a previous image</td>
+<td>Roll back a repository to a reference or digest</td>
 </tr>
 <tr>
 <td><code>PUT</code></td>
 <td><code>/api/console/env</code></td>
-<td>Save environment variables</td>
+<td>Save repository environment variables</td>
 </tr>
 <tr>
 <td><code>PUT</code></td>
 <td><code>/api/console/volumes</code></td>
-<td>Save volume configuration</td>
+<td>Save repository volume configuration</td>
 </tr>
+</tbody>
+</table>
+<p>The Console API does not use <code>container_id</code> and does not expose <code>/v1/run/deploy</code>, <code>/v1/run/push</code>, <code>/v1/run/exec</code>, <code>/api/console/run</code>, or similar run/exec endpoints.</p>
+<h2 id="Registry%20Endpoints">Registry Endpoints</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td><code>GET</code></td>
 <td><code>/v2/</code></td>
-<td>Docker Registry API version check</td>
+<td>Registry API version check</td>
 </tr>
 <tr>
 <td><code>HEAD</code></td>
 <td><code>/v2/*</code></td>
-<td>Docker Registry blob/manifest check</td>
+<td>Blob or manifest existence check used during push</td>
 </tr>
 <tr>
 <td><code>POST</code></td>
 <td><code>/v2/*/blobs/uploads/</code></td>
-<td>Docker Registry blob upload</td>
+<td>Start blob upload</td>
 </tr>
 <tr>
 <td><code>PATCH</code></td>
 <td><code>/v2/*/blobs/uploads/:uuid</code></td>
-<td>Docker Registry blob upload chunk</td>
+<td>Upload blob data</td>
 </tr>
 <tr>
 <td><code>PUT</code></td>
 <td><code>/v2/*/blobs/uploads/:uuid</code></td>
-<td>Docker Registry blob upload finalize</td>
+<td>Finalize blob upload with digest</td>
 </tr>
 <tr>
 <td><code>PUT</code></td>
-<td><code>/v2/*/manifests/:tag</code></td>
-<td>Docker Registry manifest push</td>
+<td><code>/v2/*/manifests/:reference</code></td>
+<td>Push manifest</td>
 </tr>
 </tbody>
 </table>
-<h2 id="Authentication">Authentication</h2>
-<p>Console API endpoints (<code>/api/console/*</code>) are public. Docker Registry endpoints require Basic Authentication using the DockerAuth mechanism.</p>
+<p>This is a push-oriented subset, not a full pull-capable registry API.</p>
 
 
     <div id="comments-section">
@@ -400,10 +412,10 @@
 </div>
 </div>
 <div class="index"><div class="index-h2">
-<a href="#Endpoints">Endpoints</a>
+<a href="#Console%20API%20Endpoints">Console API Endpoints</a>
 </div>
 <div class="index-h2">
-<a href="#Authentication">Authentication</a>
+<a href="#Registry%20Endpoints">Registry Endpoints</a>
 </div>
 </div>
 </div>

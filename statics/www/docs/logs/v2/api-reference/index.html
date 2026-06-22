@@ -140,7 +140,7 @@
 <div class="item"><a href="/docs/files/v2/api-reference/delete-bucket/index.html">Delete Bucket</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/delete-file/index.html">Delete File</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/download-file/index.html">Download File</a></div>
-<div class="item"><a href="/docs/files/v2/api-reference/file-metadata/index.html">File Metadata</a></div>
+<div class="item"><a href="/docs/files/v2/api-reference/file-metadata/index.html">File Headers</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/get-bucket/index.html">Get Bucket</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/list-buckets/index.html">List Buckets</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/list-files/index.html">List Files</a></div>
@@ -163,11 +163,11 @@
 <div class="item"><a href="/docs/config/v2/api-reference/update-user-config/index.html">Update User Config</a></div>
 </div>
 </div>
-<div class="item active"><a href="/docs/logs/index.html">Logs</a></div>
+<div class="item active"><a href="/docs/logs/index.html">InstantLogs</a></div>
 <div class="children">
 <div class="item"><a href="/docs/logs/v2/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/logs/v2/ingesting-logs/index.html">Ingesting Logs</a></div>
-<div class="item"><a href="/docs/logs/v2/streaming-filtering/index.html">Streaming Filtering</a></div>
+<div class="item"><a href="/docs/logs/v2/streaming-filtering/index.html">Streaming and Filtering</a></div>
 <div class="item active selected"><a href="/docs/logs/v2/api-reference/index.html">InstantLogs API Reference</a></div>
 <div class="children">
 <div class="item"><a href="/docs/logs/v2/api-reference/create-logger/index.html">Create Logger</a></div>
@@ -183,11 +183,11 @@
 <div class="item"><a href="/docs/logs/v2/api-reference/stream-events/index.html">Stream Events</a></div>
 </div>
 </div>
-<div class="item"><a href="/docs/queues/index.html">Queues</a></div>
+<div class="item"><a href="/docs/queues/index.html">Tailon Queues</a></div>
 <div class="children">
 <div class="item"><a href="/docs/queues/v2/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/queues/v2/managing-queues/index.html">Managing Queues</a></div>
-<div class="item"><a href="/docs/queues/v2/producing-consuming/index.html">Producing Consuming</a></div>
+<div class="item"><a href="/docs/queues/v2/producing-consuming/index.html">Producing and Consuming</a></div>
 <div class="item"><a href="/docs/queues/v2/api-reference/index.html">Tailon API Reference</a></div>
 <div class="children">
 <div class="item"><a href="/docs/queues/v2/api-reference/create-queue/index.html">Create Queue</a></div>
@@ -241,7 +241,7 @@
 <div class="item"><a href="/docs/kvnode/v2/api-reference/readiness-check/index.html">Readiness Check</a></div>
 <div class="item"><a href="/docs/kvnode/v2/api-reference/set-key/index.html">Set Key</a></div>
 </div>
-<div class="item"><a href="/docs/kvnode/v2/sdk-reference/index.html">Sdk Reference</a></div>
+<div class="item"><a href="/docs/kvnode/v2/sdk-reference/index.html">SDK Reference</a></div>
 </div>
 <div class="item"><a href="/docs/console/index.html">Console</a></div>
 <div class="children">
@@ -249,7 +249,7 @@
 <div class="item"><a href="/docs/console/v2/managing-projects/index.html">Managing Projects and Services</a></div>
 <div class="item"><a href="/docs/console/v2/api-reference/index.html">Console API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/console/v2/api-reference/fake-api/index.html">Fake Api</a></div>
+<div class="item"><a href="/docs/console/v2/api-reference/fake-api/index.html">Fake API</a></div>
 <div class="item"><a href="/docs/console/v2/api-reference/get-version/index.html">Get Version</a></div>
 </div>
 </div>
@@ -272,7 +272,7 @@
 <div class="item"><a href="/docs/holamail/v2/sending-email/index.html">Sending Email</a></div>
 <div class="item"><a href="/docs/holamail/v2/api-reference/index.html">Holamail API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/holamail/v2/api-reference/smtp-reference/index.html">Smtp Reference</a></div>
+<div class="item"><a href="/docs/holamail/v2/api-reference/smtp-reference/index.html">SMTP Reference</a></div>
 </div>
 </div>
 <div class="item"><a href="/docs/run/index.html">Run</a></div>
@@ -286,8 +286,8 @@
 <div class="item"><a href="/docs/run/v2/api-reference/rollback-image/index.html">Rollback Image</a></div>
 <div class="item"><a href="/docs/run/v2/api-reference/save-environment/index.html">Save Environment</a></div>
 <div class="item"><a href="/docs/run/v2/api-reference/save-volumes/index.html">Save Volumes</a></div>
-<div class="item"><a href="/docs/run/v2/api-reference/start-container/index.html">Start Container</a></div>
-<div class="item"><a href="/docs/run/v2/api-reference/stop-container/index.html">Stop Container</a></div>
+<div class="item"><a href="/docs/run/v2/api-reference/start-container/index.html">Start Repository</a></div>
+<div class="item"><a href="/docs/run/v2/api-reference/stop-container/index.html">Stop Repository</a></div>
 </div>
 </div>
 
@@ -299,47 +299,7 @@
     <h1>InstantLogs API Reference</h1>
 <p>Base URL: <code>https://api.hola.cloud</code></p>
 <h2 id="Authentication">Authentication</h2>
-<p>InstantLogs uses two authentication modes depending on the endpoint type.</p>
-<h3 id="Management%20Authentication">Management Authentication</h3>
-<p>Management endpoints (logger CRUD, API key management) require two headers:</p>
-<table>
-<thead>
-<tr>
-<th>Header</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Api-Key</code></td>
-<td>Your API key identifier</td>
-</tr>
-<tr>
-<td><code>Api-Secret</code></td>
-<td>Your API secret key</td>
-</tr>
-</tbody>
-</table>
-<h3 id="Data%20Authentication">Data Authentication</h3>
-<p>Data endpoints (ingest, filter, events, stats) authenticate using the logger secret. Provide it as either:</p>
-<table>
-<thead>
-<tr>
-<th>Header</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>X-Instantlogs-Event-Secret</code></td>
-<td>The logger secret value</td>
-</tr>
-<tr>
-<td><code>Authorization: Bearer &lt;secret&gt;</code></td>
-<td>Bearer token with the logger secret</td>
-</tr>
-</tbody>
-</table>
+<p>Management endpoints use <code>X-Glue-Authentication</code>. Logger endpoints accept either a Glue owner of the logger or a logger API key with <code>Api-Key</code> and <code>Api-Secret</code>.</p>
 <h2 id="Endpoints">Endpoints</h2>
 <table>
 <thead>
@@ -347,114 +307,73 @@
 <th>Method</th>
 <th>Path</th>
 <th>Description</th>
-<th>Auth</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>GET</td>
 <td><code>/v1/loggers</code></td>
-<td>List all loggers</td>
-<td>Management</td>
+<td>List owned loggers</td>
 </tr>
 <tr>
 <td>POST</td>
 <td><code>/v1/loggers</code></td>
-<td>Create a new logger</td>
-<td>Management</td>
+<td>Create logger</td>
 </tr>
 <tr>
 <td>GET</td>
 <td><code>/v1/loggers/{id}</code></td>
-<td>Get logger details</td>
-<td>Management</td>
+<td>Get logger with owners/API keys</td>
 </tr>
 <tr>
 <td>DELETE</td>
 <td><code>/v1/loggers/{id}</code></td>
-<td>Delete a logger</td>
-<td>Management</td>
+<td>Delete logger</td>
 </tr>
 <tr>
 <td>POST</td>
 <td><code>/v1/loggers/{id}/ingest</code></td>
-<td>Ingest log entries</td>
-<td>Data</td>
+<td>Ingest raw bytes, returns <code>{ &#34;n&#34;: number }</code></td>
 </tr>
 <tr>
 <td>GET</td>
-<td><code>/v1/loggers/{id}/filter</code></td>
-<td>Stream and filter logs</td>
-<td>Data</td>
+<td><code>/v1/loggers/{id}/filter?regex=...</code></td>
+<td>Stream filtered logs</td>
 </tr>
 <tr>
 <td>GET</td>
 <td><code>/v1/loggers/{id}/events</code></td>
-<td>Stream events</td>
-<td>Data</td>
+<td>Stream events; <code>follow</code> is a presence flag</td>
 </tr>
 <tr>
 <td>GET</td>
 <td><code>/v1/loggers/{id}/stats</code></td>
-<td>Get logger statistics</td>
-<td>Data</td>
+<td>Runtime stats</td>
 </tr>
 <tr>
 <td>POST</td>
 <td><code>/v1/loggers/{id}/apiKeys</code></td>
-<td>Create an API key</td>
-<td>Management</td>
+<td>Create logger API key</td>
 </tr>
 <tr>
 <td>DELETE</td>
-<td><code>/v1/loggers/{id}/apiKeys/{key}</code></td>
-<td>Delete an API key</td>
-<td>Management</td>
+<td><code>/v1/loggers/{id}/apiKeys/{apiKey}</code></td>
+<td>Delete logger API key</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/loggers/{id}/owners</code></td>
+<td>Add logger owner</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td><code>/v1/loggers/{id}/owners/{ownerId}</code></td>
+<td>Delete logger owner</td>
 </tr>
 <tr>
 <td>POST</td>
 <td><code>/v1/ingest/events</code></td>
-<td>Ingest framed events</td>
-<td>Data</td>
-</tr>
-</tbody>
-</table>
-<h2 id="Common%20Error%20Codes">Common Error Codes</h2>
-<table>
-<thead>
-<tr>
-<th>Code</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>400</td>
-<td>Bad request — malformed JSON or invalid parameters</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Unauthorized — missing or invalid credentials</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden — credentials do not have access</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not found — the requested resource does not exist</td>
-</tr>
-<tr>
-<td>409</td>
-<td>Conflict — resource already exists</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too many requests — rate limit exceeded</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal server error</td>
+<td>Ingest logframe events with <code>project_id</code>, returns <code>events</code> and <code>bytes</code></td>
 </tr>
 </tbody>
 </table>
@@ -483,17 +402,8 @@
 <div class="index"><div class="index-h2">
 <a href="#Authentication">Authentication</a>
 </div>
-<div class="index-h3">
-<a href="#Management%20Authentication">Management Authentication</a>
-</div>
-<div class="index-h3">
-<a href="#Data%20Authentication">Data Authentication</a>
-</div>
 <div class="index-h2">
 <a href="#Endpoints">Endpoints</a>
-</div>
-<div class="index-h2">
-<a href="#Common%20Error%20Codes">Common Error Codes</a>
 </div>
 </div>
 </div>

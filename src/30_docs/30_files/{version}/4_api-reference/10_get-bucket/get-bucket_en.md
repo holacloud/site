@@ -1,47 +1,41 @@
 # Get Bucket
 
-Get details for a specific bucket by its ID.
+Get a bucket by ID for the authenticated user.
 
 ## Authentication
 
-Requires `Api-Key` and `Api-Secret` headers.
+Requires `X-Glue-Authentication`.
 
 ## Path Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `id` | string | The bucket ID (e.g., `bkt_abc123`) |
+| `bucket_id` | string | The bucket ID |
 
 ## Request
 
 ```bash
-curl "https://api.hola.cloud/v1/buckets/bkt_abc123" \
-  -H "Api-Key: YOUR_API_KEY" \
-  -H "Api-Secret: YOUR_API_SECRET"
+curl "https://api.hola.cloud/v1/buckets/bucket-550e8400-e29b-41d4-a716-446655440000" \
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}'
 ```
 
 ## Response
 
-```http
-HTTP/1.1 200 OK
-Content-Type: application/json
-```
-
 ```json
 {
-  "id": "bkt_abc123",
-  "name": "my-first-bucket",
-  "createdAt": "2026-06-21T10:00:00Z",
-  "size": 1048576,
-  "fileCount": 5,
-  "public": false
+  "id": "bucket-550e8400-e29b-41d4-a716-446655440000",
+  "project_id": "",
+  "created_timestamp": 1782045600000000000,
+  "owners": ["user-123"],
+  "name": "assets",
+  "description": "Application assets"
 }
 ```
 
 ## Error Codes
 
-| Status | Code | Description |
-|--------|------|-------------|
-| 401 | Unauthorized | Missing or invalid API credentials |
-| 404 | Not Found | The specified bucket does not exist |
-| 500 | Internal Server Error | An unexpected error occurred |
+| Status | Description |
+|--------|-------------|
+| 401 | Missing or invalid `X-Glue-Authentication` |
+| 404 | Bucket not found |
+| 500 | Persistence error |

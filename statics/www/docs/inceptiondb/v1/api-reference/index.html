@@ -140,7 +140,7 @@
 <div class="item"><a href="/docs/files/v1/api-reference/delete-bucket/index.html">Delete Bucket</a></div>
 <div class="item"><a href="/docs/files/v1/api-reference/delete-file/index.html">Delete File</a></div>
 <div class="item"><a href="/docs/files/v1/api-reference/download-file/index.html">Download File</a></div>
-<div class="item"><a href="/docs/files/v1/api-reference/file-metadata/index.html">File Metadata</a></div>
+<div class="item"><a href="/docs/files/v1/api-reference/file-metadata/index.html">File Headers</a></div>
 <div class="item"><a href="/docs/files/v1/api-reference/get-bucket/index.html">Get Bucket</a></div>
 <div class="item"><a href="/docs/files/v1/api-reference/list-buckets/index.html">List Buckets</a></div>
 <div class="item"><a href="/docs/files/v1/api-reference/list-files/index.html">List Files</a></div>
@@ -163,11 +163,11 @@
 <div class="item"><a href="/docs/config/v1/api-reference/update-user-config/index.html">Update User Config</a></div>
 </div>
 </div>
-<div class="item"><a href="/docs/logs/index.html">Logs</a></div>
+<div class="item"><a href="/docs/logs/index.html">InstantLogs</a></div>
 <div class="children">
 <div class="item"><a href="/docs/logs/v1/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/logs/v1/ingesting-logs/index.html">Ingesting Logs</a></div>
-<div class="item"><a href="/docs/logs/v1/streaming-filtering/index.html">Streaming Filtering</a></div>
+<div class="item"><a href="/docs/logs/v1/streaming-filtering/index.html">Streaming and Filtering</a></div>
 <div class="item"><a href="/docs/logs/v1/api-reference/index.html">InstantLogs API Reference</a></div>
 <div class="children">
 <div class="item"><a href="/docs/logs/v1/api-reference/create-logger/index.html">Create Logger</a></div>
@@ -183,11 +183,11 @@
 <div class="item"><a href="/docs/logs/v1/api-reference/stream-events/index.html">Stream Events</a></div>
 </div>
 </div>
-<div class="item"><a href="/docs/queues/index.html">Queues</a></div>
+<div class="item"><a href="/docs/queues/index.html">Tailon Queues</a></div>
 <div class="children">
 <div class="item"><a href="/docs/queues/v1/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/queues/v1/managing-queues/index.html">Managing Queues</a></div>
-<div class="item"><a href="/docs/queues/v1/producing-consuming/index.html">Producing Consuming</a></div>
+<div class="item"><a href="/docs/queues/v1/producing-consuming/index.html">Producing and Consuming</a></div>
 <div class="item"><a href="/docs/queues/v1/api-reference/index.html">Tailon API Reference</a></div>
 <div class="children">
 <div class="item"><a href="/docs/queues/v1/api-reference/create-queue/index.html">Create Queue</a></div>
@@ -241,7 +241,7 @@
 <div class="item"><a href="/docs/kvnode/v1/api-reference/readiness-check/index.html">Readiness Check</a></div>
 <div class="item"><a href="/docs/kvnode/v1/api-reference/set-key/index.html">Set Key</a></div>
 </div>
-<div class="item"><a href="/docs/kvnode/v1/sdk-reference/index.html">Sdk Reference</a></div>
+<div class="item"><a href="/docs/kvnode/v1/sdk-reference/index.html">SDK Reference</a></div>
 </div>
 <div class="item"><a href="/docs/console/index.html">Console</a></div>
 <div class="children">
@@ -249,7 +249,7 @@
 <div class="item"><a href="/docs/console/v1/managing-projects/index.html">Managing Projects and Services</a></div>
 <div class="item"><a href="/docs/console/v1/api-reference/index.html">Console API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/console/v1/api-reference/fake-api/index.html">Fake Api</a></div>
+<div class="item"><a href="/docs/console/v1/api-reference/fake-api/index.html">Fake API</a></div>
 <div class="item"><a href="/docs/console/v1/api-reference/get-version/index.html">Get Version</a></div>
 </div>
 </div>
@@ -272,7 +272,7 @@
 <div class="item"><a href="/docs/holamail/v1/sending-email/index.html">Sending Email</a></div>
 <div class="item"><a href="/docs/holamail/v1/api-reference/index.html">Holamail API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/holamail/v1/api-reference/smtp-reference/index.html">Smtp Reference</a></div>
+<div class="item"><a href="/docs/holamail/v1/api-reference/smtp-reference/index.html">SMTP Reference</a></div>
 </div>
 </div>
 <div class="item"><a href="/docs/run/index.html">Run</a></div>
@@ -286,8 +286,8 @@
 <div class="item"><a href="/docs/run/v1/api-reference/rollback-image/index.html">Rollback Image</a></div>
 <div class="item"><a href="/docs/run/v1/api-reference/save-environment/index.html">Save Environment</a></div>
 <div class="item"><a href="/docs/run/v1/api-reference/save-volumes/index.html">Save Volumes</a></div>
-<div class="item"><a href="/docs/run/v1/api-reference/start-container/index.html">Start Container</a></div>
-<div class="item"><a href="/docs/run/v1/api-reference/stop-container/index.html">Stop Container</a></div>
+<div class="item"><a href="/docs/run/v1/api-reference/start-container/index.html">Start Repository</a></div>
+<div class="item"><a href="/docs/run/v1/api-reference/stop-container/index.html">Stop Repository</a></div>
 </div>
 </div>
 
@@ -299,13 +299,8 @@
     <h1>InceptionDB API Reference</h1>
 <p>Base URL: <code>https://api.hola.cloud</code></p>
 <h2 id="Authentication">Authentication</h2>
-<p>InceptionDB management endpoints require authentication via two headers:</p>
-<ul>
-<li><code>Api-Key</code> — Your API key (UUID)</li>
-<li><code>Api-Secret</code> — Your API secret (UUID)</li>
-<li><code>X-Project</code> — Scopes the request to a specific project</li>
-</ul>
-<p>All requests must be sent over HTTPS.</p>
+<p>Management endpoints for <code>GET /v1/databases</code> and <code>POST /v1/databases</code> use <code>X-Glue-Authentication</code>.</p>
+<p>Database access endpoints use <code>Api-Key</code> and <code>Api-Secret</code>. A Glue owner token can also be used where the database owner is allowed.</p>
 <h2 id="Endpoints">Endpoints</h2>
 <table>
 <thead>
@@ -319,42 +314,62 @@
 <tr>
 <td>GET</td>
 <td><code>/v1/databases</code></td>
-<td>List all databases</td>
+<td>List databases</td>
 </tr>
 <tr>
 <td>POST</td>
 <td><code>/v1/databases</code></td>
-<td>Create a new database</td>
+<td>Create a database</td>
 </tr>
 <tr>
 <td>GET</td>
-<td><code>/v1/databases/{id}</code></td>
+<td><code>/v1/databases/{databaseId}</code></td>
 <td>Get a database by ID</td>
 </tr>
 <tr>
 <td>DELETE</td>
-<td><code>/v1/databases/{id}</code></td>
+<td><code>/v1/databases/{databaseId}</code></td>
 <td>Drop a database</td>
 </tr>
 <tr>
 <td>PATCH</td>
-<td><code>/v1/databases/{id}</code></td>
+<td><code>/v1/databases/{databaseId}</code></td>
 <td>Update a database</td>
 </tr>
 <tr>
 <td>GET</td>
-<td><code>/v1/databases/{id}/collections</code></td>
+<td><code>/v1/databases/{databaseId}/collections</code></td>
 <td>List collections in a database</td>
 </tr>
 <tr>
 <td>POST</td>
-<td><code>/v1/databases/{id}/collections</code></td>
+<td><code>/v1/databases/{databaseId}/collections</code></td>
 <td>Create a collection</td>
 </tr>
 <tr>
 <td>POST</td>
-<td><code>/v1/databases/{id}/collections/{col}</code></td>
-<td>Document operations (insert, find, remove, patch)</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}:insert</code></td>
+<td>Insert documents</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}:find</code></td>
+<td>Find documents</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}:patch</code></td>
+<td>Patch documents</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}:remove</code></td>
+<td>Remove documents</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}/documents/{documentId}</code></td>
+<td>Get a document by ID</td>
 </tr>
 </tbody>
 </table>
@@ -369,23 +384,23 @@
 <tbody>
 <tr>
 <td>400</td>
-<td>Bad request — malformed syntax or invalid parameters</td>
+<td>Bad request: malformed syntax or invalid parameters</td>
 </tr>
 <tr>
 <td>401</td>
-<td>Unauthorized — missing or invalid API credentials</td>
+<td>Unauthorized: missing or invalid credentials</td>
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden — credentials do not have access to the resource</td>
+<td>Forbidden: credentials do not have access to the resource</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not found — the requested resource does not exist</td>
+<td>Not found: the requested resource does not exist</td>
 </tr>
 <tr>
 <td>409</td>
-<td>Conflict — resource already exists</td>
+<td>Conflict: resource already exists</td>
 </tr>
 <tr>
 <td>500</td>

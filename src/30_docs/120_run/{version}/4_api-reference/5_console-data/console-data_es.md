@@ -1,63 +1,32 @@
-# Consola Datos
+# Datos de Console
 
-Devuelve repositorios, imágenes y estado de contenedores en ejecución para el panel de la Consola.
+Devuelve datos de Console para un repositorio.
 
-## Descripción
+## Request
 
-Este endpoint agrega todos los datos relacionados con contenedores que necesita la Consola de HolaCloud para mostrar el estado actual de los servicios desplegados.
+```http
+GET /api/console?repository=my-project/my-app
+```
 
-## Autenticación
-
-Ninguna. Este endpoint es público.
-
-## Solicitud
-
-No se requiere cuerpo en la solicitud.
+El query parameter `repository` es obligatorio.
 
 ## Ejemplo
 
 ```bash
-curl -X GET "https://api.hola.cloud/api/console"
+curl "https://api.hola.cloud/api/console?repository=my-project/my-app"
 ```
 
 ## Respuesta
 
 ```json
 {
-  "repositories": [
-    {
-      "name": "my-project/my-app",
-      "tags": ["latest", "v1.0.0", "v1.1.0"],
-      "pull_count": 142
-    }
+  "repository": "my-project/my-app",
+  "references": ["latest", "v1"],
+  "env": [
+    {"key": "LOG_LEVEL", "desired_value": "info"}
   ],
-  "images": [
-    {
-      "repository": "my-project/my-app",
-      "tag": "latest",
-      "digest": "sha256:a1b2c3d4...",
-      "size_bytes": 72450000,
-      "created": "2026-06-20T10:00:00Z"
-    }
-  ],
-  "containers": [
-    {
-      "id": "abc123def456",
-      "image": "my-project/my-app:latest",
-      "status": "running",
-      "ports": {"80/tcp": 8080},
-      "started_at": "2026-06-21T08:00:00Z",
-      "env": {
-        "LOG_LEVEL": "info",
-        "DATABASE_URL": "postgres://..."
-      }
-    }
+  "volumes": [
+    {"name": "my-data", "target": "/data", "mode": "rw"}
   ]
 }
 ```
-
-## Códigos de Error
-
-| Código | Descripción |
-|--------|-------------|
-| 200 | Datos de la consola devueltos correctamente |

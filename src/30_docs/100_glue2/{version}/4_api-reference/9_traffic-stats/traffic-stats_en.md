@@ -4,7 +4,7 @@ Returns real-time traffic statistics for the gateway.
 
 ## Description
 
-This endpoint provides aggregated metrics about requests passing through the Glue2 gateway, including request rates, latency percentiles, and status code distributions.
+This endpoint returns an array of per-host gateway statistics. Each item uses Glue2's `prettyStats` fields, with aggregate rows for `*` and `-noroute-`.
 
 ## Authentication
 
@@ -23,20 +23,16 @@ curl -X GET "https://api.hola.cloud/v0/stats"
 ## Response
 
 ```json
-{
-  "total_requests": 154203,
-  "requests_per_second": 42.5,
-  "latency_p50_ms": 12,
-  "latency_p95_ms": 45,
-  "latency_p99_ms": 120,
-  "status_codes": {
-    "2xx": 148000,
-    "4xx": 5200,
-    "5xx": 1003
-  },
-  "active_connections": 87,
-  "uptime_seconds": 86400
-}
+[
+  {
+    "host": "my-project.hola.cloud",
+    "served_requests": 154203,
+    "serving_time": "32.4s",
+    "latency_avg": "210µs",
+    "uptime": "24h0m0s",
+    "start_timestamp": "2026-06-21T10:00:00Z"
+  }
+]
 ```
 
 ## Error Codes

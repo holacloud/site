@@ -107,7 +107,7 @@
     <div class="hero-inner">
         <div class="hero-eyebrow">🔗 Glue2</div>
         <h1>API Gateway and authentication layer</h1>
-        <p>Glue2 is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <p>Glue2 is HolaCloud&#39;s host-based reverse proxy and service glue layer.</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">Get started</a>
             <a class="button button-secondary" href="/docs/glue2/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">Documentation</a>
@@ -120,18 +120,18 @@
         <div class="section-header">
             <div class="section-kicker">Glue2</div>
             <h2 id="Key%20features">Key features</h2>
-            <p>Everything you need to build, deploy, and scale with Glue2 on HolaCloud.</p>
+            <p>Route virtual hosts, inject HolaCloud authentication headers, and inspect gateway status and traffic stats.</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="Rate%20limiting">Rate limiting</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Protect your APIs with configurable rate limits per client.</p>
+            <h3 id="Virtual%20hosts">Virtual hosts</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">List the virtual hosts currently known by the gateway.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="JWT%20validation">JWT validation</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Automatic token validation and user context injection.</p>
+            <h3 id="Authentication%20context">Authentication context</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Inject JSON authentication context through <code>X-Glue-Authentication</code> when a project requires it.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="API%20composition">API composition</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Combine multiple backend services into a single API endpoint.</p>
+            <h3 id="Gateway%20diagnostics">Gateway diagnostics</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Expose version, virtual hosts, project host status, OpenAPI, and traffic statistics endpoints.</p>
           </div>
         </div>
     </section>
@@ -142,9 +142,9 @@
             <h2 id="Quick%20start">Quick start</h2>
             <p>Get started with Glue2 in seconds using the API.</p>
         </div>
-        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST https://api.hola.cloud/v1/routes \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  -H &#34;Authorization: Bearer $TOKEN&#34; \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  -d &#39;{&#34;path&#34;: &#34;/api/v1/users&#34;, &#34;upstream&#34;: &#34;https://users.internal:8080&#34;, &#34;methods&#34;: [&#34;GET&#34;]}&#39;</span></span></code></pre></code></pre>
+        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl https://glue2.hola.cloud/version
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>curl https://glue2.hola.cloud/v0/virtualhosts
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>curl https://glue2.hola.cloud/v0/stats</span></span></code></pre></code></pre>
     </section>
 
     <section class="section">
@@ -181,6 +181,7 @@
     </section>
 </div>
 
+
     <div id="comments-section">
     <h2>Comments</h2>
     <div id="comments-list"></div>
@@ -205,13 +206,13 @@
 <a href="#Key%20features">Key features</a>
 </div>
 <div class="index-h3">
-<a href="#Rate%20limiting">Rate limiting</a>
+<a href="#Virtual%20hosts">Virtual hosts</a>
 </div>
 <div class="index-h3">
-<a href="#JWT%20validation">JWT validation</a>
+<a href="#Authentication%20context">Authentication context</a>
 </div>
 <div class="index-h3">
-<a href="#API%20composition">API composition</a>
+<a href="#Gateway%20diagnostics">Gateway diagnostics</a>
 </div>
 <div class="index-h2">
 <a href="#Quick%20start">Quick start</a>

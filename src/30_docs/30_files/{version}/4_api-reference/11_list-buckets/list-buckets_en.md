@@ -1,61 +1,38 @@
 # List Buckets
 
-List all buckets for the authenticated account.
+List buckets owned by the authenticated user.
 
 ## Authentication
 
-Requires `Api-Key` and `Api-Secret` headers.
-
-## Query Parameters
-
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `limit` | integer | 100 | Maximum number of buckets to return |
-| `offset` | integer | 0 | Number of buckets to skip |
+Requires `X-Glue-Authentication`.
 
 ## Request
 
 ```bash
-curl "https://api.hola.cloud/v1/buckets?limit=10&offset=0" \
-  -H "Api-Key: YOUR_API_KEY" \
-  -H "Api-Secret: YOUR_API_SECRET"
+curl "https://api.hola.cloud/v1/buckets" \
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}'
 ```
 
 ## Response
 
-```http
-HTTP/1.1 200 OK
-Content-Type: application/json
-```
+The response is a JSON array.
 
 ```json
-{
-  "buckets": [
-    {
-      "id": "bkt_abc123",
-      "name": "my-first-bucket",
-      "createdAt": "2026-06-21T10:00:00Z",
-      "size": 1048576,
-      "fileCount": 5,
-      "public": false
-    },
-    {
-      "id": "bkt_def456",
-      "name": "assets",
-      "createdAt": "2026-06-20T08:30:00Z",
-      "size": 52428800,
-      "fileCount": 42,
-      "public": true
-    }
-  ],
-  "total": 2
-}
+[
+  {
+    "id": "bucket-550e8400-e29b-41d4-a716-446655440000",
+    "name": "assets",
+    "description": "Application assets",
+    "created_timestamp": 1782045600000000000,
+    "created_h": "2026-06-21T10:00:00Z",
+    "owners": ["user-123"]
+  }
+]
 ```
 
 ## Error Codes
 
-| Status | Code | Description |
-|--------|------|-------------|
-| 401 | Unauthorized | Missing or invalid API credentials |
-| 403 | Forbidden | Insufficient permissions |
-| 500 | Internal Server Error | An unexpected error occurred |
+| Status | Description |
+|--------|-------------|
+| 401 | Missing or invalid `X-Glue-Authentication` |
+| 500 | Persistence error |

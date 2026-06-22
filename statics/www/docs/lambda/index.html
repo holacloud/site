@@ -140,7 +140,7 @@
 <div class="item"><a href="/docs/files/v2/api-reference/delete-bucket/index.html">Delete Bucket</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/delete-file/index.html">Delete File</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/download-file/index.html">Download File</a></div>
-<div class="item"><a href="/docs/files/v2/api-reference/file-metadata/index.html">File Metadata</a></div>
+<div class="item"><a href="/docs/files/v2/api-reference/file-metadata/index.html">File Headers</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/get-bucket/index.html">Get Bucket</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/list-buckets/index.html">List Buckets</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/list-files/index.html">List Files</a></div>
@@ -163,11 +163,11 @@
 <div class="item"><a href="/docs/config/v2/api-reference/update-user-config/index.html">Update User Config</a></div>
 </div>
 </div>
-<div class="item"><a href="/docs/logs/index.html">Logs</a></div>
+<div class="item"><a href="/docs/logs/index.html">InstantLogs</a></div>
 <div class="children">
 <div class="item"><a href="/docs/logs/v2/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/logs/v2/ingesting-logs/index.html">Ingesting Logs</a></div>
-<div class="item"><a href="/docs/logs/v2/streaming-filtering/index.html">Streaming Filtering</a></div>
+<div class="item"><a href="/docs/logs/v2/streaming-filtering/index.html">Streaming and Filtering</a></div>
 <div class="item"><a href="/docs/logs/v2/api-reference/index.html">InstantLogs API Reference</a></div>
 <div class="children">
 <div class="item"><a href="/docs/logs/v2/api-reference/create-logger/index.html">Create Logger</a></div>
@@ -183,11 +183,11 @@
 <div class="item"><a href="/docs/logs/v2/api-reference/stream-events/index.html">Stream Events</a></div>
 </div>
 </div>
-<div class="item"><a href="/docs/queues/index.html">Queues</a></div>
+<div class="item"><a href="/docs/queues/index.html">Tailon Queues</a></div>
 <div class="children">
 <div class="item"><a href="/docs/queues/v2/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/queues/v2/managing-queues/index.html">Managing Queues</a></div>
-<div class="item"><a href="/docs/queues/v2/producing-consuming/index.html">Producing Consuming</a></div>
+<div class="item"><a href="/docs/queues/v2/producing-consuming/index.html">Producing and Consuming</a></div>
 <div class="item"><a href="/docs/queues/v2/api-reference/index.html">Tailon API Reference</a></div>
 <div class="children">
 <div class="item"><a href="/docs/queues/v2/api-reference/create-queue/index.html">Create Queue</a></div>
@@ -241,7 +241,7 @@
 <div class="item"><a href="/docs/kvnode/v2/api-reference/readiness-check/index.html">Readiness Check</a></div>
 <div class="item"><a href="/docs/kvnode/v2/api-reference/set-key/index.html">Set Key</a></div>
 </div>
-<div class="item"><a href="/docs/kvnode/v2/sdk-reference/index.html">Sdk Reference</a></div>
+<div class="item"><a href="/docs/kvnode/v2/sdk-reference/index.html">SDK Reference</a></div>
 </div>
 <div class="item"><a href="/docs/console/index.html">Console</a></div>
 <div class="children">
@@ -249,7 +249,7 @@
 <div class="item"><a href="/docs/console/v2/managing-projects/index.html">Managing Projects and Services</a></div>
 <div class="item"><a href="/docs/console/v2/api-reference/index.html">Console API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/console/v2/api-reference/fake-api/index.html">Fake Api</a></div>
+<div class="item"><a href="/docs/console/v2/api-reference/fake-api/index.html">Fake API</a></div>
 <div class="item"><a href="/docs/console/v2/api-reference/get-version/index.html">Get Version</a></div>
 </div>
 </div>
@@ -272,7 +272,7 @@
 <div class="item"><a href="/docs/holamail/v2/sending-email/index.html">Sending Email</a></div>
 <div class="item"><a href="/docs/holamail/v2/api-reference/index.html">Holamail API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/holamail/v2/api-reference/smtp-reference/index.html">Smtp Reference</a></div>
+<div class="item"><a href="/docs/holamail/v2/api-reference/smtp-reference/index.html">SMTP Reference</a></div>
 </div>
 </div>
 <div class="item"><a href="/docs/run/index.html">Run</a></div>
@@ -286,8 +286,8 @@
 <div class="item"><a href="/docs/run/v2/api-reference/rollback-image/index.html">Rollback Image</a></div>
 <div class="item"><a href="/docs/run/v2/api-reference/save-environment/index.html">Save Environment</a></div>
 <div class="item"><a href="/docs/run/v2/api-reference/save-volumes/index.html">Save Volumes</a></div>
-<div class="item"><a href="/docs/run/v2/api-reference/start-container/index.html">Start Container</a></div>
-<div class="item"><a href="/docs/run/v2/api-reference/stop-container/index.html">Stop Container</a></div>
+<div class="item"><a href="/docs/run/v2/api-reference/start-container/index.html">Start Repository</a></div>
+<div class="item"><a href="/docs/run/v2/api-reference/stop-container/index.html">Stop Repository</a></div>
 </div>
 </div>
 
@@ -297,31 +297,23 @@
     <div class="breadcrumb"><a class="item" href="/docs/index.html">Documentation</a><span class="arrow">→</span><a class="item selected" href="/docs/lambda/index.html">Lambda</a></div>
     <div class="document">
     <h1>Lambda</h1>
-<p>HolaCloud Lambda is a serverless compute service that lets you run code in response to events without provisioning or managing servers. Upload your functions in JavaScript, Go, or Python, and HolaCloud handles everything from auto-scaling to high availability.</p>
+<p>HolaCloud Lambda lets you publish small HTTP handlers that run inside HolaCloud. A lambda stores its source code, route metadata, owner, and project association, then responds through the Lambda API or public run routes.</p>
 <h2 id="Key%20Features">Key Features</h2>
-<h3 id="Multi-Language%20Support">Multi-Language Support</h3>
-<p>Write functions in the language of your choice. HolaCloud Lambda supports JavaScript (Node.js), Go, and Python runtimes out of the box, with a consistent invocation interface across all languages.</p>
-<h3 id="Auto-Scaling">Auto-Scaling</h3>
-<p>Lambda functions scale automatically based on incoming request volume. Whether you have one request per day or thousands per second, HolaCloud adjusts capacity instantly — you only pay for what you use.</p>
-<h3 id="Webhook%20Support">Webhook Support</h3>
-<p>Every Lambda function is automatically reachable via a public URL. Use it as a webhook endpoint for external services like Stripe, GitHub, or Slack, or integrate it with your own applications.</p>
-<h3 id="Pay-Per-Use%20Billing">Pay-Per-Use Billing</h3>
-<p>No idle costs. You are billed only for the compute time your code consumes during execution, rounded up to the nearest millisecond.</p>
+<h3 id="Supported%20Languages">Supported Languages</h3>
+<p>Lambda accepts these <code>language</code> values: <code>javascript</code>, <code>static-html</code>, <code>static-css</code>, and <code>static-js</code>.</p>
+<h3 id="HTTP%20Routing">HTTP Routing</h3>
+<p>Each lambda can store a <code>method</code> and <code>path</code>. Use these fields to describe how the lambda should be reached through the mux router or your application routing layer.</p>
+<h3 id="Public%20and%20Admin%20Invocation">Public and Admin Invocation</h3>
+<p>Use authenticated admin endpoints to create, inspect, update, delete, and run lambdas. Use public run and mux endpoints when a lambda must be callable by webhooks, browsers, or other external clients.</p>
 <h2 id="Use%20Cases">Use Cases</h2>
 <ul>
-<li><strong>APIs</strong>: Build lightweight REST or GraphQL backends without managing infrastructure.</li>
-<li><strong>Webhooks</strong>: Receive and process events from third-party services with a dedicated public endpoint.</li>
-<li><strong>Background Jobs</strong>: Offload tasks like email sending, image processing, or report generation.</li>
-<li><strong>Data Processing</strong>: Transform, filter, or enrich data streams in real time.</li>
+<li><strong>HTTP APIs</strong>: Build small request handlers backed by HolaCloud services.</li>
+<li><strong>Webhooks</strong>: Receive third-party events through a public <code>/run/{lambda_id}</code> URL.</li>
+<li><strong>Static Responses</strong>: Serve HTML, CSS, or client-side JavaScript snippets with the static language modes.</li>
+<li><strong>Mux Routing</strong>: Route owner-scoped paths through <code>/mux/{owner_id}/*</code>.</li>
 </ul>
-<h2 id="How%20It%20Fits%20in%20the%20HolaCloud%20Ecosystem">How It Fits in the HolaCloud Ecosystem</h2>
-<p>Lambda works alongside other HolaCloud services to power full-stack serverless applications:</p>
-<ul>
-<li><strong>InceptionDB</strong> — store and query persistent data from your functions.</li>
-<li><strong>HolaAuth</strong> — authenticate users and protect endpoints.</li>
-<li><strong>Mux Router</strong> — map custom domains to specific Lambda functions and owners.</li>
-</ul>
-<p>All services share a common API gateway, authentication model, and CLI tooling, making it straightforward to compose them into a unified application.</p>
+<h2 id="Lambda%20Fields">Lambda Fields</h2>
+<p>Lambda records use these fields: <code>id</code>, <code>created_timestamp</code>, <code>owner</code>, <code>project_id</code>, <code>name</code>, <code>language</code>, <code>code</code>, <code>method</code>, and <code>path</code>.</p>
 
 
     <div id="comments-section">
@@ -348,22 +340,19 @@
 <a href="#Key%20Features">Key Features</a>
 </div>
 <div class="index-h3">
-<a href="#Multi-Language%20Support">Multi-Language Support</a>
+<a href="#Supported%20Languages">Supported Languages</a>
 </div>
 <div class="index-h3">
-<a href="#Auto-Scaling">Auto-Scaling</a>
+<a href="#HTTP%20Routing">HTTP Routing</a>
 </div>
 <div class="index-h3">
-<a href="#Webhook%20Support">Webhook Support</a>
-</div>
-<div class="index-h3">
-<a href="#Pay-Per-Use%20Billing">Pay-Per-Use Billing</a>
+<a href="#Public%20and%20Admin%20Invocation">Public and Admin Invocation</a>
 </div>
 <div class="index-h2">
 <a href="#Use%20Cases">Use Cases</a>
 </div>
 <div class="index-h2">
-<a href="#How%20It%20Fits%20in%20the%20HolaCloud%20Ecosystem">How It Fits in the HolaCloud Ecosystem</a>
+<a href="#Lambda%20Fields">Lambda Fields</a>
 </div>
 </div>
 </div>

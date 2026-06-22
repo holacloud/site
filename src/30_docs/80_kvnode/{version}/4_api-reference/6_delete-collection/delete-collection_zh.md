@@ -22,13 +22,21 @@ curl -X DELETE "https://api.hola.cloud/v1/collections/users" \
 ## 响应示例
 
 ```http
-HTTP/1.1 204 No Content
+HTTP/1.1 200 OK
+Content-Type: application/json
+```
+
+```json
+{
+  "ok": true,
+  "collection": "users"
+}
 ```
 
 ## 错误代码
 
 | 状态 | 代码 | 描述 |
 |------|------|------|
-| 401 | unauthorized | 缺少或无效的身份验证 |
+| 403 | forbidden | Missing authentication headers |
 | 404 | not_found | 未找到集合 |
 | 500 | internal_error | 服务器内部错误 |

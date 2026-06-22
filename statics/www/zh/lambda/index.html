@@ -107,7 +107,7 @@
     <div class="hero-inner">
         <div class="hero-eyebrow">⚡ Lambda</div>
         <h1>无服务器函数执行平台</h1>
-        <p>Lambda is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <p>Lambda 在 HolaCloud 上通过 HTTP endpoint 运行 JavaScript 函数和静态资源。</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">开始使用</a>
             <a class="button button-secondary" href="/docs/lambda/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">文档中心</a>
@@ -120,18 +120,18 @@
         <div class="section-header">
             <div class="section-kicker">Lambda</div>
             <h2 id="%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD">核心功能</h2>
-            <p>Everything you need to build, deploy, and scale with Lambda on HolaCloud.</p>
+            <p>通过 Lambda API 创建、更新、列出、删除并调用 HTTP 函数。</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="%E6%94%AF%E6%8C%81%E4%BB%BB%E6%84%8F%E8%AF%AD%E8%A8%80%E8%BF%90%E8%A1%8C%E4%BB%A3%E7%A0%81">支持任意语言运行代码</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">部署 Go、Python、Node.js 等语言，自动伸缩，无需管理服务器。</p>
+            <h3 id="JavaScript%20%E5%87%BD%E6%95%B0">JavaScript 函数</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">使用内置运行时 helper，例如 <code>write</code>、<code>body</code>、<code>query</code> 和 <code>headers</code>。</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E6%89%A7%E8%A1%8C">事件驱动执行</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">通过 HTTP 请求、队列消息、定时器或 Webhook 触发函数。</p>
+            <h3 id="HTTP%20%E8%B0%83%E7%94%A8">HTTP 调用</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">通过公共运行 URL、认证的管理运行 URL，或按 owner/project 的 mux 路由调用函数。</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="%E5%86%85%E7%BD%AE%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7">内置可观测性</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">每次函数调用的实时日志、指标和链路追踪。</p>
+            <h3 id="%E9%9D%99%E6%80%81%E5%93%8D%E5%BA%94">静态响应</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">用同一套 Lambda 模型提供静态 HTML、CSS 和 JavaScript 片段。</p>
           </div>
         </div>
     </section>
@@ -140,11 +140,11 @@
         <div class="section-header">
             <div class="section-kicker">Quick start</div>
             <h2 id="%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B">快速开始</h2>
-            <p>Get started with Lambda in seconds using the API.</p>
+            <p>使用 API 在几秒内开始使用 Lambda。</p>
         </div>
-        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST https://api.hola.cloud/v1/lambdas \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  -H &#34;Authorization: Bearer $TOKEN&#34; \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  -d &#39;{&#34;name&#34;: &#34;hello&#34;, &#34;runtime&#34;: &#34;python3.11&#34;, &#34;code&#34;: &#34;def handler():\n    return {\&#34;status\&#34;: \&#34;ok\&#34;}&#34;}&#39;</span></span></code></pre></code></pre>
+        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST https://api.hola.cloud/api/v0/lambdas \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  -H &#39;X-Glue-Authentication: {&#34;user&#34;:{&#34;id&#34;:&#34;user-123&#34;}}&#39; \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  -d &#39;{&#34;name&#34;:&#34;hello&#34;,&#34;language&#34;:&#34;javascript&#34;,&#34;method&#34;:&#34;GET&#34;,&#34;path&#34;:&#34;/hello&#34;,&#34;code&#34;:&#34;write(\&#34;Hello from Lambda\&#34;)&#34;}&#39;</span></span></code></pre></code></pre>
     </section>
 
     <section class="section">
@@ -181,6 +181,7 @@
     </section>
 </div>
 
+
     <div id="comments-section">
     <h2>评论</h2>
     <div id="comments-list"></div>
@@ -205,13 +206,13 @@
 <a href="#%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD">核心功能</a>
 </div>
 <div class="index-h3">
-<a href="#%E6%94%AF%E6%8C%81%E4%BB%BB%E6%84%8F%E8%AF%AD%E8%A8%80%E8%BF%90%E8%A1%8C%E4%BB%A3%E7%A0%81">支持任意语言运行代码</a>
+<a href="#JavaScript%20%E5%87%BD%E6%95%B0">JavaScript 函数</a>
 </div>
 <div class="index-h3">
-<a href="#%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E6%89%A7%E8%A1%8C">事件驱动执行</a>
+<a href="#HTTP%20%E8%B0%83%E7%94%A8">HTTP 调用</a>
 </div>
 <div class="index-h3">
-<a href="#%E5%86%85%E7%BD%AE%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7">内置可观测性</a>
+<a href="#%E9%9D%99%E6%80%81%E5%93%8D%E5%BA%94">静态响应</a>
 </div>
 <div class="index-h2">
 <a href="#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B">快速开始</a>

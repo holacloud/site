@@ -1,50 +1,22 @@
+# Actualizar base de datos
 
-# Update Database
-
-Actualiza las propiedades de una base de datos existente.
+Actualiza propiedades de una base de datos.
 
 ## Autenticación
 
-Requiere las cabeceras `Api-Key`, `Api-Secret` y `X-Project`.
-
-## Parámetros de Ruta
-
-| Parámetro | Tipo | Descripción |
-|-----------|------|-------------|
-| id | uuid | Identificador único de la base de datos |
-
-## Cuerpo de la Solicitud
-
-| Campo | Tipo | Descripción |
-|-------|------|-------------|
-| name | string | Nuevo nombre para la base de datos |
+Requiere `X-Glue-Authentication`.
 
 ## Solicitud HTTP
 
 ```http
 PATCH /v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890 HTTP/1.1
 Host: api.hola.cloud
-Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d
-Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf
-X-Project: acme-webapp
+X-Glue-Authentication: tu-token-glue
 Content-Type: application/json
 
 {
-  "name": "base-de-datos-renombrada"
+  "name": "base-renombrada"
 }
-```
-
-## Ejemplo
-
-```bash
-curl -X PATCH "https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890" \
-  -H "Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d" \
-  -H "Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf" \
-  -H "X-Project: acme-webapp" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "base-de-datos-renombrada"
-  }'
 ```
 
 ## Respuesta
@@ -52,17 +24,10 @@ curl -X PATCH "https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef123
 ```json
 {
   "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-  "name": "base-de-datos-renombrada",
-  "updated_at": "2025-07-02T09:15:00Z"
+  "name": "base-renombrada",
+  "creation_date": "2025-06-15T10:30:00Z",
+  "owners": ["owner-id"],
+  "api_keys": ["api-key-id"],
+  "owners_length": 1
 }
 ```
-
-## Códigos de Error
-
-| Código | Descripción |
-|--------|-------------|
-| 400 | Cuerpo de solicitud faltante o inválido |
-| 401 | Cabeceras de autenticación faltantes o inválidas |
-| 403 | Acceso denegado al proyecto |
-| 404 | Base de datos no encontrada |
-| 409 | Ya existe una base de datos con el nuevo nombre |

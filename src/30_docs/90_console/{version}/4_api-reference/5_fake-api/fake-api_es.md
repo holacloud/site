@@ -1,20 +1,22 @@
-# Simular Api
+# API Falsa
 
-Endpoint comodín que proporciona datos simulados para todos los servicios backend de la Consola durante el desarrollo y el modo de demostración.
+Endpoints fijos que proporcionan datos simulados para la Consola durante el desarrollo y el modo de demostración.
 
 ## Descripción
 
-La ruta `/fakeapi/*` coincide con cualquier ruta bajo `/fakeapi/` y devuelve respuestas simuladas. Esto permite que la interfaz de la Consola funcione sin un backend real. La estructura de rutas refleja el diseño real de la API para que el código de la interfaz sea idéntico entre desarrollo y producción.
+La Consola expone solo las rutas fake API listadas abajo. Las rutas no listadas no forman parte de la fake API de la Consola.
 
 ## Sub-rutas
 
-| Sub-ruta | Descripción |
-|----------|-------------|
-| `/fakeapi/auth/me` | Devuelve la sesión de usuario simulada actual |
-| `/fakeapi/inceptionapi` | Simula respuestas de la API de InceptionDB |
-| `/fakeapi/lambdasapi` | Simula la gestión de funciones Lambda |
-| `/fakeapi/projectsapi` | Simula la configuración y listado de proyectos |
-| `/fakeapi/filesapi` | Simula operaciones de almacenamiento de archivos |
+| Método | Ruta | Descripción |
+|--------|------|-------------|
+| `GET` | `/fakeapi/authapi/auth/me` | Devuelve el usuario simulado actual |
+| `GET` | `/fakeapi/inceptionapi/v1/databases` | Lista bases de datos simuladas |
+| `GET` | `/fakeapi/inceptionapi/v1/databases/{databaseid}/collections` | Lista colecciones simuladas |
+| `GET` | `/fakeapi/lambdasapi/api/v0/lambdas` | Lista lambdas simuladas |
+| `GET` | `/fakeapi/projectsapi/v0/projects` | Lista proyectos simulados |
+| `GET` | `/fakeapi/projectsapi/v0/projects/{projectid}` | Devuelve un proyecto simulado |
+| `GET` | `/fakeapi/filesapi/v1/buckets` | Lista buckets simulados |
 
 ## Autenticación
 
@@ -23,51 +25,35 @@ Ninguna. Estos endpoints simulados no requieren autenticación.
 ## Ejemplo
 
 ```bash
-curl -X GET "https://api.hola.cloud/fakeapi/auth/me"
+curl -X GET "https://api.hola.cloud/fakeapi/authapi/auth/me"
 ```
 
 ```json
 {
-  "user": "demo@holacloud.com",
-  "name": "Usuario de Demostración",
-  "project": "default",
-  "role": "admin",
-  "authenticated": true
+  "email": "fulanez@gmail.com",
+  "id": "user-1234",
+  "nick": "fulanez"
 }
 ```
 
 ```bash
-curl -X GET "https://api.hola.cloud/fakeapi/projectsapi"
+curl -X GET "https://api.hola.cloud/fakeapi/projectsapi/v0/projects"
 ```
 
 ```json
-{
-  "projects": [
-    {
-      "id": "default",
-      "name": "Proyecto por Defecto",
-      "plan": "free",
-      "region": "us-east"
-    }
-  ]
-}
+[
+  { "id": "project-00000000-0000-0000-0000-000000000001", "name": "Hello" }
+]
 ```
 
 ```bash
-curl -X GET "https://api.hola.cloud/fakeapi/lambdasapi"
+curl -X GET "https://api.hola.cloud/fakeapi/lambdasapi/api/v0/lambdas"
 ```
 
 ```json
-{
-  "functions": [
-    {
-      "id": "fn-001",
-      "name": "hello-world",
-      "runtime": "nodejs18",
-      "status": "active"
-    }
-  ]
-}
+[
+  { "id": "a663e1f1-e5cb-4fc2-b846-53f2cc7574c9", "method": "GET", "name": "Index", "path": "/" }
+]
 ```
 
 ## Códigos de Error

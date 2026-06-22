@@ -4,7 +4,7 @@ Returns the health status of all backend services.
 
 ## Description
 
-This endpoint performs health checks against each registered backend service and reports their current status. It is used by monitoring systems and the Console dashboard.
+This endpoint checks project hosts and returns an array with one status object per project host.
 
 ## Authentication
 
@@ -23,35 +23,15 @@ curl -X GET "https://api.hola.cloud/v0/status"
 ## Response
 
 ```json
-{
-  "services": [
-    {
-      "name": "inceptiondb",
-      "status": "healthy",
-      "latency_ms": 5,
-      "last_checked": "2026-06-21T10:00:00Z"
-    },
-    {
-      "name": "lambda",
-      "status": "healthy",
-      "latency_ms": 12,
-      "last_checked": "2026-06-21T10:00:00Z"
-    },
-    {
-      "name": "files",
-      "status": "degraded",
-      "latency_ms": 350,
-      "last_checked": "2026-06-21T10:00:00Z"
-    },
-    {
-      "name": "kvnode",
-      "status": "healthy",
-      "latency_ms": 3,
-      "last_checked": "2026-06-21T10:00:00Z"
-    }
-  ],
-  "overall": "degraded"
-}
+[
+  {
+    "id": "project-123",
+    "name": "My Project",
+    "host": "my-project.hola.cloud",
+    "status": 200,
+    "statusText": "200 OK"
+  }
+]
 ```
 
 ## Error Codes

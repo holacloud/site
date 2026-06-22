@@ -107,7 +107,7 @@
     <div class="hero-inner">
         <div class="hero-eyebrow">🗄️ InceptionDB</div>
         <h1>Base de datos NoSQL administrada</h1>
-        <p>InceptionDB is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <p>InceptionDB almacena documentos JSON en bases de datos y colecciones expuestas mediante una API HTTP.</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">Comenzar</a>
             <a class="button button-secondary" href="/docs/inceptiondb/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">Documentación</a>
@@ -120,18 +120,18 @@
         <div class="section-header">
             <div class="section-kicker">InceptionDB</div>
             <h2 id="Funcionalidades">Funcionalidades</h2>
-            <p>Everything you need to build, deploy, and scale with InceptionDB on HolaCloud.</p>
+            <p>Crea bases de datos, gestiona colecciones y trabaja con documentos JSON usando endpoints basados en acciones.</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
             <h3 id="Modelo%20de%20documentos%20flexible">Modelo de documentos flexible</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Almacena y consulta documentos JSON con esquemas dinámicos. Colecciones, índices y agregaciones listos para usar.</p>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Guarda documentos JSON con esquemas dinámicos en colecciones y consúltalos con filtros e índices.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="Alta%20disponibilidad">Alta disponibilidad</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Replicación automática entre zonas de disponibilidad con failover en milisegundos y consistencia fuerte.</p>
+            <h3 id="Operaciones%20de%20colecci%C3%B3n">Operaciones de colección</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Usa acciones de colección como <code>:insert</code>, <code>:find</code>, <code>:patch</code> y <code>:remove</code>.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="Seguridad%20integrada">Seguridad integrada</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Cifrado en reposo y en tránsito, control de acceso basado en roles y registro de auditoría.</p>
+            <h3 id="Claves%20de%20base%20de%20datos">Claves de base de datos</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Accede a bases de datos mediante autenticación de owner o claves API de base de datos.</p>
           </div>
         </div>
     </section>
@@ -140,20 +140,20 @@
         <div class="section-header">
             <div class="section-kicker">Quick start</div>
             <h2 id="Inicio%20r%C3%A1pido">Inicio rápido</h2>
-            <p>Get started with InceptionDB in seconds using the API.</p>
+            <p>Empieza con InceptionDB en segundos usando la API.</p>
         </div>
-        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1"> 1</a></span><span>curl -X POST https://api.hola.cloud/v1/databases \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2"> 2</a></span><span>  -H &#34;Authorization: Bearer $TOKEN&#34; \
+        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1"> 1</a></span><span>curl -X POST https://inceptiondb.hola.cloud/v1/databases \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2"> 2</a></span><span>  -H &#39;X-Glue-Authentication: {&#34;user&#34;:{&#34;id&#34;:&#34;user-123&#34;}}&#39; \
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3"> 3</a></span><span>  -d &#39;{&#34;name&#34;: &#34;mydb&#34;}&#39;
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4"> 4</a></span><span>
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5"> 5</a></span><span># Crea una colección
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6"> 6</a></span><span>curl -X POST https://api.hola.cloud/v1/databases/mydb/collections \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7"> 7</a></span><span>  -H &#34;Authorization: Bearer $TOKEN&#34; \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6"> 6</a></span><span>curl -X POST https://inceptiondb.hola.cloud/v1/databases/database-123/collections \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7"> 7</a></span><span>  -H &#39;Api-Key: $API_KEY&#39; -H &#39;Api-Secret: $API_SECRET&#39; \
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8"> 8</a></span><span>  -d &#39;{&#34;name&#34;: &#34;users&#34;}&#39;
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9"> 9</a></span><span>
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L10"><a style="outline: none; text-decoration:none; color:inherit" href="#L10">10</a></span><span># Inserta un documento
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L11"><a style="outline: none; text-decoration:none; color:inherit" href="#L11">11</a></span><span>curl -X POST https://api.hola.cloud/v1/databases/mydb/collections/users \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L12"><a style="outline: none; text-decoration:none; color:inherit" href="#L12">12</a></span><span>  -H &#34;Authorization: Bearer $TOKEN&#34; \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L11"><a style="outline: none; text-decoration:none; color:inherit" href="#L11">11</a></span><span>curl -X POST https://inceptiondb.hola.cloud/v1/databases/database-123/collections/users:insert \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L12"><a style="outline: none; text-decoration:none; color:inherit" href="#L12">12</a></span><span>  -H &#39;Api-Key: $API_KEY&#39; -H &#39;Api-Secret: $API_SECRET&#39; \
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L13"><a style="outline: none; text-decoration:none; color:inherit" href="#L13">13</a></span><span>  -d &#39;{&#34;name&#34;: &#34;Alice&#34;, &#34;email&#34;: &#34;alice@example.com&#34;}&#39;</span></span></code></pre></code></pre>
     </section>
 
@@ -191,6 +191,7 @@
     </section>
 </div>
 
+
     <div id="comments-section">
     <h2>Comentarios</h2>
     <div id="comments-list"></div>
@@ -218,10 +219,10 @@
 <a href="#Modelo%20de%20documentos%20flexible">Modelo de documentos flexible</a>
 </div>
 <div class="index-h3">
-<a href="#Alta%20disponibilidad">Alta disponibilidad</a>
+<a href="#Operaciones%20de%20colecci%C3%B3n">Operaciones de colección</a>
 </div>
 <div class="index-h3">
-<a href="#Seguridad%20integrada">Seguridad integrada</a>
+<a href="#Claves%20de%20base%20de%20datos">Claves de base de datos</a>
 </div>
 <div class="index-h2">
 <a href="#Inicio%20r%C3%A1pido">Inicio rápido</a>

@@ -107,7 +107,7 @@
     <div class="hero-inner">
         <div class="hero-eyebrow">🔑 KVNode</div>
         <h1>高性能复制型键值存储</h1>
-        <p>KVNode is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <p>KVNode 通过 HTTP 暴露 collections 和 keys，并使用 WAL 协议进行 root/replica 同步。</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">开始使用</a>
             <a class="button button-secondary" href="/docs/kvnode/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">文档中心</a>
@@ -120,18 +120,18 @@
         <div class="section-header">
             <div class="section-kicker">KVNode</div>
             <h2 id="%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD">核心功能</h2>
-            <p>Everything you need to build, deploy, and scale with KVNode on HolaCloud.</p>
+            <p>按 collection 和 key 存储值，列出 keys，并在节点之间复制变更。</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="%E4%BA%9A%E6%AF%AB%E7%A7%92%E5%BB%B6%E8%BF%9F">亚毫秒延迟</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">内存级操作，支持可配置的持久化选项。</p>
+            <h3 id="Collections%20%E4%B8%8E%20Keys">Collections 与 Keys</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">通过 v1 HTTP API 创建 collection，并设置、获取、列出或删除 key。</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="Raft%20%E5%85%B1%E8%AF%86">Raft 共识</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">强一致性，自动领导者选举和复制。</p>
+            <h3 id="Root%2FReplica%20%E6%A8%A1%E5%9E%8B">Root/Replica 模型</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Replica 使用 KVNode 实现的协议命令跟随 root 节点。</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="TTL%20%E4%B8%8E%E8%BF%87%E6%9C%9F">TTL 与过期</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">为键设置生存时间，自动缓存淘汰。</p>
+            <h3 id="%E5%B8%A6%E7%89%88%E6%9C%AC%E7%9A%84%E5%86%99%E5%85%A5">带版本的写入</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">写入操作返回 sequence 和 version 信息，用于同步。</p>
           </div>
         </div>
     </section>
@@ -140,11 +140,14 @@
         <div class="section-header">
             <div class="section-kicker">Quick start</div>
             <h2 id="%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B">快速开始</h2>
-            <p>Get started with KVNode in seconds using the API.</p>
+            <p>使用 API 在几秒内开始使用 KVNode。</p>
         </div>
-        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST https://api.hola.cloud/v1/kv \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  -H &#34;Authorization: Bearer $TOKEN&#34; \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  -d &#39;{&#34;key&#34;: &#34;user:123&#34;, &#34;value&#34;: &#34;{\&#34;name\&#34;: \&#34;Alice\&#34;}&#34;, &#34;ttl&#34;: 3600}&#39;</span></span></code></pre></code></pre>
+        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST https://kvnode.hola.cloud/v1/collections \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  -H &#39;Api-Key: $API_KEY&#39; -H &#39;Api-Secret: $API_SECRET&#39; \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  -d &#39;{&#34;collection&#34;:&#34;users&#34;}&#39; \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>  &amp;&amp; curl -X POST https://kvnode.hola.cloud/v1/collections/users/keys/123 \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>  -H &#39;Api-Key: $API_KEY&#39; -H &#39;Api-Secret: $API_SECRET&#39; \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>  -d &#39;{&#34;value&#34;:{&#34;name&#34;:&#34;Alice&#34;}}&#39;</span></span></code></pre></code></pre>
     </section>
 
     <section class="section">
@@ -181,6 +184,7 @@
     </section>
 </div>
 
+
     <div id="comments-section">
     <h2>评论</h2>
     <div id="comments-list"></div>
@@ -205,13 +209,13 @@
 <a href="#%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD">核心功能</a>
 </div>
 <div class="index-h3">
-<a href="#%E4%BA%9A%E6%AF%AB%E7%A7%92%E5%BB%B6%E8%BF%9F">亚毫秒延迟</a>
+<a href="#Collections%20%E4%B8%8E%20Keys">Collections 与 Keys</a>
 </div>
 <div class="index-h3">
-<a href="#Raft%20%E5%85%B1%E8%AF%86">Raft 共识</a>
+<a href="#Root%2FReplica%20%E6%A8%A1%E5%9E%8B">Root/Replica 模型</a>
 </div>
 <div class="index-h3">
-<a href="#TTL%20%E4%B8%8E%E8%BF%87%E6%9C%9F">TTL 与过期</a>
+<a href="#%E5%B8%A6%E7%89%88%E6%9C%AC%E7%9A%84%E5%86%99%E5%85%A5">带版本的写入</a>
 </div>
 <div class="index-h2">
 <a href="#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B">快速开始</a>

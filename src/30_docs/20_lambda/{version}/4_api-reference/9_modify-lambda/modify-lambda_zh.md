@@ -1,39 +1,40 @@
+# 修改 Lambda
 
-# Modify Lambda
+更新现有 lambda 的支持字段。
 
-更新现有 Lambda 函数的代码、运行环境或激活状态。
+## 认证
 
-## 身份验证
+需要 `X-Glue-Authentication`。
 
-需要 `Api-Key` 和 `Api-Secret` 请求头。
-
-## 路径参数
+## Path 参数
 
 | 参数 | 类型 | 描述 |
-|-----------|------|------|
-| id | uuid | Lambda 函数的唯一标识符 |
+|------|------|------|
+| `lambda_id` | string | Lambda 标识符 |
 
 ## 请求体
 
 | 字段 | 类型 | 描述 |
-|-------|------|------|
-| name | string | 新名称（可选） |
-| runtime | string | 新运行环境（可选） |
-| code | string | 新源代码（可选） |
-| active | boolean | Lambda 是否激活（可选） |
+|------|------|------|
+| `name` | string | 新的 lambda 名称 |
+| `language` | string | `javascript`、`static-html`、`static-css` 或 `static-js` |
+| `code` | string | 新源码或静态内容 |
+| `method` | string | 新 HTTP 方法 |
+| `path` | string | 新 HTTP path |
 
 ## HTTP 请求
 
 ```http
 PATCH /api/v0/lambdas/f1a2b3c4-d5e6-7890-abcd-ef0123456789 HTTP/1.1
 Host: api.hola.cloud
-Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d
-Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf
+X-Glue-Authentication: YOUR_TOKEN
 Content-Type: application/json
 
 {
-  "code": "export default async (req) => { return { status: 200, body: { message: 'Updated lambda' } }; }",
-  "active": false
+  "name": "hello-updated",
+  "method": "POST",
+  "path": "/hello-updated",
+  "code": "export default (req) => ({ body: { message: 'Updated lambda', data: req.body } })"
 }
 ```
 
@@ -41,12 +42,13 @@ Content-Type: application/json
 
 ```bash
 curl -X PATCH "https://api.hola.cloud/api/v0/lambdas/f1a2b3c4-d5e6-7890-abcd-ef0123456789" \
-  -H "Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d" \
-  -H "Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf" \
+  -H "X-Glue-Authentication: YOUR_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
-    "code": "export default async (req) => { return { status: 200, body: { message: \"Updated lambda\" } }; }",
-    "active": false
+    "name": "hello-updated",
+    "method": "POST",
+    "path": "/hello-updated",
+    "code": "export default (req) => ({ body: { message: \"Updated lambda\", data: req.body } })"
   }'
 ```
 
@@ -55,17 +57,21 @@ curl -X PATCH "https://api.hola.cloud/api/v0/lambdas/f1a2b3c4-d5e6-7890-abcd-ef0
 ```json
 {
   "id": "f1a2b3c4-d5e6-7890-abcd-ef0123456789",
-  "name": "hello-world",
-  "runtime": "javascript",
-  "active": false,
-  "updated_at": "2025-07-02T09:15:00Z"
+  "created_timestamp": 1751378400,
+  "owner": "user_123",
+  "project_id": "project_456",
+  "name": "hello-updated",
+  "language": "javascript",
+  "code": "export default (req) => ({ body: { message: \"Updated lambda\", data: req.body } })",
+  "method": "POST",
+  "path": "/hello-updated"
 }
 ```
 
 ## 错误码
 
-| 状态码 | 描述 |
-|--------|------|
-| 400 | 无效的请求体 |
-| 401 | 缺少或无效的身份验证标头 |
-| 404 | 未找到 Lambda 函数 |
+| 代码 | 描述 |
+|------|------|
+| 400 | 请求体无效 |
+| 401 | 认证缺失或无效 |
+| 404 | Lambda 未找到 |

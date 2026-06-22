@@ -1,61 +1,51 @@
 # Create Bucket
 
-Create a new bucket. The bucket name must be globally unique across all accounts.
+Create a bucket owned by the authenticated user.
 
 ## Authentication
 
-Requires `Api-Key` and `Api-Secret` headers.
+Requires `X-Glue-Authentication`.
 
 ## Request Body
 
 ```json
 {
   "name": "my-new-bucket",
-  "public": false
+  "description": "Optional bucket description"
 }
 ```
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `name` | string | yes | Globally unique bucket name (3-63 characters, lowercase letters, numbers, hyphens) |
-| `public` | boolean | no | Whether files in this bucket can be accessed without authentication (default: `false`) |
+| `name` | string | no | Letters, digits, `_`, and `-`, up to 64 characters. If empty, the generated bucket ID is used. |
+| `description` | string | no | Description up to 4096 characters. |
 
 ## Request
 
 ```bash
 curl -X POST "https://api.hola.cloud/v1/buckets" \
-  -H "Api-Key: YOUR_API_KEY" \
-  -H "Api-Secret: YOUR_API_SECRET" \
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}' \
   -H "Content-Type: application/json" \
-  -d '{
-    "name": "my-new-bucket",
-    "public": false
-  }'
+  -d '{"name":"my-new-bucket","description":"Optional bucket description"}'
 ```
 
 ## Response
 
-```http
-HTTP/1.1 201 Created
-Content-Type: application/json
-```
-
 ```json
 {
-  "id": "bkt_xyz789",
+  "id": "bucket-550e8400-e29b-41d4-a716-446655440000",
+  "project_id": "",
+  "created_timestamp": 1782045600000000000,
+  "owners": ["user-123"],
   "name": "my-new-bucket",
-  "createdAt": "2026-06-21T12:00:00Z",
-  "size": 0,
-  "fileCount": 0,
-  "public": false
+  "description": "Optional bucket description"
 }
 ```
 
 ## Error Codes
 
-| Status | Code | Description |
-|--------|------|-------------|
-| 400 | Bad Request | Invalid bucket name or missing required fields |
-| 401 | Unauthorized | Missing or invalid API credentials |
-| 409 | Conflict | A bucket with this name already exists |
-| 500 | Internal Server Error | An unexpected error occurred |
+| Status | Description |
+|--------|-------------|
+| 401 | Missing or invalid `X-Glue-Authentication` |
+| 409 | Bucket already exists |
+| 500 | Persistence error |

@@ -107,7 +107,7 @@
     <div class="hero-inner">
         <div class="hero-eyebrow">🔑 KVNode</div>
         <h1>Almacén clave-valor replicado de alto rendimiento</h1>
-        <p>KVNode is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <p>KVNode expone colecciones y claves por HTTP, con sincronización root/replica mediante su protocolo WAL.</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">Comenzar</a>
             <a class="button button-secondary" href="/docs/kvnode/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">Documentación</a>
@@ -120,18 +120,18 @@
         <div class="section-header">
             <div class="section-kicker">KVNode</div>
             <h2 id="Funcionalidades">Funcionalidades</h2>
-            <p>Everything you need to build, deploy, and scale with KVNode on HolaCloud.</p>
+            <p>Guarda valores por colección y clave, lista claves y replica cambios entre nodos.</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="Latencia%20de%20submilisegundo">Latencia de submilisegundo</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Operaciones en memoria con opciones de persistencia configurables.</p>
+            <h3 id="Colecciones%20y%20claves">Colecciones y claves</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Crea colecciones y establece, obtiene, lista o elimina claves con la API HTTP v1.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="Consenso%20Raft">Consenso Raft</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Consistencia fuerte con elección automática de líder y replicación.</p>
+            <h3 id="Modelo%20root%2Freplica">Modelo root/replica</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Las réplicas siguen a un nodo root usando los comandos de protocolo implementados por KVNode.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="TTL%20y%20expiraci%C3%B3n">TTL y expiración</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Establece tiempo de vida en claves para expulsión automática de caché.</p>
+            <h3 id="Escrituras%20versionadas">Escrituras versionadas</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Las operaciones de escritura devuelven información de secuencia y versión para sincronización.</p>
           </div>
         </div>
     </section>
@@ -140,11 +140,14 @@
         <div class="section-header">
             <div class="section-kicker">Quick start</div>
             <h2 id="Inicio%20r%C3%A1pido">Inicio rápido</h2>
-            <p>Get started with KVNode in seconds using the API.</p>
+            <p>Empieza con KVNode en segundos usando la API.</p>
         </div>
-        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST https://api.hola.cloud/v1/kv \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  -H &#34;Authorization: Bearer $TOKEN&#34; \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  -d &#39;{&#34;key&#34;: &#34;user:123&#34;, &#34;value&#34;: &#34;{\&#34;name\&#34;: \&#34;Alice\&#34;}&#34;, &#34;ttl&#34;: 3600}&#39;</span></span></code></pre></code></pre>
+        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST https://kvnode.hola.cloud/v1/collections \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  -H &#39;Api-Key: $API_KEY&#39; -H &#39;Api-Secret: $API_SECRET&#39; \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  -d &#39;{&#34;collection&#34;:&#34;users&#34;}&#39; \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>  &amp;&amp; curl -X POST https://kvnode.hola.cloud/v1/collections/users/keys/123 \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>  -H &#39;Api-Key: $API_KEY&#39; -H &#39;Api-Secret: $API_SECRET&#39; \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>  -d &#39;{&#34;value&#34;:{&#34;name&#34;:&#34;Alice&#34;}}&#39;</span></span></code></pre></code></pre>
     </section>
 
     <section class="section">
@@ -181,6 +184,7 @@
     </section>
 </div>
 
+
     <div id="comments-section">
     <h2>Comentarios</h2>
     <div id="comments-list"></div>
@@ -205,13 +209,13 @@
 <a href="#Funcionalidades">Funcionalidades</a>
 </div>
 <div class="index-h3">
-<a href="#Latencia%20de%20submilisegundo">Latencia de submilisegundo</a>
+<a href="#Colecciones%20y%20claves">Colecciones y claves</a>
 </div>
 <div class="index-h3">
-<a href="#Consenso%20Raft">Consenso Raft</a>
+<a href="#Modelo%20root%2Freplica">Modelo root/replica</a>
 </div>
 <div class="index-h3">
-<a href="#TTL%20y%20expiraci%C3%B3n">TTL y expiración</a>
+<a href="#Escrituras%20versionadas">Escrituras versionadas</a>
 </div>
 <div class="index-h2">
 <a href="#Inicio%20r%C3%A1pido">Inicio rápido</a>

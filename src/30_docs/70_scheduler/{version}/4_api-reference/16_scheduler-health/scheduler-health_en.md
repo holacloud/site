@@ -28,7 +28,10 @@ Content-Type: application/json
 ```json
 {
   "status": "ok",
-  "uptime_seconds": 12345
+  "ready": true,
+  "scheduled": 3,
+  "inflight": 1,
+  "scheduler_id": "sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890"
 }
 ```
 

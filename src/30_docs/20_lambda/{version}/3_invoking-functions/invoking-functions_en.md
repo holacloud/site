@@ -1,125 +1,87 @@
 <h1>Invoking Lambda Functions</h1>
 
-HolaCloud Lambda supports multiple invocation methods to suit different use cases — from direct synchronous calls to webhook integrations and custom domain routing.
+HolaCloud Lambda supports direct admin calls, public calls, owner-scoped mux routes, and a small set of service inspection endpoints.
 
-## Synchronous Invocation
+## Admin Invocation
 
-All invocations are synchronous: HolaCloud executes your function and returns the response once execution completes.
-
-### Admin Invocation (Authenticated)
-
-Use the admin endpoint for internal calls where you control the client:
+Use `/api/v0/run/{lambda_id}` when the client can send `X-Glue-Authentication`. The endpoint accepts any HTTP method.
 
 ```bash
-curl -X POST "https://api.hola.cloud/api/v0/run/YOUR_FUNCTION_ID" \
-  -H "Api-Key: YOUR_API_KEY" \
-  -H "Api-Secret: YOUR_API_SECRET" \
+curl -X POST "https://api.hola.cloud/api/v0/run/YOUR_LAMBDA_ID" \
+  -H "X-Glue-Authentication: YOUR_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "key": "value"
   }'
 ```
 
-### Public Invocation (Unauthenticated)
+## Public Invocation
 
-Use the public endpoint for third-party services or client-side apps:
+Use `/run/{lambda_id}` for webhooks, browser calls, and other clients that should not send admin credentials. The endpoint accepts any HTTP method.
 
 ```bash
-curl -X POST "https://api.hola.cloud/run/YOUR_FUNCTION_ID" \
+curl -X POST "https://api.hola.cloud/run/YOUR_LAMBDA_ID" \
   -H "Content-Type: application/json" \
   -d '{
     "key": "value"
   }'
 ```
 
-The public endpoint requires no authentication, making it ideal for webhooks and public APIs.
+The lambda receives request data through `req`, including the request method, path, headers, query values, and body.
 
 ## Webhook Usage
 
-Any Lambda function can serve as a webhook endpoint. Configure your external service (Stripe, GitHub, SendGrid, etc.) to send events to:
+Configure an external service to send events to:
 
+```text
+https://api.hola.cloud/run/YOUR_LAMBDA_ID
 ```
-https://api.hola.cloud/run/YOUR_FUNCTION_ID
-```
 
-The function receives the webhook payload as the request body and can return a response that the external service will interpret.
-
-Example: GitHub webhook that logs push events:
+Example webhook handler:
 
 ```javascript
 export default (req) => {
-  const event = req.headers["x-github-event"];
-  const payload = req.body;
-
-  console.log(`Received ${event} from GitHub`);
-
   return {
-    status_code: 200,
-    body: { received: true }
+    body: {
+      received: true,
+      event: req.headers["x-github-event"],
+      payload: req.body
+    }
   };
 };
 ```
 
-## The Mux Router
+## Mux Router
 
-The mux router maps custom domains or subdomains to specific Lambda functions by owner. The route pattern is:
-
-```
-GET /mux/{owner_id}/*
-```
-
-When a request hits the mux, HolaCloud routes it to the matching Lambda function owned by that user. This enables scenarios such as:
-
-- Multi-tenant SaaS platforms where each tenant gets a subdomain
-- Custom domain mapping for user-deployed functions
-- Path-based routing to different functions under the same owner
+The mux router forwards owner-scoped routes through `/mux/{owner_id}/*`. It accepts any HTTP method.
 
 ```bash
-curl "https://api.hola.cloud/mux/OWNER_ID/any/path/here" \
-  -H "Content-Type: application/json"
+curl -X GET "https://api.hola.cloud/mux/OWNER_ID/any/path/here"
 ```
 
-The `owner_id` is the HolaCloud account identifier. The remainder of the path is forwarded to the function, which receives it as part of `req`.
+The `owner_id` identifies the HolaCloud owner. The remaining path is forwarded to the lambda routing logic.
 
-## Monitoring Ongoing Executions
+## Ongoing Invocations
 
-Check which functions are currently running using the public `ongoing` endpoint:
+Check currently running invocations:
 
 ```bash
 curl "https://api.hola.cloud/ongoing"
 ```
 
-Expected response:
+## Current User
 
-```json
-[
-  {
-    "function_id": "f3b2c1a0-1234-5678-9abc-def012345678",
-    "function_name": "hello-world",
-    "started_at": "2025-06-21T12:00:00Z",
-    "duration_ms": 234
-  }
-]
-```
-
-This endpoint is useful for operational monitoring and debugging long-running functions.
-
-## Current User Endpoint
-
-The `/me` endpoint returns information about the currently authenticated user:
+The `/me` endpoint returns information for the authenticated user:
 
 ```bash
 curl "https://api.hola.cloud/me" \
-  -H "Api-Key: YOUR_API_KEY" \
-  -H "Api-Secret: YOUR_API_SECRET"
+  -H "X-Glue-Authentication: YOUR_TOKEN"
 ```
 
 ## OpenAPI Specification
 
-HolaCloud exposes a machine-readable OpenAPI specification at:
+HolaCloud exposes the Lambda OpenAPI document at:
 
-```
+```text
 GET https://api.hola.cloud/openapi
 ```
-
-This can be used with tools like Swagger UI, Postman, or code generators to explore and interact with the Lambda API programmatically.

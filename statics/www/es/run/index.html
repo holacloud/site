@@ -107,7 +107,7 @@
     <div class="hero-inner">
         <div class="hero-eyebrow">🚀 Run</div>
         <h1>Ejecución de contenedores con registro Docker integrado</h1>
-        <p>Run is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <p>Run combina un subconjunto Docker Registry v2 orientado a push con endpoints de consola para arrancar, detener, hacer rollback y configurar repositorios.</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">Comenzar</a>
             <a class="button button-secondary" href="/docs/run/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">Documentación</a>
@@ -120,18 +120,18 @@
         <div class="section-header">
             <div class="section-kicker">Run</div>
             <h2 id="Funcionalidades">Funcionalidades</h2>
-            <p>Everything you need to build, deploy, and scale with Run on HolaCloud.</p>
+            <p>Sube imágenes de contenedor al registro integrado y gestiona el runtime del repositorio con la API de consola.</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="Contenedores%20instant%C3%A1neos">Contenedores instantáneos</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Lanza contenedores desde cualquier registro público o privado en segundos.</p>
+            <h3 id="Runtime%20por%20repositorio">Runtime por repositorio</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Arranca, detiene y revierte el runtime asociado a un repositorio.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="Auto-escalado">Auto-escalado</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Escala según CPU, memoria o volumen de peticiones.</p>
+            <h3 id="Entorno%20y%20vol%C3%BAmenes">Entorno y volúmenes</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Guarda variables de entorno y definiciones de volúmenes con la API de consola.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="Registro%20privado">Registro privado</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Sube y descarga imágenes desde el registro Docker integrado.</p>
+            <h3 id="Registro%20orientado%20a%20push">Registro orientado a push</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Usa los endpoints Docker Registry v2 implementados para subir capas y manifests.</p>
           </div>
         </div>
     </section>
@@ -142,16 +142,12 @@
             <h2 id="Inicio%20r%C3%A1pido">Inicio rápido</h2>
             <p>Get started with Run in seconds using the API.</p>
         </div>
-        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1"> 1</a></span><span># Sube una imagen
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2"> 2</a></span><span>curl -X POST https://api.hola.cloud/v1/run/push \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3"> 3</a></span><span>  -H &#34;Authorization: Bearer $TOKEN&#34; \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4"> 4</a></span><span>  -F &#34;image=@myapp.tar.gz&#34; \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5"> 5</a></span><span>  -F &#34;name=myapp:latest&#34;
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6"> 6</a></span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7"> 7</a></span><span># Ejecuta un contenedor
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8"> 8</a></span><span>curl -X POST https://api.hola.cloud/v1/run/exec \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9"> 9</a></span><span>  -H &#34;Authorization: Bearer $TOKEN&#34; \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L10"><a style="outline: none; text-decoration:none; color:inherit" href="#L10">10</a></span><span>  -d &#39;{&#34;image&#34;: &#34;myapp:latest&#34;, &#34;port&#34;: 8080, &#34;scale&#34;: 2}&#39;</span></span></code></pre></code></pre>
+        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span># Consulta datos de consola del repositorio
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>curl &#39;https://run.hola.cloud/api/console?repository=my-project/my-app&#39;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span># Arranca el runtime del repositorio
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>curl -X POST https://run.hola.cloud/api/console/start \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>  -d &#39;{&#34;repository&#34;:&#34;my-project/my-app&#34;,&#34;reference&#34;:&#34;latest&#34;}&#39;</span></span></code></pre></code></pre>
     </section>
 
     <section class="section">
@@ -188,6 +184,7 @@
     </section>
 </div>
 
+
     <div id="comments-section">
     <h2>Comentarios</h2>
     <div id="comments-list"></div>
@@ -212,13 +209,13 @@
 <a href="#Funcionalidades">Funcionalidades</a>
 </div>
 <div class="index-h3">
-<a href="#Contenedores%20instant%C3%A1neos">Contenedores instantáneos</a>
+<a href="#Runtime%20por%20repositorio">Runtime por repositorio</a>
 </div>
 <div class="index-h3">
-<a href="#Auto-escalado">Auto-escalado</a>
+<a href="#Entorno%20y%20vol%C3%BAmenes">Entorno y volúmenes</a>
 </div>
 <div class="index-h3">
-<a href="#Registro%20privado">Registro privado</a>
+<a href="#Registro%20orientado%20a%20push">Registro orientado a push</a>
 </div>
 <div class="index-h2">
 <a href="#Inicio%20r%C3%A1pido">Inicio rápido</a>

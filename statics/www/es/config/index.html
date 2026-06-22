@@ -107,7 +107,7 @@
     <div class="hero-inner">
         <div class="hero-eyebrow">⚙️ Config</div>
         <h1>Gestión centralizada de configuración</h1>
-        <p>Config is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <p>Config almacena entradas de configuración JSON por usuario y expone APIs HTTP v0 y v1.</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">Comenzar</a>
             <a class="button button-secondary" href="/docs/config/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">Documentación</a>
@@ -120,18 +120,18 @@
         <div class="section-header">
             <div class="section-kicker">Config</div>
             <h2 id="Funcionalidades">Funcionalidades</h2>
-            <p>Everything you need to build, deploy, and scale with Config on HolaCloud.</p>
+            <p>Lee y actualiza mapas de configuración sin añadir un servicio propio a tu aplicación.</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="Actualizaciones%20en%20tiempo%20real">Actualizaciones en tiempo real</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Envía cambios de configuración al instante sin redesplegar tus aplicaciones.</p>
+            <h3 id="Configuraci%C3%B3n%20de%20usuario">Configuración de usuario</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Usa <code>GET /v1/config</code> y <code>PATCH /v1/config</code> para configuración autenticada por usuario.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="Separaci%C3%B3n%20por%20entornos">Separación por entornos</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Gestiona configuraciones de dev, staging y producción desde un solo panel.</p>
+            <h3 id="Mapa%20de%20entradas">Mapa de entradas</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Guarda configuración como entradas JSON: strings, números, booleanos y objetos anidados.</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="Historial%20de%20auditor%C3%ADa">Historial de auditoría</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Rastrea cada cambio con historial completo de versiones y acceso basado en roles.</p>
+            <h3 id="Configs%20v0%20legacy">Configs v0 legacy</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Gestiona documentos de configuración v0 con campos <code>id</code> y <code>entries</code> cuando sea necesario.</p>
           </div>
         </div>
     </section>
@@ -140,11 +140,11 @@
         <div class="section-header">
             <div class="section-kicker">Quick start</div>
             <h2 id="Inicio%20r%C3%A1pido">Inicio rápido</h2>
-            <p>Get started with Config in seconds using the API.</p>
+            <p>Empieza con Config en segundos usando la API.</p>
         </div>
-        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST https://api.hola.cloud/v1/configs \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  -H &#34;Authorization: Bearer $TOKEN&#34; \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  -d &#39;{&#34;key&#34;: &#34;database.url&#34;, &#34;value&#34;: &#34;postgres://prod:5432/db&#34;, &#34;env&#34;: &#34;production&#34;}&#39;</span></span></code></pre></code></pre>
+        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X PATCH https://config.hola.cloud/v1/config \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  -H &#39;X-Glue-Authentication: {&#34;user&#34;:{&#34;id&#34;:&#34;user-123&#34;}}&#39; \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  -d &#39;{&#34;database.url&#34;:&#34;postgres://prod:5432/db&#34;,&#34;feature.enabled&#34;:true}&#39;</span></span></code></pre></code></pre>
     </section>
 
     <section class="section">
@@ -181,6 +181,7 @@
     </section>
 </div>
 
+
     <div id="comments-section">
     <h2>Comentarios</h2>
     <div id="comments-list"></div>
@@ -205,13 +206,13 @@
 <a href="#Funcionalidades">Funcionalidades</a>
 </div>
 <div class="index-h3">
-<a href="#Actualizaciones%20en%20tiempo%20real">Actualizaciones en tiempo real</a>
+<a href="#Configuraci%C3%B3n%20de%20usuario">Configuración de usuario</a>
 </div>
 <div class="index-h3">
-<a href="#Separaci%C3%B3n%20por%20entornos">Separación por entornos</a>
+<a href="#Mapa%20de%20entradas">Mapa de entradas</a>
 </div>
 <div class="index-h3">
-<a href="#Historial%20de%20auditor%C3%ADa">Historial de auditoría</a>
+<a href="#Configs%20v0%20legacy">Configs v0 legacy</a>
 </div>
 <div class="index-h2">
 <a href="#Inicio%20r%C3%A1pido">Inicio rápido</a>

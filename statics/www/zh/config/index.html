@@ -107,7 +107,7 @@
     <div class="hero-inner">
         <div class="hero-eyebrow">⚙️ Config</div>
         <h1>集中化配置管理</h1>
-        <p>Config is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <p>Config 存储用户级 JSON 配置条目，并暴露 v0 和 v1 HTTP API。</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">开始使用</a>
             <a class="button button-secondary" href="/docs/config/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">文档中心</a>
@@ -120,18 +120,18 @@
         <div class="section-header">
             <div class="section-kicker">Config</div>
             <h2 id="%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD">核心功能</h2>
-            <p>Everything you need to build, deploy, and scale with Config on HolaCloud.</p>
+            <p>读取和更新配置 map，而无需为应用额外构建配置服务。</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="%E5%AE%9E%E6%97%B6%E6%9B%B4%E6%96%B0">实时更新</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">即时推送配置变更，无需重新部署应用。</p>
+            <h3 id="%E7%94%A8%E6%88%B7%E9%85%8D%E7%BD%AE">用户配置</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">使用 <code>GET /v1/config</code> 和 <code>PATCH /v1/config</code> 管理认证用户的配置。</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="%E7%8E%AF%E5%A2%83%E9%9A%94%E7%A6%BB">环境隔离</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">从单一控制面管理开发、预演和生产环境配置。</p>
+            <h3 id="Entries%20Map">Entries Map</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">将配置存储为 JSON entries，包括字符串、数字、布尔值和嵌套对象。</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3 id="%E5%AE%A1%E8%AE%A1%E8%BF%BD%E8%B8%AA">审计追踪</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">追踪每一次变更，拥有完整的版本历史和基于角色的访问控制。</p>
+            <h3 id="Legacy%20v0%20%E9%85%8D%E7%BD%AE">Legacy v0 配置</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">需要时可管理带有 <code>id</code> 和 <code>entries</code> 字段的 v0 配置文档。</p>
           </div>
         </div>
     </section>
@@ -140,11 +140,11 @@
         <div class="section-header">
             <div class="section-kicker">Quick start</div>
             <h2 id="%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B">快速开始</h2>
-            <p>Get started with Config in seconds using the API.</p>
+            <p>使用 API 在几秒内开始使用 Config。</p>
         </div>
-        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST https://api.hola.cloud/v1/configs \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  -H &#34;Authorization: Bearer $TOKEN&#34; \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  -d &#39;{&#34;key&#34;: &#34;database.url&#34;, &#34;value&#34;: &#34;postgres://prod:5432/db&#34;, &#34;env&#34;: &#34;production&#34;}&#39;</span></span></code></pre></code></pre>
+        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X PATCH https://config.hola.cloud/v1/config \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  -H &#39;X-Glue-Authentication: {&#34;user&#34;:{&#34;id&#34;:&#34;user-123&#34;}}&#39; \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  -d &#39;{&#34;database.url&#34;:&#34;postgres://prod:5432/db&#34;,&#34;feature.enabled&#34;:true}&#39;</span></span></code></pre></code></pre>
     </section>
 
     <section class="section">
@@ -181,6 +181,7 @@
     </section>
 </div>
 
+
     <div id="comments-section">
     <h2>评论</h2>
     <div id="comments-list"></div>
@@ -205,13 +206,13 @@
 <a href="#%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD">核心功能</a>
 </div>
 <div class="index-h3">
-<a href="#%E5%AE%9E%E6%97%B6%E6%9B%B4%E6%96%B0">实时更新</a>
+<a href="#%E7%94%A8%E6%88%B7%E9%85%8D%E7%BD%AE">用户配置</a>
 </div>
 <div class="index-h3">
-<a href="#%E7%8E%AF%E5%A2%83%E9%9A%94%E7%A6%BB">环境隔离</a>
+<a href="#Entries%20Map">Entries Map</a>
 </div>
 <div class="index-h3">
-<a href="#%E5%AE%A1%E8%AE%A1%E8%BF%BD%E8%B8%AA">审计追踪</a>
+<a href="#Legacy%20v0%20%E9%85%8D%E7%BD%AE">Legacy v0 配置</a>
 </div>
 <div class="index-h2">
 <a href="#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B">快速开始</a>

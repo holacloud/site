@@ -22,13 +22,21 @@ curl -X DELETE "https://api.hola.cloud/v1/collections/usuarios" \
 ## Ejemplo de Respuesta
 
 ```http
-HTTP/1.1 204 No Content
+HTTP/1.1 200 OK
+Content-Type: application/json
+```
+
+```json
+{
+  "ok": true,
+  "collection": "usuarios"
+}
 ```
 
 ## Códigos de Error
 
 | Estado | Código | Descripción |
 |--------|--------|-------------|
-| 401 | unauthorized | Autenticación faltante o inválida |
+| 403 | forbidden | Missing authentication headers |
 | 404 | not_found | Colección no encontrada |
 | 500 | internal_error | Error interno del servidor |

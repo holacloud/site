@@ -1,29 +1,27 @@
+# Ejecutar Lambda (Admin)
 
-# Run Lambda (Admin)
-
-Invoca una función lambda usando credenciales de administrador. Requiere autenticación.
+Invoca una lambda mediante la ruta administrativa autenticada. El endpoint acepta cualquier método HTTP.
 
 ## Autenticación
 
-Requiere las cabeceras `Api-Key` y `Api-Secret`.
+Requiere `X-Glue-Authentication`.
 
-## Parámetros de Ruta
+## Parámetros de Path
 
 | Parámetro | Tipo | Descripción |
 |-----------|------|-------------|
-| id | uuid | Identificador único de la lambda a ejecutar |
+| `lambda_id` | string | Identificador de la lambda |
 
 ## Cuerpo de la Solicitud
 
-Cualquier carga útil JSON que desee pasar a la función lambda. La lambda lo recibe como el parámetro `req`.
+Envía cualquier carga que quieras que la lambda reciba como `req.body`.
 
 ## Solicitud HTTP
 
 ```http
 POST /api/v0/run/f1a2b3c4-d5e6-7890-abcd-ef0123456789 HTTP/1.1
 Host: api.hola.cloud
-Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d
-Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf
+X-Glue-Authentication: TU_TOKEN
 Content-Type: application/json
 
 {
@@ -35,8 +33,7 @@ Content-Type: application/json
 
 ```bash
 curl -X POST "https://api.hola.cloud/api/v0/run/f1a2b3c4-d5e6-7890-abcd-ef0123456789" \
-  -H "Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d" \
-  -H "Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf" \
+  -H "X-Glue-Authentication: TU_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Alice"
@@ -45,11 +42,12 @@ curl -X POST "https://api.hola.cloud/api/v0/run/f1a2b3c4-d5e6-7890-abcd-ef012345
 
 ## Respuesta
 
+La respuesta es lo que devuelva el manejador de la lambda.
+
 ```json
 {
-  "status": 200,
   "body": {
-    "message": "¡Hola, Alice!"
+    "message": "Hello, Alice!"
   }
 }
 ```
@@ -59,6 +57,6 @@ curl -X POST "https://api.hola.cloud/api/v0/run/f1a2b3c4-d5e6-7890-abcd-ef012345
 | Código | Descripción |
 |--------|-------------|
 | 400 | Cuerpo de solicitud inválido |
-| 401 | Cabeceras de autenticación faltantes o inválidas |
-| 404 | Lambda no encontrada o inactiva |
-| 500 | Error de ejecución de la lambda |
+| 401 | Autenticación faltante o inválida |
+| 404 | Lambda no encontrada |
+| 500 | Error de ejecución de Lambda |

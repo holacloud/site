@@ -1,30 +1,42 @@
-# Referencia de la API de Config
+# Referencia API de Config
 
 URL base: `https://api.hola.cloud`
 
-El servicio Config expone dos superficies de API:
+## Autenticación
 
-- **API de administración** (`/v0/configs`) — acceso público para gestionar configuraciones
-- **API de usuario** (`/v1/config`) — requiere los encabezados `Api-Key` y `Api-Secret` para acceso a la configuración en tiempo de ejecución
+`/v1/config` requiere `X-Glue-Authentication`. `/v0/configs` gestiona Things de configuración directamente.
 
 ## Endpoints
 
-| Método | Ruta | Descripción | Autenticación |
-|--------|------|-------------|---------------|
-| GET | `/v0/configs` | Listar todas las configuraciones (admin) | Pública |
-| POST | `/v0/configs` | Crear una nueva configuración (admin) | Pública |
-| GET | `/v0/configs/{id}` | Obtener una configuración por ID (admin) | Pública |
-| DELETE | `/v0/configs/{id}` | Eliminar una configuración (admin) | Pública |
-| PATCH | `/v0/configs/{id}` | Actualización parcial de una configuración (admin) | Pública |
-| GET | `/v1/config` | Obtener la configuración del usuario actual | API Key |
-| PATCH | `/v1/config` | Actualizar la configuración del usuario actual | API Key |
+| Método | Ruta | Descripción | Auth |
+|--------|------|-------------|------|
+| GET | `/v0/configs` | Listar Things de configuración | Pública |
+| POST | `/v0/configs` | Crear un Thing de configuración con `entries` | Pública |
+| GET | `/v0/configs/{id}` | Obtener un Thing de configuración por ID | Pública |
+| DELETE | `/v0/configs/{id}` | Eliminar un Thing de configuración | Pública |
+| PATCH | `/v0/configs/{id}` | Parchear los `entries` de un Thing de configuración | Pública |
+| GET | `/v1/config` | Obtener el mapa `entries` de configuración del usuario autenticado | Auth Glue |
+| PATCH | `/v1/config` | Actualizar el mapa `entries` de configuración del usuario autenticado | Auth Glue |
 
-## Errores Comunes
+## Formas
 
-| Estado | Código | Descripción |
-|--------|--------|-------------|
-| 400 | Bad Request | Cuerpo o parámetros de solicitud inválidos |
-| 401 | Unauthorized | Credenciales API faltantes o inválidas |
-| 404 | Not Found | El recurso especificado no existe |
-| 409 | Conflict | El recurso ya existe o la operación entra en conflicto |
-| 500 | Internal Server Error | Ocurrió un error inesperado |
+Thing de configuración v0:
+
+```json
+{
+  "id": "cfg_abc123",
+  "entries": {
+    "feature.newCheckout": true
+  }
+}
+```
+
+Configuración de usuario v1:
+
+```json
+{
+  "entries": {
+    "feature.newCheckout": true
+  }
+}
+```

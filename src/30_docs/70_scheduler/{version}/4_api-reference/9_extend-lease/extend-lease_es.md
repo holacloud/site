@@ -21,7 +21,7 @@ Requiere autenticación. Pasa tu clave API mediante el encabezado `X-API-Key` o 
 
 ```json
 {
-  "extension": 30
+  "extension": "30s"
 }
 ```
 
@@ -32,7 +32,7 @@ curl -X POST "https://api.hola.cloud/schedulers/sched-a1b2c3d4-e5f6-7890-abcd-ef
   -H "X-API-Key: TU_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "extension": 30
+    "extension": "30s"
   }'
 ```
 
@@ -54,7 +54,7 @@ Content-Type: application/json
 
 | Estado | Código | Descripción |
 |--------|--------|-------------|
-| 400 | invalid_request | Valor de extensión faltante o inválido |
+| 400 | validation_error | Valor de extensión faltante o inválido |
 | 401 | unauthorized | Clave API faltante o inválida |
 | 404 | not_found | Scheduler o tarea no encontrados |
 | 409 | conflict | La tarea no está reservada o la concesión ya expiró |

@@ -27,8 +27,8 @@
 
 | 状态 | 代码 | 描述 |
 |------|------|------|
-| 400 | invalid_request | 请求体或参数无效 |
-| 401 | unauthorized | 缺少或无效的身份验证 |
+| 400 | invalid_json | 请求体或参数无效 |
+| 403 | forbidden | Missing authentication headers |
 | 404 | not_found | 未找到集合或键 |
 | 409 | conflict | 集合已存在 |
 | 500 | internal_error | 服务器内部错误 |

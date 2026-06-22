@@ -1,57 +1,55 @@
 # Upload File
 
-Upload a file to a bucket. The file path is specified after `/files/` in the URL. The maximum file size is 5 GB.
+Upload a file to a bucket. The file path is specified after `/files/`.
 
 ## Authentication
 
-Requires `Api-Key` and `Api-Secret` headers.
+Requires `X-Glue-Authentication`.
 
 ## Path Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `id` | string | The bucket ID (e.g., `bkt_abc123`) |
+| `bucket_id` | string | The bucket ID |
+| `*` | string | File path |
 
 ## Request Headers
 
 | Header | Required | Description |
 |--------|----------|-------------|
-| `Content-Type` | yes | MIME type of the file being uploaded |
-| `Content-Length` | yes | Size of the file in bytes |
+| `Content-Type` | no | Initial MIME type. The stored value may be detected from content. |
 
 ## Request
 
 ```bash
-curl -X PUT "https://api.hola.cloud/v1/buckets/bkt_abc123/files/images/logo.png" \
-  -H "Api-Key: YOUR_API_KEY" \
-  -H "Api-Secret: YOUR_API_SECRET" \
+curl -X PUT "https://api.hola.cloud/v1/buckets/bucket-550e8400-e29b-41d4-a716-446655440000/files/images/logo.png" \
+  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}' \
   -H "Content-Type: image/png" \
   --data-binary @logo.png
 ```
 
 ## Response
 
-```http
-HTTP/1.1 201 Created
-Content-Type: application/json
-```
-
 ```json
 {
-  "path": "images/logo.png",
+  "id": "file-9f0b7b3c-1d2e-4a5f-8b9c-0123456789ab",
+  "uuid": "9f0b7b3c-1d2e-4a5f-8b9c-0123456789ab",
+  "created_timestamp": 1782045660000000000,
+  "updated_timestamp": 1782045660000000000,
+  "owners": ["user-123"],
+  "status": "available",
   "size": 24576,
-  "contentType": "image/png",
-  "uploadedAt": "2026-06-21T12:00:00Z",
-  "etag": "\"abc123def456\""
+  "name": "images/logo.png",
+  "bucket": "bucket-550e8400-e29b-41d4-a716-446655440000",
+  "hash_md5": "example-md5",
+  "hash_sha256": "example-sha256",
+  "mime_type": "image/png"
 }
 ```
 
 ## Error Codes
 
-| Status | Code | Description |
-|--------|------|-------------|
-| 400 | Bad Request | Invalid request or missing Content-Type |
-| 401 | Unauthorized | Missing or invalid API credentials |
-| 404 | Not Found | The specified bucket does not exist |
-| 413 | Payload Too Large | File exceeds the 5 GB size limit |
-| 500 | Internal Server Error | An unexpected error occurred |
+| Status | Description |
+|--------|-------------|
+| 401 | Missing or invalid `X-Glue-Authentication` |
+| 500 | Persistence or filesystem error |

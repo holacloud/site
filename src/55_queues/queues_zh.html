@@ -4,7 +4,7 @@
     <div class="hero-inner">
         <div class="hero-eyebrow">📨 Tailon</div>
         <h1>消息队列与异步工作负载系统</h1>
-        <p>Tailon is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <p>Tailon 是轻量级 JSON 消息队列 API，支持创建队列、写入、读取和查看简单统计。</p>
         <div class="hero-actions">
             <a class="button button-action" href="https://console.hola.cloud/">开始使用</a>
             <a class="button button-secondary" href="/docs/queues/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">文档中心</a>
@@ -17,18 +17,18 @@
         <div class="section-header">
             <div class="section-kicker">Tailon</div>
             <h2>核心功能</h2>
-            <p>Everything you need to build, deploy, and scale with Tailon on HolaCloud.</p>
+            <p>当你需要简单的 HTTP JSON 消息队列时，可以使用 Tailon。</p>
         </div>
         <div class="feature-grid">
             <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>可靠消息传递</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">至少一次投递保证，支持自动重试和死信队列。</p>
+            <h3>命名队列</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">按名称创建队列，并查看当前长度、读取次数和写入次数。</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>发布/订阅模式</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">为事件驱动架构创建扇出拓扑。</p>
+            <h3>JSON 写入</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">通过 <code>:write</code> endpoint 将 JSON payload 直接写入队列。</p>
           </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
-            <h3>消费者组</h3>
-            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">在多个消费者之间分配工作负载，自动再平衡。</p>
+            <h3>阻塞读取</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">从 <code>:read</code> endpoint 读取换行分隔的 JSON 消息。</p>
           </div>
         </div>
     </section>
@@ -37,14 +37,12 @@
         <div class="section-header">
             <div class="section-kicker">Quick start</div>
             <h2>快速开始</h2>
-            <p>Get started with Tailon in seconds using the API.</p>
+            <p>使用 API 在几秒内开始使用 Tailon。</p>
         </div>
-        <pre><code>curl -X POST https://api.hola.cloud/v1/queues \
-  -H "Authorization: Bearer $TOKEN" \
-  -d '{"name": "orders", "type": "fifo"}' \
-  && curl -X POST https://api.hola.cloud/v1/queues/orders \
-  -H "Authorization: Bearer $TOKEN" \
-  -d '{"message": "order-12345"}'</code></pre>
+        <pre><code>curl -X POST https://queues.hola.cloud/v1/queues \
+  -d '{"name":"orders"}' \
+  && curl -X POST https://queues.hola.cloud/v1/queues/orders:write \
+  -d '{"message":"order-12345"}'</code></pre>
     </section>
 
     <section class="section">

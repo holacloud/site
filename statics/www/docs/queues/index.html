@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Queues</title>
+    <title>Tailon Queues</title>
     <meta name="description" content="inceptiondb">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="/css/style.css" rel="stylesheet">
@@ -140,7 +140,7 @@
 <div class="item"><a href="/docs/files/v2/api-reference/delete-bucket/index.html">Delete Bucket</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/delete-file/index.html">Delete File</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/download-file/index.html">Download File</a></div>
-<div class="item"><a href="/docs/files/v2/api-reference/file-metadata/index.html">File Metadata</a></div>
+<div class="item"><a href="/docs/files/v2/api-reference/file-metadata/index.html">File Headers</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/get-bucket/index.html">Get Bucket</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/list-buckets/index.html">List Buckets</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/list-files/index.html">List Files</a></div>
@@ -163,11 +163,11 @@
 <div class="item"><a href="/docs/config/v2/api-reference/update-user-config/index.html">Update User Config</a></div>
 </div>
 </div>
-<div class="item"><a href="/docs/logs/index.html">Logs</a></div>
+<div class="item"><a href="/docs/logs/index.html">InstantLogs</a></div>
 <div class="children">
 <div class="item"><a href="/docs/logs/v2/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/logs/v2/ingesting-logs/index.html">Ingesting Logs</a></div>
-<div class="item"><a href="/docs/logs/v2/streaming-filtering/index.html">Streaming Filtering</a></div>
+<div class="item"><a href="/docs/logs/v2/streaming-filtering/index.html">Streaming and Filtering</a></div>
 <div class="item"><a href="/docs/logs/v2/api-reference/index.html">InstantLogs API Reference</a></div>
 <div class="children">
 <div class="item"><a href="/docs/logs/v2/api-reference/create-logger/index.html">Create Logger</a></div>
@@ -183,11 +183,11 @@
 <div class="item"><a href="/docs/logs/v2/api-reference/stream-events/index.html">Stream Events</a></div>
 </div>
 </div>
-<div class="item active selected"><a href="/docs/queues/index.html">Queues</a></div>
+<div class="item active selected"><a href="/docs/queues/index.html">Tailon Queues</a></div>
 <div class="children">
 <div class="item"><a href="/docs/queues/v2/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/queues/v2/managing-queues/index.html">Managing Queues</a></div>
-<div class="item"><a href="/docs/queues/v2/producing-consuming/index.html">Producing Consuming</a></div>
+<div class="item"><a href="/docs/queues/v2/producing-consuming/index.html">Producing and Consuming</a></div>
 <div class="item"><a href="/docs/queues/v2/api-reference/index.html">Tailon API Reference</a></div>
 <div class="children">
 <div class="item"><a href="/docs/queues/v2/api-reference/create-queue/index.html">Create Queue</a></div>
@@ -241,7 +241,7 @@
 <div class="item"><a href="/docs/kvnode/v2/api-reference/readiness-check/index.html">Readiness Check</a></div>
 <div class="item"><a href="/docs/kvnode/v2/api-reference/set-key/index.html">Set Key</a></div>
 </div>
-<div class="item"><a href="/docs/kvnode/v2/sdk-reference/index.html">Sdk Reference</a></div>
+<div class="item"><a href="/docs/kvnode/v2/sdk-reference/index.html">SDK Reference</a></div>
 </div>
 <div class="item"><a href="/docs/console/index.html">Console</a></div>
 <div class="children">
@@ -249,7 +249,7 @@
 <div class="item"><a href="/docs/console/v2/managing-projects/index.html">Managing Projects and Services</a></div>
 <div class="item"><a href="/docs/console/v2/api-reference/index.html">Console API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/console/v2/api-reference/fake-api/index.html">Fake Api</a></div>
+<div class="item"><a href="/docs/console/v2/api-reference/fake-api/index.html">Fake API</a></div>
 <div class="item"><a href="/docs/console/v2/api-reference/get-version/index.html">Get Version</a></div>
 </div>
 </div>
@@ -272,7 +272,7 @@
 <div class="item"><a href="/docs/holamail/v2/sending-email/index.html">Sending Email</a></div>
 <div class="item"><a href="/docs/holamail/v2/api-reference/index.html">Holamail API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/holamail/v2/api-reference/smtp-reference/index.html">Smtp Reference</a></div>
+<div class="item"><a href="/docs/holamail/v2/api-reference/smtp-reference/index.html">SMTP Reference</a></div>
 </div>
 </div>
 <div class="item"><a href="/docs/run/index.html">Run</a></div>
@@ -286,39 +286,56 @@
 <div class="item"><a href="/docs/run/v2/api-reference/rollback-image/index.html">Rollback Image</a></div>
 <div class="item"><a href="/docs/run/v2/api-reference/save-environment/index.html">Save Environment</a></div>
 <div class="item"><a href="/docs/run/v2/api-reference/save-volumes/index.html">Save Volumes</a></div>
-<div class="item"><a href="/docs/run/v2/api-reference/start-container/index.html">Start Container</a></div>
-<div class="item"><a href="/docs/run/v2/api-reference/stop-container/index.html">Stop Container</a></div>
+<div class="item"><a href="/docs/run/v2/api-reference/start-container/index.html">Start Repository</a></div>
+<div class="item"><a href="/docs/run/v2/api-reference/stop-container/index.html">Stop Repository</a></div>
 </div>
 </div>
 
 
 </div>
 <div class="content">
-    <div class="breadcrumb"><a class="item" href="/docs/index.html">Documentation</a><span class="arrow">→</span><a class="item selected" href="/docs/queues/index.html">Queues</a></div>
+    <div class="breadcrumb"><a class="item" href="/docs/index.html">Documentation</a><span class="arrow">→</span><a class="item selected" href="/docs/queues/index.html">Tailon Queues</a></div>
     <div class="document">
-    <h1>Queues</h1>
-<p>Tailon is a lightweight, in-memory message queue service that is part of the HolaCloud ecosystem. Designed for speed and simplicity, Tailon enables asynchronous communication between microservices, event distribution, and workload buffering without the overhead of a full-blown message broker.</p>
-<h2 id="Key%20Features">Key Features</h2>
-<h3 id="In-Memory%20Performance">In-Memory Performance</h3>
-<p>Messages are stored in memory for ultra-fast write and read operations. Tailon is optimized for high-throughput, low-latency scenarios where persistence is not the primary concern.</p>
-<h3 id="Long-Poll%20Consumption">Long-Poll Consumption</h3>
-<p>Consumers retrieve messages via long-poll HTTP requests. This reduces the need for constant polling while keeping connections lightweight. The optional <code>Limit</code> header controls how many messages are returned per request.</p>
-<h3 id="Streaming%20Writes">Streaming Writes</h3>
-<p>Producers can stream multiple messages in a single request using newline-delimited JSON (NDJSON), making batch ingestion efficient and straightforward.</p>
-<h3 id="Multi-Producer%20%2F%20Multi-Consumer">Multi-Producer / Multi-Consumer</h3>
-<p>Any number of producers can write to the same queue, and any number of consumers can read from it. Tailon handles concurrent access safely out of the box.</p>
-<h3 id="Active%20Client%20Monitoring">Active Client Monitoring</h3>
-<p>Tailon exposes the <code>/v1/clients</code> endpoint so you can inspect which streaming consumers are currently connected to your queues.</p>
-<h2 id="Use%20Cases">Use Cases</h2>
-<h3 id="Async%20Task%20Queuing">Async Task Queuing</h3>
-<p>Offload heavy or slow operations — such as email sending, image processing, or report generation — to background workers that consume from a Tailon queue.</p>
-<h3 id="Event%20Distribution">Event Distribution</h3>
-<p>Broadcast events from a single producer to multiple consumer services. Each consumer reads independently, enabling fan-out patterns.</p>
-<h3 id="Load%20Leveling">Load Leveling</h3>
-<p>Buffer incoming requests during traffic spikes. Workers consume at their own pace, preventing downstream services from being overwhelmed.</p>
-<h3 id="Decoupling%20Microservices">Decoupling Microservices</h3>
-<p>Replace direct HTTP calls between services with queue-based communication. Producers and consumers evolve independently as long as the message contract is stable.</p>
-<p>Tailon by HolaCloud is a simple yet powerful queuing solution for modern applications that need fast, reliable, and scalable message passing.</p>
+    <h1>Tailon Queues</h1>
+<p>Tailon is a simple in-memory queue service. Queues live in process memory and expose a small HTTP API for create, list, inspect, write, and read.</p>
+<h2 id="API%20Overview">API Overview</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/v1/queues</code></td>
+<td>Create a queue; returns <code>201</code> with an empty body</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/v1/queues</code></td>
+<td>List queue IDs as <code>[]string</code></td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/v1/queues/{queue_id}</code></td>
+<td>Retrieve <code>name</code>, <code>len</code>, <code>reads</code>, and <code>writes</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/queues/{queue_id}:write</code></td>
+<td>Write messages</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/v1/queues/{queue_id}:read</code></td>
+<td>Read messages as NDJSON</td>
+</tr>
+</tbody>
+</table>
+<p>The delete handler is not implemented.</p>
 
 
     <div id="comments-section">
@@ -342,37 +359,7 @@
 </div>
 </div>
 <div class="index"><div class="index-h2">
-<a href="#Key%20Features">Key Features</a>
-</div>
-<div class="index-h3">
-<a href="#In-Memory%20Performance">In-Memory Performance</a>
-</div>
-<div class="index-h3">
-<a href="#Long-Poll%20Consumption">Long-Poll Consumption</a>
-</div>
-<div class="index-h3">
-<a href="#Streaming%20Writes">Streaming Writes</a>
-</div>
-<div class="index-h3">
-<a href="#Multi-Producer%20%2F%20Multi-Consumer">Multi-Producer / Multi-Consumer</a>
-</div>
-<div class="index-h3">
-<a href="#Active%20Client%20Monitoring">Active Client Monitoring</a>
-</div>
-<div class="index-h2">
-<a href="#Use%20Cases">Use Cases</a>
-</div>
-<div class="index-h3">
-<a href="#Async%20Task%20Queuing">Async Task Queuing</a>
-</div>
-<div class="index-h3">
-<a href="#Event%20Distribution">Event Distribution</a>
-</div>
-<div class="index-h3">
-<a href="#Load%20Leveling">Load Leveling</a>
-</div>
-<div class="index-h3">
-<a href="#Decoupling%20Microservices">Decoupling Microservices</a>
+<a href="#API%20Overview">API Overview</a>
 </div>
 </div>
 </div>

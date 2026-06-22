@@ -1,6 +1,6 @@
 # Task Lifecycle
 
-This document details the complete lifecycle of a task: enqueuing, listing, reserving, extending leases, acknowledging, rescheduling, and real-time streaming via SSE.
+This document details the complete lifecycle of a task: enqueuing, listing, reserving, extending leases, acknowledging, rescheduling, and SSE snapshots.
 
 ## Task States
 
@@ -15,22 +15,20 @@ If a lease expires without acknowledgement, the task returns to **available**.
 
 ## Enqueuing a Task
 
-Create a new task with a payload, future time (or delay), and optional labels:
+Create a new task with an id, payload, future time (or delay), and optional labels:
 
 ```bash
 curl -X POST "https://api.hola.cloud/schedulers/sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890/tasks" \
   -H "X-API-Key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
+    "id": "task-001",
     "payload": {
       "action": "generate_report",
       "report_id": "rpt-5678"
     },
     "future": "2025-06-22T00:00:00Z",
-    "labels": {
-      "team": "analytics",
-      "env": "production"
-    }
+    "labels": ["team:analytics", "env:production"]
   }'
 ```
 
@@ -41,51 +39,38 @@ X-API-Key: YOUR_API_KEY
 Content-Type: application/json
 
 {
+  "id": "task-001",
   "payload": {
     "action": "generate_report",
     "report_id": "rpt-5678"
   },
   "future": "2025-06-22T00:00:00Z",
-  "labels": {
-    "team": "analytics",
-    "env": "production"
-  }
+  "labels": ["team:analytics", "env:production"]
 }
 ```
 
-Alternatively, use `delay` (seconds from now) instead of `future`:
+Alternatively, use `delay` as a Go duration string instead of `future`:
 
 ```json
 {
   "payload": { "action": "send_reminder" },
-  "delay": 3600,
-  "labels": { "type": "email" }
+  "delay": "1h",
+  "labels": ["type:email"]
 }
 ```
 
-Expected response:
-
-```json
-{
-  "id": "task-001",
-  "scheduler_id": "sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-  "payload": { "action": "generate_report", "report_id": "rpt-5678" },
-  "state": "pending",
-  "available_at": "2025-06-22T00:00:00Z",
-  "labels": { "team": "analytics", "env": "production" }
-}
-```
+Expected response: HTTP `202 Accepted` with an empty body.
 
 ## Listing Tasks with Pagination
 
 List tasks with optional pagination and label filtering:
 
 ```bash
-curl "https://api.hola.cloud/schedulers/sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890/tasks?offset=0&limit=20"
+curl "https://api.hola.cloud/schedulers/sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890/tasks?scheduled_page=1&scheduled_per_page=20"
 ```
 
 ```http
-GET /schedulers/sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890/tasks?offset=0&limit=20 HTTP/1.1
+GET /schedulers/sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890/tasks?scheduled_page=1&scheduled_per_page=20 HTTP/1.1
 Host: api.hola.cloud
 ```
 
@@ -93,36 +78,35 @@ Expected response:
 
 ```json
 {
-  "tasks": [
+  "scheduled": [
     {
       "id": "task-001",
-      "state": "pending",
-      "available_at": "2025-06-22T00:00:00Z",
-      "labels": { "team": "analytics" }
-    },
-    {
-      "id": "task-002",
-      "state": "available",
-      "available_at": "2025-06-21T12:00:00Z",
-      "labels": { "team": "analytics" }
+      "future": "2025-06-22T00:00:00Z",
+      "labels": ["team:analytics"]
     }
   ],
-  "total": 2,
-  "offset": 0,
-  "limit": 20
+  "inflight": [
+    {
+      "id": "task-002",
+      "lease_expires_at": "2025-06-21T12:01:00Z",
+      "labels": ["team:analytics"]
+    }
+  ],
+  "scheduled_meta": { "page": 1, "per_page": 20, "total": 1, "total_pages": 1 },
+  "inflight_meta": { "page": 1, "per_page": 25, "total": 1, "total_pages": 1 }
 }
 ```
 
 ## Reserving a Task
 
-A worker reserves an available task by specifying a `worktime` — the lease duration in seconds:
+A worker reserves an available task by specifying `worktime` as a Go duration string:
 
 ```bash
 curl -X POST "https://api.hola.cloud/schedulers/sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890/tasks/reserve" \
   -H "X-API-Key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "worktime": 60
+    "worktime": "60s"
   }'
 ```
 
@@ -133,7 +117,7 @@ X-API-Key: YOUR_API_KEY
 Content-Type: application/json
 
 {
-  "worktime": 60
+  "worktime": "60s"
 }
 ```
 
@@ -143,7 +127,8 @@ Expected response:
 {
   "id": "task-002",
   "payload": { "action": "send_reminder" },
-  "lease_expires_at": "2025-06-21T12:01:00Z"
+  "lease_expires_at": "2025-06-21T12:01:00Z",
+  "labels": ["type:email"]
 }
 ```
 
@@ -158,7 +143,7 @@ curl -X POST "https://api.hola.cloud/schedulers/sched-a1b2c3d4-e5f6-7890-abcd-ef
   -H "X-API-Key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "worktime": 30
+    "extension": "30s"
   }'
 ```
 
@@ -169,7 +154,7 @@ X-API-Key: YOUR_API_KEY
 Content-Type: application/json
 
 {
-  "worktime": 30
+  "extension": "30s"
 }
 ```
 
@@ -177,7 +162,6 @@ Expected response:
 
 ```json
 {
-  "id": "task-002",
   "lease_expires_at": "2025-06-21T12:01:30Z"
 }
 ```
@@ -201,14 +185,14 @@ Expected response: HTTP `204 No Content`.
 
 ## Rescheduling a Task
 
-If processing fails, reschedule the task with a new delay or future time:
+Reschedule the task with a new delay or future time:
 
 ```bash
 curl -X POST "https://api.hola.cloud/schedulers/sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890/tasks/task-002/reschedule" \
   -H "X-API-Key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "delay": 300
+    "delay": "5m"
   }'
 ```
 
@@ -219,7 +203,7 @@ X-API-Key: YOUR_API_KEY
 Content-Type: application/json
 
 {
-  "delay": 300
+  "delay": "5m"
 }
 ```
 
@@ -228,16 +212,13 @@ Expected response:
 ```json
 {
   "id": "task-002",
-  "state": "pending",
-  "available_at": "2025-06-21T12:06:00Z"
+  "future": "2025-06-21T12:06:00Z"
 }
 ```
 
-This is ideal for implementing retry logic with exponential backoff.
+## SSE Stream for Snapshots
 
-## SSE Stream for Real-Time Updates
-
-Subscribe to real-time task events via Server-Sent Events:
+Subscribe to task snapshots via Server-Sent Events:
 
 ```bash
 curl "https://api.hola.cloud/schedulers/sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890/tasks/stream"
@@ -246,20 +227,12 @@ curl "https://api.hola.cloud/schedulers/sched-a1b2c3d4-e5f6-7890-abcd-ef12345678
 The stream emits events in SSE format:
 
 ```
-event: task_available
-data: {"id":"task-003","payload":{"action":"process_image"},"labels":{}}
-
-event: task_completed
-data: {"id":"task-003"}
-
-event: task_expired
-data: {"id":"task-003"}
+event: snapshot
+data: {"scheduler_id":"sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890","generated_at":"2025-06-21T12:00:01Z","scheduled":[{"id":"task-003","future":"2025-06-21T12:01:00Z","labels":["type:image"]}],"inflight":[],"scheduled_meta":{"page":1,"per_page":25,"total":1,"total_pages":1},"inflight_meta":{"page":1,"per_page":25,"total":0,"total_pages":0},"health":{"status":"ok","ready":true,"scheduled":1,"inflight":0,"scheduler_id":"sched-a1b2c3d4-e5f6-7890-abcd-ef1234567890"}}
 ```
 
 | Event | Description |
 |-------|-------------|
-| `task_available` | A task has become available for reservation |
-| `task_completed` | A task was acknowledged by a worker |
-| `task_expired` | A lease expired and the task is available again |
+| `snapshot` | Current scheduled and inflight task lists |
 
-SSE is useful for building responsive worker pools that react to tasks immediately without polling.
+SSE is useful for monitoring current queue state without polling.

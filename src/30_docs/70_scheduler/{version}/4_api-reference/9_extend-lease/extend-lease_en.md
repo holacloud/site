@@ -17,11 +17,11 @@ Requires authentication. Pass your API key via `X-API-Key` or `Authorization: Be
 
 | Field | Type | Description |
 |-------|------|-------------|
-| extension | integer | Additional lease time in seconds |
+| extension | string | Additional lease time as a Go duration string, such as `30s` or `2m` |
 
 ```json
 {
-  "extension": 30
+  "extension": "30s"
 }
 ```
 
@@ -32,7 +32,7 @@ curl -X POST "https://api.hola.cloud/schedulers/sched-a1b2c3d4-e5f6-7890-abcd-ef
   -H "X-API-Key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "extension": 30
+    "extension": "30s"
   }'
 ```
 
@@ -45,7 +45,6 @@ Content-Type: application/json
 
 ```json
 {
-  "id": "task-x1y2z3",
   "lease_expires_at": "2025-06-21T12:02:31Z"
 }
 ```
@@ -54,8 +53,9 @@ Content-Type: application/json
 
 | Status | Code | Description |
 |--------|------|-------------|
-| 400 | invalid_request | Missing or invalid extension value |
+| 400 | invalid_json | Invalid JSON payload |
+| 400 | validation_error | Missing or invalid extension value |
+| 400 | invalid_lease | Extension must be positive |
 | 401 | unauthorized | Missing or invalid API key |
-| 404 | not_found | Scheduler or task not found |
-| 409 | conflict | Task is not currently reserved or lease already expired |
+| 404 | task_not_found | Task not found |
 | 500 | internal_error | Internal server error |

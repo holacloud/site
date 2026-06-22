@@ -1,71 +1,46 @@
-
 # Document Operations
 
-Performs document operations on a collection. The specific operation is determined by a colon-suffixed action on the collection name.
+Document operations are action endpoints on a collection.
 
 ## Authentication
 
-Requires `Api-Key`, `Api-Secret`, and `X-Project` headers.
+Requires `Api-Key` and `Api-Secret`, or a Glue owner token where the database owner is allowed.
 
 ## Path Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| id | uuid | The unique identifier of the database |
-| col | string | The collection name with operation suffix |
+| databaseId | uuid | The unique identifier of the database |
+| collection | string | The collection name |
+| documentId | string | The document ID, for get-by-ID requests |
 
-## Operations
-
-### Insert — `{collection}:insert`
-
-Inserts one or more documents into the collection.
+## Insert: `{collection}:insert`
 
 ```http
 POST /v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890/collections/users:insert HTTP/1.1
 Host: api.hola.cloud
 Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d
 Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf
-X-Project: acme-webapp
-Content-Type: application/json
+Content-Type: application/jsonl
 
-{
-  "name": "Alice",
-  "email": "alice@example.com",
-  "role": "admin"
-}
-```
-
-```bash
-curl -X POST "https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890/collections/users:insert" \
-  -H "Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d" \
-  -H "Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf" \
-  -H "X-Project: acme-webapp" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "Alice",
-    "email": "alice@example.com",
-    "role": "admin"
-  }'
+{"id":"user-1","name":"Alice","role":"admin"}
+{"id":"user-2","name":"Bob","role":"member"}
 ```
 
 Response:
-```json
-{
-  "id": "d7e8f9a0-b1c2-3456-7890-123456789abc",
-  "message": "Document inserted successfully"
-}
+
+```jsonl
+{"id":"user-1","name":"Alice","role":"admin"}
+{"id":"user-2","name":"Bob","role":"member"}
 ```
 
-### Find — `{collection}:find`
-
-Queries documents using a filter.
+## Find: `{collection}:find`
 
 ```http
 POST /v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890/collections/users:find HTTP/1.1
 Host: api.hola.cloud
 Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d
 Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf
-X-Project: acme-webapp
 Content-Type: application/json
 
 {
@@ -75,124 +50,70 @@ Content-Type: application/json
 }
 ```
 
-```bash
-curl -X POST "https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890/collections/users:find" \
-  -H "Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d" \
-  -H "Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf" \
-  -H "X-Project: acme-webapp" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "filter": {
-      "role": "admin"
-    }
-  }'
-```
-
 Response:
-```json
-{
-  "documents": [
-    {
-      "id": "d7e8f9a0-b1c2-3456-7890-123456789abc",
-      "name": "Alice",
-      "email": "alice@example.com",
-      "role": "admin"
-    }
-  ]
-}
+
+```jsonl
+{"id":"user-1","name":"Alice","role":"admin"}
 ```
 
-### Remove — `{collection}:remove`
-
-Deletes documents matching a filter.
+## Get by ID
 
 ```http
-POST /v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890/collections/users:remove HTTP/1.1
+GET /v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890/collections/users/documents/user-1 HTTP/1.1
 Host: api.hola.cloud
 Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d
 Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf
-X-Project: acme-webapp
-Content-Type: application/json
-
-{
-  "filter": {
-    "email": "alice@example.com"
-  }
-}
-```
-
-```bash
-curl -X POST "https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890/collections/users:remove" \
-  -H "Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d" \
-  -H "Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf" \
-  -H "X-Project: acme-webapp" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "filter": {
-      "email": "alice@example.com"
-    }
-  }'
 ```
 
 Response:
+
 ```json
-{
-  "deleted": 1,
-  "message": "Documents removed successfully"
-}
+{"id":"user-1","name":"Alice","role":"admin"}
 ```
 
-### Patch — `{collection}:patch`
-
-Updates documents matching a filter.
+## Patch: `{collection}:patch`
 
 ```http
 POST /v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890/collections/users:patch HTTP/1.1
 Host: api.hola.cloud
 Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d
 Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf
-X-Project: acme-webapp
 Content-Type: application/json
 
 {
   "filter": {
-    "role": "admin"
+    "id": "user-1"
   },
   "patch": {
-    "role": "superadmin"
+    "role": "owner"
   }
 }
 ```
 
-```bash
-curl -X POST "https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890/collections/users:patch" \
-  -H "Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d" \
-  -H "Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf" \
-  -H "X-Project: acme-webapp" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "filter": {
-      "role": "admin"
-    },
-    "patch": {
-      "role": "superadmin"
-    }
-  }'
+Response:
+
+```jsonl
+{"id":"user-1","name":"Alice","role":"owner"}
 ```
 
-Response:
-```json
+## Remove: `{collection}:remove`
+
+```http
+POST /v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890/collections/users:remove HTTP/1.1
+Host: api.hola.cloud
+Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d
+Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf
+Content-Type: application/json
+
 {
-  "updated": 1,
-  "message": "Documents patched successfully"
+  "filter": {
+    "id": "user-2"
+  }
 }
 ```
 
-## Error Codes
+Response:
 
-| Code | Description |
-|------|-------------|
-| 400 | Invalid operation name or malformed request body |
-| 401 | Missing or invalid authentication headers |
-| 403 | Project access denied |
-| 404 | Database or collection not found |
+```jsonl
+{"id":"user-2","name":"Bob","role":"member"}
+```

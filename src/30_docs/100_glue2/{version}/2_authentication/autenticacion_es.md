@@ -14,21 +14,19 @@ curl -X POST "https://api.hola.cloud/api/v0/lambdas" \
   -d '{"name": "mi-funcion", "runtime": "js", "code": "..."}'
 ```
 
-Las claves API pueden limitarse a:
+Las claves API pueden limitarse por proyecto y reglas de host:
 
-- **Proyecto**: La clave solo es válida para solicitudes al proyecto propietario.
-- **Host**: Restringir a un host virtual específico.
-- **Ruta**: Restringir a un patrón de prefijo de ruta (ej: `/api/v0/lambdas/*`).
-- **Método**: Restringir a métodos HTTP específicos (`GET`, `POST`, etc.).
+- **Proyectos**: La clave solo es válida para el proyecto configurado.
+- **Reglas de host**: Restringen hosts virtuales y metadatos opcionales por host.
 
-Si se establece algún ámbito, todas las condiciones deben coincidir. Una clave sin ámbito tiene acceso completo.
+Los ámbitos de ruta y método HTTP no forman parte del modelo actual.
 
 ### Autenticación Opcional vs Requerida
 
 - **Require**: El endpoint rechaza solicitudes no autenticadas con `401`.
 - **Optional**: El endpoint acepta tanto solicitudes autenticadas como anónimas. Las solicitudes autenticadas reciben encabezados inyectados; las anónimas pasan sin ellos.
 
-Cuando se proporciona una clave API válida, Glue2 inyecta el encabezado `X-Glue-Authentication` en la solicitud proxy, permitiendo que el backend identifique al cliente.
+Cuando se proporciona una clave API válida, Glue2 inyecta el encabezado `X-Glue-Authentication` como JSON en la solicitud proxy.
 
 ## Sesiones
 
@@ -63,7 +61,7 @@ curl "https://api.hola.cloud/api/v0/lambdas" \
 ```
 Método        Credenciales              Uso típico           Ámbito
 ───────────────────────────────────────────────────────────────────────
-Clave API    Api-Key + Api-Secret     Máquina a máquina     Proyecto/Host/Ruta/Método
+Clave API    Api-Key + Api-Secret     Máquina a máquina     Proyecto/Reglas de host
 Sesión       Cookie (http-only)       Usuarios de navegador Identidad de usuario
 OAuth 2.0    Token Bearer             Consola / SSO         Identidad de Google
 ```
@@ -80,7 +78,7 @@ Las claves API se gestionan en la Consola de HolaCloud en **Configuración > Cla
 ## Mejores Prácticas de Seguridad
 
 - **Rota las claves regularmente**: Genera nuevas claves y actualiza tus aplicaciones periódicamente.
-- **Mínimo privilegio**: Limita cada clave al conjunto mínimo de hosts, rutas y métodos necesarios.
+- **Mínimo privilegio**: Limita cada clave al conjunto mínimo de proyectos y reglas de host necesarios.
 - **Solo HTTPS**: Usa siempre `https://` — nunca envíes credenciales por HTTP plano.
 - **Almacena secretos de forma segura**: Usa variables de entorno o un gestor de secretos. Nunca hardcodees secretos en el código fuente.
 - **Revoca claves comprometidas inmediatamente**: Usa la Consola o la API para revocar claves si se exponen.

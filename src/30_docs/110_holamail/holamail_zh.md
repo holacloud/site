@@ -1,58 +1,49 @@
 # Holamail
 
-Holamail 是一个简单的 SMTP 邮件服务，用于发送事务性电子邮件。它在 2525 端口上监听原始 SMTP 连接，并将消息投递给收件人。
+Holamail 是一个用于开发和测试流程的小型 SMTP listener。它接受基础 SMTP 会话，记录收到的消息，但不会向外部收件人投递邮件。
 
-## 工作原理
+## 实现范围
 
-Holamail 通过 **SMTP 协议**在 2525 端口上接受连接。客户端使用标准 SMTP 进行连接——任何具有 SMTP 客户端库的语言或框架都可以通过 Holamail 发送电子邮件，无需额外的 SDK。
+Holamail 接受明文 SMTP 连接，并支持以下命令：
+
+- `HELO` / `EHLO`
+- `MAIL FROM`
+- `RCPT TO`
+- `DATA`
+- `QUIT`
+
+它不提供 HTTP API、外部投递、STARTTLS、AUTH、限速、模板、分析或追踪功能。
+
+## 工作方式
+
+应用使用 SMTP 客户端连接。Holamail 会把 envelope 和消息内容写入日志，便于检查。
 
 ```
-┌──────────────┐   SMTP :2525    ┌───────────┐
-│  应用程序    │───────────────▶│  Holamail  │────▶  收件人
-└──────────────┘                 └───────────┘
+┌─────────────┐    SMTP    ┌───────────┐
+│ Application │───────────▶│ Holamail  │──▶ log message
+└─────────────┘            └───────────┘
 ```
 
-## 使用场景
+## 快速开始
 
-- **事务性邮件**：订单确认、账户验证、密码重置。
-- **通知**：由应用程序事件触发的警报、提醒、状态更新。
-- **密码重置**：安全地向用户投递密码重置链接。
-- **系统警报**：从监控或 CI/CD 流水线发送自动警报。
-
-## 与其他服务的集成
-
-Holamail 与其他 HolaCloud 服务协同工作：
-
-- **Lambda** — 从无服务器函数触发邮件发送。
-- **控制台** — 管理邮件模板和查看投递日志。
-- **InceptionDB** — 存储邮件模板和投递历史。
-
-## 快速入门
-
-使用任何 SMTP 客户端连接到 Holamail 的 2525 端口：
+使用公共测试主机：
 
 ```bash
-# 使用 swaks（SMTP 瑞士军刀）
 swaks --to user@example.com \
-      --from noreply@holacloud.app \
-      --server smtp.hola.cloud \
-      --port 2525 \
-      --header "Subject: 欢迎使用 HolaCloud" \
-      --body "您好！感谢您的注册。"
+      --from noreply@example.com \
+      --server smtp.testmail.hola.cloud \
+      --port 25 \
+      --header "Subject: Holamail test" \
+      --body "Hello from Holamail."
 ```
 
-或使用 Python 的 `smtplib`：
+或使用本地 listener：
 
-```python
-import smtplib
-from email.message import EmailMessage
-
-msg = EmailMessage()
-msg.set_content("您好！感谢您的注册。")
-msg["Subject"] = "欢迎使用 HolaCloud"
-msg["From"] = "noreply@holacloud.app"
-msg["To"] = "user@example.com"
-
-with smtplib.SMTP("smtp.hola.cloud", 2525) as s:
-    s.send_message(msg)
+```bash
+swaks --to user@example.com \
+      --from noreply@example.com \
+      --server localhost \
+      --port 2525 \
+      --header "Subject: Local Holamail test" \
+      --body "Hello from a local Holamail listener."
 ```
