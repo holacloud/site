@@ -1,4 +1,4 @@
-# POST /v1/collections/{col}/keys/*
+# Set Key
 
 Sets the value of a key in a collection. The wildcard `*` in the path is replaced with the key name.
 

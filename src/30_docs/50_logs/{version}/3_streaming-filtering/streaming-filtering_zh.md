@@ -1,4 +1,4 @@
-# 流式传输与过滤日志
+# StreamingFiltering
 
 InstantLogs 提供长连接的 HTTP 流式传输端点，能够近乎实时地交付日志事件。您可以通过正则表达式模式过滤流，并选择 NDJSON 或纯文本输出格式。
 

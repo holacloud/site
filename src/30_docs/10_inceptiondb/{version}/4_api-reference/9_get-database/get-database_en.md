@@ -1,5 +1,5 @@
 
-# GET /v1/databases/{id}
+# Get Database
 
 Retrieves details about a specific database by its ID.
 

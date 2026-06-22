@@ -1,4 +1,4 @@
-# Getting Started with Files
+# Getting Started
 
 This guide walks you through the basic operations of HolaCloud Files: creating a bucket, uploading a file, listing contents, downloading, and deleting.
 

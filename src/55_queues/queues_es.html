@@ -1,0 +1,82 @@
+<section class="hero" style="background: radial-gradient(circle at top right, rgba(6, 182, 212, 0.20), transparent 45%),
+    radial-gradient(circle at top left, rgba(6, 182, 212, 0.30), transparent 55%),
+    #0f172a;">
+    <div class="hero-inner">
+        <div class="hero-eyebrow">📨 Tailon</div>
+        <h1>Sistema de colas de mensajes y trabajos asíncronos</h1>
+        <p>Tailon is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <div class="hero-actions">
+            <a class="button button-action" href="https://console.hola.cloud/">Comenzar</a>
+            <a class="button button-secondary" href="/docs/queues/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">Documentación</a>
+        </div>
+    </div>
+</section>
+
+<div class="landing">
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Tailon</div>
+            <h2>Funcionalidades</h2>
+            <p>Everything you need to build, deploy, and scale with Tailon on HolaCloud.</p>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3>Mensajería fiable</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Garantía de entrega al menos una vez con reintentos automáticos y colas de mensajes fallidos.</p>
+          </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3>Patrones Pub/Sub</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Crea topologías fan-out para arquitecturas basadas en eventos.</p>
+          </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3>Grupos de consumidores</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Distribuye la carga entre múltiples consumidores con rebalanceo automático.</p>
+          </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Quick start</div>
+            <h2>Inicio rápido</h2>
+            <p>Get started with Tailon in seconds using the API.</p>
+        </div>
+        <pre><code>curl -X POST https://api.hola.cloud/v1/queues \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{"name": "orders", "type": "fifo"}' \
+  && curl -X POST https://api.hola.cloud/v1/queues/orders \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{"message": "order-12345"}'</code></pre>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Use cases</div>
+            <h2>Casos de uso</h2>
+        </div>
+        <div class="solutions-grid" style="display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+            <div class="solution-card" style="background: linear-gradient(160deg, rgba(6, 182, 212, 0.1), rgba(6, 182, 212, 0.04)); border: 1px solid rgba(6, 182, 212, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">Orquestación de microservicios</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Tailon on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(6, 182, 212, 0.1), rgba(6, 182, 212, 0.04)); border: 1px solid rgba(6, 182, 212, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">Automatización de pipelines</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Tailon on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(6, 182, 212, 0.1), rgba(6, 182, 212, 0.04)); border: 1px solid rgba(6, 182, 212, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">Arquitecturas basadas en eventos</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Tailon on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(6, 182, 212, 0.1), rgba(6, 182, 212, 0.04)); border: 1px solid rgba(6, 182, 212, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">Desarrollo de APIs backend</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Tailon on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 48px;">
+        <div class="cta-panel">
+            <h2>Ready to get started?</h2>
+            <p>Explore the documentation or launch the console to start building with Tailon.</p>
+            <div class="cta-actions">
+                <a class="button button-action" href="https://console.hola.cloud/">Consola</a>
+                <a class="button button-secondary" href="/docs/queues/">Documentación</a>
+            </div>
+        </div>
+    </section>
+</div>

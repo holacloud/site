@@ -1,4 +1,4 @@
-# GET /v1/collections/{col}/keys/*
+# Obtener Clave
 
 Obtiene el valor de una clave en una colección. El comodín `*` en la ruta se reemplaza con el nombre de la clave.
 

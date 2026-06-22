@@ -1,4 +1,4 @@
-# DELETE /v1/buckets/{id}
+# Eliminar Bucket
 
 Eliminar un bucket vacío. El bucket no debe contener ningún archivo.
 

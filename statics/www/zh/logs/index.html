@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <title>实时日志采集与流式处理</title>
+    <meta name="description" content="inceptiondb">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/blue.css" rel="stylesheet">
+    <script src="/js/marked.min.js"></script>
+    <script>
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+            document.documentElement.classList.toggle('dark', e.matches);
+        });
+    </script>
+    <script defer src="https://umami.hola.cloud/script.js" data-website-id="cbcb870c-e9a8-460a-8b38-ab2fa77a4cc2"></script>
+</head>
+<body url="logs" class="product-landing">
+
+<div class="top-frame">
+    <div class="top">
+        <a href="/" class="logo"></a>
+        <div class="main-menu">
+            <div class="dropdown">
+                <button class="link dropdown-toggle" type="button">
+                    Products
+                    <span class="dropdown-icon" aria-hidden="true">▾</span>
+                </button>
+                <div class="dropdown-menu" role="menu">
+                    <a class="dropdown-item" href="/inceptiondb/">
+                        <span class="item-title">InceptionDB</span>
+                        <span class="item-description">Managed NoSQL document database.</span>
+                    </a>
+                    <a class="dropdown-item" href="/lambda/">
+                        <span class="item-title">Lambda</span>
+                        <span class="item-description">Serverless function execution platform.</span>
+                    </a>
+                    <a class="dropdown-item" href="/files/">
+                        <span class="item-title">Files</span>
+                        <span class="item-description">Secure object storage service.</span>
+                    </a>
+                    <a class="dropdown-item" href="/config/">
+                        <span class="item-title">Config</span>
+                        <span class="item-description">Centralized configuration management.</span>
+                    </a>
+                    <a class="dropdown-item" href="/logs/">
+                        <span class="item-title">InstantLogs</span>
+                        <span class="item-description">Real-time log ingestion and streaming.</span>
+                    </a>
+                    <a class="dropdown-item" href="/queues/">
+                        <span class="item-title">Tailon</span>
+                        <span class="item-description">Message queue and async workload system.</span>
+                    </a>
+                    <a class="dropdown-item" href="/scheduler/">
+                        <span class="item-title">Scheduler</span>
+                        <span class="item-description">Distributed task scheduling service.</span>
+                    </a>
+                    <a class="dropdown-item" href="/kvnode/">
+                        <span class="item-title">KVNode</span>
+                        <span class="item-description">Replicated key-value store.</span>
+                    </a>
+                    <a class="dropdown-item" href="/console/">
+                        <span class="item-title">Console</span>
+                        <span class="item-description">Web-based management console.</span>
+                    </a>
+                    <a class="dropdown-item" href="/glue2/">
+                        <span class="item-title">Glue2</span>
+                        <span class="item-description">API Gateway and authentication layer.</span>
+                    </a>
+                    <a class="dropdown-item" href="/holamail/">
+                        <span class="item-title">Holamail</span>
+                        <span class="item-description">SMTP transactional email service.</span>
+                    </a>
+                    <a class="dropdown-item" href="/run/">
+                        <span class="item-title">Run</span>
+                        <span class="item-description">Container execution with built-in Docker registry.</span>
+                    </a>
+                </div>
+            </div>
+            
+            <a class="link" href="/zh/docs/index.html">文档</a>
+            
+            <a class="link button-console" href="https://console.hola.cloud/">Console</a>
+        </div>
+        <div class="right">
+            <div class="languages"><a class="" href="/logs/index.html">en</a><a class="" href="/es/logs/index.html">es</a><a class="selected" href="/zh/logs/index.html">zh</a></div>
+            <a id="login-button" class="button button-noborder" href="https://console.hola.cloud/">Log In</a>
+            <a class="button button-action" href="https://console.hola.cloud/">Start now</a>
+        </div>
+    </div>
+</div>
+<div class="docs-layout">
+<div class="tree">
+
+
+    
+
+</div>
+<div class="content">
+    
+    <div class="document">
+    <section class="hero" style="background: radial-gradient(circle at top right, rgba(245, 158, 11, 0.20), transparent 45%),
+    radial-gradient(circle at top left, rgba(245, 158, 11, 0.30), transparent 55%),
+    #0f172a;">
+    <div class="hero-inner">
+        <div class="hero-eyebrow">📊 InstantLogs</div>
+        <h1>实时日志采集与流式处理</h1>
+        <p>InstantLogs is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <div class="hero-actions">
+            <a class="button button-action" href="https://console.hola.cloud/">开始使用</a>
+            <a class="button button-secondary" href="/docs/logs/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">文档中心</a>
+        </div>
+    </div>
+</section>
+
+<div class="landing">
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">InstantLogs</div>
+            <h2 id="%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD">核心功能</h2>
+            <p>Everything you need to build, deploy, and scale with InstantLogs on HolaCloud.</p>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3 id="%E9%AB%98%E5%90%9E%E5%90%90%E9%87%87%E9%9B%86">高吞吐采集</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">每秒发送数百万日志事件，支持自动批处理。</p>
+          </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3 id="%E5%AE%9E%E6%97%B6%E8%BF%BD%E8%B8%AA%E4%B8%8E%E8%BF%87%E6%BB%A4">实时追踪与过滤</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">实时流式查看日志，支持强大的过滤和搜索功能。</p>
+          </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3 id="%E4%BF%9D%E7%95%99%E4%B8%8E%E5%BD%92%E6%A1%A3">保留与归档</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">可配置的保留策略，支持冷存储归档。</p>
+          </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Quick start</div>
+            <h2 id="%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B">快速开始</h2>
+            <p>Get started with InstantLogs in seconds using the API.</p>
+        </div>
+        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST https://api.hola.cloud/v1/loggers \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  -H &#34;Authorization: Bearer $TOKEN&#34; \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  -d &#39;{&#34;name&#34;: &#34;app-logger&#34;, &#34;retention_days&#34;: 30}&#39; \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>  &amp;&amp; curl https://api.hola.cloud/v1/loggers/my-logger/ingest \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>  -H &#34;Authorization: Bearer $TOKEN&#34; \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>  -d &#39;{&#34;level&#34;:&#34;info&#34;,&#34;message&#34;:&#34;Hello world&#34;}&#39;</span></span></code></pre></code></pre>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Use cases</div>
+            <h2 id="%E5%B8%B8%E8%A7%81%E7%94%A8%E4%BE%8B">常见用例</h2>
+        </div>
+        <div class="solutions-grid" style="display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+            <div class="solution-card" style="background: linear-gradient(160deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.04)); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;" id="%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%BC%96%E6%8E%92">微服务编排</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with InstantLogs on HolaCloud&#39;s enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.04)); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;" id="%E6%95%B0%E6%8D%AE%E7%AE%A1%E9%81%93%E8%87%AA%E5%8A%A8%E5%8C%96">数据管道自动化</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with InstantLogs on HolaCloud&#39;s enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.04)); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;" id="%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E6%9E%B6%E6%9E%84">事件驱动架构</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with InstantLogs on HolaCloud&#39;s enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.04)); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;" id="%E5%90%8E%E7%AB%AF%20API%20%E5%BC%80%E5%8F%91">后端 API 开发</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with InstantLogs on HolaCloud&#39;s enterprise platform, designed for security, reliability, and scale.</p>
+          </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 48px;">
+        <div class="cta-panel">
+            <h2 id="Ready%20to%20get%20started%3F">Ready to get started?</h2>
+            <p>Explore the documentation or launch the console to start building with InstantLogs.</p>
+            <div class="cta-actions">
+                <a class="button button-action" href="https://console.hola.cloud/">控制台</a>
+                <a class="button button-secondary" href="/docs/logs/">文档中心</a>
+            </div>
+        </div>
+    </section>
+</div>
+
+    <div id="comments-section">
+    <h2>评论</h2>
+    <div id="comments-list"></div>
+    <form id="comment-form" class="comment-form">
+        <div id="reply-info" class="reply-info" style="display:none">
+            <span id="reply-label">回复给</span>
+            <span id="reply-author" class="reply-author"></span>
+            <button type="button" id="cancel-reply" class="cancel-reply">取消</button>
+        </div>
+        <h3 id="form-title">发表评论</h3>
+        <div class="comment-form-row">
+            <input type="text" name="author" id="comment-author" placeholder="您的姓名" required>
+            <input type="email" name="email" id="comment-email" placeholder="邮箱（选填）">
+        </div>
+        <textarea name="content" id="comment-content" placeholder="写评论（支持 Markdown）..." required></textarea>
+        <button type="submit" id="comment-submit">提交</button>
+        <p id="comment-status" class="comment-status"></p>
+    </form>
+</div>
+</div>
+<div class="index"><div class="index-h2">
+<a href="#%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD">核心功能</a>
+</div>
+<div class="index-h3">
+<a href="#%E9%AB%98%E5%90%9E%E5%90%90%E9%87%87%E9%9B%86">高吞吐采集</a>
+</div>
+<div class="index-h3">
+<a href="#%E5%AE%9E%E6%97%B6%E8%BF%BD%E8%B8%AA%E4%B8%8E%E8%BF%87%E6%BB%A4">实时追踪与过滤</a>
+</div>
+<div class="index-h3">
+<a href="#%E4%BF%9D%E7%95%99%E4%B8%8E%E5%BD%92%E6%A1%A3">保留与归档</a>
+</div>
+<div class="index-h2">
+<a href="#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B">快速开始</a>
+</div>
+<div class="index-h2">
+<a href="#%E5%B8%B8%E8%A7%81%E7%94%A8%E4%BE%8B">常见用例</a>
+</div>
+<div class="index-h3">
+<a href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%BC%96%E6%8E%92">微服务编排</a>
+</div>
+<div class="index-h3">
+<a href="#%E6%95%B0%E6%8D%AE%E7%AE%A1%E9%81%93%E8%87%AA%E5%8A%A8%E5%8C%96">数据管道自动化</a>
+</div>
+<div class="index-h3">
+<a href="#%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E6%9E%B6%E6%9E%84">事件驱动架构</a>
+</div>
+<div class="index-h3">
+<a href="#%E5%90%8E%E7%AB%AF%20API%20%E5%BC%80%E5%8F%91">后端 API 开发</a>
+</div>
+<div class="index-h2">
+<a href="#Ready%20to%20get%20started%3F">Ready to get started?</a>
+</div>
+</div>
+</div>
+</div>
+<style>
+#comments-section {
+    margin: 3rem 0 0;
+}
+#comments-section h2 {
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+.comment {
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    background: #f8fafc;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+.comment-header {
+    margin-bottom: 0.25rem;
+}
+.comment-author {
+    font-weight: 600;
+    color: #1e293b;
+}
+.comment-date {
+    font-size: 0.85em;
+    color: #64748b;
+    margin-left: 0.5rem;
+}
+.comment-content {
+    margin-top: 0.5rem;
+    line-height: 1.6;
+    color: #334155;
+}
+.comment-content p {
+    margin: 0 0 0.5rem;
+}
+.comment-content p:last-child {
+    margin-bottom: 0;
+}
+.comment-content pre {
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 0.75rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-size: 0.85rem;
+    margin: 0.5rem 0;
+}
+.comment-content code {
+    background: #e2e8f0;
+    padding: 0.15rem 0.35rem;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+.comment-content pre code {
+    background: none;
+    padding: 0;
+    border-radius: 0;
+}
+.comment-reply {
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.85rem;
+    color: #3b82f6;
+    background: none;
+    border: 1px solid #3b82f6;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.comment-reply:hover {
+    background: #3b82f6;
+    color: #fff;
+}
+.comment-form {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #f1f5f9;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+.comment-form h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+.comment-form-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+.comment-form-row input {
+    flex: 1;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    font-size: 0.95rem;
+}
+#comment-content {
+    width: 100%;
+    min-height: 100px;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    box-sizing: border-box;
+    resize: vertical;
+    margin-bottom: 0.75rem;
+}
+#comment-submit {
+    padding: 0.5rem 1.5rem;
+    background: #3b82f6;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+#comment-submit:hover {
+    background: #2563eb;
+}
+#comment-submit:disabled {
+    background: #94a3b8;
+    cursor: not-allowed;
+}
+.comment-status {
+    margin: 0.5rem 0 0;
+    font-size: 0.9rem;
+}
+.comment-status.error {
+    color: #dc2626;
+}
+.comment-status.success {
+    color: #16a34a;
+}
+.comments-empty {
+    color: #64748b;
+    font-style: italic;
+}
+.reply-info {
+    background: #e0f2fe;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.reply-author {
+    font-weight: 600;
+}
+.cancel-reply {
+    margin-left: auto;
+    padding: 0.15rem 0.5rem;
+    font-size: 0.85rem;
+    color: #64748b;
+    background: none;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.cancel-reply:hover {
+    background: #e2e8f0;
+}
+</style>
+<script>
+(function() {
+    function getPageID() {
+        var el = document.querySelector('[data-page-id]');
+        if (el) return el.getAttribute('data-page-id');
+        var url = window.location.pathname || '/';
+        var lang = document.documentElement.lang || 'en';
+        return url.replace(/\/$/, '') + '|' + lang;
+    }
+    var pageID = getPageID();
+    var list = document.getElementById('comments-list');
+    var form = document.getElementById('comment-form');
+    var authorInput = document.getElementById('comment-author');
+    var emailInput = document.getElementById('comment-email');
+    var contentInput = document.getElementById('comment-content');
+    var submitBtn = document.getElementById('comment-submit');
+    var statusEl = document.getElementById('comment-status');
+    var cancelReplyBtn = document.getElementById('cancel-reply');
+    var replyInfo = document.getElementById('reply-info');
+    var replyAuthor = document.getElementById('reply-author');
+    var formTitle = document.getElementById('form-title');
+    var currentParentID = '';
+
+    marked.setOptions({
+        gfm: true,
+        breaks: true,
+        pedantic: false
+    });
+    var renderer = new marked.Renderer();
+    renderer.link = function(t) {
+        var href = t.href;
+        if (href && href.toLowerCase().startsWith('javascript:')) href = '#';
+        return '<a href="' + href + '" rel="nofollow">' + t.text + '</a>';
+    };
+    marked.setOptions({ renderer: renderer });
+
+    function renderMarkdown(text) {
+        return marked.parse(text);
+    }
+
+    function buildTree(comments) {
+        var map = {};
+        var roots = [];
+        comments.forEach(function(c) { map[c.id] = c; c.children = []; });
+        comments.forEach(function(c) {
+            if (c.parent_id && map[c.parent_id]) {
+                map[c.parent_id].children.push(c);
+            } else {
+                roots.push(c);
+            }
+        });
+        return roots;
+    }
+
+    function renderComment(c, depth) {
+        var margin = Math.min(depth * 24, 96);
+        var date = new Date(c.created_at).toLocaleDateString();
+        var content = renderMarkdown(c.content);
+        var html = '<div class="comment" style="margin-left:' + margin + 'px">';
+        html += '<div class="comment-header">';
+        html += '<span class="comment-author">' + escapeHTML(c.author) + '</span>';
+        html += '<span class="comment-date">' + date + '</span>';
+        html += '</div>';
+        html += '<div class="comment-content">' + content + '</div>';
+        html += '<button class="comment-reply" data-id="' + escapeHTML(c.id) + '" data-author="' + escapeHTML(c.author) + '">' + getText('reply') + '</button>';
+        html += '</div>';
+        if (c.children) {
+            c.children.forEach(function(child) { html += renderComment(child, depth + 1); });
+        }
+        return html;
+    }
+
+    function loadComments() {
+        fetch('/api/comments?page_id=' + encodeURIComponent(pageID))
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                if (!data.comments || data.comments.length === 0) {
+                    list.innerHTML = '<p class="comments-empty">' + getText('noComments') + '</p>';
+                    return;
+                }
+                var roots = buildTree(data.comments);
+                var html = '';
+                roots.forEach(function(c) { html += renderComment(c, 0); });
+                list.innerHTML = html;
+                attachReplyHandlers();
+            })
+            .catch(function() {
+                list.innerHTML = '<p class="comment-status error">' + getText('loadError') + '</p>';
+            });
+    }
+
+    function attachReplyHandlers() {
+        document.querySelectorAll('.comment-reply').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                currentParentID = btn.getAttribute('data-id');
+                var author = btn.getAttribute('data-author');
+                replyAuthor.textContent = author;
+                replyInfo.style.display = 'flex';
+                formTitle.textContent = getText('replyTitle');
+                contentInput.focus();
+                contentInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            });
+        });
+    }
+
+    function getText(key) {
+        var lang = document.documentElement.lang;
+        var texts = {
+            es: { noComments: 'No hay comentarios aún. Sé el primero en comentar.', loadError: 'Error al cargar comentarios.', sending: 'Enviando...', success: 'Comentario enviado con éxito.', error: 'Error al enviar el comentario.', submit: 'Enviar', reply: 'Responder', replyTitle: 'Responder', cancel: 'Cancelar' },
+            zh: { noComments: '还没有评论。成为第一个评论者。', loadError: '加载评论时出错。', sending: '发送中...', success: '评论发送成功。', error: '发送评论时出错。', submit: '提交', reply: '回复', replyTitle: '回复', cancel: '取消' },
+            en: { noComments: 'No comments yet. Be the first to comment.', loadError: 'Error loading comments.', sending: 'Sending...', success: 'Comment submitted successfully.', error: 'Error submitting comment.', submit: 'Submit', reply: 'Reply', replyTitle: 'Reply', cancel: 'Cancel' }
+        };
+        return (texts[lang] || texts['en'])[key];
+    }
+
+    function escapeHTML(str) {
+        var d = document.createElement('div');
+        d.textContent = str;
+        return d.innerHTML;
+    }
+
+    cancelReplyBtn.addEventListener('click', function() {
+        currentParentID = '';
+        replyInfo.style.display = 'none';
+        formTitle.textContent = getText('submit');
+    });
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        submitBtn.disabled = true;
+        submitBtn.textContent = getText('sending');
+        statusEl.textContent = '';
+        statusEl.className = 'comment-status';
+        var body = {
+            page_id: pageID,
+            author: authorInput.value.trim(),
+            email: emailInput.value.trim(),
+            content: contentInput.value.trim()
+        };
+        if (currentParentID) {
+            body.parent_id = currentParentID;
+        }
+        fetch('/api/comments', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+        })
+        .then(function(r) {
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            return r.json();
+        })
+        .then(function() {
+            statusEl.textContent = getText('success');
+            statusEl.className = 'comment-status success';
+            authorInput.value = '';
+            emailInput.value = '';
+            contentInput.value = '';
+            currentParentID = '';
+            replyInfo.style.display = 'none';
+            formTitle.textContent = getText('submit');
+            loadComments();
+        })
+        .catch(function() {
+            statusEl.textContent = getText('error');
+            statusEl.className = 'comment-status error';
+        })
+        .finally(function() {
+            submitBtn.disabled = false;
+            submitBtn.textContent = getText('submit');
+        });
+    });
+    loadComments();
+})();
+</script>
+<div class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <div class="footer-logo">hola.cloud</div>
+            
+            <p>企业级云软件，服务受监管与高速增长的团队。</p>
+            
+        </div>
+        <div class="footer-columns">
+            <div class="footer-column">
+                
+                <h4>解决方案</h4>
+                <ul>
+                    <li><a href="#start-now">平台总览</a></li>
+                    <li><a href="#solutions">行业方案</a></li>
+                    <li><a href="#partnership">合作模式</a></li>
+                </ul>
+                
+            </div>
+            <div class="footer-column">
+                
+                <h4>资源中心</h4>
+                <ul>
+                    <li><a href="/docs/">文档中心</a></li>
+                    <li><a href="https://console.hola.cloud/">客户控制台</a></li>
+                    <li><a href="mailto:contact@hola.cloud">支持服务</a></li>
+                </ul>
+                
+            </div>
+            <div class="footer-column">
+                
+                <h4>联系我们</h4>
+                <ul>
+                    <li><a href="mailto:contact@hola.cloud">contact@hola.cloud</a></li>
+                    <li><a href="tel:+34910000000">+34 910 000 000</a></li>
+                    <li><a href="https://www.linkedin.com/company/hola-cloud" target="_blank" rel="noopener">LinkedIn</a></li>
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+    <div class="footer-meta">
+        <span>© 2025 hola.cloud</span>
+        <span class="footer-meta-divider" aria-hidden="true">•</span>
+        
+        <span>保留所有权利。</span>
+        
+    </div>
+</div>
+<script>
+
+    
+    function isElementInViewport (el) {
+
+        
+        
+        
+        
+
+        var rect     = el.getBoundingClientRect(),
+            vWidth   = window.innerWidth || doc.documentElement.clientWidth,
+            vHeight  = window.innerHeight || doc.documentElement.clientHeight,
+            efp      = function (x, y) { return document.elementFromPoint(x, y) };
+
+        
+        if (rect.right < 0 || rect.bottom < 0
+            || rect.left > vWidth || rect.top > vHeight)
+            return false;
+
+        
+        return (
+            el.contains(efp(rect.left,  rect.top))
+            ||  el.contains(efp(rect.right, rect.top))
+            ||  el.contains(efp(rect.right, rect.bottom))
+            ||  el.contains(efp(rect.left,  rect.bottom))
+        );
+    }
+
+    function highlightIndex() {
+        let v = false;
+        document.querySelectorAll('.index a').forEach(a => {
+            const el = document.getElementById(a.getAttribute('href').slice(1));
+
+            if (!v && isElementInViewport(el)) {
+                a.classList.add('active');
+                v = true;
+            } else {
+                a.classList.remove('active');
+            }
+        });
+    }
+
+    document.addEventListener('scroll', highlightIndex, true);
+    document.addEventListener('load', highlightIndex, true);
+</script>
+</body>
+</html>

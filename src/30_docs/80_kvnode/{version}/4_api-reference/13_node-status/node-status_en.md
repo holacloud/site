@@ -1,4 +1,4 @@
-# GET /v1/status
+# Node Status
 
 Returns the current status of the KVNode, including collections, replication state, and uptime.
 

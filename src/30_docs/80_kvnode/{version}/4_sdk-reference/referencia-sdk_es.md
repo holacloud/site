@@ -1,4 +1,4 @@
-# Referencia Rápida de SDK
+# Referencia Sdk
 
 KVNode ofrece SDKs oficiales para **Go**, **Python**, **Java**, **JavaScript**, **Kotlin**, **PHP** y **Node.js**. Todos los SDKs están orientados a la misma API REST en `https://api.hola.cloud`.
 

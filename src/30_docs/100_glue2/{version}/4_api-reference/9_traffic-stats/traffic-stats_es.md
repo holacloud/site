@@ -1,4 +1,4 @@
-# GET /v0/stats
+# Tráfico Estadísticas
 
 Devuelve estadísticas de tráfico en tiempo real de la puerta de enlace.
 

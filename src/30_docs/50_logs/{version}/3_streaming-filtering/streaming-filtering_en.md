@@ -1,4 +1,4 @@
-# Streaming & Filtering Logs
+# Streaming Filtering
 
 InstantLogs provides long-lived HTTP streaming endpoints that deliver log events in near real-time. You can filter streams by regex pattern and choose between NDJSON and plain-text output formats.
 

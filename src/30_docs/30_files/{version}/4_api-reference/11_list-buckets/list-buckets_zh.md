@@ -1,4 +1,4 @@
-# GET /v1/buckets
+# 列出Buckets
 
 列出经过身份验证的账户的所有存储桶。
 

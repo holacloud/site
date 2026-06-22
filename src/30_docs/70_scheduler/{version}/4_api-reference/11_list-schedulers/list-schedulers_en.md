@@ -1,4 +1,4 @@
-# GET /schedulers
+# List Schedulers
 
 Returns a list of all schedulers.
 

@@ -1,4 +1,4 @@
-# API网关 (Glue2)
+# Glue2
 
 Glue2 是 HolaCloud 的中央 API 网关。它对每个传入请求进行身份验证，将其路由到正确的后端服务，并收集访问日志。所有发往 HolaCloud 服务的流量都经过 Glue2。
 

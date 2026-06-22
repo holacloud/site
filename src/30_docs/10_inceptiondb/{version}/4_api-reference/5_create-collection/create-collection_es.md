@@ -1,5 +1,5 @@
 
-# POST /v1/databases/{id}/collections
+# Create Collection
 
 Crea una nueva colección dentro de la base de datos especificada. Las colecciones contienen documentos.
 

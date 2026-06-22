@@ -1,4 +1,4 @@
-# Primeros pasos con InstantLogs
+# Primeros Pasos
 
 Esta guía te ayudará a crear un logger, ingresar una entrada de log y transmitir eventos en tiempo real.
 

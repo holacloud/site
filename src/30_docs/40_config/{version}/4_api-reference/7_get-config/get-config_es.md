@@ -1,4 +1,4 @@
-# GET /v0/configs/{id}
+# Obtener Config
 
 Obtener una configuración específica por su ID. Este endpoint es de acceso público (API de administración).
 

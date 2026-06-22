@@ -1,0 +1,86 @@
+<section class="hero" style="background: radial-gradient(circle at top right, rgba(168, 85, 247, 0.20), transparent 45%),
+    radial-gradient(circle at top left, rgba(168, 85, 247, 0.30), transparent 55%),
+    #0f172a;">
+    <div class="hero-inner">
+        <div class="hero-eyebrow">🚀 Run</div>
+        <h1>容器执行服务，内置 Docker 注册表</h1>
+        <p>Run is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <div class="hero-actions">
+            <a class="button button-action" href="https://console.hola.cloud/">开始使用</a>
+            <a class="button button-secondary" href="/docs/run/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">文档中心</a>
+        </div>
+    </div>
+</section>
+
+<div class="landing">
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Run</div>
+            <h2>核心功能</h2>
+            <p>Everything you need to build, deploy, and scale with Run on HolaCloud.</p>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3>即时容器</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">从任何公共或私有注册表在数秒内启动容器。</p>
+          </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3>自动伸缩</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">基于 CPU、内存或请求量自动扩展。</p>
+          </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3>私有注册表</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">从集成的 Docker 注册表推送和拉取镜像。</p>
+          </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Quick start</div>
+            <h2>快速开始</h2>
+            <p>Get started with Run in seconds using the API.</p>
+        </div>
+        <pre><code># 推送镜像
+curl -X POST https://api.hola.cloud/v1/run/push \
+  -H "Authorization: Bearer $TOKEN" \
+  -F "image=@myapp.tar.gz" \
+  -F "name=myapp:latest"
+
+# 运行容器
+curl -X POST https://api.hola.cloud/v1/run/exec \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{"image": "myapp:latest", "port": 8080, "scale": 2}'</code></pre>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Use cases</div>
+            <h2>常见用例</h2>
+        </div>
+        <div class="solutions-grid" style="display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+            <div class="solution-card" style="background: linear-gradient(160deg, rgba(168, 85, 247, 0.1), rgba(168, 85, 247, 0.04)); border: 1px solid rgba(168, 85, 247, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">微服务编排</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Run on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(168, 85, 247, 0.1), rgba(168, 85, 247, 0.04)); border: 1px solid rgba(168, 85, 247, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">数据管道自动化</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Run on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(168, 85, 247, 0.1), rgba(168, 85, 247, 0.04)); border: 1px solid rgba(168, 85, 247, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">事件驱动架构</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Run on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(168, 85, 247, 0.1), rgba(168, 85, 247, 0.04)); border: 1px solid rgba(168, 85, 247, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">后端 API 开发</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Run on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 48px;">
+        <div class="cta-panel">
+            <h2>Ready to get started?</h2>
+            <p>Explore the documentation or launch the console to start building with Run.</p>
+            <div class="cta-actions">
+                <a class="button button-action" href="https://console.hola.cloud/">控制台</a>
+                <a class="button button-secondary" href="/docs/run/">文档中心</a>
+            </div>
+        </div>
+    </section>
+</div>

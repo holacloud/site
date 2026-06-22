@@ -1,4 +1,4 @@
-# DELETE /v1/buckets/{id}
+# Delete Bucket
 
 Delete an empty bucket. The bucket must not contain any files.
 

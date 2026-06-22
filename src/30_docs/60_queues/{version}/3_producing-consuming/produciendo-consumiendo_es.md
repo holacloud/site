@@ -1,4 +1,4 @@
-# Produciendo y Consumiendo Mensajes
+# Produciendo Consumiendo
 
 Este documento cubre el formato de los mensajes, estrategias de escritura, lectura con long-poll, manejo de errores y patrones comunes de consumo.
 

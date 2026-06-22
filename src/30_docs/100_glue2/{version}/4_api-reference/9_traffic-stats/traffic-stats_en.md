@@ -1,4 +1,4 @@
-# GET /v0/stats
+# Traffic Stats
 
 Returns real-time traffic statistics for the gateway.
 

@@ -7,6 +7,14 @@
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/blue.css" rel="stylesheet">
     <script src="/js/marked.min.js"></script>
+    <script>
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+            document.documentElement.classList.toggle('dark', e.matches);
+        });
+    </script>
     <script defer src="https://umami.hola.cloud/script.js" data-website-id="cbcb870c-e9a8-460a-8b38-ab2fa77a4cc2"></script>
 </head>
 <body url="home">
@@ -21,21 +29,53 @@
                     <span class="dropdown-icon" aria-hidden="true">▾</span>
                 </button>
                 <div class="dropdown-menu" role="menu">
-                    <a class="dropdown-item" href="https://flowtest.io" target="_blank" rel="noopener">
-                        <span class="item-title">Flowtest.io</span>
-                        <span class="item-description">Automated load testing from the hola.cloud ecosystem.</span>
+                    <a class="dropdown-item" href="/inceptiondb/">
+                        <span class="item-title">InceptionDB</span>
+                        <span class="item-description">Managed NoSQL document database.</span>
                     </a>
-                    <a class="dropdown-item" href="https://inceptiondb.hola.cloud" target="_blank" rel="noopener">
-                        <span class="item-title">InceptioDB</span>
-                        <span class="item-description">Fully managed database service within the hola.cloud ecosystem.</span>
+                    <a class="dropdown-item" href="/lambda/">
+                        <span class="item-title">Lambda</span>
+                        <span class="item-description">Serverless function execution platform.</span>
                     </a>
-                    <a class="dropdown-item" href="https://console.hola.cloud" target="_blank" rel="noopener">
-                        <span class="item-title">Public Cloud</span>
-                        <span class="item-description">Deploy and manage your workloads on the hola.cloud public platform.</span>
+                    <a class="dropdown-item" href="/files/">
+                        <span class="item-title">Files</span>
+                        <span class="item-description">Secure object storage service.</span>
                     </a>
-                    <a class="dropdown-item" href="https://gopress.org" target="_blank" rel="noopener">
-                        <span class="item-title">GoPress <span class="item-tag">Open Source</span></span>
-                        <span class="item-description">Open-source CMS built for the hola.cloud ecosystem.</span>
+                    <a class="dropdown-item" href="/config/">
+                        <span class="item-title">Config</span>
+                        <span class="item-description">Centralized configuration management.</span>
+                    </a>
+                    <a class="dropdown-item" href="/logs/">
+                        <span class="item-title">InstantLogs</span>
+                        <span class="item-description">Real-time log ingestion and streaming.</span>
+                    </a>
+                    <a class="dropdown-item" href="/queues/">
+                        <span class="item-title">Tailon</span>
+                        <span class="item-description">Message queue and async workload system.</span>
+                    </a>
+                    <a class="dropdown-item" href="/scheduler/">
+                        <span class="item-title">Scheduler</span>
+                        <span class="item-description">Distributed task scheduling service.</span>
+                    </a>
+                    <a class="dropdown-item" href="/kvnode/">
+                        <span class="item-title">KVNode</span>
+                        <span class="item-description">Replicated key-value store.</span>
+                    </a>
+                    <a class="dropdown-item" href="/console/">
+                        <span class="item-title">Console</span>
+                        <span class="item-description">Web-based management console.</span>
+                    </a>
+                    <a class="dropdown-item" href="/glue2/">
+                        <span class="item-title">Glue2</span>
+                        <span class="item-description">API Gateway and authentication layer.</span>
+                    </a>
+                    <a class="dropdown-item" href="/holamail/">
+                        <span class="item-title">Holamail</span>
+                        <span class="item-description">SMTP transactional email service.</span>
+                    </a>
+                    <a class="dropdown-item" href="/run/">
+                        <span class="item-title">Run</span>
+                        <span class="item-description">Container execution with built-in Docker registry.</span>
                     </a>
                 </div>
             </div>
@@ -55,50 +95,9 @@
 <div class="tree">
 
 
-
 </div>
 <div class="content">
     
-    <div class="index"><div class="index-h2">
-<a href="#%E4%B8%BA%E7%8E%B0%E4%BB%A3%E5%9B%A2%E9%98%9F%E6%89%93%E9%80%A0%E7%9A%84%E5%8D%95%E4%B8%80%E6%8E%A7%E5%88%B6%E5%B9%B3%E9%9D%A2">为现代团队打造的单一控制平面</a>
-</div>
-<div class="index-h3">
-<a href="#%E7%AB%AF%E5%88%B0%E7%AB%AF%E5%8F%AF%E8%A7%81%E6%80%A7">端到端可见性</a>
-</div>
-<div class="index-h3">
-<a href="#%E5%AE%89%E5%85%A8%E4%BA%A4%E4%BB%98%E6%B5%81%E6%B0%B4%E7%BA%BF">安全交付流水线</a>
-</div>
-<div class="index-h3">
-<a href="#%E5%BC%B9%E6%80%A7%E4%BA%91%E6%9C%8D%E5%8A%A1">弹性云服务</a>
-</div>
-<div class="index-h2">
-<a href="#%E4%B8%BA%E4%B8%8B%E4%B8%80%E9%A1%B9%E6%88%98%E7%95%A5%E8%AE%A1%E5%88%92%E9%87%8F%E8%BA%AB%E6%89%93%E9%80%A0">为下一项战略计划量身打造</a>
-</div>
-<div class="index-h3">
-<a href="#%E4%BD%8E%E9%A3%8E%E9%99%A9%E4%BA%91%E8%BF%81%E7%A7%BB">低风险云迁移</a>
-</div>
-<div class="index-h3">
-<a href="#%E5%A4%A7%E8%A7%84%E6%A8%A1%E5%B9%B3%E5%8F%B0%E5%B7%A5%E7%A8%8B">大规模平台工程</a>
-</div>
-<div class="index-h3">
-<a href="#%E6%95%B0%E6%8D%AE%E4%B8%8E%20AI%20%E5%9F%BA%E7%A1%80">数据与 AI 基础</a>
-</div>
-<div class="index-h2">
-<a href="#%E4%BB%8E%E6%9E%84%E6%83%B3%E5%88%B0%E4%B8%8A%E7%BA%BF%E7%9A%84%E4%BC%81%E4%B8%9A%E7%BA%A7%E5%90%88%E4%BD%9C">从构想到上线的企业级合作</a>
-</div>
-<div class="index-h3">
-<a href="#%E5%80%BC%E5%BE%97%E4%BF%A1%E8%B5%96%E7%9A%84%E4%B8%93%E5%AE%B6%E5%9B%A2%E9%98%9F">值得信赖的专家团队</a>
-</div>
-<div class="index-h3">
-<a href="#%E5%86%85%E5%BB%BA%E6%B2%BB%E7%90%86%E8%83%BD%E5%8A%9B">内建治理能力</a>
-</div>
-<div class="index-h3">
-<a href="#%E9%87%8F%E5%8C%96%E4%B8%9A%E5%8A%A1%E4%BB%B7%E5%80%BC">量化业务价值</a>
-</div>
-<div class="index-h2">
-<a href="#%E5%87%86%E5%A4%87%E5%A5%BD%E5%8A%A0%E9%80%9F%E4%BC%81%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%9B%BE%EF%BC%9F">准备好加速企业路线图？</a>
-</div>
-</div>
     <div class="document">
     <section class="hero">
     <div class="hero-inner">
@@ -214,6 +213,46 @@
 
 
     
+</div>
+<div class="index"><div class="index-h2">
+<a href="#%E4%B8%BA%E7%8E%B0%E4%BB%A3%E5%9B%A2%E9%98%9F%E6%89%93%E9%80%A0%E7%9A%84%E5%8D%95%E4%B8%80%E6%8E%A7%E5%88%B6%E5%B9%B3%E9%9D%A2">为现代团队打造的单一控制平面</a>
+</div>
+<div class="index-h3">
+<a href="#%E7%AB%AF%E5%88%B0%E7%AB%AF%E5%8F%AF%E8%A7%81%E6%80%A7">端到端可见性</a>
+</div>
+<div class="index-h3">
+<a href="#%E5%AE%89%E5%85%A8%E4%BA%A4%E4%BB%98%E6%B5%81%E6%B0%B4%E7%BA%BF">安全交付流水线</a>
+</div>
+<div class="index-h3">
+<a href="#%E5%BC%B9%E6%80%A7%E4%BA%91%E6%9C%8D%E5%8A%A1">弹性云服务</a>
+</div>
+<div class="index-h2">
+<a href="#%E4%B8%BA%E4%B8%8B%E4%B8%80%E9%A1%B9%E6%88%98%E7%95%A5%E8%AE%A1%E5%88%92%E9%87%8F%E8%BA%AB%E6%89%93%E9%80%A0">为下一项战略计划量身打造</a>
+</div>
+<div class="index-h3">
+<a href="#%E4%BD%8E%E9%A3%8E%E9%99%A9%E4%BA%91%E8%BF%81%E7%A7%BB">低风险云迁移</a>
+</div>
+<div class="index-h3">
+<a href="#%E5%A4%A7%E8%A7%84%E6%A8%A1%E5%B9%B3%E5%8F%B0%E5%B7%A5%E7%A8%8B">大规模平台工程</a>
+</div>
+<div class="index-h3">
+<a href="#%E6%95%B0%E6%8D%AE%E4%B8%8E%20AI%20%E5%9F%BA%E7%A1%80">数据与 AI 基础</a>
+</div>
+<div class="index-h2">
+<a href="#%E4%BB%8E%E6%9E%84%E6%83%B3%E5%88%B0%E4%B8%8A%E7%BA%BF%E7%9A%84%E4%BC%81%E4%B8%9A%E7%BA%A7%E5%90%88%E4%BD%9C">从构想到上线的企业级合作</a>
+</div>
+<div class="index-h3">
+<a href="#%E5%80%BC%E5%BE%97%E4%BF%A1%E8%B5%96%E7%9A%84%E4%B8%93%E5%AE%B6%E5%9B%A2%E9%98%9F">值得信赖的专家团队</a>
+</div>
+<div class="index-h3">
+<a href="#%E5%86%85%E5%BB%BA%E6%B2%BB%E7%90%86%E8%83%BD%E5%8A%9B">内建治理能力</a>
+</div>
+<div class="index-h3">
+<a href="#%E9%87%8F%E5%8C%96%E4%B8%9A%E5%8A%A1%E4%BB%B7%E5%80%BC">量化业务价值</a>
+</div>
+<div class="index-h2">
+<a href="#%E5%87%86%E5%A4%87%E5%A5%BD%E5%8A%A0%E9%80%9F%E4%BC%81%E4%B8%9A%E8%B7%AF%E7%BA%BF%E5%9B%BE%EF%BC%9F">准备好加速企业路线图？</a>
+</div>
 </div>
 </div>
 </div>

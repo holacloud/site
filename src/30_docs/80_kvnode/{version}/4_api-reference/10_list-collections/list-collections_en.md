@@ -1,4 +1,4 @@
-# GET /v1/collections
+# List Collections
 
 Returns a list of all collections in the KVNode.
 

@@ -1,0 +1,79 @@
+<section class="hero" style="background: radial-gradient(circle at top right, rgba(244, 63, 94, 0.20), transparent 45%),
+    radial-gradient(circle at top left, rgba(244, 63, 94, 0.30), transparent 55%),
+    #0f172a;">
+    <div class="hero-inner">
+        <div class="hero-eyebrow">🔗 Glue2</div>
+        <h1>API 网关与认证层</h1>
+        <p>Glue2 is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <div class="hero-actions">
+            <a class="button button-action" href="https://console.hola.cloud/">开始使用</a>
+            <a class="button button-secondary" href="/docs/glue2/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">文档中心</a>
+        </div>
+    </div>
+</section>
+
+<div class="landing">
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Glue2</div>
+            <h2>核心功能</h2>
+            <p>Everything you need to build, deploy, and scale with Glue2 on HolaCloud.</p>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3>速率限制</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">通过可配置的客户端速率限制保护 API。</p>
+          </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3>JWT 验证</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">自动令牌验证和用户上下文注入。</p>
+          </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3>API 组合</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">将多个后端服务组合到单个 API 端点。</p>
+          </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Quick start</div>
+            <h2>快速开始</h2>
+            <p>Get started with Glue2 in seconds using the API.</p>
+        </div>
+        <pre><code>curl -X POST https://api.hola.cloud/v1/routes \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{"path": "/api/v1/users", "upstream": "https://users.internal:8080", "methods": ["GET"]}'</code></pre>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Use cases</div>
+            <h2>常见用例</h2>
+        </div>
+        <div class="solutions-grid" style="display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+            <div class="solution-card" style="background: linear-gradient(160deg, rgba(244, 63, 94, 0.1), rgba(244, 63, 94, 0.04)); border: 1px solid rgba(244, 63, 94, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">微服务编排</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Glue2 on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(244, 63, 94, 0.1), rgba(244, 63, 94, 0.04)); border: 1px solid rgba(244, 63, 94, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">数据管道自动化</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Glue2 on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(244, 63, 94, 0.1), rgba(244, 63, 94, 0.04)); border: 1px solid rgba(244, 63, 94, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">事件驱动架构</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Glue2 on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(244, 63, 94, 0.1), rgba(244, 63, 94, 0.04)); border: 1px solid rgba(244, 63, 94, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">后端 API 开发</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Glue2 on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 48px;">
+        <div class="cta-panel">
+            <h2>Ready to get started?</h2>
+            <p>Explore the documentation or launch the console to start building with Glue2.</p>
+            <div class="cta-actions">
+                <a class="button button-action" href="https://console.hola.cloud/">控制台</a>
+                <a class="button button-secondary" href="/docs/glue2/">文档中心</a>
+            </div>
+        </div>
+    </section>
+</div>

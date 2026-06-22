@@ -1,5 +1,5 @@
 
-# GET /v1/loggers/{id}/stats
+# Logger Stats
 
 Obtiene estadísticas de un logger, incluyendo el total de eventos recibidos y el uso de almacenamiento.
 

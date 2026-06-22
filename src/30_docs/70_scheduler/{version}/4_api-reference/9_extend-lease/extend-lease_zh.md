@@ -1,4 +1,4 @@
-# POST /schedulers/{id}/tasks/{task}/extend
+# 延长Lease
 
 延长当前预留任务的租约。
 

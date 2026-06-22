@@ -1,4 +1,4 @@
-# DELETE /v0/configs/{id}
+# 删除配置
 
 按 ID 删除配置。此端点为公开访问（管理 API）。
 

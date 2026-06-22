@@ -1,4 +1,4 @@
-# Primeros pasos con Run
+# Primeros Pasos
 
 Run es un servicio de ejecución de contenedores con una API compatible con Docker Registry v2 incorporada. Permite desplegar, ejecutar y gestionar imágenes de contenedores con variables de entorno y volúmenes.
 

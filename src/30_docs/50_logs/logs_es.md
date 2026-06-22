@@ -1,4 +1,4 @@
-# InstantLogs
+# Logs
 
 InstantLogs es un servicio de agregación y transmisión de logs en tiempo real dentro del ecosistema Hola.Cloud. Proporciona ingesta de logs multi-tenant, filtrado basado en expresiones regulares, transmisión en vivo, exportación en NDJSON y almacenamiento persistente, todo con baja latencia.
 

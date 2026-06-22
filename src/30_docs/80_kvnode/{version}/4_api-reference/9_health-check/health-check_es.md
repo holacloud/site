@@ -1,4 +1,4 @@
-# GET /healthz
+# Salud Check
 
 Devuelve el estado de salud del nodo KVNode.
 

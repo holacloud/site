@@ -1,5 +1,5 @@
 
-# GET /api/v0/lambdas
+# List Lambdas
 
 Lista todas las funciones lambda pertenecientes a la cuenta autenticada.
 

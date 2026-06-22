@@ -1,4 +1,4 @@
-# DELETE /v1/collections/{col}/keys/*
+# Delete Key
 
 Deletes a key from a collection. The wildcard `*` in the path is replaced with the key name.
 

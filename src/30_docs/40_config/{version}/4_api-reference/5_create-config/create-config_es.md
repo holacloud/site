@@ -1,4 +1,4 @@
-# POST /v0/configs
+# Crear Config
 
 Crear una nueva configuración. Este endpoint es de acceso público (API de administración).
 

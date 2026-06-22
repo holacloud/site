@@ -1,5 +1,5 @@
 
-# DELETE /v1/queues/{id}
+# Delete Queue
 
 永久删除队列及其所有待处理消息。
 

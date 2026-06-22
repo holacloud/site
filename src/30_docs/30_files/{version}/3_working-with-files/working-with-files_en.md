@@ -1,4 +1,4 @@
-# Working with Files
+# Working With Files
 
 This guide covers file operations in HolaCloud Files: uploading, downloading, listing, retrieving metadata, and deleting files.
 

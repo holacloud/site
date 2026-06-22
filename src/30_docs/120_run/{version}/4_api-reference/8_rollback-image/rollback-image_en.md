@@ -1,4 +1,4 @@
-# POST /api/console/rollback
+# Rollback Image
 
 Rolls back a container to a previous image version.
 

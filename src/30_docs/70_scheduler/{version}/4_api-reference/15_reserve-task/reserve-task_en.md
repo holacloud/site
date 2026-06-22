@@ -1,4 +1,4 @@
-# POST /schedulers/{id}/tasks/reserve
+# Reserve Task
 
 Reserves one available task for processing. The task enters a lease period defined by `worktime`.
 

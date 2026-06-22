@@ -1,4 +1,4 @@
-# GET /schedulers/{id}/tasks/stream
+# Task Stream
 
 Streams task events in real time using Server-Sent Events (SSE).
 

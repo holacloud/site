@@ -1,4 +1,4 @@
-# POST /api/console/stop
+# Detener Contenedor
 
 Detiene un contenedor en ejecución.
 

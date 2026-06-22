@@ -1,4 +1,4 @@
-# KVNode
+# Kvnode
 
 KVNode es un almacén clave-valor distribuido y replicado, diseñado para alta disponibilidad y acceso de baja latencia. Forma parte del ecosistema HolaCloud y expone una API HTTP simple para almacenar y recuperar valores JSON.
 

@@ -1,5 +1,5 @@
 
-# GET /v1/databases
+# List Databases
 
 列出已认证项目可访问的所有数据库。
 

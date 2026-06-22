@@ -1,4 +1,4 @@
-# KVNode
+# Kvnode
 
 KVNode 是一个复制式分布式键值存储系统，专为高可用性和低延迟访问而设计。它是 HolaCloud 生态系统的一部分，提供简单的 HTTP API 用于存储和检索 JSON 值。
 

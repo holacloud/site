@@ -1,4 +1,4 @@
-# GET /v1/buckets/{id}/files/*
+# Descargar Archivo
 
 Descargar un archivo de un bucket. La ruta del archivo se especifica después de `/files/` en la URL.
 

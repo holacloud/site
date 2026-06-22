@@ -1,5 +1,5 @@
 
-# DELETE /v1/queues/{id}
+# Delete Queue
 
 Elimina una cola y todos sus mensajes pendientes de forma permanente.
 

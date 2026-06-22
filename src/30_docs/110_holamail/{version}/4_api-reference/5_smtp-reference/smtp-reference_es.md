@@ -1,4 +1,4 @@
-# Referencia del Protocolo SMTP
+# SMTP Reference
 
 Holamail implementa el protocolo SMTP estándar para el envío de correos electrónicos transaccionales. Los clientes se conectan al puerto 2525 y emiten comandos SMTP.
 

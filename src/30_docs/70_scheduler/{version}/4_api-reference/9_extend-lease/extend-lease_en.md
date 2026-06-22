@@ -1,4 +1,4 @@
-# POST /schedulers/{id}/tasks/{task}/extend
+# Extend Lease
 
 Extends the lease on a currently reserved task.
 

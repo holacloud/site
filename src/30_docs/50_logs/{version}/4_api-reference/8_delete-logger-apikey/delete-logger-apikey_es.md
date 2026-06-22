@@ -1,5 +1,5 @@
 
-# DELETE /v1/loggers/{id}/apiKeys/{key}
+# Delete Logger API Key
 
 Elimina una clave API de un logger.
 

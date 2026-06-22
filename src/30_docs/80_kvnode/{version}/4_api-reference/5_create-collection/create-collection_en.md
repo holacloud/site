@@ -1,4 +1,4 @@
-# POST /v1/collections
+# Create Collection
 
 Creates a new collection in the KVNode.
 

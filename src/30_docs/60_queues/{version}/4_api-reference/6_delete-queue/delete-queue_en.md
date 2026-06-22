@@ -1,5 +1,5 @@
 
-# DELETE /v1/queues/{id}
+# Delete Queue
 
 Delete a queue and all its pending messages permanently.
 

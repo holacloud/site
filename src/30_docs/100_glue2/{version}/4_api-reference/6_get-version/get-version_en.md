@@ -1,4 +1,4 @@
-# GET /version
+# Get Version
 
 Returns the current version of the Glue2 gateway.
 

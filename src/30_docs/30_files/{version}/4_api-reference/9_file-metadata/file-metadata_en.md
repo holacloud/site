@@ -1,4 +1,4 @@
-# HEAD /v1/buckets/{id}/files/*
+# File Metadata
 
 Retrieve metadata for a file without downloading its contents. The file path is specified after `/files/` in the URL.
 

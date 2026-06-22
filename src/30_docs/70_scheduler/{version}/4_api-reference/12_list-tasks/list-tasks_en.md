@@ -1,4 +1,4 @@
-# GET /schedulers/{id}/tasks
+# List Tasks
 
 Lists tasks for a scheduler, with separate pagination for scheduled and in-flight tasks.
 

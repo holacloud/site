@@ -1,4 +1,4 @@
-# PUT /schedulers/{id}
+# Update Scheduler
 
 Replaces the configuration of an existing scheduler.
 

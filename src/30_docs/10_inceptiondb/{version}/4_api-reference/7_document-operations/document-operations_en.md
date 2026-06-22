@@ -1,5 +1,5 @@
 
-# POST /v1/databases/{id}/collections/{col}
+# Document Operations
 
 Performs document operations on a collection. The specific operation is determined by a colon-suffixed action on the collection name.
 

@@ -1,4 +1,4 @@
-# SDK Quick Reference
+# Sdk Reference
 
 KVNode provides official SDKs for **Go**, **Python**, **Java**, **JavaScript**, **Kotlin**, **PHP**, and **Node.js**. All SDKs target the same REST API at `https://api.hola.cloud`.
 

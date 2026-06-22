@@ -1,4 +1,4 @@
-# GET /v0/virtualhosts
+# List Virtualhosts
 
 Returns the current virtual host routing table.
 

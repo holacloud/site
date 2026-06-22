@@ -1,4 +1,4 @@
-# Colecciones y Claves
+# Colecciones Y Claves
 
 KVNode organiza los datos en **colecciones**, cada una contiene pares **clave-valor**. Este documento cubre la gestión de colecciones y las operaciones con claves en detalle.
 

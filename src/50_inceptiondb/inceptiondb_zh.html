@@ -1,0 +1,89 @@
+<section class="hero" style="background: radial-gradient(circle at top right, rgba(14, 165, 233, 0.20), transparent 45%),
+    radial-gradient(circle at top left, rgba(14, 165, 233, 0.30), transparent 55%),
+    #0f172a;">
+    <div class="hero-inner">
+        <div class="hero-eyebrow">🗄️ InceptionDB</div>
+        <h1>托管 NoSQL 文档数据库</h1>
+        <p>InceptionDB is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <div class="hero-actions">
+            <a class="button button-action" href="https://console.hola.cloud/">开始使用</a>
+            <a class="button button-secondary" href="/docs/inceptiondb/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">文档中心</a>
+        </div>
+    </div>
+</section>
+
+<div class="landing">
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">InceptionDB</div>
+            <h2>核心功能</h2>
+            <p>Everything you need to build, deploy, and scale with InceptionDB on HolaCloud.</p>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3>灵活的文档模型</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">使用动态模式存储和查询 JSON 文档。开箱即用的集合、索引和聚合功能。</p>
+          </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3>高可用性</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">跨可用区自动复制，毫秒级故障转移，强一致性。</p>
+          </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3>内置安全</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">传输中和静态加密，基于角色的访问控制，以及合规审计日志。</p>
+          </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Quick start</div>
+            <h2>快速开始</h2>
+            <p>Get started with InceptionDB in seconds using the API.</p>
+        </div>
+        <pre><code>curl -X POST https://api.hola.cloud/v1/databases \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{"name": "mydb"}'
+
+# 创建集合
+curl -X POST https://api.hola.cloud/v1/databases/mydb/collections \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{"name": "users"}'
+
+# 插入文档
+curl -X POST https://api.hola.cloud/v1/databases/mydb/collections/users \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{"name": "Alice", "email": "alice@example.com"}'</code></pre>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Use cases</div>
+            <h2>常见用例</h2>
+        </div>
+        <div class="solutions-grid" style="display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+            <div class="solution-card" style="background: linear-gradient(160deg, rgba(14, 165, 233, 0.1), rgba(14, 165, 233, 0.04)); border: 1px solid rgba(14, 165, 233, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">内容管理系统</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with InceptionDB on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(14, 165, 233, 0.1), rgba(14, 165, 233, 0.04)); border: 1px solid rgba(14, 165, 233, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">实时分析仪表盘</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with InceptionDB on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(14, 165, 233, 0.1), rgba(14, 165, 233, 0.04)); border: 1px solid rgba(14, 165, 233, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">IoT 数据采集</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with InceptionDB on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(14, 165, 233, 0.1), rgba(14, 165, 233, 0.04)); border: 1px solid rgba(14, 165, 233, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">用户档案存储</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with InceptionDB on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 48px;">
+        <div class="cta-panel">
+            <h2>Ready to get started?</h2>
+            <p>Explore the documentation or launch the console to start building with InceptionDB.</p>
+            <div class="cta-actions">
+                <a class="button button-action" href="https://console.hola.cloud/">控制台</a>
+                <a class="button button-secondary" href="/docs/inceptiondb/">文档中心</a>
+            </div>
+        </div>
+    </section>
+</div>

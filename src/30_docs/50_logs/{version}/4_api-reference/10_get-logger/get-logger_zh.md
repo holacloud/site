@@ -1,5 +1,5 @@
 
-# GET /v1/loggers/{id}
+# Get Logger
 
 根据 ID 获取特定日志记录器的详细信息。
 

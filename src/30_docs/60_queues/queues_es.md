@@ -1,4 +1,4 @@
-# Tailon Colas
+# Queues
 
 Tailon es un servicio ligero de colas de mensajes en memoria que forma parte del ecosistema HolaCloud. Diseñado para la velocidad y la simplicidad, Tailon permite la comunicación asíncrona entre microservicios, la distribución de eventos y el almacenamiento en búfer de cargas de trabajo sin la sobrecarga de un gestor de mensajes completo.
 

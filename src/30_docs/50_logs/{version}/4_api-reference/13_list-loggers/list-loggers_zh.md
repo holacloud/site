@@ -1,5 +1,5 @@
 
-# GET /v1/loggers
+# List Loggers
 
 列出与您账户关联的所有日志记录器。
 

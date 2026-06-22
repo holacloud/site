@@ -1,4 +1,4 @@
-# DELETE /v1/collections/{col}/keys/*
+# 删除键
 
 从集合中删除一个键。路径中的通配符 `*` 将被替换为键名。
 

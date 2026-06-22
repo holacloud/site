@@ -1,4 +1,4 @@
-# Manejando colecciones
+# Manejando Colecciones
 
 ## Crear una Colección
 

@@ -1,4 +1,4 @@
-# Ciclo de Vida de las Tareas
+# Ciclo De Vida Tareas
 
 Este documento detalla el ciclo de vida completo de una tarea: encolado, listado, reserva, extensión de concesión, confirmación, reprogramación y streaming en tiempo real mediante SSE.
 

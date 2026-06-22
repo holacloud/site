@@ -1,5 +1,5 @@
 
-# POST /v1/loggers/{id}/apiKeys
+# Create Logger API Key
 
 为日志记录器创建新的 API 密钥。API 密钥允许对日志记录器进行管理访问。
 

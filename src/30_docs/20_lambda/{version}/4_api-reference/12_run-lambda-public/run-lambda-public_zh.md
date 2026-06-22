@@ -1,5 +1,5 @@
 
-# POST /run/{id}
+# Run Lambda (Public)
 
 公开调用 Lambda 函数，无需身份验证。
 

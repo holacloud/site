@@ -1,5 +1,5 @@
 
-# GET /v1/queues
+# List Queues
 
 列出与您账户关联的所有队列。
 

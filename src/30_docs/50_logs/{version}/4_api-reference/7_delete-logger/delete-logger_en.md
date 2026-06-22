@@ -1,5 +1,5 @@
 
-# DELETE /v1/loggers/{id}
+# Delete Logger
 
 Delete a logger and all its associated log entries permanently.
 

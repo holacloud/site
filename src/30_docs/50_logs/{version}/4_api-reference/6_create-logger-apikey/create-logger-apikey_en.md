@@ -1,5 +1,5 @@
 
-# POST /v1/loggers/{id}/apiKeys
+# Create Logger API Key
 
 Create a new API key for a logger. API keys allow management access to the logger.
 

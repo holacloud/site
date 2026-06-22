@@ -1,4 +1,4 @@
-# Getting Started with KVNode
+# Getting Started
 
 This guide walks you through the basic operations of KVNode: health checks, collection management, and key-value operations.
 

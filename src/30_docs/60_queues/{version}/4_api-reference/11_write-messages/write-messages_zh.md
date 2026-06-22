@@ -1,5 +1,5 @@
 
-# POST /v1/queues/{id}
+# Write Messages
 
 向队列写入消息。接受单个 JSON 对象或 JSON 对象流（NDJSON）。
 

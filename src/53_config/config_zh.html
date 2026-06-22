@@ -1,0 +1,79 @@
+<section class="hero" style="background: radial-gradient(circle at top right, rgba(139, 92, 246, 0.20), transparent 45%),
+    radial-gradient(circle at top left, rgba(139, 92, 246, 0.30), transparent 55%),
+    #0f172a;">
+    <div class="hero-inner">
+        <div class="hero-eyebrow">⚙️ Config</div>
+        <h1>集中化配置管理</h1>
+        <p>Config is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <div class="hero-actions">
+            <a class="button button-action" href="https://console.hola.cloud/">开始使用</a>
+            <a class="button button-secondary" href="/docs/config/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">文档中心</a>
+        </div>
+    </div>
+</section>
+
+<div class="landing">
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Config</div>
+            <h2>核心功能</h2>
+            <p>Everything you need to build, deploy, and scale with Config on HolaCloud.</p>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3>实时更新</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">即时推送配置变更，无需重新部署应用。</p>
+          </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3>环境隔离</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">从单一控制面管理开发、预演和生产环境配置。</p>
+          </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3>审计追踪</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">追踪每一次变更，拥有完整的版本历史和基于角色的访问控制。</p>
+          </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Quick start</div>
+            <h2>快速开始</h2>
+            <p>Get started with Config in seconds using the API.</p>
+        </div>
+        <pre><code>curl -X POST https://api.hola.cloud/v1/configs \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{"key": "database.url", "value": "postgres://prod:5432/db", "env": "production"}'</code></pre>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Use cases</div>
+            <h2>常见用例</h2>
+        </div>
+        <div class="solutions-grid" style="display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+            <div class="solution-card" style="background: linear-gradient(160deg, rgba(139, 92, 246, 0.1), rgba(139, 92, 246, 0.04)); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">微服务编排</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Config on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(139, 92, 246, 0.1), rgba(139, 92, 246, 0.04)); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">数据管道自动化</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Config on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(139, 92, 246, 0.1), rgba(139, 92, 246, 0.04)); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">事件驱动架构</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Config on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(139, 92, 246, 0.1), rgba(139, 92, 246, 0.04)); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">后端 API 开发</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Config on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 48px;">
+        <div class="cta-panel">
+            <h2>Ready to get started?</h2>
+            <p>Explore the documentation or launch the console to start building with Config.</p>
+            <div class="cta-actions">
+                <a class="button button-action" href="https://console.hola.cloud/">控制台</a>
+                <a class="button button-secondary" href="/docs/config/">文档中心</a>
+            </div>
+        </div>
+    </section>
+</div>

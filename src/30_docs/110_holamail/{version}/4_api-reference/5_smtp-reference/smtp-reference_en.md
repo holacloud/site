@@ -1,4 +1,4 @@
-# SMTP Protocol Reference
+# Smtp Reference
 
 Holamail implements the standard SMTP protocol for sending transactional emails. Clients connect on port 2525 and issue SMTP commands.
 

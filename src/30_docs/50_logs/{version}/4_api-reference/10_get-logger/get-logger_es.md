@@ -1,5 +1,5 @@
 
-# GET /v1/loggers/{id}
+# Get Logger
 
 Obtiene los detalles de un logger específico por su ID.
 

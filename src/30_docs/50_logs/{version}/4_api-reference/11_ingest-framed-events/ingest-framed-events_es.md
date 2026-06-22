@@ -1,5 +1,5 @@
 
-# POST /v1/ingest/events
+# Ingest Framed Events
 
 Ingresa eventos enmarcados usando el protocolo logframe. Este endpoint acepta un protocolo binario con prefijos de longitud de metadatos y mensaje.
 

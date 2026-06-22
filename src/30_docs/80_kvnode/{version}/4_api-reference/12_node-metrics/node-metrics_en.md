@@ -1,4 +1,4 @@
-# GET /v1/metrics
+# Node Metrics
 
 Returns operational metrics for the KVNode, including write and read counts.
 

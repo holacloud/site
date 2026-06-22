@@ -1,5 +1,5 @@
 
-# GET /api/v0/lambdas/{id}
+# Get Lambda
 
 根据 ID 获取特定 Lambda 函数的详细信息。
 

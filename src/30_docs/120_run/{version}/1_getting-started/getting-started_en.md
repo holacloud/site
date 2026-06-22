@@ -1,4 +1,4 @@
-# Getting Started with Run
+# Getting Started
 
 Run is a container execution service with a built-in Docker Registry v2 compatible API. It allows you to deploy, run, and manage container images with environment variables and volumes.
 

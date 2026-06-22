@@ -1,0 +1,79 @@
+<section class="hero" style="background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.20), transparent 45%),
+    radial-gradient(circle at top left, rgba(16, 185, 129, 0.30), transparent 55%),
+    #0f172a;">
+    <div class="hero-inner">
+        <div class="hero-eyebrow">📁 Files</div>
+        <h1>安全对象存储服务</h1>
+        <p>Files is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <div class="hero-actions">
+            <a class="button button-action" href="https://console.hola.cloud/">开始使用</a>
+            <a class="button button-secondary" href="/docs/files/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">文档中心</a>
+        </div>
+    </div>
+</section>
+
+<div class="landing">
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Files</div>
+            <h2>核心功能</h2>
+            <p>Everything you need to build, deploy, and scale with Files on HolaCloud.</p>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3>可扩展存储</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">存储和检索任意量级数据，全球低延迟访问。</p>
+          </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3>细粒度权限</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">基于存储桶和对象的访问控制，支持 API 密钥认证。</p>
+          </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3>版本与保留</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">保留文件历史记录，设置自动保留策略以满足合规要求。</p>
+          </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Quick start</div>
+            <h2>快速开始</h2>
+            <p>Get started with Files in seconds using the API.</p>
+        </div>
+        <pre><code>curl -X POST https://api.hola.cloud/v1/buckets \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{"name": "my-bucket", "region": "us-east-1"}'</code></pre>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Use cases</div>
+            <h2>常见用例</h2>
+        </div>
+        <div class="solutions-grid" style="display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+            <div class="solution-card" style="background: linear-gradient(160deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.04)); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">微服务编排</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Files on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.04)); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">数据管道自动化</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Files on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.04)); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">事件驱动架构</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Files on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.04)); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">后端 API 开发</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Files on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 48px;">
+        <div class="cta-panel">
+            <h2>Ready to get started?</h2>
+            <p>Explore the documentation or launch the console to start building with Files.</p>
+            <div class="cta-actions">
+                <a class="button button-action" href="https://console.hola.cloud/">控制台</a>
+                <a class="button button-secondary" href="/docs/files/">文档中心</a>
+            </div>
+        </div>
+    </section>
+</div>

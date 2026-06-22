@@ -1,4 +1,4 @@
-# GET /version
+# Obtener Versión
 
 Devuelve la versión actual del servicio Run.
 

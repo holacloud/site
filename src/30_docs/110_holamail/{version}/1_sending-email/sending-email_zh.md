@@ -1,4 +1,4 @@
-# 使用Holamail发送邮件
+# SendingEmail
 
 Holamail 是一个轻量级的 SMTP 服务器，用于发送事务性电子邮件。它实现了标准的 SMTP 协议（HELO/EHLO、MAIL FROM、RCPT TO、DATA、QUIT），监听 TCP 端口 2525，无需 TLS。
 

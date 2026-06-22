@@ -1,5 +1,5 @@
 
-# POST /api/v0/lambdas
+# Create Lambda
 
 Creates a new lambda function with the specified code and runtime configuration.
 

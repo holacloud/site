@@ -1,4 +1,4 @@
-# Sending Email with Holamail
+# Sending Email
 
 Holamail is a lightweight SMTP server for sending transactional emails. It implements raw SMTP protocol (HELO/EHLO, MAIL FROM, RCPT TO, DATA, QUIT) and listens on TCP port 2525. No TLS is required.
 

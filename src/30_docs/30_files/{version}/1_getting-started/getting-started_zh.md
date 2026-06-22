@@ -1,4 +1,4 @@
-# 文件服务快速入门
+# GettingStarted
 
 本指南将引导您完成 HolaCloud Files 的基本操作：创建存储桶、上传文件、列出内容、下载和删除。
 

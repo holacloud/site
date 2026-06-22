@@ -1,4 +1,4 @@
-# DELETE /schedulers/{id}
+# Eliminar Scheduler
 
 Elimina un scheduler y todas sus tareas.
 

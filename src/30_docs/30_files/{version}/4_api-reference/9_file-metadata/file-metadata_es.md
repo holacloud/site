@@ -1,4 +1,4 @@
-# HEAD /v1/buckets/{id}/files/*
+# Archivo Metadata
 
 Obtener los metadatos de un archivo sin descargar su contenido. La ruta del archivo se especifica después de `/files/` en la URL.
 

@@ -1,4 +1,4 @@
-# GET /v1/collections/{col}/keys
+# 列出Keys
 
 列出集合中的键，支持分页和前缀过滤。
 

@@ -1,5 +1,5 @@
 
-# POST /v1/queues
+# Create Queue
 
 Create a new queue.
 

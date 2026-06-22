@@ -1,4 +1,4 @@
-# PATCH /v1/config
+# Update User Config
 
 Update the current user's configuration. Uses deep merge semantics: only the fields provided in the request body are modified. This endpoint requires API key authentication.
 

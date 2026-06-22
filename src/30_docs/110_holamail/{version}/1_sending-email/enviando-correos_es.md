@@ -1,4 +1,4 @@
-# Enviando Correos con Holamail
+# Enviando Correos
 
 Holamail es un servidor SMTP ligero para enviar correos electrónicos transaccionales. Implementa el protocolo SMTP estándar (HELO/EHLO, MAIL FROM, RCPT TO, DATA, QUIT) y escucha en el puerto TCP 2525. No requiere TLS.
 

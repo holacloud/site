@@ -1,5 +1,5 @@
 
-# POST /v1/queues
+# Create Queue
 
 Crea una nueva cola.
 

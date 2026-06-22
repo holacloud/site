@@ -1,5 +1,5 @@
 
-# GET /v1/queues/{id}
+# Get Queue
 
 Get details of a specific queue by its ID.
 

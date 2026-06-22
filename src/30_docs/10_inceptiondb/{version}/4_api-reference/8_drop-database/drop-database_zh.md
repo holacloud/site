@@ -1,5 +1,5 @@
 
-# DELETE /v1/databases/{id}
+# Drop Database
 
 永久删除数据库及其所有集合和文档。此操作不可撤销。
 

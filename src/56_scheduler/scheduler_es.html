@@ -1,0 +1,79 @@
+<section class="hero" style="background: radial-gradient(circle at top right, rgba(236, 72, 153, 0.20), transparent 45%),
+    radial-gradient(circle at top left, rgba(236, 72, 153, 0.30), transparent 55%),
+    #0f172a;">
+    <div class="hero-inner">
+        <div class="hero-eyebrow">⏰ Scheduler</div>
+        <h1>Servicio de planificación de tareas distribuidas</h1>
+        <p>Scheduler is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <div class="hero-actions">
+            <a class="button button-action" href="https://console.hola.cloud/">Comenzar</a>
+            <a class="button button-secondary" href="/docs/scheduler/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">Documentación</a>
+        </div>
+    </div>
+</section>
+
+<div class="landing">
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Scheduler</div>
+            <h2>Funcionalidades</h2>
+            <p>Everything you need to build, deploy, and scale with Scheduler on HolaCloud.</p>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3>Tareas cron y únicas</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Programa trabajos cron recurrentes o ejecuciones únicas con retardo.</p>
+          </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3>Reintentos y alertas</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Reintento automático en fallos con políticas de escalado configurables.</p>
+          </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3>Ejecución distribuida</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Las tareas se ejecutan en un clúster para alta disponibilidad y tolerancia a fallos.</p>
+          </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Quick start</div>
+            <h2>Inicio rápido</h2>
+            <p>Get started with Scheduler in seconds using the API.</p>
+        </div>
+        <pre><code>curl -X POST https://api.hola.cloud/v1/schedulers \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{"name": "nightly-backup", "schedule": "0 2 * * *", "action": {"type": "webhook", "url": "https://myapp.com/backup"}}'</code></pre>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Use cases</div>
+            <h2>Casos de uso</h2>
+        </div>
+        <div class="solutions-grid" style="display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+            <div class="solution-card" style="background: linear-gradient(160deg, rgba(236, 72, 153, 0.1), rgba(236, 72, 153, 0.04)); border: 1px solid rgba(236, 72, 153, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">Orquestación de microservicios</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Scheduler on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(236, 72, 153, 0.1), rgba(236, 72, 153, 0.04)); border: 1px solid rgba(236, 72, 153, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">Automatización de pipelines</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Scheduler on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(236, 72, 153, 0.1), rgba(236, 72, 153, 0.04)); border: 1px solid rgba(236, 72, 153, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">Arquitecturas basadas en eventos</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Scheduler on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(236, 72, 153, 0.1), rgba(236, 72, 153, 0.04)); border: 1px solid rgba(236, 72, 153, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">Desarrollo de APIs backend</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Scheduler on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 48px;">
+        <div class="cta-panel">
+            <h2>Ready to get started?</h2>
+            <p>Explore the documentation or launch the console to start building with Scheduler.</p>
+            <div class="cta-actions">
+                <a class="button button-action" href="https://console.hola.cloud/">Consola</a>
+                <a class="button button-secondary" href="/docs/scheduler/">Documentación</a>
+            </div>
+        </div>
+    </section>
+</div>

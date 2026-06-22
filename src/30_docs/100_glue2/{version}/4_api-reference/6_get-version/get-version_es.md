@@ -1,4 +1,4 @@
-# GET /version
+# Obtener Versión
 
 Devuelve la versión actual de la puerta de enlace Glue2.
 

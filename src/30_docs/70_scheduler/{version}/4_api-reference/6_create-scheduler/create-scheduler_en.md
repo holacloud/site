@@ -1,4 +1,4 @@
-# POST /schedulers
+# Create Scheduler
 
 Creates a new scheduler.
 

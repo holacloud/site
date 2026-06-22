@@ -1,5 +1,5 @@
 
-# GET /mux/{owner}/*
+# Mux Router
 
 Routes incoming requests to the specified owner's lambda functions based on the sub-path. This is a public endpoint, no authentication required.
 

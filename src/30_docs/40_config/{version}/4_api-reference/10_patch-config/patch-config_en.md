@@ -1,4 +1,4 @@
-# PATCH /v0/configs/{id}
+# Patch Config
 
 Partially update a configuration. Only the fields provided in the request body are modified. This endpoint is publicly accessible (admin API).
 

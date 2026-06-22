@@ -1,5 +1,5 @@
 
-# GET /v1/loggers/{id}/filter
+# Filter Logs
 
 Stream and filter log entries in real time using a regex pattern.
 

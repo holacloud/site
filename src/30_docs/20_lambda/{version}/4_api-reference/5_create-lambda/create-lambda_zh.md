@@ -1,5 +1,5 @@
 
-# POST /api/v0/lambdas
+# Create Lambda
 
 使用指定的代码和运行时配置创建新的 Lambda 函数。
 

@@ -1,5 +1,5 @@
 
-# GET /v1/queues/{id}
+# Read Messages
 
 Lee mensajes de una cola usando long-poll. La solicitud se bloquea hasta que al menos un mensaje esté disponible o se alcance el tiempo de espera del servidor.
 

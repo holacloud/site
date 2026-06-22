@@ -1,4 +1,4 @@
-# POST /schedulers/{id}/tasks/{task}/extend
+# Extender Lease
 
 Extiende la concesión de una tarea actualmente reservada.
 

@@ -1,4 +1,4 @@
-# GET /schedulers/{id}/health
+# Scheduler Health
 
 Returns the health status of a scheduler.
 

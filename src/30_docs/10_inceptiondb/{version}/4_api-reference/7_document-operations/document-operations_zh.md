@@ -1,5 +1,5 @@
 
-# POST /v1/databases/{id}/collections/{col}
+# Document Operations
 
 对集合执行文档操作。具体操作由集合名称后的冒号后缀决定。
 

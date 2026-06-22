@@ -1,4 +1,4 @@
-# POST /v1/collections
+# 创建集合
 
 在 KVNode 中创建一个新的集合。
 

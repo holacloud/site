@@ -1,5 +1,5 @@
 
-# GET /v1/clients
+# List Clients
 
 列出当前连接到所有队列的流式客户端。
 

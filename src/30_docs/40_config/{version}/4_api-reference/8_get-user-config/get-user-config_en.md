@@ -1,4 +1,4 @@
-# GET /v1/config
+# Get User Config
 
 Retrieve the current user's configuration. This endpoint requires API key authentication.
 

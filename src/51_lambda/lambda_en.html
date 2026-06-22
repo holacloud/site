@@ -1,0 +1,79 @@
+<section class="hero" style="background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.20), transparent 45%),
+    radial-gradient(circle at top left, rgba(59, 130, 246, 0.30), transparent 55%),
+    #0f172a;">
+    <div class="hero-inner">
+        <div class="hero-eyebrow">⚡ Lambda</div>
+        <h1>Serverless function execution platform</h1>
+        <p>Lambda is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <div class="hero-actions">
+            <a class="button button-action" href="https://console.hola.cloud/">Get started</a>
+            <a class="button button-secondary" href="/docs/lambda/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">Documentation</a>
+        </div>
+    </div>
+</section>
+
+<div class="landing">
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Lambda</div>
+            <h2>Key features</h2>
+            <p>Everything you need to build, deploy, and scale with Lambda on HolaCloud.</p>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3>Run code in any language</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Deploy Go, Python, Node.js, and more with automatic scaling. No servers to manage.</p>
+          </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3>Event-driven execution</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Trigger functions from HTTP requests, queue messages, timers, or webhooks.</p>
+          </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3>Built-in observability</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Real-time logs, metrics, and tracing for every function invocation.</p>
+          </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Quick start</div>
+            <h2>Quick start</h2>
+            <p>Get started with Lambda in seconds using the API.</p>
+        </div>
+        <pre><code>curl -X POST https://api.hola.cloud/v1/lambdas \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{"name": "hello", "runtime": "python3.11", "code": "def handler():\n    return {\"status\": \"ok\"}"}'</code></pre>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Use cases</div>
+            <h2>Common use cases</h2>
+        </div>
+        <div class="solutions-grid" style="display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+            <div class="solution-card" style="background: linear-gradient(160deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.04)); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">Microservices orchestration</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Lambda on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.04)); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">Data pipeline automation</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Lambda on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.04)); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">Event-driven architectures</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Lambda on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.04)); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">API backend development</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Lambda on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 48px;">
+        <div class="cta-panel">
+            <h2>Ready to get started?</h2>
+            <p>Explore the documentation or launch the console to start building with Lambda.</p>
+            <div class="cta-actions">
+                <a class="button button-action" href="https://console.hola.cloud/">Console</a>
+                <a class="button button-secondary" href="/docs/lambda/">Documentation</a>
+            </div>
+        </div>
+    </section>
+</div>

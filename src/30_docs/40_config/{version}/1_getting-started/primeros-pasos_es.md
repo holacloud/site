@@ -1,4 +1,4 @@
-# Primeros pasos con Config
+# Primeros Pasos
 
 Esta guía te muestra cómo recuperar y actualizar tu configuración usando la API de Config. Antes de comenzar, necesitarás una clave API con los permisos adecuados.
 

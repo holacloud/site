@@ -1,0 +1,82 @@
+<section class="hero" style="background: radial-gradient(circle at top right, rgba(245, 158, 11, 0.20), transparent 45%),
+    radial-gradient(circle at top left, rgba(245, 158, 11, 0.30), transparent 55%),
+    #0f172a;">
+    <div class="hero-inner">
+        <div class="hero-eyebrow">📊 InstantLogs</div>
+        <h1>实时日志采集与流式处理</h1>
+        <p>InstantLogs is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <div class="hero-actions">
+            <a class="button button-action" href="https://console.hola.cloud/">开始使用</a>
+            <a class="button button-secondary" href="/docs/logs/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">文档中心</a>
+        </div>
+    </div>
+</section>
+
+<div class="landing">
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">InstantLogs</div>
+            <h2>核心功能</h2>
+            <p>Everything you need to build, deploy, and scale with InstantLogs on HolaCloud.</p>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3>高吞吐采集</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">每秒发送数百万日志事件，支持自动批处理。</p>
+          </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3>实时追踪与过滤</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">实时流式查看日志，支持强大的过滤和搜索功能。</p>
+          </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3>保留与归档</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">可配置的保留策略，支持冷存储归档。</p>
+          </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Quick start</div>
+            <h2>快速开始</h2>
+            <p>Get started with InstantLogs in seconds using the API.</p>
+        </div>
+        <pre><code>curl -X POST https://api.hola.cloud/v1/loggers \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{"name": "app-logger", "retention_days": 30}' \
+  && curl https://api.hola.cloud/v1/loggers/my-logger/ingest \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{"level":"info","message":"Hello world"}'</code></pre>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Use cases</div>
+            <h2>常见用例</h2>
+        </div>
+        <div class="solutions-grid" style="display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+            <div class="solution-card" style="background: linear-gradient(160deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.04)); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">微服务编排</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with InstantLogs on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.04)); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">数据管道自动化</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with InstantLogs on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.04)); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">事件驱动架构</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with InstantLogs on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.04)); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">后端 API 开发</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with InstantLogs on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 48px;">
+        <div class="cta-panel">
+            <h2>Ready to get started?</h2>
+            <p>Explore the documentation or launch the console to start building with InstantLogs.</p>
+            <div class="cta-actions">
+                <a class="button button-action" href="https://console.hola.cloud/">控制台</a>
+                <a class="button button-secondary" href="/docs/logs/">文档中心</a>
+            </div>
+        </div>
+    </section>
+</div>

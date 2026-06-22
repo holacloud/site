@@ -1,4 +1,4 @@
-# POST /api/console/rollback
+# Revertir Image
 
 Revierte un contenedor a una versión de imagen anterior.
 

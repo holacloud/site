@@ -1,0 +1,79 @@
+<section class="hero" style="background: radial-gradient(circle at top right, rgba(132, 204, 22, 0.20), transparent 45%),
+    radial-gradient(circle at top left, rgba(132, 204, 22, 0.30), transparent 55%),
+    #0f172a;">
+    <div class="hero-inner">
+        <div class="hero-eyebrow">✉️ Holamail</div>
+        <h1>SMTP transactional email service</h1>
+        <p>Holamail is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <div class="hero-actions">
+            <a class="button button-action" href="https://console.hola.cloud/">Get started</a>
+            <a class="button button-secondary" href="/docs/holamail/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">Documentation</a>
+        </div>
+    </div>
+</section>
+
+<div class="landing">
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Holamail</div>
+            <h2>Key features</h2>
+            <p>Everything you need to build, deploy, and scale with Holamail on HolaCloud.</p>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3>High deliverability</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Dedicated IP pools with automatic warm-up and reputation monitoring.</p>
+          </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3>Template engine</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Create and manage email templates with dynamic variables.</p>
+          </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3>Delivery analytics</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Open, click, and bounce tracking with real-time dashboards.</p>
+          </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Quick start</div>
+            <h2>Quick start</h2>
+            <p>Get started with Holamail in seconds using the API.</p>
+        </div>
+        <pre><code>curl -X POST https://api.hola.cloud/v1/holamail/send \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{"to": "user@example.com", "subject": "Welcome!", "template": "welcome", "data": {"name": "Alice"}}'</code></pre>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Use cases</div>
+            <h2>Common use cases</h2>
+        </div>
+        <div class="solutions-grid" style="display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+            <div class="solution-card" style="background: linear-gradient(160deg, rgba(132, 204, 22, 0.1), rgba(132, 204, 22, 0.04)); border: 1px solid rgba(132, 204, 22, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">Microservices orchestration</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Holamail on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(132, 204, 22, 0.1), rgba(132, 204, 22, 0.04)); border: 1px solid rgba(132, 204, 22, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">Data pipeline automation</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Holamail on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(132, 204, 22, 0.1), rgba(132, 204, 22, 0.04)); border: 1px solid rgba(132, 204, 22, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">Event-driven architectures</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Holamail on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(132, 204, 22, 0.1), rgba(132, 204, 22, 0.04)); border: 1px solid rgba(132, 204, 22, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">API backend development</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Holamail on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 48px;">
+        <div class="cta-panel">
+            <h2>Ready to get started?</h2>
+            <p>Explore the documentation or launch the console to start building with Holamail.</p>
+            <div class="cta-actions">
+                <a class="button button-action" href="https://console.hola.cloud/">Console</a>
+                <a class="button button-secondary" href="/docs/holamail/">Documentation</a>
+            </div>
+        </div>
+    </section>
+</div>

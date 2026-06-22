@@ -1,4 +1,4 @@
-# GET /v0/configs
+# Listar Configs
 
 Listar todas las configuraciones. Este endpoint es de acceso público (API de administración).
 

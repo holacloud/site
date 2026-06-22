@@ -1,4 +1,4 @@
-# GET /schedulers/{id}/tasks
+# Listar Tasks
 
 Lista las tareas de un scheduler, con paginación separada para tareas programadas y en vuelo.
 

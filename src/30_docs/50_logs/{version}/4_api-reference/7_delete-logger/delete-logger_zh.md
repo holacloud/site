@@ -1,5 +1,5 @@
 
-# DELETE /v1/loggers/{id}
+# Delete Logger
 
 永久删除日志记录器及其所有关联的日志条目。
 

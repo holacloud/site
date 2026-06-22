@@ -1,5 +1,5 @@
 
-# GET /v1/queues/{id}
+# Get Queue
 
 Obtiene los detalles de una cola específica por su ID.
 

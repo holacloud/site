@@ -1,4 +1,4 @@
-# GET /fakeapi/*
+# Simular Api
 
 Endpoint comodín que proporciona datos simulados para todos los servicios backend de la Consola durante el desarrollo y el modo de demostración.
 

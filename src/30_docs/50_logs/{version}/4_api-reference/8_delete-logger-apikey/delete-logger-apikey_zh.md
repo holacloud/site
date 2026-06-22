@@ -1,5 +1,5 @@
 
-# DELETE /v1/loggers/{id}/apiKeys/{key}
+# Delete Logger API Key
 
 从日志记录器中删除 API 密钥。
 

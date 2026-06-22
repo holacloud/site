@@ -1,4 +1,4 @@
-# GET /v1/buckets/{id}/list/*
+# Listar Files
 
 Listar archivos en un bucket. El comodín (`*`) puede reemplazarse con un prefijo de ruta opcional para filtrar resultados.
 

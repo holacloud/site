@@ -1,4 +1,4 @@
-# GET /api/console
+# Consola Datos
 
 Devuelve repositorios, imágenes y estado de contenedores en ejecución para el panel de la Consola.
 

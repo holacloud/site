@@ -1,4 +1,4 @@
-# GET /fakeapi/*
+# Fake Api
 
 Wildcard endpoint that serves mock data for all Console backend services during development and demo mode.
 

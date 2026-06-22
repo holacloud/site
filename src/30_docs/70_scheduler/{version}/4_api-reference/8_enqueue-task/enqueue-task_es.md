@@ -1,4 +1,4 @@
-# POST /schedulers/{id}/tasks
+# Encolar Tarea
 
 Encola una nueva tarea para ejecutarse en un horario programado.
 

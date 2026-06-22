@@ -1,4 +1,4 @@
-# GET /v1/collections
+# 列出Collections
 
 返回 KVNode 中所有集合的列表。
 

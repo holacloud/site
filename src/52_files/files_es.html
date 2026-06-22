@@ -1,0 +1,79 @@
+<section class="hero" style="background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.20), transparent 45%),
+    radial-gradient(circle at top left, rgba(16, 185, 129, 0.30), transparent 55%),
+    #0f172a;">
+    <div class="hero-inner">
+        <div class="hero-eyebrow">📁 Files</div>
+        <h1>Servicio seguro de almacenamiento de objetos</h1>
+        <p>Files is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <div class="hero-actions">
+            <a class="button button-action" href="https://console.hola.cloud/">Comenzar</a>
+            <a class="button button-secondary" href="/docs/files/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">Documentación</a>
+        </div>
+    </div>
+</section>
+
+<div class="landing">
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Files</div>
+            <h2>Funcionalidades</h2>
+            <p>Everything you need to build, deploy, and scale with Files on HolaCloud.</p>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3>Almacenamiento escalable</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Guarda y recupera cualquier cantidad de datos con acceso de baja latencia desde cualquier lugar.</p>
+          </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3>Permisos detallados</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Control de acceso por bucket y por objeto con autenticación mediante API key.</p>
+          </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3>Versiones y retención</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Mantén el historial de archivos y establece políticas de retención automatizadas.</p>
+          </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Quick start</div>
+            <h2>Inicio rápido</h2>
+            <p>Get started with Files in seconds using the API.</p>
+        </div>
+        <pre><code>curl -X POST https://api.hola.cloud/v1/buckets \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{"name": "my-bucket", "region": "us-east-1"}'</code></pre>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Use cases</div>
+            <h2>Casos de uso</h2>
+        </div>
+        <div class="solutions-grid" style="display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+            <div class="solution-card" style="background: linear-gradient(160deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.04)); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">Orquestación de microservicios</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Files on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.04)); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">Automatización de pipelines</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Files on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.04)); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">Arquitecturas basadas en eventos</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Files on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.04)); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;">Desarrollo de APIs backend</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with Files on HolaCloud's enterprise platform, designed for security, reliability, and scale.</p>
+          </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 48px;">
+        <div class="cta-panel">
+            <h2>Ready to get started?</h2>
+            <p>Explore the documentation or launch the console to start building with Files.</p>
+            <div class="cta-actions">
+                <a class="button button-action" href="https://console.hola.cloud/">Consola</a>
+                <a class="button button-secondary" href="/docs/files/">Documentación</a>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,4 +1,4 @@
-# POST /api/console/stop
+# Stop Container
 
 Stops a running container.
 

@@ -1,4 +1,4 @@
-# DELETE /v1/buckets/{id}/files/*
+# 删除文件
 
 从存储桶中删除文件。文件路径在 URL 中 `/files/` 之后指定。
 

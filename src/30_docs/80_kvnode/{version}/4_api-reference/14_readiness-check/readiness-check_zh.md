@@ -1,4 +1,4 @@
-# GET /readyz
+# 就绪检查Check
 
 返回 KVNode 的就绪状态，包括其父连接的运行状况。
 

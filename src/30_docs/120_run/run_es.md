@@ -1,4 +1,4 @@
-# Run
+# Ejecutar
 
 Run es el servicio de ejecución de contenedores de HolaCloud. Gestiona contenedores Docker a través de una interfaz compatible con Docker Registry v2, permitiéndote desplegar y ejecutar aplicaciones en entornos aislados.
 

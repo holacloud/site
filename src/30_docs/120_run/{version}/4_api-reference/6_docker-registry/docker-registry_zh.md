@@ -1,4 +1,4 @@
-# Docker Registry API
+# Docker注册表
 
 Run 实现了 Docker Registry v2 API 规范，用于推送和拉取容器镜像。
 

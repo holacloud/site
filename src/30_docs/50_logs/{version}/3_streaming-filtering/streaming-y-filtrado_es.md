@@ -1,4 +1,4 @@
-# Streaming y Filtrado de Logs
+# Streaming Y Filtrado
 
 InstantLogs proporciona endpoints de streaming HTTP de larga duración que entregan eventos de log en tiempo casi real. Puedes filtrar flujos por patrón de expresión regular y elegir entre formatos de salida NDJSON y texto plano.
 

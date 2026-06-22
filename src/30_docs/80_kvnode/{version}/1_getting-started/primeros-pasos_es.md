@@ -1,4 +1,4 @@
-# Primeros pasos con KVNode
+# Primeros Pasos
 
 Esta guía te muestra las operaciones básicas de KVNode: verificación de salud, gestión de colecciones y operaciones con clave-valor.
 

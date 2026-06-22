@@ -1,4 +1,4 @@
-# PATCH /schedulers/{id}
+# 修改调度器
 
 部分更新调度器的配置。
 

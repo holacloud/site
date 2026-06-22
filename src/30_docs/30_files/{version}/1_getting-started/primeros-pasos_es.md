@@ -1,4 +1,4 @@
-# Primeros pasos con Files
+# Primeros Pasos
 
 Esta guía le muestra las operaciones básicas de HolaCloud Files: crear un bucket, subir un archivo, listar contenidos, descargar y eliminar.
 

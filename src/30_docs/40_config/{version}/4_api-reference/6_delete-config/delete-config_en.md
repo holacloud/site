@@ -1,4 +1,4 @@
-# DELETE /v0/configs/{id}
+# Delete Config
 
 Delete a configuration by its ID. This endpoint is publicly accessible (admin API).
 

@@ -1,5 +1,5 @@
 
-# POST /api/v0/run/{id}
+# Run Lambda (Admin)
 
 Invokes a lambda function using admin credentials. Requires authentication.
 

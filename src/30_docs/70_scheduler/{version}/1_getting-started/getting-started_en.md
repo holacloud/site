@@ -1,4 +1,4 @@
-# Getting Started with Scheduler
+# Getting Started
 
 This guide walks you through creating a scheduler, enqueuing a delayed task, listing tasks, reserving and acknowledging a task, and checking scheduler health.
 

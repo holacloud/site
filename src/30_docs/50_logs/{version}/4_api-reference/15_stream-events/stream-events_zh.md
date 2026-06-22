@@ -1,5 +1,5 @@
 
-# GET /v1/loggers/{id}/events
+# Stream Events
 
 实时流式传输日志事件。支持 NDJSON 和纯文本格式。
 

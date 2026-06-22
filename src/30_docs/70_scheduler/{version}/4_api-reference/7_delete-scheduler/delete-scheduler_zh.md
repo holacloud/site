@@ -1,4 +1,4 @@
-# DELETE /schedulers/{id}
+# 删除调度器
 
 删除调度器及其所有任务。
 

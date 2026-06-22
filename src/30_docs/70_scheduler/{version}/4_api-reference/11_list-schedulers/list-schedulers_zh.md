@@ -1,4 +1,4 @@
-# GET /schedulers
+# 列出Schedulers
 
 返回所有调度器的列表。
 

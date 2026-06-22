@@ -1,4 +1,4 @@
-# POST /schedulers/{id}/tasks/reserve
+# 预留任务
 
 预留一个可用的任务进行处理。任务进入由 `worktime` 定义的租约期。
 

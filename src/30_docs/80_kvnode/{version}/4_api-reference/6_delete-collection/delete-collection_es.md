@@ -1,4 +1,4 @@
-# DELETE /v1/collections/{col}
+# Eliminar Colección
 
 Elimina una colección y todas sus claves.
 

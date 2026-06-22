@@ -1,4 +1,4 @@
-# GET /readyz
+# Readiness Check
 
 Returns the readiness status of the KVNode, including the health of its parent connection.
 

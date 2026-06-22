@@ -1,5 +1,5 @@
 
-# DELETE /api/v0/lambdas/{id}
+# Delete Lambda
 
 永久删除 Lambda 函数。此操作不可撤销。
 

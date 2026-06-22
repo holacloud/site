@@ -1,4 +1,4 @@
-# DELETE /schedulers/{id}/tasks/{task}
+# Confirmar Tarea
 
 Confirma y elimina una tarea del scheduler. Debe llamarse después de que un trabajador procese exitosamente una tarea reservada.
 

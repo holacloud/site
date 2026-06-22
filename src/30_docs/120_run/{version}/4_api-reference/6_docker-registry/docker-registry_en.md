@@ -1,4 +1,4 @@
-# Docker Registry API
+# Docker Registry
 
 Run implements the Docker Registry v2 API specification for pushing and pulling container images.
 

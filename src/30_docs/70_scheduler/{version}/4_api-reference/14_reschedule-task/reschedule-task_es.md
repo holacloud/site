@@ -1,4 +1,4 @@
-# POST /schedulers/{id}/tasks/{task}/reschedule
+# Reprogramar Tarea
 
 Reprograma una tarea con un nuevo retraso o tiempo futuro.
 

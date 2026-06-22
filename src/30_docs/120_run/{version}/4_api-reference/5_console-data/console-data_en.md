@@ -1,4 +1,4 @@
-# GET /api/console
+# Console Data
 
 Returns repositories, images, and running container state for the Console dashboard.
 

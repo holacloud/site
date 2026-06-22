@@ -1,5 +1,5 @@
 
-# GET /v1/databases/{id}/collections
+# List Collections
 
 列出特定数据库中的所有集合。
 

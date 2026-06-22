@@ -1,4 +1,4 @@
-# PUT /api/console/volumes
+# Save Volumes
 
 Saves volume configuration for a container.
 

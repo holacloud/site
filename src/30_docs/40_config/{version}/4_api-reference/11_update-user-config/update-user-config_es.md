@@ -1,4 +1,4 @@
-# PATCH /v1/config
+# Actualizar Usuario Config
 
 Actualizar la configuración del usuario actual. Utiliza semántica de fusión profunda: solo se modifican los campos proporcionados en el cuerpo de la solicitud. Este endpoint requiere autenticación mediante API key.
 

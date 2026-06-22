@@ -1,5 +1,5 @@
 
-# DELETE /v1/databases/{id}
+# Drop Database
 
 Permanently drops a database and all its collections and documents. This action cannot be undone.
 

@@ -1,4 +1,4 @@
-# Getting Started with Tailon
+# Getting Started
 
 This guide walks you through creating a queue, writing messages, reading them via long-poll, checking queue stats, and cleaning up.
 

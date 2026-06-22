@@ -1,4 +1,4 @@
-# Guía de Inicio Rápido con InceptionDB
+# Primeros Pasos
 
 Esta guía te ayudará a empezar con InceptionDB mediante la creación de una colección, la inserción de tres elementos y
 la consulta de elementos filtrados.

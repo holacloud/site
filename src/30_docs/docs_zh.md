@@ -1,25 +1,59 @@
 # 文档
 
-<b><a href="/docs/inceptiondb/">InceptionDB</a></b>：为性能和可扩展性优化的数据库。高效地管理和查询你的数据。
+欢迎使用 HolaCloud 文档。在这里，你可以找到平台中所有服务的指南、API 参考和运维手册。
 
-<b><a href="/docs/lambda/">Lambda System</a></b>：用于应用程序的灵活执行系统。无需管理服务器即可自动扩展。
+## 快速入门
 
-<b><a href="/docs/files/">Files</a></b>：安全且可访问的对象存储。轻松保存、检索和组织你的文件。
+如果你刚接触 HolaCloud，建议从[控制台](/zh/docs/console/)开始——这是基于 Web 的管理界面，可以在此配置资源、管理项目并监控各项服务。
 
-<b><a href="/docs/config/">Config</a></b>：集中化配置系统。在一个地方管理你的应用程序配置。
+每项服务都包含入门指南、概念文档以及完整的 API 参考，涵盖端点详情、请求示例和错误码。
 
-<b><a href="/docs/logs/">InstantLogs</a></b>：实时日志系统。即时监控和分析你的应用程序活动。
+## 服务
 
-<b><a href="/docs/queues/">Tailon</a></b>：处理密集工作负载和异步操作的强大队列系统。
+### [InceptionDB](/zh/docs/inceptiondb/)
+托管式 NoSQL 文档数据库。使用动态模式、索引和 JavaScript 执行来存储和查询 JSON 文档。适合需要灵活数据模型的应用程序。
 
-<b><a href="/docs/scheduler/">Scheduler</a></b>：分布式任务调度器，用于定时和延迟作业执行。
+### [Lambda](/zh/docs/lambda/)
+无服务器函数执行平台。部署的代码按需运行、自动扩缩，并与 HolaCloud 生态系统集成。无需管理服务器。
 
-<b><a href="/docs/kvnode/">KVNode</a></b>：复制的键值存储，具有可配置的持久化后端。
+### [Files](/zh/docs/files/)
+安全的对象存储服务。通过可配置的存储桶策略上传、下载和组织文件。适用于媒体存储、备份和内容分发。
 
-<b><a href="/docs/console/">Console</a></b>：用于管理所有HolaCloud服务的Web控制台。
+### [Config](/zh/docs/config/)
+集中式配置管理。跨环境存储、版本管理和分发应用程序配置。支持 JSON 补丁和用户级覆盖。
 
-<b><a href="/docs/glue2/">API Gateway (Glue2)</a></b>：所有服务的中央认证和路由层。
+### [InstantLogs](/zh/docs/logs/)
+实时日志采集与流式传输。从任何来源收集结构化和非结构化日志数据，实时过滤，并与监控管道集成。
 
-<b><a href="/docs/holamail/">Holamail</a></b>：用于事务性通信的SMTP电子邮件服务。
+### [Tailon](/zh/docs/queues/)
+消息队列与异步工作负载系统。可靠的消���投递，支持长轮询消费、客户端跟踪和高吞吐量异步处理。
 
-<b><a href="/docs/run/">Run</a></b>：具有内置Docker注册表的容器执行服务。
+### [Scheduler](/zh/docs/scheduler/)
+分布式任务调度服务。调度一次性或周期性任务，管理任务租约，并流式传输任务事件。专为定时和后台工作负载打造。
+
+### [KVNode](/zh/docs/kvnode/)
+复制式键值存储，具有可配置的持久化后端。低延迟读写、健康检查和节点级指标。
+
+### [控制台](/zh/docs/console/)
+HolaCloud 所有服务的 Web 管理控制台。从单一界面配置项目、管理资源并监控服务运行状况。
+
+### [Glue2](/zh/docs/glue2/)
+API 网关与认证层。HolaCloud 服务网格的中央路由、认证和流量管理。支持 API 密钥和 Bearer Token 认证。
+
+### [Holamail](/zh/docs/holamail/)
+SMTP 事务邮件服务。通过 SMTP 中继发送邮件，具备可靠的投递跟踪。适用于通知、密码重置和事务性消息。
+
+### [Run](/zh/docs/run/)
+容器执行服务，内置 Docker 镜像仓库。启动、停止和回滚容器。管理环境变量、存储卷和部署生命周期。
+
+## API 参考
+
+每项服务都包含完整的 API 参考章节：
+
+- 端点描述与 HTTP 方法
+- 认证要求
+- JSON 格式的请求和响应示例
+- 错误码表
+- 每个端点的 curl 示例
+
+浏览侧边栏以访问任意服务，或使用顶部导航栏中的产品链接。

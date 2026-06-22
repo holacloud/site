@@ -1,5 +1,5 @@
 
-# GET /v1/loggers/{id}/stats
+# Logger Stats
 
 获取日志记录器的统计信息，包括接收的事件总数和存储使用量。
 

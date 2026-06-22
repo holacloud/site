@@ -1,5 +1,5 @@
 
-# DELETE /v1/databases/{id}
+# Drop Database
 
 Elimina permanentemente una base de datos con todas sus colecciones y documentos. Esta acción no se puede deshacer.
 

@@ -1,5 +1,5 @@
 
-# GET /v1/loggers/{id}/filter
+# Filter Logs
 
 Transmite y filtra entradas de log en tiempo real usando un patrón de expresión regular.
 

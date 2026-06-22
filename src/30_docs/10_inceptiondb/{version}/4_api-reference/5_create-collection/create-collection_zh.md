@@ -1,5 +1,5 @@
 
-# POST /v1/databases/{id}/collections
+# Create Collection
 
 在指定数据库中创建新集合。集合是文档的容器。
 

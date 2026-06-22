@@ -1,4 +1,4 @@
-# GET /v0/configs
+# List Configs
 
 List all configurations. This endpoint is publicly accessible (admin API).
 

@@ -1,4 +1,4 @@
-# Replicación y Alta Disponibilidad
+# Replicacion
 
 KVNode logra alta disponibilidad mediante un modelo de **replicación líder-seguidor**. Los cambios escritos en un nodo principal (líder) se transmiten en tiempo real a los nodos réplica (seguidores) a través de un protocolo de replicación basado en NDJSON.
 

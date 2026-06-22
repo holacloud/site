@@ -1,5 +1,5 @@
 
-# POST /v1/queues/{id}
+# Write Messages
 
 Write messages to a queue. Accepts a single JSON object or a stream of JSON objects (NDJSON).
 

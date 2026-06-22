@@ -1,4 +1,4 @@
-# GET /v1/buckets/{id}/files/*
+# Download File
 
 Download a file from a bucket. The file path is specified after `/files/` in the URL.
 

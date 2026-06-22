@@ -1,5 +1,5 @@
 
-# POST /v1/loggers/{id}/ingest
+# Ingest Logs
 
 Ingest log entries into a logger.
 

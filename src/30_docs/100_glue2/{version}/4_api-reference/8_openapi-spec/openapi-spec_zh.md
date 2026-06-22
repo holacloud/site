@@ -1,4 +1,4 @@
-# GET /openapi.json
+# OpenAPI规范
 
 返回 Glue2 网关的 OpenAPI 规范。
 

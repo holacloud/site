@@ -1,4 +1,4 @@
-# Replication & High Availability
+# Replication
 
 KVNode achieves high availability through a **leader-follower replication** model. Changes written to a primary (leader) node are streamed in real time to replica (follower) nodes via an NDJSON-based replication protocol.
 

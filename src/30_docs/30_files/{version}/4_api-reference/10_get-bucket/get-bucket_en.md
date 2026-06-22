@@ -1,4 +1,4 @@
-# GET /v1/buckets/{id}
+# Get Bucket
 
 Get details for a specific bucket by its ID.
 

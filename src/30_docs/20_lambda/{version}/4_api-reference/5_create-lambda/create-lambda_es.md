@@ -1,5 +1,5 @@
 
-# POST /api/v0/lambdas
+# Create Lambda
 
 Crea una nueva función lambda con el código y la configuración de ejecución especificados.
 

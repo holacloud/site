@@ -1,5 +1,5 @@
 
-# GET /v1/clients
+# List Clients
 
 List all currently connected streaming clients across all queues.
 

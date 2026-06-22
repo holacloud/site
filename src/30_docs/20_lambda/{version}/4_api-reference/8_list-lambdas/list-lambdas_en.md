@@ -1,5 +1,5 @@
 
-# GET /api/v0/lambdas
+# List Lambdas
 
 Lists all lambda functions belonging to the authenticated account.
 

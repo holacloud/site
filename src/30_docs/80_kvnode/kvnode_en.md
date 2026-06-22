@@ -1,4 +1,4 @@
-# KVNode
+# Kvnode
 
 KVNode is a replicated, distributed key-value store designed for high availability and low-latency access. It is part of the HolaCloud ecosystem and provides a simple HTTP API for storing and retrieving JSON values.
 

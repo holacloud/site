@@ -1,5 +1,5 @@
 
-# POST /run/{id}
+# Run Lambda (Public)
 
 Invoca una función lambda de forma pública. No requiere autenticación.
 

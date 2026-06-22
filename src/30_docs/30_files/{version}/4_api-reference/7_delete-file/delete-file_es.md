@@ -1,4 +1,4 @@
-# DELETE /v1/buckets/{id}/files/*
+# Eliminar Archivo
 
 Eliminar un archivo de un bucket. La ruta del archivo se especifica después de `/files/` en la URL.
 

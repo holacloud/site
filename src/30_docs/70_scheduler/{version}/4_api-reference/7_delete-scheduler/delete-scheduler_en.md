@@ -1,4 +1,4 @@
-# DELETE /schedulers/{id}
+# Delete Scheduler
 
 Deletes a scheduler and all its tasks.
 

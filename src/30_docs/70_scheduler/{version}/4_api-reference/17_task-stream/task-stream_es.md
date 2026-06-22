@@ -1,4 +1,4 @@
-# GET /schedulers/{id}/tasks/stream
+# Tarea Transmitir
 
 Transmite eventos de tareas en tiempo real mediante Server-Sent Events (SSE).
 

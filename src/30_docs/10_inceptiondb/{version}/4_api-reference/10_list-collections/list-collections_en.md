@@ -1,5 +1,5 @@
 
-# GET /v1/databases/{id}/collections
+# List Collections
 
 Lists all collections within a specific database.
 

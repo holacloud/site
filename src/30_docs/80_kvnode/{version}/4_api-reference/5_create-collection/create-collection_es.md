@@ -1,4 +1,4 @@
-# POST /v1/collections
+# Crear Colección
 
 Crea una nueva colección en el nodo KVNode.
 

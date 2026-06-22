@@ -1,4 +1,4 @@
-# POST /api/console/stop
+# 停止容器
 
 停止正在运行的容器。
 

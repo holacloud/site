@@ -1,5 +1,5 @@
 
-# GET /mux/{owner}/*
+# Mux Router
 
 根据子路径将传入请求路由到指定所有者的 Lambda 函数。此端点公开可用，无需身份验证。
 

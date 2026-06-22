@@ -1,4 +1,4 @@
-# GET /schedulers/{id}/tasks/stream
+# 任务流式传输
 
 使用服务器发送事件（SSE）实时流式传输任务事件。
 

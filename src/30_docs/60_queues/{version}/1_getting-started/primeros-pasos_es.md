@@ -1,4 +1,4 @@
-# Primeros pasos con Tailon
+# Primeros Pasos
 
 Esta guía te explica cómo crear una cola, escribir mensajes, leerlos mediante long-poll, consultar las estadísticas de la cola y limpiar los recursos.
 

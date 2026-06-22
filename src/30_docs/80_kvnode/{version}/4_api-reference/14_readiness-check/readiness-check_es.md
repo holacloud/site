@@ -1,4 +1,4 @@
-# GET /readyz
+# Disponibilidad Check
 
 Devuelve el estado de disponibilidad del nodo KVNode, incluyendo la salud de su conexión padre.
 

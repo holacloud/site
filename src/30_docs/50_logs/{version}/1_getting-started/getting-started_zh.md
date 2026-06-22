@@ -1,4 +1,4 @@
-# InstantLogs快速入门
+# GettingStarted
 
 本指南将帮助您创建日志记录器、接收日志条目并实时流式传输事件。
 

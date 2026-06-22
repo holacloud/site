@@ -1,5 +1,5 @@
 
-# GET /v1/queues
+# List Queues
 
 List all queues associated with your account.
 

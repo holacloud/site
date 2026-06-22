@@ -1,4 +1,4 @@
-# GET /schedulers/{id}/tasks
+# 列出Tasks
 
 列出调度器的任务，已计划和运行中的任务分别分页。
 

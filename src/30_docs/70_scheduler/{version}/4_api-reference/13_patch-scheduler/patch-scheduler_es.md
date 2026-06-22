@@ -1,4 +1,4 @@
-# PATCH /schedulers/{id}
+# Modificar Scheduler
 
 Actualiza parcialmente la configuración de un scheduler.
 

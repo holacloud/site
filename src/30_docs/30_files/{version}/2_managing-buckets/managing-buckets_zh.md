@@ -1,4 +1,4 @@
-# 管理存储桶
+# ManagingBuckets
 
 存储桶是 HolaCloud Files 中的基本容器。本指南涵盖所有存储桶操作：创建、列出、查看、修改和删除。
 

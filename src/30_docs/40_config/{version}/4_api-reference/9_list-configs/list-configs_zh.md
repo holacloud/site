@@ -1,4 +1,4 @@
-# GET /v0/configs
+# 列出Configs
 
 列出所有配置。此端点为公开访问（管理 API）。
 

@@ -1,4 +1,4 @@
-# API de Docker Registry
+# Docker Registro
 
 Run implementa la especificación de Docker Registry v2 para subir y descargar imágenes de contenedores.
 

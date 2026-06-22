@@ -1,4 +1,4 @@
-# GET /v1/buckets
+# List Buckets
 
 List all buckets for the authenticated account.
 

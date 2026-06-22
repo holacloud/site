@@ -1,4 +1,4 @@
-# GET /schedulers/{id}/health
+# 调度器健康检查
 
 返回调度器的健康状态。
 

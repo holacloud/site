@@ -1,4 +1,4 @@
-# InceptionDB
+# Inceptiondb
 
 InceptionDB is a powerful NoSQL database service that is part of the Hola.Cloud ecosystem. Designed for scalability, flexibility, and high performance, InceptionDB offers a wide range of features tailored to meet the needs of modern applications. Whether you are building a small-scale project or a large, data-intensive application, InceptionDB provides the tools and capabilities to store, retrieve, and manage your data efficiently.
 

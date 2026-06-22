@@ -1,4 +1,4 @@
-# PATCH /v0/configs/{id}
+# Modificar Config
 
 Actualizar parcialmente una configuración. Solo se modifican los campos proporcionados en el cuerpo de la solicitud. Este endpoint es de acceso público (API de administración).
 

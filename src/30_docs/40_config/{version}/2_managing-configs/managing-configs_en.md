@@ -1,4 +1,4 @@
-# Managing Configurations
+# Managing Configs
 
 The admin API (`/v0/configs`) provides full CRUD operations for managing configurations. These endpoints are publicly accessible and do not require an API key.
 

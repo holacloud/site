@@ -1,4 +1,4 @@
-# POST /schedulers/{id}/tasks
+# Enqueue Task
 
 Enqueues a new task to be executed at a scheduled time.
 

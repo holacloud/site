@@ -1,5 +1,5 @@
 
-# PATCH /api/v0/lambdas/{id}
+# Modify Lambda
 
 Updates the code, runtime, or active status of an existing lambda function.
 

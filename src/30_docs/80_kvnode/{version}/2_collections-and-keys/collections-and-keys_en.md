@@ -1,4 +1,4 @@
-# Collections and Keys
+# Collections And Keys
 
 KVNode organizes data into **collections**, each containing **key-value** pairs. This document covers collection management and key operations in detail.
 

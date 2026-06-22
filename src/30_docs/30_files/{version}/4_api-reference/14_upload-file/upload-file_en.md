@@ -1,4 +1,4 @@
-# PUT /v1/buckets/{id}/files/*
+# Upload File
 
 Upload a file to a bucket. The file path is specified after `/files/` in the URL. The maximum file size is 5 GB.
 

@@ -1,4 +1,4 @@
-# Producing and Consuming Messages
+# Producing Consuming
 
 This document covers the message format, writing strategies, reading with long-poll, error handling, and common consumer patterns.
 

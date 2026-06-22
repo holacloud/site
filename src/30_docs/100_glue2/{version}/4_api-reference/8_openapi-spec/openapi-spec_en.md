@@ -1,4 +1,4 @@
-# GET /openapi.json
+# Openapi Spec
 
 Returns the OpenAPI specification for the Glue2 gateway.
 

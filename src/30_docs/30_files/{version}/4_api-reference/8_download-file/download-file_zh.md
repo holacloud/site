@@ -1,4 +1,4 @@
-# GET /v1/buckets/{id}/files/*
+# 下载文件
 
 从存储桶下载文件。文件路径在 URL 中 `/files/` 之后指定。
 

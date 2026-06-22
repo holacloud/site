@@ -1,5 +1,5 @@
 
-# POST /v1/ingest/events
+# Ingest Framed Events
 
 使用 logframe 协议接收帧事件。此端点接受带有元数据和消息长度前缀的二进制协议。
 

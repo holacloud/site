@@ -1,5 +1,5 @@
 
-# POST /v1/databases/{id}/collections/{col}
+# Document Operations
 
 Realiza operaciones con documentos en una colección. La operación específica se determina mediante un sufijo separado por dos puntos en el nombre de la colección.
 

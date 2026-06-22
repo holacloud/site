@@ -1,4 +1,4 @@
-# Getting Started with InstantLogs
+# Getting Started
 
 This guide will help you create a logger, ingest a log entry, and stream events in real time.
 

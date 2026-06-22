@@ -1,4 +1,4 @@
-# GET /v1/status
+# Nodo Estado
 
 Devuelve el estado actual del nodo KVNode, incluyendo colecciones, estado de replicación y tiempo de actividad.
 

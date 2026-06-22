@@ -1,4 +1,4 @@
-# POST /v0/configs
+# Create Config
 
 Create a new configuration. This endpoint is publicly accessible (admin API).
 

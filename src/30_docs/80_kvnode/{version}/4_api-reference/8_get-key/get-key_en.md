@@ -1,4 +1,4 @@
-# GET /v1/collections/{col}/keys/*
+# Get Key
 
 Gets the value of a key in a collection. The wildcard `*` in the path is replaced with the key name.
 

@@ -1,5 +1,5 @@
 
-# GET /v1/queues/{id}
+# Read Messages
 
 Read messages from a queue using long-poll. The request blocks until at least one message is available or the server timeout is reached.
 

@@ -1,5 +1,5 @@
 
-# GET /api/v0/lambdas/{id}
+# Get Lambda
 
 Retrieves details about a specific lambda function by its ID.
 

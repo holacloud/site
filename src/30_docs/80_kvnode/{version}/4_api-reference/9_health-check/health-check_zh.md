@@ -1,4 +1,4 @@
-# GET /healthz
+# 健康检查Check
 
 返回 KVNode 的健康状态。
 

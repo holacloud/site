@@ -1,5 +1,5 @@
 
-# GET /v1/loggers/{id}/filter
+# Filter Logs
 
 使用正则表达式模式实时流式传输和过滤日志条目。
 

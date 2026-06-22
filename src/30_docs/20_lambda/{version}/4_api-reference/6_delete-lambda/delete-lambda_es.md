@@ -1,5 +1,5 @@
 
-# DELETE /api/v0/lambdas/{id}
+# Delete Lambda
 
 Elimina permanentemente una función lambda. Esta acción no se puede deshacer.
 

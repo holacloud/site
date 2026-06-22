@@ -1,4 +1,4 @@
-# InstantLogs
+# Logs
 
 InstantLogs 是 Hola.Cloud 生态系统中的实时日志聚合和流式传输服务。它提供多租户日志接收、基于正则表达式的过滤、实时流式传输、NDJSON 导出和持久化存储，所有功能都具有低延迟特性。
 

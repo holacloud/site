@@ -1,4 +1,4 @@
-# POST /schedulers/{id}/tasks/{task}/reschedule
+# Reschedule Task
 
 Reschedules a task with a new delay or future time.
 

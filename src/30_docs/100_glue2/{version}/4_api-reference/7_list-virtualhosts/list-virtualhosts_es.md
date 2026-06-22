@@ -1,4 +1,4 @@
-# GET /v0/virtualhosts
+# Listar Virtualhosts
 
 Devuelve la tabla de enrutamiento de hosts virtuales actual.
 

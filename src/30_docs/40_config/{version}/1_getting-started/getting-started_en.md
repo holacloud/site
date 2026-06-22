@@ -1,4 +1,4 @@
-# Getting Started with Config
+# Getting Started
 
 This guide walks you through retrieving and updating your configuration using the Config API. Before you begin, you will need an API key with the appropriate permissions.
 

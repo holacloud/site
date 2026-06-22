@@ -1,5 +1,5 @@
 
-# POST /v1/loggers/{id}/ingest
+# Ingest Logs
 
 向日志记录器接收日志条目。
 

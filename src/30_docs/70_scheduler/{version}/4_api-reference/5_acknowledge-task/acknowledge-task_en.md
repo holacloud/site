@@ -1,4 +1,4 @@
-# DELETE /schedulers/{id}/tasks/{task}
+# Acknowledge Task
 
 Acknowledges and removes a task from the scheduler. This should be called after a worker successfully processes a reserved task.
 

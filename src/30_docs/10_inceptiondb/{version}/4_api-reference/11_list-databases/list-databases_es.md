@@ -1,5 +1,5 @@
 
-# GET /v1/databases
+# List Databases
 
 Lista todas las bases de datos accesibles para el proyecto autenticado.
 

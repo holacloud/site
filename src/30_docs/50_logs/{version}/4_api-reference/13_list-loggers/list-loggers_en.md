@@ -1,5 +1,5 @@
 
-# GET /v1/loggers
+# List Loggers
 
 List all loggers associated with your account.
 

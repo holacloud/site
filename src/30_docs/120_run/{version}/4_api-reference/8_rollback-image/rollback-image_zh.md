@@ -1,4 +1,4 @@
-# POST /api/console/rollback
+# 回滚Image
 
 将容器回滚到之前的镜像版本。
 

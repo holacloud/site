@@ -1,5 +1,5 @@
 
-# POST /v1/loggers
+# Create Logger
 
 Crea un nuevo logger.
 

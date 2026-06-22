@@ -1,5 +1,5 @@
 
-# POST /api/v0/run/{id}
+# Run Lambda (Admin)
 
 使用管理员凭证调用 Lambda 函数。需要身份验证。
 

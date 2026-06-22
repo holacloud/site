@@ -1,4 +1,4 @@
-# KVNode快速入门
+# GettingStarted
 
 本指南将带您了解 KVNode 的基本操作：健康检查、集合管理以及键值操作。
 

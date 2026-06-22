@@ -1,4 +1,4 @@
-# POST /v1/buckets
+# Crear Bucket
 
 Crear un nuevo bucket. El nombre del bucket debe ser único globalmente en todas las cuentas.
 

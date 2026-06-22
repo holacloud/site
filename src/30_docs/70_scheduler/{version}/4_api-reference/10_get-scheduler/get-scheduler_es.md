@@ -1,4 +1,4 @@
-# GET /schedulers/{id}
+# Obtener Scheduler
 
 Devuelve los detalles de un scheduler específico.
 

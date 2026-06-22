@@ -1,4 +1,4 @@
-# API Gateway (Glue2)
+# Glue2
 
 Glue2 es la puerta de enlace central de API para HolaCloud. Autentica cada solicitud entrante, la enruta al servicio backend correcto y recopila registros de acceso. Todo el tráfico hacia los servicios de HolaCloud pasa a través de Glue2.
 

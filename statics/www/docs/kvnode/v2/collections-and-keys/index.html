@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Collections and Keys</title>
+    <title>Collections And Keys</title>
     <meta name="description" content="inceptiondb">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/blue.css" rel="stylesheet">
     <script src="/js/marked.min.js"></script>
+    <script>
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+            document.documentElement.classList.toggle('dark', e.matches);
+        });
+    </script>
     <script defer src="https://umami.hola.cloud/script.js" data-website-id="cbcb870c-e9a8-460a-8b38-ab2fa77a4cc2"></script>
 </head>
 <body url="collections-and-keys">
@@ -21,21 +29,53 @@
                     <span class="dropdown-icon" aria-hidden="true">▾</span>
                 </button>
                 <div class="dropdown-menu" role="menu">
-                    <a class="dropdown-item" href="https://flowtest.io" target="_blank" rel="noopener">
-                        <span class="item-title">Flowtest.io</span>
-                        <span class="item-description">Automated load testing from the hola.cloud ecosystem.</span>
+                    <a class="dropdown-item" href="/inceptiondb/">
+                        <span class="item-title">InceptionDB</span>
+                        <span class="item-description">Managed NoSQL document database.</span>
                     </a>
-                    <a class="dropdown-item" href="https://inceptiondb.hola.cloud" target="_blank" rel="noopener">
-                        <span class="item-title">InceptioDB</span>
-                        <span class="item-description">Fully managed database service within the hola.cloud ecosystem.</span>
+                    <a class="dropdown-item" href="/lambda/">
+                        <span class="item-title">Lambda</span>
+                        <span class="item-description">Serverless function execution platform.</span>
                     </a>
-                    <a class="dropdown-item" href="https://console.hola.cloud" target="_blank" rel="noopener">
-                        <span class="item-title">Public Cloud</span>
-                        <span class="item-description">Deploy and manage your workloads on the hola.cloud public platform.</span>
+                    <a class="dropdown-item" href="/files/">
+                        <span class="item-title">Files</span>
+                        <span class="item-description">Secure object storage service.</span>
                     </a>
-                    <a class="dropdown-item" href="https://gopress.org" target="_blank" rel="noopener">
-                        <span class="item-title">GoPress <span class="item-tag">Open Source</span></span>
-                        <span class="item-description">Open-source CMS built for the hola.cloud ecosystem.</span>
+                    <a class="dropdown-item" href="/config/">
+                        <span class="item-title">Config</span>
+                        <span class="item-description">Centralized configuration management.</span>
+                    </a>
+                    <a class="dropdown-item" href="/logs/">
+                        <span class="item-title">InstantLogs</span>
+                        <span class="item-description">Real-time log ingestion and streaming.</span>
+                    </a>
+                    <a class="dropdown-item" href="/queues/">
+                        <span class="item-title">Tailon</span>
+                        <span class="item-description">Message queue and async workload system.</span>
+                    </a>
+                    <a class="dropdown-item" href="/scheduler/">
+                        <span class="item-title">Scheduler</span>
+                        <span class="item-description">Distributed task scheduling service.</span>
+                    </a>
+                    <a class="dropdown-item" href="/kvnode/">
+                        <span class="item-title">KVNode</span>
+                        <span class="item-description">Replicated key-value store.</span>
+                    </a>
+                    <a class="dropdown-item" href="/console/">
+                        <span class="item-title">Console</span>
+                        <span class="item-description">Web-based management console.</span>
+                    </a>
+                    <a class="dropdown-item" href="/glue2/">
+                        <span class="item-title">Glue2</span>
+                        <span class="item-description">API Gateway and authentication layer.</span>
+                    </a>
+                    <a class="dropdown-item" href="/holamail/">
+                        <span class="item-title">Holamail</span>
+                        <span class="item-description">SMTP transactional email service.</span>
+                    </a>
+                    <a class="dropdown-item" href="/run/">
+                        <span class="item-title">Run</span>
+                        <span class="item-description">Container execution with built-in Docker registry.</span>
                     </a>
                 </div>
             </div>
@@ -53,23 +93,23 @@
 </div>
 <div class="docs-layout">
 <div class="tree">
-<div class="versions"><a class="" href="/docs/kvnode/v1/collections-and-keys/index.html">v1</a><a class="selected" href="/docs/kvnode/v2/collections-and-keys/index.html">v2</a></div>
 
-    <div class="item"><a href="/docs/inceptiondb/index.html">InceptionDB</a></div>
+
+    <div class="item"><a href="/docs/inceptiondb/index.html">Inceptiondb</a></div>
 <div class="children">
 <div class="item"><a href="/docs/inceptiondb/v2/getting-started/index.html">Quick Start Guide with InceptionDB</a></div>
 <div class="item"><a href="/docs/inceptiondb/v2/managing-collections/index.html">Managing Collections</a></div>
 <div class="item"><a href="/docs/inceptiondb/v2/working-with-data/index.html">Working with Data</a></div>
 <div class="item"><a href="/docs/inceptiondb/v2/api-reference/index.html">InceptionDB API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/inceptiondb/v2/api-reference/create-collection/index.html">POST /v1/databases/{id}/collections</a></div>
-<div class="item"><a href="/docs/inceptiondb/v2/api-reference/create-database/index.html">POST /v1/databases</a></div>
-<div class="item"><a href="/docs/inceptiondb/v2/api-reference/document-operations/index.html">POST /v1/databases/{id}/collections/{col}</a></div>
-<div class="item"><a href="/docs/inceptiondb/v2/api-reference/drop-database/index.html">DELETE /v1/databases/{id}</a></div>
-<div class="item"><a href="/docs/inceptiondb/v2/api-reference/get-database/index.html">GET /v1/databases/{id}</a></div>
-<div class="item"><a href="/docs/inceptiondb/v2/api-reference/list-collections/index.html">GET /v1/databases/{id}/collections</a></div>
-<div class="item"><a href="/docs/inceptiondb/v2/api-reference/list-databases/index.html">GET /v1/databases</a></div>
-<div class="item"><a href="/docs/inceptiondb/v2/api-reference/update-database/index.html">PATCH /v1/databases/{id}</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/api-reference/create-collection/index.html">Create Collection</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/api-reference/create-database/index.html">Create Database</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/api-reference/document-operations/index.html">Document Operations</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/api-reference/drop-database/index.html">Drop Database</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/api-reference/get-database/index.html">Get Database</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/api-reference/list-collections/index.html">List Collections</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/api-reference/list-databases/index.html">List Databases</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/api-reference/update-database/index.html">Update Database</a></div>
 </div>
 </div>
 <div class="item"><a href="/docs/lambda/index.html">Lambda</a></div>
@@ -79,129 +119,129 @@
 <div class="item"><a href="/docs/lambda/v2/invoking-functions/index.html">Invoking Lambda Functions</a></div>
 <div class="item"><a href="/docs/lambda/v2/api-reference/index.html">Lambda API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/lambda/v2/api-reference/create-lambda/index.html">POST /api/v0/lambdas</a></div>
-<div class="item"><a href="/docs/lambda/v2/api-reference/delete-lambda/index.html">DELETE /api/v0/lambdas/{id}</a></div>
-<div class="item"><a href="/docs/lambda/v2/api-reference/get-lambda/index.html">GET /api/v0/lambdas/{id}</a></div>
-<div class="item"><a href="/docs/lambda/v2/api-reference/list-lambdas/index.html">GET /api/v0/lambdas</a></div>
-<div class="item"><a href="/docs/lambda/v2/api-reference/modify-lambda/index.html">PATCH /api/v0/lambdas/{id}</a></div>
-<div class="item"><a href="/docs/lambda/v2/api-reference/mux-router/index.html">GET /mux/{owner}/*</a></div>
-<div class="item"><a href="/docs/lambda/v2/api-reference/run-lambda-admin/index.html">POST /api/v0/run/{id}</a></div>
-<div class="item"><a href="/docs/lambda/v2/api-reference/run-lambda-public/index.html">POST /run/{id}</a></div>
+<div class="item"><a href="/docs/lambda/v2/api-reference/create-lambda/index.html">Create Lambda</a></div>
+<div class="item"><a href="/docs/lambda/v2/api-reference/delete-lambda/index.html">Delete Lambda</a></div>
+<div class="item"><a href="/docs/lambda/v2/api-reference/get-lambda/index.html">Get Lambda</a></div>
+<div class="item"><a href="/docs/lambda/v2/api-reference/list-lambdas/index.html">List Lambdas</a></div>
+<div class="item"><a href="/docs/lambda/v2/api-reference/modify-lambda/index.html">Modify Lambda</a></div>
+<div class="item"><a href="/docs/lambda/v2/api-reference/mux-router/index.html">Mux Router</a></div>
+<div class="item"><a href="/docs/lambda/v2/api-reference/run-lambda-admin/index.html">Run Lambda (Admin)</a></div>
+<div class="item"><a href="/docs/lambda/v2/api-reference/run-lambda-public/index.html">Run Lambda (Public)</a></div>
 </div>
 </div>
 <div class="item"><a href="/docs/files/index.html">Files</a></div>
 <div class="children">
-<div class="item"><a href="/docs/files/v2/getting-started/index.html">Getting Started with Files</a></div>
+<div class="item"><a href="/docs/files/v2/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/files/v2/managing-buckets/index.html">Managing Buckets</a></div>
-<div class="item"><a href="/docs/files/v2/working-with-files/index.html">Working with Files</a></div>
+<div class="item"><a href="/docs/files/v2/working-with-files/index.html">Working With Files</a></div>
 <div class="item"><a href="/docs/files/v2/api-reference/index.html">Files API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/files/v2/api-reference/create-bucket/index.html">POST /v1/buckets</a></div>
-<div class="item"><a href="/docs/files/v2/api-reference/delete-bucket/index.html">DELETE /v1/buckets/{id}</a></div>
-<div class="item"><a href="/docs/files/v2/api-reference/delete-file/index.html">DELETE /v1/buckets/{id}/files/*</a></div>
-<div class="item"><a href="/docs/files/v2/api-reference/download-file/index.html">GET /v1/buckets/{id}/files/*</a></div>
-<div class="item"><a href="/docs/files/v2/api-reference/file-metadata/index.html">HEAD /v1/buckets/{id}/files/*</a></div>
-<div class="item"><a href="/docs/files/v2/api-reference/get-bucket/index.html">GET /v1/buckets/{id}</a></div>
-<div class="item"><a href="/docs/files/v2/api-reference/list-buckets/index.html">GET /v1/buckets</a></div>
-<div class="item"><a href="/docs/files/v2/api-reference/list-files/index.html">GET /v1/buckets/{id}/list/*</a></div>
-<div class="item"><a href="/docs/files/v2/api-reference/modify-bucket/index.html">PATCH /v1/buckets/{id}</a></div>
-<div class="item"><a href="/docs/files/v2/api-reference/upload-file/index.html">PUT /v1/buckets/{id}/files/*</a></div>
+<div class="item"><a href="/docs/files/v2/api-reference/create-bucket/index.html">Create Bucket</a></div>
+<div class="item"><a href="/docs/files/v2/api-reference/delete-bucket/index.html">Delete Bucket</a></div>
+<div class="item"><a href="/docs/files/v2/api-reference/delete-file/index.html">Delete File</a></div>
+<div class="item"><a href="/docs/files/v2/api-reference/download-file/index.html">Download File</a></div>
+<div class="item"><a href="/docs/files/v2/api-reference/file-metadata/index.html">File Metadata</a></div>
+<div class="item"><a href="/docs/files/v2/api-reference/get-bucket/index.html">Get Bucket</a></div>
+<div class="item"><a href="/docs/files/v2/api-reference/list-buckets/index.html">List Buckets</a></div>
+<div class="item"><a href="/docs/files/v2/api-reference/list-files/index.html">List Files</a></div>
+<div class="item"><a href="/docs/files/v2/api-reference/modify-bucket/index.html">Modify Bucket</a></div>
+<div class="item"><a href="/docs/files/v2/api-reference/upload-file/index.html">Upload File</a></div>
 </div>
 </div>
 <div class="item"><a href="/docs/config/index.html">Config</a></div>
 <div class="children">
-<div class="item"><a href="/docs/config/v2/getting-started/index.html">Getting Started with Config</a></div>
-<div class="item"><a href="/docs/config/v2/managing-configs/index.html">Managing Configurations</a></div>
+<div class="item"><a href="/docs/config/v2/getting-started/index.html">Getting Started</a></div>
+<div class="item"><a href="/docs/config/v2/managing-configs/index.html">Managing Configs</a></div>
 <div class="item"><a href="/docs/config/v2/api-reference/index.html">Config API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/config/v2/api-reference/create-config/index.html">POST /v0/configs</a></div>
-<div class="item"><a href="/docs/config/v2/api-reference/delete-config/index.html">DELETE /v0/configs/{id}</a></div>
-<div class="item"><a href="/docs/config/v2/api-reference/get-config/index.html">GET /v0/configs/{id}</a></div>
-<div class="item"><a href="/docs/config/v2/api-reference/get-user-config/index.html">GET /v1/config</a></div>
-<div class="item"><a href="/docs/config/v2/api-reference/list-configs/index.html">GET /v0/configs</a></div>
-<div class="item"><a href="/docs/config/v2/api-reference/patch-config/index.html">PATCH /v0/configs/{id}</a></div>
-<div class="item"><a href="/docs/config/v2/api-reference/update-user-config/index.html">PATCH /v1/config</a></div>
+<div class="item"><a href="/docs/config/v2/api-reference/create-config/index.html">Create Config</a></div>
+<div class="item"><a href="/docs/config/v2/api-reference/delete-config/index.html">Delete Config</a></div>
+<div class="item"><a href="/docs/config/v2/api-reference/get-config/index.html">Get Config</a></div>
+<div class="item"><a href="/docs/config/v2/api-reference/get-user-config/index.html">Get User Config</a></div>
+<div class="item"><a href="/docs/config/v2/api-reference/list-configs/index.html">List Configs</a></div>
+<div class="item"><a href="/docs/config/v2/api-reference/patch-config/index.html">Patch Config</a></div>
+<div class="item"><a href="/docs/config/v2/api-reference/update-user-config/index.html">Update User Config</a></div>
 </div>
 </div>
-<div class="item"><a href="/docs/logs/index.html">InstantLogs</a></div>
+<div class="item"><a href="/docs/logs/index.html">Logs</a></div>
 <div class="children">
-<div class="item"><a href="/docs/logs/v2/getting-started/index.html">Getting Started with InstantLogs</a></div>
+<div class="item"><a href="/docs/logs/v2/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/logs/v2/ingesting-logs/index.html">Ingesting Logs</a></div>
-<div class="item"><a href="/docs/logs/v2/streaming-filtering/index.html">Streaming & Filtering Logs</a></div>
+<div class="item"><a href="/docs/logs/v2/streaming-filtering/index.html">Streaming Filtering</a></div>
 <div class="item"><a href="/docs/logs/v2/api-reference/index.html">InstantLogs API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/logs/v2/api-reference/create-logger/index.html">POST /v1/loggers</a></div>
-<div class="item"><a href="/docs/logs/v2/api-reference/create-logger-apikey/index.html">POST /v1/loggers/{id}/apiKeys</a></div>
-<div class="item"><a href="/docs/logs/v2/api-reference/delete-logger/index.html">DELETE /v1/loggers/{id}</a></div>
-<div class="item"><a href="/docs/logs/v2/api-reference/delete-logger-apikey/index.html">DELETE /v1/loggers/{id}/apiKeys/{key}</a></div>
-<div class="item"><a href="/docs/logs/v2/api-reference/filter-logs/index.html">GET /v1/loggers/{id}/filter</a></div>
-<div class="item"><a href="/docs/logs/v2/api-reference/get-logger/index.html">GET /v1/loggers/{id}</a></div>
-<div class="item"><a href="/docs/logs/v2/api-reference/ingest-framed-events/index.html">POST /v1/ingest/events</a></div>
-<div class="item"><a href="/docs/logs/v2/api-reference/ingest-logs/index.html">POST /v1/loggers/{id}/ingest</a></div>
-<div class="item"><a href="/docs/logs/v2/api-reference/list-loggers/index.html">GET /v1/loggers</a></div>
-<div class="item"><a href="/docs/logs/v2/api-reference/logger-stats/index.html">GET /v1/loggers/{id}/stats</a></div>
-<div class="item"><a href="/docs/logs/v2/api-reference/stream-events/index.html">GET /v1/loggers/{id}/events</a></div>
+<div class="item"><a href="/docs/logs/v2/api-reference/create-logger/index.html">Create Logger</a></div>
+<div class="item"><a href="/docs/logs/v2/api-reference/create-logger-apikey/index.html">Create Logger API Key</a></div>
+<div class="item"><a href="/docs/logs/v2/api-reference/delete-logger/index.html">Delete Logger</a></div>
+<div class="item"><a href="/docs/logs/v2/api-reference/delete-logger-apikey/index.html">Delete Logger API Key</a></div>
+<div class="item"><a href="/docs/logs/v2/api-reference/filter-logs/index.html">Filter Logs</a></div>
+<div class="item"><a href="/docs/logs/v2/api-reference/get-logger/index.html">Get Logger</a></div>
+<div class="item"><a href="/docs/logs/v2/api-reference/ingest-framed-events/index.html">Ingest Framed Events</a></div>
+<div class="item"><a href="/docs/logs/v2/api-reference/ingest-logs/index.html">Ingest Logs</a></div>
+<div class="item"><a href="/docs/logs/v2/api-reference/list-loggers/index.html">List Loggers</a></div>
+<div class="item"><a href="/docs/logs/v2/api-reference/logger-stats/index.html">Logger Stats</a></div>
+<div class="item"><a href="/docs/logs/v2/api-reference/stream-events/index.html">Stream Events</a></div>
 </div>
 </div>
-<div class="item"><a href="/docs/queues/index.html">Tailon Queues</a></div>
+<div class="item"><a href="/docs/queues/index.html">Queues</a></div>
 <div class="children">
-<div class="item"><a href="/docs/queues/v2/getting-started/index.html">Getting Started with Tailon</a></div>
+<div class="item"><a href="/docs/queues/v2/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/queues/v2/managing-queues/index.html">Managing Queues</a></div>
-<div class="item"><a href="/docs/queues/v2/producing-consuming/index.html">Producing and Consuming Messages</a></div>
+<div class="item"><a href="/docs/queues/v2/producing-consuming/index.html">Producing Consuming</a></div>
 <div class="item"><a href="/docs/queues/v2/api-reference/index.html">Tailon API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/queues/v2/api-reference/create-queue/index.html">POST /v1/queues</a></div>
-<div class="item"><a href="/docs/queues/v2/api-reference/delete-queue/index.html">DELETE /v1/queues/{id}</a></div>
-<div class="item"><a href="/docs/queues/v2/api-reference/get-queue/index.html">GET /v1/queues/{id}</a></div>
-<div class="item"><a href="/docs/queues/v2/api-reference/list-clients/index.html">GET /v1/clients</a></div>
-<div class="item"><a href="/docs/queues/v2/api-reference/list-queues/index.html">GET /v1/queues</a></div>
-<div class="item"><a href="/docs/queues/v2/api-reference/read-messages/index.html">GET /v1/queues/{id}</a></div>
-<div class="item"><a href="/docs/queues/v2/api-reference/write-messages/index.html">POST /v1/queues/{id}</a></div>
+<div class="item"><a href="/docs/queues/v2/api-reference/create-queue/index.html">Create Queue</a></div>
+<div class="item"><a href="/docs/queues/v2/api-reference/delete-queue/index.html">Delete Queue</a></div>
+<div class="item"><a href="/docs/queues/v2/api-reference/get-queue/index.html">Get Queue</a></div>
+<div class="item"><a href="/docs/queues/v2/api-reference/list-clients/index.html">List Clients</a></div>
+<div class="item"><a href="/docs/queues/v2/api-reference/list-queues/index.html">List Queues</a></div>
+<div class="item"><a href="/docs/queues/v2/api-reference/read-messages/index.html">Read Messages</a></div>
+<div class="item"><a href="/docs/queues/v2/api-reference/write-messages/index.html">Write Messages</a></div>
 </div>
 </div>
 <div class="item"><a href="/docs/scheduler/index.html">Scheduler</a></div>
 <div class="children">
-<div class="item"><a href="/docs/scheduler/v2/getting-started/index.html">Getting Started with Scheduler</a></div>
+<div class="item"><a href="/docs/scheduler/v2/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/scheduler/v2/managing-schedulers/index.html">Managing Schedulers</a></div>
 <div class="item"><a href="/docs/scheduler/v2/task-lifecycle/index.html">Task Lifecycle</a></div>
 <div class="item"><a href="/docs/scheduler/v2/api-reference/index.html">Scheduler API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/scheduler/v2/api-reference/acknowledge-task/index.html">DELETE /schedulers/{id}/tasks/{task}</a></div>
-<div class="item"><a href="/docs/scheduler/v2/api-reference/create-scheduler/index.html">POST /schedulers</a></div>
-<div class="item"><a href="/docs/scheduler/v2/api-reference/delete-scheduler/index.html">DELETE /schedulers/{id}</a></div>
-<div class="item"><a href="/docs/scheduler/v2/api-reference/enqueue-task/index.html">POST /schedulers/{id}/tasks</a></div>
-<div class="item"><a href="/docs/scheduler/v2/api-reference/extend-lease/index.html">POST /schedulers/{id}/tasks/{task}/extend</a></div>
-<div class="item"><a href="/docs/scheduler/v2/api-reference/get-scheduler/index.html">GET /schedulers/{id}</a></div>
-<div class="item"><a href="/docs/scheduler/v2/api-reference/list-schedulers/index.html">GET /schedulers</a></div>
-<div class="item"><a href="/docs/scheduler/v2/api-reference/list-tasks/index.html">GET /schedulers/{id}/tasks</a></div>
-<div class="item"><a href="/docs/scheduler/v2/api-reference/patch-scheduler/index.html">PATCH /schedulers/{id}</a></div>
-<div class="item"><a href="/docs/scheduler/v2/api-reference/reschedule-task/index.html">POST /schedulers/{id}/tasks/{task}/reschedule</a></div>
-<div class="item"><a href="/docs/scheduler/v2/api-reference/reserve-task/index.html">POST /schedulers/{id}/tasks/reserve</a></div>
-<div class="item"><a href="/docs/scheduler/v2/api-reference/scheduler-health/index.html">GET /schedulers/{id}/health</a></div>
-<div class="item"><a href="/docs/scheduler/v2/api-reference/task-stream/index.html">GET /schedulers/{id}/tasks/stream</a></div>
-<div class="item"><a href="/docs/scheduler/v2/api-reference/update-scheduler/index.html">PUT /schedulers/{id}</a></div>
+<div class="item"><a href="/docs/scheduler/v2/api-reference/acknowledge-task/index.html">Acknowledge Task</a></div>
+<div class="item"><a href="/docs/scheduler/v2/api-reference/create-scheduler/index.html">Create Scheduler</a></div>
+<div class="item"><a href="/docs/scheduler/v2/api-reference/delete-scheduler/index.html">Delete Scheduler</a></div>
+<div class="item"><a href="/docs/scheduler/v2/api-reference/enqueue-task/index.html">Enqueue Task</a></div>
+<div class="item"><a href="/docs/scheduler/v2/api-reference/extend-lease/index.html">Extend Lease</a></div>
+<div class="item"><a href="/docs/scheduler/v2/api-reference/get-scheduler/index.html">Get Scheduler</a></div>
+<div class="item"><a href="/docs/scheduler/v2/api-reference/list-schedulers/index.html">List Schedulers</a></div>
+<div class="item"><a href="/docs/scheduler/v2/api-reference/list-tasks/index.html">List Tasks</a></div>
+<div class="item"><a href="/docs/scheduler/v2/api-reference/patch-scheduler/index.html">Patch Scheduler</a></div>
+<div class="item"><a href="/docs/scheduler/v2/api-reference/reschedule-task/index.html">Reschedule Task</a></div>
+<div class="item"><a href="/docs/scheduler/v2/api-reference/reserve-task/index.html">Reserve Task</a></div>
+<div class="item"><a href="/docs/scheduler/v2/api-reference/scheduler-health/index.html">Scheduler Health</a></div>
+<div class="item"><a href="/docs/scheduler/v2/api-reference/task-stream/index.html">Task Stream</a></div>
+<div class="item"><a href="/docs/scheduler/v2/api-reference/update-scheduler/index.html">Update Scheduler</a></div>
 </div>
 </div>
-<div class="item active"><a href="/docs/kvnode/index.html">KVNode</a></div>
+<div class="item active"><a href="/docs/kvnode/index.html">Kvnode</a></div>
 <div class="children">
-<div class="item"><a href="/docs/kvnode/v2/getting-started/index.html">Getting Started with KVNode</a></div>
-<div class="item active selected"><a href="/docs/kvnode/v2/collections-and-keys/index.html">Collections and Keys</a></div>
-<div class="item"><a href="/docs/kvnode/v2/replication/index.html">Replication & High Availability</a></div>
+<div class="item"><a href="/docs/kvnode/v2/getting-started/index.html">Getting Started</a></div>
+<div class="item active selected"><a href="/docs/kvnode/v2/collections-and-keys/index.html">Collections And Keys</a></div>
+<div class="item"><a href="/docs/kvnode/v2/replication/index.html">Replication</a></div>
 <div class="item"><a href="/docs/kvnode/v2/api-reference/index.html">KVNode API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/kvnode/v2/api-reference/create-collection/index.html">POST /v1/collections</a></div>
-<div class="item"><a href="/docs/kvnode/v2/api-reference/delete-collection/index.html">DELETE /v1/collections/{col}</a></div>
-<div class="item"><a href="/docs/kvnode/v2/api-reference/delete-key/index.html">DELETE /v1/collections/{col}/keys/*</a></div>
-<div class="item"><a href="/docs/kvnode/v2/api-reference/get-key/index.html">GET /v1/collections/{col}/keys/*</a></div>
-<div class="item"><a href="/docs/kvnode/v2/api-reference/health-check/index.html">GET /healthz</a></div>
-<div class="item"><a href="/docs/kvnode/v2/api-reference/list-collections/index.html">GET /v1/collections</a></div>
-<div class="item"><a href="/docs/kvnode/v2/api-reference/list-keys/index.html">GET /v1/collections/{col}/keys</a></div>
-<div class="item"><a href="/docs/kvnode/v2/api-reference/node-metrics/index.html">GET /v1/metrics</a></div>
-<div class="item"><a href="/docs/kvnode/v2/api-reference/node-status/index.html">GET /v1/status</a></div>
-<div class="item"><a href="/docs/kvnode/v2/api-reference/readiness-check/index.html">GET /readyz</a></div>
-<div class="item"><a href="/docs/kvnode/v2/api-reference/set-key/index.html">POST /v1/collections/{col}/keys/*</a></div>
+<div class="item"><a href="/docs/kvnode/v2/api-reference/create-collection/index.html">Create Collection</a></div>
+<div class="item"><a href="/docs/kvnode/v2/api-reference/delete-collection/index.html">Delete Collection</a></div>
+<div class="item"><a href="/docs/kvnode/v2/api-reference/delete-key/index.html">Delete Key</a></div>
+<div class="item"><a href="/docs/kvnode/v2/api-reference/get-key/index.html">Get Key</a></div>
+<div class="item"><a href="/docs/kvnode/v2/api-reference/health-check/index.html">Health Check</a></div>
+<div class="item"><a href="/docs/kvnode/v2/api-reference/list-collections/index.html">List Collections</a></div>
+<div class="item"><a href="/docs/kvnode/v2/api-reference/list-keys/index.html">List Keys</a></div>
+<div class="item"><a href="/docs/kvnode/v2/api-reference/node-metrics/index.html">Node Metrics</a></div>
+<div class="item"><a href="/docs/kvnode/v2/api-reference/node-status/index.html">Node Status</a></div>
+<div class="item"><a href="/docs/kvnode/v2/api-reference/readiness-check/index.html">Readiness Check</a></div>
+<div class="item"><a href="/docs/kvnode/v2/api-reference/set-key/index.html">Set Key</a></div>
 </div>
-<div class="item"><a href="/docs/kvnode/v2/sdk-reference/index.html">SDK Quick Reference</a></div>
+<div class="item"><a href="/docs/kvnode/v2/sdk-reference/index.html">Sdk Reference</a></div>
 </div>
 <div class="item"><a href="/docs/console/index.html">Console</a></div>
 <div class="children">
@@ -209,89 +249,54 @@
 <div class="item"><a href="/docs/console/v2/managing-projects/index.html">Managing Projects and Services</a></div>
 <div class="item"><a href="/docs/console/v2/api-reference/index.html">Console API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/console/v2/api-reference/fake-api/index.html">GET /fakeapi/*</a></div>
-<div class="item"><a href="/docs/console/v2/api-reference/get-version/index.html">GET /version</a></div>
+<div class="item"><a href="/docs/console/v2/api-reference/fake-api/index.html">Fake Api</a></div>
+<div class="item"><a href="/docs/console/v2/api-reference/get-version/index.html">Get Version</a></div>
 </div>
 </div>
-<div class="item"><a href="/docs/glue2/index.html">API Gateway (Glue2)</a></div>
+<div class="item"><a href="/docs/glue2/index.html">Glue2</a></div>
 <div class="children">
 <div class="item"><a href="/docs/glue2/v2/architecture-routing/index.html">Architecture & Routing</a></div>
 <div class="item"><a href="/docs/glue2/v2/authentication/index.html">Authentication</a></div>
 <div class="item"><a href="/docs/glue2/v2/api-keys/index.html">Managing API Keys</a></div>
 <div class="item"><a href="/docs/glue2/v2/api-reference/index.html">Glue2 API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/glue2/v2/api-reference/backend-status/index.html">GET /v0/status</a></div>
-<div class="item"><a href="/docs/glue2/v2/api-reference/get-version/index.html">GET /version</a></div>
-<div class="item"><a href="/docs/glue2/v2/api-reference/list-virtualhosts/index.html">GET /v0/virtualhosts</a></div>
-<div class="item"><a href="/docs/glue2/v2/api-reference/openapi-spec/index.html">GET /openapi.json</a></div>
-<div class="item"><a href="/docs/glue2/v2/api-reference/traffic-stats/index.html">GET /v0/stats</a></div>
+<div class="item"><a href="/docs/glue2/v2/api-reference/backend-status/index.html">Backend Status</a></div>
+<div class="item"><a href="/docs/glue2/v2/api-reference/get-version/index.html">Get Version</a></div>
+<div class="item"><a href="/docs/glue2/v2/api-reference/list-virtualhosts/index.html">List Virtualhosts</a></div>
+<div class="item"><a href="/docs/glue2/v2/api-reference/openapi-spec/index.html">Openapi Spec</a></div>
+<div class="item"><a href="/docs/glue2/v2/api-reference/traffic-stats/index.html">Traffic Stats</a></div>
 </div>
 </div>
 <div class="item"><a href="/docs/holamail/index.html">Holamail</a></div>
 <div class="children">
-<div class="item"><a href="/docs/holamail/v2/sending-email/index.html">Sending Email with Holamail</a></div>
+<div class="item"><a href="/docs/holamail/v2/sending-email/index.html">Sending Email</a></div>
 <div class="item"><a href="/docs/holamail/v2/api-reference/index.html">Holamail API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/holamail/v2/api-reference/smtp-reference/index.html">SMTP Protocol Reference</a></div>
+<div class="item"><a href="/docs/holamail/v2/api-reference/smtp-reference/index.html">Smtp Reference</a></div>
 </div>
 </div>
 <div class="item"><a href="/docs/run/index.html">Run</a></div>
 <div class="children">
-<div class="item"><a href="/docs/run/v2/getting-started/index.html">Getting Started with Run</a></div>
+<div class="item"><a href="/docs/run/v2/getting-started/index.html">Getting Started</a></div>
 <div class="item"><a href="/docs/run/v2/api-reference/index.html">Run API Reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/run/v2/api-reference/console-data/index.html">GET /api/console</a></div>
-<div class="item"><a href="/docs/run/v2/api-reference/docker-registry/index.html">Docker Registry API</a></div>
-<div class="item"><a href="/docs/run/v2/api-reference/get-version/index.html">GET /version</a></div>
-<div class="item"><a href="/docs/run/v2/api-reference/rollback-image/index.html">POST /api/console/rollback</a></div>
-<div class="item"><a href="/docs/run/v2/api-reference/save-environment/index.html">PUT /api/console/env</a></div>
-<div class="item"><a href="/docs/run/v2/api-reference/save-volumes/index.html">PUT /api/console/volumes</a></div>
-<div class="item"><a href="/docs/run/v2/api-reference/start-container/index.html">POST /api/console/start</a></div>
-<div class="item"><a href="/docs/run/v2/api-reference/stop-container/index.html">POST /api/console/stop</a></div>
+<div class="item"><a href="/docs/run/v2/api-reference/console-data/index.html">Console Data</a></div>
+<div class="item"><a href="/docs/run/v2/api-reference/docker-registry/index.html">Docker Registry</a></div>
+<div class="item"><a href="/docs/run/v2/api-reference/get-version/index.html">Get Version</a></div>
+<div class="item"><a href="/docs/run/v2/api-reference/rollback-image/index.html">Rollback Image</a></div>
+<div class="item"><a href="/docs/run/v2/api-reference/save-environment/index.html">Save Environment</a></div>
+<div class="item"><a href="/docs/run/v2/api-reference/save-volumes/index.html">Save Volumes</a></div>
+<div class="item"><a href="/docs/run/v2/api-reference/start-container/index.html">Start Container</a></div>
+<div class="item"><a href="/docs/run/v2/api-reference/stop-container/index.html">Stop Container</a></div>
 </div>
 </div>
-
 
 
 </div>
 <div class="content">
     
-    <div class="index"><div class="index-h2">
-<a href="#Collection%20Management">Collection Management</a>
-</div>
-<div class="index-h3">
-<a href="#Create%20a%20Collection">Create a Collection</a>
-</div>
-<div class="index-h3">
-<a href="#List%20Collections">List Collections</a>
-</div>
-<div class="index-h3">
-<a href="#Delete%20a%20Collection">Delete a Collection</a>
-</div>
-<div class="index-h2">
-<a href="#Key%20Operations">Key Operations</a>
-</div>
-<div class="index-h3">
-<a href="#Set%20a%20Key">Set a Key</a>
-</div>
-<div class="index-h3">
-<a href="#Get%20a%20Key">Get a Key</a>
-</div>
-<div class="index-h3">
-<a href="#Delete%20a%20Key">Delete a Key</a>
-</div>
-<div class="index-h3">
-<a href="#List%20Keys%20with%20Prefix%20and%20Limit">List Keys with Prefix and Limit</a>
-</div>
-<div class="index-h2">
-<a href="#Key%20Naming%20Conventions">Key Naming Conventions</a>
-</div>
-<div class="index-h2">
-<a href="#Value%20Types">Value Types</a>
-</div>
-</div>
     <div class="document">
-    <h1>Collections and Keys</h1>
+    <h1>Collections And Keys</h1>
 <p>KVNode organizes data into <strong>collections</strong>, each containing <strong>key-value</strong> pairs. This document covers collection management and key operations in detail.</p>
 <h2 id="Collection%20Management">Collection Management</h2>
 <h3 id="Create%20a%20Collection">Create a Collection</h3>
@@ -405,6 +410,40 @@
         <button type="submit" id="comment-submit">Submit</button>
         <p id="comment-status" class="comment-status"></p>
     </form>
+</div>
+</div>
+<div class="index"><div class="index-h2">
+<a href="#Collection%20Management">Collection Management</a>
+</div>
+<div class="index-h3">
+<a href="#Create%20a%20Collection">Create a Collection</a>
+</div>
+<div class="index-h3">
+<a href="#List%20Collections">List Collections</a>
+</div>
+<div class="index-h3">
+<a href="#Delete%20a%20Collection">Delete a Collection</a>
+</div>
+<div class="index-h2">
+<a href="#Key%20Operations">Key Operations</a>
+</div>
+<div class="index-h3">
+<a href="#Set%20a%20Key">Set a Key</a>
+</div>
+<div class="index-h3">
+<a href="#Get%20a%20Key">Get a Key</a>
+</div>
+<div class="index-h3">
+<a href="#Delete%20a%20Key">Delete a Key</a>
+</div>
+<div class="index-h3">
+<a href="#List%20Keys%20with%20Prefix%20and%20Limit">List Keys with Prefix and Limit</a>
+</div>
+<div class="index-h2">
+<a href="#Key%20Naming%20Conventions">Key Naming Conventions</a>
+</div>
+<div class="index-h2">
+<a href="#Value%20Types">Value Types</a>
 </div>
 </div>
 </div>

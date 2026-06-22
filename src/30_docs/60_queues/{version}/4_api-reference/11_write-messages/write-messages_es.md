@@ -1,5 +1,5 @@
 
-# POST /v1/queues/{id}
+# Write Messages
 
 Escribe mensajes en una cola. Acepta un solo objeto JSON o un flujo de objetos JSON (NDJSON).
 

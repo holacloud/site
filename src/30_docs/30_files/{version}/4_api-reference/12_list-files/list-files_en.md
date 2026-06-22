@@ -1,4 +1,4 @@
-# GET /v1/buckets/{id}/list/*
+# List Files
 
 List files in a bucket. The wildcard (`*`) can be replaced with an optional prefix path to filter results.
 

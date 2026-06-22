@@ -1,4 +1,4 @@
-# POST /schedulers/{id}/tasks/reserve
+# Reservar Tarea
 
 Reserva una tarea disponible para procesamiento. La tarea entra en un período de concesión definido por `worktime`.
 

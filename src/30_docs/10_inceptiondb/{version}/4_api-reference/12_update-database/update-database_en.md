@@ -1,5 +1,5 @@
 
-# PATCH /v1/databases/{id}
+# Update Database
 
 Updates the properties of an existing database.
 

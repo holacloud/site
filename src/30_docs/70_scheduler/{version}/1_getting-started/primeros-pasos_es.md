@@ -1,4 +1,4 @@
-# Primeros pasos con Scheduler
+# Primeros Pasos
 
 Esta guía te explica cómo crear un scheduler, encolar una tarea con retraso, listar tareas, reservar y confirmar una tarea, y verificar el estado del scheduler.
 

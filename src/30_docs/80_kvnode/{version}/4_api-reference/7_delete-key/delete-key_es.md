@@ -1,4 +1,4 @@
-# DELETE /v1/collections/{col}/keys/*
+# Eliminar Clave
 
 Elimina una clave de una colección. El comodín `*` en la ruta se reemplaza con el nombre de la clave.
 

@@ -1,5 +1,5 @@
 
-# GET /api/v0/lambdas
+# List Lambdas
 
 列出已认证账户的所有 Lambda 函数。
 

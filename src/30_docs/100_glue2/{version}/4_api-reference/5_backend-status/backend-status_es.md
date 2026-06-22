@@ -1,4 +1,4 @@
-# GET /v0/status
+# Backend Estado
 
 Devuelve el estado de salud de todos los servicios backend.
 

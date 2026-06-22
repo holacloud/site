@@ -1,4 +1,4 @@
-# PATCH /v1/buckets/{id}
+# Modify Bucket
 
 Modify metadata for an existing bucket. Only the fields provided in the request body are updated.
 

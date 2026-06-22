@@ -1,4 +1,4 @@
-# DELETE /v1/collections/{col}
+# 删除集合
 
 删除集合及其所有键。
 

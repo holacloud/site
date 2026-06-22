@@ -1,4 +1,4 @@
-# 管理配置
+# ManagingConfigs
 
 管理 API（`/v0/configs`）提供了完整的 CRUD 操作来管理配置。这些端点可以公开访问，无需 API 密钥。
 

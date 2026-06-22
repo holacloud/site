@@ -1,5 +1,5 @@
 
-# POST /v1/databases
+# Create Database
 
 Creates a new database within the authenticated project.
 

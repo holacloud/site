@@ -85,9 +85,21 @@ func HolaDoc(c Config) {
 
 				versionMenu := ""
 				{
+					// Collect versions that have distinct content for this node tree
+					availableVersions := []string{}
 					if hasVersions(node) {
-						versionMenu += `<div class="versions">`
 						for _, v := range versions {
+							for _, variation := range node.Variations {
+								if variation.Version == v {
+									availableVersions = append(availableVersions, v)
+									break
+								}
+							}
+						}
+					}
+					if len(availableVersions) > 1 {
+						versionMenu += `<div class="versions">`
+						for _, v := range availableVersions {
 							class := ""
 							if v == version {
 								class += "selected"

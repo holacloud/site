@@ -1,4 +1,4 @@
-# HEAD /v1/buckets/{id}/files/*
+# 文件Metadata
 
 获取文件的元数据，无需下载其内容。文件路径在 URL 中 `/files/` 之后指定。
 

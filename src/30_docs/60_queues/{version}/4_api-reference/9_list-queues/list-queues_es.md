@@ -1,5 +1,5 @@
 
-# GET /v1/queues
+# List Queues
 
 Lista todas las colas asociadas con tu cuenta.
 

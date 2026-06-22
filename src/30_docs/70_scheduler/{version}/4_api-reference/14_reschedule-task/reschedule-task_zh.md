@@ -1,4 +1,4 @@
-# POST /schedulers/{id}/tasks/{task}/reschedule
+# 重新调度任务
 
 使用新的延迟或未来时间重新调度任务。
 

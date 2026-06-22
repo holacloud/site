@@ -1,4 +1,4 @@
-# GET /v0/virtualhosts
+# 列出Virtualhosts
 
 返回当前虚拟主机路由表。
 

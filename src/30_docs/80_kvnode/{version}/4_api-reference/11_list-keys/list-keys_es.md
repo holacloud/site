@@ -1,4 +1,4 @@
-# GET /v1/collections/{col}/keys
+# Listar Keys
 
 Lista las claves de una colección con paginación opcional y filtrado por prefijo.
 

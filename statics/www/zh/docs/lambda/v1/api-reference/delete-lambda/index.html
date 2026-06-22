@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-    <title>DELETE /api/v0/lambdas/{id}</title>
+    <title>Delete Lambda</title>
     <meta name="description" content="inceptiondb">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/blue.css" rel="stylesheet">
     <script src="/js/marked.min.js"></script>
+    <script>
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+            document.documentElement.classList.toggle('dark', e.matches);
+        });
+    </script>
     <script defer src="https://umami.hola.cloud/script.js" data-website-id="cbcb870c-e9a8-460a-8b38-ab2fa77a4cc2"></script>
 </head>
 <body url="delete-lambda">
@@ -21,21 +29,53 @@
                     <span class="dropdown-icon" aria-hidden="true">▾</span>
                 </button>
                 <div class="dropdown-menu" role="menu">
-                    <a class="dropdown-item" href="https://flowtest.io" target="_blank" rel="noopener">
-                        <span class="item-title">Flowtest.io</span>
-                        <span class="item-description">Automated load testing from the hola.cloud ecosystem.</span>
+                    <a class="dropdown-item" href="/inceptiondb/">
+                        <span class="item-title">InceptionDB</span>
+                        <span class="item-description">Managed NoSQL document database.</span>
                     </a>
-                    <a class="dropdown-item" href="https://inceptiondb.hola.cloud" target="_blank" rel="noopener">
-                        <span class="item-title">InceptioDB</span>
-                        <span class="item-description">Fully managed database service within the hola.cloud ecosystem.</span>
+                    <a class="dropdown-item" href="/lambda/">
+                        <span class="item-title">Lambda</span>
+                        <span class="item-description">Serverless function execution platform.</span>
                     </a>
-                    <a class="dropdown-item" href="https://console.hola.cloud" target="_blank" rel="noopener">
-                        <span class="item-title">Public Cloud</span>
-                        <span class="item-description">Deploy and manage your workloads on the hola.cloud public platform.</span>
+                    <a class="dropdown-item" href="/files/">
+                        <span class="item-title">Files</span>
+                        <span class="item-description">Secure object storage service.</span>
                     </a>
-                    <a class="dropdown-item" href="https://gopress.org" target="_blank" rel="noopener">
-                        <span class="item-title">GoPress <span class="item-tag">Open Source</span></span>
-                        <span class="item-description">Open-source CMS built for the hola.cloud ecosystem.</span>
+                    <a class="dropdown-item" href="/config/">
+                        <span class="item-title">Config</span>
+                        <span class="item-description">Centralized configuration management.</span>
+                    </a>
+                    <a class="dropdown-item" href="/logs/">
+                        <span class="item-title">InstantLogs</span>
+                        <span class="item-description">Real-time log ingestion and streaming.</span>
+                    </a>
+                    <a class="dropdown-item" href="/queues/">
+                        <span class="item-title">Tailon</span>
+                        <span class="item-description">Message queue and async workload system.</span>
+                    </a>
+                    <a class="dropdown-item" href="/scheduler/">
+                        <span class="item-title">Scheduler</span>
+                        <span class="item-description">Distributed task scheduling service.</span>
+                    </a>
+                    <a class="dropdown-item" href="/kvnode/">
+                        <span class="item-title">KVNode</span>
+                        <span class="item-description">Replicated key-value store.</span>
+                    </a>
+                    <a class="dropdown-item" href="/console/">
+                        <span class="item-title">Console</span>
+                        <span class="item-description">Web-based management console.</span>
+                    </a>
+                    <a class="dropdown-item" href="/glue2/">
+                        <span class="item-title">Glue2</span>
+                        <span class="item-description">API Gateway and authentication layer.</span>
+                    </a>
+                    <a class="dropdown-item" href="/holamail/">
+                        <span class="item-title">Holamail</span>
+                        <span class="item-description">SMTP transactional email service.</span>
+                    </a>
+                    <a class="dropdown-item" href="/run/">
+                        <span class="item-title">Run</span>
+                        <span class="item-description">Container execution with built-in Docker registry.</span>
                     </a>
                 </div>
             </div>
@@ -53,23 +93,23 @@
 </div>
 <div class="docs-layout">
 <div class="tree">
-<div class="versions"><a class="selected" href="/zh/docs/lambda/v1/api-reference/delete-lambda/index.html">v1</a><a class="" href="/zh/docs/lambda/v2/api-reference/delete-lambda/index.html">v2</a></div>
 
-    <div class="item"><a href="/zh/docs/inceptiondb/index.html">InceptionDB</a></div>
+
+    <div class="item"><a href="/zh/docs/inceptiondb/index.html">Inceptiondb</a></div>
 <div class="children">
 <div class="item"><a href="/zh/docs/inceptiondb/v1/getting-started/index.html">InceptionDB快速入门指南</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v1/managing-collections/index.html">管理集合</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v1/working-with-data/index.html">处理数据</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/index.html">InceptionDB API 参考</a></div>
 <div class="children">
-<div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/create-collection/index.html">POST /v1/databases/{id}/collections</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/create-database/index.html">POST /v1/databases</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/document-operations/index.html">POST /v1/databases/{id}/collections/{col}</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/drop-database/index.html">DELETE /v1/databases/{id}</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/get-database/index.html">GET /v1/databases/{id}</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/list-collections/index.html">GET /v1/databases/{id}/collections</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/list-databases/index.html">GET /v1/databases</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/update-database/index.html">PATCH /v1/databases/{id}</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/create-collection/index.html">Create Collection</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/create-database/index.html">Create Database</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/document-operations/index.html">Document Operations</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/drop-database/index.html">Drop Database</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/get-database/index.html">Get Database</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/list-collections/index.html">List Collections</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/list-databases/index.html">List Databases</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/update-database/index.html">Update Database</a></div>
 </div>
 </div>
 <div class="item active"><a href="/zh/docs/lambda/index.html">Lambda</a></div>
@@ -79,129 +119,129 @@
 <div class="item"><a href="/zh/docs/lambda/v1/invoking-functions/index.html">调用Lambda函数</a></div>
 <div class="item active"><a href="/zh/docs/lambda/v1/api-reference/index.html">Lambda API 参考</a></div>
 <div class="children">
-<div class="item"><a href="/zh/docs/lambda/v1/api-reference/create-lambda/index.html">POST /api/v0/lambdas</a></div>
-<div class="item active selected"><a href="/zh/docs/lambda/v1/api-reference/delete-lambda/index.html">DELETE /api/v0/lambdas/{id}</a></div>
-<div class="item"><a href="/zh/docs/lambda/v1/api-reference/get-lambda/index.html">GET /api/v0/lambdas/{id}</a></div>
-<div class="item"><a href="/zh/docs/lambda/v1/api-reference/list-lambdas/index.html">GET /api/v0/lambdas</a></div>
-<div class="item"><a href="/zh/docs/lambda/v1/api-reference/modify-lambda/index.html">PATCH /api/v0/lambdas/{id}</a></div>
-<div class="item"><a href="/zh/docs/lambda/v1/api-reference/mux-router/index.html">GET /mux/{owner}/*</a></div>
-<div class="item"><a href="/zh/docs/lambda/v1/api-reference/run-lambda-admin/index.html">POST /api/v0/run/{id}</a></div>
-<div class="item"><a href="/zh/docs/lambda/v1/api-reference/run-lambda-public/index.html">POST /run/{id}</a></div>
+<div class="item"><a href="/zh/docs/lambda/v1/api-reference/create-lambda/index.html">Create Lambda</a></div>
+<div class="item active selected"><a href="/zh/docs/lambda/v1/api-reference/delete-lambda/index.html">Delete Lambda</a></div>
+<div class="item"><a href="/zh/docs/lambda/v1/api-reference/get-lambda/index.html">Get Lambda</a></div>
+<div class="item"><a href="/zh/docs/lambda/v1/api-reference/list-lambdas/index.html">List Lambdas</a></div>
+<div class="item"><a href="/zh/docs/lambda/v1/api-reference/modify-lambda/index.html">Modify Lambda</a></div>
+<div class="item"><a href="/zh/docs/lambda/v1/api-reference/mux-router/index.html">Mux Router</a></div>
+<div class="item"><a href="/zh/docs/lambda/v1/api-reference/run-lambda-admin/index.html">Run Lambda (Admin)</a></div>
+<div class="item"><a href="/zh/docs/lambda/v1/api-reference/run-lambda-public/index.html">Run Lambda (Public)</a></div>
 </div>
 </div>
 <div class="item"><a href="/zh/docs/files/index.html">Files</a></div>
 <div class="children">
-<div class="item"><a href="/zh/docs/files/v1/getting-started/index.html">文件服务快速入门</a></div>
-<div class="item"><a href="/zh/docs/files/v1/managing-buckets/index.html">管理存储桶</a></div>
-<div class="item"><a href="/zh/docs/files/v1/working-with-files/index.html">管理文件</a></div>
+<div class="item"><a href="/zh/docs/files/v1/getting-started/index.html">GettingStarted</a></div>
+<div class="item"><a href="/zh/docs/files/v1/managing-buckets/index.html">ManagingBuckets</a></div>
+<div class="item"><a href="/zh/docs/files/v1/working-with-files/index.html">WorkingWithFiles</a></div>
 <div class="item"><a href="/zh/docs/files/v1/api-reference/index.html">Files API 参考</a></div>
 <div class="children">
-<div class="item"><a href="/zh/docs/files/v1/api-reference/create-bucket/index.html">POST /v1/buckets</a></div>
-<div class="item"><a href="/zh/docs/files/v1/api-reference/delete-bucket/index.html">DELETE /v1/buckets/{id}</a></div>
-<div class="item"><a href="/zh/docs/files/v1/api-reference/delete-file/index.html">DELETE /v1/buckets/{id}/files/*</a></div>
-<div class="item"><a href="/zh/docs/files/v1/api-reference/download-file/index.html">GET /v1/buckets/{id}/files/*</a></div>
-<div class="item"><a href="/zh/docs/files/v1/api-reference/file-metadata/index.html">HEAD /v1/buckets/{id}/files/*</a></div>
-<div class="item"><a href="/zh/docs/files/v1/api-reference/get-bucket/index.html">GET /v1/buckets/{id}</a></div>
-<div class="item"><a href="/zh/docs/files/v1/api-reference/list-buckets/index.html">GET /v1/buckets</a></div>
-<div class="item"><a href="/zh/docs/files/v1/api-reference/list-files/index.html">GET /v1/buckets/{id}/list/*</a></div>
-<div class="item"><a href="/zh/docs/files/v1/api-reference/modify-bucket/index.html">PATCH /v1/buckets/{id}</a></div>
-<div class="item"><a href="/zh/docs/files/v1/api-reference/upload-file/index.html">PUT /v1/buckets/{id}/files/*</a></div>
+<div class="item"><a href="/zh/docs/files/v1/api-reference/create-bucket/index.html">创建存储桶</a></div>
+<div class="item"><a href="/zh/docs/files/v1/api-reference/delete-bucket/index.html">删除存储桶</a></div>
+<div class="item"><a href="/zh/docs/files/v1/api-reference/delete-file/index.html">删除文件</a></div>
+<div class="item"><a href="/zh/docs/files/v1/api-reference/download-file/index.html">下载文件</a></div>
+<div class="item"><a href="/zh/docs/files/v1/api-reference/file-metadata/index.html">文件Metadata</a></div>
+<div class="item"><a href="/zh/docs/files/v1/api-reference/get-bucket/index.html">获取存储桶</a></div>
+<div class="item"><a href="/zh/docs/files/v1/api-reference/list-buckets/index.html">列出Buckets</a></div>
+<div class="item"><a href="/zh/docs/files/v1/api-reference/list-files/index.html">列出Files</a></div>
+<div class="item"><a href="/zh/docs/files/v1/api-reference/modify-bucket/index.html">修改存储桶</a></div>
+<div class="item"><a href="/zh/docs/files/v1/api-reference/upload-file/index.html">上传文件</a></div>
 </div>
 </div>
 <div class="item"><a href="/zh/docs/config/index.html">配置</a></div>
 <div class="children">
-<div class="item"><a href="/zh/docs/config/v1/getting-started/index.html">配置服务快速入门</a></div>
-<div class="item"><a href="/zh/docs/config/v1/managing-configs/index.html">管理配置</a></div>
+<div class="item"><a href="/zh/docs/config/v1/getting-started/index.html">GettingStarted</a></div>
+<div class="item"><a href="/zh/docs/config/v1/managing-configs/index.html">ManagingConfigs</a></div>
 <div class="item"><a href="/zh/docs/config/v1/api-reference/index.html">Config API 参考</a></div>
 <div class="children">
-<div class="item"><a href="/zh/docs/config/v1/api-reference/create-config/index.html">POST /v0/configs</a></div>
-<div class="item"><a href="/zh/docs/config/v1/api-reference/delete-config/index.html">DELETE /v0/configs/{id}</a></div>
-<div class="item"><a href="/zh/docs/config/v1/api-reference/get-config/index.html">GET /v0/configs/{id}</a></div>
-<div class="item"><a href="/zh/docs/config/v1/api-reference/get-user-config/index.html">GET /v1/config</a></div>
-<div class="item"><a href="/zh/docs/config/v1/api-reference/list-configs/index.html">GET /v0/configs</a></div>
-<div class="item"><a href="/zh/docs/config/v1/api-reference/patch-config/index.html">PATCH /v0/configs/{id}</a></div>
-<div class="item"><a href="/zh/docs/config/v1/api-reference/update-user-config/index.html">PATCH /v1/config</a></div>
+<div class="item"><a href="/zh/docs/config/v1/api-reference/create-config/index.html">创建配置</a></div>
+<div class="item"><a href="/zh/docs/config/v1/api-reference/delete-config/index.html">删除配置</a></div>
+<div class="item"><a href="/zh/docs/config/v1/api-reference/get-config/index.html">获取配置</a></div>
+<div class="item"><a href="/zh/docs/config/v1/api-reference/get-user-config/index.html">获取用户配置</a></div>
+<div class="item"><a href="/zh/docs/config/v1/api-reference/list-configs/index.html">列出Configs</a></div>
+<div class="item"><a href="/zh/docs/config/v1/api-reference/patch-config/index.html">修改配置</a></div>
+<div class="item"><a href="/zh/docs/config/v1/api-reference/update-user-config/index.html">更新用户配置</a></div>
 </div>
 </div>
-<div class="item"><a href="/zh/docs/logs/index.html">InstantLogs</a></div>
+<div class="item"><a href="/zh/docs/logs/index.html">Logs</a></div>
 <div class="children">
-<div class="item"><a href="/zh/docs/logs/v1/getting-started/index.html">InstantLogs快速入门</a></div>
-<div class="item"><a href="/zh/docs/logs/v1/ingesting-logs/index.html">发送日志</a></div>
-<div class="item"><a href="/zh/docs/logs/v1/streaming-filtering/index.html">流式传输与过滤日志</a></div>
+<div class="item"><a href="/zh/docs/logs/v1/getting-started/index.html">GettingStarted</a></div>
+<div class="item"><a href="/zh/docs/logs/v1/ingesting-logs/index.html">IngestingLogs</a></div>
+<div class="item"><a href="/zh/docs/logs/v1/streaming-filtering/index.html">StreamingFiltering</a></div>
 <div class="item"><a href="/zh/docs/logs/v1/api-reference/index.html">InstantLogs API 参考</a></div>
 <div class="children">
-<div class="item"><a href="/zh/docs/logs/v1/api-reference/create-logger/index.html">POST /v1/loggers</a></div>
-<div class="item"><a href="/zh/docs/logs/v1/api-reference/create-logger-apikey/index.html">POST /v1/loggers/{id}/apiKeys</a></div>
-<div class="item"><a href="/zh/docs/logs/v1/api-reference/delete-logger/index.html">DELETE /v1/loggers/{id}</a></div>
-<div class="item"><a href="/zh/docs/logs/v1/api-reference/delete-logger-apikey/index.html">DELETE /v1/loggers/{id}/apiKeys/{key}</a></div>
-<div class="item"><a href="/zh/docs/logs/v1/api-reference/filter-logs/index.html">GET /v1/loggers/{id}/filter</a></div>
-<div class="item"><a href="/zh/docs/logs/v1/api-reference/get-logger/index.html">GET /v1/loggers/{id}</a></div>
-<div class="item"><a href="/zh/docs/logs/v1/api-reference/ingest-framed-events/index.html">POST /v1/ingest/events</a></div>
-<div class="item"><a href="/zh/docs/logs/v1/api-reference/ingest-logs/index.html">POST /v1/loggers/{id}/ingest</a></div>
-<div class="item"><a href="/zh/docs/logs/v1/api-reference/list-loggers/index.html">GET /v1/loggers</a></div>
-<div class="item"><a href="/zh/docs/logs/v1/api-reference/logger-stats/index.html">GET /v1/loggers/{id}/stats</a></div>
-<div class="item"><a href="/zh/docs/logs/v1/api-reference/stream-events/index.html">GET /v1/loggers/{id}/events</a></div>
+<div class="item"><a href="/zh/docs/logs/v1/api-reference/create-logger/index.html">Create Logger</a></div>
+<div class="item"><a href="/zh/docs/logs/v1/api-reference/create-logger-apikey/index.html">Create Logger API Key</a></div>
+<div class="item"><a href="/zh/docs/logs/v1/api-reference/delete-logger/index.html">Delete Logger</a></div>
+<div class="item"><a href="/zh/docs/logs/v1/api-reference/delete-logger-apikey/index.html">Delete Logger API Key</a></div>
+<div class="item"><a href="/zh/docs/logs/v1/api-reference/filter-logs/index.html">Filter Logs</a></div>
+<div class="item"><a href="/zh/docs/logs/v1/api-reference/get-logger/index.html">Get Logger</a></div>
+<div class="item"><a href="/zh/docs/logs/v1/api-reference/ingest-framed-events/index.html">Ingest Framed Events</a></div>
+<div class="item"><a href="/zh/docs/logs/v1/api-reference/ingest-logs/index.html">Ingest Logs</a></div>
+<div class="item"><a href="/zh/docs/logs/v1/api-reference/list-loggers/index.html">List Loggers</a></div>
+<div class="item"><a href="/zh/docs/logs/v1/api-reference/logger-stats/index.html">Logger Stats</a></div>
+<div class="item"><a href="/zh/docs/logs/v1/api-reference/stream-events/index.html">Stream Events</a></div>
 </div>
 </div>
-<div class="item"><a href="/zh/docs/queues/index.html">Tailon队列</a></div>
+<div class="item"><a href="/zh/docs/queues/index.html">Queues</a></div>
 <div class="children">
-<div class="item"><a href="/zh/docs/queues/v1/getting-started/index.html">Tailon快速入门</a></div>
-<div class="item"><a href="/zh/docs/queues/v1/managing-queues/index.html">管理队列</a></div>
-<div class="item"><a href="/zh/docs/queues/v1/producing-consuming/index.html">生产与消费消息</a></div>
+<div class="item"><a href="/zh/docs/queues/v1/getting-started/index.html">GettingStarted</a></div>
+<div class="item"><a href="/zh/docs/queues/v1/managing-queues/index.html">ManagingQueues</a></div>
+<div class="item"><a href="/zh/docs/queues/v1/producing-consuming/index.html">ProducingConsuming</a></div>
 <div class="item"><a href="/zh/docs/queues/v1/api-reference/index.html">Tailon API 参考</a></div>
 <div class="children">
-<div class="item"><a href="/zh/docs/queues/v1/api-reference/create-queue/index.html">POST /v1/queues</a></div>
-<div class="item"><a href="/zh/docs/queues/v1/api-reference/delete-queue/index.html">DELETE /v1/queues/{id}</a></div>
-<div class="item"><a href="/zh/docs/queues/v1/api-reference/get-queue/index.html">GET /v1/queues/{id}</a></div>
-<div class="item"><a href="/zh/docs/queues/v1/api-reference/list-clients/index.html">GET /v1/clients</a></div>
-<div class="item"><a href="/zh/docs/queues/v1/api-reference/list-queues/index.html">GET /v1/queues</a></div>
-<div class="item"><a href="/zh/docs/queues/v1/api-reference/read-messages/index.html">GET /v1/queues/{id}</a></div>
-<div class="item"><a href="/zh/docs/queues/v1/api-reference/write-messages/index.html">POST /v1/queues/{id}</a></div>
+<div class="item"><a href="/zh/docs/queues/v1/api-reference/create-queue/index.html">Create Queue</a></div>
+<div class="item"><a href="/zh/docs/queues/v1/api-reference/delete-queue/index.html">Delete Queue</a></div>
+<div class="item"><a href="/zh/docs/queues/v1/api-reference/get-queue/index.html">Get Queue</a></div>
+<div class="item"><a href="/zh/docs/queues/v1/api-reference/list-clients/index.html">List Clients</a></div>
+<div class="item"><a href="/zh/docs/queues/v1/api-reference/list-queues/index.html">List Queues</a></div>
+<div class="item"><a href="/zh/docs/queues/v1/api-reference/read-messages/index.html">Read Messages</a></div>
+<div class="item"><a href="/zh/docs/queues/v1/api-reference/write-messages/index.html">Write Messages</a></div>
 </div>
 </div>
 <div class="item"><a href="/zh/docs/scheduler/index.html">调度器</a></div>
 <div class="children">
-<div class="item"><a href="/zh/docs/scheduler/v1/getting-started/index.html">调度器快速入门</a></div>
-<div class="item"><a href="/zh/docs/scheduler/v1/managing-schedulers/index.html">管理调度器</a></div>
-<div class="item"><a href="/zh/docs/scheduler/v1/task-lifecycle/index.html">任务生命周期</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v1/getting-started/index.html">GettingStarted</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v1/managing-schedulers/index.html">ManagingSchedulers</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v1/task-lifecycle/index.html">任务Lifecycle</a></div>
 <div class="item"><a href="/zh/docs/scheduler/v1/api-reference/index.html">调度器 API 参考</a></div>
 <div class="children">
-<div class="item"><a href="/zh/docs/scheduler/v1/api-reference/acknowledge-task/index.html">DELETE /schedulers/{id}/tasks/{task}</a></div>
-<div class="item"><a href="/zh/docs/scheduler/v1/api-reference/create-scheduler/index.html">POST /schedulers</a></div>
-<div class="item"><a href="/zh/docs/scheduler/v1/api-reference/delete-scheduler/index.html">DELETE /schedulers/{id}</a></div>
-<div class="item"><a href="/zh/docs/scheduler/v1/api-reference/enqueue-task/index.html">POST /schedulers/{id}/tasks</a></div>
-<div class="item"><a href="/zh/docs/scheduler/v1/api-reference/extend-lease/index.html">POST /schedulers/{id}/tasks/{task}/extend</a></div>
-<div class="item"><a href="/zh/docs/scheduler/v1/api-reference/get-scheduler/index.html">GET /schedulers/{id}</a></div>
-<div class="item"><a href="/zh/docs/scheduler/v1/api-reference/list-schedulers/index.html">GET /schedulers</a></div>
-<div class="item"><a href="/zh/docs/scheduler/v1/api-reference/list-tasks/index.html">GET /schedulers/{id}/tasks</a></div>
-<div class="item"><a href="/zh/docs/scheduler/v1/api-reference/patch-scheduler/index.html">PATCH /schedulers/{id}</a></div>
-<div class="item"><a href="/zh/docs/scheduler/v1/api-reference/reschedule-task/index.html">POST /schedulers/{id}/tasks/{task}/reschedule</a></div>
-<div class="item"><a href="/zh/docs/scheduler/v1/api-reference/reserve-task/index.html">POST /schedulers/{id}/tasks/reserve</a></div>
-<div class="item"><a href="/zh/docs/scheduler/v1/api-reference/scheduler-health/index.html">GET /schedulers/{id}/health</a></div>
-<div class="item"><a href="/zh/docs/scheduler/v1/api-reference/task-stream/index.html">GET /schedulers/{id}/tasks/stream</a></div>
-<div class="item"><a href="/zh/docs/scheduler/v1/api-reference/update-scheduler/index.html">PUT /schedulers/{id}</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v1/api-reference/acknowledge-task/index.html">确认任务</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v1/api-reference/create-scheduler/index.html">创建调度器</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v1/api-reference/delete-scheduler/index.html">删除调度器</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v1/api-reference/enqueue-task/index.html">入队任务</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v1/api-reference/extend-lease/index.html">延长Lease</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v1/api-reference/get-scheduler/index.html">获取调度器</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v1/api-reference/list-schedulers/index.html">列出Schedulers</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v1/api-reference/list-tasks/index.html">列出Tasks</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v1/api-reference/patch-scheduler/index.html">修改调度器</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v1/api-reference/reschedule-task/index.html">重新调度任务</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v1/api-reference/reserve-task/index.html">预留任务</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v1/api-reference/scheduler-health/index.html">调度器健康检查</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v1/api-reference/task-stream/index.html">任务流式传输</a></div>
+<div class="item"><a href="/zh/docs/scheduler/v1/api-reference/update-scheduler/index.html">更新调度器</a></div>
 </div>
 </div>
-<div class="item"><a href="/zh/docs/kvnode/index.html">KVNode</a></div>
+<div class="item"><a href="/zh/docs/kvnode/index.html">Kvnode</a></div>
 <div class="children">
-<div class="item"><a href="/zh/docs/kvnode/v1/getting-started/index.html">KVNode快速入门</a></div>
-<div class="item"><a href="/zh/docs/kvnode/v1/collections-and-keys/index.html">集合与键</a></div>
-<div class="item"><a href="/zh/docs/kvnode/v1/replication/index.html">复制与高可用</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v1/getting-started/index.html">GettingStarted</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v1/collections-and-keys/index.html">CollectionsAndKeys</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v1/replication/index.html">Replication</a></div>
 <div class="item"><a href="/zh/docs/kvnode/v1/api-reference/index.html">KVNode API 参考</a></div>
 <div class="children">
-<div class="item"><a href="/zh/docs/kvnode/v1/api-reference/create-collection/index.html">POST /v1/collections</a></div>
-<div class="item"><a href="/zh/docs/kvnode/v1/api-reference/delete-collection/index.html">DELETE /v1/collections/{col}</a></div>
-<div class="item"><a href="/zh/docs/kvnode/v1/api-reference/delete-key/index.html">DELETE /v1/collections/{col}/keys/*</a></div>
-<div class="item"><a href="/zh/docs/kvnode/v1/api-reference/get-key/index.html">GET /v1/collections/{col}/keys/*</a></div>
-<div class="item"><a href="/zh/docs/kvnode/v1/api-reference/health-check/index.html">GET /healthz</a></div>
-<div class="item"><a href="/zh/docs/kvnode/v1/api-reference/list-collections/index.html">GET /v1/collections</a></div>
-<div class="item"><a href="/zh/docs/kvnode/v1/api-reference/list-keys/index.html">GET /v1/collections/{col}/keys</a></div>
-<div class="item"><a href="/zh/docs/kvnode/v1/api-reference/node-metrics/index.html">GET /v1/metrics</a></div>
-<div class="item"><a href="/zh/docs/kvnode/v1/api-reference/node-status/index.html">GET /v1/status</a></div>
-<div class="item"><a href="/zh/docs/kvnode/v1/api-reference/readiness-check/index.html">GET /readyz</a></div>
-<div class="item"><a href="/zh/docs/kvnode/v1/api-reference/set-key/index.html">POST /v1/collections/{col}/keys/*</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v1/api-reference/create-collection/index.html">创建集合</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v1/api-reference/delete-collection/index.html">删除集合</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v1/api-reference/delete-key/index.html">删除键</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v1/api-reference/get-key/index.html">获取键</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v1/api-reference/health-check/index.html">健康检查Check</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v1/api-reference/list-collections/index.html">列出Collections</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v1/api-reference/list-keys/index.html">列出Keys</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v1/api-reference/node-metrics/index.html">节点指标</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v1/api-reference/node-status/index.html">节点状态</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v1/api-reference/readiness-check/index.html">就绪检查Check</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v1/api-reference/set-key/index.html">设置键</a></div>
 </div>
-<div class="item"><a href="/zh/docs/kvnode/v1/sdk-reference/index.html">SDK快速参考</a></div>
+<div class="item"><a href="/zh/docs/kvnode/v1/sdk-reference/index.html">SdkReference</a></div>
 </div>
 <div class="item"><a href="/zh/docs/console/index.html">控制台</a></div>
 <div class="children">
@@ -209,74 +249,54 @@
 <div class="item"><a href="/zh/docs/console/v1/managing-projects/index.html">管理项目和服务</a></div>
 <div class="item"><a href="/zh/docs/console/v1/api-reference/index.html">控制台 API 参考</a></div>
 <div class="children">
-<div class="item"><a href="/zh/docs/console/v1/api-reference/fake-api/index.html">GET /fakeapi/*</a></div>
-<div class="item"><a href="/zh/docs/console/v1/api-reference/get-version/index.html">GET /version</a></div>
+<div class="item"><a href="/zh/docs/console/v1/api-reference/fake-api/index.html">模拟Api</a></div>
+<div class="item"><a href="/zh/docs/console/v1/api-reference/get-version/index.html">获取版本</a></div>
 </div>
 </div>
-<div class="item"><a href="/zh/docs/glue2/index.html">API网关 (Glue2)</a></div>
+<div class="item"><a href="/zh/docs/glue2/index.html">Glue2</a></div>
 <div class="children">
 <div class="item"><a href="/zh/docs/glue2/v1/architecture-routing/index.html">架构与路由</a></div>
 <div class="item"><a href="/zh/docs/glue2/v1/authentication/index.html">认证</a></div>
 <div class="item"><a href="/zh/docs/glue2/v1/api-keys/index.html">管理API密钥</a></div>
 <div class="item"><a href="/zh/docs/glue2/v1/api-reference/index.html">Glue2 API 参考</a></div>
 <div class="children">
-<div class="item"><a href="/zh/docs/glue2/v1/api-reference/backend-status/index.html">GET /v0/status</a></div>
-<div class="item"><a href="/zh/docs/glue2/v1/api-reference/get-version/index.html">GET /version</a></div>
-<div class="item"><a href="/zh/docs/glue2/v1/api-reference/list-virtualhosts/index.html">GET /v0/virtualhosts</a></div>
-<div class="item"><a href="/zh/docs/glue2/v1/api-reference/openapi-spec/index.html">GET /openapi.json</a></div>
-<div class="item"><a href="/zh/docs/glue2/v1/api-reference/traffic-stats/index.html">GET /v0/stats</a></div>
+<div class="item"><a href="/zh/docs/glue2/v1/api-reference/backend-status/index.html">后端状态</a></div>
+<div class="item"><a href="/zh/docs/glue2/v1/api-reference/get-version/index.html">获取版本</a></div>
+<div class="item"><a href="/zh/docs/glue2/v1/api-reference/list-virtualhosts/index.html">列出Virtualhosts</a></div>
+<div class="item"><a href="/zh/docs/glue2/v1/api-reference/openapi-spec/index.html">OpenAPI规范</a></div>
+<div class="item"><a href="/zh/docs/glue2/v1/api-reference/traffic-stats/index.html">流量统计</a></div>
 </div>
 </div>
 <div class="item"><a href="/zh/docs/holamail/index.html">Holamail</a></div>
 <div class="children">
-<div class="item"><a href="/zh/docs/holamail/v1/sending-email/index.html">使用Holamail发送邮件</a></div>
+<div class="item"><a href="/zh/docs/holamail/v1/sending-email/index.html">SendingEmail</a></div>
 <div class="item"><a href="/zh/docs/holamail/v1/api-reference/index.html">Holamail API 参考</a></div>
 <div class="children">
-<div class="item"><a href="/zh/docs/holamail/v1/api-reference/smtp-reference/index.html">SMTP 协议参考</a></div>
+<div class="item"><a href="/zh/docs/holamail/v1/api-reference/smtp-reference/index.html">SMTPReference</a></div>
 </div>
 </div>
-<div class="item"><a href="/zh/docs/run/index.html">Run</a></div>
+<div class="item"><a href="/zh/docs/run/index.html">运行</a></div>
 <div class="children">
-<div class="item"><a href="/zh/docs/run/v1/getting-started/index.html">Run快速入门</a></div>
+<div class="item"><a href="/zh/docs/run/v1/getting-started/index.html">GettingStarted</a></div>
 <div class="item"><a href="/zh/docs/run/v1/api-reference/index.html">Run API 参考</a></div>
 <div class="children">
-<div class="item"><a href="/zh/docs/run/v1/api-reference/console-data/index.html">GET /api/console</a></div>
-<div class="item"><a href="/zh/docs/run/v1/api-reference/docker-registry/index.html">Docker Registry API</a></div>
-<div class="item"><a href="/zh/docs/run/v1/api-reference/get-version/index.html">GET /version</a></div>
-<div class="item"><a href="/zh/docs/run/v1/api-reference/rollback-image/index.html">POST /api/console/rollback</a></div>
-<div class="item"><a href="/zh/docs/run/v1/api-reference/save-environment/index.html">PUT /api/console/env</a></div>
-<div class="item"><a href="/zh/docs/run/v1/api-reference/save-volumes/index.html">PUT /api/console/volumes</a></div>
-<div class="item"><a href="/zh/docs/run/v1/api-reference/start-container/index.html">POST /api/console/start</a></div>
-<div class="item"><a href="/zh/docs/run/v1/api-reference/stop-container/index.html">POST /api/console/stop</a></div>
+<div class="item"><a href="/zh/docs/run/v1/api-reference/console-data/index.html">控制台数据</a></div>
+<div class="item"><a href="/zh/docs/run/v1/api-reference/docker-registry/index.html">Docker注册表</a></div>
+<div class="item"><a href="/zh/docs/run/v1/api-reference/get-version/index.html">获取版本</a></div>
+<div class="item"><a href="/zh/docs/run/v1/api-reference/rollback-image/index.html">回滚Image</a></div>
+<div class="item"><a href="/zh/docs/run/v1/api-reference/save-environment/index.html">保存环境变量</a></div>
+<div class="item"><a href="/zh/docs/run/v1/api-reference/save-volumes/index.html">保存存储卷</a></div>
+<div class="item"><a href="/zh/docs/run/v1/api-reference/start-container/index.html">启动容器</a></div>
+<div class="item"><a href="/zh/docs/run/v1/api-reference/stop-container/index.html">停止容器</a></div>
 </div>
 </div>
-
 
 
 </div>
 <div class="content">
-    <div class="breadcrumb"><a class="item" href="/zh/docs/lambda/v1/api-reference/index.html">Lambda API 参考</a><span class="arrow">→</span><a class="item selected" href="/zh/docs/lambda/v1/api-reference/delete-lambda/index.html">DELETE /api/v0/lambdas/{id}</a></div>
-    <div class="index"><div class="index-h2">
-<a href="#%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81">身份验证</a>
-</div>
-<div class="index-h2">
-<a href="#%E8%B7%AF%E5%BE%84%E5%8F%82%E6%95%B0">路径参数</a>
-</div>
-<div class="index-h2">
-<a href="#HTTP%20%E8%AF%B7%E6%B1%82">HTTP 请求</a>
-</div>
-<div class="index-h2">
-<a href="#%E7%A4%BA%E4%BE%8B">示例</a>
-</div>
-<div class="index-h2">
-<a href="#%E5%93%8D%E5%BA%94">响应</a>
-</div>
-<div class="index-h2">
-<a href="#%E9%94%99%E8%AF%AF%E7%A0%81">错误码</a>
-</div>
-</div>
+    <div class="breadcrumb"><a class="item" href="/zh/docs/lambda/v1/api-reference/index.html">Lambda API 参考</a><span class="arrow">→</span><a class="item selected" href="/zh/docs/lambda/v1/api-reference/delete-lambda/index.html">Delete Lambda</a></div>
     <div class="document">
-    <h1>DELETE /api/v0/lambdas/{id}</h1>
+    <h1>Delete Lambda</h1>
 <p>永久删除 Lambda 函数。此操作不可撤销。</p>
 <h2 id="%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81">身份验证</h2>
 <p>需要 <code>Api-Key</code> 和 <code>Api-Secret</code> 请求头。</p>
@@ -353,6 +373,25 @@
         <button type="submit" id="comment-submit">提交</button>
         <p id="comment-status" class="comment-status"></p>
     </form>
+</div>
+</div>
+<div class="index"><div class="index-h2">
+<a href="#%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81">身份验证</a>
+</div>
+<div class="index-h2">
+<a href="#%E8%B7%AF%E5%BE%84%E5%8F%82%E6%95%B0">路径参数</a>
+</div>
+<div class="index-h2">
+<a href="#HTTP%20%E8%AF%B7%E6%B1%82">HTTP 请求</a>
+</div>
+<div class="index-h2">
+<a href="#%E7%A4%BA%E4%BE%8B">示例</a>
+</div>
+<div class="index-h2">
+<a href="#%E5%93%8D%E5%BA%94">响应</a>
+</div>
+<div class="index-h2">
+<a href="#%E9%94%99%E8%AF%AF%E7%A0%81">错误码</a>
 </div>
 </div>
 </div>

@@ -1,5 +1,5 @@
 
-# GET /v1/loggers/{id}/events
+# Stream Events
 
 Stream log events in real time. Supports NDJSON and plain-text formats.
 

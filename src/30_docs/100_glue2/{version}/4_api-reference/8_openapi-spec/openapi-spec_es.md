@@ -1,4 +1,4 @@
-# GET /openapi.json
+# OpenAPI Especificación
 
 Devuelve la especificación OpenAPI de la puerta de enlace Glue2.
 

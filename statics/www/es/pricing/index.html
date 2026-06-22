@@ -7,6 +7,14 @@
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/blue.css" rel="stylesheet">
     <script src="/js/marked.min.js"></script>
+    <script>
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+            document.documentElement.classList.toggle('dark', e.matches);
+        });
+    </script>
     <script defer src="https://umami.hola.cloud/script.js" data-website-id="cbcb870c-e9a8-460a-8b38-ab2fa77a4cc2"></script>
 </head>
 <body url="pricing">
@@ -21,21 +29,53 @@
                     <span class="dropdown-icon" aria-hidden="true">▾</span>
                 </button>
                 <div class="dropdown-menu" role="menu">
-                    <a class="dropdown-item" href="https://flowtest.io" target="_blank" rel="noopener">
-                        <span class="item-title">Flowtest.io</span>
-                        <span class="item-description">Automated load testing from the hola.cloud ecosystem.</span>
+                    <a class="dropdown-item" href="/inceptiondb/">
+                        <span class="item-title">InceptionDB</span>
+                        <span class="item-description">Managed NoSQL document database.</span>
                     </a>
-                    <a class="dropdown-item" href="https://inceptiondb.hola.cloud" target="_blank" rel="noopener">
-                        <span class="item-title">InceptioDB</span>
-                        <span class="item-description">Fully managed database service within the hola.cloud ecosystem.</span>
+                    <a class="dropdown-item" href="/lambda/">
+                        <span class="item-title">Lambda</span>
+                        <span class="item-description">Serverless function execution platform.</span>
                     </a>
-                    <a class="dropdown-item" href="https://console.hola.cloud" target="_blank" rel="noopener">
-                        <span class="item-title">Public Cloud</span>
-                        <span class="item-description">Deploy and manage your workloads on the hola.cloud public platform.</span>
+                    <a class="dropdown-item" href="/files/">
+                        <span class="item-title">Files</span>
+                        <span class="item-description">Secure object storage service.</span>
                     </a>
-                    <a class="dropdown-item" href="https://gopress.org" target="_blank" rel="noopener">
-                        <span class="item-title">GoPress <span class="item-tag">Open Source</span></span>
-                        <span class="item-description">Open-source CMS built for the hola.cloud ecosystem.</span>
+                    <a class="dropdown-item" href="/config/">
+                        <span class="item-title">Config</span>
+                        <span class="item-description">Centralized configuration management.</span>
+                    </a>
+                    <a class="dropdown-item" href="/logs/">
+                        <span class="item-title">InstantLogs</span>
+                        <span class="item-description">Real-time log ingestion and streaming.</span>
+                    </a>
+                    <a class="dropdown-item" href="/queues/">
+                        <span class="item-title">Tailon</span>
+                        <span class="item-description">Message queue and async workload system.</span>
+                    </a>
+                    <a class="dropdown-item" href="/scheduler/">
+                        <span class="item-title">Scheduler</span>
+                        <span class="item-description">Distributed task scheduling service.</span>
+                    </a>
+                    <a class="dropdown-item" href="/kvnode/">
+                        <span class="item-title">KVNode</span>
+                        <span class="item-description">Replicated key-value store.</span>
+                    </a>
+                    <a class="dropdown-item" href="/console/">
+                        <span class="item-title">Console</span>
+                        <span class="item-description">Web-based management console.</span>
+                    </a>
+                    <a class="dropdown-item" href="/glue2/">
+                        <span class="item-title">Glue2</span>
+                        <span class="item-description">API Gateway and authentication layer.</span>
+                    </a>
+                    <a class="dropdown-item" href="/holamail/">
+                        <span class="item-title">Holamail</span>
+                        <span class="item-description">SMTP transactional email service.</span>
+                    </a>
+                    <a class="dropdown-item" href="/run/">
+                        <span class="item-title">Run</span>
+                        <span class="item-description">Container execution with built-in Docker registry.</span>
                     </a>
                 </div>
             </div>
@@ -55,11 +95,9 @@
 <div class="tree">
 
 
-
 </div>
 <div class="content">
     
-    <div class="index"></div>
     <div class="document">
     <h1>Precios</h1>
 
@@ -83,6 +121,7 @@
     </form>
 </div>
 </div>
+<div class="index"></div>
 </div>
 </div>
 <style>

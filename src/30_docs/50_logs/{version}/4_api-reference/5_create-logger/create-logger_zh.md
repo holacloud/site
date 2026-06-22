@@ -1,5 +1,5 @@
 
-# POST /v1/loggers
+# Create Logger
 
 创建新的日志记录器。
 

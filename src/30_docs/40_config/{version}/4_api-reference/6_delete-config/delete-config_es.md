@@ -1,4 +1,4 @@
-# DELETE /v0/configs/{id}
+# Eliminar Config
 
 Eliminar una configuración por su ID. Este endpoint es de acceso público (API de administración).
 

@@ -1,5 +1,5 @@
 
-# GET /v1/clients
+# List Clients
 
 Lista todos los clientes de streaming actualmente conectados en todas las colas.
 

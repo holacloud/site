@@ -1,4 +1,4 @@
-# PUT /v1/buckets/{id}/files/*
+# 上传文件
 
 上传文件到存储桶。文件路径在 URL 中 `/files/` 之后指定。最大文件大小为 5 GB。
 

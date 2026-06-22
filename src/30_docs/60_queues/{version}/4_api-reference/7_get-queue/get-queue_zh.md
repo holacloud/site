@@ -1,5 +1,5 @@
 
-# GET /v1/queues/{id}
+# Get Queue
 
 根据 ID 获取特定队列的详细信息。
 

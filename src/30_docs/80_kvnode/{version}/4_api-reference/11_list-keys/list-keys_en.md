@@ -1,4 +1,4 @@
-# GET /v1/collections/{col}/keys
+# List Keys
 
 Lists keys in a collection with optional pagination and prefix filtering.
 

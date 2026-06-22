@@ -1,4 +1,4 @@
-# SMTP 协议参考
+# SMTPReference
 
 Holamail 实现了用于发送事务性电子邮件的标准 SMTP 协议。客户端通过端口 2525 连接并发出 SMTP 命令。
 

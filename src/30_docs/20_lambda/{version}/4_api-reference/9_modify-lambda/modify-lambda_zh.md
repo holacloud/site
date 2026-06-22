@@ -1,5 +1,5 @@
 
-# PATCH /api/v0/lambdas/{id}
+# Modify Lambda
 
 更新现有 Lambda 函数的代码、运行环境或激活状态。
 

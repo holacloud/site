@@ -1,4 +1,4 @@
-# Tailon Queues
+# Queues
 
 Tailon is a lightweight, in-memory message queue service that is part of the HolaCloud ecosystem. Designed for speed and simplicity, Tailon enables asynchronous communication between microservices, event distribution, and workload buffering without the overhead of a full-blown message broker.
 

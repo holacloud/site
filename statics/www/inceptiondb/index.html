@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>InceptionDB</title>
+    <title>Managed NoSQL document database</title>
     <meta name="description" content="inceptiondb">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/blue.css" rel="stylesheet">
     <script src="/js/marked.min.js"></script>
+    <script>
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+            document.documentElement.classList.toggle('dark', e.matches);
+        });
+    </script>
     <script defer src="https://umami.hola.cloud/script.js" data-website-id="cbcb870c-e9a8-460a-8b38-ab2fa77a4cc2"></script>
 </head>
-<body url="inceptiondb">
+<body url="inceptiondb" class="product-landing">
 
 <div class="top-frame">
     <div class="top">
@@ -21,21 +29,53 @@
                     <span class="dropdown-icon" aria-hidden="true">▾</span>
                 </button>
                 <div class="dropdown-menu" role="menu">
-                    <a class="dropdown-item" href="https://flowtest.io" target="_blank" rel="noopener">
-                        <span class="item-title">Flowtest.io</span>
-                        <span class="item-description">Automated load testing from the hola.cloud ecosystem.</span>
+                    <a class="dropdown-item" href="/inceptiondb/">
+                        <span class="item-title">InceptionDB</span>
+                        <span class="item-description">Managed NoSQL document database.</span>
                     </a>
-                    <a class="dropdown-item" href="https://inceptiondb.hola.cloud" target="_blank" rel="noopener">
-                        <span class="item-title">InceptioDB</span>
-                        <span class="item-description">Fully managed database service within the hola.cloud ecosystem.</span>
+                    <a class="dropdown-item" href="/lambda/">
+                        <span class="item-title">Lambda</span>
+                        <span class="item-description">Serverless function execution platform.</span>
                     </a>
-                    <a class="dropdown-item" href="https://console.hola.cloud" target="_blank" rel="noopener">
-                        <span class="item-title">Public Cloud</span>
-                        <span class="item-description">Deploy and manage your workloads on the hola.cloud public platform.</span>
+                    <a class="dropdown-item" href="/files/">
+                        <span class="item-title">Files</span>
+                        <span class="item-description">Secure object storage service.</span>
                     </a>
-                    <a class="dropdown-item" href="https://gopress.org" target="_blank" rel="noopener">
-                        <span class="item-title">GoPress <span class="item-tag">Open Source</span></span>
-                        <span class="item-description">Open-source CMS built for the hola.cloud ecosystem.</span>
+                    <a class="dropdown-item" href="/config/">
+                        <span class="item-title">Config</span>
+                        <span class="item-description">Centralized configuration management.</span>
+                    </a>
+                    <a class="dropdown-item" href="/logs/">
+                        <span class="item-title">InstantLogs</span>
+                        <span class="item-description">Real-time log ingestion and streaming.</span>
+                    </a>
+                    <a class="dropdown-item" href="/queues/">
+                        <span class="item-title">Tailon</span>
+                        <span class="item-description">Message queue and async workload system.</span>
+                    </a>
+                    <a class="dropdown-item" href="/scheduler/">
+                        <span class="item-title">Scheduler</span>
+                        <span class="item-description">Distributed task scheduling service.</span>
+                    </a>
+                    <a class="dropdown-item" href="/kvnode/">
+                        <span class="item-title">KVNode</span>
+                        <span class="item-description">Replicated key-value store.</span>
+                    </a>
+                    <a class="dropdown-item" href="/console/">
+                        <span class="item-title">Console</span>
+                        <span class="item-description">Web-based management console.</span>
+                    </a>
+                    <a class="dropdown-item" href="/glue2/">
+                        <span class="item-title">Glue2</span>
+                        <span class="item-description">API Gateway and authentication layer.</span>
+                    </a>
+                    <a class="dropdown-item" href="/holamail/">
+                        <span class="item-title">Holamail</span>
+                        <span class="item-description">SMTP transactional email service.</span>
+                    </a>
+                    <a class="dropdown-item" href="/run/">
+                        <span class="item-title">Run</span>
+                        <span class="item-description">Container execution with built-in Docker registry.</span>
                     </a>
                 </div>
             </div>
@@ -55,105 +95,101 @@
 <div class="tree">
 
 
-
-    <div class="item"><a href="/inceptiondb/introduction/index.html">Introduction</a></div>
-
+    
 
 </div>
 <div class="content">
     
-    <div class="index"><div class="index-h2">
-<a href="#%C2%BFQu%C3%A9%20es%20InceptionDB%3F">¿Qué es InceptionDB?</a>
-</div>
-<div class="index-h2">
-<a href="#Caracter%C3%ADsticas%20principales">Características principales</a>
-</div>
-<div class="index-h3">
-<a href="#Consultas">Consultas</a>
-</div>
-<div class="index-h3">
-<a href="#Indexaci%C3%B3n">Indexación</a>
-</div>
-<div class="index-h3">
-<a href="#Replicaci%C3%B3n">Replicación</a>
-</div>
-<div class="index-h3">
-<a href="#Ejecuci%C3%B3n%20de%20JavaScript">Ejecución de JavaScript</a>
-</div>
-<div class="index-h2">
-<a href="#Ejemplo%20de%20c%C3%B3digo">Ejemplo de código</a>
-</div>
-</div>
     <div class="document">
-    <h1>InceptionDB</h1>
-<p>This is inceptiondb in markdown</p>
-<h2 id="%C2%BFQu%C3%A9%20es%20InceptionDB%3F">¿Qué es InceptionDB?</h2>
-<p>InceptionDB es un sistema de base de datos NoSQL orientado a documentos.</p>
-<p>En lugar de guardar los datos en tablas (como en las bases de datos relacionales), guarda estructuras de datos JSON en
-colecciones con un esquema dinámico, haciendo que la integración de los datos en las aplicaciones sea más fácil.</p>
-<p>Está completamente implementado en Go (el lenguaje de programación de Google) por lo que está disponible para prácticamente
-cualquier sistema operativo y arquitectura, podrías instalar InceptionDB en tu móvil.</p>
-<h2 id="Caracter%C3%ADsticas%20principales">Características principales</h2>
-<h3 id="Consultas">Consultas</h3>
-<h3 id="Indexaci%C3%B3n">Indexación</h3>
-<h3 id="Replicaci%C3%B3n">Replicación</h3>
-<h3 id="Ejecuci%C3%B3n%20de%20JavaScript">Ejecución de JavaScript</h3>
-<h2 id="Ejemplo%20de%20c%C3%B3digo">Ejemplo de código</h2>
-<pre><code class="language-go"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span><span style="color:#268bd2">func</span> <span style="color:#268bd2">Hello</span>() <span style="color:#dc322f">string</span> {
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>	<span style="color:#719e07">return</span> <span style="color:#2aa198">&#34;Hello&#34;</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>}
-</span></span></code></pre></code></pre>
-<p>Y esto es otro bloque de código:</p>
-<code lang="javascript">
-function Hello() {
-    return &#34;Hello&#34;
-}
-</code>
-<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span><span style="color:#268bd2">GET</span> / <span style="color:#268bd2">HTTP</span><span style="color:#719e07">/</span><span style="color:#2aa198">1.1</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>Host<span style="color:#719e07">:</span> www.example.com
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>User-Agent<span style="color:#719e07">:</span> Mozilla/5.0
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>Accept<span style="color:#719e07">:</span> text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>Accept-Language<span style="color:#719e07">:</span> en-GB,en;q=0.5
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>Accept-Encoding<span style="color:#719e07">:</span> gzip, deflate, br
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7">7</a></span><span>Connection<span style="color:#719e07">:</span> keep-alive
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8">8</a></span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9">9</a></span><span>Hello WOrld
-</span></span></code></pre></code></pre>
-<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1"> 1</a></span><span><span style="color:#268bd2">HTTP</span><span style="color:#719e07">/</span><span style="color:#2aa198">1.1</span> <span style="color:#2aa198">200</span> <span style="color:#cb4b16">OK</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2"> 2</a></span><span>Date<span style="color:#719e07">:</span> Mon, 23 May 2005 22:38:34 GMT
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3"> 3</a></span><span>Content-Type<span style="color:#719e07">:</span> text/html; charset=UTF-8
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4"> 4</a></span><span>Content-Length<span style="color:#719e07">:</span> 155
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5"> 5</a></span><span>Last-Modified<span style="color:#719e07">:</span> Wed, 08 Jan 2003 23:11:55 GMT
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6"> 6</a></span><span>Server<span style="color:#719e07">:</span> Apache/1.3.3.7 (Unix) (Red-Hat/Linux)
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7"> 7</a></span><span>ETag<span style="color:#719e07">:</span> &#34;3f80f-1b6-3e1cb03b&#34;
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8"> 8</a></span><span>Accept-Ranges<span style="color:#719e07">:</span> bytes
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9"> 9</a></span><span>Connection<span style="color:#719e07">:</span> close
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L10"><a style="outline: none; text-decoration:none; color:inherit" href="#L10">10</a></span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L11"><a style="outline: none; text-decoration:none; color:inherit" href="#L11">11</a></span><span>&lt;<span style="color:#268bd2">html</span>&gt;
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L12"><a style="outline: none; text-decoration:none; color:inherit" href="#L12">12</a></span><span>  &lt;<span style="color:#268bd2">head</span>&gt;
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L13"><a style="outline: none; text-decoration:none; color:inherit" href="#L13">13</a></span><span>    &lt;<span style="color:#268bd2">title</span>&gt;An Example Page&lt;/<span style="color:#268bd2">title</span>&gt;
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L14"><a style="outline: none; text-decoration:none; color:inherit" href="#L14">14</a></span><span>  &lt;/<span style="color:#268bd2">head</span>&gt;
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L15"><a style="outline: none; text-decoration:none; color:inherit" href="#L15">15</a></span><span>  &lt;<span style="color:#268bd2">body</span>&gt;
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L16"><a style="outline: none; text-decoration:none; color:inherit" href="#L16">16</a></span><span>    &lt;<span style="color:#268bd2">p</span>&gt;Hello World, this is a very simple HTML document.&lt;/<span style="color:#268bd2">p</span>&gt;
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L17"><a style="outline: none; text-decoration:none; color:inherit" href="#L17">17</a></span><span>  &lt;/<span style="color:#268bd2">body</span>&gt;
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L18"><a style="outline: none; text-decoration:none; color:inherit" href="#L18">18</a></span><span>&lt;/<span style="color:#268bd2">html</span>&gt;
-</span></span></code></pre></code></pre>
-<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1"> 1</a></span><span><span style="color:#268bd2">HTTP</span><span style="color:#719e07">/</span><span style="color:#2aa198">1.1</span> <span style="color:#2aa198">200</span> <span style="color:#cb4b16">OK</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2"> 2</a></span><span>Date<span style="color:#719e07">:</span> Mon, 23 May 2005 22:38:34 GMT
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3"> 3</a></span><span>Content-Type<span style="color:#719e07">:</span> application/json; charset=UTF-8
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4"> 4</a></span><span>Content-Length<span style="color:#719e07">:</span> 155
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5"> 5</a></span><span>Last-Modified<span style="color:#719e07">:</span> Wed, 08 Jan 2003 23:11:55 GMT
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6"> 6</a></span><span>Server<span style="color:#719e07">:</span> Apache/1.3.3.7 (Unix) (Red-Hat/Linux)
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7"> 7</a></span><span>ETag<span style="color:#719e07">:</span> &#34;3f80f-1b6-3e1cb03b&#34;
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8"> 8</a></span><span>Accept-Ranges<span style="color:#719e07">:</span> bytes
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9"> 9</a></span><span>Connection<span style="color:#719e07">:</span> close
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L10"><a style="outline: none; text-decoration:none; color:inherit" href="#L10">10</a></span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L11"><a style="outline: none; text-decoration:none; color:inherit" href="#L11">11</a></span><span>{
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L12"><a style="outline: none; text-decoration:none; color:inherit" href="#L12">12</a></span><span>    <span style="color:#268bd2">&#34;hello&#34;</span>: <span style="color:#2aa198">&#34;world&#34;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L13"><a style="outline: none; text-decoration:none; color:inherit" href="#L13">13</a></span><span>    <span style="color:#268bd2">&#34;numbers&#34;</span>: [<span style="color:#2aa198">1</span>,<span style="color:#2aa198">2</span>,<span style="color:#2aa198">3</span>]
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L14"><a style="outline: none; text-decoration:none; color:inherit" href="#L14">14</a></span><span>}
-</span></span></code></pre></code></pre>
+    <section class="hero" style="background: radial-gradient(circle at top right, rgba(14, 165, 233, 0.20), transparent 45%),
+    radial-gradient(circle at top left, rgba(14, 165, 233, 0.30), transparent 55%),
+    #0f172a;">
+    <div class="hero-inner">
+        <div class="hero-eyebrow">🗄️ InceptionDB</div>
+        <h1>Managed NoSQL document database</h1>
+        <p>InceptionDB is a fully managed service from HolaCloud. No infrastructure to maintain, no operations overhead — just pure productivity.</p>
+        <div class="hero-actions">
+            <a class="button button-action" href="https://console.hola.cloud/">Get started</a>
+            <a class="button button-secondary" href="/docs/inceptiondb/" style="background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.35); color: #e2e8f0; padding: 16px 28px; border-radius: 999px; font-size: 16px;">Documentation</a>
+        </div>
+    </div>
+</section>
 
+<div class="landing">
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">InceptionDB</div>
+            <h2 id="Key%20features">Key features</h2>
+            <p>Everything you need to build, deploy, and scale with InceptionDB on HolaCloud.</p>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3 id="Flexible%20document%20model">Flexible document model</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Store and query JSON documents with dynamic schemas. Collections, indexes, and aggregations out of the box.</p>
+          </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3 id="High%20availability">High availability</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Automatic replication across availability zones with sub-second failover and strong consistency.</p>
+          </div><div class="feature-card" style="background: var(--bg-surface); border-radius: 20px; padding: 28px; border: 1px solid var(--border-light); box-shadow: var(--card-shadow); display: grid; gap: 12px;">
+            <h3 id="Built-in%20security">Built-in security</h3>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">Encryption at rest and in transit, role-based access control, and audit logging for compliance.</p>
+          </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Quick start</div>
+            <h2 id="Quick%20start">Quick start</h2>
+            <p>Get started with InceptionDB in seconds using the API.</p>
+        </div>
+        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1"> 1</a></span><span>curl -X POST https://api.hola.cloud/v1/databases \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2"> 2</a></span><span>  -H &#34;Authorization: Bearer $TOKEN&#34; \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3"> 3</a></span><span>  -d &#39;{&#34;name&#34;: &#34;mydb&#34;}&#39;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4"> 4</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5"> 5</a></span><span># Create a collection
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6"> 6</a></span><span>curl -X POST https://api.hola.cloud/v1/databases/mydb/collections \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7"> 7</a></span><span>  -H &#34;Authorization: Bearer $TOKEN&#34; \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8"> 8</a></span><span>  -d &#39;{&#34;name&#34;: &#34;users&#34;}&#39;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9"> 9</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L10"><a style="outline: none; text-decoration:none; color:inherit" href="#L10">10</a></span><span># Insert a document
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L11"><a style="outline: none; text-decoration:none; color:inherit" href="#L11">11</a></span><span>curl -X POST https://api.hola.cloud/v1/databases/mydb/collections/users \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L12"><a style="outline: none; text-decoration:none; color:inherit" href="#L12">12</a></span><span>  -H &#34;Authorization: Bearer $TOKEN&#34; \
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L13"><a style="outline: none; text-decoration:none; color:inherit" href="#L13">13</a></span><span>  -d &#39;{&#34;name&#34;: &#34;Alice&#34;, &#34;email&#34;: &#34;alice@example.com&#34;}&#39;</span></span></code></pre></code></pre>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-kicker">Use cases</div>
+            <h2 id="Common%20use%20cases">Common use cases</h2>
+        </div>
+        <div class="solutions-grid" style="display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+            <div class="solution-card" style="background: linear-gradient(160deg, rgba(14, 165, 233, 0.1), rgba(14, 165, 233, 0.04)); border: 1px solid rgba(14, 165, 233, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;" id="Content%20management%20systems">Content management systems</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with InceptionDB on HolaCloud&#39;s enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(14, 165, 233, 0.1), rgba(14, 165, 233, 0.04)); border: 1px solid rgba(14, 165, 233, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;" id="Real-time%20analytics%20dashboards">Real-time analytics dashboards</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with InceptionDB on HolaCloud&#39;s enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(14, 165, 233, 0.1), rgba(14, 165, 233, 0.04)); border: 1px solid rgba(14, 165, 233, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;" id="IoT%20data%20ingestion">IoT data ingestion</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with InceptionDB on HolaCloud&#39;s enterprise platform, designed for security, reliability, and scale.</p>
+          </div><div class="solution-card" style="background: linear-gradient(160deg, rgba(14, 165, 233, 0.1), rgba(14, 165, 233, 0.04)); border: 1px solid rgba(14, 165, 233, 0.2); border-radius: 18px; padding: 24px; display: grid; gap: 12px;">
+            <h3 style="margin: 0; font-size: 20px;" id="User%20profile%20stores">User profile stores</h3>
+            <p style="margin: 0; line-height: 1.6;">Build and deploy with InceptionDB on HolaCloud&#39;s enterprise platform, designed for security, reliability, and scale.</p>
+          </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 48px;">
+        <div class="cta-panel">
+            <h2 id="Ready%20to%20get%20started%3F">Ready to get started?</h2>
+            <p>Explore the documentation or launch the console to start building with InceptionDB.</p>
+            <div class="cta-actions">
+                <a class="button button-action" href="https://console.hola.cloud/">Console</a>
+                <a class="button button-secondary" href="/docs/inceptiondb/">Documentation</a>
+            </div>
+        </div>
+    </section>
+</div>
 
     <div id="comments-section">
     <h2>Comments</h2>
@@ -173,6 +209,40 @@ function Hello() {
         <button type="submit" id="comment-submit">Submit</button>
         <p id="comment-status" class="comment-status"></p>
     </form>
+</div>
+</div>
+<div class="index"><div class="index-h2">
+<a href="#Key%20features">Key features</a>
+</div>
+<div class="index-h3">
+<a href="#Flexible%20document%20model">Flexible document model</a>
+</div>
+<div class="index-h3">
+<a href="#High%20availability">High availability</a>
+</div>
+<div class="index-h3">
+<a href="#Built-in%20security">Built-in security</a>
+</div>
+<div class="index-h2">
+<a href="#Quick%20start">Quick start</a>
+</div>
+<div class="index-h2">
+<a href="#Common%20use%20cases">Common use cases</a>
+</div>
+<div class="index-h3">
+<a href="#Content%20management%20systems">Content management systems</a>
+</div>
+<div class="index-h3">
+<a href="#Real-time%20analytics%20dashboards">Real-time analytics dashboards</a>
+</div>
+<div class="index-h3">
+<a href="#IoT%20data%20ingestion">IoT data ingestion</a>
+</div>
+<div class="index-h3">
+<a href="#User%20profile%20stores">User profile stores</a>
+</div>
+<div class="index-h2">
+<a href="#Ready%20to%20get%20started%3F">Ready to get started?</a>
 </div>
 </div>
 </div>
