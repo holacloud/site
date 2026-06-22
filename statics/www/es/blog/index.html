@@ -131,33 +131,33 @@ Este es el blog en español :D
     margin: 3rem 0 0;
 }
 #comments-section h2 {
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid var(--border);
     padding-bottom: 0.5rem;
     margin-bottom: 1.5rem;
 }
 .comment {
     padding: 1rem;
     margin-bottom: 0.75rem;
-    background: #f8fafc;
+    background: var(--bg);
     border-radius: 6px;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border);
 }
 .comment-header {
     margin-bottom: 0.25rem;
 }
 .comment-author {
     font-weight: 600;
-    color: #1e293b;
+    color: var(--text);
 }
 .comment-date {
     font-size: 0.85em;
-    color: #64748b;
+    color: var(--text-muted);
     margin-left: 0.5rem;
 }
 .comment-content {
     margin-top: 0.5rem;
     line-height: 1.6;
-    color: #334155;
+    color: var(--text-secondary);
 }
 .comment-content p {
     margin: 0 0 0.5rem;
@@ -166,7 +166,7 @@ Este es el blog en español :D
     margin-bottom: 0;
 }
 .comment-content pre {
-    background: #1e293b;
+    background: var(--bg-code);
     color: #e2e8f0;
     padding: 0.75rem;
     border-radius: 4px;
@@ -175,7 +175,7 @@ Este es el blog en español :D
     margin: 0.5rem 0;
 }
 .comment-content code {
-    background: #e2e8f0;
+    background: var(--code-inline-bg);
     padding: 0.15rem 0.35rem;
     border-radius: 3px;
     font-size: 0.9em;
@@ -189,22 +189,22 @@ Este es el blog en español :D
     margin-top: 0.5rem;
     padding: 0.25rem 0.75rem;
     font-size: 0.85rem;
-    color: #3b82f6;
+    color: var(--accent);
     background: none;
-    border: 1px solid #3b82f6;
+    border: 1px solid var(--accent);
     border-radius: 4px;
     cursor: pointer;
 }
 .comment-reply:hover {
-    background: #3b82f6;
+    background: var(--accent);
     color: #fff;
 }
 .comment-form {
     margin-top: 2rem;
     padding: 1.5rem;
-    background: #f1f5f9;
+    background: var(--bg-alt);
     border-radius: 6px;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border);
 }
 .comment-form h3 {
     margin-top: 0;
@@ -219,25 +219,29 @@ Este es el blog en español :D
 .comment-form-row input {
     flex: 1;
     padding: 0.5rem 0.75rem;
-    border: 1px solid #cbd5e1;
+    border: 1px solid var(--border);
     border-radius: 4px;
     font-size: 0.95rem;
+    background: var(--bg);
+    color: var(--text);
 }
 #comment-content {
     width: 100%;
     min-height: 100px;
     padding: 0.5rem 0.75rem;
-    border: 1px solid #cbd5e1;
+    border: 1px solid var(--border);
     border-radius: 4px;
     font-size: 0.95rem;
     font-family: inherit;
     box-sizing: border-box;
     resize: vertical;
     margin-bottom: 0.75rem;
+    background: var(--bg);
+    color: var(--text);
 }
 #comment-submit {
     padding: 0.5rem 1.5rem;
-    background: #3b82f6;
+    background: var(--accent);
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -245,10 +249,10 @@ Este es el blog en español :D
     cursor: pointer;
 }
 #comment-submit:hover {
-    background: #2563eb;
+    filter: brightness(0.85);
 }
 #comment-submit:disabled {
-    background: #94a3b8;
+    background: var(--text-muted);
     cursor: not-allowed;
 }
 .comment-status {
@@ -258,38 +262,32 @@ Este es el blog en español :D
 .comment-status.error {
     color: #dc2626;
 }
-.comment-status.success {
-    color: #16a34a;
-}
-.comments-empty {
-    color: #64748b;
-    font-style: italic;
-}
 .reply-info {
-    background: #e0f2fe;
-    padding: 0.5rem 0.75rem;
-    border-radius: 4px;
-    margin-bottom: 0.75rem;
-    font-size: 0.9rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    padding: 0.5rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
 }
 .reply-author {
     font-weight: 600;
+    color: var(--accent);
 }
 .cancel-reply {
     margin-left: auto;
     padding: 0.15rem 0.5rem;
     font-size: 0.85rem;
-    color: #64748b;
+    color: var(--text-muted);
     background: none;
-    border: 1px solid #cbd5e1;
+    border: 1px solid var(--border);
     border-radius: 4px;
     cursor: pointer;
 }
 .cancel-reply:hover {
-    background: #e2e8f0;
+    background: var(--border);
 }
 </style>
 <script>
