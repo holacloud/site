@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Eliminar Owner del Logger</title>
+    <meta name="description" content="inceptiondb">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/blue.css" rel="stylesheet">
+    <script src="/js/marked.min.js"></script>
+    <script>
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+            document.documentElement.classList.toggle('dark', e.matches);
+        });
+    </script>
+    <script defer src="https://umami.hola.cloud/script.js" data-website-id="cbcb870c-e9a8-460a-8b38-ab2fa77a4cc2"></script>
+</head>
+<body url="delete-owner">
+
+<div class="top-frame">
+    <div class="top">
+        <a href="/" class="logo"></a>
+        <div class="main-menu">
+            <div class="dropdown">
+                <button class="link dropdown-toggle" type="button">
+                    Products
+                    <span class="dropdown-icon" aria-hidden="true">▾</span>
+                </button>
+                <div class="dropdown-menu" role="menu">
+                    <a class="dropdown-item" href="/inceptiondb/">
+                        <span class="item-title">InceptionDB</span>
+                        <span class="item-description">Managed NoSQL document database.</span>
+                    </a>
+                    <a class="dropdown-item" href="/lambda/">
+                        <span class="item-title">Lambda</span>
+                        <span class="item-description">Serverless function execution platform.</span>
+                    </a>
+                    <a class="dropdown-item" href="/files/">
+                        <span class="item-title">Files</span>
+                        <span class="item-description">Secure object storage service.</span>
+                    </a>
+                    <a class="dropdown-item" href="/config/">
+                        <span class="item-title">Config</span>
+                        <span class="item-description">Centralized configuration management.</span>
+                    </a>
+                    <a class="dropdown-item" href="/logs/">
+                        <span class="item-title">InstantLogs</span>
+                        <span class="item-description">Real-time log ingestion and streaming.</span>
+                    </a>
+                    <a class="dropdown-item" href="/queues/">
+                        <span class="item-title">Tailon</span>
+                        <span class="item-description">Message queue and async workload system.</span>
+                    </a>
+                    <a class="dropdown-item" href="/scheduler/">
+                        <span class="item-title">Scheduler</span>
+                        <span class="item-description">Distributed task scheduling service.</span>
+                    </a>
+                    <a class="dropdown-item" href="/kvnode/">
+                        <span class="item-title">KVNode</span>
+                        <span class="item-description">Replicated key-value store.</span>
+                    </a>
+                    <a class="dropdown-item" href="/console/">
+                        <span class="item-title">Console</span>
+                        <span class="item-description">Web-based management console.</span>
+                    </a>
+                    <a class="dropdown-item" href="/glue2/">
+                        <span class="item-title">Glue2</span>
+                        <span class="item-description">API Gateway and authentication layer.</span>
+                    </a>
+                    <a class="dropdown-item" href="/holamail/">
+                        <span class="item-title">Holamail</span>
+                        <span class="item-description">SMTP transactional email service.</span>
+                    </a>
+                    <a class="dropdown-item" href="/run/">
+                        <span class="item-title">Run</span>
+                        <span class="item-description">Container execution with built-in Docker registry.</span>
+                    </a>
+                </div>
+            </div>
+            
+            <a class="link" href="/es/docs/index.html">Documentación</a>
+            
+            <a class="link button-console" href="https://console.hola.cloud/">Console</a>
+        </div>
+        <div class="right">
+            <div class="languages"><a class="" href="/docs/logs/v1/api-reference/delete-owner/index.html">en</a><a class="selected" href="/es/docs/logs/v1/api-reference/delete-owner/index.html">es</a><a class="" href="/zh/docs/logs/v1/api-reference/delete-owner/index.html">zh</a></div>
+            <a id="login-button" class="button button-noborder" href="https://console.hola.cloud/">Log In</a>
+            <a class="button button-action" href="https://console.hola.cloud/">Start now</a>
+        </div>
+    </div>
+</div>
+<div class="docs-layout">
+<div class="tree">
+
+
+    <div class="item"><a href="/es/docs/inceptiondb/index.html">Inceptiondb</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/inceptiondb/v1/primeros-pasos/index.html">Guía rápida de InceptionDB</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v1/manejando-colecciones/index.html">Manejando colecciones</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v1/trabajando-con-datos/index.html">Trabajando con datos</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v1/api-reference/index.html">Referencia de la API de InceptionDB</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/inceptiondb/v1/api-reference/create-collection/index.html">Crear colección</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v1/api-reference/create-database/index.html">Crear base de datos</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v1/api-reference/document-operations/index.html">Operaciones de documentos</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v1/api-reference/drop-database/index.html">Eliminar base de datos</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v1/api-reference/get-database/index.html">Obtener base de datos</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v1/api-reference/list-collections/index.html">Listar colecciones</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v1/api-reference/list-databases/index.html">Listar bases de datos</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v1/api-reference/update-database/index.html">Actualizar base de datos</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v1/api-reference/access-management/index.html">Gestión de acceso</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v1/api-reference/collection-management/index.html">Gestión de colecciones</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v1/api-reference/index-management/index.html">Gestión de índices</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v1/api-reference/service-metadata/index.html">Metadatos del servicio</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v1/api-reference/insert-documents/index.html">Insertar documentos</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v1/api-reference/find-documents/index.html">Buscar documentos</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v1/api-reference/patch-documents/index.html">Modificar documentos</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v1/api-reference/remove-documents/index.html">Eliminar documentos</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v1/api-reference/get-document/index.html">Obtener documento</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v1/api-reference/streaming-inserts/index.html">Inserciones por stream</a></div>
+</div>
+</div>
+<div class="item"><a href="/es/docs/lambda/index.html">Lambda</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/lambda/v1/primeros-pasos/index.html">Primeros Pasos con Lambda</a></div>
+<div class="item"><a href="/es/docs/lambda/v1/manejando-funciones/index.html">Manejando Funciones Lambda</a></div>
+<div class="item"><a href="/es/docs/lambda/v1/invocando-funciones/index.html">Invocando Funciones Lambda</a></div>
+<div class="item"><a href="/es/docs/lambda/v1/api-reference/index.html">Referencia de la API Lambda</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/lambda/v1/api-reference/create-lambda/index.html">Crear Lambda</a></div>
+<div class="item"><a href="/es/docs/lambda/v1/api-reference/delete-lambda/index.html">Eliminar Lambda</a></div>
+<div class="item"><a href="/es/docs/lambda/v1/api-reference/get-lambda/index.html">Obtener Lambda</a></div>
+<div class="item"><a href="/es/docs/lambda/v1/api-reference/list-lambdas/index.html">Listar Lambdas</a></div>
+<div class="item"><a href="/es/docs/lambda/v1/api-reference/modify-lambda/index.html">Modificar Lambda</a></div>
+<div class="item"><a href="/es/docs/lambda/v1/api-reference/mux-router/index.html">Mux Router</a></div>
+<div class="item"><a href="/es/docs/lambda/v1/api-reference/run-lambda-admin/index.html">Ejecutar Lambda (Admin)</a></div>
+<div class="item"><a href="/es/docs/lambda/v1/api-reference/run-lambda-public/index.html">Ejecutar Lambda (Pública)</a></div>
+<div class="item"><a href="/es/docs/lambda/v1/api-reference/ongoing/index.html">Listar Invocaciones en Curso</a></div>
+<div class="item"><a href="/es/docs/lambda/v1/api-reference/me/index.html">Obtener Usuario Actual</a></div>
+<div class="item"><a href="/es/docs/lambda/v1/api-reference/openapi/index.html">Especificación OpenAPI</a></div>
+</div>
+</div>
+<div class="item"><a href="/es/docs/files/index.html">Files</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/files/v1/primeros-pasos/index.html">Primeros Pasos</a></div>
+<div class="item"><a href="/es/docs/files/v1/administrando-buckets/index.html">Administrando Buckets</a></div>
+<div class="item"><a href="/es/docs/files/v1/trabajando-con-archivos/index.html">Trabajando Con Archivos</a></div>
+<div class="item"><a href="/es/docs/files/v1/api-reference/index.html">Referencia de la API Files</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/files/v1/api-reference/create-bucket/index.html">Crear Bucket</a></div>
+<div class="item"><a href="/es/docs/files/v1/api-reference/delete-bucket/index.html">Eliminar Bucket</a></div>
+<div class="item"><a href="/es/docs/files/v1/api-reference/delete-file/index.html">Eliminar Archivo</a></div>
+<div class="item"><a href="/es/docs/files/v1/api-reference/download-file/index.html">Descargar Archivo</a></div>
+<div class="item"><a href="/es/docs/files/v1/api-reference/file-metadata/index.html">Headers de Archivo</a></div>
+<div class="item"><a href="/es/docs/files/v1/api-reference/get-bucket/index.html">Obtener Bucket</a></div>
+<div class="item"><a href="/es/docs/files/v1/api-reference/list-buckets/index.html">Listar Buckets</a></div>
+<div class="item"><a href="/es/docs/files/v1/api-reference/list-files/index.html">Listar Archivos</a></div>
+<div class="item"><a href="/es/docs/files/v1/api-reference/modify-bucket/index.html">Modificar Bucket</a></div>
+<div class="item"><a href="/es/docs/files/v1/api-reference/upload-file/index.html">Subir Archivo</a></div>
+</div>
+</div>
+<div class="item"><a href="/es/docs/config/index.html">Config</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/config/v1/primeros-pasos/index.html">Primeros Pasos</a></div>
+<div class="item"><a href="/es/docs/config/v1/administrando-configs/index.html">Administrando Configs</a></div>
+<div class="item"><a href="/es/docs/config/v1/api-reference/index.html">Referencia API de Config</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/config/v1/api-reference/create-config/index.html">Crear Config</a></div>
+<div class="item"><a href="/es/docs/config/v1/api-reference/delete-config/index.html">Eliminar Config</a></div>
+<div class="item"><a href="/es/docs/config/v1/api-reference/get-config/index.html">Obtener Config</a></div>
+<div class="item"><a href="/es/docs/config/v1/api-reference/get-user-config/index.html">Obtener Config de Usuario</a></div>
+<div class="item"><a href="/es/docs/config/v1/api-reference/list-configs/index.html">Listar Configs</a></div>
+<div class="item"><a href="/es/docs/config/v1/api-reference/patch-config/index.html">Parchear Config</a></div>
+<div class="item"><a href="/es/docs/config/v1/api-reference/update-user-config/index.html">Actualizar Config de Usuario</a></div>
+<div class="item"><a href="/es/docs/config/v1/api-reference/openapi/index.html">Especificación OpenAPI</a></div>
+<div class="item"><a href="/es/docs/config/v1/api-reference/version/index.html">Versión</a></div>
+</div>
+</div>
+<div class="item active"><a href="/es/docs/logs/index.html">InstantLogs</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/logs/v1/primeros-pasos/index.html">Primeros Pasos</a></div>
+<div class="item"><a href="/es/docs/logs/v1/enviando-logs/index.html">Enviando Logs</a></div>
+<div class="item"><a href="/es/docs/logs/v1/streaming-y-filtrado/index.html">Streaming y Filtrado</a></div>
+<div class="item active"><a href="/es/docs/logs/v1/api-reference/index.html">Referencia API de InstantLogs</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/logs/v1/api-reference/create-logger/index.html">Crear Logger</a></div>
+<div class="item"><a href="/es/docs/logs/v1/api-reference/create-logger-apikey/index.html">Create Logger API Key</a></div>
+<div class="item"><a href="/es/docs/logs/v1/api-reference/delete-logger/index.html">Delete Logger</a></div>
+<div class="item"><a href="/es/docs/logs/v1/api-reference/delete-logger-apikey/index.html">Delete Logger API Key</a></div>
+<div class="item"><a href="/es/docs/logs/v1/api-reference/filter-logs/index.html">Filtrar Logs</a></div>
+<div class="item"><a href="/es/docs/logs/v1/api-reference/get-logger/index.html">Get Logger</a></div>
+<div class="item"><a href="/es/docs/logs/v1/api-reference/ingest-framed-events/index.html">Ingerir Eventos Enmarcados</a></div>
+<div class="item"><a href="/es/docs/logs/v1/api-reference/ingest-logs/index.html">Ingerir Logs</a></div>
+<div class="item"><a href="/es/docs/logs/v1/api-reference/list-loggers/index.html">Listar Loggers</a></div>
+<div class="item"><a href="/es/docs/logs/v1/api-reference/logger-stats/index.html">Estadísticas del Logger</a></div>
+<div class="item"><a href="/es/docs/logs/v1/api-reference/stream-events/index.html">Transmitir Eventos</a></div>
+<div class="item"><a href="/es/docs/logs/v1/api-reference/add-owner/index.html">Agregar Owner del Logger</a></div>
+<div class="item active selected"><a href="/es/docs/logs/v1/api-reference/delete-owner/index.html">Eliminar Owner del Logger</a></div>
+</div>
+</div>
+<div class="item"><a href="/es/docs/queues/index.html">Colas Tailon</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/queues/v1/primeros-pasos/index.html">Primeros Pasos</a></div>
+<div class="item"><a href="/es/docs/queues/v1/administrando-colas/index.html">Administrando Colas</a></div>
+<div class="item"><a href="/es/docs/queues/v1/produciendo-consumiendo/index.html">Produciendo y Consumiendo</a></div>
+<div class="item"><a href="/es/docs/queues/v1/api-reference/index.html">Referencia API de Tailon</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/queues/v1/api-reference/create-queue/index.html">Crear Cola</a></div>
+<div class="item"><a href="/es/docs/queues/v1/api-reference/delete-queue/index.html">Eliminar Cola</a></div>
+<div class="item"><a href="/es/docs/queues/v1/api-reference/get-queue/index.html">Obtener Cola</a></div>
+<div class="item"><a href="/es/docs/queues/v1/api-reference/list-clients/index.html">Listar Clientes</a></div>
+<div class="item"><a href="/es/docs/queues/v1/api-reference/list-queues/index.html">Listar Colas</a></div>
+<div class="item"><a href="/es/docs/queues/v1/api-reference/read-messages/index.html">Leer Mensajes</a></div>
+<div class="item"><a href="/es/docs/queues/v1/api-reference/write-messages/index.html">Escribir Mensajes</a></div>
+<div class="item"><a href="/es/docs/queues/v1/api-reference/release/index.html">Release</a></div>
+<div class="item"><a href="/es/docs/queues/v1/api-reference/me/index.html">Me</a></div>
+<div class="item"><a href="/es/docs/queues/v1/api-reference/openapi/index.html">OpenAPI</a></div>
+</div>
+</div>
+<div class="item"><a href="/es/docs/scheduler/index.html">Scheduler</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/scheduler/v1/primeros-pasos/index.html">Primeros Pasos</a></div>
+<div class="item"><a href="/es/docs/scheduler/v1/administrando-schedulers/index.html">Administrando Schedulers</a></div>
+<div class="item"><a href="/es/docs/scheduler/v1/ciclo-de-vida-tareas/index.html">Ciclo de Vida de Tareas</a></div>
+<div class="item"><a href="/es/docs/scheduler/v1/api-reference/index.html">Referencia de la API de Scheduler</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/scheduler/v1/api-reference/acknowledge-task/index.html">Confirmar Tarea</a></div>
+<div class="item"><a href="/es/docs/scheduler/v1/api-reference/create-scheduler/index.html">Crear Scheduler</a></div>
+<div class="item"><a href="/es/docs/scheduler/v1/api-reference/delete-scheduler/index.html">Eliminar Scheduler</a></div>
+<div class="item"><a href="/es/docs/scheduler/v1/api-reference/enqueue-task/index.html">Encolar Tarea</a></div>
+<div class="item"><a href="/es/docs/scheduler/v1/api-reference/extend-lease/index.html">Extender Lease</a></div>
+<div class="item"><a href="/es/docs/scheduler/v1/api-reference/get-scheduler/index.html">Obtener Scheduler</a></div>
+<div class="item"><a href="/es/docs/scheduler/v1/api-reference/list-schedulers/index.html">Listar Schedulers</a></div>
+<div class="item"><a href="/es/docs/scheduler/v1/api-reference/list-tasks/index.html">Listar Tasks</a></div>
+<div class="item"><a href="/es/docs/scheduler/v1/api-reference/patch-scheduler/index.html">Modificar Scheduler</a></div>
+<div class="item"><a href="/es/docs/scheduler/v1/api-reference/reschedule-task/index.html">Reprogramar Tarea</a></div>
+<div class="item"><a href="/es/docs/scheduler/v1/api-reference/reserve-task/index.html">Reservar Tarea</a></div>
+<div class="item"><a href="/es/docs/scheduler/v1/api-reference/scheduler-health/index.html">Scheduler Salud</a></div>
+<div class="item"><a href="/es/docs/scheduler/v1/api-reference/task-stream/index.html">Tarea Transmitir</a></div>
+<div class="item"><a href="/es/docs/scheduler/v1/api-reference/update-scheduler/index.html">Actualizar Scheduler</a></div>
+<div class="item"><a href="/es/docs/scheduler/v1/api-reference/openapi/index.html">Especificación OpenAPI</a></div>
+</div>
+</div>
+<div class="item"><a href="/es/docs/kvnode/index.html">Kvnode</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/kvnode/v1/primeros-pasos/index.html">Primeros Pasos</a></div>
+<div class="item"><a href="/es/docs/kvnode/v1/colecciones-y-claves/index.html">Colecciones Y Claves</a></div>
+<div class="item"><a href="/es/docs/kvnode/v1/replicacion/index.html">Replicacion</a></div>
+<div class="item"><a href="/es/docs/kvnode/v1/api-reference/index.html">Referencia de la API de KVNode</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/kvnode/v1/api-reference/create-collection/index.html">Crear Colección</a></div>
+<div class="item"><a href="/es/docs/kvnode/v1/api-reference/delete-collection/index.html">Eliminar Colección</a></div>
+<div class="item"><a href="/es/docs/kvnode/v1/api-reference/delete-key/index.html">Eliminar Clave</a></div>
+<div class="item"><a href="/es/docs/kvnode/v1/api-reference/get-key/index.html">Obtener Clave</a></div>
+<div class="item"><a href="/es/docs/kvnode/v1/api-reference/health-check/index.html">Salud Check</a></div>
+<div class="item"><a href="/es/docs/kvnode/v1/api-reference/list-collections/index.html">Listar Collections</a></div>
+<div class="item"><a href="/es/docs/kvnode/v1/api-reference/list-keys/index.html">Listar Keys</a></div>
+<div class="item"><a href="/es/docs/kvnode/v1/api-reference/node-metrics/index.html">Nodo Métricas</a></div>
+<div class="item"><a href="/es/docs/kvnode/v1/api-reference/node-status/index.html">Nodo Estado</a></div>
+<div class="item"><a href="/es/docs/kvnode/v1/api-reference/readiness-check/index.html">Disponibilidad Check</a></div>
+<div class="item"><a href="/es/docs/kvnode/v1/api-reference/set-key/index.html">Establecer Clave</a></div>
+<div class="item"><a href="/es/docs/kvnode/v1/api-reference/livez/index.html">Live Check</a></div>
+<div class="item"><a href="/es/docs/kvnode/v1/api-reference/startupz/index.html">Startup Check</a></div>
+<div class="item"><a href="/es/docs/kvnode/v1/api-reference/openapi/index.html">Especificación OpenAPI</a></div>
+<div class="item"><a href="/es/docs/kvnode/v1/api-reference/replicate/index.html">Replicate</a></div>
+</div>
+<div class="item"><a href="/es/docs/kvnode/v1/referencia-sdk/index.html">Referencia SDK</a></div>
+</div>
+<div class="item"><a href="/es/docs/console/index.html">Consola</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/console/v1/primeros-pasos/index.html">Primeros pasos con la Consola</a></div>
+<div class="item"><a href="/es/docs/console/v1/administrando-proyectos/index.html">Administrando Proyectos y Servicios</a></div>
+<div class="item"><a href="/es/docs/console/v1/api-reference/index.html">Referencia de la API de la Consola</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/console/v1/api-reference/fake-api/index.html">API Falsa</a></div>
+<div class="item"><a href="/es/docs/console/v1/api-reference/get-version/index.html">Obtener Versión</a></div>
+</div>
+</div>
+<div class="item"><a href="/es/docs/glue2/index.html">Glue2</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/glue2/v1/arquitectura-y-enrutamiento/index.html">Arquitectura y Enrutamiento</a></div>
+<div class="item"><a href="/es/docs/glue2/v1/autenticacion/index.html">Autenticación</a></div>
+<div class="item"><a href="/es/docs/glue2/v1/gestionando-claves-api/index.html">Gestión de Claves API</a></div>
+<div class="item"><a href="/es/docs/glue2/v1/api-reference/index.html">Referencia de la API de Glue2</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/glue2/v1/api-reference/backend-status/index.html">Estado del Backend</a></div>
+<div class="item"><a href="/es/docs/glue2/v1/api-reference/get-version/index.html">Obtener Versión</a></div>
+<div class="item"><a href="/es/docs/glue2/v1/api-reference/list-virtualhosts/index.html">Listar Hosts Virtuales</a></div>
+<div class="item"><a href="/es/docs/glue2/v1/api-reference/openapi-spec/index.html">OpenAPI Especificación</a></div>
+<div class="item"><a href="/es/docs/glue2/v1/api-reference/traffic-stats/index.html">Estadísticas de Tráfico</a></div>
+<div class="item"><a href="/es/docs/glue2/v1/api-reference/secret/index.html">Secreto</a></div>
+</div>
+</div>
+<div class="item"><a href="/es/docs/holamail/index.html">Holamail</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/holamail/v1/enviando-correos/index.html">Enviando correos</a></div>
+<div class="item"><a href="/es/docs/holamail/v1/api-reference/index.html">Referencia de API de Holamail</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/holamail/v1/api-reference/smtp-reference/index.html">Referencia SMTP</a></div>
+</div>
+</div>
+<div class="item"><a href="/es/docs/run/index.html">Run</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/run/v1/primeros-pasos/index.html">Primeros pasos</a></div>
+<div class="item"><a href="/es/docs/run/v1/api-reference/index.html">Referencia de API de Run</a></div>
+<div class="children">
+<div class="item"><a href="/es/docs/run/v1/api-reference/console-data/index.html">Datos de Console</a></div>
+<div class="item"><a href="/es/docs/run/v1/api-reference/docker-registry/index.html">Docker Registry</a></div>
+<div class="item"><a href="/es/docs/run/v1/api-reference/get-version/index.html">Obtener versión</a></div>
+<div class="item"><a href="/es/docs/run/v1/api-reference/rollback-image/index.html">Rollback de imagen</a></div>
+<div class="item"><a href="/es/docs/run/v1/api-reference/save-environment/index.html">Guardar entorno</a></div>
+<div class="item"><a href="/es/docs/run/v1/api-reference/save-volumes/index.html">Guardar volúmenes</a></div>
+<div class="item"><a href="/es/docs/run/v1/api-reference/start-container/index.html">Iniciar repositorio</a></div>
+<div class="item"><a href="/es/docs/run/v1/api-reference/stop-container/index.html">Detener repositorio</a></div>
+<div class="item"><a href="/es/docs/run/v1/api-reference/healthz/index.html">Health Check</a></div>
+<div class="item"><a href="/es/docs/run/v1/api-reference/readyz/index.html">Readiness Check</a></div>
+<div class="item"><a href="/es/docs/run/v1/api-reference/openapi/index.html">OpenAPI Specification</a></div>
+</div>
+</div>
+
+
+</div>
+<div class="content">
+    <div class="breadcrumb"><a class="item" href="/es/docs/logs/v1/api-reference/index.html">Referencia API de InstantLogs</a><span class="arrow">→</span><a class="item selected" href="/es/docs/logs/v1/api-reference/delete-owner/index.html">Eliminar Owner del Logger</a></div>
+    <div class="document">
+    <h1>Eliminar Owner del Logger</h1>
+<p>Elimina un owner de un logger. Los owners no pueden eliminarse a sí mismos.</p>
+<h2 id="Autenticaci%C3%B3n">Autenticación</h2>
+<p>Requiere credenciales de gestión:</p>
+<ul>
+<li><code>Api-Key</code> — Tu clave API</li>
+<li><code>Api-Secret</code> — Tu secreto de API</li>
+</ul>
+<h2 id="Par%C3%A1metros%20de%20Ruta">Parámetros de Ruta</h2>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>El identificador único del logger</td>
+</tr>
+<tr>
+<td><code>ownerId</code></td>
+<td>El ID de usuario del owner a eliminar</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Solicitud">Solicitud</h2>
+<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X DELETE <span style="color:#2aa198">&#34;https://api.hola.cloud/v1/loggers/logger_xyz789/owners/user_abc123&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Api-Key: LOGGER_API_KEY&#34;</span> <span style="color:#cb4b16">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Api-Secret: LOGGER_API_SECRET&#34;</span>
+</span></span></code></pre></code></pre>
+<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span><span style="color:#268bd2">DELETE</span> /v1/loggers/logger_xyz789/owners/user_abc123 <span style="color:#268bd2">HTTP</span><span style="color:#719e07">/</span><span style="color:#2aa198">1.1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>Host<span style="color:#719e07">:</span> api.hola.cloud
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>Api-Key<span style="color:#719e07">:</span> LOGGER_API_KEY
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>Api-Secret<span style="color:#719e07">:</span> LOGGER_API_SECRET
+</span></span></code></pre></code></pre>
+<h2 id="Respuesta">Respuesta</h2>
+<p>Devuelve la lista actualizada de owners.</p>
+<pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>[<span style="color:#2aa198">&#34;user_def456&#34;</span>]
+</span></span></code></pre></code></pre>
+<h2 id="C%C3%B3digos%20de%20Error">Códigos de Error</h2>
+<table>
+<thead>
+<tr>
+<th>Código</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>400</td>
+<td>El owner no puede eliminarse a sí mismo</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Credenciales de API faltantes o inválidas</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Las credenciales no tienen acceso a este logger</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Logger no encontrado</td>
+</tr>
+</tbody>
+</table>
+
+
+    <div id="comments-section">
+    <h2>Comentarios</h2>
+    <div id="comments-list"></div>
+    <form id="comment-form" class="comment-form">
+        <div id="reply-info" class="reply-info" style="display:none">
+            <span id="reply-label">Respondiendo a</span>
+            <span id="reply-author" class="reply-author"></span>
+            <button type="button" id="cancel-reply" class="cancel-reply">Cancelar</button>
+        </div>
+        <h3 id="form-title">Deja un comentario</h3>
+        <div class="comment-form-row">
+            <input type="text" name="author" id="comment-author" placeholder="Tu nombre" required>
+            <input type="email" name="email" id="comment-email" placeholder="Tu email (opcional)">
+        </div>
+        <textarea name="content" id="comment-content" placeholder="Escribe un comentario (soporta Markdown)..." required></textarea>
+        <button type="submit" id="comment-submit">Enviar</button>
+        <p id="comment-status" class="comment-status"></p>
+    </form>
+</div>
+</div>
+<div class="index"><div class="index-h2">
+<a href="#Autenticaci%C3%B3n">Autenticación</a>
+</div>
+<div class="index-h2">
+<a href="#Par%C3%A1metros%20de%20Ruta">Parámetros de Ruta</a>
+</div>
+<div class="index-h2">
+<a href="#Solicitud">Solicitud</a>
+</div>
+<div class="index-h2">
+<a href="#Respuesta">Respuesta</a>
+</div>
+<div class="index-h2">
+<a href="#C%C3%B3digos%20de%20Error">Códigos de Error</a>
+</div>
+</div>
+</div>
+</div>
+<style>
+#comments-section {
+    margin: 3rem 0 0;
+}
+#comments-section h2 {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+.comment {
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    background: var(--bg);
+    border-radius: 6px;
+    border: 1px solid var(--border);
+}
+.comment-header {
+    margin-bottom: 0.25rem;
+}
+.comment-author {
+    font-weight: 600;
+    color: var(--text);
+}
+.comment-date {
+    font-size: 0.85em;
+    color: var(--text-muted);
+    margin-left: 0.5rem;
+}
+.comment-content {
+    margin-top: 0.5rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+.comment-content p {
+    margin: 0 0 0.5rem;
+}
+.comment-content p:last-child {
+    margin-bottom: 0;
+}
+.comment-content pre {
+    background: var(--bg-code);
+    color: #e2e8f0;
+    padding: 0.75rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-size: 0.85rem;
+    margin: 0.5rem 0;
+}
+.comment-content code {
+    background: var(--code-inline-bg);
+    padding: 0.15rem 0.35rem;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+.comment-content pre code {
+    background: none;
+    padding: 0;
+    border-radius: 0;
+}
+.comment-reply {
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.85rem;
+    color: var(--accent);
+    background: none;
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    cursor: pointer;
+}
+.comment-reply:hover {
+    background: var(--accent);
+    color: #fff;
+}
+.comment-form {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--bg-alt);
+    border-radius: 6px;
+    border: 1px solid var(--border);
+}
+.comment-form h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+.comment-form-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+.comment-form-row input {
+    flex: 1;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 0.95rem;
+    background: var(--bg);
+    color: var(--text);
+}
+#comment-content {
+    width: 100%;
+    min-height: 100px;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    box-sizing: border-box;
+    resize: vertical;
+    margin-bottom: 0.75rem;
+    background: var(--bg);
+    color: var(--text);
+}
+#comment-submit {
+    padding: 0.5rem 1.5rem;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+#comment-submit:hover {
+    filter: brightness(0.85);
+}
+#comment-submit:disabled {
+    background: var(--text-muted);
+    cursor: not-allowed;
+}
+.comment-status {
+    margin: 0.5rem 0 0;
+    font-size: 0.9rem;
+}
+.comment-status.error {
+    color: #dc2626;
+}
+.reply-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    padding: 0.5rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+}
+.reply-author {
+    font-weight: 600;
+    color: var(--accent);
+}
+.cancel-reply {
+    margin-left: auto;
+    padding: 0.15rem 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+}
+.cancel-reply:hover {
+    background: var(--border);
+}
+</style>
+<script>
+(function() {
+    function getPageID() {
+        var el = document.querySelector('[data-page-id]');
+        if (el) return el.getAttribute('data-page-id');
+        var url = window.location.pathname || '/';
+        var lang = document.documentElement.lang || 'en';
+        return url.replace(/\/$/, '') + '|' + lang;
+    }
+    var pageID = getPageID();
+    var list = document.getElementById('comments-list');
+    var form = document.getElementById('comment-form');
+    var authorInput = document.getElementById('comment-author');
+    var emailInput = document.getElementById('comment-email');
+    var contentInput = document.getElementById('comment-content');
+    var submitBtn = document.getElementById('comment-submit');
+    var statusEl = document.getElementById('comment-status');
+    var cancelReplyBtn = document.getElementById('cancel-reply');
+    var replyInfo = document.getElementById('reply-info');
+    var replyAuthor = document.getElementById('reply-author');
+    var formTitle = document.getElementById('form-title');
+    var currentParentID = '';
+
+    marked.setOptions({
+        gfm: true,
+        breaks: true,
+        pedantic: false
+    });
+    var renderer = new marked.Renderer();
+    renderer.link = function(t) {
+        var href = t.href;
+        if (href && href.toLowerCase().startsWith('javascript:')) href = '#';
+        return '<a href="' + href + '" rel="nofollow">' + t.text + '</a>';
+    };
+    marked.setOptions({ renderer: renderer });
+
+    function renderMarkdown(text) {
+        return marked.parse(text);
+    }
+
+    function buildTree(comments) {
+        var map = {};
+        var roots = [];
+        comments.forEach(function(c) { map[c.id] = c; c.children = []; });
+        comments.forEach(function(c) {
+            if (c.parent_id && map[c.parent_id]) {
+                map[c.parent_id].children.push(c);
+            } else {
+                roots.push(c);
+            }
+        });
+        return roots;
+    }
+
+    function renderComment(c, depth) {
+        var margin = Math.min(depth * 24, 96);
+        var date = new Date(c.created_at).toLocaleDateString();
+        var content = renderMarkdown(c.content);
+        var html = '<div class="comment" style="margin-left:' + margin + 'px">';
+        html += '<div class="comment-header">';
+        html += '<span class="comment-author">' + escapeHTML(c.author) + '</span>';
+        html += '<span class="comment-date">' + date + '</span>';
+        html += '</div>';
+        html += '<div class="comment-content">' + content + '</div>';
+        html += '<button class="comment-reply" data-id="' + escapeHTML(c.id) + '" data-author="' + escapeHTML(c.author) + '">' + getText('reply') + '</button>';
+        html += '</div>';
+        if (c.children) {
+            c.children.forEach(function(child) { html += renderComment(child, depth + 1); });
+        }
+        return html;
+    }
+
+    function loadComments() {
+        fetch('/api/comments?page_id=' + encodeURIComponent(pageID))
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                if (!data.comments || data.comments.length === 0) {
+                    list.innerHTML = '<p class="comments-empty">' + getText('noComments') + '</p>';
+                    return;
+                }
+                var roots = buildTree(data.comments);
+                var html = '';
+                roots.forEach(function(c) { html += renderComment(c, 0); });
+                list.innerHTML = html;
+                attachReplyHandlers();
+            })
+            .catch(function() {
+                list.innerHTML = '<p class="comment-status error">' + getText('loadError') + '</p>';
+            });
+    }
+
+    function attachReplyHandlers() {
+        document.querySelectorAll('.comment-reply').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                currentParentID = btn.getAttribute('data-id');
+                var author = btn.getAttribute('data-author');
+                replyAuthor.textContent = author;
+                replyInfo.style.display = 'flex';
+                formTitle.textContent = getText('replyTitle');
+                contentInput.focus();
+                contentInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            });
+        });
+    }
+
+    function getText(key) {
+        var lang = document.documentElement.lang;
+        var texts = {
+            es: { noComments: 'No hay comentarios aún. Sé el primero en comentar.', loadError: 'Error al cargar comentarios.', sending: 'Enviando...', success: 'Comentario enviado con éxito.', error: 'Error al enviar el comentario.', submit: 'Enviar', reply: 'Responder', replyTitle: 'Responder', cancel: 'Cancelar' },
+            zh: { noComments: '还没有评论。成为第一个评论者。', loadError: '加载评论时出错。', sending: '发送中...', success: '评论发送成功。', error: '发送评论时出错。', submit: '提交', reply: '回复', replyTitle: '回复', cancel: '取消' },
+            en: { noComments: 'No comments yet. Be the first to comment.', loadError: 'Error loading comments.', sending: 'Sending...', success: 'Comment submitted successfully.', error: 'Error submitting comment.', submit: 'Submit', reply: 'Reply', replyTitle: 'Reply', cancel: 'Cancel' }
+        };
+        return (texts[lang] || texts['en'])[key];
+    }
+
+    function escapeHTML(str) {
+        var d = document.createElement('div');
+        d.textContent = str;
+        return d.innerHTML;
+    }
+
+    cancelReplyBtn.addEventListener('click', function() {
+        currentParentID = '';
+        replyInfo.style.display = 'none';
+        formTitle.textContent = getText('submit');
+    });
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        submitBtn.disabled = true;
+        submitBtn.textContent = getText('sending');
+        statusEl.textContent = '';
+        statusEl.className = 'comment-status';
+        var body = {
+            page_id: pageID,
+            author: authorInput.value.trim(),
+            email: emailInput.value.trim(),
+            content: contentInput.value.trim()
+        };
+        if (currentParentID) {
+            body.parent_id = currentParentID;
+        }
+        fetch('/api/comments', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+        })
+        .then(function(r) {
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            return r.json();
+        })
+        .then(function() {
+            statusEl.textContent = getText('success');
+            statusEl.className = 'comment-status success';
+            authorInput.value = '';
+            emailInput.value = '';
+            contentInput.value = '';
+            currentParentID = '';
+            replyInfo.style.display = 'none';
+            formTitle.textContent = getText('submit');
+            loadComments();
+        })
+        .catch(function() {
+            statusEl.textContent = getText('error');
+            statusEl.className = 'comment-status error';
+        })
+        .finally(function() {
+            submitBtn.disabled = false;
+            submitBtn.textContent = getText('submit');
+        });
+    });
+    loadComments();
+})();
+</script>
+<div class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <div class="footer-logo">hola.cloud</div>
+            
+            <p>Software cloud empresarial para equipos regulados y de alto crecimiento.</p>
+            
+        </div>
+        <div class="footer-columns">
+            <div class="footer-column">
+                
+                <h4>Soluciones</h4>
+                <ul>
+                    <li><a href="#start-now">Visión de la plataforma</a></li>
+                    <li><a href="#solutions">Soluciones por industria</a></li>
+                    <li><a href="#partnership">Modelo de acompañamiento</a></li>
+                </ul>
+                
+            </div>
+            <div class="footer-column">
+                
+                <h4>Recursos</h4>
+                <ul>
+                    <li><a href="/docs/">Documentación</a></li>
+                    <li><a href="https://console.hola.cloud/">Consola de clientes</a></li>
+                    <li><a href="mailto:contact@hola.cloud">Centro de soporte</a></li>
+                </ul>
+                
+            </div>
+            <div class="footer-column">
+                
+                <h4>Contacto</h4>
+                <ul>
+                    <li><a href="mailto:contact@hola.cloud">contact@hola.cloud</a></li>
+                    <li><a href="tel:+34910000000">+34 910 000 000</a></li>
+                    <li><a href="https://www.linkedin.com/company/hola-cloud" target="_blank" rel="noopener">LinkedIn</a></li>
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+    <div class="footer-meta">
+        <span>© 2025 hola.cloud</span>
+        <span class="footer-meta-divider" aria-hidden="true">•</span>
+        
+        <span>Todos los derechos reservados.</span>
+        
+    </div>
+</div>
+<script>
+
+    
+    function isElementInViewport (el) {
+
+        
+        
+        
+        
+
+        var rect     = el.getBoundingClientRect(),
+            vWidth   = window.innerWidth || doc.documentElement.clientWidth,
+            vHeight  = window.innerHeight || doc.documentElement.clientHeight,
+            efp      = function (x, y) { return document.elementFromPoint(x, y) };
+
+        
+        if (rect.right < 0 || rect.bottom < 0
+            || rect.left > vWidth || rect.top > vHeight)
+            return false;
+
+        
+        return (
+            el.contains(efp(rect.left,  rect.top))
+            ||  el.contains(efp(rect.right, rect.top))
+            ||  el.contains(efp(rect.right, rect.bottom))
+            ||  el.contains(efp(rect.left,  rect.bottom))
+        );
+    }
+
+    function highlightIndex() {
+        let v = false;
+        document.querySelectorAll('.index a').forEach(a => {
+            const el = document.getElementById(a.getAttribute('href').slice(1));
+
+            if (!v && isElementInViewport(el)) {
+                a.classList.add('active');
+                v = true;
+            } else {
+                a.classList.remove('active');
+            }
+        });
+    }
+
+    document.addEventListener('scroll', highlightIndex, true);
+    document.addEventListener('load', highlightIndex, true);
+</script>
+</body>
+</html>
