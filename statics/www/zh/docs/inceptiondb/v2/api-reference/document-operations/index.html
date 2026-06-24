@@ -110,6 +110,16 @@
 <div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/list-collections/index.html">列出集合</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/list-databases/index.html">列出数据库</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/update-database/index.html">更新数据库</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/access-management/index.html">访问管理</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/collection-management/index.html">集合管理</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/index-management/index.html">索引管理</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/service-metadata/index.html">服务元数据</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/insert-documents/index.html">插入文档</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/find-documents/index.html">查询文档</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/patch-documents/index.html">修改文档</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/remove-documents/index.html">删除文档</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/get-document/index.html">获取文档</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/streaming-inserts/index.html">流式插入</a></div>
 </div>
 </div>
 <div class="item"><a href="/zh/docs/lambda/index.html">Lambda</a></div>
@@ -334,7 +344,34 @@
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>Api-Key<span style="color:#719e07">:</span> 1abbe476-6ad6-4b97-9cca-6deb6ab2901d
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>Api-Secret<span style="color:#719e07">:</span> 4bda6d52-762b-4e5d-bed7-85614c13b8bf
 </span></span></code></pre></code></pre>
-<pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{<span style="color:#268bd2">&#34;id&#34;</span>:<span style="color:#2aa198">&#34;user-1&#34;</span>,<span style="color:#268bd2">&#34;name&#34;</span>:<span style="color:#2aa198">&#34;Alice&#34;</span>,<span style="color:#268bd2">&#34;role&#34;</span>:<span style="color:#2aa198">&#34;admin&#34;</span>}
+<pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1"> 1</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2"> 2</a></span><span>  <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;user-1&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3"> 3</a></span><span>  <span style="color:#268bd2">&#34;document&#34;</span>: {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4"> 4</a></span><span>    <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;user-1&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5"> 5</a></span><span>    <span style="color:#268bd2">&#34;name&#34;</span>: <span style="color:#2aa198">&#34;Alice&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6"> 6</a></span><span>    <span style="color:#268bd2">&#34;role&#34;</span>: <span style="color:#2aa198">&#34;admin&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7"> 7</a></span><span>  },
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8"> 8</a></span><span>  <span style="color:#268bd2">&#34;source&#34;</span>: {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9"> 9</a></span><span>    <span style="color:#268bd2">&#34;type&#34;</span>: <span style="color:#2aa198">&#34;index&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L10"><a style="outline: none; text-decoration:none; color:inherit" href="#L10">10</a></span><span>    <span style="color:#268bd2">&#34;name&#34;</span>: <span style="color:#2aa198">&#34;id&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L11"><a style="outline: none; text-decoration:none; color:inherit" href="#L11">11</a></span><span>  }
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L12"><a style="outline: none; text-decoration:none; color:inherit" href="#L12">12</a></span><span>}
+</span></span></code></pre></code></pre>
+<p>当查询回退到集合扫描时，<code>source</code> 字段会被省略。</p>
+<h2 id="%E6%B5%81%E5%BC%8F%E6%8F%92%E5%85%A5">流式插入</h2>
+<p><code>insertStream</code> 和 <code>insertFullduplex</code> 是实验性 action 端点，接受流式 JSON 输入，并在处理时输出已插入的文档。</p>
+<pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span><span style="color:#268bd2">POST</span> /v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890/collections/events:insertStream <span style="color:#268bd2">HTTP</span><span style="color:#719e07">/</span><span style="color:#2aa198">1.1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>Host<span style="color:#719e07">:</span> api.hola.cloud
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>Api-Key<span style="color:#719e07">:</span> 1abbe476-6ad6-4b97-9cca-6deb6ab2901d
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>Api-Secret<span style="color:#719e07">:</span> 4bda6d52-762b-4e5d-bed7-85614c13b8bf
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>Content-Type<span style="color:#719e07">:</span> application/jsonl
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7">7</a></span><span>{&#34;id&#34;:&#34;evt-1&#34;,&#34;type&#34;:&#34;signup&#34;}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8">8</a></span><span>{&#34;id&#34;:&#34;evt-2&#34;,&#34;type&#34;:&#34;login&#34;}
+</span></span></code></pre></code></pre>
+<p>响应：</p>
+<pre><code class="language-jsonl"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{&#34;id&#34;:&#34;evt-1&#34;,&#34;type&#34;:&#34;signup&#34;}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>{&#34;id&#34;:&#34;evt-2&#34;,&#34;type&#34;:&#34;login&#34;}
 </span></span></code></pre></code></pre>
 <h2 id="%E4%BF%AE%E6%94%B9%EF%BC%9A">修改：<code>{collection}:patch</code></h2>
 <pre><code class="language-http"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1"> 1</a></span><span><span style="color:#268bd2">POST</span> /v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890/collections/users:patch <span style="color:#268bd2">HTTP</span><span style="color:#719e07">/</span><span style="color:#2aa198">1.1</span>
@@ -396,6 +433,9 @@
 </div>
 <div class="index-h2">
 <a href="#%E6%A0%B9%E6%8D%AE%20ID%20%E8%8E%B7%E5%8F%96">根据 ID 获取</a>
+</div>
+<div class="index-h2">
+<a href="#%E6%B5%81%E5%BC%8F%E6%8F%92%E5%85%A5">流式插入</a>
 </div>
 <div class="index-h2">
 <a href="#%E4%BF%AE%E6%94%B9%EF%BC%9A">修改：</a>

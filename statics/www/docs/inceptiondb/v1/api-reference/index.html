@@ -110,6 +110,16 @@
 <div class="item"><a href="/docs/inceptiondb/v1/api-reference/list-collections/index.html">List Collections</a></div>
 <div class="item"><a href="/docs/inceptiondb/v1/api-reference/list-databases/index.html">List Databases</a></div>
 <div class="item"><a href="/docs/inceptiondb/v1/api-reference/update-database/index.html">Update Database</a></div>
+<div class="item"><a href="/docs/inceptiondb/v1/api-reference/access-management/index.html">Access Management</a></div>
+<div class="item"><a href="/docs/inceptiondb/v1/api-reference/collection-management/index.html">Collection Management</a></div>
+<div class="item"><a href="/docs/inceptiondb/v1/api-reference/index-management/index.html">Index Management</a></div>
+<div class="item"><a href="/docs/inceptiondb/v1/api-reference/service-metadata/index.html">Service Metadata</a></div>
+<div class="item"><a href="/docs/inceptiondb/v1/api-reference/insert-documents/index.html">Insert Documents</a></div>
+<div class="item"><a href="/docs/inceptiondb/v1/api-reference/find-documents/index.html">Find Documents</a></div>
+<div class="item"><a href="/docs/inceptiondb/v1/api-reference/patch-documents/index.html">Patch Documents</a></div>
+<div class="item"><a href="/docs/inceptiondb/v1/api-reference/remove-documents/index.html">Remove Documents</a></div>
+<div class="item"><a href="/docs/inceptiondb/v1/api-reference/get-document/index.html">Get Document</a></div>
+<div class="item"><a href="/docs/inceptiondb/v1/api-reference/streaming-inserts/index.html">Streaming Inserts</a></div>
 </div>
 </div>
 <div class="item"><a href="/docs/lambda/index.html">Lambda</a></div>
@@ -337,6 +347,26 @@
 <td>Update a database</td>
 </tr>
 <tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}:createApiKey</code></td>
+<td>Create a database API key</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}:deleteApiKey</code></td>
+<td>Delete a database API key</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}:addOwner</code></td>
+<td>Add a database owner</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}:deleteOwner</code></td>
+<td>Delete a database owner</td>
+</tr>
+<tr>
 <td>GET</td>
 <td><code>/v1/databases/{databaseId}/collections</code></td>
 <td>List collections in a database</td>
@@ -347,9 +377,39 @@
 <td>Create a collection</td>
 </tr>
 <tr>
+<td>GET</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}</code></td>
+<td>Get a collection</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}:dropCollection</code></td>
+<td>Drop a collection</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}:setDefaults</code></td>
+<td>Set collection defaults</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}:size</code></td>
+<td>Get collection size metrics</td>
+</tr>
+<tr>
 <td>POST</td>
 <td><code>/v1/databases/{databaseId}/collections/{collection}:insert</code></td>
 <td>Insert documents</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}:insertStream</code></td>
+<td>Insert documents from a stream</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}:insertFullduplex</code></td>
+<td>Insert documents over a full-duplex stream</td>
 </tr>
 <tr>
 <td>POST</td>
@@ -370,6 +430,51 @@
 <td>GET</td>
 <td><code>/v1/databases/{databaseId}/collections/{collection}/documents/{documentId}</code></td>
 <td>Get a document by ID</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}:listIndexes</code></td>
+<td>List collection indexes</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}:createIndex</code></td>
+<td>Create a collection index</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}:getIndex</code></td>
+<td>Get a collection index</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}:dropIndex</code></td>
+<td>Drop a collection index</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/doc</code></td>
+<td>Get a route tree for the service</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/v1</code></td>
+<td>Get the v1 welcome response</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/release</code></td>
+<td>Get service release metadata</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/openapi.json</code></td>
+<td>Get the OpenAPI document</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/v1/debug/dbs</code></td>
+<td>Debug database list</td>
 </tr>
 </tbody>
 </table>

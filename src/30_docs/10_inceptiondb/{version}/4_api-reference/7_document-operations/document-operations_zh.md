@@ -54,7 +54,42 @@ Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf
 ```
 
 ```json
-{"id":"user-1","name":"Alice","role":"admin"}
+{
+  "id": "user-1",
+  "document": {
+    "id": "user-1",
+    "name": "Alice",
+    "role": "admin"
+  },
+  "source": {
+    "type": "index",
+    "name": "id"
+  }
+}
+```
+
+当查询回退到集合扫描时，`source` 字段会被省略。
+
+## 流式插入
+
+`insertStream` 和 `insertFullduplex` 是实验性 action 端点，接受流式 JSON 输入，并在处理时输出已插入的文档。
+
+```http
+POST /v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890/collections/events:insertStream HTTP/1.1
+Host: api.hola.cloud
+Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d
+Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf
+Content-Type: application/jsonl
+
+{"id":"evt-1","type":"signup"}
+{"id":"evt-2","type":"login"}
+```
+
+响应：
+
+```jsonl
+{"id":"evt-1","type":"signup"}
+{"id":"evt-2","type":"login"}
 ```
 
 ## 修改：`{collection}:patch`

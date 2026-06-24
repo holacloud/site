@@ -54,7 +54,42 @@ Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf
 ```
 
 ```json
-{"id":"user-1","name":"Alice","role":"admin"}
+{
+  "id": "user-1",
+  "document": {
+    "id": "user-1",
+    "name": "Alice",
+    "role": "admin"
+  },
+  "source": {
+    "type": "index",
+    "name": "id"
+  }
+}
+```
+
+El campo `source` se omite cuando la búsqueda cae a un escaneo de colección.
+
+## Inserciones por stream
+
+`insertStream` e `insertFullduplex` son endpoints de acción experimentales que aceptan entrada JSON en stream y emiten los documentos insertados a medida que se procesan.
+
+```http
+POST /v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890/collections/events:insertStream HTTP/1.1
+Host: api.hola.cloud
+Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d
+Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf
+Content-Type: application/jsonl
+
+{"id":"evt-1","type":"signup"}
+{"id":"evt-2","type":"login"}
+```
+
+Respuesta:
+
+```jsonl
+{"id":"evt-1","type":"signup"}
+{"id":"evt-2","type":"login"}
 ```
 
 ## Modificar: `{collection}:patch`

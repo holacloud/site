@@ -110,6 +110,16 @@
 <div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/list-collections/index.html">列出集合</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/list-databases/index.html">列出数据库</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/update-database/index.html">更新数据库</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/access-management/index.html">访问管理</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/collection-management/index.html">集合管理</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/index-management/index.html">索引管理</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/service-metadata/index.html">服务元数据</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/insert-documents/index.html">插入文档</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/find-documents/index.html">查询文档</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/patch-documents/index.html">修改文档</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/remove-documents/index.html">删除文档</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/get-document/index.html">获取文档</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/streaming-inserts/index.html">流式插入</a></div>
 </div>
 </div>
 <div class="item"><a href="/zh/docs/lambda/index.html">Lambda</a></div>
@@ -337,6 +347,26 @@
 <td>更新数据库</td>
 </tr>
 <tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}:createApiKey</code></td>
+<td>创建数据库 API key</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}:deleteApiKey</code></td>
+<td>删除数据库 API key</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}:addOwner</code></td>
+<td>添加数据库 owner</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}:deleteOwner</code></td>
+<td>删除数据库 owner</td>
+</tr>
+<tr>
 <td>GET</td>
 <td><code>/v1/databases/{databaseId}/collections</code></td>
 <td>列出数据库中的集合</td>
@@ -347,9 +377,39 @@
 <td>创建集合</td>
 </tr>
 <tr>
+<td>GET</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}</code></td>
+<td>获取集合</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}:dropCollection</code></td>
+<td>删除集合</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}:setDefaults</code></td>
+<td>设置集合默认值</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}:size</code></td>
+<td>获取集合大小指标</td>
+</tr>
+<tr>
 <td>POST</td>
 <td><code>/v1/databases/{databaseId}/collections/{collection}:insert</code></td>
 <td>插入文档</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}:insertStream</code></td>
+<td>从流插入文档</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}:insertFullduplex</code></td>
+<td>通过 full-duplex 流插入文档</td>
 </tr>
 <tr>
 <td>POST</td>
@@ -370,6 +430,51 @@
 <td>GET</td>
 <td><code>/v1/databases/{databaseId}/collections/{collection}/documents/{documentId}</code></td>
 <td>根据 ID 获取文档</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}:listIndexes</code></td>
+<td>列出集合索引</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}:createIndex</code></td>
+<td>创建集合索引</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}:getIndex</code></td>
+<td>获取集合索引</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}:dropIndex</code></td>
+<td>删除集合索引</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/doc</code></td>
+<td>获取服务路由树</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/v1</code></td>
+<td>获取 v1 欢迎响应</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/release</code></td>
+<td>获取服务 release 元数据</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/openapi.json</code></td>
+<td>获取 OpenAPI 文档</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/v1/debug/dbs</code></td>
+<td>Debug 数据库列表</td>
 </tr>
 </tbody>
 </table>

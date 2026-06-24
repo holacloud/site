@@ -110,6 +110,16 @@
 <div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/list-collections/index.html">Listar colecciones</a></div>
 <div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/list-databases/index.html">Listar bases de datos</a></div>
 <div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/update-database/index.html">Actualizar base de datos</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/access-management/index.html">Gestión de acceso</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/collection-management/index.html">Gestión de colecciones</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/index-management/index.html">Gestión de índices</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/service-metadata/index.html">Metadatos del servicio</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/insert-documents/index.html">Insertar documentos</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/find-documents/index.html">Buscar documentos</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/patch-documents/index.html">Modificar documentos</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/remove-documents/index.html">Eliminar documentos</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/get-document/index.html">Obtener documento</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/streaming-inserts/index.html">Inserciones por stream</a></div>
 </div>
 </div>
 <div class="item"><a href="/es/docs/lambda/index.html">Lambda</a></div>
@@ -337,6 +347,26 @@
 <td>Actualizar una base de datos</td>
 </tr>
 <tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}:createApiKey</code></td>
+<td>Crear una API key de base de datos</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}:deleteApiKey</code></td>
+<td>Eliminar una API key de base de datos</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}:addOwner</code></td>
+<td>Agregar un owner a la base de datos</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}:deleteOwner</code></td>
+<td>Eliminar un owner de la base de datos</td>
+</tr>
+<tr>
 <td>GET</td>
 <td><code>/v1/databases/{databaseId}/collections</code></td>
 <td>Listar colecciones de una base de datos</td>
@@ -347,9 +377,39 @@
 <td>Crear una colección</td>
 </tr>
 <tr>
+<td>GET</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}</code></td>
+<td>Obtener una colección</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}:dropCollection</code></td>
+<td>Eliminar una colección</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}:setDefaults</code></td>
+<td>Definir defaults de una colección</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}:size</code></td>
+<td>Obtener métricas de tamaño de una colección</td>
+</tr>
+<tr>
 <td>POST</td>
 <td><code>/v1/databases/{databaseId}/collections/{collection}:insert</code></td>
 <td>Insertar documentos</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}:insertStream</code></td>
+<td>Insertar documentos desde un stream</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}:insertFullduplex</code></td>
+<td>Insertar documentos con stream full-duplex</td>
 </tr>
 <tr>
 <td>POST</td>
@@ -370,6 +430,51 @@
 <td>GET</td>
 <td><code>/v1/databases/{databaseId}/collections/{collection}/documents/{documentId}</code></td>
 <td>Obtener un documento por ID</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}:listIndexes</code></td>
+<td>Listar índices de una colección</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}:createIndex</code></td>
+<td>Crear un índice de colección</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}:getIndex</code></td>
+<td>Obtener un índice de colección</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}/collections/{collection}:dropIndex</code></td>
+<td>Eliminar un índice de colección</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/doc</code></td>
+<td>Obtener el árbol de rutas del servicio</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/v1</code></td>
+<td>Obtener la respuesta de bienvenida de v1</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/release</code></td>
+<td>Obtener metadatos de release del servicio</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/openapi.json</code></td>
+<td>Obtener el documento OpenAPI</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/v1/debug/dbs</code></td>
+<td>Listado debug de bases de datos</td>
 </tr>
 </tbody>
 </table>
