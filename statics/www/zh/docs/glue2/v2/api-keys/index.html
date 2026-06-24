@@ -329,19 +329,95 @@
 <p>API 密钥用于机器到机器认证。每个请求使用 <code>Api-Key</code> 和 <code>Api-Secret</code> 标头；secret 只在创建或轮换时显示，并以哈希形式存储。</p>
 <h2 id="%E7%9C%9F%E5%AE%9E%20API">真实 API</h2>
 <p>API 密钥由 serviceprojects API 的 <code>/v0/apikeys</code> 管理，不在 <code>/projects/{id}/apikeys</code> 下管理。项目创建和项目管理 API 当前不在本页范围内。</p>
-<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1"> 1</a></span><span>curl -X POST <span style="color:#2aa198">&#34;https://api.hola.cloud/v0/apikeys&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2"> 2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;X-Glue-Authentication: {\&#34;user\&#34;:{\&#34;id\&#34;:\&#34;user-1234\&#34;}}&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3"> 3</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Content-Type: application/json&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4"> 4</a></span><span><span style="color:#cb4b16"></span>  -d <span style="color:#2aa198">&#39;{
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5"> 5</a></span><span><span style="color:#2aa198">    &#34;name&#34;: &#34;CI/CD Key&#34;,
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6"> 6</a></span><span><span style="color:#2aa198">    &#34;scopes&#34;: [
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7"> 7</a></span><span><span style="color:#2aa198">      {
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8"> 8</a></span><span><span style="color:#2aa198">        &#34;projects&#34;: [&#34;project-123&#34;],
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9"> 9</a></span><span><span style="color:#2aa198">        &#34;host_rules&#34;: {&#34;my-project.hola.cloud&#34;: &#34;{}&#34;}
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L10"><a style="outline: none; text-decoration:none; color:inherit" href="#L10">10</a></span><span><span style="color:#2aa198">      }
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L11"><a style="outline: none; text-decoration:none; color:inherit" href="#L11">11</a></span><span><span style="color:#2aa198">    ]
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L12"><a style="outline: none; text-decoration:none; color:inherit" href="#L12">12</a></span><span><span style="color:#2aa198">  }&#39;</span>
-</span></span></code></pre></code></pre>
+<div class="http-request" data-http-request=""><div class="http-request-tabs" role="tablist" aria-label="HTTP request examples"><button type="button" class="http-request-tab active" data-http-lang="curl" role="tab" aria-selected="true">curl</button><button type="button" class="http-request-tab" data-http-lang="go" role="tab" aria-selected="false">Go</button><button type="button" class="http-request-tab" data-http-lang="php" role="tab" aria-selected="false">PHP</button><button type="button" class="http-request-tab" data-http-lang="python" role="tab" aria-selected="false">Python</button><button type="button" class="http-request-tab" data-http-lang="nodejs" role="tab" aria-selected="false">Node.js</button></div><div class="http-request-panel active" data-http-panel="curl" role="tabpanel"><pre><code>curl -X POST &#34;https://api.hola.cloud/v0/apikeys&#34; \
+  -H &#34;X-Glue-Authentication: {\&#34;user\&#34;:{\&#34;id\&#34;:\&#34;user-1234\&#34;}}&#34; \
+  -H &#34;Content-Type: application/json&#34; \
+  -d &#39;{
+    &#34;name&#34;: &#34;CI/CD Key&#34;,
+    &#34;scopes&#34;: [
+      {
+        &#34;projects&#34;: [&#34;project-123&#34;],
+        &#34;host_rules&#34;: {&#34;my-project.hola.cloud&#34;: &#34;{}&#34;}
+      }
+    ]
+  }&#39;</code></pre></div><div class="http-request-panel" data-http-panel="go" role="tabpanel"><pre><code>package main
+
+import (
+	&#34;fmt&#34;
+	&#34;io&#34;
+	&#34;net/http&#34;
+	&#34;strings&#34;
+)
+
+func main() {
+	req, err := http.NewRequest(&#34;POST&#34;, &#34;https://api.hola.cloud/v0/apikeys&#34;, strings.NewReader(&#34;{\n    \&#34;name\&#34;: \&#34;CI/CD Key\&#34;,\n    \&#34;scopes\&#34;: [\n      {\n        \&#34;projects\&#34;: [\&#34;project-123\&#34;],\n        \&#34;host_rules\&#34;: {\&#34;my-project.hola.cloud\&#34;: \&#34;{}\&#34;}\n      }\n    ]\n  }&#34;))
+	if err != nil {
+		panic(err)
+	}
+	req.Header.Set(&#34;X-Glue-Authentication&#34;, &#34;{\&#34;user\&#34;:{\&#34;id\&#34;:\&#34;user-1234\&#34;}}&#34;)
+	req.Header.Set(&#34;Content-Type&#34;, &#34;application/json&#34;)
+
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		panic(err)
+	}
+	defer resp.Body.Close()
+
+	bodyBytes, err := io.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(string(bodyBytes))
+}
+</code></pre></div><div class="http-request-panel" data-http-panel="php" role="tabpanel"><pre><code>&lt;?php
+$ch = curl_init();
+
+curl_setopt_array($ch, [
+    CURLOPT_URL =&gt; &#39;https://api.hola.cloud/v0/apikeys&#39;,
+    CURLOPT_RETURNTRANSFER =&gt; true,
+    CURLOPT_CUSTOMREQUEST =&gt; &#39;POST&#39;,
+    CURLOPT_POSTFIELDS =&gt; &#39;{\n    &#34;name&#34;: &#34;CI/CD Key&#34;,\n    &#34;scopes&#34;: [\n      {\n        &#34;projects&#34;: [&#34;project-123&#34;],\n        &#34;host_rules&#34;: {&#34;my-project.hola.cloud&#34;: &#34;{}&#34;}\n      }\n    ]\n  }&#39;,
+    CURLOPT_HTTPHEADER =&gt; [
+        &#39;X-Glue-Authentication: {&#34;user&#34;:{&#34;id&#34;:&#34;user-1234&#34;}}&#39;,
+        &#39;Content-Type: application/json&#39;,
+    ],
+]);
+
+$response = curl_exec($ch);
+if ($response === false) {
+    throw new Exception(curl_error($ch));
+}
+curl_close($ch);
+
+echo $response;
+</code></pre></div><div class="http-request-panel" data-http-panel="python" role="tabpanel"><pre><code>import requests
+
+headers = {
+    &#34;X-Glue-Authentication&#34;: &#34;{\&#34;user\&#34;:{\&#34;id\&#34;:\&#34;user-1234\&#34;}}&#34;,
+    &#34;Content-Type&#34;: &#34;application/json&#34;,
+}
+
+body = &#34;{\n    \&#34;name\&#34;: \&#34;CI/CD Key\&#34;,\n    \&#34;scopes\&#34;: [\n      {\n        \&#34;projects\&#34;: [\&#34;project-123\&#34;],\n        \&#34;host_rules\&#34;: {\&#34;my-project.hola.cloud\&#34;: \&#34;{}\&#34;}\n      }\n    ]\n  }&#34;
+
+response = requests.request(
+    &#34;POST&#34;,
+    &#34;https://api.hola.cloud/v0/apikeys&#34;,
+    headers=headers,
+    data=body
+)
+
+print(response.text)
+</code></pre></div><div class="http-request-panel" data-http-panel="nodejs" role="tabpanel"><pre><code>const response = await fetch(&#34;https://api.hola.cloud/v0/apikeys&#34;, {
+  method: &#34;POST&#34;,
+  headers: {
+    &#34;X-Glue-Authentication&#34;: &#34;{\&#34;user\&#34;:{\&#34;id\&#34;:\&#34;user-1234\&#34;}}&#34;,
+    &#34;Content-Type&#34;: &#34;application/json&#34;
+  },
+  body: &#34;{\n    \&#34;name\&#34;: \&#34;CI/CD Key\&#34;,\n    \&#34;scopes\&#34;: [\n      {\n        \&#34;projects\&#34;: [\&#34;project-123\&#34;],\n        \&#34;host_rules\&#34;: {\&#34;my-project.hola.cloud\&#34;: \&#34;{}\&#34;}\n      }\n    ]\n  }&#34;
+});
+
+console.log(await response.text());
+</code></pre></div></div>
 <h2 id="%E4%BD%9C%E7%94%A8%E5%9F%9F">作用域</h2>
 <p>当前模型使用 <code>projects</code> 和 <code>host_rules</code>。</p>
 <table>
@@ -367,13 +443,145 @@
 </table>
 <p>路径和 HTTP 方法作用域不属于当前模型。</p>
 <h2 id="%E5%88%97%E5%87%BA%E5%AF%86%E9%92%A5">列出密钥</h2>
-<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl <span style="color:#2aa198">&#34;https://api.hola.cloud/v0/apikeys&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;X-Glue-Authentication: {\&#34;user\&#34;:{\&#34;id\&#34;:\&#34;user-1234\&#34;}}&#34;</span>
-</span></span></code></pre></code></pre>
+<div class="http-request" data-http-request=""><div class="http-request-tabs" role="tablist" aria-label="HTTP request examples"><button type="button" class="http-request-tab active" data-http-lang="curl" role="tab" aria-selected="true">curl</button><button type="button" class="http-request-tab" data-http-lang="go" role="tab" aria-selected="false">Go</button><button type="button" class="http-request-tab" data-http-lang="php" role="tab" aria-selected="false">PHP</button><button type="button" class="http-request-tab" data-http-lang="python" role="tab" aria-selected="false">Python</button><button type="button" class="http-request-tab" data-http-lang="nodejs" role="tab" aria-selected="false">Node.js</button></div><div class="http-request-panel active" data-http-panel="curl" role="tabpanel"><pre><code>curl &#34;https://api.hola.cloud/v0/apikeys&#34; \
+  -H &#34;X-Glue-Authentication: {\&#34;user\&#34;:{\&#34;id\&#34;:\&#34;user-1234\&#34;}}&#34;</code></pre></div><div class="http-request-panel" data-http-panel="go" role="tabpanel"><pre><code>package main
+
+import (
+	&#34;fmt&#34;
+	&#34;io&#34;
+	&#34;net/http&#34;
+)
+
+func main() {
+	req, err := http.NewRequest(&#34;GET&#34;, &#34;https://api.hola.cloud/v0/apikeys&#34;, nil)
+	if err != nil {
+		panic(err)
+	}
+	req.Header.Set(&#34;X-Glue-Authentication&#34;, &#34;{\&#34;user\&#34;:{\&#34;id\&#34;:\&#34;user-1234\&#34;}}&#34;)
+
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		panic(err)
+	}
+	defer resp.Body.Close()
+
+	bodyBytes, err := io.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(string(bodyBytes))
+}
+</code></pre></div><div class="http-request-panel" data-http-panel="php" role="tabpanel"><pre><code>&lt;?php
+$ch = curl_init();
+
+curl_setopt_array($ch, [
+    CURLOPT_URL =&gt; &#39;https://api.hola.cloud/v0/apikeys&#39;,
+    CURLOPT_RETURNTRANSFER =&gt; true,
+    CURLOPT_CUSTOMREQUEST =&gt; &#39;GET&#39;,
+    CURLOPT_HTTPHEADER =&gt; [
+        &#39;X-Glue-Authentication: {&#34;user&#34;:{&#34;id&#34;:&#34;user-1234&#34;}}&#39;,
+    ],
+]);
+
+$response = curl_exec($ch);
+if ($response === false) {
+    throw new Exception(curl_error($ch));
+}
+curl_close($ch);
+
+echo $response;
+</code></pre></div><div class="http-request-panel" data-http-panel="python" role="tabpanel"><pre><code>import requests
+
+headers = {
+    &#34;X-Glue-Authentication&#34;: &#34;{\&#34;user\&#34;:{\&#34;id\&#34;:\&#34;user-1234\&#34;}}&#34;,
+}
+
+response = requests.request(
+    &#34;GET&#34;,
+    &#34;https://api.hola.cloud/v0/apikeys&#34;,
+    headers=headers
+)
+
+print(response.text)
+</code></pre></div><div class="http-request-panel" data-http-panel="nodejs" role="tabpanel"><pre><code>const response = await fetch(&#34;https://api.hola.cloud/v0/apikeys&#34;, {
+  method: &#34;GET&#34;,
+  headers: {
+    &#34;X-Glue-Authentication&#34;: &#34;{\&#34;user\&#34;:{\&#34;id\&#34;:\&#34;user-1234\&#34;}}&#34;
+  }
+});
+
+console.log(await response.text());
+</code></pre></div></div>
 <h2 id="%E6%92%A4%E9%94%80%E5%AF%86%E9%92%A5">撤销密钥</h2>
-<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X DELETE <span style="color:#2aa198">&#34;https://api.hola.cloud/v0/apikeys/a1b2c3d4-e5f6-7890-abcd-ef1234567890&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;X-Glue-Authentication: {\&#34;user\&#34;:{\&#34;id\&#34;:\&#34;user-1234\&#34;}}&#34;</span>
-</span></span></code></pre></code></pre>
+<div class="http-request" data-http-request=""><div class="http-request-tabs" role="tablist" aria-label="HTTP request examples"><button type="button" class="http-request-tab active" data-http-lang="curl" role="tab" aria-selected="true">curl</button><button type="button" class="http-request-tab" data-http-lang="go" role="tab" aria-selected="false">Go</button><button type="button" class="http-request-tab" data-http-lang="php" role="tab" aria-selected="false">PHP</button><button type="button" class="http-request-tab" data-http-lang="python" role="tab" aria-selected="false">Python</button><button type="button" class="http-request-tab" data-http-lang="nodejs" role="tab" aria-selected="false">Node.js</button></div><div class="http-request-panel active" data-http-panel="curl" role="tabpanel"><pre><code>curl -X DELETE &#34;https://api.hola.cloud/v0/apikeys/a1b2c3d4-e5f6-7890-abcd-ef1234567890&#34; \
+  -H &#34;X-Glue-Authentication: {\&#34;user\&#34;:{\&#34;id\&#34;:\&#34;user-1234\&#34;}}&#34;</code></pre></div><div class="http-request-panel" data-http-panel="go" role="tabpanel"><pre><code>package main
+
+import (
+	&#34;fmt&#34;
+	&#34;io&#34;
+	&#34;net/http&#34;
+)
+
+func main() {
+	req, err := http.NewRequest(&#34;DELETE&#34;, &#34;https://api.hola.cloud/v0/apikeys/a1b2c3d4-e5f6-7890-abcd-ef1234567890&#34;, nil)
+	if err != nil {
+		panic(err)
+	}
+	req.Header.Set(&#34;X-Glue-Authentication&#34;, &#34;{\&#34;user\&#34;:{\&#34;id\&#34;:\&#34;user-1234\&#34;}}&#34;)
+
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		panic(err)
+	}
+	defer resp.Body.Close()
+
+	bodyBytes, err := io.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(string(bodyBytes))
+}
+</code></pre></div><div class="http-request-panel" data-http-panel="php" role="tabpanel"><pre><code>&lt;?php
+$ch = curl_init();
+
+curl_setopt_array($ch, [
+    CURLOPT_URL =&gt; &#39;https://api.hola.cloud/v0/apikeys/a1b2c3d4-e5f6-7890-abcd-ef1234567890&#39;,
+    CURLOPT_RETURNTRANSFER =&gt; true,
+    CURLOPT_CUSTOMREQUEST =&gt; &#39;DELETE&#39;,
+    CURLOPT_HTTPHEADER =&gt; [
+        &#39;X-Glue-Authentication: {&#34;user&#34;:{&#34;id&#34;:&#34;user-1234&#34;}}&#39;,
+    ],
+]);
+
+$response = curl_exec($ch);
+if ($response === false) {
+    throw new Exception(curl_error($ch));
+}
+curl_close($ch);
+
+echo $response;
+</code></pre></div><div class="http-request-panel" data-http-panel="python" role="tabpanel"><pre><code>import requests
+
+headers = {
+    &#34;X-Glue-Authentication&#34;: &#34;{\&#34;user\&#34;:{\&#34;id\&#34;:\&#34;user-1234\&#34;}}&#34;,
+}
+
+response = requests.request(
+    &#34;DELETE&#34;,
+    &#34;https://api.hola.cloud/v0/apikeys/a1b2c3d4-e5f6-7890-abcd-ef1234567890&#34;,
+    headers=headers
+)
+
+print(response.text)
+</code></pre></div><div class="http-request-panel" data-http-panel="nodejs" role="tabpanel"><pre><code>const response = await fetch(&#34;https://api.hola.cloud/v0/apikeys/a1b2c3d4-e5f6-7890-abcd-ef1234567890&#34;, {
+  method: &#34;DELETE&#34;,
+  headers: {
+    &#34;X-Glue-Authentication&#34;: &#34;{\&#34;user\&#34;:{\&#34;id\&#34;:\&#34;user-1234\&#34;}}&#34;
+  }
+});
+
+console.log(await response.text());
+</code></pre></div></div>
 <h2 id="Glue2%20%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81">Glue2 如何验证</h2>
 <ol>
 <li>Glue2 提取 <code>Api-Key</code> 和 <code>Api-Secret</code>。</li>
@@ -853,6 +1061,36 @@
 
     document.addEventListener('scroll', highlightIndex, true);
     document.addEventListener('load', highlightIndex, true);
+
+    (function () {
+        const storageKey = 'hola-docs-http-language';
+        const fallback = 'curl';
+
+        function setHttpLanguage(lang) {
+            document.querySelectorAll('[data-http-request]').forEach(request => {
+                request.querySelectorAll('[data-http-lang]').forEach(tab => {
+                    const active = tab.dataset.httpLang === lang;
+                    tab.classList.toggle('active', active);
+                    tab.setAttribute('aria-selected', active ? 'true' : 'false');
+                });
+                request.querySelectorAll('[data-http-panel]').forEach(panel => {
+                    panel.classList.toggle('active', panel.dataset.httpPanel === lang);
+                });
+            });
+        }
+
+        let selected = localStorage.getItem(storageKey) || fallback;
+        setHttpLanguage(selected);
+
+        document.addEventListener('click', event => {
+            const tab = event.target.closest('[data-http-lang]');
+            if (!tab) return;
+
+            selected = tab.dataset.httpLang;
+            localStorage.setItem(storageKey, selected);
+            setHttpLanguage(selected);
+        });
+    })();
 </script>
 </body>
 </html>

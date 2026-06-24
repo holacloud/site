@@ -340,11 +340,87 @@
 <li><code>PUT /v2/:repository/manifests/:reference</code></li>
 </ul>
 <p>Ejemplo de manifiesto:</p>
-<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X PUT <span style="color:#2aa198">&#34;https://api.hola.cloud/v2/my-project/my-app/manifests/latest&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Authorization: Basic &lt;base64-credentials&gt;&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Content-Type: application/vnd.docker.distribution.manifest.v2+json&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span><span style="color:#cb4b16"></span>  --data-binary @manifest.json
-</span></span></code></pre></code></pre>
+<div class="http-request" data-http-request=""><div class="http-request-tabs" role="tablist" aria-label="HTTP request examples"><button type="button" class="http-request-tab active" data-http-lang="curl" role="tab" aria-selected="true">curl</button><button type="button" class="http-request-tab" data-http-lang="go" role="tab" aria-selected="false">Go</button><button type="button" class="http-request-tab" data-http-lang="php" role="tab" aria-selected="false">PHP</button><button type="button" class="http-request-tab" data-http-lang="python" role="tab" aria-selected="false">Python</button><button type="button" class="http-request-tab" data-http-lang="nodejs" role="tab" aria-selected="false">Node.js</button></div><div class="http-request-panel active" data-http-panel="curl" role="tabpanel"><pre><code>curl -X PUT &#34;https://api.hola.cloud/v2/my-project/my-app/manifests/latest&#34; \
+  -H &#34;Authorization: Basic &lt;base64-credentials&gt;&#34; \
+  -H &#34;Content-Type: application/vnd.docker.distribution.manifest.v2+json&#34; \
+  --data-binary @manifest.json</code></pre></div><div class="http-request-panel" data-http-panel="go" role="tabpanel"><pre><code>package main
+
+import (
+	&#34;fmt&#34;
+	&#34;io&#34;
+	&#34;net/http&#34;
+	&#34;strings&#34;
+)
+
+func main() {
+	req, err := http.NewRequest(&#34;PUT&#34;, &#34;https://api.hola.cloud/v2/my-project/my-app/manifests/latest&#34;, strings.NewReader(&#34;@manifest.json&#34;))
+	if err != nil {
+		panic(err)
+	}
+	req.Header.Set(&#34;Authorization&#34;, &#34;Basic &lt;base64-credentials&gt;&#34;)
+	req.Header.Set(&#34;Content-Type&#34;, &#34;application/vnd.docker.distribution.manifest.v2+json&#34;)
+
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		panic(err)
+	}
+	defer resp.Body.Close()
+
+	bodyBytes, err := io.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(string(bodyBytes))
+}
+</code></pre></div><div class="http-request-panel" data-http-panel="php" role="tabpanel"><pre><code>&lt;?php
+$ch = curl_init();
+
+curl_setopt_array($ch, [
+    CURLOPT_URL =&gt; &#39;https://api.hola.cloud/v2/my-project/my-app/manifests/latest&#39;,
+    CURLOPT_RETURNTRANSFER =&gt; true,
+    CURLOPT_CUSTOMREQUEST =&gt; &#39;PUT&#39;,
+    CURLOPT_POSTFIELDS =&gt; &#39;@manifest.json&#39;,
+    CURLOPT_HTTPHEADER =&gt; [
+        &#39;Authorization: Basic &lt;base64-credentials&gt;&#39;,
+        &#39;Content-Type: application/vnd.docker.distribution.manifest.v2+json&#39;,
+    ],
+]);
+
+$response = curl_exec($ch);
+if ($response === false) {
+    throw new Exception(curl_error($ch));
+}
+curl_close($ch);
+
+echo $response;
+</code></pre></div><div class="http-request-panel" data-http-panel="python" role="tabpanel"><pre><code>import requests
+
+headers = {
+    &#34;Authorization&#34;: &#34;Basic &lt;base64-credentials&gt;&#34;,
+    &#34;Content-Type&#34;: &#34;application/vnd.docker.distribution.manifest.v2+json&#34;,
+}
+
+body = &#34;@manifest.json&#34;
+
+response = requests.request(
+    &#34;PUT&#34;,
+    &#34;https://api.hola.cloud/v2/my-project/my-app/manifests/latest&#34;,
+    headers=headers,
+    data=body
+)
+
+print(response.text)
+</code></pre></div><div class="http-request-panel" data-http-panel="nodejs" role="tabpanel"><pre><code>const response = await fetch(&#34;https://api.hola.cloud/v2/my-project/my-app/manifests/latest&#34;, {
+  method: &#34;PUT&#34;,
+  headers: {
+    &#34;Authorization&#34;: &#34;Basic &lt;base64-credentials&gt;&#34;,
+    &#34;Content-Type&#34;: &#34;application/vnd.docker.distribution.manifest.v2+json&#34;
+  },
+  body: &#34;@manifest.json&#34;
+});
+
+console.log(await response.text());
+</code></pre></div></div>
 
 
     <div id="comments-section">
@@ -808,6 +884,36 @@
 
     document.addEventListener('scroll', highlightIndex, true);
     document.addEventListener('load', highlightIndex, true);
+
+    (function () {
+        const storageKey = 'hola-docs-http-language';
+        const fallback = 'curl';
+
+        function setHttpLanguage(lang) {
+            document.querySelectorAll('[data-http-request]').forEach(request => {
+                request.querySelectorAll('[data-http-lang]').forEach(tab => {
+                    const active = tab.dataset.httpLang === lang;
+                    tab.classList.toggle('active', active);
+                    tab.setAttribute('aria-selected', active ? 'true' : 'false');
+                });
+                request.querySelectorAll('[data-http-panel]').forEach(panel => {
+                    panel.classList.toggle('active', panel.dataset.httpPanel === lang);
+                });
+            });
+        }
+
+        let selected = localStorage.getItem(storageKey) || fallback;
+        setHttpLanguage(selected);
+
+        document.addEventListener('click', event => {
+            const tab = event.target.closest('[data-http-lang]');
+            if (!tab) return;
+
+            selected = tab.dataset.httpLang;
+            localStorage.setItem(storageKey, selected);
+            setHttpLanguage(selected);
+        });
+    })();
 </script>
 </body>
 </html>

@@ -177,13 +177,25 @@ func HolaDoc(c Config) {
 										}
 									}
 								}
-							if tag == "code" {
-								if node.Parent == nil || node.Parent.Data != "pre" {
-									return // skip inline code
-								}
+								if tag == "code" {
+									if node.Parent == nil || node.Parent.Data != "pre" {
+										return // skip inline code
+									}
 
-								code := node.FirstChild.Data
+									code := node.FirstChild.Data
 									code = strings.TrimPrefix(code, "\n")
+
+									if request, ok := parseCurlRequest(code); ok {
+										component := renderHttpRequestComponent(request, code)
+										parts, err := html.ParseFragment(strings.NewReader(component), doc)
+										if err != nil {
+											panic(err)
+										}
+										if len(parts) > 0 {
+											replaceNode(node.Parent, parts[0])
+										}
+										return
+									}
 
 									lexer := lexers.Get(getAttribute(node, "lang"))
 									if lexer == nil {
@@ -439,6 +451,315 @@ func setAttribute(node *html.Node, key, value string) {
 		Key: key,
 		Val: value,
 	})
+}
+
+func replaceNode(oldNode, newNode *html.Node) {
+	parent := oldNode.Parent
+	if parent == nil {
+		*oldNode = *newNode
+		return
+	}
+	parent.InsertBefore(newNode, oldNode)
+	parent.RemoveChild(oldNode)
+}
+
+type httpRequest struct {
+	Method  string
+	URL     string
+	Headers []httpHeader
+	Body    string
+}
+
+type httpHeader struct {
+	Name  string
+	Value string
+}
+
+func parseCurlRequest(code string) (httpRequest, bool) {
+	tokens := shellFields(code)
+	if len(tokens) == 0 || tokens[0] != "curl" {
+		return httpRequest{}, false
+	}
+	for _, token := range tokens[1:] {
+		if token == "curl" {
+			return httpRequest{}, false
+		}
+	}
+
+	req := httpRequest{Method: "GET"}
+	for i := 1; i < len(tokens); i++ {
+		token := tokens[i]
+		switch token {
+		case "-X", "--request":
+			if i+1 < len(tokens) {
+				req.Method = strings.ToUpper(tokens[i+1])
+				i++
+			}
+		case "-H", "--header":
+			if i+1 < len(tokens) {
+				req.Headers = append(req.Headers, splitHeader(tokens[i+1]))
+				i++
+			}
+		case "-d", "--data", "--data-raw", "--data-binary", "--data-ascii":
+			if i+1 < len(tokens) {
+				if req.Body != "" {
+					req.Body += "&"
+				}
+				req.Body += tokens[i+1]
+				i++
+			}
+		case "--url":
+			if i+1 < len(tokens) {
+				req.URL = tokens[i+1]
+				i++
+			}
+		default:
+			if strings.HasPrefix(token, "http://") || strings.HasPrefix(token, "https://") {
+				req.URL = token
+			}
+		}
+	}
+
+	if req.URL == "" {
+		return httpRequest{}, false
+	}
+	if req.Method == "GET" && req.Body != "" {
+		req.Method = "POST"
+	}
+
+	return req, true
+}
+
+func splitHeader(header string) httpHeader {
+	name, value, found := strings.Cut(header, ":")
+	if !found {
+		return httpHeader{Name: strings.TrimSpace(header)}
+	}
+	return httpHeader{Name: strings.TrimSpace(name), Value: strings.TrimSpace(value)}
+}
+
+func shellFields(s string) []string {
+	fields := []string{}
+	var b strings.Builder
+	quote := rune(0)
+	inField := false
+	runes := []rune(s)
+
+	flush := func() {
+		if inField {
+			fields = append(fields, b.String())
+			b.Reset()
+			inField = false
+		}
+	}
+
+	for i := 0; i < len(runes); i++ {
+		r := runes[i]
+		if quote == 0 {
+			if r == '\\' {
+				if i+1 < len(runes) && runes[i+1] == '\n' {
+					i++
+					for i+1 < len(runes) && (runes[i+1] == ' ' || runes[i+1] == '\t') {
+						i++
+					}
+					continue
+				}
+				if i+1 < len(runes) {
+					i++
+					b.WriteRune(runes[i])
+					inField = true
+				}
+				continue
+			}
+			if r == '\'' || r == '"' {
+				quote = r
+				inField = true
+				continue
+			}
+			if r == ' ' || r == '\t' || r == '\r' || r == '\n' {
+				flush()
+				continue
+			}
+			b.WriteRune(r)
+			inField = true
+			continue
+		}
+
+		if r == quote {
+			quote = 0
+			continue
+		}
+		if quote == '"' && r == '\\' && i+1 < len(runes) {
+			i++
+			b.WriteRune(runes[i])
+			continue
+		}
+		b.WriteRune(r)
+	}
+	flush()
+
+	return fields
+}
+
+func renderHttpRequestComponent(req httpRequest, curl string) string {
+	snippets := []struct {
+		Lang  string
+		Label string
+		Code  string
+	}{
+		{Lang: "curl", Label: "curl", Code: strings.TrimSpace(curl)},
+		{Lang: "go", Label: "Go", Code: renderGoRequest(req)},
+		{Lang: "php", Label: "PHP", Code: renderPHPRequest(req)},
+		{Lang: "python", Label: "Python", Code: renderPythonRequest(req)},
+		{Lang: "nodejs", Label: "Node.js", Code: renderNodeRequest(req)},
+	}
+
+	var b strings.Builder
+	b.WriteString(`<div class="http-request" data-http-request>`)
+	b.WriteString(`<div class="http-request-tabs" role="tablist" aria-label="HTTP request examples">`)
+	for i, snippet := range snippets {
+		selected := "false"
+		class := "http-request-tab"
+		if i == 0 {
+			selected = "true"
+			class += " active"
+		}
+		b.WriteString(`<button type="button" class="` + class + `" data-http-lang="` + snippet.Lang + `" role="tab" aria-selected="` + selected + `">` + snippet.Label + `</button>`)
+	}
+	b.WriteString(`</div>`)
+	for i, snippet := range snippets {
+		class := "http-request-panel"
+		if i == 0 {
+			class += " active"
+		}
+		b.WriteString(`<div class="` + class + `" data-http-panel="` + snippet.Lang + `" role="tabpanel"><pre><code>`)
+		b.WriteString(template.HTMLEscapeString(snippet.Code))
+		b.WriteString(`</code></pre></div>`)
+	}
+	b.WriteString(`</div>`)
+	return b.String()
+}
+
+func renderGoRequest(req httpRequest) string {
+	body := "nil"
+	if req.Body != "" {
+		body = "strings.NewReader(" + strconv.Quote(req.Body) + ")"
+	}
+
+	var b strings.Builder
+	b.WriteString("package main\n\n")
+	b.WriteString("import (\n")
+	b.WriteString("\t\"fmt\"\n")
+	b.WriteString("\t\"io\"\n")
+	b.WriteString("\t\"net/http\"\n")
+	if req.Body != "" {
+		b.WriteString("\t\"strings\"\n")
+	}
+	b.WriteString(")\n\n")
+	b.WriteString("func main() {\n")
+	b.WriteString("\treq, err := http.NewRequest(" + strconv.Quote(req.Method) + ", " + strconv.Quote(req.URL) + ", " + body + ")\n")
+	b.WriteString("\tif err != nil {\n\t\tpanic(err)\n\t}\n")
+	for _, header := range req.Headers {
+		b.WriteString("\treq.Header.Set(" + strconv.Quote(header.Name) + ", " + strconv.Quote(header.Value) + ")\n")
+	}
+	b.WriteString("\n\tresp, err := http.DefaultClient.Do(req)\n")
+	b.WriteString("\tif err != nil {\n\t\tpanic(err)\n\t}\n")
+	b.WriteString("\tdefer resp.Body.Close()\n\n")
+	b.WriteString("\tbodyBytes, err := io.ReadAll(resp.Body)\n")
+	b.WriteString("\tif err != nil {\n\t\tpanic(err)\n\t}\n")
+	b.WriteString("\tfmt.Println(string(bodyBytes))\n")
+	b.WriteString("}\n")
+	return b.String()
+}
+
+func renderPHPRequest(req httpRequest) string {
+	var b strings.Builder
+	b.WriteString("<?php\n")
+	b.WriteString("$ch = curl_init();\n\n")
+	b.WriteString("curl_setopt_array($ch, [\n")
+	b.WriteString("    CURLOPT_URL => " + phpQuote(req.URL) + ",\n")
+	b.WriteString("    CURLOPT_RETURNTRANSFER => true,\n")
+	b.WriteString("    CURLOPT_CUSTOMREQUEST => " + phpQuote(req.Method) + ",\n")
+	if req.Body != "" {
+		b.WriteString("    CURLOPT_POSTFIELDS => " + phpQuote(req.Body) + ",\n")
+	}
+	if len(req.Headers) > 0 {
+		b.WriteString("    CURLOPT_HTTPHEADER => [\n")
+		for _, header := range req.Headers {
+			b.WriteString("        " + phpQuote(header.Name+": "+header.Value) + ",\n")
+		}
+		b.WriteString("    ],\n")
+	}
+	b.WriteString("]);\n\n")
+	b.WriteString("$response = curl_exec($ch);\n")
+	b.WriteString("if ($response === false) {\n    throw new Exception(curl_error($ch));\n}\n")
+	b.WriteString("curl_close($ch);\n\necho $response;\n")
+	return b.String()
+}
+
+func renderPythonRequest(req httpRequest) string {
+	var b strings.Builder
+	b.WriteString("import requests\n\n")
+	if len(req.Headers) > 0 {
+		b.WriteString("headers = {\n")
+		for _, header := range req.Headers {
+			b.WriteString("    " + strconv.Quote(header.Name) + ": " + strconv.Quote(header.Value) + ",\n")
+		}
+		b.WriteString("}\n\n")
+	}
+	if req.Body != "" {
+		b.WriteString("body = " + strconv.Quote(req.Body) + "\n\n")
+	}
+	b.WriteString("response = requests.request(\n")
+	b.WriteString("    " + strconv.Quote(req.Method) + ",\n")
+	b.WriteString("    " + strconv.Quote(req.URL))
+	if len(req.Headers) > 0 {
+		b.WriteString(",\n    headers=headers")
+	}
+	if req.Body != "" {
+		b.WriteString(",\n    data=body")
+	}
+	b.WriteString("\n)\n\n")
+	b.WriteString("print(response.text)\n")
+	return b.String()
+}
+
+func renderNodeRequest(req httpRequest) string {
+	var b strings.Builder
+	b.WriteString("const response = await fetch(" + strconv.Quote(req.URL) + ", {\n")
+	b.WriteString("  method: " + strconv.Quote(req.Method))
+	if len(req.Headers) > 0 || req.Body != "" {
+		b.WriteString(",")
+	}
+	b.WriteString("\n")
+	if len(req.Headers) > 0 {
+		b.WriteString("  headers: {\n")
+		for i, header := range req.Headers {
+			comma := ","
+			if i == len(req.Headers)-1 {
+				comma = ""
+			}
+			b.WriteString("    " + strconv.Quote(header.Name) + ": " + strconv.Quote(header.Value) + comma + "\n")
+		}
+		b.WriteString("  }")
+		if req.Body != "" {
+			b.WriteString(",")
+		}
+		b.WriteString("\n")
+	}
+	if req.Body != "" {
+		b.WriteString("  body: " + strconv.Quote(req.Body) + "\n")
+	}
+	b.WriteString("});\n\n")
+	b.WriteString("console.log(await response.text());\n")
+	return b.String()
+}
+
+func phpQuote(s string) string {
+	s = strings.ReplaceAll(s, "\\", "\\\\")
+	s = strings.ReplaceAll(s, "'", "\\'")
+	s = strings.ReplaceAll(s, "\n", "\\n")
+	return "'" + s + "'"
 }
 
 func hasVersions(node *Node) bool {

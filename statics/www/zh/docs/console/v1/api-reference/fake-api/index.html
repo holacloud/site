@@ -379,22 +379,184 @@
 <h2 id="%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81">身份验证</h2>
 <p>无。这些模拟端点无需身份验证。</p>
 <h2 id="%E7%A4%BA%E4%BE%8B">示例</h2>
-<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X GET <span style="color:#2aa198">&#34;https://api.hola.cloud/fakeapi/authapi/auth/me&#34;</span>
-</span></span></code></pre></code></pre>
+<div class="http-request" data-http-request=""><div class="http-request-tabs" role="tablist" aria-label="HTTP request examples"><button type="button" class="http-request-tab active" data-http-lang="curl" role="tab" aria-selected="true">curl</button><button type="button" class="http-request-tab" data-http-lang="go" role="tab" aria-selected="false">Go</button><button type="button" class="http-request-tab" data-http-lang="php" role="tab" aria-selected="false">PHP</button><button type="button" class="http-request-tab" data-http-lang="python" role="tab" aria-selected="false">Python</button><button type="button" class="http-request-tab" data-http-lang="nodejs" role="tab" aria-selected="false">Node.js</button></div><div class="http-request-panel active" data-http-panel="curl" role="tabpanel"><pre><code>curl -X GET &#34;https://api.hola.cloud/fakeapi/authapi/auth/me&#34;</code></pre></div><div class="http-request-panel" data-http-panel="go" role="tabpanel"><pre><code>package main
+
+import (
+	&#34;fmt&#34;
+	&#34;io&#34;
+	&#34;net/http&#34;
+)
+
+func main() {
+	req, err := http.NewRequest(&#34;GET&#34;, &#34;https://api.hola.cloud/fakeapi/authapi/auth/me&#34;, nil)
+	if err != nil {
+		panic(err)
+	}
+
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		panic(err)
+	}
+	defer resp.Body.Close()
+
+	bodyBytes, err := io.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(string(bodyBytes))
+}
+</code></pre></div><div class="http-request-panel" data-http-panel="php" role="tabpanel"><pre><code>&lt;?php
+$ch = curl_init();
+
+curl_setopt_array($ch, [
+    CURLOPT_URL =&gt; &#39;https://api.hola.cloud/fakeapi/authapi/auth/me&#39;,
+    CURLOPT_RETURNTRANSFER =&gt; true,
+    CURLOPT_CUSTOMREQUEST =&gt; &#39;GET&#39;,
+]);
+
+$response = curl_exec($ch);
+if ($response === false) {
+    throw new Exception(curl_error($ch));
+}
+curl_close($ch);
+
+echo $response;
+</code></pre></div><div class="http-request-panel" data-http-panel="python" role="tabpanel"><pre><code>import requests
+
+response = requests.request(
+    &#34;GET&#34;,
+    &#34;https://api.hola.cloud/fakeapi/authapi/auth/me&#34;
+)
+
+print(response.text)
+</code></pre></div><div class="http-request-panel" data-http-panel="nodejs" role="tabpanel"><pre><code>const response = await fetch(&#34;https://api.hola.cloud/fakeapi/authapi/auth/me&#34;, {
+  method: &#34;GET&#34;
+});
+
+console.log(await response.text());
+</code></pre></div></div>
 <pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  <span style="color:#268bd2">&#34;email&#34;</span>: <span style="color:#2aa198">&#34;fulanez@gmail.com&#34;</span>,
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;user-1234&#34;</span>,
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>  <span style="color:#268bd2">&#34;nick&#34;</span>: <span style="color:#2aa198">&#34;fulanez&#34;</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>}
 </span></span></code></pre></code></pre>
-<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X GET <span style="color:#2aa198">&#34;https://api.hola.cloud/fakeapi/projectsapi/v0/projects&#34;</span>
-</span></span></code></pre></code></pre>
+<div class="http-request" data-http-request=""><div class="http-request-tabs" role="tablist" aria-label="HTTP request examples"><button type="button" class="http-request-tab active" data-http-lang="curl" role="tab" aria-selected="true">curl</button><button type="button" class="http-request-tab" data-http-lang="go" role="tab" aria-selected="false">Go</button><button type="button" class="http-request-tab" data-http-lang="php" role="tab" aria-selected="false">PHP</button><button type="button" class="http-request-tab" data-http-lang="python" role="tab" aria-selected="false">Python</button><button type="button" class="http-request-tab" data-http-lang="nodejs" role="tab" aria-selected="false">Node.js</button></div><div class="http-request-panel active" data-http-panel="curl" role="tabpanel"><pre><code>curl -X GET &#34;https://api.hola.cloud/fakeapi/projectsapi/v0/projects&#34;</code></pre></div><div class="http-request-panel" data-http-panel="go" role="tabpanel"><pre><code>package main
+
+import (
+	&#34;fmt&#34;
+	&#34;io&#34;
+	&#34;net/http&#34;
+)
+
+func main() {
+	req, err := http.NewRequest(&#34;GET&#34;, &#34;https://api.hola.cloud/fakeapi/projectsapi/v0/projects&#34;, nil)
+	if err != nil {
+		panic(err)
+	}
+
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		panic(err)
+	}
+	defer resp.Body.Close()
+
+	bodyBytes, err := io.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(string(bodyBytes))
+}
+</code></pre></div><div class="http-request-panel" data-http-panel="php" role="tabpanel"><pre><code>&lt;?php
+$ch = curl_init();
+
+curl_setopt_array($ch, [
+    CURLOPT_URL =&gt; &#39;https://api.hola.cloud/fakeapi/projectsapi/v0/projects&#39;,
+    CURLOPT_RETURNTRANSFER =&gt; true,
+    CURLOPT_CUSTOMREQUEST =&gt; &#39;GET&#39;,
+]);
+
+$response = curl_exec($ch);
+if ($response === false) {
+    throw new Exception(curl_error($ch));
+}
+curl_close($ch);
+
+echo $response;
+</code></pre></div><div class="http-request-panel" data-http-panel="python" role="tabpanel"><pre><code>import requests
+
+response = requests.request(
+    &#34;GET&#34;,
+    &#34;https://api.hola.cloud/fakeapi/projectsapi/v0/projects&#34;
+)
+
+print(response.text)
+</code></pre></div><div class="http-request-panel" data-http-panel="nodejs" role="tabpanel"><pre><code>const response = await fetch(&#34;https://api.hola.cloud/fakeapi/projectsapi/v0/projects&#34;, {
+  method: &#34;GET&#34;
+});
+
+console.log(await response.text());
+</code></pre></div></div>
 <pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>[
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  { <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;project-00000000-0000-0000-0000-000000000001&#34;</span>, <span style="color:#268bd2">&#34;name&#34;</span>: <span style="color:#2aa198">&#34;Hello&#34;</span> }
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>]
 </span></span></code></pre></code></pre>
-<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X GET <span style="color:#2aa198">&#34;https://api.hola.cloud/fakeapi/lambdasapi/api/v0/lambdas&#34;</span>
-</span></span></code></pre></code></pre>
+<div class="http-request" data-http-request=""><div class="http-request-tabs" role="tablist" aria-label="HTTP request examples"><button type="button" class="http-request-tab active" data-http-lang="curl" role="tab" aria-selected="true">curl</button><button type="button" class="http-request-tab" data-http-lang="go" role="tab" aria-selected="false">Go</button><button type="button" class="http-request-tab" data-http-lang="php" role="tab" aria-selected="false">PHP</button><button type="button" class="http-request-tab" data-http-lang="python" role="tab" aria-selected="false">Python</button><button type="button" class="http-request-tab" data-http-lang="nodejs" role="tab" aria-selected="false">Node.js</button></div><div class="http-request-panel active" data-http-panel="curl" role="tabpanel"><pre><code>curl -X GET &#34;https://api.hola.cloud/fakeapi/lambdasapi/api/v0/lambdas&#34;</code></pre></div><div class="http-request-panel" data-http-panel="go" role="tabpanel"><pre><code>package main
+
+import (
+	&#34;fmt&#34;
+	&#34;io&#34;
+	&#34;net/http&#34;
+)
+
+func main() {
+	req, err := http.NewRequest(&#34;GET&#34;, &#34;https://api.hola.cloud/fakeapi/lambdasapi/api/v0/lambdas&#34;, nil)
+	if err != nil {
+		panic(err)
+	}
+
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		panic(err)
+	}
+	defer resp.Body.Close()
+
+	bodyBytes, err := io.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(string(bodyBytes))
+}
+</code></pre></div><div class="http-request-panel" data-http-panel="php" role="tabpanel"><pre><code>&lt;?php
+$ch = curl_init();
+
+curl_setopt_array($ch, [
+    CURLOPT_URL =&gt; &#39;https://api.hola.cloud/fakeapi/lambdasapi/api/v0/lambdas&#39;,
+    CURLOPT_RETURNTRANSFER =&gt; true,
+    CURLOPT_CUSTOMREQUEST =&gt; &#39;GET&#39;,
+]);
+
+$response = curl_exec($ch);
+if ($response === false) {
+    throw new Exception(curl_error($ch));
+}
+curl_close($ch);
+
+echo $response;
+</code></pre></div><div class="http-request-panel" data-http-panel="python" role="tabpanel"><pre><code>import requests
+
+response = requests.request(
+    &#34;GET&#34;,
+    &#34;https://api.hola.cloud/fakeapi/lambdasapi/api/v0/lambdas&#34;
+)
+
+print(response.text)
+</code></pre></div><div class="http-request-panel" data-http-panel="nodejs" role="tabpanel"><pre><code>const response = await fetch(&#34;https://api.hola.cloud/fakeapi/lambdasapi/api/v0/lambdas&#34;, {
+  method: &#34;GET&#34;
+});
+
+console.log(await response.text());
+</code></pre></div></div>
 <pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>[
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  { <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;a663e1f1-e5cb-4fc2-b846-53f2cc7574c9&#34;</span>, <span style="color:#268bd2">&#34;method&#34;</span>: <span style="color:#2aa198">&#34;GET&#34;</span>, <span style="color:#268bd2">&#34;name&#34;</span>: <span style="color:#2aa198">&#34;Index&#34;</span>, <span style="color:#268bd2">&#34;path&#34;</span>: <span style="color:#2aa198">&#34;/&#34;</span> }
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>]
@@ -890,6 +1052,36 @@
 
     document.addEventListener('scroll', highlightIndex, true);
     document.addEventListener('load', highlightIndex, true);
+
+    (function () {
+        const storageKey = 'hola-docs-http-language';
+        const fallback = 'curl';
+
+        function setHttpLanguage(lang) {
+            document.querySelectorAll('[data-http-request]').forEach(request => {
+                request.querySelectorAll('[data-http-lang]').forEach(tab => {
+                    const active = tab.dataset.httpLang === lang;
+                    tab.classList.toggle('active', active);
+                    tab.setAttribute('aria-selected', active ? 'true' : 'false');
+                });
+                request.querySelectorAll('[data-http-panel]').forEach(panel => {
+                    panel.classList.toggle('active', panel.dataset.httpPanel === lang);
+                });
+            });
+        }
+
+        let selected = localStorage.getItem(storageKey) || fallback;
+        setHttpLanguage(selected);
+
+        document.addEventListener('click', event => {
+            const tab = event.target.closest('[data-http-lang]');
+            if (!tab) return;
+
+            selected = tab.dataset.httpLang;
+            localStorage.setItem(storageKey, selected);
+            setHttpLanguage(selected);
+        });
+    })();
 </script>
 </body>
 </html>

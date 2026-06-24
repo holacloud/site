@@ -329,12 +329,92 @@
 <p>Glue2 支持三种认证机制：<strong>API 密钥</strong>、<strong>会话</strong>和 <strong>OAuth 2.0</strong>。每个端点可以配置为要求认证（<code>Require</code>）或可选认证（<code>Optional</code>）。对 <code>Require</code> 端点的未认证请求将收到 <code>401 Unauthorized</code> 响应。</p>
 <h2 id="API%20%E5%AF%86%E9%92%A5">API 密钥</h2>
 <p>API 密钥提供机器对机器的认证。每个密钥由两部分组成：<strong>Api-Key</strong>（公共标识符）和 <strong>Api-Secret</strong>（私有密钥）。密钥以 bcrypt 哈希形式存储，创建后无法检索。</p>
-<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST <span style="color:#2aa198">&#34;https://api.hola.cloud/api/v0/lambdas&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Api-Key: 您的_API_KEY&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Api-Secret: 您的_API_SECRET&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Content-Type: application/json&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span><span style="color:#cb4b16"></span>  -d <span style="color:#2aa198">&#39;{&#34;name&#34;: &#34;my-function&#34;, &#34;runtime&#34;: &#34;js&#34;, &#34;code&#34;: &#34;...&#34;}&#39;</span>
-</span></span></code></pre></code></pre>
+<div class="http-request" data-http-request=""><div class="http-request-tabs" role="tablist" aria-label="HTTP request examples"><button type="button" class="http-request-tab active" data-http-lang="curl" role="tab" aria-selected="true">curl</button><button type="button" class="http-request-tab" data-http-lang="go" role="tab" aria-selected="false">Go</button><button type="button" class="http-request-tab" data-http-lang="php" role="tab" aria-selected="false">PHP</button><button type="button" class="http-request-tab" data-http-lang="python" role="tab" aria-selected="false">Python</button><button type="button" class="http-request-tab" data-http-lang="nodejs" role="tab" aria-selected="false">Node.js</button></div><div class="http-request-panel active" data-http-panel="curl" role="tabpanel"><pre><code>curl -X POST &#34;https://api.hola.cloud/api/v0/lambdas&#34; \
+  -H &#34;Api-Key: 您的_API_KEY&#34; \
+  -H &#34;Api-Secret: 您的_API_SECRET&#34; \
+  -H &#34;Content-Type: application/json&#34; \
+  -d &#39;{&#34;name&#34;: &#34;my-function&#34;, &#34;runtime&#34;: &#34;js&#34;, &#34;code&#34;: &#34;...&#34;}&#39;</code></pre></div><div class="http-request-panel" data-http-panel="go" role="tabpanel"><pre><code>package main
+
+import (
+	&#34;fmt&#34;
+	&#34;io&#34;
+	&#34;net/http&#34;
+	&#34;strings&#34;
+)
+
+func main() {
+	req, err := http.NewRequest(&#34;POST&#34;, &#34;https://api.hola.cloud/api/v0/lambdas&#34;, strings.NewReader(&#34;{\&#34;name\&#34;: \&#34;my-function\&#34;, \&#34;runtime\&#34;: \&#34;js\&#34;, \&#34;code\&#34;: \&#34;...\&#34;}&#34;))
+	if err != nil {
+		panic(err)
+	}
+	req.Header.Set(&#34;Api-Key&#34;, &#34;您的_API_KEY&#34;)
+	req.Header.Set(&#34;Api-Secret&#34;, &#34;您的_API_SECRET&#34;)
+	req.Header.Set(&#34;Content-Type&#34;, &#34;application/json&#34;)
+
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		panic(err)
+	}
+	defer resp.Body.Close()
+
+	bodyBytes, err := io.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(string(bodyBytes))
+}
+</code></pre></div><div class="http-request-panel" data-http-panel="php" role="tabpanel"><pre><code>&lt;?php
+$ch = curl_init();
+
+curl_setopt_array($ch, [
+    CURLOPT_URL =&gt; &#39;https://api.hola.cloud/api/v0/lambdas&#39;,
+    CURLOPT_RETURNTRANSFER =&gt; true,
+    CURLOPT_CUSTOMREQUEST =&gt; &#39;POST&#39;,
+    CURLOPT_POSTFIELDS =&gt; &#39;{&#34;name&#34;: &#34;my-function&#34;, &#34;runtime&#34;: &#34;js&#34;, &#34;code&#34;: &#34;...&#34;}&#39;,
+    CURLOPT_HTTPHEADER =&gt; [
+        &#39;Api-Key: 您的_API_KEY&#39;,
+        &#39;Api-Secret: 您的_API_SECRET&#39;,
+        &#39;Content-Type: application/json&#39;,
+    ],
+]);
+
+$response = curl_exec($ch);
+if ($response === false) {
+    throw new Exception(curl_error($ch));
+}
+curl_close($ch);
+
+echo $response;
+</code></pre></div><div class="http-request-panel" data-http-panel="python" role="tabpanel"><pre><code>import requests
+
+headers = {
+    &#34;Api-Key&#34;: &#34;您的_API_KEY&#34;,
+    &#34;Api-Secret&#34;: &#34;您的_API_SECRET&#34;,
+    &#34;Content-Type&#34;: &#34;application/json&#34;,
+}
+
+body = &#34;{\&#34;name\&#34;: \&#34;my-function\&#34;, \&#34;runtime\&#34;: \&#34;js\&#34;, \&#34;code\&#34;: \&#34;...\&#34;}&#34;
+
+response = requests.request(
+    &#34;POST&#34;,
+    &#34;https://api.hola.cloud/api/v0/lambdas&#34;,
+    headers=headers,
+    data=body
+)
+
+print(response.text)
+</code></pre></div><div class="http-request-panel" data-http-panel="nodejs" role="tabpanel"><pre><code>const response = await fetch(&#34;https://api.hola.cloud/api/v0/lambdas&#34;, {
+  method: &#34;POST&#34;,
+  headers: {
+    &#34;Api-Key&#34;: &#34;您的_API_KEY&#34;,
+    &#34;Api-Secret&#34;: &#34;您的_API_SECRET&#34;,
+    &#34;Content-Type&#34;: &#34;application/json&#34;
+  },
+  body: &#34;{\&#34;name\&#34;: \&#34;my-function\&#34;, \&#34;runtime\&#34;: \&#34;js\&#34;, \&#34;code\&#34;: \&#34;...\&#34;}&#34;
+});
+
+console.log(await response.text());
+</code></pre></div></div>
 <p>API 密钥可以限定到项目和 host 规则：</p>
 <ul>
 <li><strong>项目</strong>：密钥仅对配置的项目有效。</li>
@@ -363,9 +443,75 @@
 <li>ID 令牌发送到 Glue2，Glue2 验证令牌并创建会话。</li>
 </ol>
 <p>OAuth 令牌也可以直接用于 API 调用：</p>
-<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl <span style="color:#2aa198">&#34;https://api.hola.cloud/api/v0/lambdas&#34;</span> <span style="color:#cb4b16">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#cb4b16"></span>  -H <span style="color:#2aa198">&#34;Authorization: Bearer 您的_OAuth_令牌&#34;</span>
-</span></span></code></pre></code></pre>
+<div class="http-request" data-http-request=""><div class="http-request-tabs" role="tablist" aria-label="HTTP request examples"><button type="button" class="http-request-tab active" data-http-lang="curl" role="tab" aria-selected="true">curl</button><button type="button" class="http-request-tab" data-http-lang="go" role="tab" aria-selected="false">Go</button><button type="button" class="http-request-tab" data-http-lang="php" role="tab" aria-selected="false">PHP</button><button type="button" class="http-request-tab" data-http-lang="python" role="tab" aria-selected="false">Python</button><button type="button" class="http-request-tab" data-http-lang="nodejs" role="tab" aria-selected="false">Node.js</button></div><div class="http-request-panel active" data-http-panel="curl" role="tabpanel"><pre><code>curl &#34;https://api.hola.cloud/api/v0/lambdas&#34; \
+  -H &#34;Authorization: Bearer 您的_OAuth_令牌&#34;</code></pre></div><div class="http-request-panel" data-http-panel="go" role="tabpanel"><pre><code>package main
+
+import (
+	&#34;fmt&#34;
+	&#34;io&#34;
+	&#34;net/http&#34;
+)
+
+func main() {
+	req, err := http.NewRequest(&#34;GET&#34;, &#34;https://api.hola.cloud/api/v0/lambdas&#34;, nil)
+	if err != nil {
+		panic(err)
+	}
+	req.Header.Set(&#34;Authorization&#34;, &#34;Bearer 您的_OAuth_令牌&#34;)
+
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		panic(err)
+	}
+	defer resp.Body.Close()
+
+	bodyBytes, err := io.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(string(bodyBytes))
+}
+</code></pre></div><div class="http-request-panel" data-http-panel="php" role="tabpanel"><pre><code>&lt;?php
+$ch = curl_init();
+
+curl_setopt_array($ch, [
+    CURLOPT_URL =&gt; &#39;https://api.hola.cloud/api/v0/lambdas&#39;,
+    CURLOPT_RETURNTRANSFER =&gt; true,
+    CURLOPT_CUSTOMREQUEST =&gt; &#39;GET&#39;,
+    CURLOPT_HTTPHEADER =&gt; [
+        &#39;Authorization: Bearer 您的_OAuth_令牌&#39;,
+    ],
+]);
+
+$response = curl_exec($ch);
+if ($response === false) {
+    throw new Exception(curl_error($ch));
+}
+curl_close($ch);
+
+echo $response;
+</code></pre></div><div class="http-request-panel" data-http-panel="python" role="tabpanel"><pre><code>import requests
+
+headers = {
+    &#34;Authorization&#34;: &#34;Bearer 您的_OAuth_令牌&#34;,
+}
+
+response = requests.request(
+    &#34;GET&#34;,
+    &#34;https://api.hola.cloud/api/v0/lambdas&#34;,
+    headers=headers
+)
+
+print(response.text)
+</code></pre></div><div class="http-request-panel" data-http-panel="nodejs" role="tabpanel"><pre><code>const response = await fetch(&#34;https://api.hola.cloud/api/v0/lambdas&#34;, {
+  method: &#34;GET&#34;,
+  headers: {
+    &#34;Authorization&#34;: &#34;Bearer 您的_OAuth_令牌&#34;
+  }
+});
+
+console.log(await response.text());
+</code></pre></div></div>
 <h2 id="%E8%AE%A4%E8%AF%81%E6%B5%81%E7%A8%8B%E6%80%BB%E7%BB%93">认证流程总结</h2>
 <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>方法          凭证                    典型用途              范围
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>──────────────────────────────────────────────────────────────────────
@@ -875,6 +1021,36 @@
 
     document.addEventListener('scroll', highlightIndex, true);
     document.addEventListener('load', highlightIndex, true);
+
+    (function () {
+        const storageKey = 'hola-docs-http-language';
+        const fallback = 'curl';
+
+        function setHttpLanguage(lang) {
+            document.querySelectorAll('[data-http-request]').forEach(request => {
+                request.querySelectorAll('[data-http-lang]').forEach(tab => {
+                    const active = tab.dataset.httpLang === lang;
+                    tab.classList.toggle('active', active);
+                    tab.setAttribute('aria-selected', active ? 'true' : 'false');
+                });
+                request.querySelectorAll('[data-http-panel]').forEach(panel => {
+                    panel.classList.toggle('active', panel.dataset.httpPanel === lang);
+                });
+            });
+        }
+
+        let selected = localStorage.getItem(storageKey) || fallback;
+        setHttpLanguage(selected);
+
+        document.addEventListener('click', event => {
+            const tab = event.target.closest('[data-http-lang]');
+            if (!tab) return;
+
+            selected = tab.dataset.httpLang;
+            localStorage.setItem(storageKey, selected);
+            setHttpLanguage(selected);
+        });
+    })();
 </script>
 </body>
 </html>

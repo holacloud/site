@@ -633,6 +633,60 @@ a:hover {
   white-space: pre;
 }
 
+.http-request {
+  margin: 20px 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--bg-code);
+}
+
+.http-request-tabs {
+  display: flex;
+  gap: 4px;
+  padding: 8px 8px 0;
+  background: rgba(15, 23, 42, 0.96);
+  overflow-x: auto;
+}
+
+.http-request-tab {
+  border: 0;
+  border-radius: 7px 7px 0 0;
+  padding: 8px 12px;
+  background: transparent;
+  color: #94a3b8;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.http-request-tab:hover,
+.http-request-tab:focus {
+  color: #e2e8f0;
+  outline: none;
+}
+
+.http-request-tab.active {
+  background: var(--bg-code);
+  color: #e2e8f0;
+}
+
+.http-request-panel {
+  display: none;
+}
+
+.http-request-panel.active {
+  display: block;
+}
+
+.document .http-request pre {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+}
+
 .document ul,
 .document ol {
   margin: 0 0 16px;
