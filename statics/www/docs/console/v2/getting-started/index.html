@@ -330,16 +330,16 @@
 <p><img src="img/console.png" alt="Console Dashboard"/></p>
 <h2 id="Logging%20In">Logging In</h2>
 <p>Navigate to <a href="https://console.hola.cloud">https://console.hola.cloud</a> and sign in with your HolaCloud account credentials. If you are using demo or development mode, mock API endpoints are active, allowing you to explore all features without a real backend.</p>
-<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span><span style="color:#586e75"># Example: check login session via the mock API</span>
+<pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span><span style="color:#586e75"># Example: check login session via the mock API</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>curl -X GET <span style="color:#2aa198">&#34;https://console.hola.cloud/fakeapi/authapi/auth/me&#34;</span>
-</span></span></code></pre></code></pre>
+</span></span></code></pre>
 <p>Expected response:</p>
-<pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{
+<pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  <span style="color:#268bd2">&#34;email&#34;</span>: <span style="color:#2aa198">&#34;fulanez@gmail.com&#34;</span>,
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;user-1234&#34;</span>,
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>  <span style="color:#268bd2">&#34;nick&#34;</span>: <span style="color:#2aa198">&#34;fulanez&#34;</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>}
-</span></span></code></pre></code></pre>
+</span></span></code></pre>
 <h2 id="Navigating%20the%20Dashboard">Navigating the Dashboard</h2>
 <p>After logging in, the main dashboard displays:</p>
 <ul>
@@ -352,13 +352,13 @@
 <p>Each service card on the dashboard shows the data returned by the configured service APIs. Project activity APIs are not exposed by the current Console fake API.</p>
 <h2 id="Switching%20Between%20Projects">Switching Between Projects</h2>
 <p>If you belong to multiple projects, use the project selector at the top of the sidebar. The entire UI switches context to the selected project and its services.</p>
-<pre><code class="language-bash"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span><span style="color:#586e75"># List available projects</span>
+<pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span><span style="color:#586e75"># List available projects</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>curl -X GET <span style="color:#2aa198">&#34;https://console.hola.cloud/fakeapi/projectsapi/v0/projects&#34;</span>
-</span></span></code></pre></code></pre>
-<pre><code class="language-json"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>[
+</span></span></code></pre>
+<pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>[
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  { <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;project-00000000-0000-0000-0000-000000000001&#34;</span>, <span style="color:#268bd2">&#34;name&#34;</span>: <span style="color:#2aa198">&#34;Hello&#34;</span> }
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>]
-</span></span></code></pre></code></pre>
+</span></span></code></pre>
 <h2 id="Accessing%20Documentation%20and%20Support">Accessing Documentation and Support</h2>
 <p>The Console includes a built-in help menu (question-mark icon in the top bar) with links to:</p>
 <ul>
@@ -845,6 +845,55 @@
 
     document.addEventListener('scroll', highlightIndex, true);
     document.addEventListener('load', highlightIndex, true);
+
+    (function () {
+        const storageKey = 'hola-docs-http-language';
+        const fallback = 'curl';
+
+        function setHttpLanguage(lang) {
+            document.querySelectorAll('[data-http-request]').forEach(request => {
+                request.querySelectorAll('[data-http-lang]').forEach(tab => {
+                    const active = tab.dataset.httpLang === lang;
+                    tab.classList.toggle('active', active);
+                    tab.setAttribute('aria-selected', active ? 'true' : 'false');
+                });
+                request.querySelectorAll('[data-http-panel]').forEach(panel => {
+                    panel.classList.toggle('active', panel.dataset.httpPanel === lang);
+                });
+            });
+        }
+
+        let selected = localStorage.getItem(storageKey) || fallback;
+        setHttpLanguage(selected);
+
+        document.addEventListener('click', event => {
+            const tab = event.target.closest('[data-http-lang]');
+            if (!tab) return;
+
+            selected = tab.dataset.httpLang;
+            localStorage.setItem(storageKey, selected);
+            setHttpLanguage(selected);
+        });
+
+        document.addEventListener('click', event => {
+            const button = event.target.closest('[data-http-copy]');
+            if (!button) return;
+
+            const request = button.closest('[data-http-request]');
+            const code = request && request.querySelector('.http-request-panel.active code');
+            if (!code) return;
+
+            navigator.clipboard.writeText(code.textContent).then(() => {
+                button.classList.add('copied');
+                const label = button.querySelector('span');
+                if (label) label.textContent = 'Copied';
+                setTimeout(() => {
+                    button.classList.remove('copied');
+                    if (label) label.textContent = 'Copy';
+                }, 1200);
+            });
+        });
+    })();
 </script>
 </body>
 </html>

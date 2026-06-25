@@ -633,6 +633,104 @@ a:hover {
   white-space: pre;
 }
 
+.http-request {
+  margin: 20px 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--bg-code);
+}
+
+.http-request-header {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  background: rgba(15, 23, 42, 0.96);
+}
+
+.http-request-tabs {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  gap: 4px;
+  padding: 8px 8px 0;
+  overflow-x: auto;
+}
+
+.http-request-tab {
+  border: 0;
+  border-radius: 7px 7px 0 0;
+  padding: 8px 12px;
+  background: transparent;
+  color: #94a3b8;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.http-request-tab:hover,
+.http-request-tab:focus {
+  color: #e2e8f0;
+  outline: none;
+}
+
+.http-request-tab.active {
+  background: var(--bg-code);
+  color: #e2e8f0;
+}
+
+.http-request-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: center;
+  margin: 8px 8px 0 4px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 7px;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #cbd5e1;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.http-request-copy:hover,
+.http-request-copy:focus {
+  color: #ffffff;
+  border-color: rgba(226, 232, 240, 0.45);
+  outline: none;
+}
+
+.http-request-copy.copied {
+  color: #86efac;
+  border-color: rgba(134, 239, 172, 0.55);
+}
+
+.http-request-copy svg {
+  width: 14px;
+  height: 14px;
+}
+
+.http-request-panel {
+  display: none;
+}
+
+.http-request-panel.active {
+  display: block;
+}
+
+.document .http-request pre {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  padding: 18px 20px;
+}
+
 .document ul,
 .document ol {
   margin: 0 0 16px;

@@ -142,10 +142,10 @@
             <h2 id="%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B">快速开始</h2>
             <p>Get started with Scheduler in seconds using the API.</p>
         </div>
-        <pre><code><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST https://scheduler.hola.cloud/schedulers \
+        <pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>curl -X POST https://scheduler.hola.cloud/schedulers \
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  -d &#39;{&#34;id&#34;:&#34;jobs&#34;,&#34;display_name&#34;:&#34;Background jobs&#34;}&#39; \
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  &amp;&amp; curl -X POST https://scheduler.hola.cloud/schedulers/jobs/tasks \
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>  -d &#39;{&#34;id&#34;:&#34;task-001&#34;,&#34;delay&#34;:&#34;60s&#34;,&#34;payload&#34;:{&#34;job&#34;:&#34;backup&#34;},&#34;labels&#34;:[&#34;kind:backup&#34;]}&#39;</span></span></code></pre></code></pre>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>  -d &#39;{&#34;id&#34;:&#34;task-001&#34;,&#34;delay&#34;:&#34;60s&#34;,&#34;payload&#34;:{&#34;job&#34;:&#34;backup&#34;},&#34;labels&#34;:[&#34;kind:backup&#34;]}&#39;</span></span></code></pre>
     </section>
 
     <section class="section">
@@ -671,6 +671,55 @@
 
     document.addEventListener('scroll', highlightIndex, true);
     document.addEventListener('load', highlightIndex, true);
+
+    (function () {
+        const storageKey = 'hola-docs-http-language';
+        const fallback = 'curl';
+
+        function setHttpLanguage(lang) {
+            document.querySelectorAll('[data-http-request]').forEach(request => {
+                request.querySelectorAll('[data-http-lang]').forEach(tab => {
+                    const active = tab.dataset.httpLang === lang;
+                    tab.classList.toggle('active', active);
+                    tab.setAttribute('aria-selected', active ? 'true' : 'false');
+                });
+                request.querySelectorAll('[data-http-panel]').forEach(panel => {
+                    panel.classList.toggle('active', panel.dataset.httpPanel === lang);
+                });
+            });
+        }
+
+        let selected = localStorage.getItem(storageKey) || fallback;
+        setHttpLanguage(selected);
+
+        document.addEventListener('click', event => {
+            const tab = event.target.closest('[data-http-lang]');
+            if (!tab) return;
+
+            selected = tab.dataset.httpLang;
+            localStorage.setItem(storageKey, selected);
+            setHttpLanguage(selected);
+        });
+
+        document.addEventListener('click', event => {
+            const button = event.target.closest('[data-http-copy]');
+            if (!button) return;
+
+            const request = button.closest('[data-http-request]');
+            const code = request && request.querySelector('.http-request-panel.active code');
+            if (!code) return;
+
+            navigator.clipboard.writeText(code.textContent).then(() => {
+                button.classList.add('copied');
+                const label = button.querySelector('span');
+                if (label) label.textContent = 'Copied';
+                setTimeout(() => {
+                    button.classList.remove('copied');
+                    if (label) label.textContent = 'Copy';
+                }, 1200);
+            });
+        });
+    })();
 </script>
 </body>
 </html>

@@ -3,6 +3,7 @@ package holadoc
 import (
 	"bytes"
 	"cmp"
+	"encoding/json"
 	"fmt"
 	"html/template"
 	"io"
@@ -177,13 +178,25 @@ func HolaDoc(c Config) {
 										}
 									}
 								}
-							if tag == "code" {
-								if node.Parent == nil || node.Parent.Data != "pre" {
-									return // skip inline code
-								}
+								if tag == "code" {
+									if node.Parent == nil || node.Parent.Data != "pre" {
+										return // skip inline code
+									}
 
-								code := node.FirstChild.Data
+									code := node.FirstChild.Data
 									code = strings.TrimPrefix(code, "\n")
+
+									if request, ok := parseRequestBlock(code); ok {
+										component := renderHttpRequestComponent(request, code)
+										parts, err := html.ParseFragment(strings.NewReader(component), doc)
+										if err != nil {
+											panic(err)
+										}
+										if len(parts) > 0 {
+											replaceNode(node.Parent, parts[0])
+										}
+										return
+									}
 
 									lexer := lexers.Get(getAttribute(node, "lang"))
 									if lexer == nil {
@@ -211,20 +224,18 @@ func HolaDoc(c Config) {
 										panic(err.Error())
 									}
 
-									node.RemoveChild(node.FirstChild)
-
-									doc := &html.Node{
+									fragmentDoc := &html.Node{
 										Type:     html.ElementNode,
 										Data:     "body",
 										DataAtom: atom.Body,
 									}
 
-									parts, err := html.ParseFragment(codeOutput, doc)
+									parts, err := html.ParseFragment(codeOutput, fragmentDoc)
 									if err != nil {
 										panic(err)
 									}
-									for _, part := range parts {
-										node.AppendChild(part)
+									if len(parts) > 0 {
+										replaceNode(node.Parent, parts[0])
 									}
 
 								}
@@ -439,6 +450,683 @@ func setAttribute(node *html.Node, key, value string) {
 		Key: key,
 		Val: value,
 	})
+}
+
+func replaceNode(oldNode, newNode *html.Node) {
+	parent := oldNode.Parent
+	if parent == nil {
+		*oldNode = *newNode
+		return
+	}
+	parent.InsertBefore(newNode, oldNode)
+	parent.RemoveChild(oldNode)
+}
+
+type httpRequest struct {
+	Method  string
+	URL     string
+	Headers []httpHeader
+	Body    string
+}
+
+type httpHeader struct {
+	Name  string
+	Value string
+}
+
+func parseRequestBlock(code string) (httpRequest, bool) {
+	if req, ok := parseCurlRequest(code); ok {
+		return req, true
+	}
+	return parseRawHTTPRequest(code)
+}
+
+func parseCurlRequest(code string) (httpRequest, bool) {
+	tokens := shellFields(code)
+	if len(tokens) == 0 || tokens[0] != "curl" {
+		return httpRequest{}, false
+	}
+	for _, token := range tokens[1:] {
+		if token == "curl" {
+			return httpRequest{}, false
+		}
+	}
+
+	req := httpRequest{Method: "GET"}
+	for i := 1; i < len(tokens); i++ {
+		token := tokens[i]
+		switch token {
+		case "-X", "--request":
+			if i+1 < len(tokens) {
+				req.Method = strings.ToUpper(tokens[i+1])
+				i++
+			}
+		case "-H", "--header":
+			if i+1 < len(tokens) {
+				req.Headers = append(req.Headers, splitHeader(tokens[i+1]))
+				i++
+			}
+		case "-d", "--data", "--data-raw", "--data-binary", "--data-ascii":
+			if i+1 < len(tokens) {
+				if req.Body != "" {
+					req.Body += "&"
+				}
+				req.Body += tokens[i+1]
+				i++
+			}
+		case "--url":
+			if i+1 < len(tokens) {
+				req.URL = tokens[i+1]
+				i++
+			}
+		default:
+			if strings.HasPrefix(token, "http://") || strings.HasPrefix(token, "https://") {
+				req.URL = token
+			}
+		}
+	}
+
+	if req.URL == "" {
+		return httpRequest{}, false
+	}
+	if req.Method == "GET" && req.Body != "" {
+		req.Method = "POST"
+	}
+
+	return req, true
+}
+
+func parseRawHTTPRequest(code string) (httpRequest, bool) {
+	lines := strings.Split(strings.ReplaceAll(strings.TrimSpace(code), "\r\n", "\n"), "\n")
+	if len(lines) == 0 {
+		return httpRequest{}, false
+	}
+
+	first := strings.Fields(lines[0])
+	if len(first) < 2 || !isHTTPMethod(first[0]) {
+		return httpRequest{}, false
+	}
+
+	req := httpRequest{Method: strings.ToUpper(first[0])}
+	pathOrURL := first[1]
+	bodyStart := 0
+	for i := 1; i < len(lines); i++ {
+		line := lines[i]
+		if strings.TrimSpace(line) == "" {
+			bodyStart = i + 1
+			break
+		}
+		name, value, found := strings.Cut(line, ":")
+		if !found {
+			continue
+		}
+		header := httpHeader{Name: strings.TrimSpace(name), Value: strings.TrimSpace(value)}
+		if strings.EqualFold(header.Name, "Host") {
+			req.URL = "https://" + header.Value + pathOrURL
+			continue
+		}
+		req.Headers = append(req.Headers, header)
+	}
+
+	if req.URL == "" {
+		if strings.HasPrefix(pathOrURL, "http://") || strings.HasPrefix(pathOrURL, "https://") {
+			req.URL = pathOrURL
+		} else {
+			req.URL = "https://api.hola.cloud" + pathOrURL
+		}
+	}
+	if bodyStart > 0 && bodyStart < len(lines) {
+		req.Body = strings.TrimSpace(strings.Join(lines[bodyStart:], "\n"))
+	}
+
+	return req, true
+}
+
+func isHTTPMethod(method string) bool {
+	switch strings.ToUpper(method) {
+	case "GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS":
+		return true
+	default:
+		return false
+	}
+}
+
+func splitHeader(header string) httpHeader {
+	name, value, found := strings.Cut(header, ":")
+	if !found {
+		return httpHeader{Name: strings.TrimSpace(header)}
+	}
+	return httpHeader{Name: strings.TrimSpace(name), Value: strings.TrimSpace(value)}
+}
+
+func shellFields(s string) []string {
+	fields := []string{}
+	var b strings.Builder
+	quote := rune(0)
+	inField := false
+	runes := []rune(s)
+
+	flush := func() {
+		if inField {
+			fields = append(fields, b.String())
+			b.Reset()
+			inField = false
+		}
+	}
+
+	for i := 0; i < len(runes); i++ {
+		r := runes[i]
+		if quote == 0 {
+			if r == '\\' {
+				if i+1 < len(runes) && runes[i+1] == '\n' {
+					i++
+					for i+1 < len(runes) && (runes[i+1] == ' ' || runes[i+1] == '\t') {
+						i++
+					}
+					continue
+				}
+				if i+1 < len(runes) {
+					i++
+					b.WriteRune(runes[i])
+					inField = true
+				}
+				continue
+			}
+			if r == '\'' || r == '"' {
+				quote = r
+				inField = true
+				continue
+			}
+			if r == ' ' || r == '\t' || r == '\r' || r == '\n' {
+				flush()
+				continue
+			}
+			b.WriteRune(r)
+			inField = true
+			continue
+		}
+
+		if r == quote {
+			quote = 0
+			continue
+		}
+		if quote == '"' && r == '\\' && i+1 < len(runes) {
+			i++
+			b.WriteRune(runes[i])
+			continue
+		}
+		b.WriteRune(r)
+	}
+	flush()
+
+	return fields
+}
+
+func renderHttpRequestComponent(req httpRequest, source string) string {
+	curl := strings.TrimSpace(source)
+	if !strings.HasPrefix(curl, "curl") {
+		curl = renderCurlRequest(req)
+	}
+	snippets := []struct {
+		Lang  string
+		Label string
+		Code  string
+	}{
+		{Lang: "curl", Label: "curl", Code: curl},
+		{Lang: "http", Label: "HTTP", Code: renderRawHTTPRequest(req)},
+		{Lang: "go", Label: "Go", Code: renderGoRequest(req)},
+		{Lang: "php", Label: "PHP", Code: renderPHPRequest(req)},
+		{Lang: "python", Label: "Python", Code: renderPythonRequest(req)},
+		{Lang: "nodejs", Label: "Node.js", Code: renderNodeRequest(req)},
+		{Lang: "javascript", Label: "JavaScript", Code: renderJavaScriptRequest(req)},
+		{Lang: "java", Label: "Java", Code: renderJavaRequest(req)},
+	}
+
+	var b strings.Builder
+	b.WriteString(`<div class="http-request" data-http-request>`)
+	b.WriteString(`<div class="http-request-header"><div class="http-request-tabs" role="tablist" aria-label="HTTP request examples">`)
+	for i, snippet := range snippets {
+		selected := "false"
+		class := "http-request-tab"
+		if i == 0 {
+			selected = "true"
+			class += " active"
+		}
+		b.WriteString(`<button type="button" class="` + class + `" data-http-lang="` + snippet.Lang + `" role="tab" aria-selected="` + selected + `">` + snippet.Label + `</button>`)
+	}
+	b.WriteString(`</div><button type="button" class="http-request-copy" data-http-copy title="Copy request" aria-label="Copy request"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V7Zm2 0v11h8V7h-8ZM4 3a2 2 0 0 1 2-2h9v2H6v11H4V3Z" fill="currentColor"/></svg><span>Copy</span></button></div>`)
+	for i, snippet := range snippets {
+		class := "http-request-panel"
+		if i == 0 {
+			class += " active"
+		}
+		b.WriteString(`<div class="` + class + `" data-http-panel="` + snippet.Lang + `" role="tabpanel"><pre><code>`)
+		b.WriteString(template.HTMLEscapeString(snippet.Code))
+		b.WriteString(`</code></pre></div>`)
+	}
+	b.WriteString(`</div>`)
+	return b.String()
+}
+
+func renderCurlRequest(req httpRequest) string {
+	var b strings.Builder
+	b.WriteString("curl -X " + req.Method + " " + strconv.Quote(req.URL))
+	for _, header := range req.Headers {
+		b.WriteString(" \\\n  -H " + strconv.Quote(header.Name+": "+header.Value))
+	}
+	if req.Body != "" {
+		b.WriteString(" \\\n  -d " + shellQuote(req.Body))
+	}
+	return b.String()
+}
+
+func renderRawHTTPRequest(req httpRequest) string {
+	u, err := url.Parse(req.URL)
+	path := req.URL
+	host := ""
+	if err == nil {
+		path = u.RequestURI()
+		host = u.Host
+	}
+	var b strings.Builder
+	b.WriteString(req.Method + " " + path + " HTTP/1.1\n")
+	if host != "" {
+		b.WriteString("Host: " + host + "\n")
+	}
+	for _, header := range req.Headers {
+		b.WriteString(header.Name + ": " + header.Value + "\n")
+	}
+	if req.Body != "" {
+		b.WriteString("\n" + req.Body)
+	}
+	return b.String()
+}
+
+func renderGoRequest(req httpRequest) string {
+	body := "nil"
+	jsonBody, isJSON := parseJSONBody(req.Body)
+	if req.Body != "" {
+		body = "strings.NewReader(body)"
+	}
+
+	var b strings.Builder
+	b.WriteString("package main\n\n")
+	b.WriteString("import (\n")
+	b.WriteString("\t\"fmt\"\n")
+	b.WriteString("\t\"io\"\n")
+	b.WriteString("\t\"net/http\"\n")
+	if isJSON {
+		b.WriteString("\t\"encoding/json\"\n")
+	}
+	if req.Body != "" {
+		b.WriteString("\t\"strings\"\n")
+	}
+	b.WriteString(")\n\n")
+	b.WriteString("func main() {\n")
+	if isJSON {
+		b.WriteString("\tpayload := " + goValue(jsonBody) + "\n")
+		b.WriteString("\tbodyBytes, err := json.Marshal(payload)\n")
+		b.WriteString("\tif err != nil {\n\t\tpanic(err)\n\t}\n")
+		b.WriteString("\tbody := string(bodyBytes)\n\n")
+	} else if req.Body != "" {
+		b.WriteString("\tbody := " + strconv.Quote(req.Body) + "\n\n")
+	}
+	b.WriteString("\treq, err := http.NewRequest(" + strconv.Quote(req.Method) + ", " + strconv.Quote(req.URL) + ", " + body + ")\n")
+	b.WriteString("\tif err != nil {\n\t\tpanic(err)\n\t}\n")
+	for _, header := range req.Headers {
+		b.WriteString("\treq.Header.Set(" + strconv.Quote(header.Name) + ", " + strconv.Quote(header.Value) + ")\n")
+	}
+	b.WriteString("\n\tresp, err := http.DefaultClient.Do(req)\n")
+	b.WriteString("\tif err != nil {\n\t\tpanic(err)\n\t}\n")
+	b.WriteString("\tdefer resp.Body.Close()\n\n")
+	b.WriteString("\tresponseBody, err := io.ReadAll(resp.Body)\n")
+	b.WriteString("\tif err != nil {\n\t\tpanic(err)\n\t}\n")
+	b.WriteString("\tfmt.Println(string(responseBody))\n")
+	b.WriteString("}\n")
+	return b.String()
+}
+
+func renderPHPRequest(req httpRequest) string {
+	jsonBody, isJSON := parseJSONBody(req.Body)
+	var b strings.Builder
+	b.WriteString("<?php\n")
+	if isJSON {
+		b.WriteString("$payload = " + phpValue(jsonBody) + ";\n")
+		b.WriteString("$body = json_encode($payload);\n\n")
+	} else if req.Body != "" {
+		b.WriteString("$body = " + phpQuote(req.Body) + ";\n\n")
+	}
+	b.WriteString("$ch = curl_init();\n\n")
+	b.WriteString("curl_setopt_array($ch, [\n")
+	b.WriteString("    CURLOPT_URL => " + phpQuote(req.URL) + ",\n")
+	b.WriteString("    CURLOPT_RETURNTRANSFER => true,\n")
+	b.WriteString("    CURLOPT_CUSTOMREQUEST => " + phpQuote(req.Method) + ",\n")
+	if req.Body != "" {
+		b.WriteString("    CURLOPT_POSTFIELDS => $body,\n")
+	}
+	if len(req.Headers) > 0 {
+		b.WriteString("    CURLOPT_HTTPHEADER => [\n")
+		for _, header := range req.Headers {
+			b.WriteString("        " + phpQuote(header.Name+": "+header.Value) + ",\n")
+		}
+		b.WriteString("    ],\n")
+	}
+	b.WriteString("]);\n\n")
+	b.WriteString("$response = curl_exec($ch);\n")
+	b.WriteString("if ($response === false) {\n    throw new Exception(curl_error($ch));\n}\n")
+	b.WriteString("curl_close($ch);\n\necho $response;\n")
+	return b.String()
+}
+
+func renderPythonRequest(req httpRequest) string {
+	jsonBody, isJSON := parseJSONBody(req.Body)
+	var b strings.Builder
+	b.WriteString("import requests\n\n")
+	if isJSON {
+		b.WriteString("import json\n\n")
+	}
+	if len(req.Headers) > 0 {
+		b.WriteString("headers = {\n")
+		for _, header := range req.Headers {
+			b.WriteString("    " + strconv.Quote(header.Name) + ": " + strconv.Quote(header.Value) + ",\n")
+		}
+		b.WriteString("}\n\n")
+	}
+	if isJSON {
+		b.WriteString("payload = " + pythonValue(jsonBody, 0) + "\n")
+		b.WriteString("body = json.dumps(payload)\n\n")
+	} else if req.Body != "" {
+		b.WriteString("body = " + strconv.Quote(req.Body) + "\n\n")
+	}
+	b.WriteString("response = requests.request(\n")
+	b.WriteString("    " + strconv.Quote(req.Method) + ",\n")
+	b.WriteString("    " + strconv.Quote(req.URL))
+	if len(req.Headers) > 0 {
+		b.WriteString(",\n    headers=headers")
+	}
+	if req.Body != "" {
+		b.WriteString(",\n    data=body")
+	}
+	b.WriteString("\n)\n\n")
+	b.WriteString("print(response.text)\n")
+	return b.String()
+}
+
+func renderNodeRequest(req httpRequest) string {
+	return renderFetchRequest(req, true)
+}
+
+func renderJavaScriptRequest(req httpRequest) string {
+	return renderFetchRequest(req, false)
+}
+
+func renderFetchRequest(req httpRequest, node bool) string {
+	jsonBody, isJSON := parseJSONBody(req.Body)
+	var b strings.Builder
+	if isJSON {
+		b.WriteString("const payload = " + javascriptValue(jsonBody, 0) + ";\n\n")
+	} else if req.Body != "" {
+		b.WriteString("const body = " + strconv.Quote(req.Body) + ";\n\n")
+	}
+	b.WriteString("const response = await fetch(" + strconv.Quote(req.URL) + ", {\n")
+	b.WriteString("  method: " + strconv.Quote(req.Method))
+	if len(req.Headers) > 0 || req.Body != "" {
+		b.WriteString(",")
+	}
+	b.WriteString("\n")
+	if len(req.Headers) > 0 {
+		b.WriteString("  headers: {\n")
+		for i, header := range req.Headers {
+			comma := ","
+			if i == len(req.Headers)-1 {
+				comma = ""
+			}
+			b.WriteString("    " + strconv.Quote(header.Name) + ": " + strconv.Quote(header.Value) + comma + "\n")
+		}
+		b.WriteString("  }")
+		if req.Body != "" {
+			b.WriteString(",")
+		}
+		b.WriteString("\n")
+	}
+	if req.Body != "" {
+		if isJSON {
+			b.WriteString("  body: JSON.stringify(payload)\n")
+		} else {
+			b.WriteString("  body\n")
+		}
+	}
+	b.WriteString("});\n\n")
+	if node {
+		b.WriteString("console.log(await response.text());\n")
+	} else {
+		b.WriteString("const text = await response.text();\nconsole.log(text);\n")
+	}
+	return b.String()
+}
+
+func renderJavaRequest(req httpRequest) string {
+	jsonBody, isJSON := parseJSONBody(req.Body)
+	var b strings.Builder
+	b.WriteString("import java.net.URI;\n")
+	b.WriteString("import java.net.http.HttpClient;\n")
+	b.WriteString("import java.net.http.HttpRequest;\n")
+	b.WriteString("import java.net.http.HttpResponse;\n")
+	if isJSON {
+		b.WriteString("import com.fasterxml.jackson.databind.ObjectMapper;\n")
+		b.WriteString("import java.util.Map;\n")
+		b.WriteString("import java.util.List;\n")
+	}
+	b.WriteString("\npublic class Main {\n")
+	b.WriteString("    public static void main(String[] args) throws Exception {\n")
+	if isJSON {
+		b.WriteString("        var payload = " + javaValue(jsonBody) + ";\n")
+		b.WriteString("        var body = new ObjectMapper().writeValueAsString(payload);\n\n")
+	} else if req.Body != "" {
+		b.WriteString("        var body = " + javaTextBlock(req.Body) + ";\n\n")
+	}
+	bodyPublisher := "HttpRequest.BodyPublishers.noBody()"
+	if req.Body != "" {
+		bodyPublisher = "HttpRequest.BodyPublishers.ofString(body)"
+	}
+	b.WriteString("        var request = HttpRequest.newBuilder()\n")
+	b.WriteString("            .uri(URI.create(" + strconv.Quote(req.URL) + "))\n")
+	b.WriteString("            .method(" + strconv.Quote(req.Method) + ", " + bodyPublisher + ")\n")
+	for _, header := range req.Headers {
+		b.WriteString("            .header(" + strconv.Quote(header.Name) + ", " + strconv.Quote(header.Value) + ")\n")
+	}
+	b.WriteString("            .build();\n\n")
+	b.WriteString("        var response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());\n")
+	b.WriteString("        System.out.println(response.body());\n")
+	b.WriteString("    }\n}")
+	return b.String()
+}
+
+func phpQuote(s string) string {
+	s = strings.ReplaceAll(s, "\\", "\\\\")
+	s = strings.ReplaceAll(s, "'", "\\'")
+	s = strings.ReplaceAll(s, "\n", "\\n")
+	return "'" + s + "'"
+}
+
+func shellQuote(s string) string {
+	return "'" + strings.ReplaceAll(s, "'", "'\\''") + "'"
+}
+
+func parseJSONBody(body string) (any, bool) {
+	if strings.TrimSpace(body) == "" {
+		return nil, false
+	}
+	var v any
+	decoder := json.NewDecoder(strings.NewReader(body))
+	decoder.UseNumber()
+	if err := decoder.Decode(&v); err != nil {
+		return nil, false
+	}
+	return v, true
+}
+
+func sortedKeys(m map[string]any) []string {
+	keys := make([]string, 0, len(m))
+	for k := range m {
+		keys = append(keys, k)
+	}
+	sort.Strings(keys)
+	return keys
+}
+
+func goValue(v any) string {
+	switch x := v.(type) {
+	case map[string]any:
+		parts := []string{}
+		for _, key := range sortedKeys(x) {
+			parts = append(parts, strconv.Quote(key)+": "+goValue(x[key]))
+		}
+		return "map[string]any{" + strings.Join(parts, ", ") + "}"
+	case []any:
+		parts := []string{}
+		for _, item := range x {
+			parts = append(parts, goValue(item))
+		}
+		return "[]any{" + strings.Join(parts, ", ") + "}"
+	case string:
+		return strconv.Quote(x)
+	case json.Number:
+		return x.String()
+	case bool:
+		if x {
+			return "true"
+		}
+		return "false"
+	case nil:
+		return "nil"
+	default:
+		return fmt.Sprint(x)
+	}
+}
+
+func phpValue(v any) string {
+	switch x := v.(type) {
+	case map[string]any:
+		parts := []string{}
+		for _, key := range sortedKeys(x) {
+			parts = append(parts, phpQuote(key)+" => "+phpValue(x[key]))
+		}
+		return "[" + strings.Join(parts, ", ") + "]"
+	case []any:
+		parts := []string{}
+		for _, item := range x {
+			parts = append(parts, phpValue(item))
+		}
+		return "[" + strings.Join(parts, ", ") + "]"
+	case string:
+		return phpQuote(x)
+	case json.Number:
+		return x.String()
+	case bool:
+		if x {
+			return "true"
+		}
+		return "false"
+	case nil:
+		return "null"
+	default:
+		return phpQuote(fmt.Sprint(x))
+	}
+}
+
+func pythonValue(v any, level int) string {
+	switch x := v.(type) {
+	case map[string]any:
+		parts := []string{}
+		for _, key := range sortedKeys(x) {
+			parts = append(parts, strconv.Quote(key)+": "+pythonValue(x[key], level+1))
+		}
+		return "{" + strings.Join(parts, ", ") + "}"
+	case []any:
+		parts := []string{}
+		for _, item := range x {
+			parts = append(parts, pythonValue(item, level+1))
+		}
+		return "[" + strings.Join(parts, ", ") + "]"
+	case string:
+		return strconv.Quote(x)
+	case json.Number:
+		return x.String()
+	case bool:
+		if x {
+			return "True"
+		}
+		return "False"
+	case nil:
+		return "None"
+	default:
+		return strconv.Quote(fmt.Sprint(x))
+	}
+}
+
+func javascriptValue(v any, level int) string {
+	switch x := v.(type) {
+	case map[string]any:
+		parts := []string{}
+		for _, key := range sortedKeys(x) {
+			parts = append(parts, strconv.Quote(key)+": "+javascriptValue(x[key], level+1))
+		}
+		return "{" + strings.Join(parts, ", ") + "}"
+	case []any:
+		parts := []string{}
+		for _, item := range x {
+			parts = append(parts, javascriptValue(item, level+1))
+		}
+		return "[" + strings.Join(parts, ", ") + "]"
+	case string:
+		return strconv.Quote(x)
+	case json.Number:
+		return x.String()
+	case bool:
+		if x {
+			return "true"
+		}
+		return "false"
+	case nil:
+		return "null"
+	default:
+		return strconv.Quote(fmt.Sprint(x))
+	}
+}
+
+func javaValue(v any) string {
+	switch x := v.(type) {
+	case map[string]any:
+		parts := []string{}
+		for _, key := range sortedKeys(x) {
+			parts = append(parts, strconv.Quote(key)+", "+javaValue(x[key]))
+		}
+		return "Map.of(" + strings.Join(parts, ", ") + ")"
+	case []any:
+		parts := []string{}
+		for _, item := range x {
+			parts = append(parts, javaValue(item))
+		}
+		return "List.of(" + strings.Join(parts, ", ") + ")"
+	case string:
+		return strconv.Quote(x)
+	case json.Number:
+		return x.String()
+	case bool:
+		if x {
+			return "true"
+		}
+		return "false"
+	case nil:
+		return "null"
+	default:
+		return strconv.Quote(fmt.Sprint(x))
+	}
+}
+
+func javaTextBlock(s string) string {
+	return `"""` + "\n" + strings.ReplaceAll(s, `"""`, `\"\"\"`) + "\n" + `"""`
 }
 
 func hasVersions(node *Node) bool {
