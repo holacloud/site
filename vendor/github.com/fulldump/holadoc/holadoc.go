@@ -58,7 +58,7 @@ func HolaDoc(c Config) {
 	readNodes(root, c.Src, c.Www)
 	root.PrettyPrint(0)
 
-	urls := []string{}
+	sitemapURLs := []sitemapURL{}
 
 	traverseNodes(root, func(node *Node) {
 
@@ -278,7 +278,10 @@ func HolaDoc(c Config) {
 					"content":     template.HTML(content),
 				}
 
-				urls = append(urls, outputPath)
+				sitemapURLs = append(sitemapURLs, sitemapURL{
+					Path:       outputPath,
+					Alternates: buildHreflangLinks(c.BaseURL, node, version),
+				})
 
 				newFilename := path.Join(c.Www, outputPath)
 				os.MkdirAll(path.Dir(newFilename), 0777) // todo: handle err
@@ -347,13 +350,18 @@ func HolaDoc(c Config) {
 	})
 
 	if c.BaseURL != "" {
-		generateSitemap(c.Www, c.BaseURL, urls)
+		generateSitemap(c.Www, c.BaseURL, sitemapURLs)
 	}
 
 }
 
-func generateSitemap(www, baseURL string, paths []string) {
-	if len(paths) == 0 {
+type sitemapURL struct {
+	Path       string
+	Alternates []hreflangLink
+}
+
+func generateSitemap(www, baseURL string, urls []sitemapURL) {
+	if len(urls) == 0 {
 		return
 	}
 
@@ -361,20 +369,27 @@ func generateSitemap(www, baseURL string, paths []string) {
 
 	var b bytes.Buffer
 	b.WriteString(`<?xml version="1.0" encoding="UTF-8"?>` + "\n")
-	b.WriteString(`<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">` + "\n")
+	b.WriteString(`<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">` + "\n")
 
 	seen := map[string]bool{}
-	for _, p := range paths {
+	for _, u := range urls {
 		// clean path: strip index.html, ensure leading /
-		u := "/" + strings.TrimSuffix(p, "index.html")
-		if seen[u] {
+		p := "/" + strings.TrimSuffix(u.Path, "index.html")
+		if seen[p] {
 			continue
 		}
-		seen[u] = true
+		seen[p] = true
 
-		loc := strings.TrimRight(baseURL, "/") + u
+		loc := strings.TrimRight(baseURL, "/") + p
 		b.WriteString("  <url>\n")
-		b.WriteString(fmt.Sprintf("    <loc>%s</loc>\n", loc))
+		b.WriteString(fmt.Sprintf("    <loc>%s</loc>\n", template.HTMLEscapeString(loc)))
+		for _, alternate := range u.Alternates {
+			b.WriteString(fmt.Sprintf(
+				"    <xhtml:link rel=\"alternate\" hreflang=\"%s\" href=\"%s\" />\n",
+				template.HTMLEscapeString(alternate.Lang),
+				template.HTMLEscapeString(alternate.URL),
+			))
+		}
 		b.WriteString(fmt.Sprintf("    <lastmod>%s</lastmod>\n", now))
 		b.WriteString("  </url>\n")
 	}
