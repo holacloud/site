@@ -4,7 +4,9 @@
     <title>{{ .title }}</title>
     <meta name="description" content="inceptiondb">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="/css/style.css" rel="stylesheet">
+    {{ if .canonicalUrl }}<link rel="canonical" href="{{ .canonicalUrl }}">
+    {{ range .hreflangLinks }}<link rel="alternate" hreflang="{{ .Lang }}" href="{{ .URL }}">
+    {{ end }}{{ end }}<link href="/css/style.css" rel="stylesheet">
     <link href="/css/blue.css" rel="stylesheet">
     <script src="/js/marked.min.js"></script>
     <script>

@@ -258,12 +258,16 @@ func HolaDoc(c Config) {
 
 				}
 
+				outputPath := getOutputPath(node, variation, language, version)
+
 				data := map[string]any{
 					"lang":        variation.Language,
 					"langs":       languages,
 					"langMenu":    template.HTML(langMenu),
 					"title":       variation.Title,
 					"url":         variation.Url,
+					"canonicalUrl": absoluteURL(c.BaseURL, outputPath),
+					"hreflangLinks": buildHreflangLinks(c.BaseURL, node, version),
 					"filename":    variation.Filename,
 					"version":     variation.Version,
 					"versions":    versions,
@@ -274,7 +278,6 @@ func HolaDoc(c Config) {
 					"content":     template.HTML(content),
 				}
 
-				outputPath := getOutputPath(node, variation, language, version)
 				urls = append(urls, outputPath)
 
 				newFilename := path.Join(c.Www, outputPath)
@@ -382,6 +385,52 @@ func generateSitemap(www, baseURL string, paths []string) {
 	if err != nil {
 		fmt.Println("WARNING: failed to write sitemap.xml:", err)
 	}
+}
+
+type hreflangLink struct {
+	Lang string
+	URL  string
+}
+
+func buildHreflangLinks(baseURL string, node *Node, version string) []hreflangLink {
+	if baseURL == "" {
+		return nil
+	}
+
+	links := []hreflangLink{}
+
+	for _, l := range languages {
+		variation := getBestVariation(node.Variations, l, version)
+		if variation == nil {
+			continue
+		}
+
+		links = append(links, hreflangLink{
+			Lang: l,
+			URL:  absoluteURL(baseURL, getOutputPath(node, variation, l, version)),
+		})
+	}
+
+	if len(languages) > 0 {
+		variation := getBestVariation(node.Variations, languages[0], version)
+		if variation != nil {
+			links = append(links, hreflangLink{
+				Lang: "x-default",
+				URL:  absoluteURL(baseURL, getOutputPath(node, variation, languages[0], version)),
+			})
+		}
+	}
+
+	return links
+}
+
+func absoluteURL(baseURL, outputPath string) string {
+	if baseURL == "" {
+		return ""
+	}
+
+	u := "/" + strings.TrimSuffix(outputPath, "index.html")
+	return strings.TrimRight(baseURL, "/") + u
 }
 
 func getTemplate(node *Node, funcs template.FuncMap) *template.Template {
