@@ -1,6 +1,8 @@
 package api
 
 import (
+	"net/http"
+
 	"github.com/fulldump/box"
 
 	"github.com/holacloud/site/statics"
@@ -39,6 +41,12 @@ func BuildWithComments(staticsDir, version, commentsDir string) *box.B {
 
 	// Version
 	b.Handle("GET", "/version", Write(version))
+
+	// Draw redirect
+	b.Handle("GET", "/draw", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Location", "https://draw.hola.cloud/")
+		w.WriteHeader(http.StatusFound)
+	})
 
 	// Comments API
 	commentsAPI, err := NewCommentsAPI(commentsDir)
