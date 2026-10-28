@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Access Management</title>
+    <title>API keys and owners</title>
     <meta name="description" content="inceptiondb">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="canonical" href="https://hola.cloud/docs/inceptiondb/v2/api-reference/access-management/">
@@ -100,31 +100,31 @@
 <div class="tree">
 
 
-    <div class="item active"><a href="/docs/inceptiondb/index.html">Inceptiondb</a></div>
+    <div class="item active"><a href="/docs/inceptiondb/index.html">InceptionDB</a></div>
 <div class="children">
-<div class="item"><a href="/docs/inceptiondb/v2/getting-started/index.html">Quick Start Guide with InceptionDB</a></div>
-<div class="item"><a href="/docs/inceptiondb/v2/managing-collections/index.html">Managing Collections</a></div>
-<div class="item"><a href="/docs/inceptiondb/v2/working-with-data/index.html">Working with Data</a></div>
-<div class="item active"><a href="/docs/inceptiondb/v2/api-reference/index.html">InceptionDB API Reference</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/getting-started/index.html">Getting started</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/managing-collections/index.html">Collections</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/working-with-data/index.html">Working with data</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/querying/index.html">Querying</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/indexes/index.html">Indexes</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/api-keys/index.html">API keys</a></div>
+<div class="item active"><a href="/docs/inceptiondb/v2/api-reference/index.html">API reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/inceptiondb/v2/api-reference/create-collection/index.html">Create Collection</a></div>
-<div class="item"><a href="/docs/inceptiondb/v2/api-reference/create-database/index.html">Create Database</a></div>
-<div class="item"><a href="/docs/inceptiondb/v2/api-reference/document-operations/index.html">Document Operations</a></div>
-<div class="item"><a href="/docs/inceptiondb/v2/api-reference/drop-database/index.html">Drop Database</a></div>
-<div class="item"><a href="/docs/inceptiondb/v2/api-reference/get-database/index.html">Get Database</a></div>
-<div class="item"><a href="/docs/inceptiondb/v2/api-reference/list-collections/index.html">List Collections</a></div>
-<div class="item"><a href="/docs/inceptiondb/v2/api-reference/list-databases/index.html">List Databases</a></div>
-<div class="item"><a href="/docs/inceptiondb/v2/api-reference/update-database/index.html">Update Database</a></div>
-<div class="item active selected"><a href="/docs/inceptiondb/v2/api-reference/access-management/index.html">Access Management</a></div>
-<div class="item"><a href="/docs/inceptiondb/v2/api-reference/collection-management/index.html">Collection Management</a></div>
-<div class="item"><a href="/docs/inceptiondb/v2/api-reference/index-management/index.html">Index Management</a></div>
-<div class="item"><a href="/docs/inceptiondb/v2/api-reference/service-metadata/index.html">Service Metadata</a></div>
-<div class="item"><a href="/docs/inceptiondb/v2/api-reference/insert-documents/index.html">Insert Documents</a></div>
-<div class="item"><a href="/docs/inceptiondb/v2/api-reference/find-documents/index.html">Find Documents</a></div>
-<div class="item"><a href="/docs/inceptiondb/v2/api-reference/patch-documents/index.html">Patch Documents</a></div>
-<div class="item"><a href="/docs/inceptiondb/v2/api-reference/remove-documents/index.html">Remove Documents</a></div>
-<div class="item"><a href="/docs/inceptiondb/v2/api-reference/get-document/index.html">Get Document</a></div>
-<div class="item"><a href="/docs/inceptiondb/v2/api-reference/streaming-inserts/index.html">Streaming Inserts</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/api-reference/create-collection/index.html">Create a collection</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/api-reference/create-database/index.html">Create a database</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/api-reference/drop-database/index.html">Delete a database</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/api-reference/get-database/index.html">Get a database</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/api-reference/list-collections/index.html">List collections</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/api-reference/list-databases/index.html">List databases</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/api-reference/update-database/index.html">Rename a database</a></div>
+<div class="item active selected"><a href="/docs/inceptiondb/v2/api-reference/access-management/index.html">API keys and owners</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/api-reference/collection-management/index.html">Collection management</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/api-reference/index-management/index.html">Index management</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/api-reference/insert-documents/index.html">Insert documents</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/api-reference/find-documents/index.html">Find documents</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/api-reference/patch-documents/index.html">Update documents</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/api-reference/remove-documents/index.html">Delete documents</a></div>
+<div class="item"><a href="/docs/inceptiondb/v2/api-reference/get-document/index.html">Get a document by id</a></div>
 </div>
 </div>
 <div class="item"><a href="/docs/lambda/index.html">Lambda</a></div>
@@ -328,585 +328,36 @@
 
 </div>
 <div class="content">
-    <div class="breadcrumb"><a class="item" href="/docs/inceptiondb/v2/api-reference/index.html">InceptionDB API Reference</a><span class="arrow">→</span><a class="item selected" href="/docs/inceptiondb/v2/api-reference/access-management/index.html">Access Management</a></div>
+    <div class="breadcrumb"><a class="item" href="/docs/inceptiondb/v2/api-reference/index.html">API reference</a><span class="arrow">→</span><a class="item selected" href="/docs/inceptiondb/v2/api-reference/access-management/index.html">API keys and owners</a></div>
     <div class="document">
-    <h1>Access Management</h1>
-<p>Database access-management actions create API keys and manage owner user IDs.</p>
-<h2 id="Authentication">Authentication</h2>
-<p>Requires <code>X-Glue-Authentication</code> for a user that owns the database.</p>
-<h2 id="Create%20API%20Key">Create API Key</h2>
-<div class="http-request" data-http-request=""><div class="http-request-header"><div class="http-request-tabs" role="tablist" aria-label="HTTP request examples"><button type="button" class="http-request-tab active" data-http-lang="curl" role="tab" aria-selected="true">curl</button><button type="button" class="http-request-tab" data-http-lang="http" role="tab" aria-selected="false">HTTP</button><button type="button" class="http-request-tab" data-http-lang="go" role="tab" aria-selected="false">Go</button><button type="button" class="http-request-tab" data-http-lang="php" role="tab" aria-selected="false">PHP</button><button type="button" class="http-request-tab" data-http-lang="python" role="tab" aria-selected="false">Python</button><button type="button" class="http-request-tab" data-http-lang="nodejs" role="tab" aria-selected="false">Node.js</button><button type="button" class="http-request-tab" data-http-lang="javascript" role="tab" aria-selected="false">JavaScript</button><button type="button" class="http-request-tab" data-http-lang="java" role="tab" aria-selected="false">Java</button></div><button type="button" class="http-request-copy" data-http-copy="" title="Copy request" aria-label="Copy request"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V7Zm2 0v11h8V7h-8ZM4 3a2 2 0 0 1 2-2h9v2H6v11H4V3Z" fill="currentColor"></path></svg><span>Copy</span></button></div><div class="http-request-panel active" data-http-panel="curl" role="tabpanel"><pre><code>curl -X POST &#34;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890:createApiKey&#34; \
-  -H &#34;X-Glue-Authentication: glue-session-token&#34; \
-  -H &#34;Content-Type: application/json&#34; \
-  -d &#39;{&#34;name&#34;:&#34;production&#34;}&#39;</code></pre></div><div class="http-request-panel" data-http-panel="http" role="tabpanel"><pre><code>POST /v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890:createApiKey HTTP/1.1
-Host: api.hola.cloud
-X-Glue-Authentication: glue-session-token
-Content-Type: application/json
-
-{&#34;name&#34;:&#34;production&#34;}</code></pre></div><div class="http-request-panel" data-http-panel="go" role="tabpanel"><pre><code>package main
-
-import (
-	&#34;fmt&#34;
-	&#34;io&#34;
-	&#34;net/http&#34;
-	&#34;encoding/json&#34;
-	&#34;strings&#34;
-)
-
-func main() {
-	payload := map[string]any{&#34;name&#34;: &#34;production&#34;}
-	bodyBytes, err := json.Marshal(payload)
-	if err != nil {
-		panic(err)
-	}
-	body := string(bodyBytes)
-
-	req, err := http.NewRequest(&#34;POST&#34;, &#34;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890:createApiKey&#34;, strings.NewReader(body))
-	if err != nil {
-		panic(err)
-	}
-	req.Header.Set(&#34;X-Glue-Authentication&#34;, &#34;glue-session-token&#34;)
-	req.Header.Set(&#34;Content-Type&#34;, &#34;application/json&#34;)
-
-	resp, err := http.DefaultClient.Do(req)
-	if err != nil {
-		panic(err)
-	}
-	defer resp.Body.Close()
-
-	responseBody, err := io.ReadAll(resp.Body)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println(string(responseBody))
-}
-</code></pre></div><div class="http-request-panel" data-http-panel="php" role="tabpanel"><pre><code>&lt;?php
-$payload = [&#39;name&#39; =&gt; &#39;production&#39;];
-$body = json_encode($payload);
-
-$ch = curl_init();
-
-curl_setopt_array($ch, [
-    CURLOPT_URL =&gt; &#39;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890:createApiKey&#39;,
-    CURLOPT_RETURNTRANSFER =&gt; true,
-    CURLOPT_CUSTOMREQUEST =&gt; &#39;POST&#39;,
-    CURLOPT_POSTFIELDS =&gt; $body,
-    CURLOPT_HTTPHEADER =&gt; [
-        &#39;X-Glue-Authentication: glue-session-token&#39;,
-        &#39;Content-Type: application/json&#39;,
-    ],
-]);
-
-$response = curl_exec($ch);
-if ($response === false) {
-    throw new Exception(curl_error($ch));
-}
-curl_close($ch);
-
-echo $response;
-</code></pre></div><div class="http-request-panel" data-http-panel="python" role="tabpanel"><pre><code>import requests
-
-import json
-
-headers = {
-    &#34;X-Glue-Authentication&#34;: &#34;glue-session-token&#34;,
-    &#34;Content-Type&#34;: &#34;application/json&#34;,
-}
-
-payload = {&#34;name&#34;: &#34;production&#34;}
-body = json.dumps(payload)
-
-response = requests.request(
-    &#34;POST&#34;,
-    &#34;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890:createApiKey&#34;,
-    headers=headers,
-    data=body
-)
-
-print(response.text)
-</code></pre></div><div class="http-request-panel" data-http-panel="nodejs" role="tabpanel"><pre><code>const payload = {&#34;name&#34;: &#34;production&#34;};
-
-const response = await fetch(&#34;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890:createApiKey&#34;, {
-  method: &#34;POST&#34;,
-  headers: {
-    &#34;X-Glue-Authentication&#34;: &#34;glue-session-token&#34;,
-    &#34;Content-Type&#34;: &#34;application/json&#34;
-  },
-  body: JSON.stringify(payload)
-});
-
-console.log(await response.text());
-</code></pre></div><div class="http-request-panel" data-http-panel="javascript" role="tabpanel"><pre><code>const payload = {&#34;name&#34;: &#34;production&#34;};
-
-const response = await fetch(&#34;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890:createApiKey&#34;, {
-  method: &#34;POST&#34;,
-  headers: {
-    &#34;X-Glue-Authentication&#34;: &#34;glue-session-token&#34;,
-    &#34;Content-Type&#34;: &#34;application/json&#34;
-  },
-  body: JSON.stringify(payload)
-});
-
-const text = await response.text();
-console.log(text);
-</code></pre></div><div class="http-request-panel" data-http-panel="java" role="tabpanel"><pre><code>import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.util.Map;
-import java.util.List;
-
-public class Main {
-    public static void main(String[] args) throws Exception {
-        var payload = Map.of(&#34;name&#34;, &#34;production&#34;);
-        var body = new ObjectMapper().writeValueAsString(payload);
-
-        var request = HttpRequest.newBuilder()
-            .uri(URI.create(&#34;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890:createApiKey&#34;))
-            .method(&#34;POST&#34;, HttpRequest.BodyPublishers.ofString(body))
-            .header(&#34;X-Glue-Authentication&#34;, &#34;glue-session-token&#34;)
-            .header(&#34;Content-Type&#34;, &#34;application/json&#34;)
-            .build();
-
-        var response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println(response.body());
-    }
-}</code></pre></div></div>
-<p>Response status: <code>201 Created</code></p>
-<pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  <span style="color:#268bd2">&#34;name&#34;</span>: <span style="color:#2aa198">&#34;production&#34;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  <span style="color:#268bd2">&#34;key&#34;</span>: <span style="color:#2aa198">&#34;1abbe476-6ad6-4b97-9cca-6deb6ab2901d&#34;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>  <span style="color:#268bd2">&#34;secret&#34;</span>: <span style="color:#2aa198">&#34;4bda6d52-762b-4e5d-bed7-85614c13b8bf&#34;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>  <span style="color:#268bd2">&#34;creation_date&#34;</span>: <span style="color:#2aa198">&#34;2026-06-24T12:00:00Z&#34;</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>}
+    <h1>API keys and owners</h1>
+<p>These account endpoints need the session of a signed-in hola.cloud user, not an API key. The <a href="https://inceptiondb.hola.cloud/">console</a> does it for you in <strong>API keys &amp; settings</strong>. See <a href="/docs/inceptiondb/v2/api-keys/">API keys</a> for how to use and protect them.</p>
+<h2 id="Create%20an%20API%20key">Create an API key</h2>
+<p><code>POST /v1/databases/{databaseId}:createApiKey</code></p>
+<pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{<span style="color:#268bd2">&#34;name&#34;</span>: <span style="color:#2aa198">&#34;backend&#34;</span>}
 </span></span></code></pre>
-<p>The secret is returned only when the key is created.</p>
-<h2 id="Delete%20API%20Key">Delete API Key</h2>
-<div class="http-request" data-http-request=""><div class="http-request-header"><div class="http-request-tabs" role="tablist" aria-label="HTTP request examples"><button type="button" class="http-request-tab active" data-http-lang="curl" role="tab" aria-selected="true">curl</button><button type="button" class="http-request-tab" data-http-lang="http" role="tab" aria-selected="false">HTTP</button><button type="button" class="http-request-tab" data-http-lang="go" role="tab" aria-selected="false">Go</button><button type="button" class="http-request-tab" data-http-lang="php" role="tab" aria-selected="false">PHP</button><button type="button" class="http-request-tab" data-http-lang="python" role="tab" aria-selected="false">Python</button><button type="button" class="http-request-tab" data-http-lang="nodejs" role="tab" aria-selected="false">Node.js</button><button type="button" class="http-request-tab" data-http-lang="javascript" role="tab" aria-selected="false">JavaScript</button><button type="button" class="http-request-tab" data-http-lang="java" role="tab" aria-selected="false">Java</button></div><button type="button" class="http-request-copy" data-http-copy="" title="Copy request" aria-label="Copy request"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V7Zm2 0v11h8V7h-8ZM4 3a2 2 0 0 1 2-2h9v2H6v11H4V3Z" fill="currentColor"></path></svg><span>Copy</span></button></div><div class="http-request-panel active" data-http-panel="curl" role="tabpanel"><pre><code>curl -X POST &#34;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890:deleteApiKey&#34; \
-  -H &#34;X-Glue-Authentication: glue-session-token&#34; \
-  -H &#34;Content-Type: application/json&#34; \
-  -d &#39;{&#34;key&#34;:&#34;1abbe476-6ad6-4b97-9cca-6deb6ab2901d&#34;}&#39;</code></pre></div><div class="http-request-panel" data-http-panel="http" role="tabpanel"><pre><code>POST /v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890:deleteApiKey HTTP/1.1
-Host: api.hola.cloud
-X-Glue-Authentication: glue-session-token
-Content-Type: application/json
-
-{&#34;key&#34;:&#34;1abbe476-6ad6-4b97-9cca-6deb6ab2901d&#34;}</code></pre></div><div class="http-request-panel" data-http-panel="go" role="tabpanel"><pre><code>package main
-
-import (
-	&#34;fmt&#34;
-	&#34;io&#34;
-	&#34;net/http&#34;
-	&#34;encoding/json&#34;
-	&#34;strings&#34;
-)
-
-func main() {
-	payload := map[string]any{&#34;key&#34;: &#34;1abbe476-6ad6-4b97-9cca-6deb6ab2901d&#34;}
-	bodyBytes, err := json.Marshal(payload)
-	if err != nil {
-		panic(err)
-	}
-	body := string(bodyBytes)
-
-	req, err := http.NewRequest(&#34;POST&#34;, &#34;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890:deleteApiKey&#34;, strings.NewReader(body))
-	if err != nil {
-		panic(err)
-	}
-	req.Header.Set(&#34;X-Glue-Authentication&#34;, &#34;glue-session-token&#34;)
-	req.Header.Set(&#34;Content-Type&#34;, &#34;application/json&#34;)
-
-	resp, err := http.DefaultClient.Do(req)
-	if err != nil {
-		panic(err)
-	}
-	defer resp.Body.Close()
-
-	responseBody, err := io.ReadAll(resp.Body)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println(string(responseBody))
-}
-</code></pre></div><div class="http-request-panel" data-http-panel="php" role="tabpanel"><pre><code>&lt;?php
-$payload = [&#39;key&#39; =&gt; &#39;1abbe476-6ad6-4b97-9cca-6deb6ab2901d&#39;];
-$body = json_encode($payload);
-
-$ch = curl_init();
-
-curl_setopt_array($ch, [
-    CURLOPT_URL =&gt; &#39;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890:deleteApiKey&#39;,
-    CURLOPT_RETURNTRANSFER =&gt; true,
-    CURLOPT_CUSTOMREQUEST =&gt; &#39;POST&#39;,
-    CURLOPT_POSTFIELDS =&gt; $body,
-    CURLOPT_HTTPHEADER =&gt; [
-        &#39;X-Glue-Authentication: glue-session-token&#39;,
-        &#39;Content-Type: application/json&#39;,
-    ],
-]);
-
-$response = curl_exec($ch);
-if ($response === false) {
-    throw new Exception(curl_error($ch));
-}
-curl_close($ch);
-
-echo $response;
-</code></pre></div><div class="http-request-panel" data-http-panel="python" role="tabpanel"><pre><code>import requests
-
-import json
-
-headers = {
-    &#34;X-Glue-Authentication&#34;: &#34;glue-session-token&#34;,
-    &#34;Content-Type&#34;: &#34;application/json&#34;,
-}
-
-payload = {&#34;key&#34;: &#34;1abbe476-6ad6-4b97-9cca-6deb6ab2901d&#34;}
-body = json.dumps(payload)
-
-response = requests.request(
-    &#34;POST&#34;,
-    &#34;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890:deleteApiKey&#34;,
-    headers=headers,
-    data=body
-)
-
-print(response.text)
-</code></pre></div><div class="http-request-panel" data-http-panel="nodejs" role="tabpanel"><pre><code>const payload = {&#34;key&#34;: &#34;1abbe476-6ad6-4b97-9cca-6deb6ab2901d&#34;};
-
-const response = await fetch(&#34;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890:deleteApiKey&#34;, {
-  method: &#34;POST&#34;,
-  headers: {
-    &#34;X-Glue-Authentication&#34;: &#34;glue-session-token&#34;,
-    &#34;Content-Type&#34;: &#34;application/json&#34;
-  },
-  body: JSON.stringify(payload)
-});
-
-console.log(await response.text());
-</code></pre></div><div class="http-request-panel" data-http-panel="javascript" role="tabpanel"><pre><code>const payload = {&#34;key&#34;: &#34;1abbe476-6ad6-4b97-9cca-6deb6ab2901d&#34;};
-
-const response = await fetch(&#34;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890:deleteApiKey&#34;, {
-  method: &#34;POST&#34;,
-  headers: {
-    &#34;X-Glue-Authentication&#34;: &#34;glue-session-token&#34;,
-    &#34;Content-Type&#34;: &#34;application/json&#34;
-  },
-  body: JSON.stringify(payload)
-});
-
-const text = await response.text();
-console.log(text);
-</code></pre></div><div class="http-request-panel" data-http-panel="java" role="tabpanel"><pre><code>import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.util.Map;
-import java.util.List;
-
-public class Main {
-    public static void main(String[] args) throws Exception {
-        var payload = Map.of(&#34;key&#34;, &#34;1abbe476-6ad6-4b97-9cca-6deb6ab2901d&#34;);
-        var body = new ObjectMapper().writeValueAsString(payload);
-
-        var request = HttpRequest.newBuilder()
-            .uri(URI.create(&#34;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890:deleteApiKey&#34;))
-            .method(&#34;POST&#34;, HttpRequest.BodyPublishers.ofString(body))
-            .header(&#34;X-Glue-Authentication&#34;, &#34;glue-session-token&#34;)
-            .header(&#34;Content-Type&#34;, &#34;application/json&#34;)
-            .build();
-
-        var response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println(response.body());
-    }
-}</code></pre></div></div>
-<p>Successful responses have an empty body.</p>
-<h2 id="Add%20Owner">Add Owner</h2>
-<div class="http-request" data-http-request=""><div class="http-request-header"><div class="http-request-tabs" role="tablist" aria-label="HTTP request examples"><button type="button" class="http-request-tab active" data-http-lang="curl" role="tab" aria-selected="true">curl</button><button type="button" class="http-request-tab" data-http-lang="http" role="tab" aria-selected="false">HTTP</button><button type="button" class="http-request-tab" data-http-lang="go" role="tab" aria-selected="false">Go</button><button type="button" class="http-request-tab" data-http-lang="php" role="tab" aria-selected="false">PHP</button><button type="button" class="http-request-tab" data-http-lang="python" role="tab" aria-selected="false">Python</button><button type="button" class="http-request-tab" data-http-lang="nodejs" role="tab" aria-selected="false">Node.js</button><button type="button" class="http-request-tab" data-http-lang="javascript" role="tab" aria-selected="false">JavaScript</button><button type="button" class="http-request-tab" data-http-lang="java" role="tab" aria-selected="false">Java</button></div><button type="button" class="http-request-copy" data-http-copy="" title="Copy request" aria-label="Copy request"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V7Zm2 0v11h8V7h-8ZM4 3a2 2 0 0 1 2-2h9v2H6v11H4V3Z" fill="currentColor"></path></svg><span>Copy</span></button></div><div class="http-request-panel active" data-http-panel="curl" role="tabpanel"><pre><code>curl -X POST &#34;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890:addOwner&#34; \
-  -H &#34;X-Glue-Authentication: glue-session-token&#34; \
-  -H &#34;Content-Type: application/json&#34; \
-  -d &#39;{&#34;owner_id&#34;:&#34;user-123&#34;}&#39;</code></pre></div><div class="http-request-panel" data-http-panel="http" role="tabpanel"><pre><code>POST /v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890:addOwner HTTP/1.1
-Host: api.hola.cloud
-X-Glue-Authentication: glue-session-token
-Content-Type: application/json
-
-{&#34;owner_id&#34;:&#34;user-123&#34;}</code></pre></div><div class="http-request-panel" data-http-panel="go" role="tabpanel"><pre><code>package main
-
-import (
-	&#34;fmt&#34;
-	&#34;io&#34;
-	&#34;net/http&#34;
-	&#34;encoding/json&#34;
-	&#34;strings&#34;
-)
-
-func main() {
-	payload := map[string]any{&#34;owner_id&#34;: &#34;user-123&#34;}
-	bodyBytes, err := json.Marshal(payload)
-	if err != nil {
-		panic(err)
-	}
-	body := string(bodyBytes)
-
-	req, err := http.NewRequest(&#34;POST&#34;, &#34;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890:addOwner&#34;, strings.NewReader(body))
-	if err != nil {
-		panic(err)
-	}
-	req.Header.Set(&#34;X-Glue-Authentication&#34;, &#34;glue-session-token&#34;)
-	req.Header.Set(&#34;Content-Type&#34;, &#34;application/json&#34;)
-
-	resp, err := http.DefaultClient.Do(req)
-	if err != nil {
-		panic(err)
-	}
-	defer resp.Body.Close()
-
-	responseBody, err := io.ReadAll(resp.Body)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println(string(responseBody))
-}
-</code></pre></div><div class="http-request-panel" data-http-panel="php" role="tabpanel"><pre><code>&lt;?php
-$payload = [&#39;owner_id&#39; =&gt; &#39;user-123&#39;];
-$body = json_encode($payload);
-
-$ch = curl_init();
-
-curl_setopt_array($ch, [
-    CURLOPT_URL =&gt; &#39;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890:addOwner&#39;,
-    CURLOPT_RETURNTRANSFER =&gt; true,
-    CURLOPT_CUSTOMREQUEST =&gt; &#39;POST&#39;,
-    CURLOPT_POSTFIELDS =&gt; $body,
-    CURLOPT_HTTPHEADER =&gt; [
-        &#39;X-Glue-Authentication: glue-session-token&#39;,
-        &#39;Content-Type: application/json&#39;,
-    ],
-]);
-
-$response = curl_exec($ch);
-if ($response === false) {
-    throw new Exception(curl_error($ch));
-}
-curl_close($ch);
-
-echo $response;
-</code></pre></div><div class="http-request-panel" data-http-panel="python" role="tabpanel"><pre><code>import requests
-
-import json
-
-headers = {
-    &#34;X-Glue-Authentication&#34;: &#34;glue-session-token&#34;,
-    &#34;Content-Type&#34;: &#34;application/json&#34;,
-}
-
-payload = {&#34;owner_id&#34;: &#34;user-123&#34;}
-body = json.dumps(payload)
-
-response = requests.request(
-    &#34;POST&#34;,
-    &#34;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890:addOwner&#34;,
-    headers=headers,
-    data=body
-)
-
-print(response.text)
-</code></pre></div><div class="http-request-panel" data-http-panel="nodejs" role="tabpanel"><pre><code>const payload = {&#34;owner_id&#34;: &#34;user-123&#34;};
-
-const response = await fetch(&#34;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890:addOwner&#34;, {
-  method: &#34;POST&#34;,
-  headers: {
-    &#34;X-Glue-Authentication&#34;: &#34;glue-session-token&#34;,
-    &#34;Content-Type&#34;: &#34;application/json&#34;
-  },
-  body: JSON.stringify(payload)
-});
-
-console.log(await response.text());
-</code></pre></div><div class="http-request-panel" data-http-panel="javascript" role="tabpanel"><pre><code>const payload = {&#34;owner_id&#34;: &#34;user-123&#34;};
-
-const response = await fetch(&#34;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890:addOwner&#34;, {
-  method: &#34;POST&#34;,
-  headers: {
-    &#34;X-Glue-Authentication&#34;: &#34;glue-session-token&#34;,
-    &#34;Content-Type&#34;: &#34;application/json&#34;
-  },
-  body: JSON.stringify(payload)
-});
-
-const text = await response.text();
-console.log(text);
-</code></pre></div><div class="http-request-panel" data-http-panel="java" role="tabpanel"><pre><code>import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.util.Map;
-import java.util.List;
-
-public class Main {
-    public static void main(String[] args) throws Exception {
-        var payload = Map.of(&#34;owner_id&#34;, &#34;user-123&#34;);
-        var body = new ObjectMapper().writeValueAsString(payload);
-
-        var request = HttpRequest.newBuilder()
-            .uri(URI.create(&#34;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890:addOwner&#34;))
-            .method(&#34;POST&#34;, HttpRequest.BodyPublishers.ofString(body))
-            .header(&#34;X-Glue-Authentication&#34;, &#34;glue-session-token&#34;)
-            .header(&#34;Content-Type&#34;, &#34;application/json&#34;)
-            .build();
-
-        var response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println(response.body());
-    }
-}</code></pre></div></div>
-<p>Response:</p>
-<pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>[<span style="color:#2aa198">&#34;current-owner&#34;</span>,<span style="color:#2aa198">&#34;user-123&#34;</span>]
+<p>Response <code>201 Created</code>. The <code>secret</code> is returned only now; store it safely:</p>
+<pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{<span style="color:#268bd2">&#34;name&#34;</span>:<span style="color:#2aa198">&#34;backend&#34;</span>,<span style="color:#268bd2">&#34;key&#34;</span>:<span style="color:#2aa198">&#34;4fdd0267-fded-4d51-b1a2-e7674e02126e&#34;</span>,<span style="color:#268bd2">&#34;secret&#34;</span>:<span style="color:#2aa198">&#34;02863644-fbf9-4e57-8b64-e11ead5878ec&#34;</span>,<span style="color:#268bd2">&#34;creation_date&#34;</span>:<span style="color:#2aa198">&#34;2026-10-28T06:27:03.555714157+01:00&#34;</span>}
 </span></span></code></pre>
-<h2 id="Delete%20Owner">Delete Owner</h2>
-<div class="http-request" data-http-request=""><div class="http-request-header"><div class="http-request-tabs" role="tablist" aria-label="HTTP request examples"><button type="button" class="http-request-tab active" data-http-lang="curl" role="tab" aria-selected="true">curl</button><button type="button" class="http-request-tab" data-http-lang="http" role="tab" aria-selected="false">HTTP</button><button type="button" class="http-request-tab" data-http-lang="go" role="tab" aria-selected="false">Go</button><button type="button" class="http-request-tab" data-http-lang="php" role="tab" aria-selected="false">PHP</button><button type="button" class="http-request-tab" data-http-lang="python" role="tab" aria-selected="false">Python</button><button type="button" class="http-request-tab" data-http-lang="nodejs" role="tab" aria-selected="false">Node.js</button><button type="button" class="http-request-tab" data-http-lang="javascript" role="tab" aria-selected="false">JavaScript</button><button type="button" class="http-request-tab" data-http-lang="java" role="tab" aria-selected="false">Java</button></div><button type="button" class="http-request-copy" data-http-copy="" title="Copy request" aria-label="Copy request"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V7Zm2 0v11h8V7h-8ZM4 3a2 2 0 0 1 2-2h9v2H6v11H4V3Z" fill="currentColor"></path></svg><span>Copy</span></button></div><div class="http-request-panel active" data-http-panel="curl" role="tabpanel"><pre><code>curl -X POST &#34;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890:deleteOwner&#34; \
-  -H &#34;X-Glue-Authentication: glue-session-token&#34; \
-  -H &#34;Content-Type: application/json&#34; \
-  -d &#39;{&#34;owner_id&#34;:&#34;user-123&#34;}&#39;</code></pre></div><div class="http-request-panel" data-http-panel="http" role="tabpanel"><pre><code>POST /v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890:deleteOwner HTTP/1.1
-Host: api.hola.cloud
-X-Glue-Authentication: glue-session-token
-Content-Type: application/json
-
-{&#34;owner_id&#34;:&#34;user-123&#34;}</code></pre></div><div class="http-request-panel" data-http-panel="go" role="tabpanel"><pre><code>package main
-
-import (
-	&#34;fmt&#34;
-	&#34;io&#34;
-	&#34;net/http&#34;
-	&#34;encoding/json&#34;
-	&#34;strings&#34;
-)
-
-func main() {
-	payload := map[string]any{&#34;owner_id&#34;: &#34;user-123&#34;}
-	bodyBytes, err := json.Marshal(payload)
-	if err != nil {
-		panic(err)
-	}
-	body := string(bodyBytes)
-
-	req, err := http.NewRequest(&#34;POST&#34;, &#34;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890:deleteOwner&#34;, strings.NewReader(body))
-	if err != nil {
-		panic(err)
-	}
-	req.Header.Set(&#34;X-Glue-Authentication&#34;, &#34;glue-session-token&#34;)
-	req.Header.Set(&#34;Content-Type&#34;, &#34;application/json&#34;)
-
-	resp, err := http.DefaultClient.Do(req)
-	if err != nil {
-		panic(err)
-	}
-	defer resp.Body.Close()
-
-	responseBody, err := io.ReadAll(resp.Body)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println(string(responseBody))
-}
-</code></pre></div><div class="http-request-panel" data-http-panel="php" role="tabpanel"><pre><code>&lt;?php
-$payload = [&#39;owner_id&#39; =&gt; &#39;user-123&#39;];
-$body = json_encode($payload);
-
-$ch = curl_init();
-
-curl_setopt_array($ch, [
-    CURLOPT_URL =&gt; &#39;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890:deleteOwner&#39;,
-    CURLOPT_RETURNTRANSFER =&gt; true,
-    CURLOPT_CUSTOMREQUEST =&gt; &#39;POST&#39;,
-    CURLOPT_POSTFIELDS =&gt; $body,
-    CURLOPT_HTTPHEADER =&gt; [
-        &#39;X-Glue-Authentication: glue-session-token&#39;,
-        &#39;Content-Type: application/json&#39;,
-    ],
-]);
-
-$response = curl_exec($ch);
-if ($response === false) {
-    throw new Exception(curl_error($ch));
-}
-curl_close($ch);
-
-echo $response;
-</code></pre></div><div class="http-request-panel" data-http-panel="python" role="tabpanel"><pre><code>import requests
-
-import json
-
-headers = {
-    &#34;X-Glue-Authentication&#34;: &#34;glue-session-token&#34;,
-    &#34;Content-Type&#34;: &#34;application/json&#34;,
-}
-
-payload = {&#34;owner_id&#34;: &#34;user-123&#34;}
-body = json.dumps(payload)
-
-response = requests.request(
-    &#34;POST&#34;,
-    &#34;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890:deleteOwner&#34;,
-    headers=headers,
-    data=body
-)
-
-print(response.text)
-</code></pre></div><div class="http-request-panel" data-http-panel="nodejs" role="tabpanel"><pre><code>const payload = {&#34;owner_id&#34;: &#34;user-123&#34;};
-
-const response = await fetch(&#34;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890:deleteOwner&#34;, {
-  method: &#34;POST&#34;,
-  headers: {
-    &#34;X-Glue-Authentication&#34;: &#34;glue-session-token&#34;,
-    &#34;Content-Type&#34;: &#34;application/json&#34;
-  },
-  body: JSON.stringify(payload)
-});
-
-console.log(await response.text());
-</code></pre></div><div class="http-request-panel" data-http-panel="javascript" role="tabpanel"><pre><code>const payload = {&#34;owner_id&#34;: &#34;user-123&#34;};
-
-const response = await fetch(&#34;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890:deleteOwner&#34;, {
-  method: &#34;POST&#34;,
-  headers: {
-    &#34;X-Glue-Authentication&#34;: &#34;glue-session-token&#34;,
-    &#34;Content-Type&#34;: &#34;application/json&#34;
-  },
-  body: JSON.stringify(payload)
-});
-
-const text = await response.text();
-console.log(text);
-</code></pre></div><div class="http-request-panel" data-http-panel="java" role="tabpanel"><pre><code>import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.util.Map;
-import java.util.List;
-
-public class Main {
-    public static void main(String[] args) throws Exception {
-        var payload = Map.of(&#34;owner_id&#34;, &#34;user-123&#34;);
-        var body = new ObjectMapper().writeValueAsString(payload);
-
-        var request = HttpRequest.newBuilder()
-            .uri(URI.create(&#34;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890:deleteOwner&#34;))
-            .method(&#34;POST&#34;, HttpRequest.BodyPublishers.ofString(body))
-            .header(&#34;X-Glue-Authentication&#34;, &#34;glue-session-token&#34;)
-            .header(&#34;Content-Type&#34;, &#34;application/json&#34;)
-            .build();
-
-        var response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println(response.body());
-    }
-}</code></pre></div></div>
-<p>Response:</p>
-<pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>[<span style="color:#2aa198">&#34;current-owner&#34;</span>]
+<h2 id="Revoke%20an%20API%20key">Revoke an API key</h2>
+<p><code>POST /v1/databases/{databaseId}:deleteApiKey</code></p>
+<pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{<span style="color:#268bd2">&#34;key&#34;</span>: <span style="color:#2aa198">&#34;4fdd0267-fded-4d51-b1a2-e7674e02126e&#34;</span>}
 </span></span></code></pre>
-<p>The authenticated user cannot delete themselves from the owner list.</p>
+<p>Response <code>204 No Content</code>. Requests with that key are rejected from then on.</p>
+<h2 id="Add%20an%20owner">Add an owner</h2>
+<p><code>POST /v1/databases/{databaseId}:addOwner</code></p>
+<pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{<span style="color:#268bd2">&#34;owner_id&#34;</span>: <span style="color:#2aa198">&#34;user-2&#34;</span>}
+</span></span></code></pre>
+<p>Response <code>200 OK</code> with the owners:</p>
+<pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>[<span style="color:#2aa198">&#34;owner-1&#34;</span>,<span style="color:#2aa198">&#34;user-2&#34;</span>]
+</span></span></code></pre>
+<h2 id="Remove%20an%20owner">Remove an owner</h2>
+<p><code>POST /v1/databases/{databaseId}:deleteOwner</code></p>
+<pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{<span style="color:#268bd2">&#34;owner_id&#34;</span>: <span style="color:#2aa198">&#34;user-2&#34;</span>}
+</span></span></code></pre>
+<p>Response <code>200 OK</code> with the owners that remain. You cannot remove yourself.</p>
+<pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>[<span style="color:#2aa198">&#34;owner-1&#34;</span>]
+</span></span></code></pre>
 
 
     <div id="comments-section">
@@ -930,19 +381,16 @@ public class Main {
 </div>
 </div>
 <div class="index"><div class="index-h2">
-<a href="#Authentication">Authentication</a>
+<a href="#Create%20an%20API%20key">Create an API key</a>
 </div>
 <div class="index-h2">
-<a href="#Create%20API%20Key">Create API Key</a>
+<a href="#Revoke%20an%20API%20key">Revoke an API key</a>
 </div>
 <div class="index-h2">
-<a href="#Delete%20API%20Key">Delete API Key</a>
+<a href="#Add%20an%20owner">Add an owner</a>
 </div>
 <div class="index-h2">
-<a href="#Add%20Owner">Add Owner</a>
-</div>
-<div class="index-h2">
-<a href="#Delete%20Owner">Delete Owner</a>
+<a href="#Remove%20an%20owner">Remove an owner</a>
 </div>
 </div>
 </div>

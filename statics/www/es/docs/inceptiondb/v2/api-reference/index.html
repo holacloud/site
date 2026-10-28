@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Referencia de la API de InceptionDB</title>
+    <title>Referencia del API</title>
     <meta name="description" content="inceptiondb">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="canonical" href="https://hola.cloud/es/docs/inceptiondb/v2/api-reference/">
@@ -100,31 +100,31 @@
 <div class="tree">
 
 
-    <div class="item active"><a href="/es/docs/inceptiondb/index.html">Inceptiondb</a></div>
+    <div class="item active"><a href="/es/docs/inceptiondb/index.html">InceptionDB</a></div>
 <div class="children">
-<div class="item"><a href="/es/docs/inceptiondb/v2/primeros-pasos/index.html">Guía rápida de InceptionDB</a></div>
-<div class="item"><a href="/es/docs/inceptiondb/v2/manejando-colecciones/index.html">Manejando colecciones</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v2/primeros-pasos/index.html">Primeros pasos</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v2/manejando-colecciones/index.html">Colecciones</a></div>
 <div class="item"><a href="/es/docs/inceptiondb/v2/trabajando-con-datos/index.html">Trabajando con datos</a></div>
-<div class="item active selected"><a href="/es/docs/inceptiondb/v2/api-reference/index.html">Referencia de la API de InceptionDB</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v2/consultas/index.html">Consultas</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v2/indices/index.html">Índices</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v2/claves-api/index.html">API keys</a></div>
+<div class="item active selected"><a href="/es/docs/inceptiondb/v2/api-reference/index.html">Referencia del API</a></div>
 <div class="children">
-<div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/create-collection/index.html">Crear colección</a></div>
-<div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/create-database/index.html">Crear base de datos</a></div>
-<div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/document-operations/index.html">Operaciones de documentos</a></div>
-<div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/drop-database/index.html">Eliminar base de datos</a></div>
-<div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/get-database/index.html">Obtener base de datos</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/create-collection/index.html">Crear una colección</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/create-database/index.html">Crear una base de datos</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/drop-database/index.html">Borrar una base de datos</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/get-database/index.html">Obtener una base de datos</a></div>
 <div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/list-collections/index.html">Listar colecciones</a></div>
 <div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/list-databases/index.html">Listar bases de datos</a></div>
-<div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/update-database/index.html">Actualizar base de datos</a></div>
-<div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/access-management/index.html">Gestión de acceso</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/update-database/index.html">Renombrar una base de datos</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/access-management/index.html">API keys y owners</a></div>
 <div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/collection-management/index.html">Gestión de colecciones</a></div>
 <div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/index-management/index.html">Gestión de índices</a></div>
-<div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/service-metadata/index.html">Metadatos del servicio</a></div>
 <div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/insert-documents/index.html">Insertar documentos</a></div>
 <div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/find-documents/index.html">Buscar documentos</a></div>
-<div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/patch-documents/index.html">Modificar documentos</a></div>
-<div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/remove-documents/index.html">Eliminar documentos</a></div>
-<div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/get-document/index.html">Obtener documento</a></div>
-<div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/streaming-inserts/index.html">Inserciones por stream</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/patch-documents/index.html">Actualizar documentos</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/remove-documents/index.html">Borrar documentos</a></div>
+<div class="item"><a href="/es/docs/inceptiondb/v2/api-reference/get-document/index.html">Obtener un documento por id</a></div>
 </div>
 </div>
 <div class="item"><a href="/es/docs/lambda/index.html">Lambda</a></div>
@@ -330,210 +330,230 @@
 <div class="content">
     
     <div class="document">
-    <h1>Referencia de la API de InceptionDB</h1>
-<p>URL base: <code>https://api.hola.cloud</code></p>
+    <h1>Referencia del API</h1>
+<p>URL base: <code>https://inceptiondb.hola.cloud</code></p>
 <h2 id="Autenticaci%C3%B3n">Autenticación</h2>
-<p>Los endpoints de management <code>GET /v1/databases</code> y <code>POST /v1/databases</code> usan <code>X-Glue-Authentication</code>.</p>
-<p>Los endpoints de acceso a la base de datos usan <code>Api-Key</code> y <code>Api-Secret</code>. También se puede usar un token Glue de owner cuando el propietario de la base de datos está permitido.</p>
+<table>
+<thead>
+<tr>
+<th>Endpoints</th>
+<th>Credenciales</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Datos: todo lo que cuelga de <code>/v1/databases/{databaseId}/collections</code></td>
+<td>Cabeceras <code>Api-Key</code> y <code>Api-Secret</code> de una <a href="/es/docs/inceptiondb/v2/claves-api/">API key</a> de esa base de datos.</td>
+</tr>
+<tr>
+<td>Cuenta: bases de datos, API keys y owners</td>
+<td>La sesión de un usuario identificado en hola.cloud. Úsalos desde la <a href="https://inceptiondb.hola.cloud/">consola</a>.</td>
+</tr>
+</tbody>
+</table>
+<p>Los ejemplos leen las credenciales de variables de entorno:</p>
+<pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span><span style="color:#b58900">export</span> <span style="color:#268bd2">INCEPTIONDB_DATABASE</span><span style="color:#719e07">=</span><span style="color:#2aa198">&#34;your-database-id&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#b58900">export</span> <span style="color:#268bd2">INCEPTIONDB_API_KEY</span><span style="color:#719e07">=</span><span style="color:#2aa198">&#34;your-api-key&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#b58900">export</span> <span style="color:#268bd2">INCEPTIONDB_API_SECRET</span><span style="color:#719e07">=</span><span style="color:#2aa198">&#34;your-api-secret&#34;</span>
+</span></span></code></pre>
+<h2 id="Formatos">Formatos</h2>
+<ul>
+<li>Las peticiones envían JSON. Las inserciones envían <strong>JSON Lines</strong>: un objeto JSON por línea.</li>
+<li><code>:find</code>, <code>:insert</code>, <code>:patch</code> y <code>:remove</code> responden <strong>JSON Lines</strong>, un documento por línea. Los demás endpoints responden JSON.</li>
+<li>Una consulta sin coincidencias responde <code>204 No Content</code> con el cuerpo vacío.</li>
+<li>Los errores responden un objeto JSON: <code>{&#34;error&#34;: {&#34;message&#34;: &#34;...&#34;, &#34;description&#34;: &#34;...&#34;}}</code>.</li>
+</ul>
 <h2 id="Endpoints">Endpoints</h2>
+<h3 id="Datos">Datos</h3>
 <table>
 <thead>
 <tr>
 <th>Método</th>
 <th>Ruta</th>
-<th>Descripción</th>
+<th>Hace</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>GET</td>
-<td><code>/v1/databases</code></td>
-<td>Listar bases de datos</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/databases</code></td>
-<td>Crear una base de datos</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/v1/databases/{databaseId}</code></td>
-<td>Obtener una base de datos por ID</td>
-</tr>
-<tr>
-<td>DELETE</td>
-<td><code>/v1/databases/{databaseId}</code></td>
-<td>Eliminar una base de datos</td>
-</tr>
-<tr>
-<td>PATCH</td>
-<td><code>/v1/databases/{databaseId}</code></td>
-<td>Actualizar una base de datos</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/databases/{databaseId}:createApiKey</code></td>
-<td>Crear una API key de base de datos</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/databases/{databaseId}:deleteApiKey</code></td>
-<td>Eliminar una API key de base de datos</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/databases/{databaseId}:addOwner</code></td>
-<td>Agregar un owner a la base de datos</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/databases/{databaseId}:deleteOwner</code></td>
-<td>Eliminar un owner de la base de datos</td>
-</tr>
-<tr>
-<td>GET</td>
 <td><code>/v1/databases/{databaseId}/collections</code></td>
-<td>Listar colecciones de una base de datos</td>
+<td><a href="/es/docs/inceptiondb/v2/api-reference/list-collections/">Listar colecciones</a></td>
 </tr>
 <tr>
 <td>POST</td>
 <td><code>/v1/databases/{databaseId}/collections</code></td>
-<td>Crear una colección</td>
+<td><a href="/es/docs/inceptiondb/v2/api-reference/create-collection/">Crear una colección</a></td>
 </tr>
 <tr>
 <td>GET</td>
 <td><code>/v1/databases/{databaseId}/collections/{collection}</code></td>
-<td>Obtener una colección</td>
+<td><a href="/es/docs/inceptiondb/v2/api-reference/collection-management/">Obtener una colección</a></td>
 </tr>
 <tr>
 <td>POST</td>
-<td><code>/v1/databases/{databaseId}/collections/{collection}:dropCollection</code></td>
-<td>Eliminar una colección</td>
+<td><code>…/collections/{collection}:setDefaults</code></td>
+<td><a href="/es/docs/inceptiondb/v2/api-reference/collection-management/">Valores por defecto</a></td>
 </tr>
 <tr>
 <td>POST</td>
-<td><code>/v1/databases/{databaseId}/collections/{collection}:setDefaults</code></td>
-<td>Definir defaults de una colección</td>
+<td><code>…/collections/{collection}:size</code></td>
+<td><a href="/es/docs/inceptiondb/v2/api-reference/collection-management/">Tamaño en memoria y disco</a></td>
 </tr>
 <tr>
 <td>POST</td>
-<td><code>/v1/databases/{databaseId}/collections/{collection}:size</code></td>
-<td>Obtener métricas de tamaño de una colección</td>
+<td><code>…/collections/{collection}:dropCollection</code></td>
+<td><a href="/es/docs/inceptiondb/v2/api-reference/collection-management/">Borrar una colección</a></td>
 </tr>
 <tr>
 <td>POST</td>
-<td><code>/v1/databases/{databaseId}/collections/{collection}:insert</code></td>
-<td>Insertar documentos</td>
+<td><code>…/collections/{collection}:insert</code></td>
+<td><a href="/es/docs/inceptiondb/v2/api-reference/insert-documents/">Insertar documentos</a></td>
 </tr>
 <tr>
 <td>POST</td>
-<td><code>/v1/databases/{databaseId}/collections/{collection}:insertStream</code></td>
-<td>Insertar documentos desde un stream</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/databases/{databaseId}/collections/{collection}:insertFullduplex</code></td>
-<td>Insertar documentos con stream full-duplex</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/databases/{databaseId}/collections/{collection}:find</code></td>
-<td>Buscar documentos</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/databases/{databaseId}/collections/{collection}:patch</code></td>
-<td>Modificar documentos</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/databases/{databaseId}/collections/{collection}:remove</code></td>
-<td>Eliminar documentos</td>
+<td><code>…/collections/{collection}:find</code></td>
+<td><a href="/es/docs/inceptiondb/v2/api-reference/find-documents/">Buscar documentos</a></td>
 </tr>
 <tr>
 <td>GET</td>
-<td><code>/v1/databases/{databaseId}/collections/{collection}/documents/{documentId}</code></td>
-<td>Obtener un documento por ID</td>
+<td><code>…/collections/{collection}/documents/{id}</code></td>
+<td><a href="/es/docs/inceptiondb/v2/api-reference/get-document/">Obtener un documento por id</a></td>
 </tr>
 <tr>
 <td>POST</td>
-<td><code>/v1/databases/{databaseId}/collections/{collection}:listIndexes</code></td>
-<td>Listar índices de una colección</td>
+<td><code>…/collections/{collection}:patch</code></td>
+<td><a href="/es/docs/inceptiondb/v2/api-reference/patch-documents/">Actualizar documentos</a></td>
 </tr>
 <tr>
 <td>POST</td>
-<td><code>/v1/databases/{databaseId}/collections/{collection}:createIndex</code></td>
-<td>Crear un índice de colección</td>
+<td><code>…/collections/{collection}:remove</code></td>
+<td><a href="/es/docs/inceptiondb/v2/api-reference/remove-documents/">Borrar documentos</a></td>
 </tr>
 <tr>
 <td>POST</td>
-<td><code>/v1/databases/{databaseId}/collections/{collection}:getIndex</code></td>
-<td>Obtener un índice de colección</td>
+<td><code>…/collections/{collection}:createIndex</code></td>
+<td><a href="/es/docs/inceptiondb/v2/api-reference/index-management/">Crear un índice</a></td>
 </tr>
 <tr>
 <td>POST</td>
-<td><code>/v1/databases/{databaseId}/collections/{collection}:dropIndex</code></td>
-<td>Eliminar un índice de colección</td>
+<td><code>…/collections/{collection}:listIndexes</code></td>
+<td><a href="/es/docs/inceptiondb/v2/api-reference/index-management/">Listar índices</a></td>
 </tr>
 <tr>
-<td>GET</td>
-<td><code>/doc</code></td>
-<td>Obtener el árbol de rutas del servicio</td>
+<td>POST</td>
+<td><code>…/collections/{collection}:getIndex</code></td>
+<td><a href="/es/docs/inceptiondb/v2/api-reference/index-management/">Obtener un índice</a></td>
 </tr>
 <tr>
-<td>GET</td>
-<td><code>/v1</code></td>
-<td>Obtener la respuesta de bienvenida de v1</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/release</code></td>
-<td>Obtener metadatos de release del servicio</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/openapi.json</code></td>
-<td>Obtener el documento OpenAPI</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/v1/debug/dbs</code></td>
-<td>Listado debug de bases de datos</td>
+<td>POST</td>
+<td><code>…/collections/{collection}:dropIndex</code></td>
+<td><a href="/es/docs/inceptiondb/v2/api-reference/index-management/">Borrar un índice</a></td>
 </tr>
 </tbody>
 </table>
-<h2 id="C%C3%B3digos%20de%20error%20comunes">Códigos de error comunes</h2>
+<p><code>…</code> equivale a <code>/v1/databases/{databaseId}</code>.</p>
+<h3 id="Cuenta">Cuenta</h3>
 <table>
 <thead>
 <tr>
-<th>Código</th>
-<th>Descripción</th>
+<th>Método</th>
+<th>Ruta</th>
+<th>Hace</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>400</td>
-<td>Solicitud incorrecta: sintaxis o parámetros inválidos</td>
+<td>GET</td>
+<td><code>/v1/databases</code></td>
+<td><a href="/es/docs/inceptiondb/v2/api-reference/list-databases/">Listar tus bases de datos</a></td>
 </tr>
 <tr>
-<td>401</td>
-<td>No autorizado: credenciales faltantes o inválidas</td>
+<td>POST</td>
+<td><code>/v1/databases</code></td>
+<td><a href="/es/docs/inceptiondb/v2/api-reference/create-database/">Crear una base de datos</a></td>
 </tr>
 <tr>
-<td>403</td>
-<td>Prohibido: las credenciales no tienen acceso al recurso</td>
+<td>GET</td>
+<td><code>/v1/databases/{databaseId}</code></td>
+<td><a href="/es/docs/inceptiondb/v2/api-reference/get-database/">Obtener una base de datos</a></td>
 </tr>
 <tr>
-<td>404</td>
-<td>No encontrado: el recurso solicitado no existe</td>
+<td>PATCH</td>
+<td><code>/v1/databases/{databaseId}</code></td>
+<td><a href="/es/docs/inceptiondb/v2/api-reference/update-database/">Renombrar una base de datos</a></td>
 </tr>
 <tr>
-<td>409</td>
-<td>Conflicto: el recurso ya existe</td>
+<td>DELETE</td>
+<td><code>/v1/databases/{databaseId}</code></td>
+<td><a href="/es/docs/inceptiondb/v2/api-reference/drop-database/">Borrar una base de datos</a></td>
 </tr>
 <tr>
-<td>500</td>
-<td>Error interno del servidor</td>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}:createApiKey</code></td>
+<td><a href="/es/docs/inceptiondb/v2/api-reference/access-management/">Crear una API key</a></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}:deleteApiKey</code></td>
+<td><a href="/es/docs/inceptiondb/v2/api-reference/access-management/">Revocar una API key</a></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}:addOwner</code></td>
+<td><a href="/es/docs/inceptiondb/v2/api-reference/access-management/">Añadir un owner</a></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}:deleteOwner</code></td>
+<td><a href="/es/docs/inceptiondb/v2/api-reference/access-management/">Quitar un owner</a></td>
+</tr>
+</tbody>
+</table>
+<p>La descripción OpenAPI de todo el API está en <a href="https://inceptiondb.hola.cloud/openapi.json"><code>/openapi.json</code></a>.</p>
+<h2 id="C%C3%B3digos%20de%20estado">Códigos de estado</h2>
+<table>
+<thead>
+<tr>
+<th>Código</th>
+<th>Cuándo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200 OK</td>
+<td>La petición ha funcionado y hay cuerpo.</td>
+</tr>
+<tr>
+<td>201 Created</td>
+<td>Se ha creado una colección, un documento o un índice.</td>
+</tr>
+<tr>
+<td>204 No Content</td>
+<td>Ha funcionado y no hay nada que devolver: ningún documento coincide, o es un borrado.</td>
+</tr>
+<tr>
+<td>400 Bad Request</td>
+<td>JSON no válido, un documento que no es un objeto JSON o nombres de campo repetidos.</td>
+</tr>
+<tr>
+<td>401 Unauthorized</td>
+<td>Un endpoint de cuenta llamado sin sesión iniciada.</td>
+</tr>
+<tr>
+<td>403 Forbidden</td>
+<td>API key o secreto incorrectos, o sin acceso a esa base de datos.</td>
+</tr>
+<tr>
+<td>404 Not Found</td>
+<td>El documento no existe.</td>
+</tr>
+<tr>
+<td>409 Conflict</td>
+<td>El valor ya existe en un índice único.</td>
+</tr>
+<tr>
+<td>500 Internal Server Error</td>
+<td>También se devuelve cuando la colección no existe, o ya existe al crearla.</td>
 </tr>
 </tbody>
 </table>
@@ -563,10 +583,19 @@
 <a href="#Autenticaci%C3%B3n">Autenticación</a>
 </div>
 <div class="index-h2">
-<a href="#Endpoints">Endpoints</a>
+<a href="#Formatos">Formatos</a>
 </div>
 <div class="index-h2">
-<a href="#C%C3%B3digos%20de%20error%20comunes">Códigos de error comunes</a>
+<a href="#Endpoints">Endpoints</a>
+</div>
+<div class="index-h3">
+<a href="#Datos">Datos</a>
+</div>
+<div class="index-h3">
+<a href="#Cuenta">Cuenta</a>
+</div>
+<div class="index-h2">
+<a href="#C%C3%B3digos%20de%20estado">Códigos de estado</a>
 </div>
 </div>
 </div>

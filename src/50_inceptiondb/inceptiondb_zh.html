@@ -39,19 +39,26 @@
             <h2>快速开始</h2>
             <p>使用 API 在几秒内开始使用 InceptionDB。</p>
         </div>
-        <pre><code>curl -X POST https://inceptiondb.hola.cloud/v1/databases \
-  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}' \
-  -d '{"name": "mydb"}'
+        <pre><code># 你的凭据，来自控制台（API keys & settings）
+export INCEPTIONDB_DATABASE="your-database-id"
+export INCEPTIONDB_API_KEY="your-api-key"
+export INCEPTIONDB_API_SECRET="your-api-secret"
 
 # 创建集合
-curl -X POST https://inceptiondb.hola.cloud/v1/databases/database-123/collections \
-  -H 'Api-Key: $API_KEY' -H 'Api-Secret: $API_SECRET' \
+curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections" \
+  -H "Api-Key: $INCEPTIONDB_API_KEY" -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
   -d '{"name": "users"}'
 
-# 插入文档
-curl -X POST https://inceptiondb.hola.cloud/v1/databases/database-123/collections/users:insert \
-  -H 'Api-Key: $API_KEY' -H 'Api-Secret: $API_SECRET' \
-  -d '{"name": "Alice", "email": "alice@example.com"}'</code></pre>
+# 插入文档（每行一个 JSON 对象）
+curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/users:insert" \
+  -H "Api-Key: $INCEPTIONDB_API_KEY" -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  --data-binary '{"name": "Alice", "email": "alice@example.com", "plan": "pro"}
+{"name": "Bob", "email": "bob@example.com", "plan": "free"}'
+
+# 查询
+curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/users:find" \
+  -H "Api-Key: $INCEPTIONDB_API_KEY" -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -d '{"filter": {"plan": "pro"}, "limit": 10}'</code></pre>
     </section>
 
     <section class="section">

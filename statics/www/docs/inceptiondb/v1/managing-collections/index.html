@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Managing Collections</title>
+    <title>Collections</title>
     <meta name="description" content="inceptiondb">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="canonical" href="https://hola.cloud/docs/inceptiondb/v1/managing-collections/">
@@ -100,31 +100,31 @@
 <div class="tree">
 
 
-    <div class="item active"><a href="/docs/inceptiondb/index.html">Inceptiondb</a></div>
+    <div class="item active"><a href="/docs/inceptiondb/index.html">InceptionDB</a></div>
 <div class="children">
-<div class="item"><a href="/docs/inceptiondb/v1/getting-started/index.html">Quick Start Guide with InceptionDB</a></div>
-<div class="item active selected"><a href="/docs/inceptiondb/v1/managing-collections/index.html">Managing Collections</a></div>
-<div class="item"><a href="/docs/inceptiondb/v1/working-with-data/index.html">Working with Data</a></div>
-<div class="item"><a href="/docs/inceptiondb/v1/api-reference/index.html">InceptionDB API Reference</a></div>
+<div class="item"><a href="/docs/inceptiondb/v1/getting-started/index.html">Getting started</a></div>
+<div class="item active selected"><a href="/docs/inceptiondb/v1/managing-collections/index.html">Collections</a></div>
+<div class="item"><a href="/docs/inceptiondb/v1/working-with-data/index.html">Working with data</a></div>
+<div class="item"><a href="/docs/inceptiondb/v1/querying/index.html">Querying</a></div>
+<div class="item"><a href="/docs/inceptiondb/v1/indexes/index.html">Indexes</a></div>
+<div class="item"><a href="/docs/inceptiondb/v1/api-keys/index.html">API keys</a></div>
+<div class="item"><a href="/docs/inceptiondb/v1/api-reference/index.html">API reference</a></div>
 <div class="children">
-<div class="item"><a href="/docs/inceptiondb/v1/api-reference/create-collection/index.html">Create Collection</a></div>
-<div class="item"><a href="/docs/inceptiondb/v1/api-reference/create-database/index.html">Create Database</a></div>
-<div class="item"><a href="/docs/inceptiondb/v1/api-reference/document-operations/index.html">Document Operations</a></div>
-<div class="item"><a href="/docs/inceptiondb/v1/api-reference/drop-database/index.html">Drop Database</a></div>
-<div class="item"><a href="/docs/inceptiondb/v1/api-reference/get-database/index.html">Get Database</a></div>
-<div class="item"><a href="/docs/inceptiondb/v1/api-reference/list-collections/index.html">List Collections</a></div>
-<div class="item"><a href="/docs/inceptiondb/v1/api-reference/list-databases/index.html">List Databases</a></div>
-<div class="item"><a href="/docs/inceptiondb/v1/api-reference/update-database/index.html">Update Database</a></div>
-<div class="item"><a href="/docs/inceptiondb/v1/api-reference/access-management/index.html">Access Management</a></div>
-<div class="item"><a href="/docs/inceptiondb/v1/api-reference/collection-management/index.html">Collection Management</a></div>
-<div class="item"><a href="/docs/inceptiondb/v1/api-reference/index-management/index.html">Index Management</a></div>
-<div class="item"><a href="/docs/inceptiondb/v1/api-reference/service-metadata/index.html">Service Metadata</a></div>
-<div class="item"><a href="/docs/inceptiondb/v1/api-reference/insert-documents/index.html">Insert Documents</a></div>
-<div class="item"><a href="/docs/inceptiondb/v1/api-reference/find-documents/index.html">Find Documents</a></div>
-<div class="item"><a href="/docs/inceptiondb/v1/api-reference/patch-documents/index.html">Patch Documents</a></div>
-<div class="item"><a href="/docs/inceptiondb/v1/api-reference/remove-documents/index.html">Remove Documents</a></div>
-<div class="item"><a href="/docs/inceptiondb/v1/api-reference/get-document/index.html">Get Document</a></div>
-<div class="item"><a href="/docs/inceptiondb/v1/api-reference/streaming-inserts/index.html">Streaming Inserts</a></div>
+<div class="item"><a href="/docs/inceptiondb/v1/api-reference/create-collection/index.html">Create a collection</a></div>
+<div class="item"><a href="/docs/inceptiondb/v1/api-reference/create-database/index.html">Create a database</a></div>
+<div class="item"><a href="/docs/inceptiondb/v1/api-reference/drop-database/index.html">Delete a database</a></div>
+<div class="item"><a href="/docs/inceptiondb/v1/api-reference/get-database/index.html">Get a database</a></div>
+<div class="item"><a href="/docs/inceptiondb/v1/api-reference/list-collections/index.html">List collections</a></div>
+<div class="item"><a href="/docs/inceptiondb/v1/api-reference/list-databases/index.html">List databases</a></div>
+<div class="item"><a href="/docs/inceptiondb/v1/api-reference/update-database/index.html">Rename a database</a></div>
+<div class="item"><a href="/docs/inceptiondb/v1/api-reference/access-management/index.html">API keys and owners</a></div>
+<div class="item"><a href="/docs/inceptiondb/v1/api-reference/collection-management/index.html">Collection management</a></div>
+<div class="item"><a href="/docs/inceptiondb/v1/api-reference/index-management/index.html">Index management</a></div>
+<div class="item"><a href="/docs/inceptiondb/v1/api-reference/insert-documents/index.html">Insert documents</a></div>
+<div class="item"><a href="/docs/inceptiondb/v1/api-reference/find-documents/index.html">Find documents</a></div>
+<div class="item"><a href="/docs/inceptiondb/v1/api-reference/patch-documents/index.html">Update documents</a></div>
+<div class="item"><a href="/docs/inceptiondb/v1/api-reference/remove-documents/index.html">Delete documents</a></div>
+<div class="item"><a href="/docs/inceptiondb/v1/api-reference/get-document/index.html">Get a document by id</a></div>
 </div>
 </div>
 <div class="item"><a href="/docs/lambda/index.html">Lambda</a></div>
@@ -330,48 +330,43 @@
 <div class="content">
     
     <div class="document">
-    <h1>Managing Collections</h1>
-<p>Collection endpoints use database access credentials: <code>Api-Key</code> and <code>Api-Secret</code>, or a Glue owner token where the database owner is allowed.</p>
-<h2 id="Create%20a%20Collection">Create a Collection</h2>
-<div class="http-request" data-http-request=""><div class="http-request-header"><div class="http-request-tabs" role="tablist" aria-label="HTTP request examples"><button type="button" class="http-request-tab active" data-http-lang="curl" role="tab" aria-selected="true">curl</button><button type="button" class="http-request-tab" data-http-lang="http" role="tab" aria-selected="false">HTTP</button><button type="button" class="http-request-tab" data-http-lang="go" role="tab" aria-selected="false">Go</button><button type="button" class="http-request-tab" data-http-lang="php" role="tab" aria-selected="false">PHP</button><button type="button" class="http-request-tab" data-http-lang="python" role="tab" aria-selected="false">Python</button><button type="button" class="http-request-tab" data-http-lang="nodejs" role="tab" aria-selected="false">Node.js</button><button type="button" class="http-request-tab" data-http-lang="javascript" role="tab" aria-selected="false">JavaScript</button><button type="button" class="http-request-tab" data-http-lang="java" role="tab" aria-selected="false">Java</button></div><button type="button" class="http-request-copy" data-http-copy="" title="Copy request" aria-label="Copy request"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V7Zm2 0v11h8V7h-8ZM4 3a2 2 0 0 1 2-2h9v2H6v11H4V3Z" fill="currentColor"></path></svg><span>Copy</span></button></div><div class="http-request-panel active" data-http-panel="curl" role="tabpanel"><pre><code>curl -X POST &#34;https://api.hola.cloud/v1/databases/{databaseId}/collections&#34; \
-  -H &#34;Api-Key: {api_key}&#34; \
-  -H &#34;Api-Secret: {api_secret}&#34; \
-  -H &#34;Content-Type: application/json&#34; \
-  -d &#39;{
-    &#34;name&#34;: &#34;my-collection&#34;
-  }&#39;</code></pre></div><div class="http-request-panel" data-http-panel="http" role="tabpanel"><pre><code>POST /v1/databases/%7BdatabaseId%7D/collections HTTP/1.1
-Host: api.hola.cloud
-Api-Key: {api_key}
-Api-Secret: {api_secret}
-Content-Type: application/json
+    <h1>Collections</h1>
+<p>A collection is a named group of JSON documents inside a database, like <code>customers</code> or <code>orders</code>. Documents in the same collection can have different fields: there is no schema to declare.</p>
+<p>The examples use the environment variables of <a href="/docs/inceptiondb/v2/getting-started/">Getting started</a>.</p>
+<h2 id="Create%20a%20collection">Create a collection</h2>
+<div class="http-request" data-http-request=""><div class="http-request-header"><div class="http-request-tabs" role="tablist" aria-label="HTTP request examples"><button type="button" class="http-request-tab active" data-http-lang="curl" role="tab" aria-selected="true">curl</button><button type="button" class="http-request-tab" data-http-lang="http" role="tab" aria-selected="false">HTTP</button><button type="button" class="http-request-tab" data-http-lang="go" role="tab" aria-selected="false">Go</button><button type="button" class="http-request-tab" data-http-lang="php" role="tab" aria-selected="false">PHP</button><button type="button" class="http-request-tab" data-http-lang="python" role="tab" aria-selected="false">Python</button><button type="button" class="http-request-tab" data-http-lang="nodejs" role="tab" aria-selected="false">Node.js</button><button type="button" class="http-request-tab" data-http-lang="javascript" role="tab" aria-selected="false">JavaScript</button><button type="button" class="http-request-tab" data-http-lang="java" role="tab" aria-selected="false">Java</button></div><button type="button" class="http-request-copy" data-http-copy="" title="Copy request" aria-label="Copy request"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V7Zm2 0v11h8V7h-8ZM4 3a2 2 0 0 1 2-2h9v2H6v11H4V3Z" fill="currentColor"></path></svg><span>Copy</span></button></div><div class="http-request-panel active" data-http-panel="curl" role="tabpanel"><pre><code>curl -X POST &#34;https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections&#34; \
+  -H &#34;Api-Key: $INCEPTIONDB_API_KEY&#34; \
+  -H &#34;Api-Secret: $INCEPTIONDB_API_SECRET&#34; \
+  -d &#39;{&#34;name&#34;: &#34;customers&#34;}&#39;</code></pre></div><div class="http-request-panel" data-http-panel="http" role="tabpanel"><pre><code>POST /v1/databases/$INCEPTIONDB_DATABASE/collections HTTP/1.1
+Host: inceptiondb.hola.cloud
+Api-Key: $INCEPTIONDB_API_KEY
+Api-Secret: $INCEPTIONDB_API_SECRET
 
-{
-    &#34;name&#34;: &#34;my-collection&#34;
-  }</code></pre></div><div class="http-request-panel" data-http-panel="go" role="tabpanel"><pre><code>package main
+{&#34;name&#34;: &#34;customers&#34;}</code></pre></div><div class="http-request-panel" data-http-panel="go" role="tabpanel"><pre><code>package main
 
 import (
 	&#34;fmt&#34;
 	&#34;io&#34;
 	&#34;net/http&#34;
+	&#34;os&#34;
 	&#34;encoding/json&#34;
 	&#34;strings&#34;
 )
 
 func main() {
-	payload := map[string]any{&#34;name&#34;: &#34;my-collection&#34;}
+	payload := map[string]any{&#34;name&#34;: &#34;customers&#34;}
 	bodyBytes, err := json.Marshal(payload)
 	if err != nil {
 		panic(err)
 	}
 	body := string(bodyBytes)
 
-	req, err := http.NewRequest(&#34;POST&#34;, &#34;https://api.hola.cloud/v1/databases/{databaseId}/collections&#34;, strings.NewReader(body))
+	req, err := http.NewRequest(&#34;POST&#34;, &#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + os.Getenv(&#34;INCEPTIONDB_DATABASE&#34;) + &#34;/collections&#34;, strings.NewReader(body))
 	if err != nil {
 		panic(err)
 	}
-	req.Header.Set(&#34;Api-Key&#34;, &#34;{api_key}&#34;)
-	req.Header.Set(&#34;Api-Secret&#34;, &#34;{api_secret}&#34;)
-	req.Header.Set(&#34;Content-Type&#34;, &#34;application/json&#34;)
+	req.Header.Set(&#34;Api-Key&#34;, os.Getenv(&#34;INCEPTIONDB_API_KEY&#34;))
+	req.Header.Set(&#34;Api-Secret&#34;, os.Getenv(&#34;INCEPTIONDB_API_SECRET&#34;))
 
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
@@ -386,20 +381,19 @@ func main() {
 	fmt.Println(string(responseBody))
 }
 </code></pre></div><div class="http-request-panel" data-http-panel="php" role="tabpanel"><pre><code>&lt;?php
-$payload = [&#39;name&#39; =&gt; &#39;my-collection&#39;];
+$payload = [&#39;name&#39; =&gt; &#39;customers&#39;];
 $body = json_encode($payload);
 
 $ch = curl_init();
 
 curl_setopt_array($ch, [
-    CURLOPT_URL =&gt; &#39;https://api.hola.cloud/v1/databases/{databaseId}/collections&#39;,
+    CURLOPT_URL =&gt; &#39;https://inceptiondb.hola.cloud/v1/databases/&#39; . getenv(&#39;INCEPTIONDB_DATABASE&#39;) . &#39;/collections&#39;,
     CURLOPT_RETURNTRANSFER =&gt; true,
     CURLOPT_CUSTOMREQUEST =&gt; &#39;POST&#39;,
     CURLOPT_POSTFIELDS =&gt; $body,
     CURLOPT_HTTPHEADER =&gt; [
-        &#39;Api-Key: {api_key}&#39;,
-        &#39;Api-Secret: {api_secret}&#39;,
-        &#39;Content-Type: application/json&#39;,
+        &#39;Api-Key: &#39; . getenv(&#39;INCEPTIONDB_API_KEY&#39;),
+        &#39;Api-Secret: &#39; . getenv(&#39;INCEPTIONDB_API_SECRET&#39;),
     ],
 ]);
 
@@ -410,48 +404,51 @@ if ($response === false) {
 curl_close($ch);
 
 echo $response;
-</code></pre></div><div class="http-request-panel" data-http-panel="python" role="tabpanel"><pre><code>import requests
+</code></pre></div><div class="http-request-panel" data-http-panel="python" role="tabpanel"><pre><code>import os
+import requests
 
 import json
 
 headers = {
-    &#34;Api-Key&#34;: &#34;{api_key}&#34;,
-    &#34;Api-Secret&#34;: &#34;{api_secret}&#34;,
-    &#34;Content-Type&#34;: &#34;application/json&#34;,
+    &#34;Api-Key&#34;: os.environ[&#34;INCEPTIONDB_API_KEY&#34;],
+    &#34;Api-Secret&#34;: os.environ[&#34;INCEPTIONDB_API_SECRET&#34;],
 }
 
-payload = {&#34;name&#34;: &#34;my-collection&#34;}
+payload = {&#34;name&#34;: &#34;customers&#34;}
 body = json.dumps(payload)
 
 response = requests.request(
     &#34;POST&#34;,
-    &#34;https://api.hola.cloud/v1/databases/{databaseId}/collections&#34;,
+    &#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + os.environ[&#34;INCEPTIONDB_DATABASE&#34;] + &#34;/collections&#34;,
     headers=headers,
     data=body
 )
 
 print(response.text)
-</code></pre></div><div class="http-request-panel" data-http-panel="nodejs" role="tabpanel"><pre><code>const payload = {&#34;name&#34;: &#34;my-collection&#34;};
+</code></pre></div><div class="http-request-panel" data-http-panel="nodejs" role="tabpanel"><pre><code>const payload = {&#34;name&#34;: &#34;customers&#34;};
 
-const response = await fetch(&#34;https://api.hola.cloud/v1/databases/{databaseId}/collections&#34;, {
+const response = await fetch(&#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + process.env.INCEPTIONDB_DATABASE + &#34;/collections&#34;, {
   method: &#34;POST&#34;,
   headers: {
-    &#34;Api-Key&#34;: &#34;{api_key}&#34;,
-    &#34;Api-Secret&#34;: &#34;{api_secret}&#34;,
-    &#34;Content-Type&#34;: &#34;application/json&#34;
+    &#34;Api-Key&#34;: process.env.INCEPTIONDB_API_KEY,
+    &#34;Api-Secret&#34;: process.env.INCEPTIONDB_API_SECRET
   },
   body: JSON.stringify(payload)
 });
 
 console.log(await response.text());
-</code></pre></div><div class="http-request-panel" data-http-panel="javascript" role="tabpanel"><pre><code>const payload = {&#34;name&#34;: &#34;my-collection&#34;};
+</code></pre></div><div class="http-request-panel" data-http-panel="javascript" role="tabpanel"><pre><code>// Fill in your values. Never put an API secret in code that runs in a public web page.
+const INCEPTIONDB_DATABASE = &#34;your-inceptiondb-database&#34;;
+const INCEPTIONDB_API_KEY = &#34;your-inceptiondb-api-key&#34;;
+const INCEPTIONDB_API_SECRET = &#34;your-inceptiondb-api-secret&#34;;
 
-const response = await fetch(&#34;https://api.hola.cloud/v1/databases/{databaseId}/collections&#34;, {
+const payload = {&#34;name&#34;: &#34;customers&#34;};
+
+const response = await fetch(&#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + INCEPTIONDB_DATABASE + &#34;/collections&#34;, {
   method: &#34;POST&#34;,
   headers: {
-    &#34;Api-Key&#34;: &#34;{api_key}&#34;,
-    &#34;Api-Secret&#34;: &#34;{api_secret}&#34;,
-    &#34;Content-Type&#34;: &#34;application/json&#34;
+    &#34;Api-Key&#34;: INCEPTIONDB_API_KEY,
+    &#34;Api-Secret&#34;: INCEPTIONDB_API_SECRET
   },
   body: JSON.stringify(payload)
 });
@@ -468,52 +465,72 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        var payload = Map.of(&#34;name&#34;, &#34;my-collection&#34;);
+        var payload = Map.of(&#34;name&#34;, &#34;customers&#34;);
         var body = new ObjectMapper().writeValueAsString(payload);
 
         var request = HttpRequest.newBuilder()
-            .uri(URI.create(&#34;https://api.hola.cloud/v1/databases/{databaseId}/collections&#34;))
+            .uri(URI.create(&#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + System.getenv(&#34;INCEPTIONDB_DATABASE&#34;) + &#34;/collections&#34;))
             .method(&#34;POST&#34;, HttpRequest.BodyPublishers.ofString(body))
-            .header(&#34;Api-Key&#34;, &#34;{api_key}&#34;)
-            .header(&#34;Api-Secret&#34;, &#34;{api_secret}&#34;)
-            .header(&#34;Content-Type&#34;, &#34;application/json&#34;)
+            .header(&#34;Api-Key&#34;, System.getenv(&#34;INCEPTIONDB_API_KEY&#34;))
+            .header(&#34;Api-Secret&#34;, System.getenv(&#34;INCEPTIONDB_API_SECRET&#34;))
             .build();
 
         var response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         System.out.println(response.body());
     }
 }</code></pre></div></div>
-<pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>  <span style="color:#268bd2">&#34;name&#34;</span>: <span style="color:#2aa198">&#34;my-collection&#34;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span>  <span style="color:#268bd2">&#34;total&#34;</span>: <span style="color:#2aa198">0</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4">4</a></span><span>  <span style="color:#268bd2">&#34;indexes&#34;</span>: <span style="color:#2aa198">0</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5">5</a></span><span>  <span style="color:#268bd2">&#34;defaults&#34;</span>: {
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6">6</a></span><span>    <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;uuid()&#34;</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7">7</a></span><span>  }
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8">8</a></span><span>}
+<p>Response (<code>201 Created</code>):</p>
+<pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{<span style="color:#268bd2">&#34;defaults&#34;</span>:{<span style="color:#268bd2">&#34;id&#34;</span>:<span style="color:#2aa198">&#34;uuid()&#34;</span>},<span style="color:#268bd2">&#34;indexes&#34;</span>:<span style="color:#2aa198">0</span>,<span style="color:#268bd2">&#34;name&#34;</span>:<span style="color:#2aa198">&#34;customers&#34;</span>,<span style="color:#268bd2">&#34;total&#34;</span>:<span style="color:#2aa198">0</span>}
 </span></span></code></pre>
-<h2 id="List%20Collections">List Collections</h2>
-<div class="http-request" data-http-request=""><div class="http-request-header"><div class="http-request-tabs" role="tablist" aria-label="HTTP request examples"><button type="button" class="http-request-tab active" data-http-lang="curl" role="tab" aria-selected="true">curl</button><button type="button" class="http-request-tab" data-http-lang="http" role="tab" aria-selected="false">HTTP</button><button type="button" class="http-request-tab" data-http-lang="go" role="tab" aria-selected="false">Go</button><button type="button" class="http-request-tab" data-http-lang="php" role="tab" aria-selected="false">PHP</button><button type="button" class="http-request-tab" data-http-lang="python" role="tab" aria-selected="false">Python</button><button type="button" class="http-request-tab" data-http-lang="nodejs" role="tab" aria-selected="false">Node.js</button><button type="button" class="http-request-tab" data-http-lang="javascript" role="tab" aria-selected="false">JavaScript</button><button type="button" class="http-request-tab" data-http-lang="java" role="tab" aria-selected="false">Java</button></div><button type="button" class="http-request-copy" data-http-copy="" title="Copy request" aria-label="Copy request"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V7Zm2 0v11h8V7h-8ZM4 3a2 2 0 0 1 2-2h9v2H6v11H4V3Z" fill="currentColor"></path></svg><span>Copy</span></button></div><div class="http-request-panel active" data-http-panel="curl" role="tabpanel"><pre><code>curl &#34;https://api.hola.cloud/v1/databases/{databaseId}/collections&#34; \
-  -H &#34;Api-Key: {api_key}&#34; \
-  -H &#34;Api-Secret: {api_secret}&#34;</code></pre></div><div class="http-request-panel" data-http-panel="http" role="tabpanel"><pre><code>GET /v1/databases/%7BdatabaseId%7D/collections HTTP/1.1
-Host: api.hola.cloud
-Api-Key: {api_key}
-Api-Secret: {api_secret}
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>Name of the collection. You use it in every URL.</td>
+</tr>
+<tr>
+<td><code>total</code></td>
+<td>Number of documents.</td>
+</tr>
+<tr>
+<td><code>indexes</code></td>
+<td>Number of indexes.</td>
+</tr>
+<tr>
+<td><code>defaults</code></td>
+<td>Values added to the documents that do not have them (see below).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="List%20the%20collections">List the collections</h2>
+<div class="http-request" data-http-request=""><div class="http-request-header"><div class="http-request-tabs" role="tablist" aria-label="HTTP request examples"><button type="button" class="http-request-tab active" data-http-lang="curl" role="tab" aria-selected="true">curl</button><button type="button" class="http-request-tab" data-http-lang="http" role="tab" aria-selected="false">HTTP</button><button type="button" class="http-request-tab" data-http-lang="go" role="tab" aria-selected="false">Go</button><button type="button" class="http-request-tab" data-http-lang="php" role="tab" aria-selected="false">PHP</button><button type="button" class="http-request-tab" data-http-lang="python" role="tab" aria-selected="false">Python</button><button type="button" class="http-request-tab" data-http-lang="nodejs" role="tab" aria-selected="false">Node.js</button><button type="button" class="http-request-tab" data-http-lang="javascript" role="tab" aria-selected="false">JavaScript</button><button type="button" class="http-request-tab" data-http-lang="java" role="tab" aria-selected="false">Java</button></div><button type="button" class="http-request-copy" data-http-copy="" title="Copy request" aria-label="Copy request"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V7Zm2 0v11h8V7h-8ZM4 3a2 2 0 0 1 2-2h9v2H6v11H4V3Z" fill="currentColor"></path></svg><span>Copy</span></button></div><div class="http-request-panel active" data-http-panel="curl" role="tabpanel"><pre><code>curl &#34;https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections&#34; \
+  -H &#34;Api-Key: $INCEPTIONDB_API_KEY&#34; \
+  -H &#34;Api-Secret: $INCEPTIONDB_API_SECRET&#34;</code></pre></div><div class="http-request-panel" data-http-panel="http" role="tabpanel"><pre><code>GET /v1/databases/$INCEPTIONDB_DATABASE/collections HTTP/1.1
+Host: inceptiondb.hola.cloud
+Api-Key: $INCEPTIONDB_API_KEY
+Api-Secret: $INCEPTIONDB_API_SECRET
 </code></pre></div><div class="http-request-panel" data-http-panel="go" role="tabpanel"><pre><code>package main
 
 import (
 	&#34;fmt&#34;
 	&#34;io&#34;
 	&#34;net/http&#34;
+	&#34;os&#34;
 )
 
 func main() {
-	req, err := http.NewRequest(&#34;GET&#34;, &#34;https://api.hola.cloud/v1/databases/{databaseId}/collections&#34;, nil)
+	req, err := http.NewRequest(&#34;GET&#34;, &#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + os.Getenv(&#34;INCEPTIONDB_DATABASE&#34;) + &#34;/collections&#34;, nil)
 	if err != nil {
 		panic(err)
 	}
-	req.Header.Set(&#34;Api-Key&#34;, &#34;{api_key}&#34;)
-	req.Header.Set(&#34;Api-Secret&#34;, &#34;{api_secret}&#34;)
+	req.Header.Set(&#34;Api-Key&#34;, os.Getenv(&#34;INCEPTIONDB_API_KEY&#34;))
+	req.Header.Set(&#34;Api-Secret&#34;, os.Getenv(&#34;INCEPTIONDB_API_SECRET&#34;))
 
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
@@ -531,12 +548,12 @@ func main() {
 $ch = curl_init();
 
 curl_setopt_array($ch, [
-    CURLOPT_URL =&gt; &#39;https://api.hola.cloud/v1/databases/{databaseId}/collections&#39;,
+    CURLOPT_URL =&gt; &#39;https://inceptiondb.hola.cloud/v1/databases/&#39; . getenv(&#39;INCEPTIONDB_DATABASE&#39;) . &#39;/collections&#39;,
     CURLOPT_RETURNTRANSFER =&gt; true,
     CURLOPT_CUSTOMREQUEST =&gt; &#39;GET&#39;,
     CURLOPT_HTTPHEADER =&gt; [
-        &#39;Api-Key: {api_key}&#39;,
-        &#39;Api-Secret: {api_secret}&#39;,
+        &#39;Api-Key: &#39; . getenv(&#39;INCEPTIONDB_API_KEY&#39;),
+        &#39;Api-Secret: &#39; . getenv(&#39;INCEPTIONDB_API_SECRET&#39;),
     ],
 ]);
 
@@ -547,34 +564,40 @@ if ($response === false) {
 curl_close($ch);
 
 echo $response;
-</code></pre></div><div class="http-request-panel" data-http-panel="python" role="tabpanel"><pre><code>import requests
+</code></pre></div><div class="http-request-panel" data-http-panel="python" role="tabpanel"><pre><code>import os
+import requests
 
 headers = {
-    &#34;Api-Key&#34;: &#34;{api_key}&#34;,
-    &#34;Api-Secret&#34;: &#34;{api_secret}&#34;,
+    &#34;Api-Key&#34;: os.environ[&#34;INCEPTIONDB_API_KEY&#34;],
+    &#34;Api-Secret&#34;: os.environ[&#34;INCEPTIONDB_API_SECRET&#34;],
 }
 
 response = requests.request(
     &#34;GET&#34;,
-    &#34;https://api.hola.cloud/v1/databases/{databaseId}/collections&#34;,
+    &#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + os.environ[&#34;INCEPTIONDB_DATABASE&#34;] + &#34;/collections&#34;,
     headers=headers
 )
 
 print(response.text)
-</code></pre></div><div class="http-request-panel" data-http-panel="nodejs" role="tabpanel"><pre><code>const response = await fetch(&#34;https://api.hola.cloud/v1/databases/{databaseId}/collections&#34;, {
+</code></pre></div><div class="http-request-panel" data-http-panel="nodejs" role="tabpanel"><pre><code>const response = await fetch(&#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + process.env.INCEPTIONDB_DATABASE + &#34;/collections&#34;, {
   method: &#34;GET&#34;,
   headers: {
-    &#34;Api-Key&#34;: &#34;{api_key}&#34;,
-    &#34;Api-Secret&#34;: &#34;{api_secret}&#34;
+    &#34;Api-Key&#34;: process.env.INCEPTIONDB_API_KEY,
+    &#34;Api-Secret&#34;: process.env.INCEPTIONDB_API_SECRET
   }
 });
 
 console.log(await response.text());
-</code></pre></div><div class="http-request-panel" data-http-panel="javascript" role="tabpanel"><pre><code>const response = await fetch(&#34;https://api.hola.cloud/v1/databases/{databaseId}/collections&#34;, {
+</code></pre></div><div class="http-request-panel" data-http-panel="javascript" role="tabpanel"><pre><code>// Fill in your values. Never put an API secret in code that runs in a public web page.
+const INCEPTIONDB_DATABASE = &#34;your-inceptiondb-database&#34;;
+const INCEPTIONDB_API_KEY = &#34;your-inceptiondb-api-key&#34;;
+const INCEPTIONDB_API_SECRET = &#34;your-inceptiondb-api-secret&#34;;
+
+const response = await fetch(&#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + INCEPTIONDB_DATABASE + &#34;/collections&#34;, {
   method: &#34;GET&#34;,
   headers: {
-    &#34;Api-Key&#34;: &#34;{api_key}&#34;,
-    &#34;Api-Secret&#34;: &#34;{api_secret}&#34;
+    &#34;Api-Key&#34;: INCEPTIONDB_API_KEY,
+    &#34;Api-Secret&#34;: INCEPTIONDB_API_SECRET
   }
 });
 
@@ -588,66 +611,41 @@ import java.net.http.HttpResponse;
 public class Main {
     public static void main(String[] args) throws Exception {
         var request = HttpRequest.newBuilder()
-            .uri(URI.create(&#34;https://api.hola.cloud/v1/databases/{databaseId}/collections&#34;))
+            .uri(URI.create(&#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + System.getenv(&#34;INCEPTIONDB_DATABASE&#34;) + &#34;/collections&#34;))
             .method(&#34;GET&#34;, HttpRequest.BodyPublishers.noBody())
-            .header(&#34;Api-Key&#34;, &#34;{api_key}&#34;)
-            .header(&#34;Api-Secret&#34;, &#34;{api_secret}&#34;)
+            .header(&#34;Api-Key&#34;, System.getenv(&#34;INCEPTIONDB_API_KEY&#34;))
+            .header(&#34;Api-Secret&#34;, System.getenv(&#34;INCEPTIONDB_API_SECRET&#34;))
             .build();
 
         var response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         System.out.println(response.body());
     }
 }</code></pre></div></div>
-<pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1"> 1</a></span><span>[
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2"> 2</a></span><span>  {
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3"> 3</a></span><span>    <span style="color:#268bd2">&#34;name&#34;</span>: <span style="color:#2aa198">&#34;my-collection&#34;</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L4"><a style="outline: none; text-decoration:none; color:inherit" href="#L4"> 4</a></span><span>    <span style="color:#268bd2">&#34;total&#34;</span>: <span style="color:#2aa198">3</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L5"><a style="outline: none; text-decoration:none; color:inherit" href="#L5"> 5</a></span><span>    <span style="color:#268bd2">&#34;indexes&#34;</span>: <span style="color:#2aa198">0</span>,
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L6"><a style="outline: none; text-decoration:none; color:inherit" href="#L6"> 6</a></span><span>    <span style="color:#268bd2">&#34;defaults&#34;</span>: {
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L7"><a style="outline: none; text-decoration:none; color:inherit" href="#L7"> 7</a></span><span>      <span style="color:#268bd2">&#34;id&#34;</span>: <span style="color:#2aa198">&#34;uuid()&#34;</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L8"><a style="outline: none; text-decoration:none; color:inherit" href="#L8"> 8</a></span><span>    }
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L9"><a style="outline: none; text-decoration:none; color:inherit" href="#L9"> 9</a></span><span>  }
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L10"><a style="outline: none; text-decoration:none; color:inherit" href="#L10">10</a></span><span>]
+<pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>[{<span style="color:#268bd2">&#34;defaults&#34;</span>:{<span style="color:#268bd2">&#34;id&#34;</span>:<span style="color:#2aa198">&#34;uuid()&#34;</span>},<span style="color:#268bd2">&#34;indexes&#34;</span>:<span style="color:#2aa198">0</span>,<span style="color:#268bd2">&#34;name&#34;</span>:<span style="color:#2aa198">&#34;customers&#34;</span>,<span style="color:#268bd2">&#34;total&#34;</span>:<span style="color:#2aa198">0</span>}]
 </span></span></code></pre>
-<h2 id="Insert%20Documents">Insert Documents</h2>
-<p>Collections can receive JSONL documents through the <code>:insert</code> action.</p>
-<div class="http-request" data-http-request=""><div class="http-request-header"><div class="http-request-tabs" role="tablist" aria-label="HTTP request examples"><button type="button" class="http-request-tab active" data-http-lang="curl" role="tab" aria-selected="true">curl</button><button type="button" class="http-request-tab" data-http-lang="http" role="tab" aria-selected="false">HTTP</button><button type="button" class="http-request-tab" data-http-lang="go" role="tab" aria-selected="false">Go</button><button type="button" class="http-request-tab" data-http-lang="php" role="tab" aria-selected="false">PHP</button><button type="button" class="http-request-tab" data-http-lang="python" role="tab" aria-selected="false">Python</button><button type="button" class="http-request-tab" data-http-lang="nodejs" role="tab" aria-selected="false">Node.js</button><button type="button" class="http-request-tab" data-http-lang="javascript" role="tab" aria-selected="false">JavaScript</button><button type="button" class="http-request-tab" data-http-lang="java" role="tab" aria-selected="false">Java</button></div><button type="button" class="http-request-copy" data-http-copy="" title="Copy request" aria-label="Copy request"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V7Zm2 0v11h8V7h-8ZM4 3a2 2 0 0 1 2-2h9v2H6v11H4V3Z" fill="currentColor"></path></svg><span>Copy</span></button></div><div class="http-request-panel active" data-http-panel="curl" role="tabpanel"><pre><code>curl -X POST &#34;https://api.hola.cloud/v1/databases/{databaseId}/collections/my-collection:insert&#34; \
-  -H &#34;Api-Key: {api_key}&#34; \
-  -H &#34;Api-Secret: {api_secret}&#34; \
-  -H &#34;Content-Type: application/jsonl&#34; \
-  --data-binary &#39;{&#34;id&#34;:&#34;1&#34;,&#34;name&#34;:&#34;Alfonso&#34;}
-{&#34;id&#34;:&#34;2&#34;,&#34;name&#34;:&#34;Gerardo&#34;}&#39;</code></pre></div><div class="http-request-panel" data-http-panel="http" role="tabpanel"><pre><code>POST /v1/databases/%7BdatabaseId%7D/collections/my-collection:insert HTTP/1.1
-Host: api.hola.cloud
-Api-Key: {api_key}
-Api-Secret: {api_secret}
-Content-Type: application/jsonl
-
-{&#34;id&#34;:&#34;1&#34;,&#34;name&#34;:&#34;Alfonso&#34;}
-{&#34;id&#34;:&#34;2&#34;,&#34;name&#34;:&#34;Gerardo&#34;}</code></pre></div><div class="http-request-panel" data-http-panel="go" role="tabpanel"><pre><code>package main
+<h2 id="Get%20one%20collection">Get one collection</h2>
+<div class="http-request" data-http-request=""><div class="http-request-header"><div class="http-request-tabs" role="tablist" aria-label="HTTP request examples"><button type="button" class="http-request-tab active" data-http-lang="curl" role="tab" aria-selected="true">curl</button><button type="button" class="http-request-tab" data-http-lang="http" role="tab" aria-selected="false">HTTP</button><button type="button" class="http-request-tab" data-http-lang="go" role="tab" aria-selected="false">Go</button><button type="button" class="http-request-tab" data-http-lang="php" role="tab" aria-selected="false">PHP</button><button type="button" class="http-request-tab" data-http-lang="python" role="tab" aria-selected="false">Python</button><button type="button" class="http-request-tab" data-http-lang="nodejs" role="tab" aria-selected="false">Node.js</button><button type="button" class="http-request-tab" data-http-lang="javascript" role="tab" aria-selected="false">JavaScript</button><button type="button" class="http-request-tab" data-http-lang="java" role="tab" aria-selected="false">Java</button></div><button type="button" class="http-request-copy" data-http-copy="" title="Copy request" aria-label="Copy request"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V7Zm2 0v11h8V7h-8ZM4 3a2 2 0 0 1 2-2h9v2H6v11H4V3Z" fill="currentColor"></path></svg><span>Copy</span></button></div><div class="http-request-panel active" data-http-panel="curl" role="tabpanel"><pre><code>curl &#34;https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers&#34; \
+  -H &#34;Api-Key: $INCEPTIONDB_API_KEY&#34; \
+  -H &#34;Api-Secret: $INCEPTIONDB_API_SECRET&#34;</code></pre></div><div class="http-request-panel" data-http-panel="http" role="tabpanel"><pre><code>GET /v1/databases/$INCEPTIONDB_DATABASE/collections/customers HTTP/1.1
+Host: inceptiondb.hola.cloud
+Api-Key: $INCEPTIONDB_API_KEY
+Api-Secret: $INCEPTIONDB_API_SECRET
+</code></pre></div><div class="http-request-panel" data-http-panel="go" role="tabpanel"><pre><code>package main
 
 import (
 	&#34;fmt&#34;
 	&#34;io&#34;
 	&#34;net/http&#34;
-	&#34;encoding/json&#34;
-	&#34;strings&#34;
+	&#34;os&#34;
 )
 
 func main() {
-	payload := map[string]any{&#34;id&#34;: &#34;1&#34;, &#34;name&#34;: &#34;Alfonso&#34;}
-	bodyBytes, err := json.Marshal(payload)
+	req, err := http.NewRequest(&#34;GET&#34;, &#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + os.Getenv(&#34;INCEPTIONDB_DATABASE&#34;) + &#34;/collections/customers&#34;, nil)
 	if err != nil {
 		panic(err)
 	}
-	body := string(bodyBytes)
-
-	req, err := http.NewRequest(&#34;POST&#34;, &#34;https://api.hola.cloud/v1/databases/{databaseId}/collections/my-collection:insert&#34;, strings.NewReader(body))
-	if err != nil {
-		panic(err)
-	}
-	req.Header.Set(&#34;Api-Key&#34;, &#34;{api_key}&#34;)
-	req.Header.Set(&#34;Api-Secret&#34;, &#34;{api_secret}&#34;)
-	req.Header.Set(&#34;Content-Type&#34;, &#34;application/jsonl&#34;)
+	req.Header.Set(&#34;Api-Key&#34;, os.Getenv(&#34;INCEPTIONDB_API_KEY&#34;))
+	req.Header.Set(&#34;Api-Secret&#34;, os.Getenv(&#34;INCEPTIONDB_API_SECRET&#34;))
 
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
@@ -662,20 +660,15 @@ func main() {
 	fmt.Println(string(responseBody))
 }
 </code></pre></div><div class="http-request-panel" data-http-panel="php" role="tabpanel"><pre><code>&lt;?php
-$payload = [&#39;id&#39; =&gt; &#39;1&#39;, &#39;name&#39; =&gt; &#39;Alfonso&#39;];
-$body = json_encode($payload);
-
 $ch = curl_init();
 
 curl_setopt_array($ch, [
-    CURLOPT_URL =&gt; &#39;https://api.hola.cloud/v1/databases/{databaseId}/collections/my-collection:insert&#39;,
+    CURLOPT_URL =&gt; &#39;https://inceptiondb.hola.cloud/v1/databases/&#39; . getenv(&#39;INCEPTIONDB_DATABASE&#39;) . &#39;/collections/customers&#39;,
     CURLOPT_RETURNTRANSFER =&gt; true,
-    CURLOPT_CUSTOMREQUEST =&gt; &#39;POST&#39;,
-    CURLOPT_POSTFIELDS =&gt; $body,
+    CURLOPT_CUSTOMREQUEST =&gt; &#39;GET&#39;,
     CURLOPT_HTTPHEADER =&gt; [
-        &#39;Api-Key: {api_key}&#39;,
-        &#39;Api-Secret: {api_secret}&#39;,
-        &#39;Content-Type: application/jsonl&#39;,
+        &#39;Api-Key: &#39; . getenv(&#39;INCEPTIONDB_API_KEY&#39;),
+        &#39;Api-Secret: &#39; . getenv(&#39;INCEPTIONDB_API_SECRET&#39;),
     ],
 ]);
 
@@ -686,48 +679,205 @@ if ($response === false) {
 curl_close($ch);
 
 echo $response;
-</code></pre></div><div class="http-request-panel" data-http-panel="python" role="tabpanel"><pre><code>import requests
+</code></pre></div><div class="http-request-panel" data-http-panel="python" role="tabpanel"><pre><code>import os
+import requests
+
+headers = {
+    &#34;Api-Key&#34;: os.environ[&#34;INCEPTIONDB_API_KEY&#34;],
+    &#34;Api-Secret&#34;: os.environ[&#34;INCEPTIONDB_API_SECRET&#34;],
+}
+
+response = requests.request(
+    &#34;GET&#34;,
+    &#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + os.environ[&#34;INCEPTIONDB_DATABASE&#34;] + &#34;/collections/customers&#34;,
+    headers=headers
+)
+
+print(response.text)
+</code></pre></div><div class="http-request-panel" data-http-panel="nodejs" role="tabpanel"><pre><code>const response = await fetch(&#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + process.env.INCEPTIONDB_DATABASE + &#34;/collections/customers&#34;, {
+  method: &#34;GET&#34;,
+  headers: {
+    &#34;Api-Key&#34;: process.env.INCEPTIONDB_API_KEY,
+    &#34;Api-Secret&#34;: process.env.INCEPTIONDB_API_SECRET
+  }
+});
+
+console.log(await response.text());
+</code></pre></div><div class="http-request-panel" data-http-panel="javascript" role="tabpanel"><pre><code>// Fill in your values. Never put an API secret in code that runs in a public web page.
+const INCEPTIONDB_DATABASE = &#34;your-inceptiondb-database&#34;;
+const INCEPTIONDB_API_KEY = &#34;your-inceptiondb-api-key&#34;;
+const INCEPTIONDB_API_SECRET = &#34;your-inceptiondb-api-secret&#34;;
+
+const response = await fetch(&#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + INCEPTIONDB_DATABASE + &#34;/collections/customers&#34;, {
+  method: &#34;GET&#34;,
+  headers: {
+    &#34;Api-Key&#34;: INCEPTIONDB_API_KEY,
+    &#34;Api-Secret&#34;: INCEPTIONDB_API_SECRET
+  }
+});
+
+const text = await response.text();
+console.log(text);
+</code></pre></div><div class="http-request-panel" data-http-panel="java" role="tabpanel"><pre><code>import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        var request = HttpRequest.newBuilder()
+            .uri(URI.create(&#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + System.getenv(&#34;INCEPTIONDB_DATABASE&#34;) + &#34;/collections/customers&#34;))
+            .method(&#34;GET&#34;, HttpRequest.BodyPublishers.noBody())
+            .header(&#34;Api-Key&#34;, System.getenv(&#34;INCEPTIONDB_API_KEY&#34;))
+            .header(&#34;Api-Secret&#34;, System.getenv(&#34;INCEPTIONDB_API_SECRET&#34;))
+            .build();
+
+        var response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
+    }
+}</code></pre></div></div>
+<pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{<span style="color:#268bd2">&#34;defaults&#34;</span>:{<span style="color:#268bd2">&#34;id&#34;</span>:<span style="color:#2aa198">&#34;uuid()&#34;</span>},<span style="color:#268bd2">&#34;indexes&#34;</span>:<span style="color:#2aa198">0</span>,<span style="color:#268bd2">&#34;name&#34;</span>:<span style="color:#2aa198">&#34;customers&#34;</span>,<span style="color:#268bd2">&#34;total&#34;</span>:<span style="color:#2aa198">0</span>}
+</span></span></code></pre>
+<h2 id="Default%20values">Default values</h2>
+<p>Defaults fill in the fields that an inserted document does not have. A field sent as <code>null</code> also takes its default. Besides fixed values, there are three generated ones:</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Generates</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&#34;uuid()&#34;</code></td>
+<td>A random unique ID, like <code>&#34;35ec7d8f-96f4-4cdf-a09e-463c720e7c8c&#34;</code>.</td>
+</tr>
+<tr>
+<td><code>&#34;auto()&#34;</code></td>
+<td>An increasing number: 1, 2, 3... It never repeats, though it can skip numbers.</td>
+</tr>
+<tr>
+<td><code>&#34;unixnano()&#34;</code></td>
+<td>The insert time, in nanoseconds since 1970.</td>
+</tr>
+</tbody>
+</table>
+<p>Give every new customer an ID, the <code>free</code> plan and its creation time:</p>
+<div class="http-request" data-http-request=""><div class="http-request-header"><div class="http-request-tabs" role="tablist" aria-label="HTTP request examples"><button type="button" class="http-request-tab active" data-http-lang="curl" role="tab" aria-selected="true">curl</button><button type="button" class="http-request-tab" data-http-lang="http" role="tab" aria-selected="false">HTTP</button><button type="button" class="http-request-tab" data-http-lang="go" role="tab" aria-selected="false">Go</button><button type="button" class="http-request-tab" data-http-lang="php" role="tab" aria-selected="false">PHP</button><button type="button" class="http-request-tab" data-http-lang="python" role="tab" aria-selected="false">Python</button><button type="button" class="http-request-tab" data-http-lang="nodejs" role="tab" aria-selected="false">Node.js</button><button type="button" class="http-request-tab" data-http-lang="javascript" role="tab" aria-selected="false">JavaScript</button><button type="button" class="http-request-tab" data-http-lang="java" role="tab" aria-selected="false">Java</button></div><button type="button" class="http-request-copy" data-http-copy="" title="Copy request" aria-label="Copy request"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V7Zm2 0v11h8V7h-8ZM4 3a2 2 0 0 1 2-2h9v2H6v11H4V3Z" fill="currentColor"></path></svg><span>Copy</span></button></div><div class="http-request-panel active" data-http-panel="curl" role="tabpanel"><pre><code>curl -X POST &#34;https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:setDefaults&#34; \
+  -H &#34;Api-Key: $INCEPTIONDB_API_KEY&#34; \
+  -H &#34;Api-Secret: $INCEPTIONDB_API_SECRET&#34; \
+  -d &#39;{&#34;id&#34;: &#34;uuid()&#34;, &#34;plan&#34;: &#34;free&#34;, &#34;created&#34;: &#34;unixnano()&#34;}&#39;</code></pre></div><div class="http-request-panel" data-http-panel="http" role="tabpanel"><pre><code>POST /v1/databases/$INCEPTIONDB_DATABASE/collections/customers:setDefaults HTTP/1.1
+Host: inceptiondb.hola.cloud
+Api-Key: $INCEPTIONDB_API_KEY
+Api-Secret: $INCEPTIONDB_API_SECRET
+
+{&#34;id&#34;: &#34;uuid()&#34;, &#34;plan&#34;: &#34;free&#34;, &#34;created&#34;: &#34;unixnano()&#34;}</code></pre></div><div class="http-request-panel" data-http-panel="go" role="tabpanel"><pre><code>package main
+
+import (
+	&#34;fmt&#34;
+	&#34;io&#34;
+	&#34;net/http&#34;
+	&#34;os&#34;
+	&#34;encoding/json&#34;
+	&#34;strings&#34;
+)
+
+func main() {
+	payload := map[string]any{&#34;created&#34;: &#34;unixnano()&#34;, &#34;id&#34;: &#34;uuid()&#34;, &#34;plan&#34;: &#34;free&#34;}
+	bodyBytes, err := json.Marshal(payload)
+	if err != nil {
+		panic(err)
+	}
+	body := string(bodyBytes)
+
+	req, err := http.NewRequest(&#34;POST&#34;, &#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + os.Getenv(&#34;INCEPTIONDB_DATABASE&#34;) + &#34;/collections/customers:setDefaults&#34;, strings.NewReader(body))
+	if err != nil {
+		panic(err)
+	}
+	req.Header.Set(&#34;Api-Key&#34;, os.Getenv(&#34;INCEPTIONDB_API_KEY&#34;))
+	req.Header.Set(&#34;Api-Secret&#34;, os.Getenv(&#34;INCEPTIONDB_API_SECRET&#34;))
+
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		panic(err)
+	}
+	defer resp.Body.Close()
+
+	responseBody, err := io.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(string(responseBody))
+}
+</code></pre></div><div class="http-request-panel" data-http-panel="php" role="tabpanel"><pre><code>&lt;?php
+$payload = [&#39;created&#39; =&gt; &#39;unixnano()&#39;, &#39;id&#39; =&gt; &#39;uuid()&#39;, &#39;plan&#39; =&gt; &#39;free&#39;];
+$body = json_encode($payload);
+
+$ch = curl_init();
+
+curl_setopt_array($ch, [
+    CURLOPT_URL =&gt; &#39;https://inceptiondb.hola.cloud/v1/databases/&#39; . getenv(&#39;INCEPTIONDB_DATABASE&#39;) . &#39;/collections/customers:setDefaults&#39;,
+    CURLOPT_RETURNTRANSFER =&gt; true,
+    CURLOPT_CUSTOMREQUEST =&gt; &#39;POST&#39;,
+    CURLOPT_POSTFIELDS =&gt; $body,
+    CURLOPT_HTTPHEADER =&gt; [
+        &#39;Api-Key: &#39; . getenv(&#39;INCEPTIONDB_API_KEY&#39;),
+        &#39;Api-Secret: &#39; . getenv(&#39;INCEPTIONDB_API_SECRET&#39;),
+    ],
+]);
+
+$response = curl_exec($ch);
+if ($response === false) {
+    throw new Exception(curl_error($ch));
+}
+curl_close($ch);
+
+echo $response;
+</code></pre></div><div class="http-request-panel" data-http-panel="python" role="tabpanel"><pre><code>import os
+import requests
 
 import json
 
 headers = {
-    &#34;Api-Key&#34;: &#34;{api_key}&#34;,
-    &#34;Api-Secret&#34;: &#34;{api_secret}&#34;,
-    &#34;Content-Type&#34;: &#34;application/jsonl&#34;,
+    &#34;Api-Key&#34;: os.environ[&#34;INCEPTIONDB_API_KEY&#34;],
+    &#34;Api-Secret&#34;: os.environ[&#34;INCEPTIONDB_API_SECRET&#34;],
 }
 
-payload = {&#34;id&#34;: &#34;1&#34;, &#34;name&#34;: &#34;Alfonso&#34;}
+payload = {&#34;created&#34;: &#34;unixnano()&#34;, &#34;id&#34;: &#34;uuid()&#34;, &#34;plan&#34;: &#34;free&#34;}
 body = json.dumps(payload)
 
 response = requests.request(
     &#34;POST&#34;,
-    &#34;https://api.hola.cloud/v1/databases/{databaseId}/collections/my-collection:insert&#34;,
+    &#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + os.environ[&#34;INCEPTIONDB_DATABASE&#34;] + &#34;/collections/customers:setDefaults&#34;,
     headers=headers,
     data=body
 )
 
 print(response.text)
-</code></pre></div><div class="http-request-panel" data-http-panel="nodejs" role="tabpanel"><pre><code>const payload = {&#34;id&#34;: &#34;1&#34;, &#34;name&#34;: &#34;Alfonso&#34;};
+</code></pre></div><div class="http-request-panel" data-http-panel="nodejs" role="tabpanel"><pre><code>const payload = {&#34;created&#34;: &#34;unixnano()&#34;, &#34;id&#34;: &#34;uuid()&#34;, &#34;plan&#34;: &#34;free&#34;};
 
-const response = await fetch(&#34;https://api.hola.cloud/v1/databases/{databaseId}/collections/my-collection:insert&#34;, {
+const response = await fetch(&#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + process.env.INCEPTIONDB_DATABASE + &#34;/collections/customers:setDefaults&#34;, {
   method: &#34;POST&#34;,
   headers: {
-    &#34;Api-Key&#34;: &#34;{api_key}&#34;,
-    &#34;Api-Secret&#34;: &#34;{api_secret}&#34;,
-    &#34;Content-Type&#34;: &#34;application/jsonl&#34;
+    &#34;Api-Key&#34;: process.env.INCEPTIONDB_API_KEY,
+    &#34;Api-Secret&#34;: process.env.INCEPTIONDB_API_SECRET
   },
   body: JSON.stringify(payload)
 });
 
 console.log(await response.text());
-</code></pre></div><div class="http-request-panel" data-http-panel="javascript" role="tabpanel"><pre><code>const payload = {&#34;id&#34;: &#34;1&#34;, &#34;name&#34;: &#34;Alfonso&#34;};
+</code></pre></div><div class="http-request-panel" data-http-panel="javascript" role="tabpanel"><pre><code>// Fill in your values. Never put an API secret in code that runs in a public web page.
+const INCEPTIONDB_DATABASE = &#34;your-inceptiondb-database&#34;;
+const INCEPTIONDB_API_KEY = &#34;your-inceptiondb-api-key&#34;;
+const INCEPTIONDB_API_SECRET = &#34;your-inceptiondb-api-secret&#34;;
 
-const response = await fetch(&#34;https://api.hola.cloud/v1/databases/{databaseId}/collections/my-collection:insert&#34;, {
+const payload = {&#34;created&#34;: &#34;unixnano()&#34;, &#34;id&#34;: &#34;uuid()&#34;, &#34;plan&#34;: &#34;free&#34;};
+
+const response = await fetch(&#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + INCEPTIONDB_DATABASE + &#34;/collections/customers:setDefaults&#34;, {
   method: &#34;POST&#34;,
   headers: {
-    &#34;Api-Key&#34;: &#34;{api_key}&#34;,
-    &#34;Api-Secret&#34;: &#34;{api_secret}&#34;,
-    &#34;Content-Type&#34;: &#34;application/jsonl&#34;
+    &#34;Api-Key&#34;: INCEPTIONDB_API_KEY,
+    &#34;Api-Secret&#34;: INCEPTIONDB_API_SECRET
   },
   body: JSON.stringify(payload)
 });
@@ -744,25 +894,402 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        var payload = Map.of(&#34;id&#34;, &#34;1&#34;, &#34;name&#34;, &#34;Alfonso&#34;);
+        var payload = Map.of(&#34;created&#34;, &#34;unixnano()&#34;, &#34;id&#34;, &#34;uuid()&#34;, &#34;plan&#34;, &#34;free&#34;);
         var body = new ObjectMapper().writeValueAsString(payload);
 
         var request = HttpRequest.newBuilder()
-            .uri(URI.create(&#34;https://api.hola.cloud/v1/databases/{databaseId}/collections/my-collection:insert&#34;))
+            .uri(URI.create(&#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + System.getenv(&#34;INCEPTIONDB_DATABASE&#34;) + &#34;/collections/customers:setDefaults&#34;))
             .method(&#34;POST&#34;, HttpRequest.BodyPublishers.ofString(body))
-            .header(&#34;Api-Key&#34;, &#34;{api_key}&#34;)
-            .header(&#34;Api-Secret&#34;, &#34;{api_secret}&#34;)
-            .header(&#34;Content-Type&#34;, &#34;application/jsonl&#34;)
+            .header(&#34;Api-Key&#34;, System.getenv(&#34;INCEPTIONDB_API_KEY&#34;))
+            .header(&#34;Api-Secret&#34;, System.getenv(&#34;INCEPTIONDB_API_SECRET&#34;))
             .build();
 
         var response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         System.out.println(response.body());
     }
 }</code></pre></div></div>
-<p>The response is JSONL with the inserted documents.</p>
-<pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{&#34;id&#34;:&#34;1&#34;,&#34;name&#34;:&#34;Alfonso&#34;}
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>{&#34;id&#34;:&#34;2&#34;,&#34;name&#34;:&#34;Gerardo&#34;}
+<pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{<span style="color:#268bd2">&#34;created&#34;</span>:<span style="color:#2aa198">&#34;unixnano()&#34;</span>,<span style="color:#268bd2">&#34;id&#34;</span>:<span style="color:#2aa198">&#34;uuid()&#34;</span>,<span style="color:#268bd2">&#34;plan&#34;</span>:<span style="color:#2aa198">&#34;free&#34;</span>}
 </span></span></code></pre>
+<p>Now insert a customer with only a name and an email:</p>
+<div class="http-request" data-http-request=""><div class="http-request-header"><div class="http-request-tabs" role="tablist" aria-label="HTTP request examples"><button type="button" class="http-request-tab active" data-http-lang="curl" role="tab" aria-selected="true">curl</button><button type="button" class="http-request-tab" data-http-lang="http" role="tab" aria-selected="false">HTTP</button><button type="button" class="http-request-tab" data-http-lang="go" role="tab" aria-selected="false">Go</button><button type="button" class="http-request-tab" data-http-lang="php" role="tab" aria-selected="false">PHP</button><button type="button" class="http-request-tab" data-http-lang="python" role="tab" aria-selected="false">Python</button><button type="button" class="http-request-tab" data-http-lang="nodejs" role="tab" aria-selected="false">Node.js</button><button type="button" class="http-request-tab" data-http-lang="javascript" role="tab" aria-selected="false">JavaScript</button><button type="button" class="http-request-tab" data-http-lang="java" role="tab" aria-selected="false">Java</button></div><button type="button" class="http-request-copy" data-http-copy="" title="Copy request" aria-label="Copy request"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V7Zm2 0v11h8V7h-8ZM4 3a2 2 0 0 1 2-2h9v2H6v11H4V3Z" fill="currentColor"></path></svg><span>Copy</span></button></div><div class="http-request-panel active" data-http-panel="curl" role="tabpanel"><pre><code>curl -X POST &#34;https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:insert&#34; \
+  -H &#34;Api-Key: $INCEPTIONDB_API_KEY&#34; \
+  -H &#34;Api-Secret: $INCEPTIONDB_API_SECRET&#34; \
+  -d &#39;{&#34;name&#34;: &#34;Margaret Hamilton&#34;, &#34;email&#34;: &#34;margaret@example.com&#34;}&#39;</code></pre></div><div class="http-request-panel" data-http-panel="http" role="tabpanel"><pre><code>POST /v1/databases/$INCEPTIONDB_DATABASE/collections/customers:insert HTTP/1.1
+Host: inceptiondb.hola.cloud
+Api-Key: $INCEPTIONDB_API_KEY
+Api-Secret: $INCEPTIONDB_API_SECRET
+
+{&#34;name&#34;: &#34;Margaret Hamilton&#34;, &#34;email&#34;: &#34;margaret@example.com&#34;}</code></pre></div><div class="http-request-panel" data-http-panel="go" role="tabpanel"><pre><code>package main
+
+import (
+	&#34;fmt&#34;
+	&#34;io&#34;
+	&#34;net/http&#34;
+	&#34;os&#34;
+	&#34;encoding/json&#34;
+	&#34;strings&#34;
+)
+
+func main() {
+	payload := map[string]any{&#34;email&#34;: &#34;margaret@example.com&#34;, &#34;name&#34;: &#34;Margaret Hamilton&#34;}
+	bodyBytes, err := json.Marshal(payload)
+	if err != nil {
+		panic(err)
+	}
+	body := string(bodyBytes)
+
+	req, err := http.NewRequest(&#34;POST&#34;, &#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + os.Getenv(&#34;INCEPTIONDB_DATABASE&#34;) + &#34;/collections/customers:insert&#34;, strings.NewReader(body))
+	if err != nil {
+		panic(err)
+	}
+	req.Header.Set(&#34;Api-Key&#34;, os.Getenv(&#34;INCEPTIONDB_API_KEY&#34;))
+	req.Header.Set(&#34;Api-Secret&#34;, os.Getenv(&#34;INCEPTIONDB_API_SECRET&#34;))
+
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		panic(err)
+	}
+	defer resp.Body.Close()
+
+	responseBody, err := io.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(string(responseBody))
+}
+</code></pre></div><div class="http-request-panel" data-http-panel="php" role="tabpanel"><pre><code>&lt;?php
+$payload = [&#39;email&#39; =&gt; &#39;margaret@example.com&#39;, &#39;name&#39; =&gt; &#39;Margaret Hamilton&#39;];
+$body = json_encode($payload);
+
+$ch = curl_init();
+
+curl_setopt_array($ch, [
+    CURLOPT_URL =&gt; &#39;https://inceptiondb.hola.cloud/v1/databases/&#39; . getenv(&#39;INCEPTIONDB_DATABASE&#39;) . &#39;/collections/customers:insert&#39;,
+    CURLOPT_RETURNTRANSFER =&gt; true,
+    CURLOPT_CUSTOMREQUEST =&gt; &#39;POST&#39;,
+    CURLOPT_POSTFIELDS =&gt; $body,
+    CURLOPT_HTTPHEADER =&gt; [
+        &#39;Api-Key: &#39; . getenv(&#39;INCEPTIONDB_API_KEY&#39;),
+        &#39;Api-Secret: &#39; . getenv(&#39;INCEPTIONDB_API_SECRET&#39;),
+    ],
+]);
+
+$response = curl_exec($ch);
+if ($response === false) {
+    throw new Exception(curl_error($ch));
+}
+curl_close($ch);
+
+echo $response;
+</code></pre></div><div class="http-request-panel" data-http-panel="python" role="tabpanel"><pre><code>import os
+import requests
+
+import json
+
+headers = {
+    &#34;Api-Key&#34;: os.environ[&#34;INCEPTIONDB_API_KEY&#34;],
+    &#34;Api-Secret&#34;: os.environ[&#34;INCEPTIONDB_API_SECRET&#34;],
+}
+
+payload = {&#34;email&#34;: &#34;margaret@example.com&#34;, &#34;name&#34;: &#34;Margaret Hamilton&#34;}
+body = json.dumps(payload)
+
+response = requests.request(
+    &#34;POST&#34;,
+    &#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + os.environ[&#34;INCEPTIONDB_DATABASE&#34;] + &#34;/collections/customers:insert&#34;,
+    headers=headers,
+    data=body
+)
+
+print(response.text)
+</code></pre></div><div class="http-request-panel" data-http-panel="nodejs" role="tabpanel"><pre><code>const payload = {&#34;email&#34;: &#34;margaret@example.com&#34;, &#34;name&#34;: &#34;Margaret Hamilton&#34;};
+
+const response = await fetch(&#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + process.env.INCEPTIONDB_DATABASE + &#34;/collections/customers:insert&#34;, {
+  method: &#34;POST&#34;,
+  headers: {
+    &#34;Api-Key&#34;: process.env.INCEPTIONDB_API_KEY,
+    &#34;Api-Secret&#34;: process.env.INCEPTIONDB_API_SECRET
+  },
+  body: JSON.stringify(payload)
+});
+
+console.log(await response.text());
+</code></pre></div><div class="http-request-panel" data-http-panel="javascript" role="tabpanel"><pre><code>// Fill in your values. Never put an API secret in code that runs in a public web page.
+const INCEPTIONDB_DATABASE = &#34;your-inceptiondb-database&#34;;
+const INCEPTIONDB_API_KEY = &#34;your-inceptiondb-api-key&#34;;
+const INCEPTIONDB_API_SECRET = &#34;your-inceptiondb-api-secret&#34;;
+
+const payload = {&#34;email&#34;: &#34;margaret@example.com&#34;, &#34;name&#34;: &#34;Margaret Hamilton&#34;};
+
+const response = await fetch(&#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + INCEPTIONDB_DATABASE + &#34;/collections/customers:insert&#34;, {
+  method: &#34;POST&#34;,
+  headers: {
+    &#34;Api-Key&#34;: INCEPTIONDB_API_KEY,
+    &#34;Api-Secret&#34;: INCEPTIONDB_API_SECRET
+  },
+  body: JSON.stringify(payload)
+});
+
+const text = await response.text();
+console.log(text);
+</code></pre></div><div class="http-request-panel" data-http-panel="java" role="tabpanel"><pre><code>import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.Map;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        var payload = Map.of(&#34;email&#34;, &#34;margaret@example.com&#34;, &#34;name&#34;, &#34;Margaret Hamilton&#34;);
+        var body = new ObjectMapper().writeValueAsString(payload);
+
+        var request = HttpRequest.newBuilder()
+            .uri(URI.create(&#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + System.getenv(&#34;INCEPTIONDB_DATABASE&#34;) + &#34;/collections/customers:insert&#34;))
+            .method(&#34;POST&#34;, HttpRequest.BodyPublishers.ofString(body))
+            .header(&#34;Api-Key&#34;, System.getenv(&#34;INCEPTIONDB_API_KEY&#34;))
+            .header(&#34;Api-Secret&#34;, System.getenv(&#34;INCEPTIONDB_API_SECRET&#34;))
+            .build();
+
+        var response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
+    }
+}</code></pre></div></div>
+<pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{&#34;created&#34;:1793164963789350717,&#34;email&#34;:&#34;margaret@example.com&#34;,&#34;id&#34;:&#34;35ec7d8f-96f4-4cdf-a09e-463c720e7c8c&#34;,&#34;name&#34;:&#34;Margaret Hamilton&#34;,&#34;plan&#34;:&#34;free&#34;}
+</span></span></code></pre>
+<p>Defaults apply to the documents inserted from now on; existing documents do not change. <code>setDefaults</code> adds the fields you send to the current defaults and replaces the ones that already exist. To remove a default, send it as <code>null</code>: <code>{&#34;plan&#34;: null}</code>.</p>
+<h2 id="Size">Size</h2>
+<p>How much memory the documents use, the size on disk and, for each index, its memory as <code>index.&lt;name&gt;</code>, in bytes:</p>
+<div class="http-request" data-http-request=""><div class="http-request-header"><div class="http-request-tabs" role="tablist" aria-label="HTTP request examples"><button type="button" class="http-request-tab active" data-http-lang="curl" role="tab" aria-selected="true">curl</button><button type="button" class="http-request-tab" data-http-lang="http" role="tab" aria-selected="false">HTTP</button><button type="button" class="http-request-tab" data-http-lang="go" role="tab" aria-selected="false">Go</button><button type="button" class="http-request-tab" data-http-lang="php" role="tab" aria-selected="false">PHP</button><button type="button" class="http-request-tab" data-http-lang="python" role="tab" aria-selected="false">Python</button><button type="button" class="http-request-tab" data-http-lang="nodejs" role="tab" aria-selected="false">Node.js</button><button type="button" class="http-request-tab" data-http-lang="javascript" role="tab" aria-selected="false">JavaScript</button><button type="button" class="http-request-tab" data-http-lang="java" role="tab" aria-selected="false">Java</button></div><button type="button" class="http-request-copy" data-http-copy="" title="Copy request" aria-label="Copy request"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V7Zm2 0v11h8V7h-8ZM4 3a2 2 0 0 1 2-2h9v2H6v11H4V3Z" fill="currentColor"></path></svg><span>Copy</span></button></div><div class="http-request-panel active" data-http-panel="curl" role="tabpanel"><pre><code>curl -X POST &#34;https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:size&#34; \
+  -H &#34;Api-Key: $INCEPTIONDB_API_KEY&#34; \
+  -H &#34;Api-Secret: $INCEPTIONDB_API_SECRET&#34;</code></pre></div><div class="http-request-panel" data-http-panel="http" role="tabpanel"><pre><code>POST /v1/databases/$INCEPTIONDB_DATABASE/collections/customers:size HTTP/1.1
+Host: inceptiondb.hola.cloud
+Api-Key: $INCEPTIONDB_API_KEY
+Api-Secret: $INCEPTIONDB_API_SECRET
+</code></pre></div><div class="http-request-panel" data-http-panel="go" role="tabpanel"><pre><code>package main
+
+import (
+	&#34;fmt&#34;
+	&#34;io&#34;
+	&#34;net/http&#34;
+	&#34;os&#34;
+)
+
+func main() {
+	req, err := http.NewRequest(&#34;POST&#34;, &#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + os.Getenv(&#34;INCEPTIONDB_DATABASE&#34;) + &#34;/collections/customers:size&#34;, nil)
+	if err != nil {
+		panic(err)
+	}
+	req.Header.Set(&#34;Api-Key&#34;, os.Getenv(&#34;INCEPTIONDB_API_KEY&#34;))
+	req.Header.Set(&#34;Api-Secret&#34;, os.Getenv(&#34;INCEPTIONDB_API_SECRET&#34;))
+
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		panic(err)
+	}
+	defer resp.Body.Close()
+
+	responseBody, err := io.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(string(responseBody))
+}
+</code></pre></div><div class="http-request-panel" data-http-panel="php" role="tabpanel"><pre><code>&lt;?php
+$ch = curl_init();
+
+curl_setopt_array($ch, [
+    CURLOPT_URL =&gt; &#39;https://inceptiondb.hola.cloud/v1/databases/&#39; . getenv(&#39;INCEPTIONDB_DATABASE&#39;) . &#39;/collections/customers:size&#39;,
+    CURLOPT_RETURNTRANSFER =&gt; true,
+    CURLOPT_CUSTOMREQUEST =&gt; &#39;POST&#39;,
+    CURLOPT_HTTPHEADER =&gt; [
+        &#39;Api-Key: &#39; . getenv(&#39;INCEPTIONDB_API_KEY&#39;),
+        &#39;Api-Secret: &#39; . getenv(&#39;INCEPTIONDB_API_SECRET&#39;),
+    ],
+]);
+
+$response = curl_exec($ch);
+if ($response === false) {
+    throw new Exception(curl_error($ch));
+}
+curl_close($ch);
+
+echo $response;
+</code></pre></div><div class="http-request-panel" data-http-panel="python" role="tabpanel"><pre><code>import os
+import requests
+
+headers = {
+    &#34;Api-Key&#34;: os.environ[&#34;INCEPTIONDB_API_KEY&#34;],
+    &#34;Api-Secret&#34;: os.environ[&#34;INCEPTIONDB_API_SECRET&#34;],
+}
+
+response = requests.request(
+    &#34;POST&#34;,
+    &#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + os.environ[&#34;INCEPTIONDB_DATABASE&#34;] + &#34;/collections/customers:size&#34;,
+    headers=headers
+)
+
+print(response.text)
+</code></pre></div><div class="http-request-panel" data-http-panel="nodejs" role="tabpanel"><pre><code>const response = await fetch(&#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + process.env.INCEPTIONDB_DATABASE + &#34;/collections/customers:size&#34;, {
+  method: &#34;POST&#34;,
+  headers: {
+    &#34;Api-Key&#34;: process.env.INCEPTIONDB_API_KEY,
+    &#34;Api-Secret&#34;: process.env.INCEPTIONDB_API_SECRET
+  }
+});
+
+console.log(await response.text());
+</code></pre></div><div class="http-request-panel" data-http-panel="javascript" role="tabpanel"><pre><code>// Fill in your values. Never put an API secret in code that runs in a public web page.
+const INCEPTIONDB_DATABASE = &#34;your-inceptiondb-database&#34;;
+const INCEPTIONDB_API_KEY = &#34;your-inceptiondb-api-key&#34;;
+const INCEPTIONDB_API_SECRET = &#34;your-inceptiondb-api-secret&#34;;
+
+const response = await fetch(&#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + INCEPTIONDB_DATABASE + &#34;/collections/customers:size&#34;, {
+  method: &#34;POST&#34;,
+  headers: {
+    &#34;Api-Key&#34;: INCEPTIONDB_API_KEY,
+    &#34;Api-Secret&#34;: INCEPTIONDB_API_SECRET
+  }
+});
+
+const text = await response.text();
+console.log(text);
+</code></pre></div><div class="http-request-panel" data-http-panel="java" role="tabpanel"><pre><code>import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        var request = HttpRequest.newBuilder()
+            .uri(URI.create(&#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + System.getenv(&#34;INCEPTIONDB_DATABASE&#34;) + &#34;/collections/customers:size&#34;))
+            .method(&#34;POST&#34;, HttpRequest.BodyPublishers.noBody())
+            .header(&#34;Api-Key&#34;, System.getenv(&#34;INCEPTIONDB_API_KEY&#34;))
+            .header(&#34;Api-Secret&#34;, System.getenv(&#34;INCEPTIONDB_API_SECRET&#34;))
+            .build();
+
+        var response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
+    }
+}</code></pre></div></div>
+<pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{<span style="color:#268bd2">&#34;disk&#34;</span>:<span style="color:#2aa198">265</span>,<span style="color:#268bd2">&#34;memory&#34;</span>:<span style="color:#2aa198">203</span>}
+</span></span></code></pre>
+<h2 id="Delete%20a%20collection">Delete a collection</h2>
+<p>This deletes the collection with all its documents and indexes. It cannot be undone.</p>
+<div class="http-request" data-http-request=""><div class="http-request-header"><div class="http-request-tabs" role="tablist" aria-label="HTTP request examples"><button type="button" class="http-request-tab active" data-http-lang="curl" role="tab" aria-selected="true">curl</button><button type="button" class="http-request-tab" data-http-lang="http" role="tab" aria-selected="false">HTTP</button><button type="button" class="http-request-tab" data-http-lang="go" role="tab" aria-selected="false">Go</button><button type="button" class="http-request-tab" data-http-lang="php" role="tab" aria-selected="false">PHP</button><button type="button" class="http-request-tab" data-http-lang="python" role="tab" aria-selected="false">Python</button><button type="button" class="http-request-tab" data-http-lang="nodejs" role="tab" aria-selected="false">Node.js</button><button type="button" class="http-request-tab" data-http-lang="javascript" role="tab" aria-selected="false">JavaScript</button><button type="button" class="http-request-tab" data-http-lang="java" role="tab" aria-selected="false">Java</button></div><button type="button" class="http-request-copy" data-http-copy="" title="Copy request" aria-label="Copy request"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V7Zm2 0v11h8V7h-8ZM4 3a2 2 0 0 1 2-2h9v2H6v11H4V3Z" fill="currentColor"></path></svg><span>Copy</span></button></div><div class="http-request-panel active" data-http-panel="curl" role="tabpanel"><pre><code>curl -X POST &#34;https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:dropCollection&#34; \
+  -H &#34;Api-Key: $INCEPTIONDB_API_KEY&#34; \
+  -H &#34;Api-Secret: $INCEPTIONDB_API_SECRET&#34;</code></pre></div><div class="http-request-panel" data-http-panel="http" role="tabpanel"><pre><code>POST /v1/databases/$INCEPTIONDB_DATABASE/collections/customers:dropCollection HTTP/1.1
+Host: inceptiondb.hola.cloud
+Api-Key: $INCEPTIONDB_API_KEY
+Api-Secret: $INCEPTIONDB_API_SECRET
+</code></pre></div><div class="http-request-panel" data-http-panel="go" role="tabpanel"><pre><code>package main
+
+import (
+	&#34;fmt&#34;
+	&#34;io&#34;
+	&#34;net/http&#34;
+	&#34;os&#34;
+)
+
+func main() {
+	req, err := http.NewRequest(&#34;POST&#34;, &#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + os.Getenv(&#34;INCEPTIONDB_DATABASE&#34;) + &#34;/collections/customers:dropCollection&#34;, nil)
+	if err != nil {
+		panic(err)
+	}
+	req.Header.Set(&#34;Api-Key&#34;, os.Getenv(&#34;INCEPTIONDB_API_KEY&#34;))
+	req.Header.Set(&#34;Api-Secret&#34;, os.Getenv(&#34;INCEPTIONDB_API_SECRET&#34;))
+
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		panic(err)
+	}
+	defer resp.Body.Close()
+
+	responseBody, err := io.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(string(responseBody))
+}
+</code></pre></div><div class="http-request-panel" data-http-panel="php" role="tabpanel"><pre><code>&lt;?php
+$ch = curl_init();
+
+curl_setopt_array($ch, [
+    CURLOPT_URL =&gt; &#39;https://inceptiondb.hola.cloud/v1/databases/&#39; . getenv(&#39;INCEPTIONDB_DATABASE&#39;) . &#39;/collections/customers:dropCollection&#39;,
+    CURLOPT_RETURNTRANSFER =&gt; true,
+    CURLOPT_CUSTOMREQUEST =&gt; &#39;POST&#39;,
+    CURLOPT_HTTPHEADER =&gt; [
+        &#39;Api-Key: &#39; . getenv(&#39;INCEPTIONDB_API_KEY&#39;),
+        &#39;Api-Secret: &#39; . getenv(&#39;INCEPTIONDB_API_SECRET&#39;),
+    ],
+]);
+
+$response = curl_exec($ch);
+if ($response === false) {
+    throw new Exception(curl_error($ch));
+}
+curl_close($ch);
+
+echo $response;
+</code></pre></div><div class="http-request-panel" data-http-panel="python" role="tabpanel"><pre><code>import os
+import requests
+
+headers = {
+    &#34;Api-Key&#34;: os.environ[&#34;INCEPTIONDB_API_KEY&#34;],
+    &#34;Api-Secret&#34;: os.environ[&#34;INCEPTIONDB_API_SECRET&#34;],
+}
+
+response = requests.request(
+    &#34;POST&#34;,
+    &#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + os.environ[&#34;INCEPTIONDB_DATABASE&#34;] + &#34;/collections/customers:dropCollection&#34;,
+    headers=headers
+)
+
+print(response.text)
+</code></pre></div><div class="http-request-panel" data-http-panel="nodejs" role="tabpanel"><pre><code>const response = await fetch(&#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + process.env.INCEPTIONDB_DATABASE + &#34;/collections/customers:dropCollection&#34;, {
+  method: &#34;POST&#34;,
+  headers: {
+    &#34;Api-Key&#34;: process.env.INCEPTIONDB_API_KEY,
+    &#34;Api-Secret&#34;: process.env.INCEPTIONDB_API_SECRET
+  }
+});
+
+console.log(await response.text());
+</code></pre></div><div class="http-request-panel" data-http-panel="javascript" role="tabpanel"><pre><code>// Fill in your values. Never put an API secret in code that runs in a public web page.
+const INCEPTIONDB_DATABASE = &#34;your-inceptiondb-database&#34;;
+const INCEPTIONDB_API_KEY = &#34;your-inceptiondb-api-key&#34;;
+const INCEPTIONDB_API_SECRET = &#34;your-inceptiondb-api-secret&#34;;
+
+const response = await fetch(&#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + INCEPTIONDB_DATABASE + &#34;/collections/customers:dropCollection&#34;, {
+  method: &#34;POST&#34;,
+  headers: {
+    &#34;Api-Key&#34;: INCEPTIONDB_API_KEY,
+    &#34;Api-Secret&#34;: INCEPTIONDB_API_SECRET
+  }
+});
+
+const text = await response.text();
+console.log(text);
+</code></pre></div><div class="http-request-panel" data-http-panel="java" role="tabpanel"><pre><code>import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        var request = HttpRequest.newBuilder()
+            .uri(URI.create(&#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + System.getenv(&#34;INCEPTIONDB_DATABASE&#34;) + &#34;/collections/customers:dropCollection&#34;))
+            .method(&#34;POST&#34;, HttpRequest.BodyPublishers.noBody())
+            .header(&#34;Api-Key&#34;, System.getenv(&#34;INCEPTIONDB_API_KEY&#34;))
+            .header(&#34;Api-Secret&#34;, System.getenv(&#34;INCEPTIONDB_API_SECRET&#34;))
+            .build();
+
+        var response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
+    }
+}</code></pre></div></div>
+<p>The response is <code>204 No Content</code>.</p>
 
 
     <div id="comments-section">
@@ -786,13 +1313,22 @@ public class Main {
 </div>
 </div>
 <div class="index"><div class="index-h2">
-<a href="#Create%20a%20Collection">Create a Collection</a>
+<a href="#Create%20a%20collection">Create a collection</a>
 </div>
 <div class="index-h2">
-<a href="#List%20Collections">List Collections</a>
+<a href="#List%20the%20collections">List the collections</a>
 </div>
 <div class="index-h2">
-<a href="#Insert%20Documents">Insert Documents</a>
+<a href="#Get%20one%20collection">Get one collection</a>
+</div>
+<div class="index-h2">
+<a href="#Default%20values">Default values</a>
+</div>
+<div class="index-h2">
+<a href="#Size">Size</a>
+</div>
+<div class="index-h2">
+<a href="#Delete%20a%20collection">Delete a collection</a>
 </div>
 </div>
 </div>

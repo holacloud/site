@@ -39,19 +39,26 @@
             <h2>Inicio rápido</h2>
             <p>Empieza con InceptionDB en segundos usando la API.</p>
         </div>
-        <pre><code>curl -X POST https://inceptiondb.hola.cloud/v1/databases \
-  -H 'X-Glue-Authentication: {"user":{"id":"user-123"}}' \
-  -d '{"name": "mydb"}'
+        <pre><code># Tus credenciales, desde la consola (API keys & settings)
+export INCEPTIONDB_DATABASE="your-database-id"
+export INCEPTIONDB_API_KEY="your-api-key"
+export INCEPTIONDB_API_SECRET="your-api-secret"
 
 # Crea una colección
-curl -X POST https://inceptiondb.hola.cloud/v1/databases/database-123/collections \
-  -H 'Api-Key: $API_KEY' -H 'Api-Secret: $API_SECRET' \
+curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections" \
+  -H "Api-Key: $INCEPTIONDB_API_KEY" -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
   -d '{"name": "users"}'
 
-# Inserta un documento
-curl -X POST https://inceptiondb.hola.cloud/v1/databases/database-123/collections/users:insert \
-  -H 'Api-Key: $API_KEY' -H 'Api-Secret: $API_SECRET' \
-  -d '{"name": "Alice", "email": "alice@example.com"}'</code></pre>
+# Inserta documentos (un objeto JSON por línea)
+curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/users:insert" \
+  -H "Api-Key: $INCEPTIONDB_API_KEY" -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  --data-binary '{"name": "Alice", "email": "alice@example.com", "plan": "pro"}
+{"name": "Bob", "email": "bob@example.com", "plan": "free"}'
+
+# Consúltalos
+curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/users:find" \
+  -H "Api-Key: $INCEPTIONDB_API_KEY" -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -d '{"filter": {"plan": "pro"}, "limit": 10}'</code></pre>
     </section>
 
     <section class="section">

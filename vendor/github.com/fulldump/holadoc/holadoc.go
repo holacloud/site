@@ -10,6 +10,7 @@ import (
 	"net/url"
 	"os"
 	"path"
+	"regexp"
 	"slices"
 	"sort"
 	"strconv"
@@ -538,6 +539,94 @@ type httpHeader struct {
 	Value string
 }
 
+// envRef matches $NAME and ${NAME}: environment variables used in the URL or
+// the headers of a curl example. Each language reads them from its own
+// environment, so the generated code works without editing it.
+var envRef = regexp.MustCompile(`\$\{([A-Za-z_][A-Za-z0-9_]*)\}|\$([A-Za-z_][A-Za-z0-9_]*)`)
+
+type envPart struct {
+	text string
+	env  bool // text is the name of an environment variable
+}
+
+func splitEnv(s string) []envPart {
+	parts := []envPart{}
+	last := 0
+	for _, m := range envRef.FindAllStringSubmatchIndex(s, -1) {
+		if m[0] > last {
+			parts = append(parts, envPart{text: s[last:m[0]]})
+		}
+		name := ""
+		if m[2] >= 0 {
+			name = s[m[2]:m[3]]
+		} else {
+			name = s[m[4]:m[5]]
+		}
+		parts = append(parts, envPart{text: name, env: true})
+		last = m[1]
+	}
+	if last < len(s) || len(parts) == 0 {
+		parts = append(parts, envPart{text: s[last:]})
+	}
+	return parts
+}
+
+// envNames returns the environment variables used by the URL and headers.
+func envNames(req httpRequest) []string {
+	names := []string{}
+	add := func(s string) {
+		for _, p := range splitEnv(s) {
+			if p.env && !slices.Contains(names, p.text) {
+				names = append(names, p.text)
+			}
+		}
+	}
+	add(req.URL)
+	for _, h := range req.Headers {
+		add(h.Value)
+	}
+	return names
+}
+
+// envExpr writes s as an expression of a language: quoted literals joined to
+// the expressions that read its environment variables.
+func envExpr(s string, quote func(string) string, env func(string) string, join string) string {
+	out := []string{}
+	for _, p := range splitEnv(s) {
+		if p.env {
+			out = append(out, env(p.text))
+		} else {
+			out = append(out, quote(p.text))
+		}
+	}
+	return strings.Join(out, join)
+}
+
+func goExpr(s string) string {
+	return envExpr(s, strconv.Quote, func(n string) string { return "os.Getenv(" + strconv.Quote(n) + ")" }, " + ")
+}
+
+func phpExpr(s string) string {
+	return envExpr(s, phpQuote, func(n string) string { return "getenv(" + phpQuote(n) + ")" }, " . ")
+}
+
+func pythonExpr(s string) string {
+	return envExpr(s, strconv.Quote, func(n string) string { return "os.environ[" + strconv.Quote(n) + "]" }, " + ")
+}
+
+func nodeExpr(s string) string {
+	return envExpr(s, strconv.Quote, func(n string) string { return "process.env." + n }, " + ")
+}
+
+// Browsers have no environment: the variables become constants to fill in.
+func browserExpr(s string) string {
+	return envExpr(s, strconv.Quote, func(n string) string { return n }, " + ")
+}
+
+func javaExpr(s string) string {
+	return envExpr(s, strconv.Quote, func(n string) string { return "System.getenv(" + strconv.Quote(n) + ")" }, " + ")
+}
+
 func parseRequestBlock(code string) (httpRequest, bool) {
 	if req, ok := parseCurlRequest(code); ok {
 		return req, true
@@ -819,6 +908,9 @@ func renderGoRequest(req httpRequest) string {
 	b.WriteString("\t\"fmt\"\n")
 	b.WriteString("\t\"io\"\n")
 	b.WriteString("\t\"net/http\"\n")
+	if len(envNames(req)) > 0 {
+		b.WriteString("\t\"os\"\n")
+	}
 	if isJSON {
 		b.WriteString("\t\"encoding/json\"\n")
 	}
@@ -835,10 +927,10 @@ func renderGoRequest(req httpRequest) string {
 	} else if req.Body != "" {
 		b.WriteString("\tbody := " + strconv.Quote(req.Body) + "\n\n")
 	}
-	b.WriteString("\treq, err := http.NewRequest(" + strconv.Quote(req.Method) + ", " + strconv.Quote(req.URL) + ", " + body + ")\n")
+	b.WriteString("\treq, err := http.NewRequest(" + strconv.Quote(req.Method) + ", " + goExpr(req.URL) + ", " + body + ")\n")
 	b.WriteString("\tif err != nil {\n\t\tpanic(err)\n\t}\n")
 	for _, header := range req.Headers {
-		b.WriteString("\treq.Header.Set(" + strconv.Quote(header.Name) + ", " + strconv.Quote(header.Value) + ")\n")
+		b.WriteString("\treq.Header.Set(" + strconv.Quote(header.Name) + ", " + goExpr(header.Value) + ")\n")
 	}
 	b.WriteString("\n\tresp, err := http.DefaultClient.Do(req)\n")
 	b.WriteString("\tif err != nil {\n\t\tpanic(err)\n\t}\n")
@@ -862,7 +954,7 @@ func renderPHPRequest(req httpRequest) string {
 	}
 	b.WriteString("$ch = curl_init();\n\n")
 	b.WriteString("curl_setopt_array($ch, [\n")
-	b.WriteString("    CURLOPT_URL => " + phpQuote(req.URL) + ",\n")
+	b.WriteString("    CURLOPT_URL => " + phpExpr(req.URL) + ",\n")
 	b.WriteString("    CURLOPT_RETURNTRANSFER => true,\n")
 	b.WriteString("    CURLOPT_CUSTOMREQUEST => " + phpQuote(req.Method) + ",\n")
 	if req.Body != "" {
@@ -871,7 +963,7 @@ func renderPHPRequest(req httpRequest) string {
 	if len(req.Headers) > 0 {
 		b.WriteString("    CURLOPT_HTTPHEADER => [\n")
 		for _, header := range req.Headers {
-			b.WriteString("        " + phpQuote(header.Name+": "+header.Value) + ",\n")
+			b.WriteString("        " + phpExpr(header.Name+": "+header.Value) + ",\n")
 		}
 		b.WriteString("    ],\n")
 	}
@@ -885,6 +977,9 @@ func renderPHPRequest(req httpRequest) string {
 func renderPythonRequest(req httpRequest) string {
 	jsonBody, isJSON := parseJSONBody(req.Body)
 	var b strings.Builder
+	if len(envNames(req)) > 0 {
+		b.WriteString("import os\n")
+	}
 	b.WriteString("import requests\n\n")
 	if isJSON {
 		b.WriteString("import json\n\n")
@@ -892,7 +987,7 @@ func renderPythonRequest(req httpRequest) string {
 	if len(req.Headers) > 0 {
 		b.WriteString("headers = {\n")
 		for _, header := range req.Headers {
-			b.WriteString("    " + strconv.Quote(header.Name) + ": " + strconv.Quote(header.Value) + ",\n")
+			b.WriteString("    " + strconv.Quote(header.Name) + ": " + pythonExpr(header.Value) + ",\n")
 		}
 		b.WriteString("}\n\n")
 	}
@@ -904,7 +999,7 @@ func renderPythonRequest(req httpRequest) string {
 	}
 	b.WriteString("response = requests.request(\n")
 	b.WriteString("    " + strconv.Quote(req.Method) + ",\n")
-	b.WriteString("    " + strconv.Quote(req.URL))
+	b.WriteString("    " + pythonExpr(req.URL))
 	if len(req.Headers) > 0 {
 		b.WriteString(",\n    headers=headers")
 	}
@@ -926,13 +1021,24 @@ func renderJavaScriptRequest(req httpRequest) string {
 
 func renderFetchRequest(req httpRequest, node bool) string {
 	jsonBody, isJSON := parseJSONBody(req.Body)
+	expr := browserExpr
+	if node {
+		expr = nodeExpr
+	}
 	var b strings.Builder
+	if names := envNames(req); len(names) > 0 && !node {
+		b.WriteString("// Fill in your values. Never put an API secret in code that runs in a public web page.\n")
+		for _, n := range names {
+			b.WriteString("const " + n + " = " + strconv.Quote("your-"+strings.ToLower(strings.ReplaceAll(n, "_", "-"))) + ";\n")
+		}
+		b.WriteString("\n")
+	}
 	if isJSON {
 		b.WriteString("const payload = " + javascriptValue(jsonBody, 0) + ";\n\n")
 	} else if req.Body != "" {
 		b.WriteString("const body = " + strconv.Quote(req.Body) + ";\n\n")
 	}
-	b.WriteString("const response = await fetch(" + strconv.Quote(req.URL) + ", {\n")
+	b.WriteString("const response = await fetch(" + expr(req.URL) + ", {\n")
 	b.WriteString("  method: " + strconv.Quote(req.Method))
 	if len(req.Headers) > 0 || req.Body != "" {
 		b.WriteString(",")
@@ -945,7 +1051,7 @@ func renderFetchRequest(req httpRequest, node bool) string {
 			if i == len(req.Headers)-1 {
 				comma = ""
 			}
-			b.WriteString("    " + strconv.Quote(header.Name) + ": " + strconv.Quote(header.Value) + comma + "\n")
+			b.WriteString("    " + strconv.Quote(header.Name) + ": " + expr(header.Value) + comma + "\n")
 		}
 		b.WriteString("  }")
 		if req.Body != "" {
@@ -994,10 +1100,10 @@ func renderJavaRequest(req httpRequest) string {
 		bodyPublisher = "HttpRequest.BodyPublishers.ofString(body)"
 	}
 	b.WriteString("        var request = HttpRequest.newBuilder()\n")
-	b.WriteString("            .uri(URI.create(" + strconv.Quote(req.URL) + "))\n")
+	b.WriteString("            .uri(URI.create(" + javaExpr(req.URL) + "))\n")
 	b.WriteString("            .method(" + strconv.Quote(req.Method) + ", " + bodyPublisher + ")\n")
 	for _, header := range req.Headers {
-		b.WriteString("            .header(" + strconv.Quote(header.Name) + ", " + strconv.Quote(header.Value) + ")\n")
+		b.WriteString("            .header(" + strconv.Quote(header.Name) + ", " + javaExpr(header.Value) + ")\n")
 	}
 	b.WriteString("            .build();\n\n")
 	b.WriteString("        var response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());\n")

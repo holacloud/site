@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-    <title>InceptionDB API 参考</title>
+    <title>API 参考</title>
     <meta name="description" content="inceptiondb">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="canonical" href="https://hola.cloud/zh/docs/inceptiondb/v2/api-reference/">
@@ -100,31 +100,31 @@
 <div class="tree">
 
 
-    <div class="item active"><a href="/zh/docs/inceptiondb/index.html">Inceptiondb</a></div>
+    <div class="item active"><a href="/zh/docs/inceptiondb/index.html">InceptionDB</a></div>
 <div class="children">
-<div class="item"><a href="/zh/docs/inceptiondb/v2/getting-started/index.html">InceptionDB 快速开始</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v2/managing-collections/index.html">管理集合</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/getting-started/index.html">快速开始</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/managing-collections/index.html">集合</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v2/working-with-data/index.html">处理数据</a></div>
-<div class="item active selected"><a href="/zh/docs/inceptiondb/v2/api-reference/index.html">InceptionDB API 参考</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/querying/index.html">查询</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/indexes/index.html">索引</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-keys/index.html">API key</a></div>
+<div class="item active selected"><a href="/zh/docs/inceptiondb/v2/api-reference/index.html">API 参考</a></div>
 <div class="children">
 <div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/create-collection/index.html">创建集合</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/create-database/index.html">创建数据库</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/document-operations/index.html">文档操作</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/drop-database/index.html">删除数据库</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/get-database/index.html">获取数据库</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/list-collections/index.html">列出集合</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/list-databases/index.html">列出数据库</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/update-database/index.html">更新数据库</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/access-management/index.html">访问管理</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/update-database/index.html">重命名数据库</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/access-management/index.html">API key 与所有者</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/collection-management/index.html">集合管理</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/index-management/index.html">索引管理</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/service-metadata/index.html">服务元数据</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/insert-documents/index.html">插入文档</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/find-documents/index.html">查询文档</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/patch-documents/index.html">修改文档</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/find-documents/index.html">查找文档</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/patch-documents/index.html">更新文档</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/remove-documents/index.html">删除文档</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/get-document/index.html">获取文档</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/streaming-inserts/index.html">流式插入</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/get-document/index.html">按 id 获取文档</a></div>
 </div>
 </div>
 <div class="item"><a href="/zh/docs/lambda/index.html">Lambda</a></div>
@@ -330,210 +330,230 @@
 <div class="content">
     
     <div class="document">
-    <h1>InceptionDB API 参考</h1>
-<p>Base URL: <code>https://api.hola.cloud</code></p>
+    <h1>API 参考</h1>
+<p>基础 URL：<code>https://inceptiondb.hola.cloud</code></p>
 <h2 id="%E8%AE%A4%E8%AF%81">认证</h2>
-<p><code>GET /v1/databases</code> 和 <code>POST /v1/databases</code> management 端点使用 <code>X-Glue-Authentication</code>。</p>
-<p>数据库访问端点使用 <code>Api-Key</code> 和 <code>Api-Secret</code>。当数据库 owner 被允许时，也可以使用 Glue owner token。</p>
+<table>
+<thead>
+<tr>
+<th>端点</th>
+<th>凭据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据：<code>/v1/databases/{databaseId}/collections</code> 下的所有端点</td>
+<td>该数据库某个 <a href="/zh/docs/inceptiondb/v2/api-keys/">API key</a> 的 <code>Api-Key</code> 和 <code>Api-Secret</code> 请求头。</td>
+</tr>
+<tr>
+<td>账户：数据库、API key 和所有者</td>
+<td>已登录 hola.cloud 用户的会话。请在 <a href="https://inceptiondb.hola.cloud/">控制台</a> 中使用。</td>
+</tr>
+</tbody>
+</table>
+<p>示例从环境变量读取凭据：</p>
+<pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span><span style="color:#b58900">export</span> <span style="color:#268bd2">INCEPTIONDB_DATABASE</span><span style="color:#719e07">=</span><span style="color:#2aa198">&#34;your-database-id&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#b58900">export</span> <span style="color:#268bd2">INCEPTIONDB_API_KEY</span><span style="color:#719e07">=</span><span style="color:#2aa198">&#34;your-api-key&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#b58900">export</span> <span style="color:#268bd2">INCEPTIONDB_API_SECRET</span><span style="color:#719e07">=</span><span style="color:#2aa198">&#34;your-api-secret&#34;</span>
+</span></span></code></pre>
+<h2 id="%E6%A0%BC%E5%BC%8F">格式</h2>
+<ul>
+<li>请求发送 JSON。插入发送 <strong>JSON Lines</strong>：每行一个 JSON 对象。</li>
+<li><code>:find</code>、<code>:insert</code>、<code>:patch</code> 和 <code>:remove</code> 返回 <strong>JSON Lines</strong>，每行一个文档。其他端点返回 JSON。</li>
+<li>没有匹配的查询返回 <code>204 No Content</code>，响应体为空。</li>
+<li>错误返回 JSON 对象：<code>{&#34;error&#34;: {&#34;message&#34;: &#34;...&#34;, &#34;description&#34;: &#34;...&#34;}}</code>。</li>
+</ul>
 <h2 id="%E7%AB%AF%E7%82%B9">端点</h2>
+<h3 id="%E6%95%B0%E6%8D%AE">数据</h3>
 <table>
 <thead>
 <tr>
 <th>方法</th>
 <th>路径</th>
-<th>描述</th>
+<th>作用</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>GET</td>
-<td><code>/v1/databases</code></td>
-<td>列出数据库</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/databases</code></td>
-<td>创建数据库</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/v1/databases/{databaseId}</code></td>
-<td>根据 ID 获取数据库</td>
-</tr>
-<tr>
-<td>DELETE</td>
-<td><code>/v1/databases/{databaseId}</code></td>
-<td>删除数据库</td>
-</tr>
-<tr>
-<td>PATCH</td>
-<td><code>/v1/databases/{databaseId}</code></td>
-<td>更新数据库</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/databases/{databaseId}:createApiKey</code></td>
-<td>创建数据库 API key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/databases/{databaseId}:deleteApiKey</code></td>
-<td>删除数据库 API key</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/databases/{databaseId}:addOwner</code></td>
-<td>添加数据库 owner</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/databases/{databaseId}:deleteOwner</code></td>
-<td>删除数据库 owner</td>
-</tr>
-<tr>
-<td>GET</td>
 <td><code>/v1/databases/{databaseId}/collections</code></td>
-<td>列出数据库中的集合</td>
+<td><a href="/zh/docs/inceptiondb/v2/api-reference/list-collections/">列出集合</a></td>
 </tr>
 <tr>
 <td>POST</td>
 <td><code>/v1/databases/{databaseId}/collections</code></td>
-<td>创建集合</td>
+<td><a href="/zh/docs/inceptiondb/v2/api-reference/create-collection/">创建集合</a></td>
 </tr>
 <tr>
 <td>GET</td>
 <td><code>/v1/databases/{databaseId}/collections/{collection}</code></td>
-<td>获取集合</td>
+<td><a href="/zh/docs/inceptiondb/v2/api-reference/collection-management/">获取集合</a></td>
 </tr>
 <tr>
 <td>POST</td>
-<td><code>/v1/databases/{databaseId}/collections/{collection}:dropCollection</code></td>
-<td>删除集合</td>
+<td><code>…/collections/{collection}:setDefaults</code></td>
+<td><a href="/zh/docs/inceptiondb/v2/api-reference/collection-management/">设置默认值</a></td>
 </tr>
 <tr>
 <td>POST</td>
-<td><code>/v1/databases/{databaseId}/collections/{collection}:setDefaults</code></td>
-<td>设置集合默认值</td>
+<td><code>…/collections/{collection}:size</code></td>
+<td><a href="/zh/docs/inceptiondb/v2/api-reference/collection-management/">内存与磁盘大小</a></td>
 </tr>
 <tr>
 <td>POST</td>
-<td><code>/v1/databases/{databaseId}/collections/{collection}:size</code></td>
-<td>获取集合大小指标</td>
+<td><code>…/collections/{collection}:dropCollection</code></td>
+<td><a href="/zh/docs/inceptiondb/v2/api-reference/collection-management/">删除集合</a></td>
 </tr>
 <tr>
 <td>POST</td>
-<td><code>/v1/databases/{databaseId}/collections/{collection}:insert</code></td>
-<td>插入文档</td>
+<td><code>…/collections/{collection}:insert</code></td>
+<td><a href="/zh/docs/inceptiondb/v2/api-reference/insert-documents/">插入文档</a></td>
 </tr>
 <tr>
 <td>POST</td>
-<td><code>/v1/databases/{databaseId}/collections/{collection}:insertStream</code></td>
-<td>从流插入文档</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/databases/{databaseId}/collections/{collection}:insertFullduplex</code></td>
-<td>通过 full-duplex 流插入文档</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/databases/{databaseId}/collections/{collection}:find</code></td>
-<td>查询文档</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/databases/{databaseId}/collections/{collection}:patch</code></td>
-<td>修改文档</td>
-</tr>
-<tr>
-<td>POST</td>
-<td><code>/v1/databases/{databaseId}/collections/{collection}:remove</code></td>
-<td>删除文档</td>
+<td><code>…/collections/{collection}:find</code></td>
+<td><a href="/zh/docs/inceptiondb/v2/api-reference/find-documents/">查找文档</a></td>
 </tr>
 <tr>
 <td>GET</td>
-<td><code>/v1/databases/{databaseId}/collections/{collection}/documents/{documentId}</code></td>
-<td>根据 ID 获取文档</td>
+<td><code>…/collections/{collection}/documents/{id}</code></td>
+<td><a href="/zh/docs/inceptiondb/v2/api-reference/get-document/">按 id 获取文档</a></td>
 </tr>
 <tr>
 <td>POST</td>
-<td><code>/v1/databases/{databaseId}/collections/{collection}:listIndexes</code></td>
-<td>列出集合索引</td>
+<td><code>…/collections/{collection}:patch</code></td>
+<td><a href="/zh/docs/inceptiondb/v2/api-reference/patch-documents/">更新文档</a></td>
 </tr>
 <tr>
 <td>POST</td>
-<td><code>/v1/databases/{databaseId}/collections/{collection}:createIndex</code></td>
-<td>创建集合索引</td>
+<td><code>…/collections/{collection}:remove</code></td>
+<td><a href="/zh/docs/inceptiondb/v2/api-reference/remove-documents/">删除文档</a></td>
 </tr>
 <tr>
 <td>POST</td>
-<td><code>/v1/databases/{databaseId}/collections/{collection}:getIndex</code></td>
-<td>获取集合索引</td>
+<td><code>…/collections/{collection}:createIndex</code></td>
+<td><a href="/zh/docs/inceptiondb/v2/api-reference/index-management/">创建索引</a></td>
 </tr>
 <tr>
 <td>POST</td>
-<td><code>/v1/databases/{databaseId}/collections/{collection}:dropIndex</code></td>
-<td>删除集合索引</td>
+<td><code>…/collections/{collection}:listIndexes</code></td>
+<td><a href="/zh/docs/inceptiondb/v2/api-reference/index-management/">列出索引</a></td>
 </tr>
 <tr>
-<td>GET</td>
-<td><code>/doc</code></td>
-<td>获取服务路由树</td>
+<td>POST</td>
+<td><code>…/collections/{collection}:getIndex</code></td>
+<td><a href="/zh/docs/inceptiondb/v2/api-reference/index-management/">获取索引</a></td>
 </tr>
 <tr>
-<td>GET</td>
-<td><code>/v1</code></td>
-<td>获取 v1 欢迎响应</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/release</code></td>
-<td>获取服务 release 元数据</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/openapi.json</code></td>
-<td>获取 OpenAPI 文档</td>
-</tr>
-<tr>
-<td>GET</td>
-<td><code>/v1/debug/dbs</code></td>
-<td>Debug 数据库列表</td>
+<td>POST</td>
+<td><code>…/collections/{collection}:dropIndex</code></td>
+<td><a href="/zh/docs/inceptiondb/v2/api-reference/index-management/">删除索引</a></td>
 </tr>
 </tbody>
 </table>
-<h2 id="%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%E7%A0%81">常见错误码</h2>
+<p><code>…</code> 表示 <code>/v1/databases/{databaseId}</code>。</p>
+<h3 id="%E8%B4%A6%E6%88%B7">账户</h3>
 <table>
 <thead>
 <tr>
-<th>代码</th>
-<th>描述</th>
+<th>方法</th>
+<th>路径</th>
+<th>作用</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>400</td>
-<td>请求错误：语法或参数无效</td>
+<td>GET</td>
+<td><code>/v1/databases</code></td>
+<td><a href="/zh/docs/inceptiondb/v2/api-reference/list-databases/">列出你的数据库</a></td>
 </tr>
 <tr>
-<td>401</td>
-<td>未授权：缺少或无效凭据</td>
+<td>POST</td>
+<td><code>/v1/databases</code></td>
+<td><a href="/zh/docs/inceptiondb/v2/api-reference/create-database/">创建数据库</a></td>
 </tr>
 <tr>
-<td>403</td>
-<td>禁止访问：凭据无权访问资源</td>
+<td>GET</td>
+<td><code>/v1/databases/{databaseId}</code></td>
+<td><a href="/zh/docs/inceptiondb/v2/api-reference/get-database/">获取数据库</a></td>
 </tr>
 <tr>
-<td>404</td>
-<td>未找到：请求的资源不存在</td>
+<td>PATCH</td>
+<td><code>/v1/databases/{databaseId}</code></td>
+<td><a href="/zh/docs/inceptiondb/v2/api-reference/update-database/">重命名数据库</a></td>
 </tr>
 <tr>
-<td>409</td>
-<td>冲突：资源已存在</td>
+<td>DELETE</td>
+<td><code>/v1/databases/{databaseId}</code></td>
+<td><a href="/zh/docs/inceptiondb/v2/api-reference/drop-database/">删除数据库</a></td>
 </tr>
 <tr>
-<td>500</td>
-<td>服务器内部错误</td>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}:createApiKey</code></td>
+<td><a href="/zh/docs/inceptiondb/v2/api-reference/access-management/">创建 API key</a></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}:deleteApiKey</code></td>
+<td><a href="/zh/docs/inceptiondb/v2/api-reference/access-management/">撤销 API key</a></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}:addOwner</code></td>
+<td><a href="/zh/docs/inceptiondb/v2/api-reference/access-management/">添加所有者</a></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/v1/databases/{databaseId}:deleteOwner</code></td>
+<td><a href="/zh/docs/inceptiondb/v2/api-reference/access-management/">移除所有者</a></td>
+</tr>
+</tbody>
+</table>
+<p>整个 API 的 OpenAPI 描述位于 <a href="https://inceptiondb.hola.cloud/openapi.json"><code>/openapi.json</code></a>。</p>
+<h2 id="%E7%8A%B6%E6%80%81%E7%A0%81">状态码</h2>
+<table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>何时</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200 OK</td>
+<td>请求成功并有响应体。</td>
+</tr>
+<tr>
+<td>201 Created</td>
+<td>创建了集合、文档或索引。</td>
+</tr>
+<tr>
+<td>204 No Content</td>
+<td>请求成功但没有内容返回：没有匹配的文档，或是删除操作。</td>
+</tr>
+<tr>
+<td>400 Bad Request</td>
+<td>JSON 无效、文档不是 JSON 对象，或字段名重复。</td>
+</tr>
+<tr>
+<td>401 Unauthorized</td>
+<td>未登录就调用了账户端点。</td>
+</tr>
+<tr>
+<td>403 Forbidden</td>
+<td>API key 或 secret 错误，或无权访问该数据库。</td>
+</tr>
+<tr>
+<td>404 Not Found</td>
+<td>文档不存在。</td>
+</tr>
+<tr>
+<td>409 Conflict</td>
+<td>唯一索引中已存在该值。</td>
+</tr>
+<tr>
+<td>500 Internal Server Error</td>
+<td>集合不存在，或创建时已存在，也会返回此状态。</td>
 </tr>
 </tbody>
 </table>
@@ -563,10 +583,19 @@
 <a href="#%E8%AE%A4%E8%AF%81">认证</a>
 </div>
 <div class="index-h2">
-<a href="#%E7%AB%AF%E7%82%B9">端点</a>
+<a href="#%E6%A0%BC%E5%BC%8F">格式</a>
 </div>
 <div class="index-h2">
-<a href="#%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%E7%A0%81">常见错误码</a>
+<a href="#%E7%AB%AF%E7%82%B9">端点</a>
+</div>
+<div class="index-h3">
+<a href="#%E6%95%B0%E6%8D%AE">数据</a>
+</div>
+<div class="index-h3">
+<a href="#%E8%B4%A6%E6%88%B7">账户</a>
+</div>
+<div class="index-h2">
+<a href="#%E7%8A%B6%E6%80%81%E7%A0%81">状态码</a>
 </div>
 </div>
 </div>

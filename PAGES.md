@@ -19,7 +19,7 @@ Status columns:
 
 | Service | Source | Audited | Fixed EN | Synced ES/ZH | Notes |
 |---|---|---:|---:|---:|---|
-| InceptionDB | `src/50_inceptiondb/inceptiondb_en.html` | yes | yes | yes | Corrected to JSON documents, collections, action endpoints, and real auth split. |
+| InceptionDB | `src/50_inceptiondb/inceptiondb_en.html` | yes | yes | yes | Quick start rewritten (2026-10-28): base URL inceptiondb.hola.cloud and credentials from environment variables, verified against the API. |
 | InceptionDB Introduction | `src/50_inceptiondb/10_introduction/introduction_en.html` | yes | yes | n/a | Added basic implementation-backed introduction. |
 | Lambda | `src/51_lambda/lambda_en.html` | yes | yes | yes | Corrected to JavaScript/static assets and real `/api/v0/lambdas` model. |
 | Files | `src/52_files/files_en.html` | yes | yes | yes | Corrected to buckets/files REST model and real auth/header shape. |
@@ -37,7 +37,7 @@ Status columns:
 
 | Service | Source Group | Audited | Fixed EN | Synced ES/ZH | Notes |
 |---|---|---:|---:|---:|---|
-| InceptionDB | `src/30_docs/10_inceptiondb/**/*_en.md` | yes | yes | yes | Corrected auth split, action endpoints, DB/collection response shapes, and removed invented capabilities. |
+| InceptionDB | `src/30_docs/10_inceptiondb/**/*_en.md` | yes | yes | yes | Rewritten 2026-10-28: base URL https://inceptiondb.hola.cloud (api.hola.cloud does not answer), examples read INCEPTIONDB_DATABASE/API_KEY/API_SECRET, new Querying, Indexes and API keys guides, removed insertStream/insertFullduplex and internal endpoints. Every curl was run against the API and its documented response compared; ES/ZH share the same code blocks. |
 | Lambda | `src/30_docs/20_lambda/**/*_en.md` | yes | yes | yes | Corrected auth, language/model fields, run/mux methods, and removed unsupported runtime/env/status claims. |
 | Files | `src/30_docs/30_files/**/*_en.md` | yes | yes | yes | Corrected REST model, auth, bucket/file schemas, and removed S3/SLA/versioning/range claims. |
 | Config | `src/30_docs/40_config/**/*_en.md` | yes | yes | yes | Corrected v0 Thing and v1 user config models; removed hierarchy/versioning/rollback claims. |

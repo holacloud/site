@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-    <title>Inceptiondb</title>
+    <title>InceptionDB</title>
     <meta name="description" content="inceptiondb">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="canonical" href="https://hola.cloud/zh/docs/inceptiondb/">
@@ -100,31 +100,31 @@
 <div class="tree">
 
 
-    <div class="item active selected"><a href="/zh/docs/inceptiondb/index.html">Inceptiondb</a></div>
+    <div class="item active selected"><a href="/zh/docs/inceptiondb/index.html">InceptionDB</a></div>
 <div class="children">
-<div class="item"><a href="/zh/docs/inceptiondb/v2/getting-started/index.html">InceptionDB 快速开始</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v2/managing-collections/index.html">管理集合</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/getting-started/index.html">快速开始</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/managing-collections/index.html">集合</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v2/working-with-data/index.html">处理数据</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/index.html">InceptionDB API 参考</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/querying/index.html">查询</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/indexes/index.html">索引</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-keys/index.html">API key</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/index.html">API 参考</a></div>
 <div class="children">
 <div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/create-collection/index.html">创建集合</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/create-database/index.html">创建数据库</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/document-operations/index.html">文档操作</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/drop-database/index.html">删除数据库</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/get-database/index.html">获取数据库</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/list-collections/index.html">列出集合</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/list-databases/index.html">列出数据库</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/update-database/index.html">更新数据库</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/access-management/index.html">访问管理</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/update-database/index.html">重命名数据库</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/access-management/index.html">API key 与所有者</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/collection-management/index.html">集合管理</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/index-management/index.html">索引管理</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/service-metadata/index.html">服务元数据</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/insert-documents/index.html">插入文档</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/find-documents/index.html">查询文档</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/patch-documents/index.html">修改文档</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/find-documents/index.html">查找文档</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/patch-documents/index.html">更新文档</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/remove-documents/index.html">删除文档</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/get-document/index.html">获取文档</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/streaming-inserts/index.html">流式插入</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v2/api-reference/get-document/index.html">按 id 获取文档</a></div>
 </div>
 </div>
 <div class="item"><a href="/zh/docs/lambda/index.html">Lambda</a></div>
@@ -328,29 +328,63 @@
 
 </div>
 <div class="content">
-    <div class="breadcrumb"><a class="item" href="/zh/docs/index.html">文档</a><span class="arrow">→</span><a class="item selected" href="/zh/docs/inceptiondb/index.html">Inceptiondb</a></div>
+    <div class="breadcrumb"><a class="item" href="/zh/docs/index.html">文档</a><span class="arrow">→</span><a class="item selected" href="/zh/docs/inceptiondb/index.html">InceptionDB</a></div>
     <div class="document">
-    <h1>Inceptiondb</h1>
-<p>InceptionDB 是 Hola.Cloud 生态中的 NoSQL 数据库服务。它在命名集合中存储 JSON 文档，并通过 HTTP 端点管理数据库、集合和文档操作。</p>
-<h2 id="%E4%B8%BB%E8%A6%81%E4%BC%98%E5%8A%BF">主要优势</h2>
-<h3 id="%E5%8F%AF%E6%89%A9%E5%B1%95%E6%80%A7">可扩展性</h3>
-<p>InceptionDB 面向需要通过简单 HTTP API 存储和读取 JSON 数据的应用。</p>
-<h3 id="%E7%81%B5%E6%B4%BB%E6%80%A7">灵活性</h3>
-<p>集合可以存储不同结构的文档，应用可以在没有固定关系型 schema 的情况下演进数据模型。</p>
-<h3 id="%E9%AB%98%E6%80%A7%E8%83%BD">高性能</h3>
-<p>集合索引和基于 action 的文档端点帮助高效查询和修改文档。</p>
-<h3 id="%E6%98%93%E4%BA%8E%E9%9B%86%E6%88%90">易于集成</h3>
-<p>InceptionDB 使用标准 HTTP 请求，并可与 Hola.Cloud 服务集成，适合服务端应用、脚本和后台服务调用。</p>
-<h2 id="%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF">使用场景</h2>
-<h3 id="%E5%BA%94%E7%94%A8%E6%95%B0%E6%8D%AE">应用数据</h3>
-<p>存储用户资料、设置、目录项、事件和其他灵活结构的 JSON 文档。</p>
-<h3 id="%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F">内容管理系统</h3>
-<p>存储和读取页面、条目、媒体元数据和动态内容记录。</p>
-<h3 id="%E7%89%A9%E8%81%94%E7%BD%91">物联网</h3>
-<p>存储设备事件和遥测文档，支持不同设备类型或固件版本的字段差异。</p>
-<h3 id="%E7%94%B5%E5%AD%90%E5%95%86%E5%8A%A1">电子商务</h3>
-<p>管理商品目录、客户、购物车和订单相关文档。</p>
-<p>InceptionDB 为需要 JSON 集合、HTTP 访问和直接数据操作的现代应用提供文档存储能力。</p>
+    <h1>InceptionDB</h1>
+<p>InceptionDB 是一个通过 HTTP 使用的 JSON 文档数据库。无需安装驱动，也无需定义模式：发送 JSON，返回 JSON，任何能发起 HTTP 请求的语言都能使用。</p>
+<h2 id="%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">基本概念</h2>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>数据库</strong></td>
+<td>你的空间。包含集合，并拥有自己的 API key。在<a href="https://inceptiondb.hola.cloud/">控制台</a>中创建。</td>
+</tr>
+<tr>
+<td><strong>集合</strong></td>
+<td>一组有名称的文档，例如 <code>customers</code> 或 <code>orders</code>。同一集合中的文档可以有不同的字段。</td>
+</tr>
+<tr>
+<td><strong>文档</strong></td>
+<td>一个 JSON 对象。每个文档都有 <code>id</code>；如果你不提供，InceptionDB 会自动生成。</td>
+</tr>
+<tr>
+<td><strong>索引</strong></td>
+<td>可选。让按字段查找和范围查询更快，并可保证值唯一。</td>
+</tr>
+<tr>
+<td><strong>API key</strong></td>
+<td>一个密钥和一个 secret，应用通过 <code>Api-Key</code> 和 <code>Api-Secret</code> 请求头发送，以访问某个数据库的数据。</td>
+</tr>
+</tbody>
+</table>
+<p>所有请求都发往 <code>https://inceptiondb.hola.cloud</code>，示例从三个环境变量读取你的凭据，因此可以直接复制粘贴：</p>
+<pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span><span style="color:#b58900">export</span> <span style="color:#268bd2">INCEPTIONDB_DATABASE</span><span style="color:#719e07">=</span><span style="color:#2aa198">&#34;your-database-id&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span><span style="color:#b58900">export</span> <span style="color:#268bd2">INCEPTIONDB_API_KEY</span><span style="color:#719e07">=</span><span style="color:#2aa198">&#34;your-api-key&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L3"><a style="outline: none; text-decoration:none; color:inherit" href="#L3">3</a></span><span><span style="color:#b58900">export</span> <span style="color:#268bd2">INCEPTIONDB_API_SECRET</span><span style="color:#719e07">=</span><span style="color:#2aa198">&#34;your-api-secret&#34;</span>
+</span></span></code></pre>
+<h2 id="%E4%BB%8E%E5%93%AA%E9%87%8C%E5%BC%80%E5%A7%8B">从哪里开始</h2>
+<ul>
+<li><strong><a href="/zh/docs/inceptiondb/v2/getting-started/">快速开始</a></strong>：五分钟内完成第一次查询。</li>
+<li><strong><a href="/zh/docs/inceptiondb/v2/managing-collections/">集合</a></strong>：创建集合、设置默认值、查看大小。</li>
+<li><strong><a href="/zh/docs/inceptiondb/v2/working-with-data/">处理数据</a></strong>：插入、读取、更新和删除文档。</li>
+<li><strong><a href="/zh/docs/inceptiondb/v2/querying/">查询</a></strong>：过滤器、运算符、嵌套字段、数组和分页。</li>
+<li><strong><a href="/zh/docs/inceptiondb/v2/indexes/">索引</a></strong>：让查询更快并保证值唯一。</li>
+<li><strong><a href="/zh/docs/inceptiondb/v2/api-keys/">API key</a></strong>：创建数据库和密钥，并保证其安全。</li>
+<li><strong><a href="/zh/docs/inceptiondb/v2/api-reference/">API 参考</a></strong>：每个端点的请求和响应。</li>
+</ul>
+<h2 id="%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF">适用场景</h2>
+<ul>
+<li><strong>应用数据</strong>：用户、设置、购物车和订单，任何结构会随时间变化的 JSON。</li>
+<li><strong>内容</strong>：文章、页面和字段因条目而异的产品目录。</li>
+<li><strong>事件与遥测</strong>：高速写入的设备读数和产品分析数据。</li>
+<li><strong>原型</strong>：几分钟内开始存储数据，等查询清晰后再添加索引。</li>
+</ul>
 
 
     <div id="comments-section">
@@ -374,34 +408,13 @@
 </div>
 </div>
 <div class="index"><div class="index-h2">
-<a href="#%E4%B8%BB%E8%A6%81%E4%BC%98%E5%8A%BF">主要优势</a>
-</div>
-<div class="index-h3">
-<a href="#%E5%8F%AF%E6%89%A9%E5%B1%95%E6%80%A7">可扩展性</a>
-</div>
-<div class="index-h3">
-<a href="#%E7%81%B5%E6%B4%BB%E6%80%A7">灵活性</a>
-</div>
-<div class="index-h3">
-<a href="#%E9%AB%98%E6%80%A7%E8%83%BD">高性能</a>
-</div>
-<div class="index-h3">
-<a href="#%E6%98%93%E4%BA%8E%E9%9B%86%E6%88%90">易于集成</a>
+<a href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">基本概念</a>
 </div>
 <div class="index-h2">
-<a href="#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF">使用场景</a>
+<a href="#%E4%BB%8E%E5%93%AA%E9%87%8C%E5%BC%80%E5%A7%8B">从哪里开始</a>
 </div>
-<div class="index-h3">
-<a href="#%E5%BA%94%E7%94%A8%E6%95%B0%E6%8D%AE">应用数据</a>
-</div>
-<div class="index-h3">
-<a href="#%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F">内容管理系统</a>
-</div>
-<div class="index-h3">
-<a href="#%E7%89%A9%E8%81%94%E7%BD%91">物联网</a>
-</div>
-<div class="index-h3">
-<a href="#%E7%94%B5%E5%AD%90%E5%95%86%E5%8A%A1">电子商务</a>
+<div class="index-h2">
+<a href="#%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF">适用场景</a>
 </div>
 </div>
 </div>

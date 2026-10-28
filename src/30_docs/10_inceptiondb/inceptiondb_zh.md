@@ -1,41 +1,38 @@
-# Inceptiondb
+# InceptionDB
 
-InceptionDB 是 Hola.Cloud 生态中的 NoSQL 数据库服务。它在命名集合中存储 JSON 文档，并通过 HTTP 端点管理数据库、集合和文档操作。
+InceptionDB 是一个通过 HTTP 使用的 JSON 文档数据库。无需安装驱动，也无需定义模式：发送 JSON，返回 JSON，任何能发起 HTTP 请求的语言都能使用。
 
-## 主要优势
+## 基本概念
 
-### 可扩展性
+| 概念 | 说明 |
+|---|---|
+| **数据库** | 你的空间。包含集合，并拥有自己的 API key。在[控制台](https://inceptiondb.hola.cloud/)中创建。 |
+| **集合** | 一组有名称的文档，例如 `customers` 或 `orders`。同一集合中的文档可以有不同的字段。 |
+| **文档** | 一个 JSON 对象。每个文档都有 `id`；如果你不提供，InceptionDB 会自动生成。 |
+| **索引** | 可选。让按字段查找和范围查询更快，并可保证值唯一。 |
+| **API key** | 一个密钥和一个 secret，应用通过 `Api-Key` 和 `Api-Secret` 请求头发送，以访问某个数据库的数据。 |
 
-InceptionDB 面向需要通过简单 HTTP API 存储和读取 JSON 数据的应用。
+所有请求都发往 `https://inceptiondb.hola.cloud`，示例从三个环境变量读取你的凭据，因此可以直接复制粘贴：
 
-### 灵活性
+```bash
+export INCEPTIONDB_DATABASE="your-database-id"
+export INCEPTIONDB_API_KEY="your-api-key"
+export INCEPTIONDB_API_SECRET="your-api-secret"
+```
 
-集合可以存储不同结构的文档，应用可以在没有固定关系型 schema 的情况下演进数据模型。
+## 从哪里开始
 
-### 高性能
+- **[快速开始](/zh/docs/inceptiondb/v2/getting-started/)**：五分钟内完成第一次查询。
+- **[集合](/zh/docs/inceptiondb/v2/managing-collections/)**：创建集合、设置默认值、查看大小。
+- **[处理数据](/zh/docs/inceptiondb/v2/working-with-data/)**：插入、读取、更新和删除文档。
+- **[查询](/zh/docs/inceptiondb/v2/querying/)**：过滤器、运算符、嵌套字段、数组和分页。
+- **[索引](/zh/docs/inceptiondb/v2/indexes/)**：让查询更快并保证值唯一。
+- **[API key](/zh/docs/inceptiondb/v2/api-keys/)**：创建数据库和密钥，并保证其安全。
+- **[API 参考](/zh/docs/inceptiondb/v2/api-reference/)**：每个端点的请求和响应。
 
-集合索引和基于 action 的文档端点帮助高效查询和修改文档。
+## 适用场景
 
-### 易于集成
-
-InceptionDB 使用标准 HTTP 请求，并可与 Hola.Cloud 服务集成，适合服务端应用、脚本和后台服务调用。
-
-## 使用场景
-
-### 应用数据
-
-存储用户资料、设置、目录项、事件和其他灵活结构的 JSON 文档。
-
-### 内容管理系统
-
-存储和读取页面、条目、媒体元数据和动态内容记录。
-
-### 物联网
-
-存储设备事件和遥测文档，支持不同设备类型或固件版本的字段差异。
-
-### 电子商务
-
-管理商品目录、客户、购物车和订单相关文档。
-
-InceptionDB 为需要 JSON 集合、HTTP 访问和直接数据操作的现代应用提供文档存储能力。
+- **应用数据**：用户、设置、购物车和订单，任何结构会随时间变化的 JSON。
+- **内容**：文章、页面和字段因条目而异的产品目录。
+- **事件与遥测**：高速写入的设备读数和产品分析数据。
+- **原型**：几分钟内开始存储数据，等查询清晰后再添加索引。

@@ -100,31 +100,31 @@
 <div class="tree">
 
 
-    <div class="item active"><a href="/zh/docs/inceptiondb/index.html">Inceptiondb</a></div>
+    <div class="item active"><a href="/zh/docs/inceptiondb/index.html">InceptionDB</a></div>
 <div class="children">
-<div class="item"><a href="/zh/docs/inceptiondb/v1/getting-started/index.html">InceptionDB 快速开始</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v1/managing-collections/index.html">管理集合</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v1/getting-started/index.html">快速开始</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v1/managing-collections/index.html">集合</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v1/working-with-data/index.html">处理数据</a></div>
-<div class="item active"><a href="/zh/docs/inceptiondb/v1/api-reference/index.html">InceptionDB API 参考</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v1/querying/index.html">查询</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v1/indexes/index.html">索引</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v1/api-keys/index.html">API key</a></div>
+<div class="item active"><a href="/zh/docs/inceptiondb/v1/api-reference/index.html">API 参考</a></div>
 <div class="children">
 <div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/create-collection/index.html">创建集合</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/create-database/index.html">创建数据库</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/document-operations/index.html">文档操作</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/drop-database/index.html">删除数据库</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/get-database/index.html">获取数据库</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/list-collections/index.html">列出集合</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/list-databases/index.html">列出数据库</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/update-database/index.html">更新数据库</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/access-management/index.html">访问管理</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/update-database/index.html">重命名数据库</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/access-management/index.html">API key 与所有者</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/collection-management/index.html">集合管理</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/index-management/index.html">索引管理</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/service-metadata/index.html">服务元数据</a></div>
 <div class="item active selected"><a href="/zh/docs/inceptiondb/v1/api-reference/insert-documents/index.html">插入文档</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/find-documents/index.html">查询文档</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/patch-documents/index.html">修改文档</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/find-documents/index.html">查找文档</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/patch-documents/index.html">更新文档</a></div>
 <div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/remove-documents/index.html">删除文档</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/get-document/index.html">获取文档</a></div>
-<div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/streaming-inserts/index.html">流式插入</a></div>
+<div class="item"><a href="/zh/docs/inceptiondb/v1/api-reference/get-document/index.html">按 id 获取文档</a></div>
 </div>
 </div>
 <div class="item"><a href="/zh/docs/lambda/index.html">Lambda</a></div>
@@ -328,50 +328,46 @@
 
 </div>
 <div class="content">
-    <div class="breadcrumb"><a class="item" href="/zh/docs/inceptiondb/v1/api-reference/index.html">InceptionDB API 参考</a><span class="arrow">→</span><a class="item selected" href="/zh/docs/inceptiondb/v1/api-reference/insert-documents/index.html">插入文档</a></div>
+    <div class="breadcrumb"><a class="item" href="/zh/docs/inceptiondb/v1/api-reference/index.html">API 参考</a><span class="arrow">→</span><a class="item selected" href="/zh/docs/inceptiondb/v1/api-reference/insert-documents/index.html">插入文档</a></div>
     <div class="document">
     <h1>插入文档</h1>
-<p>向集合插入一个或多个 JSON 文档。如果集合不存在，会自动创建。</p>
-<h2 id="%E8%AE%A4%E8%AF%81">认证</h2>
-<p>需要 <code>Api-Key</code> 和 <code>Api-Secret</code>，或者在数据库 owner 被允许时使用 Glue owner token。</p>
-<h2 id="HTTP%20%E8%AF%B7%E6%B1%82">HTTP 请求</h2>
-<div class="http-request" data-http-request=""><div class="http-request-header"><div class="http-request-tabs" role="tablist" aria-label="HTTP request examples"><button type="button" class="http-request-tab active" data-http-lang="curl" role="tab" aria-selected="true">curl</button><button type="button" class="http-request-tab" data-http-lang="http" role="tab" aria-selected="false">HTTP</button><button type="button" class="http-request-tab" data-http-lang="go" role="tab" aria-selected="false">Go</button><button type="button" class="http-request-tab" data-http-lang="php" role="tab" aria-selected="false">PHP</button><button type="button" class="http-request-tab" data-http-lang="python" role="tab" aria-selected="false">Python</button><button type="button" class="http-request-tab" data-http-lang="nodejs" role="tab" aria-selected="false">Node.js</button><button type="button" class="http-request-tab" data-http-lang="javascript" role="tab" aria-selected="false">JavaScript</button><button type="button" class="http-request-tab" data-http-lang="java" role="tab" aria-selected="false">Java</button></div><button type="button" class="http-request-copy" data-http-copy="" title="Copy request" aria-label="Copy request"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V7Zm2 0v11h8V7h-8ZM4 3a2 2 0 0 1 2-2h9v2H6v11H4V3Z" fill="currentColor"></path></svg><span>Copy</span></button></div><div class="http-request-panel active" data-http-panel="curl" role="tabpanel"><pre><code>curl -X POST &#34;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890/collections/users:insert&#34; \
-  -H &#34;Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d&#34; \
-  -H &#34;Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf&#34; \
-  -H &#34;Content-Type: application/jsonl&#34; \
-  -d &#39;{&#34;id&#34;:&#34;user-1&#34;,&#34;name&#34;:&#34;Alice&#34;,&#34;role&#34;:&#34;admin&#34;}
-{&#34;id&#34;:&#34;user-2&#34;,&#34;name&#34;:&#34;Bob&#34;,&#34;role&#34;:&#34;member&#34;}&#39;</code></pre></div><div class="http-request-panel" data-http-panel="http" role="tabpanel"><pre><code>POST /v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890/collections/users:insert HTTP/1.1
-Host: api.hola.cloud
-Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d
-Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf
-Content-Type: application/jsonl
+<p><code>POST /v1/databases/{databaseId}/collections/{collection}:insert</code> · API key</p>
+<p>请求体为 JSON Lines：每行一个 JSON 对象。缺少的字段使用集合的默认值。</p>
+<div class="http-request" data-http-request=""><div class="http-request-header"><div class="http-request-tabs" role="tablist" aria-label="HTTP request examples"><button type="button" class="http-request-tab active" data-http-lang="curl" role="tab" aria-selected="true">curl</button><button type="button" class="http-request-tab" data-http-lang="http" role="tab" aria-selected="false">HTTP</button><button type="button" class="http-request-tab" data-http-lang="go" role="tab" aria-selected="false">Go</button><button type="button" class="http-request-tab" data-http-lang="php" role="tab" aria-selected="false">PHP</button><button type="button" class="http-request-tab" data-http-lang="python" role="tab" aria-selected="false">Python</button><button type="button" class="http-request-tab" data-http-lang="nodejs" role="tab" aria-selected="false">Node.js</button><button type="button" class="http-request-tab" data-http-lang="javascript" role="tab" aria-selected="false">JavaScript</button><button type="button" class="http-request-tab" data-http-lang="java" role="tab" aria-selected="false">Java</button></div><button type="button" class="http-request-copy" data-http-copy="" title="Copy request" aria-label="Copy request"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V7Zm2 0v11h8V7h-8ZM4 3a2 2 0 0 1 2-2h9v2H6v11H4V3Z" fill="currentColor"></path></svg><span>Copy</span></button></div><div class="http-request-panel active" data-http-panel="curl" role="tabpanel"><pre><code>curl -X POST &#34;https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:insert&#34; \
+  -H &#34;Api-Key: $INCEPTIONDB_API_KEY&#34; \
+  -H &#34;Api-Secret: $INCEPTIONDB_API_SECRET&#34; \
+  --data-binary &#39;{&#34;id&#34;:&#34;ada&#34;,&#34;name&#34;:&#34;Ada Lovelace&#34;,&#34;plan&#34;:&#34;pro&#34;,&#34;mrr&#34;:120}
+{&#34;id&#34;:&#34;alan&#34;,&#34;name&#34;:&#34;Alan Turing&#34;,&#34;plan&#34;:&#34;free&#34;,&#34;mrr&#34;:0}&#39;</code></pre></div><div class="http-request-panel" data-http-panel="http" role="tabpanel"><pre><code>POST /v1/databases/$INCEPTIONDB_DATABASE/collections/customers:insert HTTP/1.1
+Host: inceptiondb.hola.cloud
+Api-Key: $INCEPTIONDB_API_KEY
+Api-Secret: $INCEPTIONDB_API_SECRET
 
-{&#34;id&#34;:&#34;user-1&#34;,&#34;name&#34;:&#34;Alice&#34;,&#34;role&#34;:&#34;admin&#34;}
-{&#34;id&#34;:&#34;user-2&#34;,&#34;name&#34;:&#34;Bob&#34;,&#34;role&#34;:&#34;member&#34;}</code></pre></div><div class="http-request-panel" data-http-panel="go" role="tabpanel"><pre><code>package main
+{&#34;id&#34;:&#34;ada&#34;,&#34;name&#34;:&#34;Ada Lovelace&#34;,&#34;plan&#34;:&#34;pro&#34;,&#34;mrr&#34;:120}
+{&#34;id&#34;:&#34;alan&#34;,&#34;name&#34;:&#34;Alan Turing&#34;,&#34;plan&#34;:&#34;free&#34;,&#34;mrr&#34;:0}</code></pre></div><div class="http-request-panel" data-http-panel="go" role="tabpanel"><pre><code>package main
 
 import (
 	&#34;fmt&#34;
 	&#34;io&#34;
 	&#34;net/http&#34;
+	&#34;os&#34;
 	&#34;encoding/json&#34;
 	&#34;strings&#34;
 )
 
 func main() {
-	payload := map[string]any{&#34;id&#34;: &#34;user-1&#34;, &#34;name&#34;: &#34;Alice&#34;, &#34;role&#34;: &#34;admin&#34;}
+	payload := map[string]any{&#34;id&#34;: &#34;ada&#34;, &#34;mrr&#34;: 120, &#34;name&#34;: &#34;Ada Lovelace&#34;, &#34;plan&#34;: &#34;pro&#34;}
 	bodyBytes, err := json.Marshal(payload)
 	if err != nil {
 		panic(err)
 	}
 	body := string(bodyBytes)
 
-	req, err := http.NewRequest(&#34;POST&#34;, &#34;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890/collections/users:insert&#34;, strings.NewReader(body))
+	req, err := http.NewRequest(&#34;POST&#34;, &#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + os.Getenv(&#34;INCEPTIONDB_DATABASE&#34;) + &#34;/collections/customers:insert&#34;, strings.NewReader(body))
 	if err != nil {
 		panic(err)
 	}
-	req.Header.Set(&#34;Api-Key&#34;, &#34;1abbe476-6ad6-4b97-9cca-6deb6ab2901d&#34;)
-	req.Header.Set(&#34;Api-Secret&#34;, &#34;4bda6d52-762b-4e5d-bed7-85614c13b8bf&#34;)
-	req.Header.Set(&#34;Content-Type&#34;, &#34;application/jsonl&#34;)
+	req.Header.Set(&#34;Api-Key&#34;, os.Getenv(&#34;INCEPTIONDB_API_KEY&#34;))
+	req.Header.Set(&#34;Api-Secret&#34;, os.Getenv(&#34;INCEPTIONDB_API_SECRET&#34;))
 
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
@@ -386,20 +382,19 @@ func main() {
 	fmt.Println(string(responseBody))
 }
 </code></pre></div><div class="http-request-panel" data-http-panel="php" role="tabpanel"><pre><code>&lt;?php
-$payload = [&#39;id&#39; =&gt; &#39;user-1&#39;, &#39;name&#39; =&gt; &#39;Alice&#39;, &#39;role&#39; =&gt; &#39;admin&#39;];
+$payload = [&#39;id&#39; =&gt; &#39;ada&#39;, &#39;mrr&#39; =&gt; 120, &#39;name&#39; =&gt; &#39;Ada Lovelace&#39;, &#39;plan&#39; =&gt; &#39;pro&#39;];
 $body = json_encode($payload);
 
 $ch = curl_init();
 
 curl_setopt_array($ch, [
-    CURLOPT_URL =&gt; &#39;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890/collections/users:insert&#39;,
+    CURLOPT_URL =&gt; &#39;https://inceptiondb.hola.cloud/v1/databases/&#39; . getenv(&#39;INCEPTIONDB_DATABASE&#39;) . &#39;/collections/customers:insert&#39;,
     CURLOPT_RETURNTRANSFER =&gt; true,
     CURLOPT_CUSTOMREQUEST =&gt; &#39;POST&#39;,
     CURLOPT_POSTFIELDS =&gt; $body,
     CURLOPT_HTTPHEADER =&gt; [
-        &#39;Api-Key: 1abbe476-6ad6-4b97-9cca-6deb6ab2901d&#39;,
-        &#39;Api-Secret: 4bda6d52-762b-4e5d-bed7-85614c13b8bf&#39;,
-        &#39;Content-Type: application/jsonl&#39;,
+        &#39;Api-Key: &#39; . getenv(&#39;INCEPTIONDB_API_KEY&#39;),
+        &#39;Api-Secret: &#39; . getenv(&#39;INCEPTIONDB_API_SECRET&#39;),
     ],
 ]);
 
@@ -410,48 +405,51 @@ if ($response === false) {
 curl_close($ch);
 
 echo $response;
-</code></pre></div><div class="http-request-panel" data-http-panel="python" role="tabpanel"><pre><code>import requests
+</code></pre></div><div class="http-request-panel" data-http-panel="python" role="tabpanel"><pre><code>import os
+import requests
 
 import json
 
 headers = {
-    &#34;Api-Key&#34;: &#34;1abbe476-6ad6-4b97-9cca-6deb6ab2901d&#34;,
-    &#34;Api-Secret&#34;: &#34;4bda6d52-762b-4e5d-bed7-85614c13b8bf&#34;,
-    &#34;Content-Type&#34;: &#34;application/jsonl&#34;,
+    &#34;Api-Key&#34;: os.environ[&#34;INCEPTIONDB_API_KEY&#34;],
+    &#34;Api-Secret&#34;: os.environ[&#34;INCEPTIONDB_API_SECRET&#34;],
 }
 
-payload = {&#34;id&#34;: &#34;user-1&#34;, &#34;name&#34;: &#34;Alice&#34;, &#34;role&#34;: &#34;admin&#34;}
+payload = {&#34;id&#34;: &#34;ada&#34;, &#34;mrr&#34;: 120, &#34;name&#34;: &#34;Ada Lovelace&#34;, &#34;plan&#34;: &#34;pro&#34;}
 body = json.dumps(payload)
 
 response = requests.request(
     &#34;POST&#34;,
-    &#34;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890/collections/users:insert&#34;,
+    &#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + os.environ[&#34;INCEPTIONDB_DATABASE&#34;] + &#34;/collections/customers:insert&#34;,
     headers=headers,
     data=body
 )
 
 print(response.text)
-</code></pre></div><div class="http-request-panel" data-http-panel="nodejs" role="tabpanel"><pre><code>const payload = {&#34;id&#34;: &#34;user-1&#34;, &#34;name&#34;: &#34;Alice&#34;, &#34;role&#34;: &#34;admin&#34;};
+</code></pre></div><div class="http-request-panel" data-http-panel="nodejs" role="tabpanel"><pre><code>const payload = {&#34;id&#34;: &#34;ada&#34;, &#34;mrr&#34;: 120, &#34;name&#34;: &#34;Ada Lovelace&#34;, &#34;plan&#34;: &#34;pro&#34;};
 
-const response = await fetch(&#34;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890/collections/users:insert&#34;, {
+const response = await fetch(&#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + process.env.INCEPTIONDB_DATABASE + &#34;/collections/customers:insert&#34;, {
   method: &#34;POST&#34;,
   headers: {
-    &#34;Api-Key&#34;: &#34;1abbe476-6ad6-4b97-9cca-6deb6ab2901d&#34;,
-    &#34;Api-Secret&#34;: &#34;4bda6d52-762b-4e5d-bed7-85614c13b8bf&#34;,
-    &#34;Content-Type&#34;: &#34;application/jsonl&#34;
+    &#34;Api-Key&#34;: process.env.INCEPTIONDB_API_KEY,
+    &#34;Api-Secret&#34;: process.env.INCEPTIONDB_API_SECRET
   },
   body: JSON.stringify(payload)
 });
 
 console.log(await response.text());
-</code></pre></div><div class="http-request-panel" data-http-panel="javascript" role="tabpanel"><pre><code>const payload = {&#34;id&#34;: &#34;user-1&#34;, &#34;name&#34;: &#34;Alice&#34;, &#34;role&#34;: &#34;admin&#34;};
+</code></pre></div><div class="http-request-panel" data-http-panel="javascript" role="tabpanel"><pre><code>// Fill in your values. Never put an API secret in code that runs in a public web page.
+const INCEPTIONDB_DATABASE = &#34;your-inceptiondb-database&#34;;
+const INCEPTIONDB_API_KEY = &#34;your-inceptiondb-api-key&#34;;
+const INCEPTIONDB_API_SECRET = &#34;your-inceptiondb-api-secret&#34;;
 
-const response = await fetch(&#34;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890/collections/users:insert&#34;, {
+const payload = {&#34;id&#34;: &#34;ada&#34;, &#34;mrr&#34;: 120, &#34;name&#34;: &#34;Ada Lovelace&#34;, &#34;plan&#34;: &#34;pro&#34;};
+
+const response = await fetch(&#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + INCEPTIONDB_DATABASE + &#34;/collections/customers:insert&#34;, {
   method: &#34;POST&#34;,
   headers: {
-    &#34;Api-Key&#34;: &#34;1abbe476-6ad6-4b97-9cca-6deb6ab2901d&#34;,
-    &#34;Api-Secret&#34;: &#34;4bda6d52-762b-4e5d-bed7-85614c13b8bf&#34;,
-    &#34;Content-Type&#34;: &#34;application/jsonl&#34;
+    &#34;Api-Key&#34;: INCEPTIONDB_API_KEY,
+    &#34;Api-Secret&#34;: INCEPTIONDB_API_SECRET
   },
   body: JSON.stringify(payload)
 });
@@ -468,27 +466,43 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        var payload = Map.of(&#34;id&#34;, &#34;user-1&#34;, &#34;name&#34;, &#34;Alice&#34;, &#34;role&#34;, &#34;admin&#34;);
+        var payload = Map.of(&#34;id&#34;, &#34;ada&#34;, &#34;mrr&#34;, 120, &#34;name&#34;, &#34;Ada Lovelace&#34;, &#34;plan&#34;, &#34;pro&#34;);
         var body = new ObjectMapper().writeValueAsString(payload);
 
         var request = HttpRequest.newBuilder()
-            .uri(URI.create(&#34;https://api.hola.cloud/v1/databases/a1b2c3d4-e5f6-7890-abcd-ef1234567890/collections/users:insert&#34;))
+            .uri(URI.create(&#34;https://inceptiondb.hola.cloud/v1/databases/&#34; + System.getenv(&#34;INCEPTIONDB_DATABASE&#34;) + &#34;/collections/customers:insert&#34;))
             .method(&#34;POST&#34;, HttpRequest.BodyPublishers.ofString(body))
-            .header(&#34;Api-Key&#34;, &#34;1abbe476-6ad6-4b97-9cca-6deb6ab2901d&#34;)
-            .header(&#34;Api-Secret&#34;, &#34;4bda6d52-762b-4e5d-bed7-85614c13b8bf&#34;)
-            .header(&#34;Content-Type&#34;, &#34;application/jsonl&#34;)
+            .header(&#34;Api-Key&#34;, System.getenv(&#34;INCEPTIONDB_API_KEY&#34;))
+            .header(&#34;Api-Secret&#34;, System.getenv(&#34;INCEPTIONDB_API_SECRET&#34;))
             .build();
 
         var response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         System.out.println(response.body());
     }
 }</code></pre></div></div>
-<h2 id="%E5%93%8D%E5%BA%94">响应</h2>
-<p>至少插入一个文档时状态为 <code>201 Created</code>。响应是包含已插入文档的 JSON Lines。</p>
-<pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{&#34;id&#34;:&#34;user-1&#34;,&#34;name&#34;:&#34;Alice&#34;,&#34;role&#34;:&#34;admin&#34;}
-</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>{&#34;id&#34;:&#34;user-2&#34;,&#34;name&#34;:&#34;Bob&#34;,&#34;role&#34;:&#34;member&#34;}
+<p>响应 <code>201 Created</code>，以 JSON Lines 返回已保存的文档：</p>
+<pre tabindex="0" style="color:#93a1a1;background-color:#002b36;"><code><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L1"><a style="outline: none; text-decoration:none; color:inherit" href="#L1">1</a></span><span>{&#34;id&#34;:&#34;ada&#34;,&#34;name&#34;:&#34;Ada Lovelace&#34;,&#34;plan&#34;:&#34;pro&#34;,&#34;mrr&#34;:120}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050" id="L2"><a style="outline: none; text-decoration:none; color:inherit" href="#L2">2</a></span><span>{&#34;id&#34;:&#34;alan&#34;,&#34;name&#34;:&#34;Alan Turing&#34;,&#34;plan&#34;:&#34;free&#34;,&#34;mrr&#34;:0}
 </span></span></code></pre>
-<p>如果请求体为空，响应为 <code>204 No Content</code>。唯一索引冲突会在写入响应体前返回 <code>409 Conflict</code>。</p>
+<p>文档按顺序保存。插入在第一个被拒绝的文档处停止；之前的文档仍会保存。</p>
+<table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>何时</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>400</td>
+<td>某行不是 JSON 对象，或包含重复的字段名。</td>
+</tr>
+<tr>
+<td>409</td>
+<td>唯一索引中已存在该值。</td>
+</tr>
+</tbody>
+</table>
 
 
     <div id="comments-section">
@@ -511,16 +525,7 @@ public class Main {
     </form>
 </div>
 </div>
-<div class="index"><div class="index-h2">
-<a href="#%E8%AE%A4%E8%AF%81">认证</a>
-</div>
-<div class="index-h2">
-<a href="#HTTP%20%E8%AF%B7%E6%B1%82">HTTP 请求</a>
-</div>
-<div class="index-h2">
-<a href="#%E5%93%8D%E5%BA%94">响应</a>
-</div>
-</div>
+<div class="index"></div>
 </div>
 </div>
 <style>
