@@ -97,7 +97,7 @@ El `message` del error indica la causa. Estos son los que te puedes encontrar, c
 | 400 | ``jsontext: unexpected EOF …``, ``jsontext: duplicate object member name …`` | Un documento de un `:insert` no es JSON válido, o repite un nombre de campo. | Corrige esa línea. Los documentos anteriores se guardaron. |
 | 400 | `unexpected end of JSON input` (description `Malformed JSON`) | El cuerpo de `:find`, `:patch` o `:remove` no es JSON válido. | Revisa comillas, comas y llaves. |
 | 404 | `collection not found` | `GET` de una colección que no existe. | Revisa el nombre: distingue mayúsculas y minúsculas. |
-| 404 | ``document '…' not found`` | `GET` de un documento por un id que no existe. | |
+| 404 | ``document '…' not found`` | `GET` de un documento por un id que no existe. | Revisa la colección y el id; ambos distinguen mayúsculas. Para buscar por otros campos, usa `:find`. |
 | 404 | ``index '…' not found in collection '…'`` | `:getIndex` de un índice que no existe. | Lístalos con `:listIndexes`. |
 | 409 | ``index add '…': index conflict: field '…' with value '…'`` | El valor ya está en un índice `map` o en un `btree` con `unique`. | Usa otro valor, o actualiza el documento existente. |
 | 500 | ``collection `…` already exists`` | `POST /collections` con el nombre de una colección que existe. | Usa esa colección, u otro nombre. |

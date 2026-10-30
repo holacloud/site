@@ -97,7 +97,7 @@ export INCEPTIONDB_API_SECRET="your-api-secret"
 | 400 | ``jsontext: unexpected EOF …``、``jsontext: duplicate object member name …`` | `:insert` 中某个文档不是有效 JSON，或重复了字段名。 | 修正这一行。之前的文档已经保存。 |
 | 400 | `unexpected end of JSON input`（description 为 `Malformed JSON`） | `:find`、`:patch` 或 `:remove` 的请求体不是有效 JSON。 | 检查引号、逗号和括号。 |
 | 404 | `collection not found` | `GET` 一个不存在的集合。 | 检查名称：区分大小写。 |
-| 404 | ``document '…' not found`` | 按不存在的 id `GET` 文档。 | |
+| 404 | ``document '…' not found`` | 按不存在的 id `GET` 文档。 | 检查集合和 id；两者都区分大小写。要按其他字段查找，请使用 `:find`。 |
 | 404 | ``index '…' not found in collection '…'`` | `:getIndex` 一个不存在的索引。 | 用 `:listIndexes` 列出索引。 |
 | 409 | ``index add '…': index conflict: field '…' with value '…'`` | 该值已存在于 `map` 索引或设置了 `unique` 的 `btree` 索引中。 | 使用其他值，或更新已有文档。 |
 | 500 | ``collection `…` already exists`` | 用已存在集合的名称 `POST /collections`。 | 使用该集合，或换一个名称。 |
