@@ -33,13 +33,14 @@ curl "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collecti
 ```
 
 ```json
-[{"defaults":{"id":"uuid()"},"indexes":0,"name":"customers","total":3}]
+[{"defaults":{"id":"uuid()"},"indexes":0,"name":"customers","total":2}]
 ```
 
 Una clave o un secreto incorrectos responden `403 Forbidden`.
 
 ## Mantenla segura
 
+- InceptionDB es un API de servidor a servidor. No lo llames desde código que se ejecuta en un navegador o en una app móvil: ahí cualquiera puede leer el secreto. Si una página web necesita datos, haz que llame a tu propio backend, que guarda el secreto y llama a InceptionDB.
 - Guarda el secreto en tu servidor, en variables de entorno o en un gestor de secretos. Nunca en el código, en un repositorio ni en una página web o app móvil: cualquiera que lo vea puede leer y cambiar tus datos.
 - Usa una API key por aplicación o entorno. Así puedes revocar una sin afectar a las demás.
 - Si un secreto se filtra, crea una clave nueva, despliégala y **revoca** la antigua en **API keys & settings**. Las claves revocadas dejan de funcionar al instante.
@@ -48,6 +49,13 @@ Una clave o un secreto incorrectos responden `403 Forbidden`.
 
 Los owners son los usuarios de hola.cloud que gestionan una base de datos desde la consola: sus colecciones, API keys y otros owners. Se añaden y se quitan en **API keys & settings**. Una base de datos siempre conserva al menos un owner, y no puedes quitarte a ti mismo.
 
-## Operaciones de cuenta y el API
+## Operaciones de cuenta: solo en la consola
 
-Crear, renombrar y borrar bases de datos, y gestionar API keys y owners, se hace en la consola. También son endpoints HTTP (ver la [referencia del API](/es/docs/inceptiondb/v2/api-reference/)), pero necesitan la sesión de un usuario identificado: una API key no puede llamarlos. Cada acción de la consola muestra su petición: pulsa las bolas de la derecha de la pantalla.
+Crear, renombrar y borrar bases de datos, y gestionar API keys y owners, se hace en la consola. La [referencia del API](/es/docs/inceptiondb/v2/api-reference/) lista sus endpoints para explicar lo que hace la consola, pero no están pensados para automatizar:
+
+- `Api-Key` y `Api-Secret` no funcionan con ellos. Una API key solo sirve para las colecciones de su base de datos.
+- Necesitan la sesión de un usuario identificado en la consola, y no hay una forma admitida de obtenerla fuera de la consola.
+
+## Ver el código de una acción de la consola
+
+Cada acción de la consola es una petición HTTP, y la consola muestra cómo hacerla desde tu código. Pulsa **API calls**, con el icono `{ }`, al pie del menú lateral. Lista las últimas peticiones; elige una para verla en curl, Go, Python y los demás lenguajes, lista para copiar. Cada petición nueva aparece además como un punto de color en la columna estrecha del borde derecho de la consola; al pulsar un punto se abre la misma vista.

@@ -12,6 +12,7 @@ Crea una colección vacía. Sus valores por defecto dan un id aleatorio a cada d
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"name": "customers"}'
 ```
 

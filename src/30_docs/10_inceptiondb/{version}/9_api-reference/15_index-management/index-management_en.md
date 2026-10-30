@@ -19,6 +19,7 @@ Create, list, get and delete the indexes of a collection. All of them need an AP
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:createIndex" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"name": "by_email", "type": "map", "field": "email"}'
 ```
 
@@ -50,6 +51,7 @@ curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:getIndex" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"name": "by_email"}'
 ```
 
@@ -67,5 +69,6 @@ The documents are not touched. Response `204 No Content`.
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:dropIndex" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"name": "by_email"}'
 ```

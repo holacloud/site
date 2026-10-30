@@ -1,6 +1,6 @@
 # API keys and owners
 
-These account endpoints need the session of a signed-in hola.cloud user, not an API key. The [console](https://inceptiondb.hola.cloud/) does it for you in **API keys & settings**. See [API keys](/docs/inceptiondb/v2/api-keys/) for how to use and protect them.
+Console only: these endpoints need the session of a user signed in to the console. `Api-Key` and `Api-Secret` do not work on them, and there is no supported way to call them from your own code. They are documented to explain what the console does. The [console](https://inceptiondb.hola.cloud/) does it for you in **API keys & settings**. See [API keys](/docs/inceptiondb/v2/api-keys/) for how to use and protect them.
 
 ## Create an API key
 

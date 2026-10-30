@@ -1,8 +1,8 @@
 # Crear una base de datos
 
-`POST /v1/databases` · sesión iniciada
+`POST /v1/databases` · Solo consola
 
-Estos endpoints de cuenta necesitan la sesión de un usuario identificado en hola.cloud, no una API key. La [consola](https://inceptiondb.hola.cloud/) lo hace por ti en **selector de base de datos → New database**.
+Solo consola: este endpoint necesita la sesión de un usuario identificado en la consola. `Api-Key` y `Api-Secret` no funcionan con él, y no hay una forma admitida de llamarlo desde tu código. Se documenta para explicar lo que hace la consola. La [consola](https://inceptiondb.hola.cloud/) lo hace por ti en **selector de base de datos → New database**.
 
 | Campo del cuerpo | Tipo | Significado |
 |---|---|---|

@@ -1,11 +1,14 @@
 # Querying
 
-`:find` returns the documents that match a filter, as JSON Lines (one document per line). The examples use the `customers` collection and the environment variables of [Getting started](/docs/inceptiondb/v2/getting-started/).
+`:find` returns the documents that match a filter, as JSON Lines (JSONL): one document per line.
+
+**Before you start:** this guide reads the `customers` collection as [Getting started](/docs/inceptiondb/v2/getting-started/) leaves it, with Ada and Grace, and uses its environment variables. It does not change any data.
 
 ```bash
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:find" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"filter": {"plan": "pro"}, "limit": 10}'
 ```
 
@@ -36,6 +39,7 @@ A filter is a JSON object. Each field is a condition and all of them must be met
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:find" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"filter": {"mrr": {"$ge": 100, "$lt": 500}}, "limit": 10}'
 ```
 
@@ -51,7 +55,7 @@ curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/
 | `$nin` | is none of the values | `{"country": {"$nin": ["US", "GB"]}}` |
 | `$contains` | is a text that contains the value | `{"email": {"$contains": "@example.com"}}` |
 
-Use these exact names: `$ge` and `$le`, not `$gte` and `$lte`. A filter with an operator that does not exist matches no document.
+> **Copy the operator names from this table.** `$gte` and `$lte`, common in other databases, do not exist in InceptionDB: use `$ge` and `$le`. Today an unknown operator is not reported as an error: the filter matches nothing and the answer is `204 No Content`. So `{"mrr": {"$gte": 100}}` returns no customers, while `{"mrr": {"$ge": 100}}` returns Ada and Grace.
 
 Dates written as text in ISO format (`"2026-10-28T09:30:00Z"`) compare in time order: `{"created_at": {"$gt": "2026-01-01"}}`.
 
@@ -63,6 +67,7 @@ Several fields must all match. To match **any** of several conditions, use `$or`
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:find" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"filter": {"$or": [{"plan": "team"}, {"country": "US"}]}, "limit": 10}'
 ```
 
@@ -80,6 +85,7 @@ Reach a field inside an object with a dot:
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:find" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"filter": {"address.city": "London"}, "limit": 10}'
 ```
 
@@ -95,6 +101,7 @@ A condition on an array field matches when **any element** meets it. The custome
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:find" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"filter": {"tags": "vip"}, "limit": 10}'
 ```
 
@@ -111,10 +118,20 @@ Combine `skip` and `limit`. The second page of 25 documents:
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:find" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"filter": {}, "skip": 25, "limit": 25}'
 ```
 
 Without an index, documents come in no particular order. To get them sorted, or to make queries on large collections fast, use an [index](/docs/inceptiondb/v2/indexes/).
+
+## A query answers 204 when you expected documents
+
+`204 No Content` means that no document matched. It has an empty body: check the status code before decoding anything. The usual causes:
+
+- **An operator name that does not exist**, like `$gte` or `$lte` instead of `$ge` and `$le`.
+- **A field name with another spelling.** Names are case-sensitive: `Country` is not `country`.
+- **A value of another type.** `{"mrr": "120"}` looks for the text `"120"`, not the number `120`.
+- **`skip` beyond the last match**, like the second page of a collection with fewer documents than one page.
 
 ## Try it in the console
 

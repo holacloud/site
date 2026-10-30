@@ -588,6 +588,17 @@ func envNames(req httpRequest) []string {
 	return names
 }
 
+func headersUseEnv(req httpRequest) bool {
+	for _, h := range req.Headers {
+		for _, p := range splitEnv(h.Value) {
+			if p.env {
+				return true
+			}
+		}
+	}
+	return false
+}
+
 // envExpr writes s as an expression of a language: quoted literals joined to
 // the expressions that read its environment variables.
 func envExpr(s string, quote func(string) string, env func(string) string, join string) string {
@@ -834,6 +845,17 @@ func renderHttpRequestComponent(req httpRequest, source string) string {
 		{Lang: "javascript", Label: "JavaScript", Code: renderJavaScriptRequest(req)},
 		{Lang: "java", Label: "Java", Code: renderJavaRequest(req)},
 	}
+	// Headers read from the environment are credentials: they belong on a
+	// server, so there is no browser version of those requests.
+	if headersUseEnv(req) {
+		snippets = slices.DeleteFunc(snippets, func(s struct {
+			Lang  string
+			Label string
+			Code  string
+		}) bool {
+			return s.Lang == "javascript"
+		})
+	}
 
 	var b strings.Builder
 	b.WriteString(`<div class="http-request" data-http-request>`)
@@ -903,6 +925,7 @@ func renderGoRequest(req httpRequest) string {
 	}
 
 	var b strings.Builder
+	b.WriteString("// Go 1.21+, standard library only. Save as main.go and run: go run main.go\n")
 	b.WriteString("package main\n\n")
 	b.WriteString("import (\n")
 	b.WriteString("\t\"fmt\"\n")
@@ -937,6 +960,7 @@ func renderGoRequest(req httpRequest) string {
 	b.WriteString("\tdefer resp.Body.Close()\n\n")
 	b.WriteString("\tresponseBody, err := io.ReadAll(resp.Body)\n")
 	b.WriteString("\tif err != nil {\n\t\tpanic(err)\n\t}\n")
+	b.WriteString("\tfmt.Println(resp.Status)\n")
 	b.WriteString("\tfmt.Println(string(responseBody))\n")
 	b.WriteString("}\n")
 	return b.String()
@@ -946,6 +970,7 @@ func renderPHPRequest(req httpRequest) string {
 	jsonBody, isJSON := parseJSONBody(req.Body)
 	var b strings.Builder
 	b.WriteString("<?php\n")
+	b.WriteString("// PHP 8+ with the curl extension. Save as example.php and run: php example.php\n\n")
 	if isJSON {
 		b.WriteString("$payload = " + phpValue(jsonBody) + ";\n")
 		b.WriteString("$body = json_encode($payload);\n\n")
@@ -970,20 +995,19 @@ func renderPHPRequest(req httpRequest) string {
 	b.WriteString("]);\n\n")
 	b.WriteString("$response = curl_exec($ch);\n")
 	b.WriteString("if ($response === false) {\n    throw new Exception(curl_error($ch));\n}\n")
-	b.WriteString("curl_close($ch);\n\necho $response;\n")
+	b.WriteString("echo curl_getinfo($ch, CURLINFO_RESPONSE_CODE), \"\\n\", $response, \"\\n\";\n")
+	b.WriteString("curl_close($ch);\n")
 	return b.String()
 }
 
 func renderPythonRequest(req httpRequest) string {
 	jsonBody, isJSON := parseJSONBody(req.Body)
 	var b strings.Builder
+	b.WriteString("# Python 3.8+. Install: pip install requests. Save as example.py and run: python example.py\n")
 	if len(envNames(req)) > 0 {
 		b.WriteString("import os\n")
 	}
 	b.WriteString("import requests\n\n")
-	if isJSON {
-		b.WriteString("import json\n\n")
-	}
 	if len(req.Headers) > 0 {
 		b.WriteString("headers = {\n")
 		for _, header := range req.Headers {
@@ -992,8 +1016,7 @@ func renderPythonRequest(req httpRequest) string {
 		b.WriteString("}\n\n")
 	}
 	if isJSON {
-		b.WriteString("payload = " + pythonValue(jsonBody, 0) + "\n")
-		b.WriteString("body = json.dumps(payload)\n\n")
+		b.WriteString("payload = " + pythonValue(jsonBody, 0) + "\n\n")
 	} else if req.Body != "" {
 		b.WriteString("body = " + strconv.Quote(req.Body) + "\n\n")
 	}
@@ -1003,10 +1026,13 @@ func renderPythonRequest(req httpRequest) string {
 	if len(req.Headers) > 0 {
 		b.WriteString(",\n    headers=headers")
 	}
-	if req.Body != "" {
+	if isJSON {
+		b.WriteString(",\n    json=payload")
+	} else if req.Body != "" {
 		b.WriteString(",\n    data=body")
 	}
 	b.WriteString("\n)\n\n")
+	b.WriteString("print(response.status_code)\n")
 	b.WriteString("print(response.text)\n")
 	return b.String()
 }
@@ -1026,8 +1052,11 @@ func renderFetchRequest(req httpRequest, node bool) string {
 		expr = nodeExpr
 	}
 	var b strings.Builder
+	if node {
+		b.WriteString("// Node.js 18+. Save as example.mjs and run: node example.mjs\n")
+	}
 	if names := envNames(req); len(names) > 0 && !node {
-		b.WriteString("// Fill in your values. Never put an API secret in code that runs in a public web page.\n")
+		b.WriteString("// Fill in your values.\n")
 		for _, n := range names {
 			b.WriteString("const " + n + " = " + strconv.Quote("your-"+strings.ToLower(strings.ReplaceAll(n, "_", "-"))) + ";\n")
 		}
@@ -1067,32 +1096,21 @@ func renderFetchRequest(req httpRequest, node bool) string {
 		}
 	}
 	b.WriteString("});\n\n")
-	if node {
-		b.WriteString("console.log(await response.text());\n")
-	} else {
-		b.WriteString("const text = await response.text();\nconsole.log(text);\n")
-	}
+	b.WriteString("console.log(response.status);\n")
+	b.WriteString("console.log(await response.text());\n")
 	return b.String()
 }
 
 func renderJavaRequest(req httpRequest) string {
-	jsonBody, isJSON := parseJSONBody(req.Body)
 	var b strings.Builder
+	b.WriteString("// Java 17+, standard library only. Save as Main.java and run: java Main.java\n")
 	b.WriteString("import java.net.URI;\n")
 	b.WriteString("import java.net.http.HttpClient;\n")
 	b.WriteString("import java.net.http.HttpRequest;\n")
 	b.WriteString("import java.net.http.HttpResponse;\n")
-	if isJSON {
-		b.WriteString("import com.fasterxml.jackson.databind.ObjectMapper;\n")
-		b.WriteString("import java.util.Map;\n")
-		b.WriteString("import java.util.List;\n")
-	}
 	b.WriteString("\npublic class Main {\n")
 	b.WriteString("    public static void main(String[] args) throws Exception {\n")
-	if isJSON {
-		b.WriteString("        var payload = " + javaValue(jsonBody) + ";\n")
-		b.WriteString("        var body = new ObjectMapper().writeValueAsString(payload);\n\n")
-	} else if req.Body != "" {
+	if req.Body != "" {
 		b.WriteString("        var body = " + javaTextBlock(req.Body) + ";\n\n")
 	}
 	bodyPublisher := "HttpRequest.BodyPublishers.noBody()"
@@ -1107,6 +1125,7 @@ func renderJavaRequest(req httpRequest) string {
 	}
 	b.WriteString("            .build();\n\n")
 	b.WriteString("        var response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());\n")
+	b.WriteString("        System.out.println(response.statusCode());\n")
 	b.WriteString("        System.out.println(response.body());\n")
 	b.WriteString("    }\n}")
 	return b.String()
@@ -1131,6 +1150,12 @@ func parseJSONBody(body string) (any, bool) {
 	decoder := json.NewDecoder(strings.NewReader(body))
 	decoder.UseNumber()
 	if err := decoder.Decode(&v); err != nil {
+		return nil, false
+	}
+	// More values after the first one (JSON Lines) are not a JSON body: it
+	// is sent as it is, or the documents after the first would be lost.
+	var extra any
+	if decoder.Decode(&extra) != io.EOF {
 		return nil, false
 	}
 	return v, true
@@ -1265,36 +1290,6 @@ func javascriptValue(v any, level int) string {
 	}
 }
 
-func javaValue(v any) string {
-	switch x := v.(type) {
-	case map[string]any:
-		parts := []string{}
-		for _, key := range sortedKeys(x) {
-			parts = append(parts, strconv.Quote(key)+", "+javaValue(x[key]))
-		}
-		return "Map.of(" + strings.Join(parts, ", ") + ")"
-	case []any:
-		parts := []string{}
-		for _, item := range x {
-			parts = append(parts, javaValue(item))
-		}
-		return "List.of(" + strings.Join(parts, ", ") + ")"
-	case string:
-		return strconv.Quote(x)
-	case json.Number:
-		return x.String()
-	case bool:
-		if x {
-			return "true"
-		}
-		return "false"
-	case nil:
-		return "null"
-	default:
-		return strconv.Quote(fmt.Sprint(x))
-	}
-}
-
 func javaTextBlock(s string) string {
 	return `"""` + "\n" + strings.ReplaceAll(s, `"""`, `\"\"\"`) + "\n" + `"""`
 }
@@ -1358,9 +1353,12 @@ func getBestVariation(variations []*Variation, language, version string) *Variat
 
 var basepath = "/"
 
+// getLink returns the canonical URL of a page: its directory, ending in a
+// slash, never .../index.html.
 func getLink(n *Node, lang, version string) string {
 	variation := getBestVariation(n.Variations, lang, version)
-	return path.Join(basepath, getOutputPath(n, variation, lang, version))
+	link := path.Join(basepath, getOutputPath(n, variation, lang, version))
+	return strings.TrimSuffix(link, "index.html")
 }
 
 func getBreadcrumb(n *Node, lang, version string) string {

@@ -2,6 +2,8 @@
 
 `POST /v1/databases/{databaseId}/collections/{collection}:find` · API key
 
+Request: JSON, `Content-Type: application/json` · Response: JSONL, or `204 No Content` with an empty body
+
 | Body field | Default | Meaning |
 |---|---|---|
 | `filter` | `{}` | Conditions; see [Querying](/docs/inceptiondb/v2/querying/). |
@@ -17,6 +19,7 @@
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:find" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"filter": {"plan": {"$in": ["pro", "team"]}}, "limit": 10}'
 ```
 
@@ -26,4 +29,6 @@ Response `200 OK`, the documents as JSON Lines. `204 No Content` when nothing ma
 {"id":"ada","name":"Ada Lovelace","plan":"pro","mrr":120}
 ```
 
-Operators: `$eq`, `$ne`, `$gt`, `$ge`, `$lt`, `$le`, `$in`, `$nin`, `$contains`, `$and`, `$or`. A filter with an unknown operator matches no document.
+Operators: `$eq`, `$ne`, `$gt`, `$ge`, `$lt`, `$le`, `$in`, `$nin`, `$contains`, `$and`, `$or`.
+
+> **`$gte` and `$lte` do not exist:** use `$ge` and `$le`. An unknown operator is not reported as an error: the filter matches nothing and the answer is `204 No Content`.

@@ -2,7 +2,7 @@
 
 集合是数据库中一组有名称的 JSON 文档，例如 `customers` 或 `orders`。同一集合中的文档可以有不同的字段：无需声明模式。
 
-示例使用 [快速开始](/zh/docs/inceptiondb/v2/getting-started/) 中的环境变量。
+**开始之前：** 你只需要 [快速开始](/zh/docs/inceptiondb/v2/getting-started/) 中的环境变量。本指南可以单独使用：它会创建一个名为 `collections-demo` 的集合，并在最后删除它。它不会改动 `customers`。
 
 ## 创建集合
 
@@ -10,13 +10,14 @@
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
-  -d '{"name": "customers"}'
+  -H "Content-Type: application/json" \
+  -d '{"name": "collections-demo"}'
 ```
 
 响应（`201 Created`）：
 
 ```json
-{"defaults":{"id":"uuid()"},"indexes":0,"name":"customers","total":0}
+{"defaults":{"id":"uuid()"},"indexes":0,"name":"collections-demo","total":0}
 ```
 
 | 字段 | 含义 |
@@ -25,6 +26,10 @@ curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/
 | `total` | 文档数量。 |
 | `indexes` | 索引数量。 |
 | `defaults` | 添加到缺少这些字段的文档中的值（见下文）。 |
+
+名称区分大小写。集合已存在时返回 `500`，消息为 ``collection `collections-demo` already exists``：如果你之前运行过本指南，请执行最后一步 *删除集合*，然后重新开始。
+
+向不存在的集合插入会创建该集合，并使用默认值。如果 `:insert` 中的集合名称有拼写错误，文档会保存到一个新集合中，而不会报错。
 
 ## 列出集合
 
@@ -35,20 +40,24 @@ curl "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collecti
 ```
 
 ```json
-[{"defaults":{"id":"uuid()"},"indexes":0,"name":"customers","total":0}]
+[{"defaults":{"id":"uuid()"},"indexes":0,"name":"collections-demo","total":0},{"defaults":{"id":"uuid()"},"indexes":0,"name":"customers","total":2}]
 ```
+
+如果你完成了 [快速开始](/zh/docs/inceptiondb/v2/getting-started/)，列表中还会出现 `customers`。
 
 ## 获取单个集合
 
 ```bash
-curl "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers" \
+curl "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/collections-demo" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET"
 ```
 
 ```json
-{"defaults":{"id":"uuid()"},"indexes":0,"name":"customers","total":0}
+{"defaults":{"id":"uuid()"},"indexes":0,"name":"collections-demo","total":0}
 ```
+
+集合不存在时返回 `404 Not Found`。
 
 ## 默认值
 
@@ -60,12 +69,13 @@ curl "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collecti
 | `"auto()"` | 一个递增数字：1、2、3……永不重复，但可能跳号。 |
 | `"unixnano()"` | 插入时间，单位为自 1970 年起的纳秒。 |
 
-为每个新客户设置 ID、`free` 套餐和创建时间：
+为每个新文档设置 ID、`free` 套餐和创建时间：
 
 ```bash
-curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:setDefaults" \
+curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/collections-demo:setDefaults" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"id": "uuid()", "plan": "free", "created": "unixnano()"}'
 ```
 
@@ -73,12 +83,13 @@ curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/
 {"created":"unixnano()","id":"uuid()","plan":"free"}
 ```
 
-现在插入一个只有姓名和邮箱的客户：
+现在插入一个只有姓名和邮箱的文档：
 
 ```bash
-curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:insert" \
+curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/collections-demo:insert" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/x-ndjson" \
   -d '{"name": "Margaret Hamilton", "email": "margaret@example.com"}'
 ```
 
@@ -93,7 +104,7 @@ curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/
 文档占用的内存、磁盘大小，以及每个索引以 `index.<名称>` 表示的内存，单位为字节：
 
 ```bash
-curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:size" \
+curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/collections-demo:size" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET"
 ```
@@ -104,12 +115,12 @@ curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/
 
 ## 删除集合
 
-这会删除集合及其所有文档和索引，无法撤销。
+这会删除集合及其所有文档和索引，**无法撤销**：运行前请检查 URL 中的名称。删除本指南的集合 `collections-demo`：
 
 ```bash
-curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:dropCollection" \
+curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/collections-demo:dropCollection" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET"
 ```
 
-响应为 `204 No Content`。
+响应为 `204 No Content`。删除不存在的集合会返回 `500`，消息为 ``collection `collections-demo` not found``。

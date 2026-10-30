@@ -47,17 +47,20 @@ export INCEPTIONDB_API_SECRET="your-api-secret"
 # Crea una colección
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"name": "users"}'
 
 # Inserta documentos (un objeto JSON por línea)
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/users:insert" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/x-ndjson" \
   --data-binary '{"name": "Alice", "email": "alice@example.com", "plan": "pro"}
 {"name": "Bob", "email": "bob@example.com", "plan": "free"}'
 
 # Consúltalos
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/users:find" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"filter": {"plan": "pro"}, "limit": 10}'</code></pre>
     </section>
 

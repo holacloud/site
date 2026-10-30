@@ -2,6 +2,8 @@
 
 `POST /v1/databases/{databaseId}/collections/{collection}:find` · API key
 
+请求：JSON，`Content-Type: application/json` · 响应：JSONL，或响应体为空的 `204 No Content`
+
 | 请求体字段 | 默认值 | 含义 |
 |---|---|---|
 | `filter` | `{}` | 条件；见 [查询](/zh/docs/inceptiondb/v2/querying/)。 |
@@ -17,6 +19,7 @@
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:find" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"filter": {"plan": {"$in": ["pro", "team"]}}, "limit": 10}'
 ```
 
@@ -26,4 +29,6 @@ curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/
 {"id":"ada","name":"Ada Lovelace","plan":"pro","mrr":120}
 ```
 
-运算符：`$eq`、`$ne`、`$gt`、`$ge`、`$lt`、`$le`、`$in`、`$nin`、`$contains`、`$and`、`$or`。使用未知运算符的过滤器不会匹配任何文档。
+运算符：`$eq`、`$ne`、`$gt`、`$ge`、`$lt`、`$le`、`$in`、`$nin`、`$contains`、`$and`、`$or`。
+
+> **`$gte` 和 `$lte` 不存在：** 请使用 `$ge` 和 `$le`。未知运算符不会报错：过滤器不匹配任何文档，响应为 `204 No Content`。

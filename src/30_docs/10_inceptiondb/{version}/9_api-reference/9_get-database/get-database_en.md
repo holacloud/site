@@ -1,8 +1,8 @@
 # Get a database
 
-`GET /v1/databases/{databaseId}` · signed-in session
+`GET /v1/databases/{databaseId}` · Console only
 
-These account endpoints need the session of a signed-in hola.cloud user, not an API key. The [console](https://inceptiondb.hola.cloud/) does it for you in **API keys & settings**.
+Console only: this endpoint needs the session of a user signed in to the console. `Api-Key` and `Api-Secret` do not work on it, and there is no supported way to call it from your own code. It is documented to explain what the console does. The [console](https://inceptiondb.hola.cloud/) does it for you in **API keys & settings**.
 
 Returns the database with its owners and API keys (never their secrets).
 
