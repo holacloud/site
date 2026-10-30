@@ -26,6 +26,7 @@ The fields you send are added to the current defaults, replacing the ones with t
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:setDefaults" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"id": "uuid()", "plan": "free", "created": "unixnano()"}'
 ```
 

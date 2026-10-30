@@ -33,13 +33,14 @@ curl "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collecti
 ```
 
 ```json
-[{"defaults":{"id":"uuid()"},"indexes":0,"name":"customers","total":3}]
+[{"defaults":{"id":"uuid()"},"indexes":0,"name":"customers","total":2}]
 ```
 
 A wrong key or secret answers `403 Forbidden`.
 
 ## Keep it safe
 
+- InceptionDB is a server-to-server API. Do not call it from code that runs in a browser or a mobile app: anyone can read the secret there. If a web page needs data, have it call your own backend, which keeps the secret and calls InceptionDB.
 - Keep the secret on your server, in environment variables or in a secret manager. Never in the code, in a repository or in a web page or mobile app: anyone who sees it can read and change your data.
 - Use one API key per application or environment. You can then revoke one without affecting the others.
 - If a secret leaks, create a new key, deploy it, and **revoke** the old one in **API keys & settings**. Revoked keys stop working at once.
@@ -48,6 +49,13 @@ A wrong key or secret answers `403 Forbidden`.
 
 Owners are the hola.cloud users who manage a database from the console: its collections, API keys and other owners. Add or remove them in **API keys & settings**. A database always keeps at least one owner, and you cannot remove yourself.
 
-## Account operations and the API
+## Account operations: console only
 
-Creating, renaming and deleting databases, managing API keys and owners are done in the console. They are HTTP endpoints too (see the [API reference](/docs/inceptiondb/v2/api-reference/)), but they need the session of a signed-in user: an API key cannot call them. Every action of the console shows its request: click the balls on the right of the screen.
+Creating, renaming and deleting databases, and managing API keys and owners, are done in the console. The [API reference](/docs/inceptiondb/v2/api-reference/) lists their endpoints to explain what the console does, but they are not meant for automation:
+
+- `Api-Key` and `Api-Secret` do not work on them. An API key works only with the collections of its database.
+- They need the session of a user signed in to the console, and there is no supported way to get one outside the console.
+
+## See the code of a console action
+
+Every action in the console is an HTTP request, and the console shows how to make it from your code. Click **API calls**, with the `{ }` icon, at the bottom of the side menu. It lists the latest requests; choose one to see it in curl, Go, Python and the other languages, ready to copy. Each new request also appears as a coloured dot in the narrow column at the right edge of the console; clicking a dot opens the same view.

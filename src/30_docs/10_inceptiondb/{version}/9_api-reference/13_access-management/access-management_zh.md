@@ -1,6 +1,6 @@
 # API key 与所有者
 
-这些账户端点需要已登录 hola.cloud 用户的会话，而不是 API key。[控制台](https://inceptiondb.hola.cloud/)会替你完成，位置：**API keys & settings**。如何使用和保护它们，请参阅 [API keys](/zh/docs/inceptiondb/v2/api-keys/)。
+仅限控制台：这些端点需要已登录控制台的用户会话。`Api-Key` 和 `Api-Secret` 对它们无效，也没有受支持的方式从你自己的代码调用它们。这里记录它们是为了说明控制台做了什么。[控制台](https://inceptiondb.hola.cloud/)会替你完成，位置：**API keys & settings**。如何使用和保护它们，请参阅 [API keys](/zh/docs/inceptiondb/v2/api-keys/)。
 
 ## 创建 API key
 

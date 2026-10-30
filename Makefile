@@ -48,3 +48,17 @@ dev:
 	go build -o bin/sitegen ./cmd/sitegen
 	./watch.sh
 
+
+# Static checks of the InceptionDB docs: sources and generated site.
+.PHONY: check-inceptiondb-docs
+check-inceptiondb-docs: site
+	python3 scripts/check_inceptiondb_docs.py lint
+	python3 scripts/check_inceptiondb_docs.py links
+
+# Runs every example of the InceptionDB docs. Needs INCEPTIONDB_DATABASE,
+# INCEPTIONDB_API_KEY and INCEPTIONDB_API_SECRET of an empty test database.
+.PHONY: check-inceptiondb-examples
+check-inceptiondb-examples:
+	python3 scripts/check_inceptiondb_docs.py run en
+	python3 scripts/check_inceptiondb_docs.py run es
+	python3 scripts/check_inceptiondb_docs.py run zh

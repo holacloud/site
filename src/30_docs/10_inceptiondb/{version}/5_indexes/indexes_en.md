@@ -2,7 +2,7 @@
 
 Without an index, a query reads every document of the collection. That is fast for thousands of documents. For millions, or to get documents in order, or to make sure a value never repeats, create an index on the field you search by.
 
-The examples use the `customers` collection and the environment variables of [Getting started](/docs/inceptiondb/v2/getting-started/).
+**Before you start:** this guide uses the `customers` collection as [Getting started](/docs/inceptiondb/v2/getting-started/) leaves it, with Ada and Grace, and its environment variables. It creates four indexes and deletes them at the end. Documents are never changed.
 
 ## Which index do I need?
 
@@ -22,6 +22,7 @@ Create the index:
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:createIndex" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"name": "by_email", "type": "map", "field": "email"}'
 ```
 
@@ -35,6 +36,7 @@ Find a customer by email:
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:find" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"index": "by_email", "value": "grace@example.com"}'
 ```
 
@@ -48,6 +50,10 @@ From now on, inserting another customer with an existing email fails with `409 C
 {"error":{"description":"Unexpected error","message":"index add 'by_email': index conflict: field 'email' with value 'ada@example.com'"}}
 ```
 
+`description` is a generic text; the useful detail is always in `message`: the index, the field and the repeated value. The document is not stored.
+
+To make the `id` of the documents unique too, create a `map` index on `id`. Reads by id then use it: their `source` is `index` instead of `fullscan`.
+
 ## Ranges and order (btree)
 
 Create an index on the monthly revenue:
@@ -56,6 +62,7 @@ Create an index on the monthly revenue:
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:createIndex" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"name": "by_mrr", "type": "btree", "fields": ["mrr"]}'
 ```
 
@@ -69,6 +76,7 @@ The customers that pay between 100 and 500, from the lowest:
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:find" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"index": "by_mrr", "from": {"mrr": 100}, "to": {"mrr": 500}, "limit": 10}'
 ```
 
@@ -83,6 +91,7 @@ The top customers, from the highest: `"reverse": true`.
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:find" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"index": "by_mrr", "reverse": true, "limit": 3}'
 ```
 
@@ -99,6 +108,7 @@ Good to know:
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:createIndex" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"name": "search_name", "type": "fts", "field": "name"}'
 ```
 
@@ -108,6 +118,7 @@ Find the customers with `grace` in their name, in upper or lower case:
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:find" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"index": "search_name", "match": "grace", "limit": 10}'
 ```
 
@@ -117,16 +128,19 @@ curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/
 
 ## Documents without the field
 
-Documents that do not have the indexed field are stored as usual, but they are not part of the index: a query that uses the index does not return them. A query without `index` still finds them. Create indexes with `"sparse": true` to make that explicit:
+A `map` or `btree` index can only be created if every document already in the collection has the field. Otherwise the answer is a `500` with a message like ``error indexing existing data: field `company` is indexed and mandatory``.
+
+For a field that only some documents have, like `company`, create the index with `"sparse": true`. Documents without the field are stored as usual, but they are not part of the index: a query that uses the index does not return them, and a query without `index` still finds them.
 
 ```bash
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:createIndex" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"name": "by_company", "type": "btree", "fields": ["company"], "sparse": true}'
 ```
 
-## List and delete indexes
+## List the indexes
 
 ```bash
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:listIndexes" \
@@ -138,13 +152,42 @@ curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/
 [{"fields":["company"],"name":"by_company","sparse":true,"type":"btree","unique":false},{"field":"email","name":"by_email","sparse":false,"type":"map"},{"fields":["mrr"],"name":"by_mrr","sparse":false,"type":"btree","unique":false},{"field":"name","name":"search_name","type":"fts"}]
 ```
 
-Deleting an index does not touch the documents (`204 No Content`):
+## Clean up
+
+Deleting an index does not touch the documents. The answer is `204 No Content`. Delete the four indexes of this guide:
 
 ```bash
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:dropIndex" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"name": "by_mrr"}'
 ```
+
+```bash
+curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:dropIndex" \
+  -H "Api-Key: $INCEPTIONDB_API_KEY" \
+  -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
+  -d '{"name": "by_email"}'
+```
+
+```bash
+curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:dropIndex" \
+  -H "Api-Key: $INCEPTIONDB_API_KEY" \
+  -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
+  -d '{"name": "search_name"}'
+```
+
+```bash
+curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:dropIndex" \
+  -H "Api-Key: $INCEPTIONDB_API_KEY" \
+  -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
+  -d '{"name": "by_company"}'
+```
+
+Creating an index with a name that already exists answers `500` with the message `index 'by_email' already exists`. If you ran this guide before without cleaning up, run these four commands and start again.
 
 In the [console](https://inceptiondb.hola.cloud/), the **Schema** tab creates an index on any field in one click.

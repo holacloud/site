@@ -1,11 +1,14 @@
 # Consultas
 
-`:find` devuelve los documentos que cumplen un filtro, como JSON Lines (un documento por línea). Los ejemplos usan la colección `customers` y las variables de entorno de [Primeros pasos](/es/docs/inceptiondb/v2/primeros-pasos/).
+`:find` devuelve los documentos que cumplen un filtro, como JSON Lines (JSONL): un documento por línea.
+
+**Antes de empezar:** esta guía lee la colección `customers` tal como la deja [Primeros pasos](/es/docs/inceptiondb/v2/primeros-pasos/), con Ada y Grace, y usa sus variables de entorno. No cambia ningún dato.
 
 ```bash
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:find" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"filter": {"plan": "pro"}, "limit": 10}'
 ```
 
@@ -36,6 +39,7 @@ Un filtro es un objeto JSON. Cada campo es una condición y deben cumplirse toda
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:find" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"filter": {"mrr": {"$ge": 100, "$lt": 500}}, "limit": 10}'
 ```
 
@@ -51,7 +55,7 @@ curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/
 | `$nin` | no es ninguno de los valores | `{"country": {"$nin": ["US", "GB"]}}` |
 | `$contains` | es un texto que contiene el valor | `{"email": {"$contains": "@example.com"}}` |
 
-Usa exactamente estos nombres: `$ge` y `$le`, no `$gte` ni `$lte`. Un filtro con un operador que no existe no coincide con ningún documento.
+> **Copia los nombres de los operadores de esta tabla.** `$gte` y `$lte`, habituales en otras bases de datos, no existen en InceptionDB: usa `$ge` y `$le`. Hoy un operador desconocido no se notifica como error: el filtro no coincide con nada y la respuesta es `204 No Content`. Así, `{"mrr": {"$gte": 100}}` no devuelve ningún cliente, mientras que `{"mrr": {"$ge": 100}}` devuelve a Ada y Grace.
 
 Las fechas escritas como texto en formato ISO (`"2026-10-28T09:30:00Z"`) se comparan en orden cronológico: `{"created_at": {"$gt": "2026-01-01"}}`.
 
@@ -63,6 +67,7 @@ Varios campos deben cumplirse todos. Para que coincida **cualquiera** de varias 
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:find" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"filter": {"$or": [{"plan": "team"}, {"country": "US"}]}, "limit": 10}'
 ```
 
@@ -80,6 +85,7 @@ Llega a un campo dentro de un objeto con un punto:
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:find" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"filter": {"address.city": "London"}, "limit": 10}'
 ```
 
@@ -95,6 +101,7 @@ Una condición sobre un campo que es un array se cumple cuando **cualquiera de s
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:find" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"filter": {"tags": "vip"}, "limit": 10}'
 ```
 
@@ -111,10 +118,20 @@ Combina `skip` y `limit`. La segunda página de 25 documentos:
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:find" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"filter": {}, "skip": 25, "limit": 25}'
 ```
 
 Sin índice, los documentos no llegan en ningún orden concreto. Para recibirlos ordenados, o para que las consultas sobre colecciones grandes sean rápidas, usa un [índice](/es/docs/inceptiondb/v2/indices/).
+
+## Una consulta responde 204 cuando esperabas documentos
+
+`204 No Content` significa que ningún documento coincide. Tiene el cuerpo vacío: comprueba el código de estado antes de decodificar nada. Las causas habituales:
+
+- **Un nombre de operador que no existe**, como `$gte` o `$lte` en lugar de `$ge` y `$le`.
+- **Un nombre de campo escrito de otra forma.** Los nombres distinguen mayúsculas y minúsculas: `Country` no es `country`.
+- **Un valor de otro tipo.** `{"mrr": "120"}` busca el texto `"120"`, no el número `120`.
+- **Un `skip` más allá de la última coincidencia**, como la segunda página de una colección con menos documentos que una página.
 
 ## Pruébalo en la consola
 

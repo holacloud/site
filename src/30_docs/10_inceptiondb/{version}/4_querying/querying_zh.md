@@ -1,11 +1,14 @@
 # 查询
 
-`:find` 以 JSON Lines（每行一个文档）返回匹配过滤器的文档。示例使用 `customers` 集合以及 [快速开始](/zh/docs/inceptiondb/v2/getting-started/) 中的环境变量。
+`:find` 以 JSON Lines（JSONL）返回匹配过滤器的文档：每行一个文档。
+
+**开始之前：** 本指南读取 [快速开始](/zh/docs/inceptiondb/v2/getting-started/) 留下的 `customers` 集合（包含 Ada 和 Grace），并使用其中的环境变量。它不会修改任何数据。
 
 ```bash
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:find" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"filter": {"plan": "pro"}, "limit": 10}'
 ```
 
@@ -36,6 +39,7 @@ curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:find" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"filter": {"mrr": {"$ge": 100, "$lt": 500}}, "limit": 10}'
 ```
 
@@ -51,7 +55,7 @@ curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/
 | `$nin` | 不是其中任何一个值 | `{"country": {"$nin": ["US", "GB"]}}` |
 | `$contains` | 是包含该值的文本 | `{"email": {"$contains": "@example.com"}}` |
 
-请使用这些确切的名称：`$ge` 和 `$le`，而不是 `$gte` 和 `$lte`。使用不存在的运算符的过滤器不会匹配任何文档。
+> **请从这张表中复制运算符名称。** 其他数据库中常见的 `$gte` 和 `$lte` 在 InceptionDB 中不存在：请使用 `$ge` 和 `$le`。目前未知运算符不会报错：过滤器不匹配任何文档，响应为 `204 No Content`。因此 `{"mrr": {"$gte": 100}}` 不返回任何客户，而 `{"mrr": {"$ge": 100}}` 返回 Ada 和 Grace。
 
 以 ISO 格式文本存储的日期（`"2026-10-28T09:30:00Z"`）按时间顺序比较：`{"created_at": {"$gt": "2026-01-01"}}`。
 
@@ -63,6 +67,7 @@ curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:find" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"filter": {"$or": [{"plan": "team"}, {"country": "US"}]}, "limit": 10}'
 ```
 
@@ -80,6 +85,7 @@ curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:find" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"filter": {"address.city": "London"}, "limit": 10}'
 ```
 
@@ -95,6 +101,7 @@ curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:find" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"filter": {"tags": "vip"}, "limit": 10}'
 ```
 
@@ -111,10 +118,20 @@ curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:find" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"filter": {}, "skip": 25, "limit": 25}'
 ```
 
 没有索引时，文档不按任何特定顺序返回。要得到有序结果，或让大集合上的查询更快，请使用 [索引](/zh/docs/inceptiondb/v2/indexes/)。
+
+## 查询返回 204，但你预期有文档
+
+`204 No Content` 表示没有文档匹配。它的响应体为空：解码之前请先检查状态码。常见原因：
+
+- **运算符名称不存在**，例如用了 `$gte` 或 `$lte`，而不是 `$ge` 和 `$le`。
+- **字段名拼写不同。** 名称区分大小写：`Country` 不是 `country`。
+- **值的类型不同。** `{"mrr": "120"}` 查找的是文本 `"120"`，而不是数字 `120`。
+- **`skip` 超过了最后一个匹配**，例如集合中的文档少于一页时请求第二页。
 
 ## 在控制台中试用
 

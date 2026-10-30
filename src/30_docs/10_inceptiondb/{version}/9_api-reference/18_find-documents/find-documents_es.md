@@ -2,6 +2,8 @@
 
 `POST /v1/databases/{databaseId}/collections/{collection}:find` · API key
 
+Petición: JSON, `Content-Type: application/json` · Respuesta: JSONL, o `204 No Content` con el cuerpo vacío
+
 | Campo del cuerpo | Por defecto | Significado |
 |---|---|---|
 | `filter` | `{}` | Condiciones; ver [Consultas](/es/docs/inceptiondb/v2/consultas/). |
@@ -17,6 +19,7 @@
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:find" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"filter": {"plan": {"$in": ["pro", "team"]}}, "limit": 10}'
 ```
 
@@ -26,4 +29,6 @@ Respuesta `200 OK`, los documentos como JSON Lines. `204 No Content` cuando nada
 {"id":"ada","name":"Ada Lovelace","plan":"pro","mrr":120}
 ```
 
-Operadores: `$eq`, `$ne`, `$gt`, `$ge`, `$lt`, `$le`, `$in`, `$nin`, `$contains`, `$and`, `$or`. Un filtro con un operador desconocido no coincide con ningún documento.
+Operadores: `$eq`, `$ne`, `$gt`, `$ge`, `$lt`, `$le`, `$in`, `$nin`, `$contains`, `$and`, `$or`.
+
+> **`$gte` y `$lte` no existen:** usa `$ge` y `$le`. Un operador desconocido no se notifica como error: el filtro no coincide con nada y la respuesta es `204 No Content`.

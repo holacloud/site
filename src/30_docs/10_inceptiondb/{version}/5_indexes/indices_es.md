@@ -2,7 +2,7 @@
 
 Sin índice, una consulta lee todos los documentos de la colección. Eso es rápido con miles de documentos. Con millones, para recibir los documentos ordenados o para asegurarte de que un valor no se repite nunca, crea un índice sobre el campo por el que buscas.
 
-Los ejemplos usan la colección `customers` y las variables de entorno de [Primeros pasos](/es/docs/inceptiondb/v2/primeros-pasos/).
+**Antes de empezar:** esta guía usa la colección `customers` tal como la deja [Primeros pasos](/es/docs/inceptiondb/v2/primeros-pasos/), con Ada y Grace, y sus variables de entorno. Crea cuatro índices y los borra al final. Los documentos no se modifican nunca.
 
 ## ¿Qué índice necesito?
 
@@ -22,6 +22,7 @@ Crea el índice:
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:createIndex" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"name": "by_email", "type": "map", "field": "email"}'
 ```
 
@@ -35,6 +36,7 @@ Busca un cliente por su email:
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:find" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"index": "by_email", "value": "grace@example.com"}'
 ```
 
@@ -48,6 +50,10 @@ A partir de ahora, insertar otro cliente con un email que ya existe falla con `4
 {"error":{"description":"Unexpected error","message":"index add 'by_email': index conflict: field 'email' with value 'ada@example.com'"}}
 ```
 
+`description` es un texto genérico; el detalle útil está siempre en `message`: el índice, el campo y el valor repetido. El documento no se guarda.
+
+Para que el `id` de los documentos también sea único, crea un índice `map` sobre `id`. Las lecturas por id lo usan entonces: su `source` es `index` en lugar de `fullscan`.
+
 ## Rangos y orden (btree)
 
 Crea un índice sobre los ingresos mensuales:
@@ -56,6 +62,7 @@ Crea un índice sobre los ingresos mensuales:
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:createIndex" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"name": "by_mrr", "type": "btree", "fields": ["mrr"]}'
 ```
 
@@ -69,6 +76,7 @@ Los clientes que pagan entre 100 y 500, de menor a mayor:
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:find" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"index": "by_mrr", "from": {"mrr": 100}, "to": {"mrr": 500}, "limit": 10}'
 ```
 
@@ -83,6 +91,7 @@ Los mejores clientes, de mayor a menor: `"reverse": true`.
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:find" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"index": "by_mrr", "reverse": true, "limit": 3}'
 ```
 
@@ -99,6 +108,7 @@ Conviene saber que:
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:createIndex" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"name": "search_name", "type": "fts", "field": "name"}'
 ```
 
@@ -108,6 +118,7 @@ Encuentra los clientes con `grace` en su nombre, en mayúsculas o minúsculas:
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:find" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"index": "search_name", "match": "grace", "limit": 10}'
 ```
 
@@ -117,16 +128,19 @@ curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/
 
 ## Documentos sin el campo
 
-Los documentos que no tienen el campo indexado se guardan con normalidad, pero no forman parte del índice: una consulta que usa el índice no los devuelve. Una consulta sin `index` sí los encuentra. Crea los índices con `"sparse": true` para dejarlo explícito:
+Un índice `map` o `btree` solo se puede crear si todos los documentos que ya hay en la colección tienen el campo. Si no, la respuesta es un `500` con un mensaje como ``error indexing existing data: field `company` is indexed and mandatory``.
+
+Para un campo que solo tienen algunos documentos, como `company`, crea el índice con `"sparse": true`. Los documentos sin el campo se guardan con normalidad, pero no forman parte del índice: una consulta que usa el índice no los devuelve, y una consulta sin `index` sí los encuentra.
 
 ```bash
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:createIndex" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"name": "by_company", "type": "btree", "fields": ["company"], "sparse": true}'
 ```
 
-## Listar y borrar índices
+## Listar los índices
 
 ```bash
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:listIndexes" \
@@ -138,13 +152,42 @@ curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/
 [{"fields":["company"],"name":"by_company","sparse":true,"type":"btree","unique":false},{"field":"email","name":"by_email","sparse":false,"type":"map"},{"fields":["mrr"],"name":"by_mrr","sparse":false,"type":"btree","unique":false},{"field":"name","name":"search_name","type":"fts"}]
 ```
 
-Borrar un índice no toca los documentos (`204 No Content`):
+## Limpieza
+
+Borrar un índice no toca los documentos. La respuesta es `204 No Content`. Borra los cuatro índices de esta guía:
 
 ```bash
 curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:dropIndex" \
   -H "Api-Key: $INCEPTIONDB_API_KEY" \
   -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
   -d '{"name": "by_mrr"}'
 ```
+
+```bash
+curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:dropIndex" \
+  -H "Api-Key: $INCEPTIONDB_API_KEY" \
+  -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
+  -d '{"name": "by_email"}'
+```
+
+```bash
+curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:dropIndex" \
+  -H "Api-Key: $INCEPTIONDB_API_KEY" \
+  -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
+  -d '{"name": "search_name"}'
+```
+
+```bash
+curl -X POST "https://inceptiondb.hola.cloud/v1/databases/$INCEPTIONDB_DATABASE/collections/customers:dropIndex" \
+  -H "Api-Key: $INCEPTIONDB_API_KEY" \
+  -H "Api-Secret: $INCEPTIONDB_API_SECRET" \
+  -H "Content-Type: application/json" \
+  -d '{"name": "by_company"}'
+```
+
+Crear un índice con un nombre que ya existe responde `500` con el mensaje `index 'by_email' already exists`. Si ya seguiste esta guía sin limpiar, ejecuta estos cuatro comandos y empieza de nuevo.
 
 En la [consola](https://inceptiondb.hola.cloud/), la pestaña **Schema** crea un índice sobre cualquier campo con un clic.

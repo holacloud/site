@@ -7,7 +7,7 @@ URL base: `https://inceptiondb.hola.cloud`
 | Endpoints | Credenciales |
 |---|---|
 | Datos: todo lo que cuelga de `/v1/databases/{databaseId}/collections` | Cabeceras `Api-Key` y `Api-Secret` de una [API key](/es/docs/inceptiondb/v2/claves-api/) de esa base de datos. |
-| Cuenta: bases de datos, API keys y owners | La sesión de un usuario identificado en hola.cloud. Úsalos desde la [consola](https://inceptiondb.hola.cloud/). |
+| Cuenta: bases de datos, API keys y owners | **Solo consola.** La sesión de un usuario identificado en la [consola](https://inceptiondb.hola.cloud/). `Api-Key` y `Api-Secret` no funcionan con ellos. |
 
 Los ejemplos leen las credenciales de variables de entorno:
 
@@ -19,10 +19,15 @@ export INCEPTIONDB_API_SECRET="your-api-secret"
 
 ## Formatos
 
-- Las peticiones envían JSON. Las inserciones envían **JSON Lines**: un objeto JSON por línea.
-- `:find`, `:insert`, `:patch` y `:remove` responden **JSON Lines**, un documento por línea. Los demás endpoints responden JSON.
-- Una consulta sin coincidencias responde `204 No Content` con el cuerpo vacío.
-- Los errores responden un objeto JSON: `{"error": {"message": "...", "description": "..."}}`.
+| Endpoint | Cuerpo de la petición | Cuerpo de la respuesta |
+|---|---|---|
+| `:insert` | JSON Lines (JSONL): un objeto JSON por línea, no un array JSON. Envía `Content-Type: application/x-ndjson`. | JSONL: los documentos guardados. |
+| `:find`, `:patch`, `:remove` | JSON. Envía `Content-Type: application/json`. | JSONL: los documentos que coinciden. |
+| Todos los demás | JSON, cuando tiene cuerpo. | JSON. |
+
+- InceptionDB interpreta el cuerpo según el endpoint, no según `Content-Type`, pero los ejemplos lo envían siempre para que cualquier cliente o proxy sepa el formato.
+- `204 No Content` tiene el cuerpo vacío: ningún documento coincide, o se ha borrado algo. Comprueba el código de estado antes de decodificar el cuerpo.
+- Los errores responden un objeto JSON: `{"error": {"description": "...", "message": "..."}}`. `description` suele ser el genérico `Unexpected error`; el detalle está en `message`.
 
 ## Endpoints
 
@@ -48,7 +53,9 @@ export INCEPTIONDB_API_SECRET="your-api-secret"
 
 `…` equivale a `/v1/databases/{databaseId}`.
 
-### Cuenta
+### Cuenta (solo consola)
+
+Estos endpoints necesitan la sesión de un usuario identificado en la consola. Se listan para explicar lo que hace la consola, no para automatizar: una API key no puede llamarlos. Ver [API keys](/es/docs/inceptiondb/v2/claves-api/).
 
 | Método | Ruta | Hace |
 |---|---|---|
@@ -70,10 +77,35 @@ La descripción OpenAPI de todo el API está en [`/openapi.json`](https://incept
 |---|---|
 | 200 OK | La petición ha funcionado y hay cuerpo. |
 | 201 Created | Se ha creado una colección, un documento o un índice. |
-| 204 No Content | Ha funcionado y no hay nada que devolver: ningún documento coincide, o es un borrado. |
-| 400 Bad Request | JSON no válido, un documento que no es un objeto JSON o nombres de campo repetidos. |
+| 204 No Content | Ha funcionado y no hay nada que devolver: ningún documento coincide, o es un borrado. El cuerpo está vacío. |
+| 400 Bad Request | El cuerpo no es válido: ver los errores más abajo. |
 | 401 Unauthorized | Un endpoint de cuenta llamado sin sesión iniciada. |
 | 403 Forbidden | API key o secreto incorrectos, o sin acceso a esa base de datos. |
-| 404 Not Found | El documento no existe. |
+| 404 Not Found | La colección, el documento o el índice no existe. |
 | 409 Conflict | El valor ya existe en un índice único. |
-| 500 Internal Server Error | También se devuelve cuando la colección no existe, o ya existe al crearla. |
+| 500 Internal Server Error | Algunos errores conocidos responden 500 hoy: ver los errores más abajo. |
+
+## Errores y qué hacer
+
+El `message` del error indica la causa. Estos son los que te puedes encontrar, con su mensaje real:
+
+| Estado | `message` | Causa | Qué hacer |
+|---|---|---|---|
+| 403 | ``can not access database '…'`` | La clave, el secreto o el ID de la base de datos no son correctos, o la clave fue revocada. | Revisa `INCEPTIONDB_DATABASE`, `INCEPTIONDB_API_KEY` e `INCEPTIONDB_API_SECRET`. |
+| 401 | `unauthorized` | Un endpoint de cuenta sin sesión de la consola. | Hazlo en la [consola](https://inceptiondb.hola.cloud/). |
+| 400 | `document must be a JSON object` | Un `:insert` con un array JSON o un valor que no es un objeto. | Envía un objeto por línea (JSONL). |
+| 400 | ``jsontext: unexpected EOF …``, ``jsontext: duplicate object member name …`` | Un documento de un `:insert` no es JSON válido, o repite un nombre de campo. | Corrige esa línea. Los documentos anteriores se guardaron. |
+| 400 | `unexpected end of JSON input` (description `Malformed JSON`) | El cuerpo de `:find`, `:patch` o `:remove` no es JSON válido. | Revisa comillas, comas y llaves. |
+| 404 | `collection not found` | `GET` de una colección que no existe. | Revisa el nombre: distingue mayúsculas y minúsculas. |
+| 404 | ``document '…' not found`` | `GET` de un documento por un id que no existe. | |
+| 404 | ``index '…' not found in collection '…'`` | `:getIndex` de un índice que no existe. | Lístalos con `:listIndexes`. |
+| 409 | ``index add '…': index conflict: field '…' with value '…'`` | El valor ya está en un índice `map` o en un `btree` con `unique`. | Usa otro valor, o actualiza el documento existente. |
+| 500 | ``collection `…` already exists`` | `POST /collections` con el nombre de una colección que existe. | Usa esa colección, u otro nombre. |
+| 500 | `collection not found` | `:find`, `:patch` o `:remove` sobre una colección que no existe. | Revisa el nombre. Ten en cuenta que `:insert` crea la colección. |
+| 500 | ``collection `…` not found in database `…` `` | `:dropCollection` de una colección que no existe. | No hay nada que borrar. |
+| 500 | ``index '…' already exists`` | `:createIndex` con el nombre de un índice que existe. | Usa otro nombre, o borra antes el índice antiguo. |
+| 500 | ``error indexing existing data: …`` | Un índice `map` o `btree` sobre un campo que algunos documentos no tienen, o un índice único sobre valores que se repiten. | Añade `"sparse": true`, o corrige los documentos. |
+| 500 | ``index '…' not found, available indexes […]`` | `:find` con un `index` que no existe. | Usa uno de los índices que lista el mensaje. |
+| 204 | ninguno | Un filtro con un operador que no existe, como `$gte`. | Usa `$ge` y `$le`. Ver [Consultas](/es/docs/inceptiondb/v2/consultas/). |
+
+Las respuestas `500` de arriba son errores conocidos de la petición, no fallos del servicio. Cualquier otro `500` es un problema de nuestro lado.
